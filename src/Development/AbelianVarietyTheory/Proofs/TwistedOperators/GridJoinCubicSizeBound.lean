@@ -159,7 +159,7 @@ theorem par_pair (D : D7) (hN : GlobalTheory.IndefiniteRowSideFullHecke.CuspAlon
       GlobalTheory.GridParD.gapOver_parD (grid D τ) i' j hN0 (grid_nearMid D τ) (GlobalTheory.GridParD.gridDataAtRealPlace_neg_firstLowEnd_lt_cloud D τ)
         (GlobalTheory.GridParD.grid_heb D τ) (GlobalTheory.GridParD.grid_hbb D τ hN) hga
     have hgap := hgapA i
-    have hbel : ∀ x ∈ entries P, x + ((GlobalTheory.Grid.sLen D : ℚ) + 1) / 2 ≤ c :=
+    have hbel : ∀ x ∈ GlobalTheory.SignedHC.entries P, x + ((GlobalTheory.Grid.sLen D : ℚ) + 1) / 2 ≤ c :=
       GlobalTheory.GridParD.entries_parD_le (grid D τ) hi hj (grid_nearMid D τ) (GlobalTheory.GridParD.gridDataAtRealPlace_neg_firstLowEnd_lt_cloud D τ)
         (GlobalTheory.GridParD.grid_hbe D τ) (by linarith)
     have hint := int_parD D τ i j
@@ -177,11 +177,11 @@ theorem par_pair (D : D7) (hN : GlobalTheory.IndefiniteRowSideFullHecke.CuspAlon
       rw [hq]; push_cast; have : (0 : ℚ) ≤ q := by positivity
       linarith
     have hbN : (0 : ℚ) ≤ (GlobalTheory.Grid.bigN D : ℚ) ^ 3 := by positivity
-    have ebe : ∀ e ∈ be, e + c ∈ entries P := fun e he => fst_mem_entries ((mbe e).1 he)
-    have ede : ∀ e ∈ de, e + c ∈ entries P := fun e he => fst_mem_entries ((mde e).1 he)
-    have hneg : ∀ e, e + c ∈ entries P → e + ((GlobalTheory.Grid.sLen D : ℚ) + 1) / 2 ≤ 0 := by
+    have ebe : ∀ e ∈ be, e + c ∈ GlobalTheory.SignedHC.entries P := fun e he => fst_mem_entries ((mbe e).1 he)
+    have ede : ∀ e ∈ de, e + c ∈ GlobalTheory.SignedHC.entries P := fun e he => fst_mem_entries ((mde e).1 he)
+    have hneg : ∀ e, e + c ∈ GlobalTheory.SignedHC.entries P → e + ((GlobalTheory.Grid.sLen D : ℚ) + 1) / 2 ≤ 0 := by
       intro e he; have := hbel _ he; linarith
-    have hent : ∀ e ∈ be ++ de, e + c ∈ entries P := by
+    have hent : ∀ e ∈ be ++ de, e + c ∈ GlobalTheory.SignedHC.entries P := by
       intro e he
       rcases List.mem_append.1 he with h | h
       · exact ebe e h

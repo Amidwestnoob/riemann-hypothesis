@@ -244,14 +244,14 @@ theorem sizesK : BigC fun {D} _ _ _ _ _ A _ _ _ _ _ _ ch _ b => 3 ≤ b ∧ 1 �
   refine ⟨by linarith, hN1, hN, hf1, hf, (Lnk.card_Tau D).le, by linarith, ?_, fun j hj => ⟨?_, fun τ i => ?_⟩⟩
   · exact (Real.log_le_log_iff (by linarith) (by linarith)).1 (by linarith)
   · exact GlobalTheory.DefRank.rank_le_bigN ch.G (.top j) hj
-  · have key : ∀ x ∈ entries (Node.par D ch.sc.cGap (.top j) τ), -(5 * large₂.sc.b) ≤ (x : ℝ) ∧ (x : ℝ) ≤ 2 * large₂.sc.b := by
+  · have key : ∀ x ∈ GlobalTheory.SignedHC.entries (Node.par D ch.sc.cGap (.top j) τ), -(5 * large₂.sc.b) ≤ (x : ℝ) ∧ (x : ℝ) ≤ 2 * large₂.sc.b := by
       rw [hc]
       intro x hx
-      have e : entries (Node.par D 1 (.top j) τ) = (num D 1 τ).weightX j := entries_plus _
+      have e : GlobalTheory.SignedHC.entries (Node.par D 1 (.top j) τ) = (num D 1 τ).weightX j := entries_plus _
       exact entry_bounds large₂ hS.size j τ x (e ▸ hx)
     have hw := natW_wtOf_le _ _ _ _ (by linarith) key i
     calc (((wt ch.G (.top j) τ).natW i : ℕ) : ℝ)
-        = (((wtOf _ (entries (Node.par D ch.sc.cGap (.top j) τ))).natW i : ℕ) : ℝ) := rfl
+        = (((wtOf _ (GlobalTheory.SignedHC.entries (Node.par D ch.sc.cGap (.top j) τ))).natW i : ℕ) : ℝ) := rfl
       _ ≤ _ := hw
       _ ≤ 8 * large₂.sc.b := by linarith
 

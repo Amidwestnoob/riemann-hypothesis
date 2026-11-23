@@ -40,7 +40,7 @@ theorem Ms_sub {j : ℕ} (hj : j ≤ D.R.m) : (Icc 1 j).biUnion (Γ).blockM ⊆ 
   biUnion_subset_biUnion_of_subset_left _ (Icc_subset_Icc le_rfl hj)
 
 theorem card_entries_parD {i j : ℕ} (hi : i ≤ D.R.m) (hj : j ≤ D.R.m) :
-    (entries ((Γ).parD i j)).card = rankV D i j := by
+    (GlobalTheory.SignedHC.entries ((Γ).parD i j)).card = rankV D i j := by
   have d1 : Disjoint (Γ).cloud (Γ).lows := disjoint_left.2 fun x h1 h2 => by
     linarith [(GlobalTheory.FunObj.cloud_gt D C τ h1).1, GlobalTheory.FunObj.lows_le D C τ h2]
   have d2 : Disjoint ((Γ).cloud ∪ (Γ).lows) ((Icc 1 j).biUnion (Γ).blockM) := by

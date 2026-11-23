@@ -218,7 +218,7 @@ section
 variable (G : GridData)
 
 theorem inCoset_parPi {q : ℕ} (hq : G.s = 2 * q + 1) (c : ℤ) (i : ℕ) :
-    InCoset ((c : ℚ) + (((G.s - 1 : ℕ) : ℚ) + 1) / 2) (entries (G.parPi i)) := by
+    InCoset ((c : ℚ) + (((G.s - 1 : ℕ) : ℚ) + 1) / 2) (GlobalTheory.SignedHC.entries (G.parPi i)) := by
   have hcast : ((G.s - 1 : ℕ) : ℚ) = 2 * q := by rw [hq, Nat.add_sub_cancel]; push_cast; ring
   intro x hx
   obtain ⟨b, hb⟩ := mem_entries.1 hx
