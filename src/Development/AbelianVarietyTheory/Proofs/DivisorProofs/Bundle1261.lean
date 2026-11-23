@@ -82,7 +82,7 @@ theorem evInf_inFin (w : InfinitePlace F) (v : Pl (F := F)) (x : Fv F v) : evInf
 theorem at_inFin_one (v : Pl (F := F)) : At (evFin F v) (inFin v (1 : Fv F v)) := by
   intro u hu
   rw [smul_eq_mul]
-  refine Prod.ext (mul_zero _) (af_ext fun u' => ?_)
+  refine Prod.ext (mul_zero _) (GlobalTheory.AdelicU.af_ext fun u' => ?_)
   show evalV F u' (u.2 * singleFin v 1) = evalV F u' 0
   rw [map_mul, map_zero]
   by_cases e : u' = v

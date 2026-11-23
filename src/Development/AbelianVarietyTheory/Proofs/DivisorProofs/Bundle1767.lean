@@ -233,7 +233,7 @@ theorem smul_tens_single (v : HeightOneSpectrum (𝓞 F)) {u : AF F} (hu : evFin
     have hb : u * b = 0 := by
       refine Prod.ext (mul_zero _) ?_
       show u.2 * singleFin v a = 0
-      refine af_ext fun t => ?_
+      refine GlobalTheory.AdelicU.af_ext fun t => ?_
       rw [map_mul, map_zero]
       by_cases ht : t = v
       · subst ht

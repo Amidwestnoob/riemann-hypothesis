@@ -29,7 +29,7 @@ theorem ev_self (v : Pl F) : evFin F v (idem v) = 1 := evalV_singleFin_self v 1
 theorem ev_ne {v u : Pl F} (h : u ≠ v) : evFin F u (idem v) = 0 := evalV_singleFin_ne h 1
 
 theorem mul_idem {v : Pl F} {a : AF F} (h : evFin F v a = 0) : a * idem v = 0 := by
-  refine Prod.ext (mul_zero a.1) (af_ext fun u => ?_)
+  refine Prod.ext (mul_zero a.1) (GlobalTheory.AdelicU.af_ext fun u => ?_)
   show evFin F u (a * idem v) = evFin F u 0
   rw [map_mul, map_zero]
   by_cases e : u = v

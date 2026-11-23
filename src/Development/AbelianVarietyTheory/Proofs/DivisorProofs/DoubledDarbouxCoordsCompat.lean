@@ -53,7 +53,7 @@ theorem eq_zero_of_psi_mul {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (b : AF F)
     rw [e2, e3, Complex.exp_neg, Complex.exp_pi_mul_I] at h2
     norm_num at h2
   have h2 : b.2 = 0 := by
-    refine af_ext fun v => ?_
+    refine GlobalTheory.AdelicU.af_ext fun v => ?_
     rw [map_zero]
     by_contra hv
     apply GlobalTheory.PsiNontriv.psiV_ne_one ψ hψ v
@@ -63,7 +63,7 @@ theorem eq_zero_of_psi_mul {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (b : AF F)
     show ((0, singleFin v t) : Ainf F × Af F) = (b.1 * 0, b.2 * singleFin v ((evalV F v b.2)⁻¹ * t))
     rw [mul_zero]
     congr 1
-    refine af_ext fun u => ?_
+    refine GlobalTheory.AdelicU.af_ext fun u => ?_
     by_cases hu : u = v
     · subst hu
       rw [map_mul, evalV_singleFin_self, evalV_singleFin_self, ← mul_assoc, mul_inv_cancel₀ hv, one_mul]

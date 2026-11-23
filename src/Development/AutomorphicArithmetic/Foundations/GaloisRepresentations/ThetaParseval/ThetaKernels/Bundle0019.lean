@@ -353,7 +353,7 @@ theorem exists_loc_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ B) {Y
     · simpa [← map_mul, d0] using mul_mem i1 (b1 i j).mem
     · simpa [← map_mul, d0] using mul_mem i2 (b2 i j).mem
 theorem exists_ad_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ B) {Y : Spc F E n} {r s : ℕ} (hY : Y.IsHerm σ B r s ∨ Y.IsSkew σ B r s)
-    (hJ : Y.J.det ≠ 0) (c : InfinitePlace F → GL (Fin n) ℂ) : ∃ a g : GL (Fin n) (AE F E), IsLatticeFrame Y.L a ∧
+    (hJ : Y.J.det ≠ 0) (c : InfinitePlace F → GL (Fin n) ℂ) : ∃ a g : GL (Fin n) (AE F E), GlobalTheory.AdelicU.IsLatticeFrame Y.L a ∧
       (∀ v, (∃ l : (Fv F v ⊗[F] E)ˣ, (bc (compFin F E v) a).1 = l.1 • (bc (compFin F E v) g).1) ∧ Uni σ v Y.J (bc (compFin F E v) g)) ∧
       ∀ w, bc (piInf (B.emb w)) g = c w := by
   classical

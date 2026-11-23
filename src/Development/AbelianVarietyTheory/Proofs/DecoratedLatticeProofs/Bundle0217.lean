@@ -255,18 +255,18 @@ theorem bc_idemGlue_of_one {R S : Type} [CommRing R] [CommRing S] {m : Type} [Fi
 
 theorem isLatticeFrame_idemGlue {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {n : ℕ}
     {L : Submodule (𝓞 E) (Fin n → E)} {e : AF F ⊗[F] E} (hee : e * e = e) {x : GL (Fin n) (AF F ⊗[F] E)}
-    (hx : IsLatticeFrame L x) (y : GL (Fin n) (AF F ⊗[F] E)) (he : ∀ v, compFin F E v e = 0) :
-    IsLatticeFrame L (idemGlue e hee x y) := by
+    (hx : GlobalTheory.AdelicU.IsLatticeFrame L x) (y : GL (Fin n) (AF F ⊗[F] E)) (he : ∀ v, compFin F E v e = 0) :
+    GlobalTheory.AdelicU.IsLatticeFrame L (idemGlue e hee x y) := by
   intro v z
   rw [bc_idemGlue_of_zero hee x y _ (he v)]
   exact hx v z
 
 theorem exists_isLatticeFrame_bc_eq (D : D7) (A : HSp D) (a : GL (Fin A.rank) (AE D)) :
-    ∃ b : GL (Fin A.rank) (AE D), IsLatticeFrame (frameLat A) b ∧
+    ∃ b : GL (Fin A.rank) (AE D), GlobalTheory.AdelicU.IsLatticeFrame (frameLat A) b ∧
       ∀ w, Formalism.UG.bc (compInf D.host.F D.host.E w) b = Formalism.UG.bc (compInf D.host.F D.host.E w) a := by
   let : Submodule.IsFullLattice D.host.E (frameLat A) := SelfDual.isLattice_frameLat A
   obtain ⟨b₀, hb₀, -⟩ : ∃ b : GL (Fin A.rank) (AE D),
-      IsLatticeFrame (frameLat A) b ∧ IsMajorantFrame D.sp.cm.sig A.gram b :=
+      GlobalTheory.AdelicU.IsLatticeFrame (frameLat A) b ∧ IsMajorantFrame D.sp.cm.sig A.gram b :=
     Frames.exists_isLatticeFrame_isMajorantFrame (isCMExt_host D) (isHermND_gram A) (frameLat A)
   obtain ⟨e, hee, -, hfin, hinf, -, -⟩ := _root_.GlobalTheory.StdUnn.realIdem_exists D
   exact ⟨idemGlue e hee b₀ a, isLatticeFrame_idemGlue hee hb₀ a hfin, fun w => bc_idemGlue_of_one hee b₀ a _ (hinf w)⟩

@@ -46,7 +46,7 @@ theorem idemAt_mul_self (v : Pl (F := F)) : idemAt v * idemAt v = idemAt v := by
 theorem mul_idemAt_of_evFin (v : Pl (F := F)) {u : AF F} (hu : evFin F v u = 0) : u * idemAt v = 0 := by
   refine Prod.ext (show u.1 * (0 : Ainf F) = 0 from mul_zero _) ?_
   change u.2 * singleFin v 1 = 0
-  refine af_ext fun w => ?_
+  refine GlobalTheory.AdelicU.af_ext fun w => ?_
   rw [map_mul, map_zero]
   by_cases h : w = v
   · subst h
