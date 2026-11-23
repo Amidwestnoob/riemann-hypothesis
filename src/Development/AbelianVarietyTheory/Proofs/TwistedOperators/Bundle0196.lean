@@ -322,7 +322,7 @@ end GlobalTheory.TwistTypePlaces
 namespace GlobalTheory.TwistTypePlaces
 
 theorem under_conjPl {D : D7} (P : Pl D.host.E) :
-    (conjPl P).under (𝓞 D.host.F) = P.under (𝓞 D.host.F) := by
+    (Formalism.DivisionValues.conjPl P).under (𝓞 D.host.F) = P.under (𝓞 D.host.F) := by
   have hfix : ∀ x : 𝓞 D.host.F,
       Formalism.DivisionValues.cO D.host.E (algebraMap (𝓞 D.host.F) (𝓞 D.host.E) x) = algebraMap (𝓞 D.host.F) (𝓞 D.host.E) x := by
     intro x
@@ -344,14 +344,14 @@ theorem under_conjPl {D : D7} (P : Pl D.host.E) :
     exact ⟨_, h, hfix x⟩
 
 theorem natCast_mem_conjPl {D : D7} (P : Pl D.host.E) (n : ℕ) (h : (n : 𝓞 D.host.E) ∈ P.asIdeal) :
-    (n : 𝓞 D.host.E) ∈ (conjPl P).asIdeal := by
+    (n : 𝓞 D.host.E) ∈ (Formalism.DivisionValues.conjPl P).asIdeal := by
   have := Ideal.mem_map_of_mem (Formalism.DivisionValues.cO D.host.E) h
   rwa [map_natCast] at this
 
-theorem ncard_primesOver_two {D : D7} (P : Pl D.host.E) (h : conjPl P ≠ P) :
+theorem ncard_primesOver_two {D : D7} (P : Pl D.host.E) (h : Formalism.DivisionValues.conjPl P ≠ P) :
     (Ideal.primesOver (P.under (𝓞 D.host.F)).asIdeal (𝓞 D.host.E)).ncard = 2 := by
   rw [GlobalTheory.QuadSignLocal.ncard_primesOver]
-  have hs : {u : HeightOneSpectrum (𝓞 D.host.E) | u.under (𝓞 D.host.F) = P.under (𝓞 D.host.F)} = {P, conjPl P} := by
+  have hs : {u : HeightOneSpectrum (𝓞 D.host.E) | u.under (𝓞 D.host.F) = P.under (𝓞 D.host.F)} = {P, Formalism.DivisionValues.conjPl P} := by
     ext u
     simp only [Set.mem_ofPred_eq, Set.mem_insert_iff, Set.mem_singleton_iff]
     constructor
@@ -400,11 +400,11 @@ theorem places_split : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Ty
     intro PP h1 h2
     obtain ⟨k, hk⟩ := gP PP h1
     exact qN PP h2 k hk
-  have cross : ∀ PP ∈ R.Pg, ∀ PP' ∈ R.Q t, PP' ≠ conjPl PP := by
+  have cross : ∀ PP ∈ R.Pg, ∀ PP' ∈ R.Q t, PP' ≠ Formalism.DivisionValues.conjPl PP := by
     rintro PP h PP' h' rfl
     obtain ⟨k, hk⟩ := gP PP h
     exact qN _ h' k (natCast_mem_conjPl PP _ hk)
-  have hnc : ∀ PP ∈ R.Pg ∪ R.Q t, ∀ PP' ∈ R.Pg ∪ R.Q t, PP' ≠ conjPl PP := by
+  have hnc : ∀ PP ∈ R.Pg ∪ R.Q t, ∀ PP' ∈ R.Pg ∪ R.Q t, PP' ≠ Formalism.DivisionValues.conjPl PP := by
     intro PP h PP' h' e
     rcases Finset.mem_union.1 h with h | h <;> rcases Finset.mem_union.1 h' with h' | h'
     · exact GlobalTheory.TypePlaces.not_isConjPl R.C.P R.Pg hPg PP h PP' h' (GlobalTheory.GoodPrimes.isConjPl_iff.2 e)

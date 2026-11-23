@@ -221,7 +221,7 @@ theorem inert_valid (hH : HoweUnram) (hI : GlobalTheory.Chain.LiftInteg D) (hC :
   obtain ⟨cW, hW⟩ := (two.2 j).1 (Finsupp.single (GlobalTheory.Hk3.labIn (Vc D j).rank s) 1)
   refine ⟨R.plI Q, Finsupp.single (GlobalTheory.Hk3.labIn (Vc D j).rank s) 1, cW, hg, fun h hh x => ?_, hW⟩
   have hty : ∀ i : A3.okI t × List ℕ, Formalism.L2.Col.InertTypeOk (Vc D j).rank i.2 →
-      Good R.toRealDat t (R.plI i.1) ∧ conjPl (R.plI i.1) = R.plI i.1 ∧
+      Good R.toRealDat t (R.plI i.1) ∧ Formalism.DivisionValues.conjPl (R.plI i.1) = R.plI i.1 ∧
         (GlobalTheory.Hk3.labIn (Vc D j).rank i.2).Pairwise (fun a b => b ≤ a) := by
     intro i hi
     obtain ⟨g1, g2⟩ := hGoodI t i.1 i.1.2
@@ -353,7 +353,7 @@ theorem entry_valid (hH : HoweUnram) (R : RealDat3 D A3 Ks) (F : Face3 D A3) (hL
   have hc := (hQ t Q.1 Q.2).2
   have hTwo := _root_.GlobalTheory.Hk3.TwoSidedInert.twoSided_of_inert hH R.toRealDat F.lv2 hL hcore hS t _ hg hc (_root_.GlobalTheory.VacFixInert.fixAll_inert R F hW t _ hg hc)
   have hpre : ∀ j : A3.okI t × List ℕ, Formalism.L2.Col.InertTypeOk D.sp.X'.rank j.2 →
-      Good R.toRealDat t (R.plI j.1.1) ∧ conjPl (R.plI j.1.1) = R.plI j.1.1 ∧
+      Good R.toRealDat t (R.plI j.1.1) ∧ Formalism.DivisionValues.conjPl (R.plI j.1.1) = R.plI j.1.1 ∧
         (GlobalTheory.Hk3.labIn D.sp.X'.rank j.2).Pairwise (fun a b => b ≤ a) := fun j hj =>
     ⟨(hQ t j.1.1 j.1.2).1, (hQ t j.1.1 j.1.2).2, ((_root_.GlobalTheory.Hk3.labIn_selfDual_iff D.sp.X'.rank (GlobalTheory.Hk3.labIn D.sp.X'.rank j.2)).2
       ⟨j.2, hj.2.2, hj.1, hj.2.1, rfl⟩).2.1⟩

@@ -35,12 +35,12 @@ namespace GlobalTheory.Hk3.CorrInert
 
 variable {D : D7}
 
-theorem exists_idem_of_conj_eq (P : Pl D.host.E) (hP : conjPl P = P) : ∃ e, IsPrimeIdem P e e := by
+theorem exists_idem_of_conj_eq (P : Pl D.host.E) (hP : Formalism.DivisionValues.conjPl P = P) : ∃ e, IsPrimeIdem P e e := by
   obtain ⟨Φ, hΦ⟩ := GlobalTheory.IdemSupport.exists_comp D
   obtain ⟨e, f, h⟩ := GlobalTheory.IdemSupport.exists_isPrimeIdem hΦ P
   have hc : P = GlobalTheory.IdemSupport.cP P := by
     refine (GlobalTheory.IdemSupport.isConjPl_iff P P).1 fun c hc => ⟨GlobalTheory.IdemSupport.cO D c, ?_, rfl⟩
-    have h1 : GlobalTheory.IdemSupport.cO D c ∈ (conjPl P).asIdeal := Ideal.mem_map_of_mem _ hc
+    have h1 : GlobalTheory.IdemSupport.cO D c ∈ (Formalism.DivisionValues.conjPl P).asIdeal := Ideal.mem_map_of_mem _ hc
     rwa [hP] at h1
   rcases h with ⟨h, -⟩ | h
   · exfalso
@@ -109,7 +109,7 @@ theorem coe_sum_smul {W : Type} [AddCommGroup W] [Module ℂ W] {M : Submodule �
     ((b.sum fun h z => z • v h : M) : W) = b.sum fun h z => z • (v h : W) := by
   simp only [Finsupp.sum, Submodule.coe_sum, Submodule.coe_smul]
 
-theorem sphCorr_of_inert : HoweUnram → ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)) (P : Pl D.host.E), IsWeilDatumO ψ S T χS χT om → conjPl P = P → VacFix ψ om P → SphCorr ψ om P := by
+theorem sphCorr_of_inert : HoweUnram → ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)) (P : Pl D.host.E), IsWeilDatumO ψ S T χS χT om → Formalism.DivisionValues.conjPl P = P → VacFix ψ om P → SphCorr ψ om P := by
   intro hH D ψ S T χS χT om P hW hP hV
   obtain ⟨e, he⟩ := exists_idem_of_conj_eq P hP
   obtain ⟨ϖ, σ, q, δ, JS, JT, ψ', M, ρ, ω, ιS, ιT, hL, rS, rT, kS, kT, hω, hM, hvac⟩ :=

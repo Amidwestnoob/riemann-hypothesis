@@ -45,7 +45,7 @@ theorem cA_cA' (z : Formalism.L2.Theta.AE D) : cA D (cA D z) = z := by
 
 theorem cO_eq (x : 𝓞 D.host.E) : Formalism.DivisionValues.cO D.host.E x = GlobalTheory.IdemSupport.cO D x := RingOfIntegers.ext rfl
 
-theorem conjPl_eq_cP (P : HeightOneSpectrum (𝓞 D.host.E)) : conjPl P = GlobalTheory.IdemSupport.cP P := by
+theorem conjPl_eq_cP (P : HeightOneSpectrum (𝓞 D.host.E)) : Formalism.DivisionValues.conjPl P = GlobalTheory.IdemSupport.cP P := by
   refine HeightOneSpectrum.ext (Ideal.ext fun x => ?_)
   rw [GlobalTheory.IdemSupport.mem_cP]
   change x ∈ P.asIdeal.map (Formalism.DivisionValues.cO D.host.E) ↔ _
@@ -57,30 +57,30 @@ theorem conjPl_eq_cP (P : HeightOneSpectrum (𝓞 D.host.E)) : conjPl P = Global
     exact ⟨GlobalTheory.IdemSupport.cO D x, h, by rw [cO_eq, GlobalTheory.IdemSupport.cO_cO]⟩
 
 theorem mem_conjPl (P : HeightOneSpectrum (𝓞 D.host.E)) (x : 𝓞 D.host.E) :
-    x ∈ (conjPl P).asIdeal ↔ GlobalTheory.IdemSupport.cO D x ∈ P.asIdeal := by
+    x ∈ (Formalism.DivisionValues.conjPl P).asIdeal ↔ GlobalTheory.IdemSupport.cO D x ∈ P.asIdeal := by
   rw [conjPl_eq_cP]; exact GlobalTheory.IdemSupport.mem_cP P x
 
-theorem conjPl_conjPl (P : HeightOneSpectrum (𝓞 D.host.E)) : conjPl (conjPl P) = P := by
+theorem conjPl_conjPl (P : HeightOneSpectrum (𝓞 D.host.E)) : Formalism.DivisionValues.conjPl (Formalism.DivisionValues.conjPl P) = P := by
   refine HeightOneSpectrum.ext (Ideal.ext fun x => ?_)
   rw [mem_conjPl, mem_conjPl, GlobalTheory.IdemSupport.cO_cO]
 
-theorem isConjPl_conjPl (P : HeightOneSpectrum (𝓞 D.host.E)) : Formalism.IndefR.Lev.IsConjPl P (conjPl P) :=
+theorem isConjPl_conjPl (P : HeightOneSpectrum (𝓞 D.host.E)) : Formalism.IndefR.Lev.IsConjPl P (Formalism.DivisionValues.conjPl P) :=
   (GlobalTheory.IdemSupport.isConjPl_iff P _).2 (conjPl_eq_cP P)
 
-theorem not_mem_sq (P : HeightOneSpectrum (𝓞 D.host.E)) (ϖ : 𝓞 D.host.E) (h : ϖ ∉ (conjPl P).asIdeal ^ 2) :
+theorem not_mem_sq (P : HeightOneSpectrum (𝓞 D.host.E)) (ϖ : 𝓞 D.host.E) (h : ϖ ∉ (Formalism.DivisionValues.conjPl P).asIdeal ^ 2) :
     GlobalTheory.IdemSupport.cO D ϖ ∉ P.asIdeal ^ 2 := by
   intro h'
   apply h
-  have e1 : (conjPl P).asIdeal = P.asIdeal.map (Formalism.DivisionValues.cO D.host.E) := rfl
+  have e1 : (Formalism.DivisionValues.conjPl P).asIdeal = P.asIdeal.map (Formalism.DivisionValues.cO D.host.E) := rfl
   rw [e1, ← Ideal.map_pow]
   have := Ideal.mem_map_of_mem (Formalism.DivisionValues.cO D.host.E) h'
   convert this using 1
   rw [cO_eq, GlobalTheory.IdemSupport.cO_cO]
 
 theorem conj_cases (V : HSp D) {Q : HeightOneSpectrum (𝓞 D.host.E)} {e f : Formalism.L2.Theta.AE D} (h : IsPrimeIdem Q e f) :
-    (Formalism.L2.NTheta.IsIdemAt e Q ∧ IsPrimeIdem (conjPl Q) (cA D e) f) ∨ (conjPl Q = Q ∧ f = e) := by
+    (Formalism.L2.NTheta.IsIdemAt e Q ∧ IsPrimeIdem (Formalism.DivisionValues.conjPl Q) (cA D e) f) ∨ (Formalism.DivisionValues.conjPl Q = Q ∧ f = e) := by
   rcases h with ⟨hi, rfl⟩ | ⟨rfl, h2, h3⟩
-  · have hc := (GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V).2.2.2 Q (conjPl Q) e hi
+  · have hc := (GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V).2.2.2 Q (Formalism.DivisionValues.conjPl Q) e hi
       (isConjPl_conjPl Q)
     exact Or.inl ⟨hi, Or.inl ⟨hc, by rw [cA_cA', add_comm]⟩⟩
   · have h' : IsPrimeIdem Q f f := Or.inr ⟨rfl, h2, h3⟩
@@ -95,7 +95,7 @@ theorem conj_cases (V : HSp D) {Q : HeightOneSpectrum (𝓞 D.host.E)} {e f : Fo
     · subst hx; simp only [Submodule.zero_mem]
     · exact (ht x hx).trans (h3 x hx).symm
 
-theorem hyp_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) : hyp V (conjPl P) = hyp V P := by
+theorem hyp_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) : hyp V (Formalism.DivisionValues.conjPl P) = hyp V P := by
   obtain ⟨e, f, h⟩ := (GlobalTheory.IdemSupport.supported_group_and_prime_idempotents V).2.1 P
   rcases conj_cases V h with ⟨-, h'⟩ | ⟨hc, -⟩
   · rw [GlobalTheory.SphLabelOps.hyp_eq h', GlobalTheory.SphLabelOps.hyp_eq h]
@@ -107,16 +107,16 @@ theorem divAt_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (e : Form
   _root_.GlobalTheory.DivConj.divAt_conj V P e ϖ d α he h1 h2 hd
 
 theorem sphOp_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (d : List ℤ) (R : Finset (GA D V))
-    (hR : SphOp V (conjPl P) d R) : SphOp V P (dualLab d) R := by
+    (hR : SphOp V (Formalism.DivisionValues.conjPl P) d R) : SphOp V P (dualLab d) R := by
   obtain ⟨e, f, ϖ, α, -, hef, hϖ, hϖ2, hd, hJ, hχ, hα, hdiv, hR, hrep⟩ := hR
   have hS : OffS D ∅ P := fun v hv => absurd hv (Finset.notMem_empty v)
   rcases conj_cases V hef with ⟨hi, h'⟩ | ⟨hc, rfl⟩
   · rw [conjPl_conjPl] at h'
-    have hD := divAt_conj V (conjPl P) e ϖ d α hi hϖ hϖ2 hdiv
+    have hD := divAt_conj V (Formalism.DivisionValues.conjPl P) e ϖ d α hi hϖ hϖ2 hdiv
     rw [← GlobalTheory.IdemSupport.cO_coe] at hD
     exact ⟨cA D e, f, GlobalTheory.IdemSupport.cO D ϖ, α, hS, h', (mem_conjPl P ϖ).1 hϖ, not_mem_sq P ϖ hϖ2,
       GlobalTheory.SphLabelOps.dualLab_pairwise hd, hJ, hχ, hα, hD, hR, hrep⟩
-  · have hc' : conjPl P = P := hc.symm.trans (conjPl_conjPl P)
+  · have hc' : Formalism.DivisionValues.conjPl P = P := hc.symm.trans (conjPl_conjPl P)
     rw [hc'] at hef hϖ hϖ2
     have he := (GlobalTheory.HeckeDual.idem_of_isPrimeIdem hef).1
     obtain ⟨a, b, ha, -, hb, -, hab⟩ :=
@@ -131,25 +131,25 @@ theorem sphOp_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (d : List
     exact ⟨f, f, ϖ, α, hS, hef, hϖ, hϖ2, GlobalTheory.SphLabelOps.dualLab_pairwise hd, hJ, hχ, hα, hD, hR, hrep⟩
 
 theorem isLab_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) (d : List ℤ) :
-    IsLab V (conjPl P) d ↔ IsLab V P (dualLab d) := by
+    IsLab V (Formalism.DivisionValues.conjPl P) d ↔ IsLab V P (dualLab d) := by
   constructor
   · rintro ⟨R, hR⟩; exact ⟨R, sphOp_conj V P d R hR⟩
   · rintro ⟨R, hR⟩
     rw [← conjPl_conjPl P] at hR
-    have := sphOp_conj V (conjPl P) (dualLab d) R hR
+    have := sphOp_conj V (Formalism.DivisionValues.conjPl P) (dualLab d) R hR
     rw [GlobalTheory.SphLabelOps.dualLab_dualLab] at this
     exact ⟨R, this⟩
 
 theorem sum_rep_conj (V : HSp D) (P : HeightOneSpectrum (𝓞 D.host.E)) {M : Type} [AddCommGroup M] [Module ℂ M]
     (π : GA D V →* Module.End ℂ M) (u : M) (hu : ∀ k ∈ hyp V P, π k u = u) (d : List ℤ) :
-    ∑ γ ∈ rep V (conjPl P) d, π γ u = ∑ γ ∈ rep V P (dualLab d), π γ u := by
-  by_cases hd : IsLab V (conjPl P) d
+    ∑ γ ∈ rep V (Formalism.DivisionValues.conjPl P) d, π γ u = ∑ γ ∈ rep V P (dualLab d), π γ u := by
+  by_cases hd : IsLab V (Formalism.DivisionValues.conjPl P) d
   · have h1 := sphOp_conj V P d _ (GlobalTheory.SphLabelOps.sphOp_rep hd)
     rw [((GlobalTheory.SphLabelOps.label_operators V P).1 _ _ h1).2 M π u hu, GlobalTheory.SphLabelOps.opOf_single]
   · have hd' : ¬ IsLab V P (dualLab d) := fun h => hd ((isLab_conj V P d).2 h)
     rw [Hk3.rep, dite_eq_right hd, Hk3.rep, dite_eq_right hd']
 
-theorem sph_conj : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), hyp V (conjPl P) = hyp V P ∧ (∀ d, IsLab V (conjPl P) d ↔ IsLab V P (dualLab d)) ∧ ∀ c, ∀ (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π (conjPl P) c u = opOf π P (dualC c) u := by
+theorem sph_conj : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), hyp V (Formalism.DivisionValues.conjPl P) = hyp V P ∧ (∀ d, IsLab V (Formalism.DivisionValues.conjPl P) d ↔ IsLab V P (dualLab d)) ∧ ∀ c, ∀ (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π (Formalism.DivisionValues.conjPl P) c u = opOf π P (dualC c) u := by
   intro D V P
   refine ⟨hyp_conj V P, isLab_conj V P, fun c M _ _ π u hu => ?_⟩
   rw [opOf, opOf, dualC, Finsupp.sum_mapDomain_index (h := fun d (z : ℂ) => z • ∑ γ ∈ rep V P d, π γ) (fun _ => zero_smul ℂ _) (fun _ _ _ => add_smul _ _ _)]
@@ -176,7 +176,7 @@ open Formalism.L2.NTheta GlobalTheory.SplitPlace GlobalTheory.DualSplitRel
 
 variable {D : D7}
 
-theorem split_of_primeIdem {P : Pl D.host.E} (hP : conjPl P ≠ P) {e f : AE D} (h : IsPrimeIdem P e f) :
+theorem split_of_primeIdem {P : Pl D.host.E} (hP : Formalism.DivisionValues.conjPl P ≠ P) {e f : AE D} (h : IsPrimeIdem P e f) :
     IsIdemAt e P ∧ f = e + cA D e := by
   rcases h with h | ⟨-, ⟨v, ε, -, rfl⟩, ht⟩
   · exact h
@@ -190,7 +190,7 @@ theorem split_of_primeIdem {P : Pl D.host.E} (hP : conjPl P ≠ P) {e f : AE D} 
 theorem dual_shift (d : List ℤ) : dualLab ((dualLab (d.map fun x => x - 1)).map (· - 1)) = d := by
   simp [dualLab, List.map_reverse, List.map_map, Function.comp_def]
 
-theorem shift {P : Pl D.host.E} (hP : conjPl P ≠ P) {V : HSp D} {d : List ℤ} {R : Finset (GA D V)} [DecidableEq (GA D V)]
+theorem shift {P : Pl D.host.E} (hP : Formalism.DivisionValues.conjPl P ≠ P) {V : HSp D} {d : List ℤ} {R : Finset (GA D V)} [DecidableEq (GA D V)]
     (hR : SphOp V P d R) : ∃ z : GA D V, (∀ γ ∈ R, γ * z = z * γ) ∧
       SphOp V P (splitLab V.rank V.rank) {z} ∧ SphOp V P (d.map fun x => x - 1) (R.image (· * z)) := by
   obtain ⟨e, f, ϖ, α, -, hpi, h1, h2, hd, -, -, hα, hD, hRs, hc⟩ := hR
@@ -224,7 +224,7 @@ theorem shift {P : Pl D.host.E} (hP : conjPl P ≠ P) {V : HSp D} {d : List ℤ}
   refine ⟨z, fun γ hγ => hzc γ (hRs γ hγ), S0, sh hα hD hRs hc ?_⟩
   exact List.pairwise_map.2 (hd.imp fun h => by omega)
 
-theorem isLab_of_shift {P : Pl D.host.E} (hP : conjPl P ≠ P) {V : HSp D} {d : List ℤ}
+theorem isLab_of_shift {P : Pl D.host.E} (hP : Formalism.DivisionValues.conjPl P ≠ P) {V : HSp D} {d : List ℤ}
     (h : IsLab V P (d.map fun x => x - 1)) : IsLab V P d := by
   obtain ⟨R, e, f, ϖ, α, -, hpi, h1, h2, hd, -, -, hα, hD, -, -⟩ := h
   obtain ⟨he, rfl⟩ := split_of_primeIdem hP hpi
@@ -238,7 +238,7 @@ theorem isLab_of_shift {P : Pl D.host.E} (hP : conjPl P ≠ P) {V : HSp D} {d : 
   · exact (List.pairwise_map.1 hd).imp fun h => by omega
   · exact suppAt_inv (suppAt_mul (suppAt_inv hα) hs)
 
-theorem central_shift : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), conjPl P ≠ P → ∀ (d : List ℤ) (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π P (Finsupp.single (splitLab V.rank V.rank) 1) (opOf π P (Finsupp.single d 1) u) = opOf π P (Finsupp.single (d.map fun x => x - 1) 1) u := by
+theorem central_shift : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), Formalism.DivisionValues.conjPl P ≠ P → ∀ (d : List ℤ) (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π P (Finsupp.single (splitLab V.rank V.rank) 1) (opOf π P (Finsupp.single d 1) u) = opOf π P (Finsupp.single (d.map fun x => x - 1) 1) u := by
   classical
   intro D V P hP d M _ _ π u hu
   have c1 := (GlobalTheory.SphLabelOps.label_operators V P).1

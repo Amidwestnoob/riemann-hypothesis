@@ -468,7 +468,7 @@ theorem exists_tieCoord_base {P : Type} [Group P] [Finite P] {inc : P →* G} {O
     exact this
   refine ⟨w, fun j => coord_lattice j (hZ j) (hM j), fun v hv j =>
     ⟨key v j (hrat v hv j) ((hI v hv).1 j) ((hT v hv).1 j).2.1, ?_⟩⟩
-  have := key (conjPl v) j (by rw [hμ v]; exact hrat v hv j) ((hI v hv).2 j) ((hT v hv).2 j).2.1
+  have := key (Formalism.DivisionValues.conjPl v) j (by rw [hμ v]; exact hrat v hv j) ((hI v hv).2 j) ((hT v hv).2 j).2.1
   rwa [hμ v] at this
 
 end Tied
