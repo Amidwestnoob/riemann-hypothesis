@@ -309,7 +309,7 @@ theorem exists_generators_H1fT' [FiniteDimensional LL V] (L : Lattice (O := O) �
   haveI : Module.IsTorsionFree O LL := inferInstance
   haveI : Module.IsTorsionFree O V := Module.IsTorsionFree.trans LL
   haveI : Module.Free O ↥(latticeFiniteCocycles PD L) := inferInstance
-  obtain ⟨m, z, hz, hm⟩ := exists_generators (Ideal.span {ϖ}) (cobT PD L hρ)
+  obtain ⟨m, z, hz, hm⟩ := GlobalTheory.H1fGeneratorBoundAlt.exists_generators (Ideal.span {ϖ}) (cobT PD L hρ)
   refine ⟨m, ⟨Finset.univ.image fun i => classT PD L (z i), ?_, ?_⟩, ?_⟩
   · have := congrArg (Submodule.map (classT PD L)) hz
     rw [Submodule.map_sup, ← ker_classT, Submodule.map_top, range_classT,
