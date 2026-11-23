@@ -17,7 +17,9 @@ variable {K : Type} [Field K] (pts : ∀ (S : Type) [CommRing S] [Algebra K S], 
 instance (priority := high) rulesCommRing : CommRing (Rules pts) := inferInstance
 instance (priority := high) rulesAlgebra : Algebra K (Rules pts) := inferInstance
 instance (priority := high) rulesModule : Module K (Rules pts) := inferInstance
-instance (priority := high) rulesSMul : SMul K (Rules pts) := inferInstance
+-- Rules unfolds to a Pi type. Elaborating Rul needs this above default priority,
+-- while high priority diverts scalar-action searches on unrelated functions.
+instance (priority := default + 1) rulesSMul : SMul K (Rules pts) := inferInstance
 instance (priority := high) rulesAlgebraInt : Algebra (𝓞 K) (Rules pts) := inferInstance
 instance (priority := high) rulesModuleInt : Module (𝓞 K) (Rules pts) := inferInstance
 instance (priority := high) rulesTower : IsScalarTower (𝓞 K) K (Rules pts) := inferInstance
