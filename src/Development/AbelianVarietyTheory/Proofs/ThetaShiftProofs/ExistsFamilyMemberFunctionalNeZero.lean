@@ -75,19 +75,19 @@ theorem card_cm {r : ℕ} (X : Data E r) : Fintype.card X.Ψ = fdeg E := by
 
 variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
 
-theorem laU_dominant {σ : c.F →+* ℂ} {r : ℕ} (U : Unf Xo c σ r) {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} (h : Dom a n)
+theorem laU_dominant {σ : c.F →+* ℂ} {r : ℕ} (U : Formalism.L2.PjFree.Unf Xo c σ r) {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ} (h : Dom a n)
     (k : U.Comp) : (U.X k).IsDominant (laU U a n k) := by
   intro τ
   refine ⟨fun i j hij hj => ?_, fun i j hi hij => ?_, fun i j hi hj => ?_⟩
   · have hij' : (i : ℕ) ≤ j := hij
-    have := h.1 (Function.invFun (relab c σ) (conjEmb τ.1))
+    have := h.1 (Function.invFun (Formalism.L2.PjFree.relab c σ) (conjEmb τ.1))
       (show (U.X k).p0 - 1 - (j : ℕ) ≤ (U.X k).p0 - 1 - (i : ℕ) by omega)
     unfold laU
     rw [if_neg (by omega), if_neg (by omega)]
     dsimp only at this
     omega
   · have hij' : (i : ℕ) ≤ j := hij
-    have := h.1 (Function.invFun (relab c σ) τ.1)
+    have := h.1 (Function.invFun (Formalism.L2.PjFree.relab c σ) τ.1)
       (show (i : ℕ) - (U.X k).p0 ≤ (j : ℕ) - (U.X k).p0 by omega)
     unfold laU
     rw [if_pos (by omega), if_pos (by omega)]
@@ -97,13 +97,13 @@ theorem laU_dominant {σ : c.F →+* ℂ} {r : ℕ} (U : Unf Xo c σ r) {a : (E 
     rw [if_neg (by omega), if_pos (by omega)]
     omega
 
-theorem invFun_relab (τ : E →+* ℂ) : Function.invFun (relab c c.F.val.toRingHom) τ = τ := by
-  have h : ∀ τ : E →+* ℂ, relab c c.F.val.toRingHom τ = τ := fun τ => RingHom.ext fun _ => rfl
-  have h2 : relab c c.F.val.toRingHom (Function.invFun (relab c c.F.val.toRingHom) τ) = τ :=
+theorem invFun_relab (τ : E →+* ℂ) : Function.invFun (Formalism.L2.PjFree.relab c c.F.val.toRingHom) τ = τ := by
+  have h : ∀ τ : E →+* ℂ, Formalism.L2.PjFree.relab c c.F.val.toRingHom τ = τ := fun τ => RingHom.ext fun _ => rfl
+  have h2 : Formalism.L2.PjFree.relab c c.F.val.toRingHom (Function.invFun (Formalism.L2.PjFree.relab c c.F.val.toRingHom) τ) = τ :=
     Function.invFun_eq ⟨τ, h τ⟩
   rwa [h] at h2
 
-theorem sum_spread_le {r : ℕ} (hr : 0 < r) (U : Unf Xo c c.F.val.toRingHom r) (hU : IsUnf U)
+theorem sum_spread_le {r : ℕ} (hr : 0 < r) (U : Formalism.L2.PjFree.Unf Xo c c.F.val.toRingHom r) (hU : IsUnf U)
     (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (k : U.Comp) :
     ∑ τ, (U.X k).spread (laU U a n k) τ ≤ (absA Dw a : ℝ) + (fdeg E : ℝ) * n := by
   obtain ⟨hrk, hk, -⟩ := hU
@@ -171,23 +171,23 @@ theorem detect_of_tie (hK : Known) {E : Type} [Field E] [NumberField E] [IsCMFie
     {K₁ : Type} [Field K₁] [NumberField K₁] [Algebra c.F K₁] (d : ArcDatum Xo c K₁) {n' : ℕ} {La c₁ : ℝ}
     (s : CMIn d.a d.e d.th d.jj n' La c₁) (em : K₁ →+* ℂ) [Algebra (FractionRing ℂ) ℂ]
     [IsScalarTower ℂ (FractionRing ℂ) ℂ] (σ : c.F →+* ℂ) (hσ : em.comp (algebraMap c.F K₁) = σ) {r : ℕ}
-    (U : Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (ξ' : Fin r → E) (x : Frame (U.X k).Ψ r)
+    (U : Formalism.L2.PjFree.Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (ξ' : Fin r → E) (x : Frame (U.X k).Ψ r)
     (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) :
     Std d → GoodEmb c σ → IsUnf U → GlobalTheory.FrameNorm.HasPrinc U l.M → Dom a' n →
     (∀ k, ∀ gm ∈ (U.X k).Γ, (U.X k).χ (laU U a' n k) gm = 1) → (U.X k).IsIso ξ' → x ∈ (U.X k).dom →
-    Comparison₂ Uw d.a em s.ξ k ξ' x → ∀ F ∈ sec Xo c a' n, (∀ k', (U.X k').IsBddSec (laU U a' n k') (rdU U F k')) →
-    (U.X k).fj (laU U a' n k) ξ' (fun τ => (τ.1 s.ν₀).re) (rdU U F k) x ≠ 0 →
+    Comparison₂ Uw d.a em s.ξ k ξ' x → ∀ F ∈ sec Xo c a' n, (∀ k', (U.X k').IsBddSec (laU U a' n k') (Formalism.L2.PjFree.rdU U F k')) →
+    (U.X k).fj (laU U a' n k) ξ' (fun τ => (τ.1 s.ν₀).re) (Formalism.L2.PjFree.rdU U F k) x ≠ 0 →
     ∃ mo : ArcLt Dw →₀ ℕ, cfOf d.yF mo d.jj F ≠ 0 := by
   subst hσ
   exact GlobalTheory.T.exists_coeff_ne_zero_of_fourierJacobi_arcDatum hK E H Dw l Xo c K₁ d n' La c₁ s em r U Uw k ξ' x a' n
 
-theorem exists_fam_cfOf_ne_zero : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : Unf Xo c c.F.val.toRingHom r) (k : U.Comp) (Xx : DataX E r) (hX : Xx.toData = U.X k) (𝔄 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (c₁ w : ℝ), ModelsAt Xo c → IsUnf U → l.A = 1 → 3 ≤ r → GlobalTheory.FrameNorm.HasPrinc U l.M → Dom a' n → (∀ k, ∀ gm ∈ (U.X k).Γ, (U.X k).χ (laU U a' n k) gm = 1) → 𝔄 ≠ 0 → Xx.Λ = Submodule.span (𝓞 E) {v | ∃ a ∈ 𝔄, ∃ u ∈ Xx.L', v = a • u} → Xx.g = l.M → 0 < c₁ → ((absA Dw a' : ℝ) + (fdeg E : ℝ) * n + r ≤ w) → ∀ F ∈ sec Xo c a' n, (∀ k', rdU U F k' ∈ (U.X k').SS (laU U a' n k')) → rdU U F k ∉ (U.X k).SSgt (laU U a' n k) c₁ → ∃ (K₁ : Type) (_ : Field K₁) (_ : NumberField K₁) (_ : Algebra c.F K₁) (d : ArcDatum Xo c K₁), Fam (nQ E r l.M Xx.NA Xx.NC c₁ w) (LaQ E r Dw.q l.M Xx.NA Xx.NC c₁ w) c₁ d ∧ cfOf d.yF d.μ d.jj F ≠ 0 := by
+theorem exists_fam_cfOf_ne_zero : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c c.F.val.toRingHom r) (k : U.Comp) (Xx : DataX E r) (hX : Xx.toData = U.X k) (𝔄 : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (c₁ w : ℝ), ModelsAt Xo c → IsUnf U → l.A = 1 → 3 ≤ r → GlobalTheory.FrameNorm.HasPrinc U l.M → Dom a' n → (∀ k, ∀ gm ∈ (U.X k).Γ, (U.X k).χ (laU U a' n k) gm = 1) → 𝔄 ≠ 0 → Xx.Λ = Submodule.span (𝓞 E) {v | ∃ a ∈ 𝔄, ∃ u ∈ Xx.L', v = a • u} → Xx.g = l.M → 0 < c₁ → ((absA Dw a' : ℝ) + (fdeg E : ℝ) * n + r ≤ w) → ∀ F ∈ sec Xo c a' n, (∀ k', Formalism.L2.PjFree.rdU U F k' ∈ (U.X k').SS (laU U a' n k')) → Formalism.L2.PjFree.rdU U F k ∉ (U.X k).SSgt (laU U a' n k) c₁ → ∃ (K₁ : Type) (_ : Field K₁) (_ : NumberField K₁) (_ : Algebra c.F K₁) (d : ArcDatum Xo c K₁), Fam (nQ E r l.M Xx.NA Xx.NC c₁ w) (LaQ E r Dw.q l.M Xx.NA Xx.NC c₁ w) c₁ d ∧ cfOf d.yF d.μ d.jj F ≠ 0 := by
   intro hK E _ _ _ H Dw l Xo c r U k Xx hX 𝔄 a' n c₁ w hM hU hA hr hP hD hχ h𝔄 hΛ hg hc hw F hF hS hS'
   letI : Algebra (FractionRing ℂ) ℂ := FractionRing.liftAlgebra ℂ ℂ
   haveI : IsScalarTower ℂ (FractionRing ℂ) ℂ := FractionRing.isScalarTower_liftAlgebra ℂ ℂ
   have hr3 : (3 : ℝ) ≤ r := by exact_mod_cast hr
   have h0 : (0 : ℝ) ≤ (absA Dw a' : ℝ) + (fdeg E : ℝ) * n := by positivity
-  obtain ⟨ξ, ν, x, lam, hξ, hν, hx, hsp, htor, hfj⟩ := exists_split (U.X k) Xx hX (laU U a' n k) (rdU U F k) c₁ w
+  obtain ⟨ξ, ν, x, lam, hξ, hν, hx, hsp, htor, hfj⟩ := exists_split (U.X k) Xx hX (laU U a' n k) (Formalism.L2.PjFree.rdU U F k) c₁ w
     Dw.q l.M (hU.2.1 k).1 hg (laU_dominant U hD k) hc (by linarith)
     ((sum_spread_le (by omega) U hU a' n k).trans (by linarith)) (by linarith) (hχ k) (hS k) hS'
   obtain ⟨ν₀, hν1, hν2, hν3, hν4⟩ := GlobalTheory.FjFreq.freq_real_nonneg_integral E r (U.X k) _ _ (hS k).1 ξ hξ ν x hx hfj
