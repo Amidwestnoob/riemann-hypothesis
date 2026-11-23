@@ -107,15 +107,15 @@ theorem downInt_sobolev_cont : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl
   obtain ⟨U₁, hU₁, hl₁⟩ := isTheta_iff_level.1 hf
   have hUo : IsOpen ((U₁ ⊓ U₀ : AddSubgroup (WO (Vc D i) (Wc D i))) : Set (WO (Vc D i) (Wc D i))) := by
     rw [AddSubgroup.coe_inf]; exact hU₁.inter hU₀
-  have hptl : ∀ P, R.ptP i t P ∈ thetaLevel R.ψ (Vc D i) (Wc D i) U₀ := fun P =>
+  have hptl : ∀ P, R.ptP i t P ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) U₀ := fun P =>
     ⟨hpt P, fun u hu h0 => by
       have e := ((GlobalTheory.FinTranslate.finite_translate D R.ψ R.θ _ _ hψ hθ _ hvP).2 u h0).2
       unfold RealDat.ptP
       rw [← e, hl₀.2 u hu h0]⟩
-  have hfl : f ∈ thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := thetaLevel_anti inf_le_left hl₁
-  have hpl : ∀ P, R.ptP i t P ∈ thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := fun P =>
+  have hfl : f ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := thetaLevel_anti inf_le_left hl₁
+  have hpl : ∀ P, R.ptP i t P ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := fun P =>
     thetaLevel_anti inf_le_right (hptl P)
-  have hml : ∀ P, f - R.ptP i t P ∈ thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := fun P => sub_mem hfl (hpl P)
+  have hml : ∀ P, f - R.ptP i t P ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀) := fun P => sub_mem hfl (hpl P)
   obtain ⟨Ae, d, H⟩ := GlobalTheory.KernelSeminorm.thetaGrowth D (Vc D i).rank (Wc D i).rank
   obtain ⟨C, hC0, hC⟩ := (H (Vc D i) (Wc D i) rfl rfl).real R.ψ hθ hUo
   have hp : (Vc D i).IsPosDef := hm.vpos i
@@ -129,7 +129,7 @@ theorem downInt_sobolev_cont : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl
   have hg0 := height_pos (Wc D i) g
   obtain ⟨B, hB⟩ : ∃ B : ℝ, B = C * (HK * height (Wc D i) g) ^ Ae := ⟨_, rfl⟩
   have hB0 : 0 ≤ B := hB ▸ by positivity
-  have hbound : ∀ φ ∈ thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀), ∀ h,
+  have hbound : ∀ φ ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀), ∀ h,
       ‖thetaKO (R.ωP i t) h g φ‖ ≤ B * (sobO R.ψ R.θ μ 𝓕 d φ).toReal := by
     intro φ hφ h
     obtain ⟨γ, hγ, c, hc, rfl⟩ := hKc h
@@ -146,7 +146,7 @@ theorem downInt_sobolev_cont : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl
         B * (sobO R.ψ R.θ μ 𝓕 d φ).toReal := by rw [hB]; ring
     exact h1.trans (h2.trans_eq h3)
   have hl1 : IntegrableOn (fun h => l (R.extV i t y h)) (R.fdV i t) (R.νV i t) := integrableOn_extV R hm i t y l
-  have hint : ∀ φ ∈ thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀),
+  have hint : ∀ φ ∈ GlobalTheory.Size.thetaLevel R.ψ (Vc D i) (Wc D i) (U₁ ⊓ U₀),
       IntegrableOn (fun h => thetaKO (R.ωP i t) h g φ * l (R.extV i t y h)) (R.fdV i t) (R.νV i t) := fun φ hφ =>
     Integrable.bdd_mul hl1 ((hω.om_cont φ hφ.1 0).comp (continuous_id.prodMk continuous_const)).aestronglyMeasurable
       (.of_forall (hbound φ hφ))
