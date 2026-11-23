@@ -58,7 +58,7 @@ variable {G M V₁ V₂ V₃ : Type} [Group G] [Group M] [AddCommGroup V₁] [Mo
     [AddCommGroup V₃] [Module ℂ V₃]
 
 theorem ses_twist {ρ₁ : Representation ℂ G V₁} {ρ₂ : Representation ℂ G V₂} {ρ₃ : Representation ℂ G V₃} (χ : G →* ℂˣ)
-    (h : Ses ρ₁ ρ₂ ρ₃) : Ses (twist ρ₁ χ) (twist ρ₂ χ) (twist ρ₃ χ) := by
+    (h : Ses ρ₁ ρ₂ ρ₃) : Ses (GlobalTheory.SmGL.twist ρ₁ χ) (GlobalTheory.SmGL.twist ρ₂ χ) (GlobalTheory.SmGL.twist ρ₃ χ) := by
   obtain ⟨f, g, hf, hg, hi, hs, he⟩ := h
   refine ⟨f, g, fun x v => ?_, fun x v => ?_, hi, hs, he⟩
   · simp [GlobalTheory.SmGL.twist_apply, hf]

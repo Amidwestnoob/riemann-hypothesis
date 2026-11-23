@@ -25,7 +25,7 @@ def trT (ρ : Representation ℂ G V) (W : Type) [AddCommGroup W] [Module ℂ W]
     rw [map_mul]
     exact LinearMap.rTensor_mul _ _ _
 
-theorem twist_trT (ρ : Representation ℂ G V) (χ : G →* ℂˣ) : twist (trT ρ W) χ = trT (twist ρ χ) W := by
+theorem twist_trT (ρ : Representation ℂ G V) (χ : G →* ℂˣ) : GlobalTheory.SmGL.twist (trT ρ W) χ = trT (GlobalTheory.SmGL.twist ρ χ) W := by
   ext g v w
   simp [trT, LinearMap.rTensor_tmul, TensorProduct.smul_tmul']
 
@@ -186,7 +186,7 @@ theorem dpowM_zero (n : ℕ) : dpowM (k := k) n (((0 : ℕ) : ℝ) / 2) = 1 := b
   simp [dpowM, dpow, h0, detChar]
 
 theorem mtw_zero_rho {n : ℕ} (τ : MRep k n) : (mtw τ (((0 : ℕ) : ℝ) / 2)).ρ = τ.ρ := by
-  show twist τ.ρ (dpowM n (((0 : ℕ) : ℝ) / 2)) = τ.ρ
+  show GlobalTheory.SmGL.twist τ.ρ (dpowM n (((0 : ℕ) : ℝ) / 2)) = τ.ρ
   rw [dpowM_zero, twist_one]
 
 theorem miso_prodPGn_zero {i : ℕ} (τ : MRep k i) (σ : GRep k 0) (hτ : IsSmooth τ.ρ) :

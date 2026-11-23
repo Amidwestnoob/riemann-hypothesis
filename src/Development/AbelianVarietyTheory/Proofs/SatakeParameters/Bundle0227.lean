@@ -211,7 +211,7 @@ theorem unrChar_mul (α β : ℂˣ) : unrChar k (α * β) = unrChar k α * unrCh
   simp [unrChar_apply, mul_zpow]
 
 theorem twist_detRep (n : Type) [Fintype n] [DecidableEq n] (ψ φ : kˣ →* ℂˣ) :
-    twist (detRep n ψ) (detChar n φ) = detRep n (ψ * φ) := by
+    GlobalTheory.SmGL.twist (detRep n ψ) (detChar n φ) = detRep n (ψ * φ) := by
   refine MonoidHom.ext fun g => LinearMap.ext fun x => ?_
   simp [detRep, ofChar_apply, twist_apply, mul_comm, mul_left_comm, mul_assoc]
 
@@ -248,7 +248,7 @@ theorem reorder : GlobalTheory.Published.BernsteinZelevinskyFiniteness → Globa
       (r t s : ℕ) (π : Irr k (r + t)) (d : Fin s → ℕ) (σ : ∀ a, Irr k (d a)) (S : Finset (Fin s)),
       IsCuspSupport π.π d (fun a => (σ a).π) → (∀ b ∈ S, d b = 1) →
       (∀ a b, a ∉ S → b ∈ S → ∀ (h : d a = d b) (α : ℂˣ),
-        ¬ Nonempty ((h ▸ σ a : Irr k (d b)).π.Equiv (twist (σ b).π (detChar (Fin (d b)) (unrChar k α))))) →
+        ¬ Nonempty ((h ▸ σ a : Irr k (d b)).π.Equiv (GlobalTheory.SmGL.twist (σ b).π (detChar (Fin (d b)) (unrChar k α))))) →
       ∑ a ∈ Sᶜ, d a = r → ∑ a ∈ S, d a = t →
       ∃ (π₁ : Irr k r) (π₂ : Irr k t) (s₁ s₂ : ℕ) (ι₁ : Fin s₁ → Fin s) (ι₂ : Fin s₂ → Fin s),
         (∀ a, ι₁ a ∉ S) ∧ (∀ b, ι₂ b ∈ S) ∧

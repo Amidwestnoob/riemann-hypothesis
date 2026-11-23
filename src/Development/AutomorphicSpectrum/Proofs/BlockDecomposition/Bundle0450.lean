@@ -402,7 +402,7 @@ theorem exists_subquotient_dual_nu : ∀ (k : Type) [Field k] [ValuativeRel k] [
     rw [absPow_neg, detChar_apply, detChar_apply, MonoidHom.inv_apply]
     simp
   have hT := isSmooth_twist hA' hχ'.detChar
-  have hBT : ∀ g a b, B (S.ρ g a) (twist A' (detChar (Fin n) (absPow k (-(s : ℂ)))) g b) = B a b := by
+  have hBT : ∀ g a b, B (S.ρ g a) (GlobalTheory.SmGL.twist A' (detChar (Fin n) (absPow k (-(s : ℂ)))) g b) = B a b := by
     intro g a b
     rw [twist_apply, map_smul, hB, smul_eq_mul, ← mul_assoc, hprod, one_mul]
   let f := GlobalTheory.InvPairing.pairMap S.ρ hT B hBT
@@ -412,7 +412,7 @@ theorem exists_subquotient_dual_nu : ∀ (k : Type) [Field k] [ValuativeRel k] [
       { toSubmodule := LinearMap.range f.toLinearMap
         apply_mem_toSubmodule := fun g v hv => by
           obtain ⟨w, rfl⟩ := hv
-          refine ⟨twist A' (detChar (Fin n) (absPow k (-(s : ℂ)))) g w, ?_⟩
+          refine ⟨GlobalTheory.SmGL.twist A' (detChar (Fin n) (absPow k (-(s : ℂ)))) g w, ?_⟩
           have := LinearMap.congr_fun (f.isIntertwining' g) w
           simpa only [LinearMap.comp_apply] using this }
     rcases hc.eq_bot_or_eq_top R with hR | hR
@@ -425,14 +425,14 @@ theorem exists_subquotient_dual_nu : ∀ (k : Type) [Field k] [ValuativeRel k] [
       have : l ∈ R.toSubmodule := by rw [hR]; exact Submodule.mem_top
       obtain ⟨b, hb⟩ := this
       exact ⟨b, hb⟩
-  let F : A'.IntertwiningMap (twist (contra S.ρ) (detChar (Fin n) (absPow k (s : ℂ)))) :=
+  let F : A'.IntertwiningMap (GlobalTheory.SmGL.twist (contra S.ρ) (detChar (Fin n) (absPow k (s : ℂ)))) :=
     { toLinearMap := f.toLinearMap
       isIntertwining' := fun g => by
         refine LinearMap.ext fun w => ?_
         have h := LinearMap.congr_fun (f.isIntertwining' g) w
         simp only [LinearMap.comp_apply, twist_apply, map_smul] at h ⊢
         rw [← h, smul_smul, mul_comm, hprod, one_smul] }
-  refine ⟨⟨_, twist (contra S.ρ) (detChar (Fin n) (absPow k (s : ℂ))),
+  refine ⟨⟨_, GlobalTheory.SmGL.twist (contra S.ρ) (detChar (Fin n) (absPow k (s : ℂ))),
     isSmooth_twist (isSmooth_contra _) hχ.detChar, isIrreducible_twist hc _⟩,
     IsSubquotient.of_surjective F hsurj, ?_⟩
   rw [GlobalTheory.CompanionTheory.ZcDual.dualCl_eq hAd, IrrGL.nu, IrrGL.tw_of]

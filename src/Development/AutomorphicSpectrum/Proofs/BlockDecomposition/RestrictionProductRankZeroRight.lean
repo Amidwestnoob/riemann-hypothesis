@@ -153,7 +153,7 @@ theorem nonempty_actFst_equiv_prod2 {i : ℕ} {V W : Type} [AddCommGroup V] [Mod
 theorem hpg_act {i : ℕ} {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     (π₁ : Representation ℂ (GL (Fin (i + 1)) k) V) (π₂ : Representation ℂ (GL (Fin 0) k) W)
     (χ₁ : Mir k i →* ℂˣ) (χ₂ : GL (Fin 0) k →* ℂˣ) (hχ : ∀ g, χ₁ g = 1) (h : HPG k i 0) (x : V ⊗[ℂ] W) :
-    ((extTensor (twist (π₁.comp (Mir k i).subtype) χ₁) (twist π₂ χ₂)).comp (pgProj k i 0)) h x =
+    ((extTensor (GlobalTheory.SmGL.twist (π₁.comp (Mir k i).subtype) χ₁) (GlobalTheory.SmGL.twist π₂ χ₂)).comp (pgProj k i 0)) h x =
       actFst π₁ π₂ (((h : Mir k (i + 0)) : GL (Fin (i + 0 + 1)) k)) x := by
   induction x using TensorProduct.induction_on with
   | zero => simp only [map_zero]

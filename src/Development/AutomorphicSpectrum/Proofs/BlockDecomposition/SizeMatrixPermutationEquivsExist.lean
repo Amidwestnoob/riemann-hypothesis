@@ -176,7 +176,7 @@ theorem cell_bij {α β : Type} [Fintype α] [LinearOrder α] [Fintype β] [Line
   let Ψ : (⨂[ℂ] j, X (e j)) ≃ₗ[ℂ] Jacquet (piTensor ρ) (relUnip k f) :=
     R.symm.trans (Submodule.quotEquivOfEqBot _ hbot).symm
   have hΨ : ∀ u, Ψ u = Submodule.Quotient.mk (R.symm u) := fun u => rfl
-  let τ := (twist ((relJac f (piTensor ρ)).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
+  let τ := (GlobalTheory.SmGL.twist ((relJac f (piTensor ρ)).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
         (relDeltaHalf k (fun j i => Fin (b.1 i j)))).comp (relProj k g)
   have law : ∀ (p : relParab k g) u, τ p (Ψ u) = Ψ ((piTensor fun j => ρ (e j)) p u) := by
     intro p u

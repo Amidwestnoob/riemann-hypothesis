@@ -236,7 +236,7 @@ section Generic
 variable {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
 
 def twistEquivOf {ρ : Representation ℂ G V} {σ : Representation ℂ G W} (φ : ρ.Equiv σ) (χ : G →* ℂˣ) :
-    (twist ρ χ).Equiv (twist σ χ) :=
+    (GlobalTheory.SmGL.twist ρ χ).Equiv (GlobalTheory.SmGL.twist σ χ) :=
   .mk φ.toLinearEquiv fun g => LinearMap.ext fun v => by
     show φ.toLinearEquiv ((χ g : ℂ) • ρ g v) = (χ g : ℂ) • σ g (φ.toLinearEquiv v)
     rw [map_smul]
@@ -330,7 +330,7 @@ theorem isSmoothChar_dpow (n : ℕ) (s : ℝ) : IsSmoothChar (dpow (k := k) n s)
   (isSmoothChar_of_isUnram (isUnram_absPow k _)).detChar
 
 theorem twKer_twist_dpowM {V : Type} [AddCommGroup V] [Module ℂ V] (n : ℕ) (τ : Representation ℂ (Mir k n) V) (s : ℝ) :
-    twKer (twist τ (dpowM n s)) (MirUin k n) 1 = twKer τ (MirUin k n) 1 := by
+    twKer (GlobalTheory.SmGL.twist τ (dpowM n s)) (MirUin k n) 1 = twKer τ (MirUin k n) 1 := by
   unfold twKer
   congr 1
   ext w
@@ -347,7 +347,7 @@ variable {i t : ℕ} (τ : MRep k i) (σ : GRep k t)
 abbrev eIT (i t : ℕ) : (Σ x, Two (Fin i) (Fin t) x) ≃ Fin (i + t) := two (stdSum (rfl : i + t = i + t))
 
 abbrev sigT : Representation ℂ (Qp k i t) (PiTensorProduct ℂ (TwoT (psiN τ).V σ.V)) :=
-  (twist (piTensor (twoRep (psiN τ).ρ σ.ρ)) (deltaHalf k (Two (Fin i) (Fin t)))).comp (leviProj k (eIT i t))
+  (GlobalTheory.SmGL.twist (piTensor (twoRep (psiN τ).ρ σ.ρ)) (deltaHalf k (Two (Fin i) (Fin t)))).comp (leviProj k (eIT i t))
 
 abbrev mkT (s : ℝ) : τ.V →ₗ[ℂ] Jacquet (mtw τ s).ρ (MirUin k i) := (twKer (mtw τ s).ρ (MirUin k i) 1).mkQ
 

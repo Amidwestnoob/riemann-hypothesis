@@ -344,7 +344,7 @@ theorem coinv_equiv (H U : Subgroup G) (Q : Subgroup M) (s : M →* G) (q : G �
     rw [this]
     exact mul_mem (hUH (hdec g)) (hQH _ hg)
   let qH : H →* Q := (q.comp H.subtype).codRestrict Q fun h => hHQ h h.2
-  let σb : Representation ℂ H W' := twist (σ'.comp qH) (χ.comp (q.comp H.subtype))⁻¹
+  let σb : Representation ℂ H W' := GlobalTheory.SmGL.twist (σ'.comp qH) (χ.comp (q.comp H.subtype))⁻¹
   have hσb : ∀ (h : H) (w : W'), σb h w = (((χ (q h))⁻¹ : ℂˣ) : ℂ) • σ' (qH h) w := fun h w => rfl
   have hcb : ∀ (h : H) (w : W), c (σ h w) = σb h (c w) := by
     intro h w

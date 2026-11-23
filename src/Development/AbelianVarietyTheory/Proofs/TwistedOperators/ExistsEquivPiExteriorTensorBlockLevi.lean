@@ -328,7 +328,7 @@ theorem finFixed_levi (hBZ : GlobalTheory.Published.BernsteinZelevinskyFinitenes
       map_smul' := fun _ _ => rfl }
   refine Submodule.finiteDimensional_of_le (S₂ := LinearMap.range ev) fun u hu => ?_
   obtain ⟨f, hf, hf1⟩ := exists_fixed_smInd_apply_one (parab k e)
-    ((twist τ.ρ (deltaHalf k c)).comp (leviProj k e)) J hJo u fun p hp => by
+    ((GlobalTheory.SmGL.twist τ.ρ (deltaHalf k c)).comp (leviProj k e)) J hJo u fun p hp => by
       obtain ⟨a, b⟩ := hNS (hJN hp)
       have b' : deltaHalf k c (leviProj k e p) = 1 := b
       show (deltaHalf k c (leviProj k e p) : ℂ) • τ.ρ (leviProj k e p) u = u

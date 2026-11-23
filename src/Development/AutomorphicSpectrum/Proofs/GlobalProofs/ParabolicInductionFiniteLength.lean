@@ -151,7 +151,7 @@ theorem isSmoothChar_adj : IsSmoothChar (adj k d) := by
 
 def carry (ρ : Representation ℂ (Levi k fun a => Fin (d a)) W) :
     Representation ℂ (levi k (∑ a, d a) (pos d)) W :=
-  twist (ρ.comp (leviTo k d)) (adj k d)
+  GlobalTheory.SmGL.twist (ρ.comp (leviTo k d)) (adj k d)
 
 theorem inflate_carry (ρ : Representation ℂ (Levi k fun a => Fin (d a)) W)
     (p : blockUpper k (∑ a, d a) (pos d)) (w : W) :
@@ -180,7 +180,7 @@ def toInd (ρ : Representation ℂ (Levi k fun a => Fin (d a)) W) :
       rw [inflate_carry]
       exact parInd_law (stdE d) ρ f ⟨p, blockUpper_le_parab k d p.2⟩ g,
      GroundTheory.Automorphic.stabilizerOf (ind (parab k (stdE d))
-        ((twist ρ (deltaHalf k fun a => Fin (d a))).comp (leviProj k (stdE d)))) f.1, f.2,
+        ((GlobalTheory.SmGL.twist ρ (deltaHalf k fun a => Fin (d a))).comp (leviProj k (stdE d)))) f.1, f.2,
      fun x hx g => congrFun (congrArg Subtype.val hx) g⟩⟩
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
