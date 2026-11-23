@@ -110,7 +110,7 @@ theorem exists_sec_rdU_ne_zero (U : Formalism.L2.PjFree.Unf Xo c σ r) (hσ : Go
     refine h2 ▸ Finset.prod_ne_zero_iff.2 fun b _ => ?_
     rw [fock, Pi.zero_apply, zero_add, zero_add]
     exact mul_ne_zero (Complex.exp_ne_zero _) (hq b)
-  rw [map_one, map_one, thP, polyDeriv_one] at hval
+  rw [map_one, map_one, thP, GlobalTheory.AdTh.GenConst.polyDeriv_one] at hval
   exact fun h0 => h3 (hval.symm.trans ((dif_pos x.2).symm.trans h0))
 
 end NonZero
