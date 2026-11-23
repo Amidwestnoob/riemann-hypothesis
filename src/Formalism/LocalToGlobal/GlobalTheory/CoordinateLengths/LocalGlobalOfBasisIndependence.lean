@@ -18,15 +18,15 @@ def BwLocGlob0 (Tt : Forms0 D u) : Prop :=
   ∀ w, OverT D u w → ∀ i (hi : i ≤ D.R.m) (h0 : i = 0) (y : ((D.fm u).lat i).V),
     (∀ c, ∃ B : GL (Fin (D.R.N i)) D.host.E, IsLocBasis (D.mem u).A.T (Ld D u i hi c : Set _) B ∧
       ∃ Q ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam i), ∀ z, (D.fm u).emb i y c z =
-        fnOf _ (shiftOf (lamT u i)) (atInf (embT D) (B⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q ((Tt.val i hi h0).eY z)) →
+        fnOf _ (shiftOf (lamT u i)) (atInf (Formalism.L2.Forms.embT D) (B⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q ((Tt.val i hi h0).eY z)) →
     y ∈ (D.fm u).S i w
 
 def BwBasisInd0 (Tt : Forms0 D u) : Prop :=
   ∀ w, OverT D u w → ∀ i (hi : i ≤ D.R.m) (h0 : i = 0) (c : (D.mem u).C.cls i) (B B₂ : GL (Fin (D.R.N i)) D.host.E),
     IsLocBasis (D.mem u).A.T (Ld D u i hi c : Set _) B → IsLocBasis (D.mem u).A.T (Ld D u i hi c : Set _) B₂ →
     ∀ Q ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam i), ∃ Q₂ ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam i), ∀ z,
-      fnOf _ (shiftOf (lamT u i)) (atInf (embT D) (B⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q ((Tt.val i hi h0).eY z) =
-        fnOf _ (shiftOf (lamT u i)) (atInf (embT D) (B₂⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q₂ ((Tt.val i hi h0).eY z)
+      fnOf _ (shiftOf (lamT u i)) (atInf (Formalism.L2.Forms.embT D) (B⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q ((Tt.val i hi h0).eY z) =
+        fnOf _ (shiftOf (lamT u i)) (atInf (Formalism.L2.Forms.embT D) (B₂⁻¹ : GL (Fin (D.R.N i)) D.host.E).1) Q₂ ((Tt.val i hi h0).eY z)
 
 theorem local_global_of_basis_independence (Tt : Forms0 D u) (hI : BwBasisInd0 D u Tt) : BwLocGlob0 D u Tt := by
   intro w hw i hi h0 y hy
@@ -71,10 +71,10 @@ theorem local_global_of_basis_independence (Tt : Forms0 D u) (hI : BwBasisInd0 D
 theorem bwBasisInd_of_stab0 (Tt : Forms0 D u) (hS : ∀ w, OverT D u w → BwGLStab D w) : BwBasisInd0 D u Tt := by
   intro w hw i hi h0 c B B₂ hB hB₂ Q hQ
   set N : D.what₂.Tau → Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) ℂ :=
-    fun τ => atInf (embT D) ((B⁻¹ * B₂ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ
+    fun τ => atInf (Formalism.L2.Forms.embT D) ((B⁻¹ * B₂ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ
     with hN
   set N' : D.what₂.Tau → Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) ℂ :=
-    fun τ => atInf (embT D) ((B₂⁻¹ * B : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ
+    fun τ => atInf (Formalism.L2.Forms.embT D) ((B₂⁻¹ * B : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ
     with hN'
   have hNN' : ∀ τ, N τ * N' τ = 1 := fun τ => by
     simp only [hN, hN', atInf]
@@ -85,8 +85,8 @@ theorem bwBasisInd_of_stab0 (Tt : Forms0 D u) (hS : ∀ w, OverT D u w → BwGLS
     bwG_intSpan_allSubP D w _ N _ (fun τ g hg => hS w hw _ _ _ (N τ) (N' τ) (hNN' τ)
       (bwG_change_mem D u w hw τ hB₂ hB) (bwG_change_mem D u w hw τ hB hB₂) g hg) Q hQ, fun z => ?_⟩
   rw [← fnOf_mul]
-  have hM : atInf (embT D) ((B⁻¹ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) =
-      fun τ => N τ * atInf (embT D) ((B₂⁻¹ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ := by
+  have hM : atInf (Formalism.L2.Forms.embT D) ((B⁻¹ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) =
+      fun τ => N τ * atInf (Formalism.L2.Forms.embT D) ((B₂⁻¹ : GL (Fin (D.R.N i)) D.host.E) : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) τ := by
     funext τ
     simp only [hN, atInf]
     rw [← Matrix.map_mul, ← Units.val_mul]

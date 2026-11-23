@@ -33,7 +33,7 @@ theorem natTr0_sum (T : Forms0 D u) (γ : UJ (sigD D : D.host.E →+* D.host.E) 
 set_option maxHeartbeats 4000000 in
 theorem dnU_term (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {G : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
-    (hG : G ∈ AdFun T.cls0.lev (embT D))
+    (hG : G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D))
     (hψ : ∀ c, ψ c = fun s => G (T.cls0.y c) (T.val0.eY s))
     (c : (D.mem u).C.cls 0) (g : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c))
     (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))

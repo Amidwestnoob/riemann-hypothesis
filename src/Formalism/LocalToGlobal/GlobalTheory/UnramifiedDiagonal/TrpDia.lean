@@ -17,7 +17,7 @@ variable {D : D7} {u : D.what₂.Word}
 set_option maxHeartbeats 2000000 in
 theorem eop_eq (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {g : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
-    (hg : g ∈ AdFun T.cls0.lev (embT D))
+    (hg : g ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D))
     (hψ : ∀ c, ψ c = fun s => g (T.cls0.y c) (T.val0.eY s))
     (c : (D.mem u).C.cls 0)
     (Mv : {x : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c) // x ≠ 0} →
@@ -55,7 +55,7 @@ theorem eop_dia (T : Forms0 D u) (hE : EDiaSame0F T) (v : (D.mem u).A.vT)
   obtain ⟨G, hG, hGψ⟩ := S0.forms_from_adelic_function T 0 (Nat.zero_le _) rfl ψ hψ
   have hGA := (Submodule.mem_inf.1 hG).1
   obtain ⟨k, hk, δ, hδ⟩ := S0.diamond_elements_exist_all T 0 (Nat.zero_le _) rfl v a
-  have hGδ := S0.adelic_function_right_translate_diamond T.cls0.lev (embT D) _ _ (S0.level_places_not_bad T.atT v) hδ hGA
+  have hGδ := S0.adelic_function_right_translate_diamond T.cls0.lev (Formalism.L2.Forms.embT D) _ _ (S0.level_places_not_bad T.atT v) hδ hGA
   have hdψ : ∀ c1, dia D u 0 v a ψ c1 =
       fun s => G (T.cls0.y c1 * δ) (T.val0.eY s) := by
     intro c1
@@ -88,10 +88,10 @@ theorem eop_dia (T : Forms0 D u) (hE : EDiaSame0F T) (v : (D.mem u).A.vT)
     rw [map_one, one_mul]
     simp only [Subgroup.coe_mul, m]
     group
-  have hTr : IsTr (atInf (embT D) ((1 : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E))
+  have hTr : IsTr (atInf (Formalism.L2.Forms.embT D) ((1 : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E))
       (T.val0.eY s) (T.val0.eY s) := by
     intro τ
-    have h1 : atInf (embT D) ((1 : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ = 1 := by
+    have h1 : atInf (Formalism.L2.Forms.embT D) ((1 : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ = 1 := by
       simp [atInf, Matrix.map_one]
     rw [h1, Matrix.one_mul]
   rw [hGA 1 (Subgroup.one_mem _) _ _ m heq _ _ hTr]

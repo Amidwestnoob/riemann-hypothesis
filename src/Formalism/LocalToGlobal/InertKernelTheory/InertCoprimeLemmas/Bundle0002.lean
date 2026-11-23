@@ -216,11 +216,11 @@ theorem atLogV_rename {r : ℕ} (v : Fin r → (D.what₂.Tau × Fin m' × Fin m
 
 def v4 {r : ℕ} (A : Matrix (Fin r) (Fin r) ℂ_[p]) (b : Fin r → Matrix (Fin m') (Fin m) D.host.E)
     (q : Fin (n' * n * r)) (k : D.what₂.Tau × Fin N' × Fin N) : ℂ_[p] :=
-  ∑ j, AB (n' := n') (n := n) A q j * lamC lam (embT D k.1 (bB (D := D) eR eC b j k.2.1 k.2.2))
+  ∑ j, AB (n' := n') (n := n) A q j * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (bB (D := D) eR eC b j k.2.1 k.2.2))
 
 theorem four_block_vector_entry {r : ℕ} (A : Matrix (Fin r) (Fin r) ℂ_[p]) (b : Fin r → Matrix (Fin m') (Fin m) D.host.E)
     (v : Fin r → (D.what₂.Tau × Fin m' × Fin m → ℂ_[p]))
-    (hv : ∀ i k, v i k = ∑ j, A i j * lamC lam (embT D k.1 (b j k.2.1 k.2.2)))
+    (hv : ∀ i k, v i k = ∑ j, A i j * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b j k.2.1 k.2.2)))
     (P : Fin n' × Fin n) (i : Fin r) (I : Fin n') (J : Fin n) (k : D.what₂.Tau × Fin m' × Fin m) :
     v4 eR eC lam A b (eIdx n' n r (P, i)) (blkIdx D eR eC I J k) = if P = (I, J) then v i k else 0 := by
   classical
@@ -251,7 +251,7 @@ theorem isLocONB_blk (D : D7) {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]
     (v : Fin r → (D.what₂.Tau × Fin 1 × Fin 1 → ℂ_[p]))
     (hv : IsLocONB D p lam (YYl D (Formalism.MainNotions.StandardLatticesGL3.stdL D 1) (Formalism.MainNotions.StandardLatticesGL3.stdL D 1)) σ v) :
     ∃ (A : Matrix (Fin r) (Fin r) ℂ_[p]) (b : Fin r → Matrix (Fin 1) (Fin 1) D.host.E),
-      (∀ i k, v i k = ∑ j, A i j * lamC lam (embT D k.1 (b j k.2.1 k.2.2))) ∧
+      (∀ i k, v i k = ∑ j, A i j * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b j k.2.1 k.2.2))) ∧
       IsLocONB D p lam (YYl D (Formalism.MainNotions.StandardLatticesGL3.stdL D 2) (Formalism.MainNotions.StandardLatticesGL3.stdL D 2)) σ
         (v4 (eOne 2) (eOne 2) lam A b) := by
   classical

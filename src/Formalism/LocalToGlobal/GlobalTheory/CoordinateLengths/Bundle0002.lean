@@ -19,16 +19,16 @@ open Formalism.BasicNotions Formalism.MainNotions.product_first_zeroth_parts For
 variable {D : D7} {u : D.what₂.Word}
 
 def mixF (τ₀ : D.what₂.Tau) (B B' : GL (Fin (D.R.N 0)) D.host.E) : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ :=
-  fun τ => if τ = τ₀ then atInf (embT D) (B'⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ
-    else atInf (embT D) (B⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ
+  fun τ => if τ = τ₀ then atInf (Formalism.L2.Forms.embT D) (B'⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ
+    else atInf (Formalism.L2.Forms.embT D) (B⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ
 
 private theorem atInf_mul' (X Y : GL (Fin (D.R.N 0)) D.host.E) (τ : D.what₂.Tau) :
-    atInf (embT D) (X * Y : GL (Fin (D.R.N 0)) D.host.E).1 τ =
-      atInf (embT D) X.1 τ * atInf (embT D) Y.1 τ := by
+    atInf (Formalism.L2.Forms.embT D) (X * Y : GL (Fin (D.R.N 0)) D.host.E).1 τ =
+      atInf (Formalism.L2.Forms.embT D) X.1 τ * atInf (Formalism.L2.Forms.embT D) Y.1 τ := by
   simp only [atInf, Units.val_mul, Matrix.map_mul]
 
 private theorem atInf_one' (τ : D.what₂.Tau) :
-    atInf (embT D) (1 : GL (Fin (D.R.N 0)) D.host.E).1 τ = 1 := by
+    atInf (Formalism.L2.Forms.embT D) (1 : GL (Fin (D.R.N 0)) D.host.E).1 τ = 1 := by
   simp only [atInf, Units.val_one]
   exact Matrix.map_one _ (map_zero _) (map_one _)
 
@@ -39,14 +39,14 @@ theorem mixed_change (w : D.what₂.places.Pl) (hw : OverT D u w) (τ₀ : D.wha
     (P : MvPolynomial (D.what₂.Tau × Fin (D.R.N 0) × Fin (D.R.N 0)) ℂ)
     (hP : P ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam 0)) :
     ∃ P₁ ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam 0), ∀ y,
-      fnOf (gramC (gramN D 0 (Nat.zero_le _)) (embT D)) (shiftOf (lamT u 0)) (mixF τ₀ B B') P y =
-        fnOf (gramC (gramN D 0 (Nat.zero_le _)) (embT D)) (shiftOf (lamT u 0)) (mixF τ₀ B₁ B₁') P₁ y := by
+      fnOf (gramC (gramN D 0 (Nat.zero_le _)) (Formalism.L2.Forms.embT D)) (shiftOf (lamT u 0)) (mixF τ₀ B B') P y =
+        fnOf (gramC (gramN D 0 (Nat.zero_le _)) (Formalism.L2.Forms.embT D)) (shiftOf (lamT u 0)) (mixF τ₀ B₁ B₁') P₁ y := by
   let N : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ := fun τ =>
-    if τ = τ₀ then atInf (embT D) (B'⁻¹ * B₁' : GL (Fin (D.R.N 0)) D.host.E).1 τ
-    else atInf (embT D) (B⁻¹ * B₁ : GL (Fin (D.R.N 0)) D.host.E).1 τ
+    if τ = τ₀ then atInf (Formalism.L2.Forms.embT D) (B'⁻¹ * B₁' : GL (Fin (D.R.N 0)) D.host.E).1 τ
+    else atInf (Formalism.L2.Forms.embT D) (B⁻¹ * B₁ : GL (Fin (D.R.N 0)) D.host.E).1 τ
   let N' : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ := fun τ =>
-    if τ = τ₀ then atInf (embT D) (B₁'⁻¹ * B' : GL (Fin (D.R.N 0)) D.host.E).1 τ
-    else atInf (embT D) (B₁⁻¹ * B : GL (Fin (D.R.N 0)) D.host.E).1 τ
+    if τ = τ₀ then atInf (Formalism.L2.Forms.embT D) (B₁'⁻¹ * B' : GL (Fin (D.R.N 0)) D.host.E).1 τ
+    else atInf (Formalism.L2.Forms.embT D) (B₁⁻¹ * B : GL (Fin (D.R.N 0)) D.host.E).1 τ
   have hmul : ∀ τ, N τ * N' τ = 1 := by
     intro τ
     by_cases hτ : τ = τ₀
@@ -261,7 +261,7 @@ theorem ratGL_holds (D : D7) (u : D.what₂.Word) : RatGL D u := by
   classical
   intro γ P hP
   let o : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ := fun τ =>
-    atInf (embT D) ((γ τ : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ
+    atInf (Formalism.L2.Forms.embT D) ((γ τ : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ
   let M : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.what₂.LL := fun τ =>
     ((γ τ : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E).map
       (fun a => D.embE (D.host.sigmaOf (D.eTau τ : D.R.GG) a))
@@ -270,7 +270,7 @@ theorem ratGL_holds (D : D7) (u : D.what₂.Word) : RatGL D u := by
     exact bwA_embT_eq D τ _
   have hMdet : ∀ τ, (M τ).det ≠ 0 := by
     intro τ h
-    have hu := Formalism.MainNotions.Ext.Lw.isUnit_atInf (embT D) (γ τ) τ
+    have hu := Formalism.MainNotions.Ext.Lw.isUnit_atInf (Formalism.L2.Forms.embT D) (γ τ) τ
     apply hu.ne_zero
     show (o τ).det = 0
     rw [hoM τ, ← RingHom.mapMatrix_apply, ← RingHom.map_det, h, map_zero]

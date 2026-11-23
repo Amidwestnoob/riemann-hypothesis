@@ -36,9 +36,9 @@ theorem lenLen2_of_coord (A : AtTTied u) (Lv : LvTied u A 0 (Nat.zero_le _)) (w 
     (hB : ∀ c, IsLocBasis (D.mem u).A.T (Ld D u 0 (Nat.zero_le _) c : Set _) (B c))
     (hB' : ∀ c, IsLocBasis (D.mem u).A.T (Lk A 0 (Nat.zero_le _) v c : Set _) (B' c))
     (hunit : ∀ c, (((((B c)⁻¹ * B' c : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E)).map
-        (embT D ((D.fm u).tauOf w v))).det * (((D.mem u).A.T : ℂ))⁻¹ ∈ bwA_Ow D w ∧
+        (Formalism.L2.Forms.embT D ((D.fm u).tauOf w v))).det * (((D.mem u).A.T : ℂ))⁻¹ ∈ bwA_Ow D w ∧
       ((D.mem u).A.T : ℂ) * ((((((B c)⁻¹ * B' c : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E)).map
-        (embT D ((D.fm u).tauOf w v))).det)⁻¹ ∈ bwA_Ow D w)
+        (Formalism.L2.Forms.embT D ((D.fm u).tauOf w v))).det)⁻¹ ∈ bwA_Ow D w)
     (Φ : Vl D u 0 →ₛₗ[((owEquiv D w : Ow D w ≃+* bwA_Ow D w) : Ow D w →+* bwA_Ow D w)]
       ((D.mem u).C.cls 0 → MvPolynomial (D.what₂.Tau × Fin (D.R.N 0) × Fin (D.R.N 0)) ℂ))
     (hΦ : Function.Injective Φ)

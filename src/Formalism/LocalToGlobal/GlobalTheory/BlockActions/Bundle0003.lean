@@ -137,11 +137,11 @@ theorem exists_on_of_posDef {k : ℕ} (H : Matrix (Fin k) (Fin k) ℂ) (hH : H.P
 
 variable {D : D7}
 
-theorem embT_sig (τ : D.what₂.Tau) (x : D.host.E) : embT D τ (sigD D x) = starRingEnd ℂ (embT D τ x) :=
-  D.sp.cm.cmUnram.2.1 (embT D τ) x
+theorem embT_sig (τ : D.what₂.Tau) (x : D.host.E) : Formalism.L2.Forms.embT D τ (sigD D x) = starRingEnd ℂ (Formalism.L2.Forms.embT D τ x) :=
+  D.sp.cm.cmUnram.2.1 (Formalism.L2.Forms.embT D τ) x
 
 theorem map_cT {m n : Type} (M : Matrix m n D.host.E) (τ : D.what₂.Tau) :
-    ((M.map (sigD D : D.host.E →+* D.host.E))ᵀ).map (embT D τ) = (M.map (embT D τ))ᴴ := by
+    ((M.map (sigD D : D.host.E →+* D.host.E))ᵀ).map (Formalism.L2.Forms.embT D τ) = (M.map (Formalism.L2.Forms.embT D τ))ᴴ := by
   ext i j
   simp only [Matrix.map_apply, Matrix.transpose_apply, Matrix.conjTranspose_apply, RingHom.coe_coe]
   rw [embT_sig]
@@ -165,12 +165,12 @@ theorem iXm_leftInv : ∃ L : Matrix (Fin (D.R.N D.R.m - 1)) (Fin (D.R.N D.R.m))
   rw [iXm, ← LinearMap.toMatrix'_comp, hg, LinearMap.toMatrix'_id]
 
 theorem gramP_posDef {Ch : ℕ → Type} {u : D.what₂.Word} {chOf : ∀ i, (D.mem u).C.cls i → Ch i} (Tf : FormsTiedSym D u Ch chOf)
-    (τ : D.what₂.Tau) : (gramC (gramP D) (embT D) τ).PosDef := by
+    (τ : D.what₂.Tau) : (gramC (gramP D) (Formalism.L2.Forms.embT D) τ).PosDef := by
   obtain ⟨C, hC, -, -⟩ := (Tf.val D.R.m le_rfl (Or.inr rfl)).de
   have hC' : ((C.1.map (sigD D : D.host.E →+* D.host.E))ᵀ * C.1) = gramN D D.R.m le_rfl := hC
   obtain ⟨L, hL⟩ := iXm_leftInv D
-  set A : Matrix (Fin (D.R.N D.R.m)) (Fin (D.R.N D.R.m - 1)) ℂ := (C.1 * iXm D).map (embT D τ) with hA
-  have hG : gramC (gramP D) (embT D) τ = Aᴴ * A := by
+  set A : Matrix (Fin (D.R.N D.R.m)) (Fin (D.R.N D.R.m - 1)) ℂ := (C.1 * iXm D).map (Formalism.L2.Forms.embT D τ) with hA
+  have hG : gramC (gramP D) (Formalism.L2.Forms.embT D) τ = Aᴴ * A := by
     have e1 : ((iXm D).map (sigD D : D.host.E →+* D.host.E))ᵀ * (((C.1).map (sigD D : D.host.E →+* D.host.E))ᵀ * C.1) * iXm D =
         ((C.1 * iXm D).map (sigD D : D.host.E →+* D.host.E))ᵀ * (C.1 * iXm D) := by
       rw [Matrix.map_mul, Matrix.transpose_mul]
@@ -180,18 +180,18 @@ theorem gramP_posDef {Ch : ℕ → Type} {u : D.what₂.Word} {chOf : ∀ i, (D.
   have hinj : Function.Injective A.mulVec := by
     intro x y hxy
     have hCi : IsUnit C.1.det := (Matrix.isUnit_iff_isUnit_det _).mp C.isUnit
-    have h1 : ((L * C.1⁻¹) * (C.1 * iXm D)).map (embT D τ) = 1 := by
+    have h1 : ((L * C.1⁻¹) * (C.1 * iXm D)).map (Formalism.L2.Forms.embT D τ) = 1 := by
       rw [Matrix.mul_assoc, ← Matrix.mul_assoc C.1⁻¹, Matrix.nonsing_inv_mul _ hCi, Matrix.one_mul, hL,
         Matrix.map_one _ (map_zero _) (map_one _)]
-    have h2 := congrArg (fun v => ((L * C.1⁻¹).map (embT D τ)) *ᵥ v) hxy
+    have h2 := congrArg (fun v => ((L * C.1⁻¹).map (Formalism.L2.Forms.embT D τ)) *ᵥ v) hxy
     simp only [Matrix.mulVec_mulVec, hA, ← Matrix.map_mul, h1, Matrix.one_mulVec] at h2
     exact h2
   rw [hG]
   exact Matrix.PosDef.conjTranspose_mul_self A hinj
 
 theorem exists_onP {Ch : ℕ → Type} {u : D.what₂.Word} {chOf : ∀ i, (D.mem u).C.cls i → Ch i} (Tf : FormsTiedSym D u Ch chOf) :
-    ∃ o : FrP D, ∀ τ, (o.1 τ)ᴴ * gramC (gramP D) (embT D) τ * o.1 τ = 1 := by
-  have h := fun τ => exists_on_of_posDef (k := D.R.N D.R.m - 1) (gramC (gramP D) (embT D) τ) (gramP_posDef Tf τ)
+    ∃ o : FrP D, ∀ τ, (o.1 τ)ᴴ * gramC (gramP D) (Formalism.L2.Forms.embT D) τ * o.1 τ = 1 := by
+  have h := fun τ => exists_on_of_posDef (k := D.R.N D.R.m - 1) (gramC (gramP D) (Formalism.L2.Forms.embT D) τ) (gramP_posDef Tf τ)
   choose o ho1 ho2 using h
   exact ⟨⟨o, ho1⟩, ho2⟩
 

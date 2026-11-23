@@ -226,10 +226,10 @@ section Coord
 
 variable (D : D7) {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) {N N' r : ℕ} (b : Fin r → Matrix (Fin N') (Fin N) D.host.E)
 
-def lamB (k : D.what₂.Tau × Fin N' × Fin N) (i : Fin r) : ℂ_[p] := lamC lam (embT D k.1 (b i k.2.1 k.2.2))
+def lamB (k : D.what₂.Tau × Fin N' × Fin N) (i : Fin r) : ℂ_[p] := lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))
 
 def lamBc (k : D.what₂.Tau × Fin N' × Fin N) (i : Fin r) : ℂ_[p] :=
-  lamC lam (embT D k.1 (D.host.conj (b i k.2.1 k.2.2)))
+  lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (D.host.conj (b i k.2.1 k.2.2)))
 
 
 open Classical in
@@ -276,7 +276,7 @@ namespace Formalism.L2.KerInert.RepFrame
 open NumberField Formalism.BasicNotions Formalism.MainNotions.TaylorLogMetric Formalism.L2.Ker
 
 def TraceTau (D : D7) : Prop :=
-  ∀ y : D.host.E, ∑ τ : D.what₂.Tau, embT D τ y = D.host.φ₀ ((Algebra.trace D.host.K D.host.E y : D.host.K) : D.host.E)
+  ∀ y : D.host.E, ∑ τ : D.what₂.Tau, Formalism.MainNotions.TaylorLogMetric.embT D τ y = D.host.φ₀ ((Algebra.trace D.host.K D.host.E y : D.host.K) : D.host.E)
 
 end Formalism.L2.KerInert.RepFrame
 end
