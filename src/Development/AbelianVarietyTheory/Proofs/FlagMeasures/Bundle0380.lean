@@ -70,7 +70,7 @@ theorem mem_genus {K V : Type} [Field K] [NumberField K] [StarRing K] [AddCommGr
       exact (show B ≤ N from le_sup_right) (Submodule.subset_span ⟨i, rfl⟩)
     have hN : Submodule.IsFullLattice K N :=
       { toIsLattice := Submodule.IsLattice.of_fg K hNfg, span_eq_top := hNspan }
-    have hNd := (dualLattice (𝓞 K) K V h hs hn hstar N hN).1
+    have hNd := (Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K V h hs hn hstar N hN).1
     have hle : dual h N ≤ M := by
       rw [← hdM]
       exact (dualBasic (𝓞 K) K V h hs hstar).1 M N le_sup_left
