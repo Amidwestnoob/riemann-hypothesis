@@ -135,7 +135,7 @@ variable {K F V : Type} [Field K] [NumberField K] [StarRing K] [Field F] [Number
   [Algebra F K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
 
 theorem locF_subset_span {𝔭 : Ideal (𝓞 F)} (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) V) :
-    (locF 𝔭 L : Set V) ⊆ Submodule.span K (L : Set V) := by
+    (Formalism.HermitianLattices.Ext.L3.locF 𝔭 L : Set V) ⊆ Submodule.span K (L : Set V) := by
   intro x hx
   obtain ⟨t, ht, htx⟩ := (LocF.mem_locF_iff hp L x).1 hx
   have ht0 : algebraMap F K (t : F) ≠ 0 := by
@@ -146,11 +146,11 @@ theorem locF_subset_span {𝔭 : Ideal (𝓞 F)} (hp : 𝔭.IsPrime) (L : Submod
 
 theorem le_span_of_locF {𝔭 : Ideal (𝓞 F)} (hp : 𝔭.IsPrime) {U : Submodule K V}
     {M : Submodule (𝓞 K) V} (hM : IsLatIn U M) {n : ℕ} {b : Fin n → V}
-    (hb : locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) = locF 𝔭 M) :
+    (hb : Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 M) :
     U ≤ Submodule.span K (Set.range b) := by
   rw [← hM.2, Submodule.span_le]
   intro x hx
-  have h1 : x ∈ locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) := by
+  have h1 : x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) := by
     rw [hb]; exact LocF.le_locF 𝔭 M hx
   have h2 := locF_subset_span hp _ h1
   rwa [Submodule.span_span_of_tower] at h2

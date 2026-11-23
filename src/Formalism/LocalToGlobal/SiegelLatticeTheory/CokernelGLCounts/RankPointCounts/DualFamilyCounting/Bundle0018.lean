@@ -94,46 +94,46 @@ theorem push_dualIn (L : Submodule (𝓞 K) ↥X) :
 variable {𝔭 : Ideal (𝓞 F)}
 
 theorem map_incl_dual (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    (locF 𝔭 (dualIn (formOn h X) ⊤ L)).map (incl X) = locF 𝔭 (dualIn h X (push X L)) := by
+    (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)).map (incl X) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)) := by
   change push X _ = _
   rw [push_locF X hp, push_dualIn]
 
 def dualEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L)) ≃ₗ[𝓞 K] ↥(locF 𝔭 (dualIn h X (push X L))) :=
+    ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)) ≃ₗ[𝓞 K] ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L))) :=
   (Submodule.equivMapOfInjective (incl X) (incl_injective X) _).trans
     (LinearEquiv.ofEq _ _ (map_incl_dual hp L))
 
 theorem dualEquiv_apply (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (x : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
-    ((dualEquiv (h := h) hp L x : ↥(locF 𝔭 (dualIn h X (push X L)))) : V) = ((x : ↥X) : V) := rfl
+    (x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
+    ((dualEquiv (h := h) hp L x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) : V) = ((x : ↥X) : V) := rfl
 
 theorem dualEquiv_symm_apply (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (y : ↥(locF 𝔭 (dualIn h X (push X L)))) :
-    ((((dualEquiv (h := h) hp L).symm y : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) : ↥X) : V) = (y : V) := by
+    (y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) :
+    ((((dualEquiv (h := h) hp L).symm y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) : ↥X) : V) = (y : V) := by
   have := dualEquiv_apply hp L ((dualEquiv (h := h) hp L).symm y)
   rw [LinearEquiv.apply_symm_apply] at this
   exact this.symm
 
 theorem map_dualEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    ((locF 𝔭 L).comap (locF 𝔭 (dualIn (formOn h X) ⊤ L)).subtype).map
+    ((Formalism.HermitianLattices.Ext.L3.locF 𝔭 L).comap (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)).subtype).map
         (dualEquiv (h := h) hp L : _ →ₗ[𝓞 K] _) =
-      (locF 𝔭 (push X L)).comap (locF 𝔭 (dualIn h X (push X L))).subtype := by
+      (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (push X L)).comap (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L))).subtype := by
   rw [Submodule.map_equiv_eq_comap_symm]
   ext y
   simp only [Submodule.mem_comap, Submodule.subtype_apply]
   rw [← coe_mem_push (X := X), push_locF X hp]
-  exact Iff.of_eq (congrArg (fun v => v ∈ locF 𝔭 (push X L)) (dualEquiv_symm_apply (h := h) hp L y))
+  exact Iff.of_eq (congrArg (fun v => v ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (push X L)) (dualEquiv_symm_apply (h := h) hp L y))
 
 def discEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
     DiscMod (formOn h X) ⊤ L 𝔭 ≃ₗ[𝓞 K] DiscMod h X (push X L) 𝔭 :=
   Submodule.Quotient.equiv _ _ (dualEquiv (h := h) hp L) (map_dualEquiv (h := h) hp L)
 
 theorem discEquiv_mk (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (x : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
+    (x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
     discEquiv (h := h) hp L (Submodule.Quotient.mk x) = Submodule.Quotient.mk (dualEquiv (h := h) hp L x) := rfl
 
 theorem discEquiv_symm_mk (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (y : ↥(locF 𝔭 (dualIn h X (push X L)))) :
+    (y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) :
     (discEquiv (h := h) hp L).symm (Submodule.Quotient.mk y) =
       Submodule.Quotient.mk ((dualEquiv (h := h) hp L).symm y) := rfl
 
@@ -241,17 +241,17 @@ theorem finite_fibS (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h
     (Formalism.HermitianLatticesTheory.dualLattice (𝓞 K) K V h hs (nondegenerate_of hs hnd) Formalism.HermitianLatticesTheory.star_algebraMap_ringOfIntegers_mem_range _ hNfull).1
   have hD := hDfull.toIsLattice
   have hND : Submodule.IsFullLattice K ((M ⊔ T) ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) := inferInstance
-  have key : ∀ Λ ∈ fibS h U 𝔭 M T, locF 𝔭 (M ⊔ T) ≤ Λ ∧ Λ ≤ locF 𝔭 (Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) ∧
-      locF 𝔭 Λ = Λ := by
+  have key : ∀ Λ ∈ fibS h U 𝔭 M T, Formalism.HermitianLattices.Ext.L3.locF 𝔭 (M ⊔ T) ≤ Λ ∧ Λ ≤ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) ∧
+      Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ = Λ := by
     rintro Λ ⟨⟨Λ', -, rfl⟩, h1, h2, h3⟩
-    have hle : locF 𝔭 (M ⊔ T) ≤ locF 𝔭 Λ' := by
-      have hs' : M ⊔ T ≤ locF 𝔭 Λ' := sup_le
+    have hle : Formalism.HermitianLattices.Ext.L3.locF 𝔭 (M ⊔ T) ≤ Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ' := by
+      have hs' : M ⊔ T ≤ Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ' := sup_le
         ((LocF.le_locF 𝔭 M).trans (h2 ▸ inf_le_left)) ((LocF.le_locF 𝔭 T).trans (h3 ▸ inf_le_left))
       exact (LocF.locF_mono 𝔭 hs').trans (LocF.locF_idem 𝔭 Λ').le
     refine ⟨hle, ?_, LocF.locF_idem 𝔭 Λ'⟩
     rw [G7.locF_dual hF h hN.fg hp]
-    calc locF 𝔭 Λ' = dualF h 𝔭 (locF 𝔭 Λ') := h1.symm
-      _ ≤ dualF h 𝔭 (locF 𝔭 (M ⊔ T)) := dualF_anti h 𝔭 hle
+    calc Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ' = dualF h 𝔭 (Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ') := h1.symm
+      _ ≤ dualF h 𝔭 (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (M ⊔ T)) := dualF_anti h 𝔭 hle
   refine Set.Finite.of_finite_image (f := fun Λ => Λ ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T))
     ((BrB.finite_between hND hD inf_le_right).subset ?_) ?_
   · rintro _ ⟨Λ, hΛ, rfl⟩
@@ -260,12 +260,12 @@ theorem finite_fibS (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h
   · intro Λ₁ h1 Λ₂ h2 he
     obtain ⟨-, a1, b1⟩ := key Λ₁ h1
     obtain ⟨-, a2, b2⟩ := key Λ₂ h2
-    have e1 : locF 𝔭 (Λ₁ ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) = Λ₁ := by
+    have e1 : Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Λ₁ ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) = Λ₁ := by
       rw [LIOrb.locF_inf_locF h𝔭, b1]; exact inf_eq_left.2 a1
-    have e2 : locF 𝔭 (Λ₂ ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) = Λ₂ := by
+    have e2 : Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Λ₂ ⊓ Formalism.HermitianLatticesTheory.dual h (M ⊔ T)) = Λ₂ := by
       rw [LIOrb.locF_inf_locF h𝔭, b2]; exact inf_eq_left.2 a2
     rw [← e1, ← e2]
-    exact congrArg (locF 𝔭) he
+    exact congrArg (Formalism.HermitianLattices.Ext.L3.locF 𝔭) he
 
 theorem fibP_ne_zero_iff (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm) (hnd : Nondeg h)
     {U : Submodule K V} (hUc : IsCompl U (orthK h U)) {M T : Submodule (𝓞 K) V} (hM : IsLatIn U M)
@@ -280,7 +280,7 @@ theorem fibP_ne_zero_iff (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (h
     exact ⟨⟨⟨x, hx⟩⟩, hfin.to_subtype⟩
 
 theorem fibP_congr (h : V →ₗ⋆[K] V →ₗ[K] K) (U : Submodule K V) (𝔭 : Ideal (𝓞 F)) (M : Submodule (𝓞 K) V)
-    {T T' : Submodule (𝓞 K) V} (e : locF 𝔭 T = locF 𝔭 T') : fibP h U 𝔭 M T = fibP h U 𝔭 M T' := by
+    {T T' : Submodule (𝓞 K) V} (e : Formalism.HermitianLattices.Ext.L3.locF 𝔭 T = Formalism.HermitianLattices.Ext.L3.locF 𝔭 T') : fibP h U 𝔭 M T = fibP h U 𝔭 M T' := by
   unfold fibP
   rw [e]
 
@@ -294,7 +294,7 @@ theorem fibP_ne_zero_of_genus (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] 
     { toIsLattice := hΛ₀.1, span_eq_top :=
       GlobalTheory.LoopC.Base.span_eq_top_of_unimodular h hs (nondegenerate_of hs hnd) hΛ₀.1 hΛ₀.2.1 }
   have hT₀ := isLatIn_cut hΛ₀full (orthK h U)
-  rw [← fibP_congr h U 𝔭 M (show locF 𝔭 (Formalism.HermitianLatticesTheory.gmap g (Λ₀ ⊓ (orthK h U).restrictScalars (𝓞 K))) = locF 𝔭 T
+  rw [← fibP_congr h U 𝔭 M (show Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Formalism.HermitianLatticesTheory.gmap g (Λ₀ ⊓ (orthK h U).restrictScalars (𝓞 K))) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 T
       by rw [← LocalizedFibreSets.gmap_locF, he]), G6.fibP_gmap hM 𝔭 _ hg,
     fibP_ne_zero_iff hF hs hnd hUc hM hT₀ h𝔭]
   exact ⟨_, locF_mem_fibS hF hΛ₀.1 hΛ₀.2.1 hΛ₀.2.2 rfl h𝔭⟩

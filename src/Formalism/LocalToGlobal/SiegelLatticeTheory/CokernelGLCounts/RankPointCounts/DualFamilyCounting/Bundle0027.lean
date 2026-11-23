@@ -385,19 +385,19 @@ variable {K F V : Type} [Field K] [NumberField K] [StarRing K] [Field F] [Number
 
 structure Good {h : V →ₗ⋆[K] V →ₗ[K] K} {U : Submodule K V} (hc : IsCompl U (orthK h U))
     (M T : Submodule (𝓞 K) V) (𝔭 : Ideal (𝓞 F)) (Λ : Submodule (𝓞 K) V) : Prop where
-  iU : ∀ x ∈ Λ, prO hc x ∈ locF 𝔭 (dualIn h U M)
-  iW : ∀ x ∈ Λ, prO hc.symm x ∈ locF 𝔭 (dualIn h (orthK h U) T)
-  oU : ∀ v ∈ locF 𝔭 (dualIn h U M), ∃ x ∈ Λ, prO hc x = v
-  oW : ∀ v ∈ locF 𝔭 (dualIn h (orthK h U) T), ∃ x ∈ Λ, prO hc.symm x = v
-  cU : Λ ⊓ U.restrictScalars (𝓞 K) = locF 𝔭 M
-  cW : Λ ⊓ (orthK h U).restrictScalars (𝓞 K) = locF 𝔭 T
+  iU : ∀ x ∈ Λ, prO hc x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h U M)
+  iW : ∀ x ∈ Λ, prO hc.symm x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T)
+  oU : ∀ v ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h U M), ∃ x ∈ Λ, prO hc x = v
+  oW : ∀ v ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T), ∃ x ∈ Λ, prO hc.symm x = v
+  cU : Λ ⊓ U.restrictScalars (𝓞 K) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 M
+  cW : Λ ⊓ (orthK h U).restrictScalars (𝓞 K) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 T
 
 variable {h : V →ₗ⋆[K] V →ₗ[K] K} {U : Submodule K V} {hc : IsCompl U (orthK h U)}
   {M T Λ : Submodule (𝓞 K) V} {𝔭 : Ideal (𝓞 F)}
 
-theorem mk_eq_iff {X : Submodule K V} {L : Submodule (𝓞 K) V} (a b : ↥(locF 𝔭 (dualIn h X L))) :
+theorem mk_eq_iff {X : Submodule K V} {L : Submodule (𝓞 K) V} (a b : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X L))) :
     (Submodule.Quotient.mk a : DiscMod h X L 𝔭) = Submodule.Quotient.mk b ↔
-      (a : V) - (b : V) ∈ locF 𝔭 L := by
+      (a : V) - (b : V) ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 L := by
   rw [Submodule.Quotient.eq]
   simp [Submodule.mem_comap]
 
@@ -437,8 +437,8 @@ theorem prO_symm_of_mem_U {hc' : IsCompl U (orthK h U)} {x : V} (hx : x ∈ U) :
   exact prO_eq_zero_of_mem_compl hc'.symm hx
 
 theorem mem_of_proj (hG : Good hc M T 𝔭 Λ) {x x' : V} (hx' : x' ∈ Λ) (hU : prO hc x' = prO hc x)
-    (hW : prO hc.symm x - prO hc.symm x' ∈ locF 𝔭 T) : x ∈ Λ := by
-  have hle : locF 𝔭 T ≤ Λ := by
+    (hW : prO hc.symm x - prO hc.symm x' ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T) : x ∈ Λ := by
+  have hle : Formalism.HermitianLattices.Ext.L3.locF 𝔭 T ≤ Λ := by
     rw [← hG.cW]
     exact inf_le_left
   have ht : prO hc.symm x - prO hc.symm x' ∈ Λ := hle hW

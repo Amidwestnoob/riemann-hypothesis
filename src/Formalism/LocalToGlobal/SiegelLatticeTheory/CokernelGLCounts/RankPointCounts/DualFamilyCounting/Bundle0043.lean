@@ -119,7 +119,7 @@ theorem last_unit_holds : LastUnit := by
   have hsp : spanO β' = Submodule.span (𝓞 K) (Set.range β) := by
     show Submodule.span (𝓞 K) (Set.range ⇑(β.reindex e)) = _
     rw [Basis.range_reindex]
-  have hsd : dualF h 𝔭 (locF 𝔭 (spanO β')) = locF 𝔭 (spanO β') := by
+  have hsd : dualF h 𝔭 (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β')) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β') := by
     rw [hsp, hβ, ← G7.locF_dual hFix h hΛlat.fg h𝔭.isPrime, (hΛu : HermitianLatticesTheory.dual h Λ₀ = Λ₀)]
   obtain ⟨hu1, hu2⟩ := det_unit_of_selfdual hFix hS hN β' hsd
   have hd : (β'.toMatrix γ).det ≠ 0 :=
