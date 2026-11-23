@@ -50,7 +50,7 @@ theorem eisStrong_of_k : _root_.GlobalTheory.ThK.Dbl.EisBL_k → _root_.Positivi
   have hinv := _root_.GlobalTheory.T.eisenstein_series_moderate_growth F E σ d.B d.n d.Y r' s' d.ok.good d.ok.hn hY d.b d.K d.a d.ok.frame d.ok.stdK d.ok.hgt d.χ s₁ f hf
     d.ok.hecke t Ê hsum
   have hfl : ∀ z, (fun y => ((d.Ht y : ℝ) : ℂ) ^ (z - s₁) * f y) = flat d.a f s₁ z := fun z => funext fun y => by
-    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, flat]
+    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, GlobalTheory.ThK.Dbl.flat]
     rw [Real.coe_toNNReal _ (hgt_nonneg d.ok.hgt y)]
   have Heisenberg₂ : ∀ z : ℂ, t < z.re → ∀ g, d.eis f s₁ z g = Ê z g := fun z hz g => by
     simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.eis]

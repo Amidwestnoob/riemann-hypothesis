@@ -26,7 +26,7 @@ theorem eisValue_of (hBL : EisBL) (hSec : SecK) (d : SD σ) {r' s' : ℕ}
   intro x
   have hfl : ∀ z, (fun y => ((d.Ht y : ℝ) : ℂ) ^ (z - s0 d.m d.n) * d.sec0 Φ y) = flat d.a (d.sec0 Φ) (s0 d.m d.n) z :=
     fun z => funext fun y => by
-      simp only [SD.Ht, flat]
+      simp only [SD.Ht, GlobalTheory.ThK.Dbl.flat]
       rw [Real.coe_toNNReal _ (Khead.hgt_nonneg d.ok.hgt y)]
   have Heisenberg₂ : ∀ z : ℂ, t < z.re → d.eis (d.sec0 Φ) (s0 d.m d.n) z x = Ê z x := fun z hz => by
     simp only [SD.eis]

@@ -385,7 +385,7 @@ theorem unfold_k : _root_.PositivityTheory.SiegelWeilFormula.Unfold_k := by
   obtain ⟨U, p, Ê, t, -, -, -, -, -, -, -, hmaj⟩ := hE 0
   refine ⟨t, fun z hz nb lam 𝓖 hc ε w hw x => ?_⟩
   have hΦ : (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) = flat d.a f s₁ z := funext fun x => by
-    rw [flat, _root_.PositivityTheory.SiegelWeilFormula.kunf.ht_eq_k]
+    rw [GlobalTheory.ThK.Dbl.flat, _root_.PositivityTheory.SiegelWeilFormula.kunf.ht_eq_k]
   have hmaj' := (hmaj z hz).1
   rw [hΦ] at hmaj'
   have hlaw : Law d.χ (s₁ + d.n / 2) f := hf.law

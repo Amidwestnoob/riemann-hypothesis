@@ -405,7 +405,7 @@ theorem _root_.UpperTheory.TP.rallis_k : _root_.UpperTheory.TP.Tools_k → _root
     have ez : ∀ g, flat a₁ f s₀ z (e₁ (1, g)) * detInv χW g * pet M.μ M.dom (fun h => φ (h * g)) φ =
         c' * ((a₁ (e₁ (g⁻¹, 1)) : ℂ) ^ (z - s₀) * (coef om ν Φ g⁻¹ * star (mc M φ g⁻¹))) := fun g => by
       have h1 : star (mc M φ g⁻¹) = pet M.μ M.dom (fun h => φ (h * g)) φ := by rw [im, star_star]; rfl
-      rw [h1, flat, hap, mul_assoc (_ ^ _), idf]
+      rw [h1, GlobalTheory.ThK.Dbl.flat, hap, mul_assoc (_ ^ _), idf]
       ring
     rw [(far z hz).2.2 φ rp]
     simp only [ez]

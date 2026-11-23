@@ -86,7 +86,7 @@ theorem headOf : HeadOf := by
   intro x
   have hfl : ∀ z, (fun y => ((d.Ht y : ℝ) : ℂ) ^ (z - s0 m n) * d.sec0 Φ y) = flat a (d.sec0 Φ) (s0 m n) z := fun z =>
     funext fun y => by
-      simp only [SD.Ht, flat]
+      simp only [SD.Ht, GlobalTheory.ThK.Dbl.flat]
       rw [Real.coe_toNNReal _ (hgt_nonneg d.ok.hgt y)]
       rfl
   have Heisenberg₂ : ∀ z : ℂ, t < z.re → d.eis (d.sec0 Φ) (s0 m n) z x = Ê z x := fun z hz => by
