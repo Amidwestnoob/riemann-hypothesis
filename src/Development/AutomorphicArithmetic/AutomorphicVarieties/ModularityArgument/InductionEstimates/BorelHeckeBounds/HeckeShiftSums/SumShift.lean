@@ -54,7 +54,7 @@ private theorem desc_cont {Y : Type*} [TopologicalSpace Y] (f : G1 K (2 + 2) →
     Continuous fun y : RightCosetSpace (Gam K (2 + 2)) => f (Quotient.out y) := by
   rw [(isOpenQuotientMap_mk (Gam K (2 + 2))).isQuotientMap.continuous_iff]
   have : (fun y : RightCosetSpace (Gam K (2 + 2)) => f (Quotient.out y)) ∘ mk (Gam K (2 + 2)) = f := funext fun g => by
-    obtain ⟨γ, hγ⟩ := (mk_eq_mk_iff (Γ := Gam K (2 + 2)) (g := (mk (Gam K (2 + 2)) g).out) (h := g)).1 (Quotient.out_eq _)
+    obtain ⟨γ, hγ⟩ := (GroundTheory.Automorphic.RightCosetSpace.mk_eq_mk_iff (Γ := Gam K (2 + 2)) (g := (mk (Gam K (2 + 2)) g).out) (h := g)).1 (Quotient.out_eq _)
     change f _ = _
     rw [← hγ]
     exact hi γ γ.2 g
