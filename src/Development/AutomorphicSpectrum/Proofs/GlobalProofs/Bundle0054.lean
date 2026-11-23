@@ -436,7 +436,7 @@ theorem cuspOn_mul_right : ∀ (D : D7) (θ : D.what₂.Tau → (Ainf D.host.F �
         fun k => φ (x * b * kAt θ V τ (ε τ) (fr τ) k) := funext fun k => by
       rw [← inv_mul_kAt_mul hθ V b τ (hfr τ).1 (hfr τ).2 k]
       simp only [mul_assoc, mul_inv_cancel_left]
-    show (fun k => φ (x * kAt θ V τ (ε τ) (fr τ * (infMat D.sp.cm.sig V.gram (θ τ) b)⁻¹) k * b)) ∈ coeffSpan (ρ τ)
+    show (fun k => φ (x * kAt θ V τ (ε τ) (fr τ * (infMat D.sp.cm.sig V.gram (θ τ) b)⁻¹) k * b)) ∈ GlobalTheory.Published.AutFin.coeffSpan (ρ τ)
     rw [e]
     exact f3 τ (x * b)
   · have := GlobalTheory.RegSch.CentreRight.gelf_rTr_all hθ b τ k (GlobalTheory.SphSmooth.mem_smFun_of_isSm hθ f1.smooth)
