@@ -402,7 +402,7 @@ theorem parInd_equiv_parabolicInd : ∀ (k : Type) [Field k] [ValuativeRel k] [T
           refine h.trans ?_
           exact hchar p.1 (h21 p.2) p.2 _,
         GroundTheory.Automorphic.stabilizerOf (GlobalTheory.PRep.ind (parab k e)
-          ((twist ρ (deltaHalf k m)).comp (leviProj k e))) f.1, f.2, fun x hx g => by
+          ((GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e))) f.1, f.2, fun x hx g => by
           have h := GroundTheory.Automorphic.mem_stabilizerOf.1 hx
           exact congrFun (congrArg Subtype.val h) g⟩
       invFun := fun f => ⟨⟨f.1, fun p g => by
