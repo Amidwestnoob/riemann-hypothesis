@@ -373,15 +373,15 @@ theorem hTens_eq_zero {R A : Type} [CommRing R] [CommRing A] [Algebra R A] (c : 
     linear_combination (x a (e (.inr b)) * JA a k * JB (e (.inr b)) (e (.inr l)) * c (x k (e (.inr l)))) * hε
 
 theorem skewGram_inl_inr {D : D7} (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin d) (a b) :
-    skewGram A B e (e (.inl a)) (e (.inr b)) = 0 := by
-  simp [skewGram, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk]
+    GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram A B e (e (.inl a)) (e (.inr b)) = 0 := by
+  simp [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk]
 
 theorem skewGram_inr_inl {D : D7} (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin d) (a b) :
-    skewGram A B e (e (.inr a)) (e (.inl b)) = 0 := by
-  simp [skewGram, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk]
+    GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram A B e (e (.inr a)) (e (.inl b)) = 0 := by
+  simp [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk]
 
 theorem hTens_mixHalf {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {i j : ℕ} (e : Num G i j)
-    (Γ : GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.Geo G i j) (hWW : Γ.W.J = skewGram (spV G i j) (spV₁ G i j) e) (ε : AE D)
+    (Γ : GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.Geo G i j) (hWW : Γ.W.J = GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram (spV G i j) (spV₁ G i j) e) (ε : AE D)
     (hε : ε * cA D ε = 0) (γ : Pt G i j) (hγ : γ ∈ mixHalf e ε) :
     hTens (R := AF D.host.F) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA D.sp.cm.sig) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM D.host.F Γ.V.J)
       (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM D.host.F Γ.W.J) γ γ = 0 := by
