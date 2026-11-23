@@ -33,7 +33,7 @@ theorem liftC_cast (τ : D.what₂.Tau) :
   obtain ⟨z, hz⟩ := (GlobalTheory.PairWeightArith.arithAt D i τ).d_int
   rw [liftC, hz, Int.floor_intCast, ← hz, dShift]
 
-def liftWeight : Weight D (Vc D i).rank where
+def liftWeight : GlobalTheory.ExportSeries.Weight D (Vc D i).rank where
   p := pS D i
   q := qS D i
   ap := aP D i

@@ -23,18 +23,18 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 
 open Classical
 
-theorem thA_big (u : Weight Dw) (n : ℕ) (τ : Psi H) (i : ℕ) (hi : i < Dw.p) :
+theorem thA_big (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (τ : Psi H) (i : ℕ) (hi : i < Dw.p) :
     thA Dw u n (τ.1, i) = (u τ ⟨i, by omega⟩ - u τ ⟨Dw.p - 1, by omega⟩ + 1).toNat := by
   simp only [thA, wtOf_big _ _ τ i hi, shift, dif_pos (show 0 < Dw.p by omega), Pi.add_apply, GlobalTheory.FlatLine.parWt]
   congr 1; ring
 
-theorem thA_small (u : Weight Dw) (n : ℕ) (τ : Psi H) (i : ℕ) (hi : i < Dw.q) (hp : 0 < Dw.p) :
+theorem thA_small (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (τ : Psi H) (i : ℕ) (hi : i < Dw.q) (hp : 0 < Dw.p) :
     thA Dw u n (conjEmb τ.1, i) =
       (u τ ⟨Dw.p - 1, by omega⟩ - u τ ⟨Dw.p + (Dw.q - 1 - i), by omega⟩ - 1 - 2 * ((n / 2 : ℕ) : ℤ)).toNat := by
   simp only [thA, wtOf_small _ _ τ i hi, shift, dif_pos hp, Pi.add_apply, GlobalTheory.FlatLine.parWt]
   congr 1; ring
 
-theorem thA_out (u : Weight Dw) (n : ℕ) (τ : E →+* ℂ) (i : ℕ) (h : Dw.mult τ ≤ i) : thA Dw u n (τ, i) = 0 := by
+theorem thA_out (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (τ : E →+* ℂ) (i : ℕ) (h : Dw.mult τ ≤ i) : thA Dw u n (τ, i) = 0 := by
   unfold Datum.mult at h
   simp only [thA, wtOf]
   split_ifs at h ⊢ <;> first | omega | simp
@@ -57,7 +57,7 @@ theorem tele_real (f : ℕ → ℝ) (K : ℕ) :
     simp only [Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul]
     push_cast; ring
 
-theorem thA_anti (u : Weight Dw) (n : ℕ) (hanti : ∀ τ, Antitone (u τ)) (hp : 0 < Dw.p) (τ : E →+* ℂ) :
+theorem thA_anti (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (hanti : ∀ τ, Antitone (u τ)) (hp : 0 < Dw.p) (τ : E →+* ℂ) :
     Antitone fun i => thA Dw u n (τ, i) := by
   apply antitone_nat_of_succ_le
   intro i
@@ -76,7 +76,7 @@ theorem thA_anti (u : Weight Dw) (n : ℕ) (hanti : ∀ τ, Antitone (u τ)) (hp
       ⟨Dw.p + (Dw.q - 1 - i), by omega⟩ from Fin.mk_le_mk.2 (by omega))
     linarith
 
-theorem thA_le (u : Weight Dw) (n B : ℕ) (hB : ∀ τ i, |u τ i| ≤ B) (hp : 0 < Dw.p) (x : (E →+* ℂ) × ℕ) :
+theorem thA_le (u : GlobalTheory.AllWt.Weight Dw) (n B : ℕ) (hB : ∀ τ i, |u τ i| ≤ B) (hp : 0 < Dw.p) (x : (E →+* ℂ) × ℕ) :
     thA Dw u n x ≤ 2 * B + 1 := by
   obtain ⟨τ, i⟩ := x
   by_cases hm : Dw.mult τ ≤ i
@@ -93,7 +93,7 @@ theorem thA_le (u : Weight Dw) (n B : ℕ) (hB : ∀ τ i, |u τ i| ≤ B) (hp :
     have h2 := abs_le.1 (hB τ' ⟨Dw.p - 1, by omega⟩)
     omega
 
-theorem thA_le_conj (u : Weight Dw) (n B : ℕ) (hB : ∀ τ i, |u τ i| ≤ B) (hp : 0 < Dw.p) (τ : Psi H) (i : ℕ) :
+theorem thA_le_conj (u : GlobalTheory.AllWt.Weight Dw) (n B : ℕ) (hB : ∀ τ i, |u τ i| ≤ B) (hp : 0 < Dw.p) (τ : Psi H) (i : ℕ) :
     thA Dw u n (conjEmb τ.1, i) ≤ 2 * B := by
   by_cases hm : Dw.mult (conjEmb τ.1) ≤ i
   · rw [thA_out u n _ i hm]; omega
@@ -151,7 +151,7 @@ theorem card_psi (F : ℕ) (hF : Module.finrank ℚ E = 2 * F) :
 
 
 open Classical in
-theorem big_le (u : Weight Dw) (k n B : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hanti : ∀ τ, Antitone (u τ))
+theorem big_le (u : GlobalTheory.AllWt.Weight Dw) (k n B : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hanti : ∀ τ, Antitone (u τ))
     (hz : ∀ τ (i : Fin (Dw.p + Dw.q)), (i : ℕ) + 2 = k → u τ i = 0) (hB : ∀ τ i, |u τ i| ≤ B) (τ : E →+* ℂ) :
     ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ), gap Dw (thA Dw u n) f ≤ B + 1 := by
   have hp : 0 < Dw.p := by omega
@@ -180,7 +180,7 @@ theorem big_le (u : Weight Dw) (k n B : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 
       have hf' := (Finset.mem_filter.1 hf).2
       exact absurd (hf'.2 ▸ hf'.1.1) h
 
-theorem cloud_eq (u : Weight Dw) (k n : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hanti : ∀ τ, Antitone (u τ))
+theorem cloud_eq (u : GlobalTheory.AllWt.Weight Dw) (k n : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hanti : ∀ τ, Antitone (u τ))
     (hz : ∀ τ (i : Fin (Dw.p + Dw.q)), (i : ℕ) + 2 = k → u τ i = 0) (τ : Psi H) :
     ∑ j ∈ Finset.range (k - 2), ((thA Dw u n (τ.1, j) : ℝ) - thA Dw u n (τ.1, k - 2)) =
       ∑ i ∈ Finset.univ.filter (fun i : Fin (Dw.p + Dw.q) => (i : ℕ) + 2 < k), (u τ i : ℝ) := by
@@ -208,7 +208,7 @@ theorem cloud_eq (u : Weight Dw) (k n : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 
 
 
 open Classical in
-theorem row_le (u : Weight Dw) (k n B : ℕ) (Sg : ℝ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hu : WtBd Dw k n u B Sg)
+theorem row_le (u : GlobalTheory.AllWt.Weight Dw) (k n B : ℕ) (Sg : ℝ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hu : WtBd Dw k n u B Sg)
     (τ : E →+* ℂ) :
     ∑ j : Fin (Dw.mult τ), (if IsSmall (⟨τ, j⟩ : Lt1 Dw) ∨ IsSpread k (⟨τ, j⟩ : Lt1 Dw) then
       ((rk (⟨τ, j⟩ : Lt1 Dw) * gap Dw (thA Dw u n) ⟨τ, j⟩ : ℕ) : ℝ) else 0) ≤

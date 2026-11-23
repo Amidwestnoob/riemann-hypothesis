@@ -66,15 +66,15 @@ section Weights
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} (Dw : Datum H)
   (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ)
 
-def laOf : Weight Dw := weightOf Dw (fun x => (a x : ℤ)) ((n / 2 : ℕ) : ℤ)
+def laOf : GlobalTheory.AllWt.Weight Dw := weightOf Dw (fun x => (a x : ℤ)) ((n / 2 : ℕ) : ℤ)
 
 def shiftG (s : ℤ) : WTZ E := wtZ a n + wtOf Dw (s • hodgeWt Dw) 0
 
 def anchor (kc : ℕ) (τ : Psi H) : ℤ := if h : kc - 1 < Dw.p + Dw.q then laOf Dw a n τ ⟨kc - 1, h⟩ else 0
 
-def uWt (kc : ℕ) : Weight Dw := laOf Dw a n - GlobalTheory.FlatLine.parWt Dw (anchor Dw a n kc)
+def uWt (kc : ℕ) : GlobalTheory.AllWt.Weight Dw := laOf Dw a n - GlobalTheory.FlatLine.parWt Dw (anchor Dw a n kc)
 
-def uMinus (kc : ℕ) (c0 : ℤ) : Weight Dw := uWt Dw a n kc - c0 • hodgeWt Dw
+def uMinus (kc : ℕ) (c0 : ℤ) : GlobalTheory.AllWt.Weight Dw := uWt Dw a n kc - c0 • hodgeWt Dw
 
 def sizeK : ℝ := ∑ τ : Psi H, ∑ k, |(laOf Dw a n τ k : ℝ)|
 
@@ -259,15 +259,15 @@ abbrev rk (G : WTZ D.host.E) : ℕ := rankW Y.U G
 def latOver (G : WTZ D.host.E) (B : Set (T.R j)) : Submodule (𝓞 Y.d.c₂.F) (Y.V G) :=
   latW Y.U G ⊓ ((Submodule.span Y.d.c₂.F {g | ∃ f ∈ B, Y.Pull f g}).comap (Y.V G).subtype).restrictScalars (𝓞 Y.d.c₂.F)
 
-abbrev ht (la : Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ :=
+abbrev ht (la : GlobalTheory.AllWt.Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ :=
   compHeight Y.U (xiR D) (fun _ => D.sp.W j) Y.dict Z (wtOf (T.Q.Dw j) la 0)
 
-abbrev dg (la : Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ := compDeg Y.U Z (wtOf (T.Q.Dw j) la 0)
+abbrev dg (la : GlobalTheory.AllWt.Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ := compDeg Y.U Z (wtOf (T.Q.Dw j) la 0)
 
-abbrev degC (la : Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ :=
+abbrev degC (la : GlobalTheory.AllWt.Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ :=
   degOn Y.U (xiR D) (fun _ => D.sp.W j) Y.dict Z (wtOf (T.Q.Dw j) la 0)
 
-abbrev rkC (la : Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ := rankOn Y.U Z (wtOf (T.Q.Dw j) la 0)
+abbrev rkC (la : GlobalTheory.AllWt.Weight (T.Q.Dw j)) (Z : Comp Y.d.Xo₂ Y.d.c₂) : ℝ := rankOn Y.U Z (wtOf (T.Q.Dw j) la 0)
 
 end Deep
 
@@ -294,7 +294,7 @@ def latTypeK : Submodule (𝓞 T.Q.c.F) (VK fw i) :=
 end Core
 
 def IsQuot {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} (Dw : Datum H)
-    (kc T : ℕ) (c0 : ℤ) (u u1 : Weight Dw) : Prop :=
+    (kc T : ℕ) (c0 : ℤ) (u u1 : GlobalTheory.AllWt.Weight Dw) : Prop :=
   GlobalTheory.MeanTop.Wts.IsDiv (ι := Psi H) (N := Dw.p + Dw.q)
     { kc := kc, p := Dw.p, T := T, Dd := dimFlag Dw, c0 := c0, h0 := 0, S := 0, eta := 0, b := 0, w := 0, u := u, u1 := u1 }
 
