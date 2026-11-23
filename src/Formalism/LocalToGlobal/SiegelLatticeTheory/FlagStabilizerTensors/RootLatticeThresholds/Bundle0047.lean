@@ -439,7 +439,7 @@ theorem ooIntAll_of (hWD : Formalism.L2.SG.WuDecay.WuDecay X) (w w' : D.what₂.
     (Formalism.L2.SG.Closed.FoldOKC_outright D X Y w' (Formalism.L2.SG.Closed.level_subgroup_properties X) hWD)
     (Formalism.L2.SG.Pf.fundExistsC_holds D X Y w w')
 
-variable {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+variable {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 theorem pvalForm_holds (hWD : Formalism.L2.SG.WuDecay.WuDecay X) : ∃ A : AmpDat X, PvalForm W hI A :=
   pvalForm_exists_oi W hI (ooIntAll_of hWD) (Formalism.L2.SG.Pf.FibreEq.FibreCountEq_holds hF)

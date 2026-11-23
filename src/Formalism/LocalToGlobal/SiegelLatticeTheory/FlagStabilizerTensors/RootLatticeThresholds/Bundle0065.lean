@@ -19,7 +19,7 @@ namespace Formalism.L2.SG.Pf.AmpWinRX
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (u u' : D.what₂.Word)
 
 theorem goodW_all (τ : D.what₂.Tau) : GoodW D τ u u' θ (locW C u u' τ) :=
