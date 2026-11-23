@@ -64,10 +64,10 @@ theorem actsEx_k : _root_.GlobalTheory.ThK.ActsEx_k := by
       rw [hloc p (hK3 0 hp.1) (hK3' 0 hp.2) φ hφ]
       exact L.pres p.1 (hK3 0 hp.1) p.2 (hK3' 0 hp.2) φ hφ)
     (fun φ hφ => by
-      rw [hloc 1 (one_mem_UAt X v) (one_mem_UAt W v) φ hφ]
+      rw [hloc 1 (PositivityTheory.ThKH.Locrep.one_mem_UAt X v) (PositivityTheory.ThKH.Locrep.one_mem_UAt W v) φ hφ]
       exact L.one φ hφ)
     (fun p hp q hq φ hφ => by
-      rw [hloc (p * q) (mul_mem_UAt (hK3 0 hp.1) (hK3 0 hq.1)) (mul_mem_UAt (hK3' 0 hp.2) (hK3' 0 hq.2)) φ hφ,
+      rw [hloc (p * q) (PositivityTheory.ThKH.Locrep.mul_mem_UAt (hK3 0 hp.1) (hK3 0 hq.1)) (PositivityTheory.ThKH.Locrep.mul_mem_UAt (hK3' 0 hp.2) (hK3' 0 hq.2)) φ hφ,
         hloc q (hK3 0 hq.1) (hK3' 0 hq.2) φ hφ,
         hloc p (hK3 0 hp.1) (hK3' 0 hp.2) _ (L.pres q.1 (hK3 0 hq.1) q.2 (hK3' 0 hq.2) φ hφ)]
       exact L.mul p.1 (hK3 0 hp.1) p.2 (hK3' 0 hp.2) q.1 (hK3 0 hq.1) q.2 (hK3' 0 hq.2) φ hφ)
