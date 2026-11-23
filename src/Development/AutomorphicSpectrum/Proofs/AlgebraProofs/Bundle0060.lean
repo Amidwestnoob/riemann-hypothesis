@@ -86,14 +86,14 @@ private theorem resG_nm_app_eq_nm_app_of_le_freeOpen {V : X.Opens} (b : Γ(Y, π
     (hW' : IsAffineOpen W') (h : W' ≤ k.1) :
     resG X h (nm (π.app k.1).hom (resG Y (π.preimage_mono k.2.2.1) b)) =
       nm (π.app W').hom (resG Y (π.preimage_mono (h.trans k.2.2.1)) b) := by
-  rw [resG_nm π k.2.1 hW' h k.2.2.2, resG_resG]
+  rw [resG_nm π k.2.1 hW' h k.2.2.2, GlobalTheory.LB.resG_resG]
 
 theorem exists_normFun (V : X.Opens) (b : Γ(Y, π ⁻¹ᵁ V)) : ∃ a : Γ(X, V), ∀ W : FreeOpen π V,
     resG X W.2.2.1 a = nm (π.app W.1).hom (resG Y (π.preimage_mono W.2.2.1) b) := by
   refine exists_fun_of_cover (fun k : FreeOpen π V => k.1) (fun k => k.2.2.1) (le_iSup_freeOpen π V)
     (fun k => nm (π.app k.1).hom (resG Y (π.preimage_mono k.2.2.1) b)) fun k l => ?_
   refine ext_freeOpen π fun W' => ?_
-  rw [resG_resG, resG_resG, resG_nm_app_eq_nm_app_of_le_freeOpen π b k W'.2.1, resG_nm_app_eq_nm_app_of_le_freeOpen π b l W'.2.1]
+  rw [GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG, resG_nm_app_eq_nm_app_of_le_freeOpen π b k W'.2.1, resG_nm_app_eq_nm_app_of_le_freeOpen π b l W'.2.1]
 
 def normFun (V : X.Opens) : Γ(Y, π ⁻¹ᵁ V) →* Γ(X, V) where
   toFun b := (exists_normFun π V b).choose
@@ -110,8 +110,8 @@ theorem resG_normFun_free {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) (W : FreeOpen
 theorem resG_normFun {V W : X.Opens} (h : W ≤ V) (b : Γ(Y, π ⁻¹ᵁ V)) :
     resG X h (normFun π V b) = normFun π W (resG Y (π.preimage_mono h) b) := by
   refine ext_freeOpen π fun W' => ?_
-  rw [resG_resG, resG_normFun_free π b ⟨W'.1, W'.2.1, W'.2.2.1.trans h, W'.2.2.2⟩,
-    resG_normFun_free π _ W', resG_resG]
+  rw [GlobalTheory.LB.resG_resG, resG_normFun_free π b ⟨W'.1, W'.2.1, W'.2.2.1.trans h, W'.2.2.2⟩,
+    resG_normFun_free π _ W', GlobalTheory.LB.resG_resG]
 
 private theorem basicOpen_resG_eq_inf_basicOpen {Z : Scheme.{0}} {U V : Z.Opens} (h : V ≤ U) (f : Γ(Z, U)) :
     Z.basicOpen (resG Z h f) = V ⊓ Z.basicOpen f :=
@@ -119,7 +119,7 @@ private theorem basicOpen_resG_eq_inf_basicOpen {Z : Scheme.{0}} {U V : Z.Opens}
 
 private theorem isUnit_resG_of_le_basicOpen' {Z : Scheme.{0}} {U V : Z.Opens} (h : V ≤ U) (f : Γ(Z, U))
     (hV : V ≤ Z.basicOpen f) : IsUnit (resG Z h f) := by
-  rw [← resG_resG (Z.basicOpen_le f) hV f]
+  rw [← GlobalTheory.LB.resG_resG (Z.basicOpen_le f) hV f]
   exact (RingedSpace.isUnit_res_basicOpen _ f).map (resG Z hV)
 
 theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (hx : x ∈ V) :
@@ -136,7 +136,7 @@ theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (
     obtain ⟨W'', hW'', hxW'', hle, hF''⟩ := exists_finFree_app_of_finitePresentation π hx'
     have hW''W : W'' ≤ W := hle.trans (X.basicOpen_le _)
     have hu := isUnit_resG_of_le_basicOpen' hW''W _ hle
-    rw [resG_nm π hW hW'' hW''W hF, resG_resG] at hu
+    rw [resG_nm π hW hW'' hW''W hF, GlobalTheory.LB.resG_resG] at hu
     have hu' := isUnit_of_nm hF'' hu
     have hy'' : y ∈ Y.basicOpen (resG Y (π.preimage_mono (hW''W.trans hWV)) b) := by
       rw [Y.basicOpen_of_isUnit hu']

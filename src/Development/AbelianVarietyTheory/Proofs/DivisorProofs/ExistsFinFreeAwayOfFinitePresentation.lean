@@ -153,8 +153,8 @@ theorem exists_trFun (V : Y.Opens) (b : Γ(X, f ⁻¹ᵁ V)) : ∃ a : Γ(Y, V),
     resG Y W.2.2.1 a = tr (f.app W.1).hom (resG X (f.preimage_mono W.2.2.1) b) :=
   exists_fun_of_cover _ (fun W : FreeOpen f V => W.2.2.1) (le_iSup_freeOpen f V) _ fun W W' =>
     ext_freeOpen f fun O => by
-      rw [resG_resG, resG_resG, resG_tr f W.2.1 O.2.1 _ W.2.2.2, resG_tr f W'.2.1 O.2.1 _ W'.2.2.2,
-        resG_resG, resG_resG]
+      rw [GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG, resG_tr f W.2.1 O.2.1 _ W.2.2.2, resG_tr f W'.2.1 O.2.1 _ W'.2.2.2,
+        GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG]
 
 def trFun (V : Y.Opens) : Γ(X, f ⁻¹ᵁ V) →+ Γ(Y, V) where
   toFun b := (exists_trFun f V b).choose
@@ -171,7 +171,7 @@ theorem resG_trFun_free {V : Y.Opens} (b : Γ(X, f ⁻¹ᵁ V)) (W : FreeOpen f 
 theorem resG_trFun {V W : Y.Opens} (h : W ≤ V) (b : Γ(X, f ⁻¹ᵁ V)) :
     resG Y h (trFun f V b) = trFun f W (resG X (f.preimage_mono h) b) :=
   ext_freeOpen f fun O => by
-    rw [resG_trFun_free, resG_resG, resG_resG]
+    rw [resG_trFun_free, GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG]
     exact resG_trFun_free f b ⟨O.1, O.2.1, O.2.2.1.trans h, O.2.2.2⟩
 
 theorem trFun_mul {V : Y.Opens} (a : Γ(Y, V)) (b : Γ(X, f ⁻¹ᵁ V)) :
@@ -215,7 +215,7 @@ theorem trCoord_mem (V : Y.Opens) (s : SecOn (L.pull f) (f ⁻¹ᵁ V)) : trCoor
     (fun _ hx => ⟨hx.1.1, (pull_U f (pj f L j)).ge hx.2⟩)
     (fun _ hx => ⟨(pull_U f (pj f L i)).ge hx.1.2, (pull_U f (pj f L j)).ge hx.2⟩)
   erw [resG_pull_g] at e
-  simp only [trCoord, resG_trFun, resG_resG]
+  simp only [trCoord, resG_trFun, GlobalTheory.LB.resG_resG]
   rw [← trFun_mul, ← resG_app_eq, resG_app]
   exact congrArg (trFun f _) e
 
@@ -231,14 +231,14 @@ def trSec (V : Y.Opens) : SecOn (L.pull f) (f ⁻¹ᵁ V) →+ SecOn L V where
 theorem trSec_smul (V : Y.Opens) (a : Γ(Y, V)) (s : SecOn (L.pull f) (f ⁻¹ᵁ V)) :
     trSec f V ((f.app V).hom a • s) = a • trSec f V s :=
   sec_ext fun i => by
-    rw [coord_trSec, coord_smul, coord_smul, coord_trSec, map_mul, resG_resG, ← trFun_mul,
+    rw [coord_trSec, coord_smul, coord_smul, coord_trSec, map_mul, GlobalTheory.LB.resG_resG, ← trFun_mul,
       resG_app_eq]
 
 theorem trSec_restrict {V W : Y.Opens} (h : W ≤ V) (s : SecOn (L.pull f) (f ⁻¹ᵁ V)) :
     trSec f W (SecOn.restrict (L.pull f) (f.preimage_mono h) s) = SecOn.restrict L h (trSec f V s) :=
   sec_ext fun i => by
     rw [coord_trSec, SecOn.coord_restrict, SecOn.coord_restrict, coord_trSec]
-    erw [resG_trFun, resG_resG, resG_resG]
+    erw [resG_trFun, GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG]
 
 theorem trSec_pull (r : ℕ) (hr : ∀ V : Y.Opens, IsAffineOpen V → FinFree (f.app V).hom →
       Nontrivial Γ(Y, V) → (letI := (f.app V).hom.toAlgebra; Module.finrank Γ(Y, V) Γ(X, f ⁻¹ᵁ V)) = r)

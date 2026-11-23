@@ -281,7 +281,7 @@ theorem psi_apply (W : X.Opens) (f : Γ(X, W)) : psi p ε hε D W f =
 theorem psi_nat (W W' : X.Opens) (h : W' ≤ W) (f : Γ(X, W)) :
     psi p ε hε D W' (resG X h f) =
       resG T (p.preimage_mono (e.preimage_mono h)) (psi p ε hε D W f) := by
-  rw [psi_apply, psi_apply, val_res, map_add (f := _), map_mul, resG_resG, resG_appLE, resG_appLE,
+  rw [psi_apply, psi_apply, val_res, map_add (f := _), map_mul, GlobalTheory.LB.resG_resG, resG_appLE, resG_appLE,
     appLE_resG e, appLE_resG p, ← resG_appLE e (e.preimage_mono h) le_rfl, appLE_resG p]
 
 theorem psi_nil (W : X.Opens) (f : Γ(X, W)) :

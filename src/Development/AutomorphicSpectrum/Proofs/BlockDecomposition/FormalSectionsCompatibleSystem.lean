@@ -70,9 +70,9 @@ theorem exists_iso_of_chart {Y : Scheme.{0}} {A L : LB Y} {τ : Type} (t : τ �
       refine Units.ext ?_
       change resG Y (le_inf hp hq) (resG Y inf_le_left ((s (c q)).f p)) * resG Y (le_inf hq hq') (A.g q q').val =
         resG Y (le_inf hp hp') (L.g p p').val * resG Y (le_inf hp' hq') (resG Y inf_le_left ((s (c q')).f p'))
-      rw [resG_resG, resG_resG, ← sec_compat _ p p' hp hp']
+      rw [GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, ← sec_compat _ p p' hp hp']
       have e1 := congrArg (resG Y (le_inf hp hq)) (h3 q p (c q'))
-      rw [map_mul, resG_resG, resG_resG, resG_resG] at e1
+      rw [map_mul, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG] at e1
       have e2 := sec_compat (t (c q')) q q' hq hq'
       rw [h1 q', map_one, mul_one] at e2
       rw [e1, e2]
@@ -111,7 +111,7 @@ theorem resG_app_resG_app {Y C D : Scheme.{0}} (b : Y ⟶ C) (j : C ⟶ D) {U : 
     (hV : V ≤ j ⁻¹ᵁ U) {W' : Y.Opens} (hW' : W' ≤ b ⁻¹ᵁ V) {W : Y.Opens} (hW : W ≤ W')
     (hh : W ≤ (b ≫ j) ⁻¹ᵁ U) (x : Γ(D, U)) :
     resG Y hW (resG Y hW' ((b.app V).hom (resG C hV ((j.app U).hom x)))) = ((b ≫ j).appLE U W hh).hom x := by
-  rw [app_resG, resG_resG, resG_resG, Scheme.Hom.comp_appLE]
+  rw [app_resG, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, Scheme.Hom.comp_appLE]
   simp only [Scheme.Hom.appLE, CommRingCat.hom_comp, RingHom.comp_apply]
 
 theorem resG_secPull_secPull_coord {R : Type} [CommRing R] {M : ℕ} {Y C : Scheme.{0}} (j : C ⟶ PSpace R M)
@@ -180,7 +180,7 @@ theorem quadric_app_iff {R : Type} [CommRing R] {M : ℕ} {T : Scheme.{0}} (φ :
   · intro h i
     have e := (key (fun _ => i)).symm.trans (sub_eq_zero.2 (h _))
     have h' := congrArg (resG _ (Cartier.pull_U (O1 R M) φ (fun _ => i)).ge) e
-    exact ((resG_resG _ _ _).trans (resG_self _ _)).symm.trans (h'.trans (map_zero _))
+    exact ((GlobalTheory.Cartier.resG_resG _ _ _).trans (resG_self _ _)).symm.trans (h'.trans (map_zero _))
   · intro h k
     refine sub_eq_zero.1 ((key k).trans ((congrArg _ (h _)).trans (map_zero _)))
 

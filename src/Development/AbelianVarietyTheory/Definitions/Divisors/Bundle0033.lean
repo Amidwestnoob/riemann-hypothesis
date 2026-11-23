@@ -71,7 +71,7 @@ theorem ker_stalkMap (z : I.subscheme) :
     have hWV : I.subschemeι ⁻¹ᵁ W.1 ≤ V := fun w hw => hVV.le (hle hw).2
     have hm : resG Y (hle.trans inf_le_left) a ∈ I.ideal W := by
       rw [← I.ker_subschemeι_app W, RingHom.mem_ker, Scheme.Hom.app_eq_appLE, LB.appLE_resG,
-        ← resG_app, ← resG_resG i₁.le hWV]
+        ← resG_app, ← GlobalTheory.LB.resG_resG i₁.le hWV]
       exact (congrArg (resG _ hWV) (e.trans (map_zero _))).trans (map_zero _)
     rw [ds_stalkId_eq_map I W _ hW]
     exact ger_resG (hle.trans inf_le_left) _ hW a ▸ Ideal.mem_map_of_mem _ hm
@@ -208,7 +208,7 @@ theorem isQuasiRegularSeq_secGer (h : FormallyUnramified ((cutIdeal hL s).subsch
   have l₁ := (Y.basicOpen_le (t : Γ(Y, V))).trans hle
   have l₂ := l₁.trans (Y.basicOpen_le _)
   have hu : IsUnit (resG Y l₂ (K.jacFun s i j)) :=
-    resG_resG (Y.basicOpen_le _) l₁ (K.jacFun s i j) ▸
+    GlobalTheory.LB.resG_resG (Y.basicOpen_le _) l₁ (K.jacFun s i j) ▸
       (Y.toRingedSpace.isUnit_res_basicOpen (K.jacFun s i j)).map (resG Y l₁)
   rw [K.resG_jacFun, K.isUnit_jacobian_iff i hW] at hu
   let := TopCat.Presheaf.algebra_section_stalk Y.presheaf (⟨y, hxt⟩ : Y.basicOpen (t : Γ(Y, V)))

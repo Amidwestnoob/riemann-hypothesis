@@ -270,7 +270,7 @@ theorem secRatio_secMono_update {X : Scheme.{0}} {L : LB X} {τ : Type} {d D : �
   have := prod_update_eq_mul (fun t => resG X (inf_le_right : nonzeroLocus (secMono h a w) ⊓ (pw L D).U κ ≤ L.U κ)
     (chartFn (a t) κ)) w l c _ key
   change resG X _ (∏ l', chartFn (a (Function.update w l c l')) κ) = _ * resG X _ (∏ l', chartFn (a (w l')) κ)
-  rw [map_prod, map_prod, resG_resG]
+  rw [map_prod, map_prod, GlobalTheory.Cartier.resG_resG]
   exact this
 
 theorem mem_of_basicOpen {X : Scheme.{0}} {U V : X.Opens} (hU : IsAffineOpen U) (F : Γ(X, U))

@@ -284,7 +284,7 @@ theorem exists_proportional (R : Type) [CommRing R] (X W : Scheme.{0}) (I : W.Id
   have ha' : ∀ y {T : W.Opens} (hT : T ≤ A y) j, (g.appLE (L.U (k y)) T (hT.trans (hk y))).hom ((σ j).f (k y)) =
       resG W hT (a y j) * resG W (hT.trans (hi y)) (D.f (i y)) := fun y T hT j => by
     have := congrArg (resG W hT) (ha y j)
-    rwa [map_mul, resG_appLE, resG_resG] at this
+    rwa [map_mul, resG_appLE, GlobalTheory.Cartier.resG_resG] at this
   have tr : ∀ y z, ∃ u : Γ(W, A y ⊓ A z)ˣ, ∀ j,
       resG W (inf_le_left : A y ⊓ A z ≤ A y) (a y j) =
         (u : Γ(W, A y ⊓ A z)) * resG W (inf_le_right : A y ⊓ A z ≤ A z) (a z j) := fun y z => by

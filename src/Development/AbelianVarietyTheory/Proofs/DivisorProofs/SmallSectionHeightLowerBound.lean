@@ -239,7 +239,7 @@ theorem le_ptHt : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p
       refine (congrArg (fun u => res _ (pullU i _ u)) e₂).trans ?_
       rw [map_pow, map_pow]
       refine congrArg (· ^ (n + 1)) (Units.ext ?_)
-      exact (congrArg (resG Z _) (app_resG _ _ _)).trans (resG_resG _ _ _)
+      exact (congrArg (resG Z _) (app_resG _ _ _)).trans (GlobalTheory.Cartier.resG_resG _ _ _)
     rw [e₁, Units.val_pow_eq_pow_val, map_pow]
     refine congrArg (· ^ (n + 1)) ?_
     exact (fnOf_resG _ h' _).trans ((congrArg (fun u : Γ(Z, _)ˣ => fnOf _ h u.val)
