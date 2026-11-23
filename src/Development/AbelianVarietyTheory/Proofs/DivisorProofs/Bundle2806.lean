@@ -458,7 +458,7 @@ theorem pull_theta_bundle : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     erw [Units.val_mul, val_res', val_res', eB, resG_resG']
     rw [e1, e2, mul_left_comm, ← _root_.mul_assoc]
     rfl
-  · obtain ⟨a, ha⟩ := exists_mem_chart k n (h (x (IsLocalRing.closedPoint K)))
+  · obtain ⟨a, ha⟩ := GlobalTheory.ProjSpace.exists_mem_chart k n (h (x (IsLocalRing.closedPoint K)))
     have hx : Set.range x ⊆ h ⁻¹ᵁ chart k n a := by
       rintro _ ⟨w, rfl⟩
       rw [Subsingleton.elim w (IsLocalRing.closedPoint K)]

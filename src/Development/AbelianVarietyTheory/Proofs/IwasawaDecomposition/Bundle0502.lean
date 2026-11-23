@@ -155,7 +155,7 @@ theorem fubiniStudy_weight_pullback_closed_immersion_strictPos [IsClosedImmersio
     ((ProjAn.fsO1 k σ N).pull i hi).StrictPos R := by
   refine (fubiniStudy_weight_pullback_isSmooth i hi R).strictPos_of_exists fun y => ?_
   obtain ⟨l, hy⟩ := R.cover y
-  obtain ⟨j, hj⟩ := exists_mem_chart k N (i (y.1 (IsLocalRing.closedPoint ℂ)))
+  obtain ⟨j, hj⟩ := GlobalTheory.ProjSpace.exists_mem_chart k N (i (y.1 (IsLocalRing.closedPoint ℂ)))
   have hW : y ∈ ptsIn p σ (i ⁻¹ᵁ chart k N j) := mem_ptsIn.2 hj
   set c := R.chart l
   have ho := isOpen_over c.e (isOpen_ptsIn (p := p) (σ := σ) (i ⁻¹ᵁ chart k N j))

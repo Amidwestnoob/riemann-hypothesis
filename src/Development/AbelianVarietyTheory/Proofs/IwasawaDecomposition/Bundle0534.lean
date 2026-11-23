@@ -420,7 +420,7 @@ theorem mem_linOpen_iff (p0 : P ⟶ X) (g : P ⟶ PSpace O N) {U : X.Opens} (hU 
     obtain ⟨r, hr⟩ := Opens.mem_iSup.1 hx
     exact (key r (top_le_of_mem (x := x) (P.basicOpen_le _ hr))).1 hr
   · intro hx
-    obtain ⟨r, hr⟩ := exists_mem_chart O N (g (z x))
+    obtain ⟨r, hr⟩ := GlobalTheory.ProjSpace.exists_mem_chart O N (g (z x))
     refine Opens.mem_iSup.2 ⟨r, (key r (top_le_of_mem (x := x) ⟨?_, hr⟩)).2 hx⟩
     change x ∈ (z ≫ p0) ⁻¹ᵁ U
     rw [hφ, Scheme.Hom.comp_preimage, hU.fromSpec_preimage_self]
