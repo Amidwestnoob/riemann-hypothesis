@@ -79,9 +79,9 @@ theorem sig_val_fixed {X Y : Scheme.{0}} {L : LB X} (hL : L.IsLB) {K : Type} [Fi
     (hr : Spec.map (CommRingCat.ofHom σ) ≫ r = r) :
     Units.map σ.toMonoidHom (sig F (val t r (closedPoint F) J)) = sig F (val t r (closedPoint F) J) := by
   have e := val_nat ht σ hJ hJ r
-  have hdel : ∀ k, del L σ J J (r ≫ φ k) = 1 := fun k => by
+  have hdel : ∀ k, GlobalTheory.BXOf.del L σ J J (r ≫ φ k) = 1 := fun k => by
     rw [← del_id hL hJ (r ≫ φ k)]
-    unfold del
+    unfold GlobalTheory.BXOf.del
     rw [← Category.assoc, hr, CommRingCat.ofHom_id, Spec.map_id, Category.id_comp]
   rw [hr, Finset.prod_eq_one (fun k _ => by rw [hdel, one_zpow]), _root_.one_mul] at e
   exact e.symm
