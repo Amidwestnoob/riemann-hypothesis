@@ -438,7 +438,7 @@ theorem stdBridge : PositivityTheory.Rg.BcB.F.Tail.PExp.StdBridge := by
     rw [hK] at h'
     exact (Submodule.Quotient.mk_eq_zero _).mpr h'
   · intro t
-    have key : (jac (points (Fin n)) π
+    have key : (GlobalTheory.SmGL.jac (points (Fin n)) π
         (leviTorus k (Fin n) fun a => Matrix.GeneralLinearGroup.det (t a)))
           (Submodule.Quotient.mk w) =
         ((GlobalTheory.SmGL.torusChar χ fun a => Matrix.GeneralLinearGroup.det (t a) : ℂˣ) : ℂ) •
@@ -448,7 +448,7 @@ theorem stdBridge : PositivityTheory.Rg.BcB.F.Tail.PExp.StdBridge := by
         (leviTorus k (Fin n) fun a => Matrix.GeneralLinearGroup.det (t a)) =
         diagT k (Fin n) (fun a => Matrix.GeneralLinearGroup.det (t a)) := rfl
     rw [jac_mk, hD] at key
-    have heq : (jac (stdBlocks (fun _ : Fin n => 1) hd) π t) (Submodule.Quotient.mk w) =
+    have heq : (GlobalTheory.SmGL.jac (stdBlocks (fun _ : Fin n => 1) hd) π t) (Submodule.Quotient.mk w) =
         PositivityTheory.Lbc.torusChar χ t • (Submodule.Quotient.mk w :
           V ⧸ twKer π (unipRad k (stdBlocks (fun _ : Fin n => 1) hd)) 1) := by
       rw [jac_mk, leviEmb_stdBlocks, deltaHalf_stdBlocks, torusChar_stdBlocks]

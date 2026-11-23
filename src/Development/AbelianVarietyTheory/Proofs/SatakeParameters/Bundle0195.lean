@@ -362,10 +362,10 @@ theorem exists_eq_of_inSupport (hG : GlobalTheory.Published.GeometricLemma) {n :
 
 def twistIrr {n : ℕ} (σ : Irr k n) (χ : kˣ →* ℂˣ) (hχ : IsSmoothChar χ) : Irr k n where
   V := σ.V
-  π := twist σ.π (detChar (Fin n) χ)
+  π := GlobalTheory.SmGL.twist σ.π (detChar (Fin n) χ)
   smooth := isSmooth_twist σ.smooth hχ.detChar
   irr := by
-    have φ : Subrepresentation (twist σ.π (detChar (Fin n) χ)) ≃o Subrepresentation σ.π :=
+    have φ : Subrepresentation (GlobalTheory.SmGL.twist σ.π (detChar (Fin n) χ)) ≃o Subrepresentation σ.π :=
       { toFun := fun S => ⟨S.toSubmodule, fun g v hv => by
           have := S.toSubmodule.smul_mem (((detChar (Fin n) χ g)⁻¹ : ℂˣ) : ℂ) (S.apply_mem_toSubmodule g hv)
           rwa [twist_apply, smul_smul, Units.inv_mul, one_smul] at this⟩
@@ -456,10 +456,10 @@ theorem tameSplit : GlobalTheory.Published.BernsteinZelevinskyFiniteness → Glo
     exact this)
   obtain ⟨s₁, s₂⟩ := _root_.GlobalTheory.ParahoricSph.isSpherical_of_isParahoricVec k r t χ _ _ σ₁.π σ₂.π f hf hf1
   refine ⟨σ₁, twistIrr σ₂ χ⁻¹ hχ.inv, s₁, s₂, ?_⟩
-  have e : twist (twist σ₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ) = σ₂.π := by
+  have e : GlobalTheory.SmGL.twist (GlobalTheory.SmGL.twist σ₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ) = σ₂.π := by
     ext g x
     simp [smul_smul]
-  show Nonempty (π.π.Equiv (prod₂ σ₁.π (twist (twist σ₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ))))
+  show Nonempty (π.π.Equiv (prod₂ σ₁.π (GlobalTheory.SmGL.twist (GlobalTheory.SmGL.twist σ₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ))))
   rw [e]
   exact ⟨φ.symm⟩
 

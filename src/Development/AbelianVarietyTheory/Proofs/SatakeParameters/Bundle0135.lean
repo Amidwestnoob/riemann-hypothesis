@@ -233,7 +233,7 @@ theorem isSubquotient_of_eigenform {n : ℕ} {V : Type} [AddCommGroup V] [Module
     IsSubquotient π (indB (ofChar μ)) := by
   let ρ : Representation ℂ (Levi k fun _ : Fin n => Unit) ℂ :=
     (ofChar μ).comp (leviTorus k (Fin n)).symm.toMonoidHom
-  let φ : (jac (points (Fin n)) π).IntertwiningMap ρ :=
+  let φ : (GlobalTheory.SmGL.jac (points (Fin n)) π).IntertwiningMap ρ :=
     ⟨l, fun g => LinearMap.ext fun x => by
       obtain ⟨t, rfl⟩ := (leviTorus k (Fin n)).surjective g
       have e : (ρ (leviTorus k (Fin n) t)) (l x) = (μ t : ℂ) * l x := by
