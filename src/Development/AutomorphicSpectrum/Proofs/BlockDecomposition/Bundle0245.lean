@@ -261,7 +261,8 @@ theorem idealSheafData_wellFoundedGT :
     intro I J h
     exact Scheme.IdealSheafData.ext_of_iSup_eq_top (fun i : t => i.1) hcov
       (fun i => congrFun h i)
-  have h1 : WellFoundedLT (∀ i : t, (Ideal Γ(X, (i.1 : X.affineOpens).1))ᵒᵈ) := Pi.wellFoundedLT
+  have h1 : WellFoundedLT (∀ i : t, (Ideal Γ(X, (i.1 : X.affineOpens).1))ᵒᵈ) :=
+    @Pi.wellFoundedLT _ _ inferInstance (fun _ => inferInstance) hnoeth
   have h2 : WellFoundedGT (∀ i : t, Ideal Γ(X, (i.1 : X.affineOpens).1)) := h1
   exact hφ.wellFoundedGT
 
