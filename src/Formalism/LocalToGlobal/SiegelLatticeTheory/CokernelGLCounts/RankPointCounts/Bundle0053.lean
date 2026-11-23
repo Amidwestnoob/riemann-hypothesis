@@ -355,7 +355,7 @@ theorem gS_mul_uP (hs : (M p).split = none) :
     (D.s.atP p).ιE ((gS D : ℕ) : D.host.E) * (D.s.atP p).ιE (uP p : D.host.E) = 1 := by
   rw [← map_mul, unitAt_untyped δ M hA p hs]
   have hg : (gS D : ℚ) ≠ 0 := by
-    unfold gS; push_cast
+    unfold Formalism.MainNotions.S.Lat.gS; push_cast
     exact mul_ne_zero (by exact_mod_cast (D.host.g_prime 0).ne_zero) (by exact_mod_cast (D.host.g_prime 1).ne_zero)
   have : ((gS D : ℕ) : D.host.E) * (((1 / (gS D : ℚ)) : ℚ) : D.host.E) = 1 := by
     rw [show ((gS D : ℕ) : D.host.E) = (((gS D : ℚ)) : D.host.E) by push_cast; rfl, ← Rat.cast_mul,

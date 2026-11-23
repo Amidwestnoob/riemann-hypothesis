@@ -266,7 +266,7 @@ theorem main : ∀ Cg cb Cu cT CT C0 A Ad C₁ : ℝ, 0 ≤ C₁ → ∃ C₀ : 
   have hg : 3 ≤ gS D := by
     have := g1.two_le
     have := g2.two_le
-    unfold gS
+    unfold Formalism.MainNotions.S.Lat.gS
     nlinarith
   have hb : 1 ≤ large₂.sc.b := Real.one_le_exp (Real.rpow_nonneg (by linarith [large₂.sc.one_lt_alt]) _)
   have hT : Tr D u ≤ large₂.sc.b ^ (CT * D.R.m) := by

@@ -351,7 +351,7 @@ theorem iota_dense : ∀ (D : D7) (p : PlF D), ∀ c ∈ (D.s.atP p).O, ∃ a : 
     (fun x => by rw [D.conjF_eq, Formalism.BasicNotions.Examples₂.star_eq_conj]) p (D.s.atP p)
   have hg : ((gS D : ℕ) : D.host.E) ≠ 0 := by
     have : gS D ≠ 0 := by
-      unfold gS
+      unfold Formalism.MainNotions.S.Lat.gS
       exact mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero
     exact_mod_cast this
   obtain ⟨w, hw⟩ := hunit _ hg
