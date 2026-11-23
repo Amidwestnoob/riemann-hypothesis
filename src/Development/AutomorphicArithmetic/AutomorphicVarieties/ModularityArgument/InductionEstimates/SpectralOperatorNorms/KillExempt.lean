@@ -129,7 +129,7 @@ def KillExempt : Prop :=
     ∃ (B : Type) (_ : Fintype B) (b : B → Datum E (2 + 2)), (∀ i, ∃ Λ t, (b i).Pt 𝔢.S Λ t) ∧ (∀ i, ¬ (b i).Pt 𝔢.S 𝔵.Λ 𝔵.t) ∧
       ∀ ev, 𝔢.toAmp.IsEv ev → (∀ R : PR E (2 + 2), (∀ y ∈ R.vars, y.1 ∉ 𝔢.S) → ev R ∘L 𝔵.P = 𝔵.P ∘L ev R) →
       ∀ χ : ℝ → ℝ, Continuous χ → (∀ x ≤ η / 2, χ x = 0) → (∀ x, |χ x| ≤ 1) →
-      ∀ F G, admitted 𝔢.S F → (∀ i, Kills 𝔢.S F (b i)) → IsGen F G →
+      ∀ F G, UpperTheory.ConvolutionTheory.admitted 𝔢.S F → (∀ i, Kills 𝔢.S F (b i)) → IsGen F G →
         ∃ C : ℝ, ∀ d : ℕ, ‖ev (trunc d G) ∘L fcalc χ 𝔢.toAmp.A ∘L (1 - Pc μ - 𝔵.P)‖ ≤ C ^ (d + 1) / d.factorial
 
 def FamEx : Prop := ForAllC fun _ _ _ μ _ _ _ _ _ _ _ _ A A' => ∀ P, IsOrthogonalProjectionTwoLines A.J A'.J P → ∃ N C, Family2 μ A A' P N C
@@ -152,7 +152,7 @@ def KillEx2 : Prop :=
       (∀ i, ∃ Λ t, (b i).Pt SE Λ t) → (∀ i, ∃ Λ t, (b' i).Pt SF Λ t) →
     ∀ (L : Ix E n → ℂ) (t : Pl E → Multiset ℂ), (∀ w ∉ SE, (t w).card = n) → (∀ i, ¬ (b i).Pt SE (msOf L) t) →
     (∀ i Λ' t', (b' i).Pt SF Λ' t' → ¬ (msOf L = bcInf Λ' ∧ ∀ w ∉ SE, t w = bcSat t' w)) →
-    ∃ Φ : KF (Ix E n) (Pl E × Fin n), admitted SE Φ ∧ evK L (hval t) Φ ≠ 0 ∧ (∀ i, Kills SE Φ (b i)) ∧
+    ∃ Φ : KF (Ix E n) (Pl E × Fin n), UpperTheory.ConvolutionTheory.admitted SE Φ ∧ evK L (hval t) Φ ≠ 0 ∧ (∀ i, Kills SE Φ (b i)) ∧
       ∀ i (L' : Ix F n → ℂ) t', (b' i).Pt SF (msOf L') t' →
         evK (fun y : Ix E n => L' (y.1.comp (algebraMap F E), y.2)) (hval (bcSat t')) Φ = 0
 
