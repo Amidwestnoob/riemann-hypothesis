@@ -445,7 +445,7 @@ theorem cntCl_ExSet_le : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ 
         rw [frame_moveFl, ← hn.1.1 (frame (lf D F0) a) (frame F' b), hnf]
       · rw [frame_moveFl, ← hnp, hn.1.1]
         exact hφ' p b
-      · rw [frameAct_one]
+      · rw [GlobalTheory.LoopC.FrEqv.frameAct_one]
         funext b
         exact frame_moveFl _ _ _ b)
   have h2 : (cntCl (ExSet D Λ (lf D F0) ((Tu D u' : ℕ) : D.host.E) Z P) (TEqv D Λ (lf D F0)) : ℝ≥0∞) ≤

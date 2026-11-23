@@ -172,8 +172,8 @@ theorem wit_sub_dvd {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpac
     (h : AdmWit Λ g F F' ξ) (h' : AdmWit Λ g F F' ξ') (a b : Fin (r + 1)) : (g : 𝓞 E) ∣ (ξ - ξ') a b := by
   have hM : ModG S Λ g (∑ c, (((ξ - ξ') c b : 𝓞 E) : E) • frame F c) := by
     have heq : ∑ c, (((ξ - ξ') c b : 𝓞 E) : E) • frame F c =
-        (frame F' b - frameAct (frame F) ξ' b) - (frame F' b - frameAct (frame F) ξ b) := by
-      simp only [frameAct, Matrix.sub_apply, RingOfIntegers.coe_eq_algebraMap, map_sub, sub_smul,
+        (frame F' b - Formalism.MainNotions.S.Lat.frameAct (frame F) ξ' b) - (frame F' b - Formalism.MainNotions.S.Lat.frameAct (frame F) ξ b) := by
+      simp only [Formalism.MainNotions.S.Lat.frameAct, Matrix.sub_apply, RingOfIntegers.coe_eq_algebraMap, map_sub, sub_smul,
         Finset.sum_sub_distrib]
       abel
     rw [heq]
