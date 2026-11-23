@@ -29,7 +29,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 
 variable (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (x : ℝ)
 
-structure ArchSec (Z : Comp Xo c) (la : Weight Dw) : Type where
+structure ArchSec (Z : Comp Xo c) (la : GlobalTheory.AllWt.Weight Dw) : Type where
 
   sig : Rul Xo c
 
@@ -46,7 +46,7 @@ structure ArchSec (Z : Comp Xo c) (la : Weight Dw) : Type where
 
 
 variable {U x} in
-def ArchSec.ofConst {Z : Comp Xo c} {la : Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s : ConstSec U x Z la δ) :
+def ArchSec.ofConst {Z : Comp Xo c} {la : GlobalTheory.AllWt.Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s : ConstSec U x Z la δ) :
     ArchSec U x Z la :=
   ⟨s.sig, s.inv, s.sig_mem, s.inv_mem, s.idem_sig, s.idem_inv, s.mul_inv, s.cInf, s.cInf_pos, s.norm_inf⟩
 

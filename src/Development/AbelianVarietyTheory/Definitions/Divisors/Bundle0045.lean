@@ -345,7 +345,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 def UnfAll : Prop := ∀ σ, GoodEmb c σ → IsUnf (U σ)
 
 def Proport : Prop :=
-  ∀ (Z : Comp Xo c) (la : Weight Dw), (∀ τ, StrictAnti (la τ)) →
+  ∀ (Z : Comp Xo c) (la : GlobalTheory.AllWt.Weight Dw), (∀ τ, StrictAnti (la τ)) →
     growthOn U Z (wtOf Dw la 0) = ENNReal.ofReal (topDeg U Z la)
 
 def EqVolume : Prop := ∀ Z Z' : Comp Xo c, vZero U Z = vZero U Z'
