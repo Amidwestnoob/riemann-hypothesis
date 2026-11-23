@@ -421,7 +421,7 @@ structure KerDat (ξ : Formalism.L2.Host.HChar D.host.E) (χ : (AE D)ˣ →* Cir
   tame : ∀ v, ξ.TameAt v
   pl : IsTwistPlaces D.host.g Q
   off : ∀ PP ∈ Q, ((D.host.QS * D.host.q * D.host.d * D.sp.T : ℕ) : 𝓞 D.host.E) ∉ PP.asIdeal
-  ram : ∀ PP, ¬ ξ.UnrAt PP ↔ PP ∈ Q ∨ ∃ PP' ∈ Q, IsConjPl PP' PP
+  ram : ∀ PP, ¬ ξ.UnrAt PP ↔ PP ∈ Q ∨ ∃ PP' ∈ Q, Formalism.IndefR.Lev.IsConjPl PP' PP
   res : ∀ PP ∈ Q, IsRes ξ PP (ξR PP)
   weil : IsWeilTw R i χ ω
   vec : IsThPVecOf R.ψ R.θ (Vc D i) (Wc D i) (fun _ => 1) (cart (R.MW i (sg0 D A))) (R.ΛV i) (R.ΛW i) (R.βV i) (R.βW i)

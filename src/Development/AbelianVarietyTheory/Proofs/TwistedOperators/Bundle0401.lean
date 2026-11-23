@@ -207,7 +207,7 @@ end General
 
 
 set_option maxHeartbeats 1000000 in
-theorem frames_match : ∀ {D : D7} (V : HSp D) (Pg : Finset (Pl D.host.E)), (∀ PP ∈ Pg, ∀ PP' ∈ Pg, ¬ IsConjPl (D := D) PP PP') → ∀ β₁ β₂ : GL (Fin V.rank) (EAf D), IsFrame β₁ (Formalism.L2.Herm.crdLat V V.L0) → IsFrame β₂ (Formalism.L2.Herm.crdLat V V.L0) → ∃ u ∈ GfC V, IsFrame (finE V u * β₁) (Formalism.L2.Herm.crdLat V V.L0) ∧ ∀ PP ∈ Pg, ∀ x, redFn (finE V u * β₁) PP x = redFn β₂ PP x := by
+theorem frames_match : ∀ {D : D7} (V : HSp D) (Pg : Finset (Pl D.host.E)), (∀ PP ∈ Pg, ∀ PP' ∈ Pg, ¬ Formalism.IndefR.Lev.IsConjPl (D := D) PP PP') → ∀ β₁ β₂ : GL (Fin V.rank) (EAf D), IsFrame β₁ (Formalism.L2.Herm.crdLat V V.L0) → IsFrame β₂ (Formalism.L2.Herm.crdLat V V.L0) → ∃ u ∈ GfC V, IsFrame (finE V u * β₁) (Formalism.L2.Herm.crdLat V V.L0) ∧ ∀ PP ∈ Pg, ∀ x, redFn (finE V u * β₁) PP x = redFn β₂ PP x := by
   classical
   intro D V Pg hPg β₁ β₂ h₁ h₂
   obtain ⟨m, hm⟩ := exists_intGL_of_isFrame h₁ h₂
@@ -217,7 +217,7 @@ theorem frames_match : ∀ {D : D7} (V : HSp D) (Pg : Finset (Pl D.host.E)), (�
 
   have hloc : ∀ PP, ∃ κ : GA D V, κ ∈ GfC V ∧ finE V κ ∈ St β₁ ∧
       (PP ∈ Pg → redFn β₁ PP (finE V κ) = Formalism.UG.bc (resS D.host.F PP) m) ∧
-      ∀ P', P' ≠ PP → (PP ∈ Pg → ¬ IsConjPl (D := D) PP P') → redFn β₁ P' (finE V κ) = 1 := by
+      ∀ P', P' ≠ PP → (PP ∈ Pg → ¬ Formalism.IndefR.Lev.IsConjPl (D := D) PP P') → redFn β₁ P' (finE V κ) = 1 := by
     intro PP
     by_cases hPP : PP ∈ Pg
     · obtain ⟨e, he⟩ := GlobalTheory.ParahoricLift.exists_isIdemAt (hPg PP hPP PP hPP)

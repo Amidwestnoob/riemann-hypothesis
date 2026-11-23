@@ -399,7 +399,7 @@ namespace GlobalTheory.ProjLift
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem not_isConjPl_of_div {D : D7} (P : Formalism.L2.Host.PiBar D.host) {k k' : Fin 2} {w w' : Pl D.host.E}
-    (hw : P.Div k w) (hw' : P.Div k' w') : ¬ IsConjPl w w' := by
+    (hw : P.Div k w) (hw' : P.Div k' w') : ¬ Formalism.IndefR.Lev.IsConjPl w w' := by
   intro hc
   have hov : ∀ {j : Fin 2} {u : Pl D.host.E}, P.Div j u → ((D.host.g j : ℕ) : 𝓞 D.host.E) ∈ u.asIdeal := by
     intro j u hu

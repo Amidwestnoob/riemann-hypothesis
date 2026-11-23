@@ -89,7 +89,7 @@ theorem half_absorb (S : HSp D) {T : HSp D} {P : HeightOneSpectrum (𝓞 D.host.
   · rw [← hu i j, ← mul_assoc, prime_idem_absorb_conj S h]
 
 theorem idemSum_mul_zero (S : HSp D) {E0 : AE D} {Q : Finset (Pl D.host.E)} (hE : IsIdemSum E0 Q)
-    {P : HeightOneSpectrum (𝓞 D.host.E)} (hQ : ∀ PP ∈ Q, PP ≠ P ∧ ¬ IsConjPl PP P)
+    {P : HeightOneSpectrum (𝓞 D.host.E)} (hQ : ∀ PP ∈ Q, PP ≠ P ∧ ¬ Formalism.IndefR.Lev.IsConjPl PP P)
     {e f : AE D} (hP : IsPrimeIdem P e f) (x : AE D) (hx : f * x = x) : E0 * x = 0 ∧ cA D E0 * x = 0 := by
   obtain ⟨⟨es, hes, rfl⟩, -⟩ := hE
   have hI := _root_.GlobalTheory.IdemSupport.supported_group_and_prime_idempotents S
