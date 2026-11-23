@@ -180,14 +180,14 @@ theorem lsd_pos : ∀ (D : D7) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) 
   classical
   have hc := isCMExt_host D
   have hb' := (resEta_iff μ 0).1 hb
-  have hcv : Converges (above D.host.E (S : Set (HeightOneSpectrum (𝓞 D.host.F)))) (twist B (val μ)⁻¹) (s : ℂ) :=
+  have hcv : Converges (above D.host.E (S : Set (HeightOneSpectrum (𝓞 D.host.F)))) (GlobalTheory.LFun.twist B (val μ)⁻¹) (s : ℂ) :=
     hB.converges_twist_val μ (by simpa using hs)
-  have hpos : IsPosReal (LS (S : Set (HeightOneSpectrum (𝓞 D.host.F))) (twist B (val μ)⁻¹) (s : ℂ)) := by
+  have hpos : IsPosReal (LS (S : Set (HeightOneSpectrum (𝓞 D.host.F))) (GlobalTheory.LFun.twist B (val μ)⁻¹) (s : ℂ)) := by
     refine isPosReal_of_hasProd (hasProd_Lv hcv) hcv.ne_zero fun v => ?_
     have hnot : ∀ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v.1 →
         w ∉ above D.host.E (S : Set (HeightOneSpectrum (𝓞 D.host.F))) := fun w hw e => v.2 (hw ▸ e)
     have hlt : ∀ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v.1 →
-        ∀ x ∈ twist B (val μ)⁻¹ w, ‖(x : ℂ) * npow w (-(s : ℂ))‖ < 1 := fun w hw =>
+        ∀ x ∈ GlobalTheory.LFun.twist B (val μ)⁻¹ w, ‖(x : ℂ) * npow w (-(s : ℂ))‖ < 1 := fun w hw =>
       norm_lt_one_of_bounded (hB.twist fun u _ => by simp [norm_val]) (by rw [Complex.ofReal_re]; linarith)
         (hnot w hw)
     have hun : ∀ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v.1 → UnrAt μ w := fun w hw =>
@@ -200,11 +200,11 @@ theorem lsd_pos : ∀ (D : D7) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) 
       have hw' := (hall w').2 (Or.inr rfl)
       have e : Formalism.L2.Host.aboveF (L := D.host.E) D.host.F v.1 = {w, w'} := by ext u; simp [mem_aboveF, hall]
       have e2 : npow w' (-(s : ℂ)) = npow w (-(s : ℂ)) := by rw [npow, npow, hN, hN']
-      have e3 : twist B (val μ)⁻¹ w' = (twist B (val μ)⁻¹ w).map star := by
+      have e3 : GlobalTheory.LFun.twist B (val μ)⁻¹ w' = (GlobalTheory.LFun.twist B (val μ)⁻¹ w).map star := by
         have hm := _root_.GlobalTheory.LFun.SplitVal.val_mul_val_eq_one _ _ _ hc μ 0 hb' w w' (hw.trans hw'.symm) hne (hun w hw) (hun w' hw')
         have hs' : (val μ w')⁻¹ = star (val μ w)⁻¹ := by
           rw [star_inv, star_eq_inv (norm_val μ w), inv_inv, eq_comm, eq_inv_iff_mul_eq_one, hm]
-        simp only [twist, Pi.inv_apply, hs', Multiset.map_map, Function.comp_def, star_mul',
+        simp only [GlobalTheory.LFun.twist, Pi.inv_apply, hs', Multiset.map_map, Function.comp_def, star_mul',
           (hst w (hnot w hw)).1 w' (hw'.trans hw.symm) hne]
       rw [Lv, e, Finset.prod_pair hne, locL, locL, e2, ← eulerFac_add]
       refine isPosReal_eulerFac (by
@@ -219,8 +219,8 @@ theorem lsd_pos : ∀ (D : D7) (S : Finset (HeightOneSpectrum (𝓞 D.host.F))) 
         rw [star_inv, star_eq_inv (norm_val μ w), inv_inv, eq_inv_iff_mul_eq_one, ← sq,
           GlobalTheory.T.sq_value_eq_one_at_inert_place_of_restrictsToQuadratic _ _ _ hc μ 0 hb' _ w hi (hun w hw)]
       have hBw := (hst w (hnot w hw)).2 (by rw [hw]; exact hv)
-      conv_rhs => rw [twist, ← hBw]
-      simp only [twist, Pi.inv_apply, hs', Multiset.map_map, Function.comp_def, star_mul']
+      conv_rhs => rw [GlobalTheory.LFun.twist, ← hBw]
+      simp only [GlobalTheory.LFun.twist, Pi.inv_apply, hs', Multiset.map_map, Function.comp_def, star_mul']
   obtain ⟨l, hl, e⟩ := isPosReal_iff.1 hpos
   exact ⟨l, hl, e⟩
 

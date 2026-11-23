@@ -68,7 +68,7 @@ theorem densAt_succ {σ : R →+* R} {ϖ : R} {q : ℕ} {ε : ℤ} (hU : IsUnrQu
       simp only [smul_eq_mul]
       rw [← e2, hC i j])
     simpa [cT] using this
-  obtain ⟨g, h', hgh, hhg, hg⟩ := twist hσ ht hCh 0 b h1 h2
+  obtain ⟨g, h', hgh, hhg, hg⟩ := GlobalTheory.CompanionTheory.LocalDens.twist hσ ht hCh 0 b h1 h2
   rw [← hhT] at hg
   rw [solCount_eq, ← sol_congr σ ϖ S _ hg, ← solCount_eq]
   exact solCount_congr hσ S T g h' _ hgh hhg
