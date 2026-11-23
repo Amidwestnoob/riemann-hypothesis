@@ -312,14 +312,14 @@ theorem isNoetherianRing_chart (ξ : Spec (CommRingCat.of Ω) ⟶ X) (x : κ →
     refine (hT.ring c hc a).trans (forall_congr' fun q => imp_congr ?_ Iff.rfl)
     exact ⟨fun hq => (hUm q.1).2 ⟨q.2, hq⟩, fun hq => ((hUm q.1).1 hq).2⟩
   let ρ : Γ(X, U) →+* A := (ev ξ U hη).codRestrict A
-    fun s => (hreg _).2 fun q hq => ⟨_, genMap_germ hη q hq s⟩
+    fun s => (hreg _).2 fun q hq => ⟨_, _root_.GlobalTheory.CompanionTheory.Ar.Flat.CptIn.Intr.genMap_germ hη q hq s⟩
   have hinj : Function.Injective ρ := by
     set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
     intro s hs
     have h0 : ev ξ U hη s = 0 := congrArg Subtype.val hs
     refine TopCat.Presheaf.section_ext X.sheaf U s 0 fun q hq => ?_
     apply hT.gen.inj ⟨q, sp q hq⟩
-    have h1 := genMap_germ hη ⟨q, sp q hq⟩ hq s
+    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.Flat.CptIn.Intr.genMap_germ hη ⟨q, sp q hq⟩ hq s
     rw [h0] at h1
     refine h1.trans ?_
     simp only [map_zero]
@@ -369,7 +369,7 @@ theorem exists_homog_form_point (ξ : Spec (CommRingCat.of Ω) ⟶ X) (y : (Σ k
     refine h.trans (forall_congr' fun q => imp_congr ?_ Iff.rfl)
     exact ⟨fun hq => (hUm q.1).2 ⟨q.2, hq⟩, fun hq => ((hUm q.1).1 hq).2⟩
   let ρ : Γ(X, U) →+* chartRingZ y c := (ev ξ U hη).codRestrict (chartRingZ y c)
-    fun s => (hreg _).2 fun q hq => ⟨_, genMap_germ hη q hq s⟩
+    fun s => (hreg _).2 fun q hq => ⟨_, _root_.GlobalTheory.CompanionTheory.Ar.Flat.CptIn.Intr.genMap_germ hη q hq s⟩
   obtain ⟨s, hsV, hsη⟩ := hU.exists_basicOpen_le (V := V) ⟨genPt ξ, hV⟩ hη
   have ha0 : ev ξ U hη s ≠ 0 :=
     (((Scheme.mem_basicOpen X s _ hη).1 hsη).map (Scheme.stalkClosedPointTo ξ).hom).ne_zero
