@@ -207,7 +207,7 @@ def stabN (π : Formalism.L2.NG.FinTyp L n) (H : Subgroup (Formalism.AUTREP.GAf 
     rw [← Module.End.mul_apply, ← map_mul]
     simp
 
-theorem hecke_eq_smul_of_isot : ∀ {D : D7} {V : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n), StdPsi hF Q → ∀ {Sp : D.what₂.Tau → SPar} (θ : InfFam D) (M : DSModel V Sp) (π : Formalism.L2.NG.FinTyp D.host.E n) Pr d B (a : ℂ), SphOp V Pr d B → (∀ x ∈ π.S, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) → principalLevelFrame.Hecke₃ Q B x = a • x) → ∀ U ∈ principalLevelFrame.isotIn (principalLevelFrame.actM Q M) (principalLevelFrame.Minf θ Q M) π, (∀ k ∈ hyp V Pr, postOn M (principalLevelFrame.rtA k) U = U) → heckeOn M B U = a • U := by
+theorem hecke_eq_smul_of_isot : ∀ {D : D7} {V : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n), GlobalTheory.StdFrame.StdPsi hF Q → ∀ {Sp : D.what₂.Tau → SPar} (θ : InfFam D) (M : DSModel V Sp) (π : Formalism.L2.NG.FinTyp D.host.E n) Pr d B (a : ℂ), SphOp V Pr d B → (∀ x ∈ π.S, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) → principalLevelFrame.Hecke₃ Q B x = a • x) → ∀ U ∈ principalLevelFrame.isotIn (principalLevelFrame.actM Q M) (principalLevelFrame.Minf θ Q M) π, (∀ k ∈ hyp V Pr, postOn M (principalLevelFrame.rtA k) U = U) → heckeOn M B U = a • U := by
   intro D V n hF Q hQ Sp θ M π Pr d B a hB ha U hU hfix
   have hBG : ∀ γ ∈ B, Q.ψ (principalLevelFrame.pre Q γ) = γ := by
     obtain ⟨e, f, ϖ, α, _, _, _, _, _, _, _, _, _, _, hc⟩ := hB
