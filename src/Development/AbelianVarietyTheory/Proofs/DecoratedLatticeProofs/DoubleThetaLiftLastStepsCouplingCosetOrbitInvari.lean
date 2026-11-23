@@ -406,7 +406,7 @@ theorem orb : ∀ (D : D7) (c : GlobalTheory.SeeSaw.Comm D) (v : GlobalTheory.Se
     GlobalTheory.LastRed.lastBi_biTheta D c.ψ _ _ _ _ _ _ _ _ _ _ hτ _ _ (GlobalTheory.LastRed.val_zero s₁ h₁.1).1
       (GlobalTheory.WeilSrc.Zero.theta_eqv (c.jac Q.s 0 h).d h₂.1)
   have hs := Q.q.split
-  have hcc : cA D (cA D Q.q.e) = Q.q.e := cA_cA _
+  have hcc : cA D (cA D Q.q.e) = Q.q.e := Formalism.L2.Theta.cA_cA _
   have hce : cA D (Q.q.e + cA D Q.q.e) = Q.q.e + cA D Q.q.e := by rw [map_add (f := _), hcc, add_comm]
   have he : (Q.q.e + cA D Q.q.e) * (Q.q.e + cA D Q.q.e) = Q.q.e + cA D Q.q.e := by
     have h3 : cA D Q.q.e * cA D Q.q.e = cA D Q.q.e := by rw [← map_mul, hs.1]

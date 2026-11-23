@@ -292,7 +292,7 @@ open GlobalTheory.FinPl GlobalTheory.FinPl.FrameLat
 theorem eq_sec_add_csec (q : SplitPt D k) {a : AE D} (ha : a ∈ idAt D (· = q.v)) :
     a = q.sec (q.pr a) + cA D (q.sec (q.pr (cA D a))) := by
   have h := (idem_iff q a).1 ha
-  rw [q.sec_pr, q.sec_pr, map_mul, cA_cA]
+  rw [q.sec_pr, q.sec_pr, map_mul, Formalism.L2.Theta.cA_cA]
   conv_lhs => rw [← h]
   ring
 

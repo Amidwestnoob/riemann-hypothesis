@@ -233,7 +233,7 @@ theorem symplO_idem_left (S T : HSp D) {e : AE D} {l : WO S T} (hl : IsHalf (cA 
     Finset.sum_congr rfl fun d _ => ?_
   have h : cA D (l c b) = e * cA D (l c b) := by
     conv_lhs => rw [← hl c b]
-    rw [map_mul, cA_cA]
+    rw [map_mul, Formalism.L2.Theta.cA_cA]
   rw [Matrix.map_apply]
   conv_lhs => rw [h]
   ring

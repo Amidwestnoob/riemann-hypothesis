@@ -184,7 +184,7 @@ theorem moves_iff_smul_eq : ∀ {D : D7} {k : Type} [Field k] [ValuativeRel k] [
     have hyd : y = (fun i => p.sec (p.pr (y i))) + (fun i => cA D (p.sec (p.pr (cA D (y i))))) := by
       funext i
       simp only [Pi.add_apply, p.sec_pr]
-      rw [map_mul, cA_cA, ← add_mul]
+      rw [map_mul, Formalism.L2.Theta.cA_cA, ← add_mul]
       exact ((idem_iff p _).1 (hy i)).symm
     obtain ⟨u, z, rfl⟩ : ∃ u z : Fin S.rank → k, y = (fun i => p.sec (u i)) + (fun i => cA D (p.sec (z i))) :=
       ⟨_, _, hyd⟩

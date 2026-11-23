@@ -108,7 +108,7 @@ theorem last_of {V₀ W W₀ : HSp D} {ρ : ℕ} (d : HypDec W W₀ ρ) (z : Fin
     ← herm_conj V₀ y, int_conj, mul_smul]
   have e1 := herm_smul V₀ 1 m y (a • ratV z)
   rw [one_smul] at e1
-  rw [e1, Units.val_mul, Units.val_mul, RingHom.map_mul, RingHom.map_mul, cU_val, cA_cA, xiU, inU_val, cA_xi]
+  rw [e1, Units.val_mul, Units.val_mul, RingHom.map_mul, RingHom.map_mul, cU_val, Formalism.L2.Theta.cA_cA, xiU, inU_val, cA_xi]
   have e2 := α.mul_inv
   have e3 : incA D D.host.xi0 * incA D D.host.xi0⁻¹ = 1 := (xiU D).mul_inv
   refine iff_of_eq (congrArg (· ∈ _) ?_)
@@ -165,7 +165,7 @@ theorem kap_of {L L'' S : HSp D} (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host
   have f2 : cA D (μ : AE D) * cA D ((μ⁻¹ : (AE D)ˣ) : AE D) = 1 := (cU μ).mul_inv
   have f3 : cA D (m : AE D) = cA D α * cA D μ * cA D (incA D lam) * (-incA D D.host.xi0⁻¹ * (α⁻¹ : (AE D)ˣ)) := by
     rw [← hm', mul_inv]
-    simp only [Units.val_mul, RingHom.map_mul, inU_val, cU_inv, cA_cA, xiU, inU_inv, cA_xi_inv]
+    simp only [Units.val_mul, RingHom.map_mul, inU_val, cU_inv, Formalism.L2.Theta.cA_cA, xiU, inU_inv, cA_xi_inv]
   rw [f3]
   simp only [RingHom.map_mul, RingHom.map_neg, RingHom.map_one]
   generalize incA D (star ζ ⬝ᵥ L.gram *ᵥ ζ) = h
