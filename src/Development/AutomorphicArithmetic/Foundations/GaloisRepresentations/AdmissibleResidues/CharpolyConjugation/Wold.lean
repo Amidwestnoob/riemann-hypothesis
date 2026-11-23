@@ -68,7 +68,7 @@ private theorem win {x : WD h} {t : ℝ} (ht : (x.lpTw t).tempered) (h0 : x.mono
     rcases (norm_nonneg β).eq_or_lt with e | e
     · rw [← e, zero_mul] at e2; exact absurd e2 zero_ne_one
     · exact e
-  have hq : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast one_lt_normV w
+  have hq : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast GlobalTheory.WeilDeligne.one_lt_normV w
   rw [heq]
   nlinarith
 

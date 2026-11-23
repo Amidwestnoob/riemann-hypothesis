@@ -133,7 +133,7 @@ private theorem junkData (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Alg
   let K : Type := IsLocalRing.ResidueField O
   let ρ : O →+* K := IsLocalRing.residue O
   have hcard : Nat.card K = normV w ^ n := (UpperTheory.card_residueField_adicCompletionIntegers_eq_absNorm u).trans hN
-  have hq1 : 1 < normV w := one_lt_normV w
+  have hq1 : 1 < normV w := GlobalTheory.WeilDeligne.one_lt_normV w
   have hQ : 4 ≤ normV w ^ n := by
     calc 4 = 2 ^ 2 := rfl
       _ ≤ normV w ^ 2 := Nat.pow_le_pow_left hq1 2

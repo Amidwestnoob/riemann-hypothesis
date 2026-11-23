@@ -136,7 +136,7 @@ theorem UpperTheory.V.Lev.flagPol :
         simp [ψ, ε]
       rw [h1, ← hκ, ← hcyc L, Units.val_mul, Units.val_zpow_eq_zpow_val, MulMemClass.coe_mul]
       congr 1) hV
-  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hμ0 : ∀ σ i, μ σ i ≠ 0 := fun σ i =>
     mul_ne_zero (zpow_ne_zero _ hq) ((map_ne_zero ι).mpr (Units.ne_zero _))
   have hμm : ∀ i σ τ, μ (σ * τ) i = μ σ i * μ τ i := fun i σ τ => by

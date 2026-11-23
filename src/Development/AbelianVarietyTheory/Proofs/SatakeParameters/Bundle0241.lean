@@ -313,7 +313,7 @@ theorem localArtin_normU : ∀ (K L Ω : Type) [Field Ω] [Field K] [NumberField
         rw [hq] at hξ ⊢
         refine hF ξ n (Nat.pos_of_ne_zero hn) ?_
         have h2 : normV w ^ n = normV w ^ n - 1 + 1 :=
-          (Nat.sub_add_cancel (Nat.one_le_pow _ _ (zero_lt_one.trans (one_lt_normV w)))).symm
+          (Nat.sub_add_cancel (Nat.one_le_pow _ _ (zero_lt_one.trans (GlobalTheory.WeilDeligne.one_lt_normV w)))).symm
         rw [h2, pow_succ, hξ, one_mul]
       · obtain ⟨τ, rfl⟩ := ha' x
         change restrictAb _ _ (b (a τ)⁻¹) = _

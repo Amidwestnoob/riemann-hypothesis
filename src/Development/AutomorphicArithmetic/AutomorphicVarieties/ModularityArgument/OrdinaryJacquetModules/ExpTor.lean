@@ -188,7 +188,7 @@ private theorem cyc_cont' : Continuous ((cycBar L Ω l).comp (Dec (F := L) A).su
   ((Continuous.units_map ((algebraMap ℚ_[l] (Qbar l)).comp PadicInt.Coe.ringHom).toMonoidHom
     ((continuous_algebraMap ℚ_[l] (Qbar l)).comp continuous_subtype_val)).comp (continuous_cycZ L Ω l)).comp continuous_subtype_val
 
-private theorem q_ne : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+private theorem q_ne : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
 
 private theorem link (H : GlobalTheory.Published.GlobalArtinReciprocity) (ι : Qbar l ≃+* ℂ) {n : ℕ}
     (hw : ((l : ℕ) : 𝓞 L) ∈ w.asIdeal) (ha : IsLocalArtin h a) {hh : Fin n → (L →+* Qbar l) → ℤ}
@@ -256,7 +256,7 @@ private theorem tors (H : GlobalTheory.Published.GlobalArtinReciprocity) (ι : Q
   have h6 : ‖ι ((ρ (Subgroup.inclusion (Weil_le_Dec h) s0) : (Qbar l)ˣ) : Qbar l)‖ = 1 :=
     Complex.norm_eq_one_of_pow_eq_one (n := m) (by rw [← map_pow, hρm, map_one]) (by omega)
   rw [h6, one_mul] at h5
-  have hq : (normV w : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+  have hq : (normV w : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   rw [← h5]
   field_simp
 

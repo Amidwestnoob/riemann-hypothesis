@@ -255,8 +255,8 @@ theorem UpperTheory.V.Z.Win.RR.ordAbove_of_alt (hX : ExRS) (hGd : GdOf) :
   have hiso := hiso σ hσ
   obtain ⟨rc, hrc⟩ := recTExists F Ω A w h
   obtain ⟨ar, har, ε, hLV⟩ := _root_.UpperTheory.V.Z.Win.toV' hrc
-  have hq0 : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.2 (one_lt_normV w).ne_bot
-  have hqc : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (one_lt_normV w).ne_bot
+  have hq0 : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.2 (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
+  have hqc : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hqn : ‖((normV w : ℕ) : Qbar l)‖ ≠ 0 := norm_ne_zero_iff.2 hq0
   have hn : ‖ι.symm lam * (normV w : Qbar l) ^ m w 0‖ = 1 := by
     have := IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm (x := ι.symm lam * (normV w : Qbar l) ^ m w 0 - a w) (y := a w)

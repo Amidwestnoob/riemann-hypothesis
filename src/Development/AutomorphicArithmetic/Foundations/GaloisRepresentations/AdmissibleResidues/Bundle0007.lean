@@ -143,7 +143,7 @@ private theorem ratio_lt {n : ℕ} (x : WD h) (μ : Fin n → Weil h →* ℂˣ)
     · exact mono0_of_charPol_eq_prod_of_ne_normV_pow_mul x μ hμ hx h1
     · exact h1
   have hR := ht hm
-  have hq1 : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast one_lt_normV w
+  have hq1 : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast GlobalTheory.WeilDeligne.one_lt_normV w
   have hq0 : (0 : ℝ) < ((normV w : ℕ) : ℝ) := by linarith
   have hpos : ∀ l g, 0 < ‖(μ l g : ℂ)‖ := fun l g => norm_pos_iff.mpr (Units.ne_zero _)
   have hmem : ∀ g l, (μ l g : ℂ) ∈ x.eig g := by

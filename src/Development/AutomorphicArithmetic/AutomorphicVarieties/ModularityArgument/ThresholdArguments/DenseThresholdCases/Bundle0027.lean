@@ -42,7 +42,7 @@ private theorem algSat_inj {L : Type} [Field L] [NumberField L] (w : HeightOneSp
     B = B' := by
   have h3 := congrArg Polynomial.roots h
   rw [roots_multiset_prod_X_sub_C, roots_multiset_prod_X_sub_C] at h3
-  have hq : (0 : ℝ) < (normV w : ℕ) := Nat.cast_pos.2 (lt_trans one_pos (one_lt_normV w))
+  have hq : (0 : ℝ) < (normV w : ℕ) := Nat.cast_pos.2 (lt_trans one_pos (GlobalTheory.WeilDeligne.one_lt_normV w))
   have h4 := Multiset.map_injective
     (mul_right_injective₀ (Complex.ofReal_ne_zero.2 (Real.rpow_pos_of_pos hq (((n : ℝ) - 1) / 2)).ne')) (a₁ := B.map Units.val)
     (a₂ := B'.map Units.val) (by simpa [algSat, Multiset.map_map] using h3)

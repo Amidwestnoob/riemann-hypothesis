@@ -164,7 +164,7 @@ private theorem abs_val (ι : Qbar l ≃+* ℂ) (ha : IsLocalArtin h a) (s : Wei
 private theorem cyc_cont' : Continuous ((cycBar L Ω l).comp (Dec (F := L) A).subtype) :=
   ((Continuous.units_map ((algebraMap ℚ_[l] (Qbar l)).comp PadicInt.Coe.ringHom).toMonoidHom
     ((continuous_algebraMap ℚ_[l] (Qbar l)).comp continuous_subtype_val)).comp (continuous_cycZ L Ω l)).comp continuous_subtype_val
-private theorem q_ne : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+private theorem q_ne : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
 private theorem link (H : GlobalTheory.Published.GlobalArtinReciprocity) (ι : Qbar l ≃+* ℂ) {n : ℕ}
     (hw : ((l : ℕ) : 𝓞 L) ∈ w.asIdeal) (ha : IsLocalArtin h a) {hh : Fin n → (L →+* Qbar l) → ℤ}
     (hm : ∀ τ, StrictMono fun j => hh j τ) {ω : Fin n → (w.adicCompletion L)ˣ →* ℂˣ}
@@ -230,7 +230,7 @@ private theorem tors (H : GlobalTheory.Published.GlobalArtinReciprocity) (ι : Q
   have h6 : ‖ι ((ρ (Subgroup.inclusion (Weil_le_Dec h) s0) : (Qbar l)ˣ) : Qbar l)‖ = 1 :=
     Complex.norm_eq_one_of_pow_eq_one (n := m) (by rw [← map_pow, hρm, map_one]) (by omega)
   rw [h6, one_mul] at h5
-  have hq : (normV w : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+  have hq : (normV w : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   rw [← h5]
   field_simp
 end Tw
@@ -273,7 +273,7 @@ theorem UpperTheory.V.Z.Ord.exp_torsion_of_literal_automorphy_n :
   obtain ⟨tor, hch⟩ := supp_ps hn π (fun i => (hO i).smooth) hσ
   have hQ0 : (0 : ℝ) < (Ideal.absNorm w.asIdeal : ℝ) := by
     rw [← normV_absNorm]
-    exact_mod_cast (one_lt_normV w).bot_lt
+    exact_mod_cast (GlobalTheory.WeilDeligne.one_lt_normV w).bot_lt
   refine ⟨tor, fun hU => ⟨tor, fun s hs ξ hξ ξ' hξ' hun hq => ?_⟩, fun t hW i j m hm1 e => ?_⟩
   · obtain ⟨i, rfl⟩ := (hch s hs).2 ξ hξ
     obtain ⟨j, rfl⟩ := (hch s hs).2 ξ' hξ'

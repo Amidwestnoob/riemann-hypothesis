@@ -238,7 +238,7 @@ theorem charLift : ∀ (E M : Type) [Field E] [NumberField E] [IsCMField E] [Fie
   refine ⟨hw1, fun f hf => ?_⟩
   rw [hw2, hu2 _ (normV_under _), hv2, key, ← pow_mul, ← pow_mul]
   congr 1
-  refine Nat.pow_right_injective (one_lt_normV ((w.under (𝓞 E)).under (𝓞 (maximalRealSubfield E)))) ?_
+  refine Nat.pow_right_injective (GlobalTheory.WeilDeligne.one_lt_normV ((w.under (𝓞 E)).under (𝓞 (maximalRealSubfield E)))) ?_
   simp only
   rw [pow_mul, pow_mul, ← key, ← normV_under, ← normV_under, key, ← normV_under, ← hf]
 

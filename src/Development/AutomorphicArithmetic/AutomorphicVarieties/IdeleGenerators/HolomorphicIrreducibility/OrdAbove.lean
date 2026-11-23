@@ -123,8 +123,8 @@ theorem UpperTheory.V.Sd.ordAbove :
   have L := hP.litN.loc
   obtain ⟨rc, hrc⟩ := L.llc F _ _ w h
   have hrc := GlobalTheory.LocLanglands.isRec_of_isRecLit L.dzc L.dzi L.exh L.multi L.cos L.zel L.geo L.bz F _ _ w h rc hrc
-  have hq0 : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.2 (one_lt_normV w).ne_bot
-  have hqc : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (one_lt_normV w).ne_bot
+  have hq0 : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.2 (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
+  have hqc : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hqn : ‖((normV w : ℕ) : Qbar l)‖ ≠ 0 := norm_ne_zero_iff.2 hq0
   have hn : ‖ι.symm lam * (normV w : Qbar l) ^ m w 0‖ = 1 := by
     have := IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm (x := ι.symm lam * (normV w : Qbar l) ^ m w 0 - a w) (y := a w)
