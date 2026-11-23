@@ -110,7 +110,7 @@ theorem vecAt_of_goodExp (HC : HolCoord) {E : Type} [Field E] [NumberField E] [I
 
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
   obtain ⟨W, hW, v, hq, -, hval⟩ := HodgeMetric.FrameExt.exists_affine_frame 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M
-    ⟨centre (z t₀), 𝔐.all _⟩ m s 𝔐.tie.gen fun a => ((𝔐.M.exists_valAt_iff _ _).1 (hs a)).2
+    ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (z t₀), 𝔐.all _⟩ m s 𝔐.tie.gen fun a => ((𝔐.M.exists_valAt_iff _ _).1 (hs a)).2
   have hW0 : ⊤ ≤ z t₀ ⁻¹ᵁ W := fun x _ => by
     have : x = IsLocalRing.closedPoint ℂ := Subsingleton.elim _ _
     subst this
