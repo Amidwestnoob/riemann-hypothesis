@@ -32,7 +32,7 @@ open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroi
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.SimplicialLabelRefinement
 
-theorem exists_simpLab_refinement : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (ψ : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) → IsPolyFan bar q ψ → IsTwG w0 ψ → ∃ φ lab : InvFun O, IsPolyFan bar q φ ∧ IsTwG w0 φ ∧ IsTwG w0 lab ∧ SimpLab bar q φ lab ∧ Subordinate bar q φ ψ := by
+theorem exists_simpLab_refinement : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (ψ : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], GlobalTheory.PolFan.Dominates bar X) → IsPolyFan bar q ψ → IsTwG w0 ψ → ∃ φ lab : InvFun O, IsPolyFan bar q φ ∧ IsTwG w0 φ ∧ IsTwG w0 lab ∧ SimpLab bar q φ lab ∧ Subordinate bar q φ ψ := by
   intro O _ _ _ _ bar w0 hb q ψ hD hψ hT
   obtain ⟨lab, hlT, hlab⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Fan.CarrierDimension.exists_isCarrierDim O bar w0 hb q ψ hD hψ hT
   obtain ⟨N, hN⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Fan.IntegerFinrankMultiplicativity.carrierDim_bounded O bar hb q ψ lab hlab
@@ -62,7 +62,7 @@ open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroi
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarSubdivisionDropsCells
 
 theorem exists_star_drop_multCells : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (φ lab : InvFun O),
-    (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) →
+    (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], GlobalTheory.PolFan.Dominates bar X) →
     IsPolyFan bar q φ → IsTwG w0 φ → IsTwG w0 lab → SimpLab bar q φ lab → ∀ M n : ℕ, 2 ≤ M →
     maxMult bar q φ ≤ M → MultCellsAmong bar q φ M (n + 1) →
     ∃ φ' lab' : InvFun O, IsPolyFan bar q φ' ∧ IsTwG w0 φ' ∧ IsTwG w0 lab' ∧ SimpLab bar q φ' lab' ∧
