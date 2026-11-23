@@ -72,7 +72,7 @@ theorem exists_congr (hc : Formalism.HermitianLatticesTheory.IsCMUnram E) {r : �
       refine GlobalTheory.Published.Landherr.congr_of_gram_eq τ hA hA' ?_
       rw [GlobalTheory.Published.gram_eq, GlobalTheory.Published.gram_eq]
       exact e.trans e'.symm)
-  exact ⟨P, hP0, fun x y => by rw [herm_mulVec, ← hP]⟩
+  exact ⟨P, hP0, fun x y => by rw [GlobalTheory.SelfDualGenus.herm_mulVec, ← hP]⟩
 
 theorem gram_herm (W : HSpace E) (a b : Fin W.rank) : cc (W.gramᵀ a b) = W.gramᵀ b a :=
   W.herm.eq (W.frame b) (W.frame a)
