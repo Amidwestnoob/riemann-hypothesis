@@ -261,7 +261,7 @@ theorem kernel_eq_shortVal (hC : GlobalTheory.Hk3.Core R F) (hT : TieIn T R κ v
   obtain ⟨yd, hyd⟩ := exists_isDetAt he (Vc D i) h
   have hhom : (MvPolynomial.rename Dc.eL (MvPolynomial.map (inC O.c') (O.io xs))).IsHomogeneous
       (degW (T.Q.Dw ((i : ℕ) + 1)) (wtA (κ i))) :=
-    ((isHomogeneous_of_rowDeg _ _ _ _ hH.2.2).map _).rename_isHomogeneous
+    ((GlobalTheory.PtId.isHomogeneous_of_rowDeg _ _ _ _ hH.2.2).map _).rename_isHomogeneous
   have hQ : R.Q A.μ0 = ∅ := Finset.eq_empty_of_forall_notMem fun PP hP =>
     (hC.lev.Q_ram A.μ0 PP).2 (Or.inl hP) (by rw [hC.lev.xi_base]; exact fun _ _ => rfl)
   have hhalf : ∀ PP, PP ∈ R.Pg ∨ PP ∈ R.Q A.μ0 → T.Q.l.Mb ≤ PP.asIdeal ∧
