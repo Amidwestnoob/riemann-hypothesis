@@ -102,7 +102,7 @@ theorem move {I J : Ideal B} (hJ : J * I = ⊥) (hle : J ≤ I) {m : ℕ} (ψ ψ
       exact Subtype.ext (Prod.ext (add_zero _).symm (h j)))
   have fin := congrArg (spMap p ≫ ·) key
   change spMap p ≫ spMap _ ≫ x m = spMap p ≫ (lieExp v c' hc' * (spMap _ ≫ x m)) at fin
-  rw [MonObj.comp_mul, comp_lieExp, ← Category.assoc, ← Category.assoc, spMap_comp, spMap_comp] at fin
+  rw [MonObj.comp_mul, comp_lieExp, ← Category.assoc, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp] at fin
   exact fin
 
 theorem eq_of_sub_mem {I J : Ideal B} (hJ : J * I = ⊥) (hle : J ≤ I) {m : ℕ} (ψ ψ' : JetR R (Fin d) m →ₐ[R] B)
@@ -144,7 +144,7 @@ theorem eq_of_nil {N : Ideal B} (hN : IsNilpotent N) {m : ℕ} (ψ ψ' : JetR R 
         (fun j => by
           rw [AlgHom.comp_apply, AlgHom.comp_apply, ← map_sub]
           exact Ideal.mem_map_of_mem _ (ih j))
-        (by rw [← spMap_comp, ← spMap_comp, Category.assoc, Category.assoc, h])
+        (by rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, Category.assoc, h])
       intro j
       exact Ideal.Quotient.eq.1 (AlgHom.congr_fun e (zR m j)).symm
   obtain ⟨n, hn⟩ := hN
@@ -166,11 +166,11 @@ theorem coord_exists {m : ℕ} {N : Ideal B} (hN : N ^ (m + 1) = ⊥) (y : sp (R
   have haug : spMap (jetAug R (Fin d) m) ≫ x m = 1 := by
     have e : jetAug R (Fin d) m = (jetAug R (Fin d) 0).comp (jetZeroR R (Fin d) m) :=
       (jet_ext fun j => by rw [AlgHom.comp_apply, jetAug_zR]; exact (jetAug_zR (R := R) 0 j).symm)
-    rw [e, ← spMap_comp, Category.assoc, hx₂ m, comp_one']
+    rw [e, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hx₂ m, comp_one']
   have fac : ∀ {A₁ A₂ : Type} [CommRing A₁] [Algebra R A₁] [CommRing A₂] [Algebra R A₂] (p : B →ₐ[R] A₁)
       (q : A₁ →ₐ[R] A₂) {y y' : sp (R₀ := R) B ⟶ G}, spMap p ≫ y = spMap p ≫ y' →
       spMap (q.comp p) ≫ y = spMap (q.comp p) ≫ y' := fun p q y y' h => by
-    rw [← spMap_comp, Category.assoc, Category.assoc, h]
+    rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, Category.assoc, h]
   have key : ∀ k : ℕ, ∃ (b : Fin d → B) (hb : ∀ j, b j ∈ N),
       spMap (Ideal.Quotient.mkₐ R (N ^ (k + 1))) ≫ y =
         spMap (Ideal.Quotient.mkₐ R (N ^ (k + 1))) ≫ spMap (jetLift R _ hN b hb) ≫ x m := by
@@ -184,8 +184,8 @@ theorem coord_exists {m : ℕ} {N : Ideal B} (hN : N ^ (m + 1) = ⊥) (y : sp (R
         ext a; rfl
       rw [e]
       refine fac _ _ ?_
-      rw [hy, ← Category.assoc, spMap_comp, mk_comp_eq _ (fun j => by rw [jetLift_zR]; exact zero_mem _),
-        ← spMap_comp, Category.assoc, haug, comp_one']
+      rw [hy, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, mk_comp_eq _ (fun j => by rw [jetLift_zR]; exact zero_mem _),
+        ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, haug, comp_one']
     | succ k ih =>
       obtain ⟨b, hb, ih⟩ := ih
       let B' := B ⧸ N ^ (k + 1 + 1)
@@ -205,7 +205,7 @@ theorem coord_exists {m : ℕ} {N : Ideal B} (hN : N ^ (m + 1) = ⊥) (y : sp (R
       have hq : q.comp (Ideal.Quotient.mkₐ R (N ^ (k + 1))) = (Ideal.Quotient.mkₐ R J).comp π := by
         ext a; rfl
       have h2 := fac _ q ih
-      rw [hq, ← spMap_comp, Category.assoc, Category.assoc] at h2
+      rw [hq, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, Category.assoc] at h2
       haveI := hG
       obtain ⟨c, hc, -⟩ := SqZero.existsUnique_eq_lieExp_mul hv hJ h2.symm
       choose δ hδ hδc using fun j => (Ideal.mem_map_iff_of_surjective π hπ).1 (c j).2
@@ -219,7 +219,7 @@ theorem coord_exists {m : ℕ} {N : Ideal B} (hN : N ^ (m + 1) = ⊥) (y : sp (R
         (fun j => by
           rw [AlgHom.comp_apply, AlgHom.comp_apply, jetLift_zR, jetLift_zR, map_add (f := _), hδc])
       change spMap π ≫ y = spMap π ≫ _
-      rw [hc, ← Category.assoc, spMap_comp, ← Category.assoc, spMap_comp, h3]
+      rw [hc, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, h3]
   obtain ⟨b, hb, h⟩ := key m
   refine ⟨jetLift R _ hN b hb, ?_⟩
   let q : (B ⧸ N ^ (m + 1)) →ₐ[R] B := Ideal.Quotient.liftₐ _ (AlgHom.id R B)

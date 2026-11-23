@@ -15,7 +15,7 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding JetR
 open ReciprocityTheory.ChartRestriction.G.Chart (tvec tcoord tmap IsUnivChart tvec_tmap tcoord_spec tvec_inj tcoord_scale
   tcoord_tvec isTan_tvec isTan_scale tvec_eig_iff scaleD fB Rel liftT viaT rel_exists_w rel_exists_v rel_eq_iff
-  rel_prod rel_pre tan_iff eig_iff one_left' sp JetR)
+  rel_prod rel_pre tan_iff eig_iff one_left' sp ReciprocityTheory.ChartRestriction.G.Chart.JetR)
 
 open scoped CategoryTheory.Obj
 
@@ -24,7 +24,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 section Vside
 
 variable {V : Type} [CommRing V] {G : Over (Sp V)} [GrpObj G] {n : ℕ}
-  {xc : ∀ m : ℕ, sp (R₀ := V) (JetR V (Fin n) m) ⟶ G} (hx : IsUnivChart G n xc)
+  {xc : ∀ m : ℕ, sp (R₀ := V) (ReciprocityTheory.ChartRestriction.G.Chart.JetR V (Fin n) m) ⟶ G} (hx : IsUnivChart G n xc)
 
 theorem epsOver_hom : (epsOver V V).hom = (sp (R₀ := V) (DualNumber V)).hom := rfl
 

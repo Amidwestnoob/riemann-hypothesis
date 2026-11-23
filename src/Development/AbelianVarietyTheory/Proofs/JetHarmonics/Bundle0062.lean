@@ -375,7 +375,7 @@ theorem exists_lie_coordinates (hJ : JetAlgSt) (hD : DLinSt) {V O : Type} [CommR
       Spec.map (CommRingCat.ofHom (fstD O).toRingHom) ≫ (1 : specV f (DualNumber O) ⟶ G).left → ∃ w, J w = g) :
     ∃ (co : LieG Gt → Fin d → O) (tv : (Fin d → O) → LieG Gt), (∀ s, (fun w => co w s) ∈ omega Gt) ∧
       (∀ b, co (tv b) = b) ∧
-      (∀ b, ∃ φ : JetR V (Fin d) 1 →+* DualNumber O, (∀ i, φ (zR 1 i) = TrivSqZeroExt.inr (b i)) ∧
+      (∀ b, ∃ φ : ReciprocityTheory.ChartRestriction.G.Chart.JetR V (Fin d) 1 →+* DualNumber O, (∀ i, φ (ReciprocityTheory.ChartRestriction.G.Chart.zR 1 i) = TrivSqZeroExt.inr (b i)) ∧
         (J (tv b).1).left = Spec.map (CommRingCat.ofHom φ) ≫ (x 1).left) ∧
       ∀ (u : G ⟶ G) [IsMonHom u] (ut : Gt ⟶ Gt) (α : Pt V 1 d), IsMapOf x x u α → (∀ w, J (w ≫ ut) = J w ≫ u) →
         ∀ (b : Fin d → O) (a : O), ((dLin α).map f).mulVec b = a • b →
@@ -421,7 +421,7 @@ theorem exists_lie_coordinates (hJ : JetAlgSt) (hD : DLinSt) {V O : Type} [CommR
   · have := tcoord_scale hu a ((htan _).1 ((lie _).1 w.2))
     exact (congrFun (Chart.tcoord_congr hu (Knat _ _) _ _) s).trans (congrFun this s)
   · refine ⟨(dualLift b).toRingHom.comp (jetCoeff V O (Fin d) 1).toRingHom, fun i => ?_, ?_⟩
-    · show dualLift b (jetCoeff V O (Fin d) 1 (zR 1 i)) = _
+    · show dualLift b (jetCoeff V O (Fin d) 1 (ReciprocityTheory.ChartRestriction.G.Chart.zR 1 i)) = _
       rw [jetCoeff_zR, dualLift_zR]
     · have h : (x' 1).left ≫ pullback.fst G.hom j = _ := congrArg (·.left) (hx' 1)
       rw [← hK', htv, Over.comp_left, Category.assoc, h, Over.comp_left, ← Category.assoc, Chart.spMap_left, Chart.spMap_left, ← Spec.map_comp]

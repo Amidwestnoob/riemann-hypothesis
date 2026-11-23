@@ -78,9 +78,9 @@ theorem series_ext (hJet : JetAlgSt) (hRep : RepSt) (Lr : RigLB G) (c : CubicalS
   refine eq_of_germ fun z => ?_
   obtain ⟨J, hJ, hJ'⟩ := exists_good_const Lr.L Lr.isLB j z
   rw [← hτ, ← hτ]
-  refine H (sp (R₀ := R) (JetR R (Fin n × Fin d) m)) z J hJ
-    ((((Spec (CommRingCat.of (JetR R (Fin n × Fin d) m))).presheaf.germ ⊤ z trivial).hom.comp
-      (Scheme.ΓSpecIso (CommRingCat.of (JetR R (Fin n × Fin d) m))).inv.hom).comp τ.toRingHom)
+  refine H (sp (R₀ := R) (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n × Fin d) m)) z J hJ
+    ((((Spec (CommRingCat.of (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n × Fin d) m))).presheaf.germ ⊤ z trivial).hom.comp
+      (Scheme.ΓSpecIso (CommRingCat.of (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin n × Fin d) m))).inv.hom).comp τ.toRingHom)
     (fun a => Y a m) ?_ (fun a b ha hb => ?_) (fun o a ha => ?_) (fun a b e ha hb he => ?_) (fun o a b ha hb => ?_)
   · exact (congrFun ((hY 0 gp_zero₂).2 _ r4) m).symm
   · exact (congrFun ((hY _ (gp_addOf F hF.1 a b ha hb)).2 _ (hF.2 n a b _ _ (hY a ha).1 (hY b hb).1)) m).symm

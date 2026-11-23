@@ -140,12 +140,12 @@ theorem exists_derivations (hv : IsLieBasis v) {S : Type} [CommRing S] [Algebra 
     rw [← Category.assoc, comp_toUnit]
   have hfst : ∀ a, (χ a).fst = u a := by
     refine AlgHom.congr_fun (inj ((TrivSqZeroExt.fstHom K K _).comp χ) u ?_)
-    rw [← spMap_comp, Category.assoc, hχ, MonObj.comp_mul, hz, comp_lieExp,
+    rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hχ, MonObj.comp_mul, hz, comp_lieExp,
       lieExp_eq_one hv.1 _ (fun i => by rfl), mul_one, hu]
   let φ : (Fin n → K) → (S →ₐ[K] DualNumber K) := fun c => (vecTo (inlS K K) (fun i => inr (c i))
       (fun _ _ => TrivSqZeroExt.inr_mul_inr _ _ _)).comp χ
   have hφ : ∀ c, spMap (φ c) ≫ j = (toUnit _ ≫ z) * tanExp v c := fun c => by
-    rw [← spMap_comp, Category.assoc, hχ, MonObj.comp_mul, hz, comp_lieExp]
+    rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hχ, MonObj.comp_mul, hz, comp_lieExp]
     exact congrArg _ (lieExp_congr _ (fun i => vecTo_single _ _ _ i) _ _)
   have hφ1 : ∀ c a, (φ c a).fst = u a := fun c a => by
     simp [φ, vecTo_apply, TrivSqZeroExt.fst_sum, hfst]
@@ -163,7 +163,7 @@ theorem exists_derivations (hv : IsLieBasis v) {S : Type} [CommRing S] [Algebra 
       (fun a b => by ext <;> simp [hδ, mul_comm]) (fun _ _ => TrivSqZeroExt.inr_mul_inr _ _ _)
     have h1 : (fstS K K).comp ψ = u := AlgHom.ext fun a => add_zero (u a)
     obtain ⟨c, hc⟩ := hsurj ((toUnit _ ≫ z)⁻¹ * (spMap ψ ≫ j)) (by
-      rw [IsTanOver, MonObj.comp_mul, GrpObj.comp_inv, hz, ← Category.assoc, spMap_comp, h1, hu,
+      rw [IsTanOver, MonObj.comp_mul, GrpObj.comp_inv, hz, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, h1, hu,
         inv_mul_cancel])
     have h2 : ψ = φ c := inj _ _ (by rw [hφ, ← hc, mul_inv_cancel_left])
     refine ⟨c, fun a => ?_⟩

@@ -155,7 +155,7 @@ variable {R : Type} [CommRing R]
 
 theorem exists_jet_factor {κ A : Type} [Finite κ] [CommRing A] [Algebra R A] (T : MvPowerSeries κ R →ₐ[R] A)
     (hT : ∀ p, IsNilpotent (T (X p))) :
-    ∃ (n : ℕ) (Θ : JetR R κ (n + 1) →ₐ[R] A), ∀ g, Θ (toJet (n + 1) g) = T g := by
+    ∃ (n : ℕ) (Θ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R κ (n + 1) →ₐ[R] A), ∀ g, Θ (toJet (n + 1) g) = T g := by
   let J : Ideal A := Ideal.span (Set.range fun p => T (X p))
   have hfg : J.FG := Submodule.fg_span (Set.finite_range _)
   have hn : IsNilpotent J := (Ideal.FG.isNilpotent_iff_le_nilradical hfg).2 (by
@@ -172,20 +172,20 @@ theorem exists_jet_factor {κ A : Type} [Finite κ] [CommRing A] [Algebra R A] (
   exact h.symm
 
 theorem exists_trunc_one {G : Over (Spec (CommRingCat.of R))} {κ : Type} (x : Fam G κ)
-    (hx : ∀ m, spMap (jetTruncR R κ m) ≫ x (m + 1) = x m) (n : ℕ) :
-    ∃ t : JetR R κ (n + 1) →ₐ[R] JetR R κ 1, (∀ j, t (zR (n + 1) j) = zR 1 j) ∧ spMap t ≫ x (n + 1) = x 1 := by
+    (hx : ∀ m, spMap (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R κ m) ≫ x (m + 1) = x m) (n : ℕ) :
+    ∃ t : ReciprocityTheory.ChartRestriction.G.Chart.JetR R κ (n + 1) →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R κ 1, (∀ j, t (ReciprocityTheory.ChartRestriction.G.Chart.zR (n + 1) j) = ReciprocityTheory.ChartRestriction.G.Chart.zR 1 j) ∧ spMap t ≫ x (n + 1) = x 1 := by
   induction n with
   | zero =>
     refine ⟨AlgHom.id R _, fun _ => rfl, ?_⟩
-    have : spMap (R₀ := R) (AlgHom.id R (JetR R κ 1)) = 𝟙 _ := by
+    have : spMap (R₀ := R) (AlgHom.id R (ReciprocityTheory.ChartRestriction.G.Chart.JetR R κ 1)) = 𝟙 _ := by
       apply Over.OverMorphism.ext
       rw [spMap_left]
       exact Spec.map_id _
     rw [this, Category.id_comp]
   | succ n ih =>
     obtain ⟨t, h1, h2⟩ := ih
-    refine ⟨t.comp (jetTruncR R κ (n + 1)), fun j => h1 j, ?_⟩
-    rw [← spMap_comp, Category.assoc, hx, h2]
+    refine ⟨t.comp (ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R κ (n + 1)), fun j => h1 j, ?_⟩
+    rw [← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hx, h2]
 
 theorem subst_map_algebraMap {σ τ S : Type} [Finite σ] [CommRing S] [Algebra R S] {a : σ → MvPowerSeries τ S}
     (ha : HasSubst a) (f : MvPowerSeries σ R) :
@@ -256,7 +256,7 @@ theorem subst_tanPair_add {d : ℕ} (Gl : FGLaw R d) (v : Fin d → R) (f : PS R
   unfold ev
   rw [subst_comp_subst_apply ha (hasSubst_tanPair d v), ← e, subst_map_algebraMap hc]
 
-theorem dof_eq_of_eigen : JetAlgSt → RepSt → SerSt → ∀ (R : Type) [CommRing R] (G : Over (Spec (CommRingCat.of R))) [GrpObj G] (d : ℕ) (x : Fam G (Fin d)), IsUnivChart G d x → ∀ Gl : FGLaw R d, IsLawOf x Gl.F → ∀ (U : G.left.Opens), ⊤ ≤ η[G].left ⁻¹ᵁ U → ∀ (s : Γ(G.left, U)) (f : PS R 1 d), IsSer1 x U s f → ∀ (v : Fin d → R) (y : R) (φ : JetR R (Fin d) 1 →ₐ[R] DualNumber R), (∀ i, φ (zR 1 i) = TrivSqZeroExt.inr (v i)) → (∀ (A : Type) [CommRing A] [Algebra R A] (c : DualNumber R →ₐ[R] A) (r : sp (R₀ := R) A ⟶ G), ⊤ ≤ r.left ⁻¹ᵁ U → ⊤ ≤ (r * (spMap c ≫ spMap φ ≫ x 1)).left ⁻¹ᵁ U → fnVal (r * (spMap c ≫ spMap φ ≫ x 1)).left U s = c (1 + TrivSqZeroExt.inr y) * fnVal r.left U s) → Dof Gl.F v f = C y * f := by
+theorem dof_eq_of_eigen : JetAlgSt → RepSt → SerSt → ∀ (R : Type) [CommRing R] (G : Over (Spec (CommRingCat.of R))) [GrpObj G] (d : ℕ) (x : Fam G (Fin d)), IsUnivChart G d x → ∀ Gl : FGLaw R d, IsLawOf x Gl.F → ∀ (U : G.left.Opens), ⊤ ≤ η[G].left ⁻¹ᵁ U → ∀ (s : Γ(G.left, U)) (f : PS R 1 d), IsSer1 x U s f → ∀ (v : Fin d → R) (y : R) (φ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin d) 1 →ₐ[R] DualNumber R), (∀ i, φ (ReciprocityTheory.ChartRestriction.G.Chart.zR 1 i) = TrivSqZeroExt.inr (v i)) → (∀ (A : Type) [CommRing A] [Algebra R A] (c : DualNumber R →ₐ[R] A) (r : sp (R₀ := R) A ⟶ G), ⊤ ≤ r.left ⁻¹ᵁ U → ⊤ ≤ (r * (spMap c ≫ spMap φ ≫ x 1)).left ⁻¹ᵁ U → fnVal (r * (spMap c ≫ spMap φ ≫ x 1)).left U s = c (1 + TrivSqZeroExt.inr y) * fnVal r.left U s) → Dof Gl.F v f = C y * f := by
   intro _ hRep _ R _ G _ d x hx Gl hl U _ s f hf v y φ hφ H
   have hb := hasSubst_tanPair d v
   have hpt : ∀ (k : Fin 2) (j : Fin d), constantCoeff (pt R (n := 2) d k j) = 0 := fun k j => by
@@ -268,16 +268,16 @@ theorem dof_eq_of_eigen : JetAlgSt → RepSt → SerSt → ∀ (R : Type) [CommR
   have key : subst (tanPair d v) (ev (n := 2) ![addOf Gl.F (pt R d 0) (pt R d 1)] f) =
       C (1 + TrivSqZeroExt.inr y : DualNumber R) * subst (tanPair d v) (ev (n := 2) ![pt R d 0] f) := by
     refine eq_of_toJet_eq fun m => ?_
-    let T : PS R 2 d →ₐ[R] JetR (DualNumber R) (Fin 1 × Fin d) m :=
+    let T : PS R 2 d →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR (DualNumber R) (Fin 1 × Fin d) m :=
       ((toJetHom (DualNumber R) (Fin 1 × Fin d) m).restrictScalars R).comp (substAlgHom hb)
     have hT : ∀ g, T g = toJet m (subst (tanPair d v) g) := fun g => by
       rw [← substAlgHom_apply hb]; rfl
-    let c : DualNumber R →ₐ[R] JetR (DualNumber R) (Fin 1 × Fin d) m := IsScalarTower.toAlgHom R _ _
+    let c : DualNumber R →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR (DualNumber R) (Fin 1 × Fin d) m := IsScalarTower.toAlgHom R _ _
     have hc : ∀ a, toJet m (C a : PS (DualNumber R) 1 d) = c a := fun a =>
       (toJetHom (DualNumber R) (Fin 1 × Fin d) m).commutes a
     have hT1 : ∀ i, T (X ((1 : Fin 2), i)) = c (TrivSqZeroExt.inr (v i)) := fun i => by
       rw [hT, subst_X hb, ← hc]; rfl
-    have hT0 : ∀ i, T (X ((0 : Fin 2), i)) = zR m ((0 : Fin 1), i) := fun i => by
+    have hT0 : ∀ i, T (X ((0 : Fin 2), i)) = ReciprocityTheory.ChartRestriction.G.Chart.zR m ((0 : Fin 1), i) := fun i => by
       rw [hT, subst_X hb, ← toJet_X]; rfl
     obtain ⟨n, Θ, hΘ⟩ := exists_jet_factor T (by
       rintro ⟨j, i⟩
@@ -292,8 +292,8 @@ theorem dof_eq_of_eigen : JetAlgSt → RepSt → SerSt → ∀ (R : Type) [CommR
       have : c.comp (φ.comp t) = Θ.comp ψ := jet_ext fun j => by
         rw [AlgHom.comp_apply, AlgHom.comp_apply, AlgHom.comp_apply, ht, hφ, hψ, hΘ]
         exact (hT1 j).symm
-      rw [hψy, ← htx, ← Category.assoc (spMap φ), spMap_comp, ← Category.assoc, spMap_comp, this,
-        ← Category.assoc, spMap_comp]
+      rw [hψy, ← htx, ← Category.assoc (spMap φ), ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, this,
+        ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
     have e : (spMap Θ ≫ y₁ (n + 1)) * (spMap c ≫ spMap φ ≫ x 1) = spMap Θ ≫ (y₁ (n + 1) * y₂ (n + 1)) := by
       rw [e₂, MonObj.comp_mul]
     have h := H _ c (spMap Θ ≫ y₁ (n + 1)) (top_le_preimage_comp _ _ U (s₁ (n + 1)).1)
