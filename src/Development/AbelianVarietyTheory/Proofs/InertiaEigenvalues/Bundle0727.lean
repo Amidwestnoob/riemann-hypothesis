@@ -73,7 +73,7 @@ theorem piTensor_isSubquotient_jac_degZero : ∀ (k : Type) [Field k] [Valuative
     (N : ℕ), N = 0 → ∀ (V : Type) [AddCommGroup V] [Module ℂ V] [Nontrivial V]
     (π : Representation ℂ (GL (Fin N) k) V) (d : Fin 0 → ℕ) (X : Fin 0 → Type) [∀ a, AddCommGroup (X a)]
     [∀ a, Module ℂ (X a)] (ρ : ∀ a, Representation ℂ (GL (Fin (d a)) k) (X a)) (e : (Σ a, Fin (d a)) ≃ Fin N),
-    IsSubquotient (piTensor ρ) (jac e π) := by
+    IsSubquotient (piTensor ρ) (GlobalTheory.SmGL.jac e π) := by
   intro k _ _ _ _ N hN V _ _ _ π d X _ _ ρ e
   subst hN
   have hK : twKer π (unipRad k e) 1 = ⊥ := by
