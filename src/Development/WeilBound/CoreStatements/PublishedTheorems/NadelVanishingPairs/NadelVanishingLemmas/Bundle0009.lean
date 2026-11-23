@@ -220,7 +220,7 @@ namespace GlobalTheory
 
 theorem logCartier_rounding_family : ∀ (K : Type) [Field K] (p : ℕ) [Fact p.Prime] [CharP K p] (n : ℕ)
     (x : Fin n → Kˣ) (J : Finset (Fin n)) (γ : abelian₂ K →+* abelian₂ K) (Y : Type) [Nonempty Y] (A : Y → Subring K)
-    (t : Y → Kˣ) (r : Y → Fin n → ℕ), (∀ y, AlgChart (A y) x) → (∀ y j, r y j < p) → IsCartierMap p x γ →
+    (t : Y → Kˣ) (r : Y → Fin n → ℕ), (∀ y, GlobalTheory.LogDR.AlgChart (A y) x) → (∀ y j, r y j < p) → IsCartierMap p x γ →
     ∀ (a : ℕ) (η : abelian₂ K), (∀ y, η ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) a) →
     extD K η = 0 → ∃ ζ ξ : abelian₂ K, (∀ y, ζ ∈ chartForms (A y) x J (t y) a) ∧
       (∀ y q, q + 1 = a → ξ ∈ chartForms (A y) x J (t y ^ p * ∏ j ∈ J, x j ^ r y j) q) ∧
