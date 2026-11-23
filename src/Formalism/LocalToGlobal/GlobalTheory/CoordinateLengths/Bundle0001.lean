@@ -86,7 +86,7 @@ theorem finrank_forms_level_zero {D : D7} {u : D.what₂.Word} (T : Forms0 D u) 
       haveI := hst c
       obtain ⟨s, hs⟩ := (T.cls0.stabI_range c γ).2 hγ
       rw [← hs, Subsingleton.elim s 1, map_one])
-  have hmap : (D.mem u).A.Mu0.map (e : _ →ₗ[ℂ] _) = FiC T.cls0.lev (Formalism.L2.Forms.embT D) ((D.fm u).lam 0) T.cls0.y := by
+  have hmap : (D.mem u).A.Mu0.map e.toLinearMap = FiC T.cls0.lev (Formalism.L2.Forms.embT D) ((D.fm u).lam 0) T.cls0.y := by
     ext ψ
     rw [Submodule.mem_map_equiv, Formalism.L2.Forms.Mu0_iff T.val0]
     have hψ : (fun c z => e.symm ψ c (T.val0.eY.symm z)) = ψ := by
