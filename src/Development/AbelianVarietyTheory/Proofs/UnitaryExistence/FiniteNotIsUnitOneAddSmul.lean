@@ -385,7 +385,7 @@ theorem exists_nsmul_mem {p : ℕ} (hp : p.Prime) (L : Submodule (𝓞 E) (Fin n
   exact hs (hIQ hsx)
 
 theorem herm_one (x y : Fin n → E) : herm 1 x y = stdForm x y := by
-  rw [herm_eq_dotProduct, Matrix.one_mulVec]
+  rw [GlobalTheory.SelfDualGenus.herm_eq_dotProduct, Matrix.one_mulVec]
   rfl
 
 theorem exists_smul_mem_stdMod (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E))) {y : Fin n → E}
@@ -421,7 +421,7 @@ theorem inGenus_of_selfDual [Algebra.Unramified (𝓞 (maximalRealSubfield E)) (
   · change stdForm (γ *ᵥ x) (γ *ᵥ y) = _
     have := congrArg Matrix.transpose hγ
     rw [Matrix.transpose_mul, Matrix.transpose_transpose, Matrix.transpose_one] at this
-    rw [← herm_one, herm_mulVec, Matrix.mul_one, this, herm_one]
+    rw [← herm_one, GlobalTheory.SelfDualGenus.herm_mulVec, Matrix.mul_one, this, herm_one]
   · have h1 := (hhL v _).1 (Submodule.subset_span ⟨x, hx, rfl⟩)
     have h2 : ∀ i j, (((γ.map cc)ᵀ).map (locEmb v) * (h v).1) i j ∈ locOrder v := fun i j => by
       convert locConj_mem v (hγ' v hv j i) using 1
