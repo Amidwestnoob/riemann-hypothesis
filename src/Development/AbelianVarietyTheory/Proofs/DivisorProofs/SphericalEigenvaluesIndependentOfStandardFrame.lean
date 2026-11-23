@@ -32,7 +32,7 @@ noncomputable section
 
 namespace GlobalTheory.FrameTransport
 
-theorem latMatch : ∀ {D : D7} {V V' : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n) (Q' : principalLevelFrame.RowPsi V' n), StdPsi hF Q → StdPsi hF Q' → ∀ (P : Pl D.host.E) (e f : Formalism.L2.Theta.AE D), IsPrimeIdem P e f → V'.rank = V.rank ∧ ∃ (J : Matrix (Fin V'.rank) (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)) (J' : Matrix (Fin V.rank) (Fin V'.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)), J * J' = 1 ∧ J' * J = 1 ∧ (∀ κ, finMat D.sp.cm.sig V'.gram (Q'.ψ κ) * J = J * finMat D.sp.cm.sig V.gram (Q.ψ κ)) ∧ ∀ y, finPart D f • y ∈ Formalism.L2.NTheta.LamHat V ↔ finPart D f • J.mulVec y ∈ Formalism.L2.NTheta.LamHat V' :=
+theorem latMatch : ∀ {D : D7} {V V' : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n) (Q' : principalLevelFrame.RowPsi V' n), GlobalTheory.StdFrame.StdPsi hF Q → GlobalTheory.StdFrame.StdPsi hF Q' → ∀ (P : Pl D.host.E) (e f : Formalism.L2.Theta.AE D), IsPrimeIdem P e f → V'.rank = V.rank ∧ ∃ (J : Matrix (Fin V'.rank) (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)) (J' : Matrix (Fin V.rank) (Fin V'.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)), J * J' = 1 ∧ J' * J = 1 ∧ (∀ κ, finMat D.sp.cm.sig V'.gram (Q'.ψ κ) * J = J * finMat D.sp.cm.sig V.gram (Q.ψ κ)) ∧ ∀ y, finPart D f • y ∈ Formalism.L2.NTheta.LamHat V ↔ finPart D f • J.mulVec y ∈ Formalism.L2.NTheta.LamHat V' :=
   _root_.GlobalTheory.LatMatch.frames_match_lattices
 
 theorem lamHat_idem : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E) (e f : Formalism.L2.Theta.AE D), IsPrimeIdem P e f → ∀ y ∈ Formalism.L2.NTheta.LamHat V, finPart D f • y ∈ Formalism.L2.NTheta.LamHat V :=
@@ -57,7 +57,7 @@ theorem rect_conj {R : Type} [CommRing R] {a b c : Type} [Fintype a] [Fintype b]
 variable {D : D7}
 
 theorem conj_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E}
-    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') :
+    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') :
     ∃ (J : Matrix (Fin V'.rank) (Fin V.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E))
       (J' : Matrix (Fin V.rank) (Fin V'.rank) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af D.host.F ⊗[D.host.F] D.host.E)),
       J * J' = 1 ∧ J' * J = 1 ∧
@@ -68,7 +68,7 @@ theorem conj_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubf
     fun κ => rect_conj hb2 hg2 (hβ κ) (hγ κ)⟩
 
 theorem suppF_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E}
-    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q')
+    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q')
     (f : Formalism.L2.Theta.AE D) (κ : Formalism.AUTREP.GAf D.host.E n) :
     SuppF V f (Q.ψ κ) → SuppF V' f (Q'.ψ κ) := by
   obtain ⟨J, J', h1, -, hc⟩ := conj_of_stdPsi hQ hQ'
@@ -76,7 +76,7 @@ theorem suppF_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSub
   exact GlobalTheory.HeckeTrans.supp_conj h1 (hc κ)
 
 theorem divAt_of_stdPsi {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E}
-    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q')
+    {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q')
     (P : Pl D.host.E) (e f : Formalism.L2.Theta.AE D) (hP : IsPrimeIdem P e f) (ϖ : D.host.E) (d : List ℤ)
     (κ : Formalism.AUTREP.GAf D.host.E n) :
     DivAt V e ϖ d (Q.ψ κ) → DivAt V' e ϖ d (Q'.ψ κ) := by
@@ -121,15 +121,15 @@ end Pre
 variable {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E}
     {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n}
 
-theorem ksph_iff (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') (κ : Formalism.AUTREP.GAf D.host.E n) :
+theorem ksph_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') (κ : Formalism.AUTREP.GAf D.host.E n) :
     Q.ψ κ ∈ KsphC V ∅ ↔ Q'.ψ κ ∈ KsphC V' ∅ :=
   (hQ.2 κ).symm.trans (hQ'.2 κ)
 
-theorem suppF_iff (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') (f : Formalism.L2.Theta.AE D) (κ : Formalism.AUTREP.GAf D.host.E n) :
+theorem suppF_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') (f : Formalism.L2.Theta.AE D) (κ : Formalism.AUTREP.GAf D.host.E n) :
     SuppF V f (Q.ψ κ) ↔ SuppF V' f (Q'.ψ κ) :=
   ⟨suppF_of_stdPsi hQ hQ' f κ, suppF_of_stdPsi hQ' hQ f κ⟩
 
-theorem hyp_iff (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') (Pr : Pl D.host.E) (κ : Formalism.AUTREP.GAf D.host.E n) :
+theorem hyp_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') (Pr : Pl D.host.E) (κ : Formalism.AUTREP.GAf D.host.E n) :
     Q.ψ κ ∈ hyp V Pr ↔ Q'.ψ κ ∈ hyp V' Pr := by
   constructor
   · rintro ⟨h1, e, f, hp, hs⟩
@@ -156,13 +156,13 @@ theorem suppF_one (V : HSp D) (f : Formalism.L2.Theta.AE D) : SuppF V f (1 : GA 
 variable {V V' : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E}
     {Q : principalLevelFrame.RowPsi V n} {Q' : principalLevelFrame.RowPsi V' n}
 
-theorem loc_iff (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') (f : Formalism.L2.Theta.AE D) (κ : Formalism.AUTREP.GAf D.host.E n) :
+theorem loc_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') (f : Formalism.L2.Theta.AE D) (κ : Formalism.AUTREP.GAf D.host.E n) :
     Q.ψ κ ∈ {k | k ∈ KsphC V ∅ ∧ SuppF V f k} ↔ Q'.ψ κ ∈ {k | k ∈ KsphC V' ∅ ∧ SuppF V' f k} :=
   and_congr (ksph_iff hQ hQ' κ) (suppF_iff hQ hQ' f κ)
 
 
 open Classical in
-theorem sphOp_image (hQ : StdPsi hF Q) (hQ' : StdPsi hF Q') {Pr : Pl D.host.E} {d : List ℤ} {B : Finset (GA D V)}
+theorem sphOp_image (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (hQ' : GlobalTheory.StdFrame.StdPsi hF Q') {Pr : Pl D.host.E} {d : List ℤ} {B : Finset (GA D V)}
     (hB : SphOp V Pr d B) : SphOp V' Pr d (B.image fun γ => Q'.ψ (principalLevelFrame.pre Q γ)) := by
   obtain ⟨e, f, ϖ, α, -, hpi, hϖ1, hϖ2, hd, -, -, hsα, hdiv, hsR, hcos⟩ := hB
   have hK : ∀ k ∈ {k | k ∈ KsphC V ∅ ∧ SuppF V f k}, k ∈ GfC V := fun k hk => hk.1.1
@@ -281,7 +281,7 @@ theorem heckeOperator_eq_heckeAlgebraAction {Pr : Pl D.host.E} {d : List ℤ} {R
   show x (h * principalLevelFrame.pre Q' γ) = x (principalLevelFrame.pre Q' (Q'.ψ h * γ))
   rw [← psi_pre Q' (sphOp_sub_GfC hR γ hγ), ← map_mul, pre_psi, pre_psi]
 
-theorem sph_eigen_frame_indep : ∀ {D : D7} {V V' : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n) (Q' : principalLevelFrame.RowPsi V' n), StdPsi hF Q → StdPsi hF Q' → ∀ Pr d, (∀ κ, Q.ψ κ ∈ hyp V Pr ↔ Q'.ψ κ ∈ hyp V' Pr) ∧ ∀ B B', SphOp V Pr d B → SphOp V' Pr d B' → ∀ x : Formalism.AUTREP.GAf D.host.E n → ℂ, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) → principalLevelFrame.Hecke₃ Q B x = principalLevelFrame.Hecke₃ Q' B' x := by
+theorem sph_eigen_frame_indep : ∀ {D : D7} {V V' : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E) (Q : principalLevelFrame.RowPsi V n) (Q' : principalLevelFrame.RowPsi V' n), GlobalTheory.StdFrame.StdPsi hF Q → GlobalTheory.StdFrame.StdPsi hF Q' → ∀ Pr d, (∀ κ, Q.ψ κ ∈ hyp V Pr ↔ Q'.ψ κ ∈ hyp V' Pr) ∧ ∀ B B', SphOp V Pr d B → SphOp V' Pr d B' → ∀ x : Formalism.AUTREP.GAf D.host.E n → ℂ, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) → principalLevelFrame.Hecke₃ Q B x = principalLevelFrame.Hecke₃ Q' B' x := by
   intro D V V' n hF Q Q' hQ hQ' Pr d
   refine ⟨hyp_iff hQ hQ' Pr, ?_⟩
   intro B B' hB hB' x hx

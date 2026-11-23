@@ -324,7 +324,7 @@ section Main
 open GlobalTheory.IdemSupport
 
 theorem spherical_scalar : ∀ {D : D7} {V : HSp D} {n : ℕ} (hF : D.host.F = maximalRealSubfield D.host.E)
-    (Q : principalLevelFrame.RowPsi V n), StdPsi hF Q → ∀ (π : Formalism.L2.NG.FinTyp D.host.E n) Pr d B, SphOp V Pr d B →
+    (Q : principalLevelFrame.RowPsi V n), GlobalTheory.StdFrame.StdPsi hF Q → ∀ (π : Formalism.L2.NG.FinTyp D.host.E n) Pr d B, SphOp V Pr d B →
       ∃ a : ℂ, ∀ x ∈ π.S, (∀ κ, Q.ψ κ ∈ hyp V Pr → Formalism.L2.NG.rt D.host.E n κ x = x) →
         principalLevelFrame.Hecke₃ Q B x = a • x := by
   intro D V n hF Q _ π Pr d B hB

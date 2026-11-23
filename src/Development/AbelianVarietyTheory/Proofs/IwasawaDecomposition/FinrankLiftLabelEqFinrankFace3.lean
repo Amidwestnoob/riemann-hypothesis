@@ -174,8 +174,8 @@ theorem eig_parts : GlobalTheory.Published.WeilRepresentationUnitaryPair → Glo
   obtain ⟨hC3, hSF, -, -, hEE, hWc, -⟩ := GlobalTheory.CoreThree.heckeCharacterisation_places_parts_of_weak R F hPins.char
   have hCore := hC3 hHolds.aux.ex
   have hS := GlobalTheory.Hk3.schurAll_of_cuspRapidDecay hCRD R.toRealDat
-  have hPY : StdPsi Y.hF Y.PY := Y.stdPsi.1
-  have hPW : ∀ i, StdPsi Y.hF (Y.PW i) := Y.stdPsi.2
+  have hPY : GlobalTheory.StdFrame.StdPsi Y.hF Y.PY := Y.stdPsi.1
+  have hPW : ∀ i, GlobalTheory.StdFrame.StdPsi Y.hF (Y.PW i) := Y.stdPsi.2
   obtain ⟨c, hc⟩ := exists_isSphScalars Y.hF (Y.PW ⟨0, Y.hm⟩) (hPW _) (principalLevelFrame.rowRepR R.θ (Y.eFT σ))
   refine ⟨c, fun b U hU => ?_, fun i U hU => ?_⟩
   · obtain ⟨x, hx, hxU⟩ := isotE_sub R.toRealDat F.lv2 hCore hS R.SF hSF Y.hF Y.PY Y.PW hPY hPW _ ⟨0, Y.hm⟩ c hc b U hU

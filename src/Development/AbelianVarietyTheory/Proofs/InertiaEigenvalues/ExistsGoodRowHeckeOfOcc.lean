@@ -135,7 +135,7 @@ def sphEig (Q : principalLevelFrame.RowPsi V n) (π : Formalism.L2.NG.FinTyp D.h
   if h : ∃ a, ActsOnSph Q π P d a then h.choose else 0
 
 open GlobalTheory.RowEig (lift_fixed rtV lift rtV_lift_psi heckeOperator_apply') in
-theorem actsOnSph_sphEig {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : StdPsi hF Q)
+theorem actsOnSph_sphEig {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q)
     (π : Formalism.L2.NG.FinTyp D.host.E n) (P : HeightOneSpectrum (𝓞 D.host.E)) (d : List ℤ) :
     ActsOnSph Q π P d (sphEig Q π P d) := by
   have h : ∃ a, ActsOnSph Q π P d a := by
@@ -182,7 +182,7 @@ theorem fixed_of_full {P : HeightOneSpectrum (𝓞 D.host.E)} {d : List ℤ} {B 
 
 open GlobalTheory.IsotSph (piRep piRep_coe finite_quot stabN avg avg_of_fixed avg_map avg_fixed) in
 private theorem scalar_on_fixed_isot {hF : D.host.F = maximalRealSubfield D.host.E}
-    {Q : principalLevelFrame.RowPsi V n} (hQ : StdPsi hF Q)
+    {Q : principalLevelFrame.RowPsi V n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q)
     (π : Formalism.L2.NG.FinTyp D.host.E n) {Pr : HeightOneSpectrum (𝓞 D.host.E)}
     {d : List ℤ} {B : Finset (GA D V)} {a : ℂ} (hB : Hecke₂ V J χ Sb Pr d B)
     (ha : ActsOnSph Q π Pr d a)
@@ -295,7 +295,7 @@ private theorem scalar_on_fixed_isot {hF : D.host.F = maximalRealSubfield D.host
   have := hWe _ (hAW U hUN)
   rwa [hAU] at this
 
-theorem isotL_le_partFull {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : StdPsi hF Q)
+theorem isotL_le_partFull {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q)
     (e : (GA D V → ℂ) →ₗ[ℂ] (GA D V → ℂ)) (π : Formalism.L2.NG.FinTyp D.host.E n) :
     principalLevelFrame.isotL θ Q M J χ e π ≤ partFull θ M J χ Sb (sphEig Q π) := by
   intro U hU
@@ -305,7 +305,7 @@ theorem isotL_le_partFull {hF : D.host.F = maximalRealSubfield D.host.E} {Q : pr
   intro P d B hB
   exact scalar_on_fixed_isot hQ π hB (actsOnSph_sphEig hQ π P d) U hU.2 (fixed_of_full hB hM)
 
-theorem exists_sphVec {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : StdPsi hF Q)
+theorem exists_sphVec {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n} (hQ : GlobalTheory.StdFrame.StdPsi hF Q)
     {e : (GA D V → ℂ) →ₗ[ℂ] (GA D V → ℂ)} {π : Formalism.L2.NG.FinTyp D.host.E n} (h : principalLevelFrame.isotL θ Q M J χ e π ≠ ⊥)
     {P : HeightOneSpectrum (𝓞 D.host.E)} {d : List ℤ} {B : Finset (GA D V)} (hB : Hecke₂ V J χ Sb P d B) :
     ∃ x, IsSphVec Q π P x ∧ x ≠ 0 := by
