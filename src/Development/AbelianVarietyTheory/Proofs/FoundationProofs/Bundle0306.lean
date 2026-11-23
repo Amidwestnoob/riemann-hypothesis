@@ -42,16 +42,16 @@ theorem eq_zero_of_isEig_const : ∀ (k : Type) [Field k] [ValuativeRel k] [Topo
     convert this using 1
     ext g
     simp [detChar, MonoidHom.mem_ker]
-  have hk : twKer (twist π (detChar (Fin n) χ)⁻¹) (unipB k (Fin n)) 1 = twKer π (unipB k (Fin n)) 1 := by
+  have hk : twKer (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)⁻¹) (unipB k (Fin n)) 1 = twKer π (unipB k (Fin n)) 1 := by
     unfold twKer
     congr 1
     ext w
     refine exists_congr fun u => exists_congr fun x => ?_
     have hd : Matrix.GeneralLinearGroup.det (u : GL (Fin n) k) = 1 := det_eq_one_of_mem_unipRad k u.2
-    have : twist π (detChar (Fin n) χ)⁻¹ (u : GL (Fin n) k) x = π (u : GL (Fin n) k) x := by
-      simp [twist, detChar, hd]
+    have : GlobalTheory.SmGL.twist π (detChar (Fin n) χ)⁻¹ (u : GL (Fin n) k) x = π (u : GL (Fin n) k) x := by
+      simp [GlobalTheory.SmGL.twist, detChar, hd]
     rw [this]
-  refine _root_.GlobalTheory.PsType.eq_zero_of_fixed_KO_twKer_unipB k n V (twist π (detChar (Fin n) χ)⁻¹) (isSmooth_twist hπ hs) v (hk ▸ hv) ?_
+  refine _root_.GlobalTheory.PsType.eq_zero_of_fixed_KO_twKer_unipB k n V (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)⁻¹) (isSmooth_twist hπ hs) v (hk ▸ hv) ?_
   intro g hg
   have h3 := he g (by rw [h1]; exact hg)
   rw [h2 g hg] at h3

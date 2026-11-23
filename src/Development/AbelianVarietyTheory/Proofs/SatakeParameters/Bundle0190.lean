@@ -346,7 +346,7 @@ theorem exists_kill [TopologicalSpace K] [IsTopologicalGroup K] [CompactSpace K]
     (h0 : ∀ z, (∀ g, σ g z = (ψ g : ℂ) • z) → z = 0) (z : X) :
     ∃ c, aug ψ c ≠ 0 ∧ σ.asAlgebraHom c z = 0 := by
   classical
-  let π := twist σ ψ⁻¹
+  let π := GlobalTheory.SmGL.twist σ ψ⁻¹
   have hπ : IsSmooth π := isSmooth_twist hσ hψ.inv
   have hlc : IsLocallyConstant fun g : K => π g z := by
     refine (IsLocallyConstant.iff_eventually_eq _).2 fun x => ?_

@@ -244,7 +244,7 @@ theorem main : GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTh
     refine Or.inl ⟨π₁, GlobalTheory.SplitPairLift.twistIrr π₂ hχi, hsph, ?_⟩
     have h2 := GlobalTheory.SplitPairLift.twist_twist_inv π₂ χ⁻¹
     rw [inv_inv] at h2
-    show Nonempty (π.π.Equiv (prod₂ π₁.π (twist (twist π₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ))))
+    show Nonempty (π.π.Equiv (prod₂ π₁.π (GlobalTheory.SmGL.twist (GlobalTheory.SmGL.twist π₂.π (detChar (Fin t) χ⁻¹)) (detChar (Fin t) χ))))
     rw [h2]
     exact hE
 

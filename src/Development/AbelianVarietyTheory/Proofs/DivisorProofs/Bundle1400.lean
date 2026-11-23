@@ -240,8 +240,8 @@ theorem multiProd_comp_invTranspose : ∀ (k : Type) [Field k] [ValuativeRel k] 
   set π' : ∀ a, Representation ℂ (GL (Fin (d (Fin.rev a))) k) (X (Fin.rev a)) :=
     fun a => (π (Fin.rev a)).comp (invTranspose (d (Fin.rev a))) with hπ'
   have key : ∀ (q : parab k e) (hq : invTranspose n (q : GL (Fin n) k) ∈ parab k (revPlace e)),
-      ((twist (revRep π') (deltaHalf k _)).comp (leviProj k (revPlace e))) ⟨invTranspose n q, hq⟩ =
-        ((twist (piTensor π) (deltaHalf k _)).comp (leviProj k e)) q := by
+      ((GlobalTheory.SmGL.twist (revRep π') (deltaHalf k _)).comp (leviProj k (revPlace e))) ⟨invTranspose n q, hq⟩ =
+        ((GlobalTheory.SmGL.twist (piTensor π) (deltaHalf k _)).comp (leviProj k e)) q := by
     intro q hq
     refine LinearMap.ext fun v => ?_
     rw [MonoidHom.comp_apply, MonoidHom.comp_apply, twist_apply, twist_apply, deltaHalf_revPlace e q hq,
@@ -249,8 +249,8 @@ theorem multiProd_comp_invTranspose : ∀ (k : Type) [Field k] [ValuativeRel k] 
   obtain ⟨A⟩ : Nonempty ((parInd (revPlace e) (revRep π')).Equiv
       ((multiProd e π).comp (invTranspose n))) := by
     refine Relabel.smInd_equiv_comp (P := parab k (revPlace e)) (Q := parab k e)
-      (σ := (twist (revRep π') (deltaHalf k _)).comp (leviProj k (revPlace e)))
-      (τ := (twist (piTensor π) (deltaHalf k _)).comp (leviProj k e))
+      (σ := (GlobalTheory.SmGL.twist (revRep π') (deltaHalf k _)).comp (leviProj k (revPlace e)))
+      (τ := (GlobalTheory.SmGL.twist (piTensor π) (deltaHalf k _)).comp (leviProj k e))
       (invTranspose n) (invTranspose n) (continuous_invTranspose n) (continuous_invTranspose n)
       (invTranspose_invTranspose n) (invTranspose_invTranspose n)
       (fun q => ⟨⟨_, mem_parab_revPlace e q.2⟩, rfl, key q _⟩) (fun p => ?_)

@@ -293,7 +293,7 @@ theorem exists_smul_infty (x : OnePoint k) : ∃ g : GL (Fin 2) k, g⁻¹ • (�
 
 omit [DecidableEq k] in
 theorem law_detLevi (η : kˣ →* ℂˣ) (p : parab k pts) (c : ℂ) :
-    twist (ofChar (detLevi pts η)) (deltaHalf k _) (leviProj k pts p) c = (detChar (Fin 2) η p : ℂ) * c := by
+    GlobalTheory.SmGL.twist (ofChar (detLevi pts η)) (deltaHalf k _) (leviProj k pts p) c = (detChar (Fin 2) η p : ℂ) * c := by
   have : GeneralLinearGroup.det (leviEmb k pts (leviProj k pts p)) =
       GeneralLinearGroup.det (p : GL (Fin 2) k) := by
     classical
@@ -312,9 +312,9 @@ theorem law_detLevi (η : kˣ →* ℂˣ) (p : parab k pts) (c : ℂ) :
   simp [detLevi, this, mul_assoc, mul_left_comm (deltaHalf k _ (leviProj k pts p) : ℂ)]
 
 theorem nonempty_equiv_parInd {η : kˣ →* ℂˣ} (hη : IsSmoothChar η) :
-    Nonempty ((twist (smoothRep (funRep k)) (detChar _ η)).Equiv (parInd pts (ofChar (detLevi pts η)))) := by
+    Nonempty ((GlobalTheory.SmGL.twist (smoothRep (funRep k)) (detChar _ η)).Equiv (parInd pts (ofChar (detLevi pts η)))) := by
   have hU : ∀ᶠ g in 𝓝 (1 : GL (Fin 2) k), detChar (Fin 2) η g = 1 := hη.detChar.mem_nhds (one_mem _)
-  let f : (twist (smoothRep (funRep k)) (detChar _ η)).IntertwiningMap (parInd pts (ofChar (detLevi pts η))) :=
+  let f : (GlobalTheory.SmGL.twist (smoothRep (funRep k)) (detChar _ η)).IntertwiningMap (parInd pts (ofChar (detLevi pts η))) :=
     { toFun := fun F => ⟨⟨fun g => (detChar (Fin 2) η g : ℂ) * F.1 (g⁻¹ • ∞), fun p g => by
           refine Eq.trans ?_ (law_detLevi η p _).symm
           beta_reduce
@@ -360,7 +360,7 @@ theorem exists_line {η : kˣ →* ℂˣ} (hη : IsSmoothChar η) :
       Function.Injective f ∧ f.range ≠ ⊤ ∧ (∀ S : Subrepresentation π, S ≤ f.range ∨ S = ⊤) ∧
       IsEmpty ((V ⧸ f.range.toSubmodule) ≃ₗ[ℂ] ℂ) := by
   classical
-  let f : (detRep (Fin 2) η).IntertwiningMap (twist (smoothRep (funRep k)) (detChar _ η)) :=
+  let f : (detRep (Fin 2) η).IntertwiningMap (GlobalTheory.SmGL.twist (smoothRep (funRep k)) (detChar _ η)) :=
     { toFun := fun c => ⟨fun _ => c, mem_smoothPart_of_nhds (Filter.Eventually.of_forall fun _ => rfl)⟩
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl

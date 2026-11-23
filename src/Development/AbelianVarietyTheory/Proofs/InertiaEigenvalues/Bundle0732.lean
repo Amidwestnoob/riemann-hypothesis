@@ -456,7 +456,7 @@ end Val
 
 def twistEquiv {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     {π : Representation ℂ G V} {σ : Representation ℂ G W} (φ : π.Equiv σ) (χ : G →* ℂˣ) :
-    (twist π χ).Equiv (twist σ χ) :=
+    (GlobalTheory.SmGL.twist π χ).Equiv (GlobalTheory.SmGL.twist σ χ) :=
   Representation.Equiv.mk φ.toLinearEquiv fun g => LinearMap.ext fun x => by
     have e := LinearMap.congr_fun (φ.isIntertwining' g) x
     simp only [LinearMap.comp_apply] at e

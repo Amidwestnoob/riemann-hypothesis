@@ -137,7 +137,7 @@ theorem nonempty_twAct_equiv {ρ : Representation ℂ G V} {σ : Representation 
   exact congrArg (Submodule.Quotient.mk (p := GlobalTheory.PRep.twKer σ N θ)) (eint e (s m) v)
 
 theorem nonempty_twist_equiv {ρ : Representation ℂ G V} {σ : Representation ℂ G W} (e : ρ.Equiv σ) (χ : G →* ℂˣ) :
-    Nonempty ((twist ρ χ).Equiv (twist σ χ)) := by
+    Nonempty ((GlobalTheory.SmGL.twist ρ χ).Equiv (GlobalTheory.SmGL.twist σ χ)) := by
   have he : ∀ v, e.toLinearEquiv v = e v := fun v => rfl
   refine ⟨Representation.Equiv.mk e.toLinearEquiv fun g => LinearMap.ext fun v => ?_⟩
   show e.toLinearEquiv (((χ g : ℂˣ) : ℂ) • ρ g v) = ((χ g : ℂˣ) : ℂ) • σ g (e.toLinearEquiv v)

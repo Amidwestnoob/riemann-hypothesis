@@ -96,9 +96,9 @@ theorem parInd_comp_dropHom_equiv {W : Type} [AddCommGroup W] [Module ℂ W]
       (parInd (stdBlocks (fun a => d (o a)) hd') τ)) := by
   have key : ∀ (p : parab k (stdBlocks d hd)) (q : parab k (stdBlocks (fun a => d (o a)) hd')),
       (p : GL (Fin N) k) = q →
-      twist (τ.comp (dropHom d o) : Representation ℂ (Levi k fun j => Fin (d j)) W) (deltaHalf k _)
+      GlobalTheory.SmGL.twist (τ.comp (dropHom d o) : Representation ℂ (Levi k fun j => Fin (d j)) W) (deltaHalf k _)
           (leviProj k (stdBlocks d hd) p) =
-        twist τ (deltaHalf k _) (leviProj k (stdBlocks (fun a => d (o a)) hd') q) := fun p q h => by
+        GlobalTheory.SmGL.twist τ (deltaHalf k _) (leviProj k (stdBlocks (fun a => d (o a)) hd') q) := fun p q h => by
     refine LinearMap.ext fun v => ?_
     rw [twist_apply, twist_apply, deltaHalf_drop d o ho hz, dropHom_leviProj k d hd o ho hz hd' p q h]
     show _ • τ (dropHom d o _) v = _

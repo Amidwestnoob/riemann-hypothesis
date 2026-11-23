@@ -264,7 +264,7 @@ theorem sigX_uEl (c : Fin (i + 1) → k) :
   have e3 : (mtw τ (((t + 1 : ℕ) : ℝ) / 2)).ρ (pgProj k (i + 1) (t + 1) ⟨uEl k i t c 0, uEl_mem_HPG i t c⟩).1 a =
       τ.ρ (GlobalTheory.CompanionTheory.BZPhiPhi.unipM k i (Multiplicative.ofAdd c)) a := by
     rw [e2]
-    show twist τ.ρ (dpowM _ _) _ a = _
+    show GlobalTheory.SmGL.twist τ.ρ (dpowM _ _) _ a = _
     rw [twist_apply, GlobalTheory.CompanionTheory.LeibOrd.DerivTw.dpowM_uin _ ⟨_, GlobalTheory.CompanionTheory.BZPhiPhi.unipM_mem_MirUin k i _⟩]
     simp
   have e4 : (σ.tw (-((i + 1 + 1 : ℕ) : ℝ) / 2)).ρ (pgProj k (i + 1) (t + 1) ⟨uEl k i t c 0, uEl_mem_HPG i t c⟩).2 b = b := by
