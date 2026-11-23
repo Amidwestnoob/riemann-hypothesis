@@ -98,7 +98,7 @@ theorem exists_pt {w : (Σ k, J k) → ℂ} (h : w ∈ mcPts (mCoordIdeal y)) : 
     have := h.2 g hg
     rwa [MvPolynomial.eval_map] at this).exists.imp fun _ h => h.2
 
-theorem interior_iff (z : Sp ℂ ⟶ 𝔐.X) : centre (z ≫ 𝔐.f) ∈ abLocus Y.t.G ↔ 𝔐.Interior z :=
+theorem interior_iff (z : Sp ℂ ⟶ 𝔐.X) : _root_.GlobalTheory.CompanionTheory.Ar.centre (z ≫ 𝔐.f) ∈ abLocus Y.t.G ↔ 𝔐.Interior z :=
   abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 _
 
 theorem labVal_of_over {z : Sp ℂ ⟶ 𝔐.X} (hz : 𝔐.Interior z) {κ : c.F →+* ℂ}
@@ -143,7 +143,7 @@ def nSheets (U : Y.X.Opens) (k : Fin B.np) : ℕ := if ∃ t ∈ GlobalTheory.Co
 set_option maxHeartbeats 1600000 in
 theorem exists_sheets (h1 : HolNull) (h2 : ChartMeets) (h3 : RootBranches) (h4 : CoverRoots) (h5 : LocInj)
     (FF : Fin B.np → Set (Fin Dc.n → ℂ)) (hF : ∀ k, (B.F k).IsFundSet (B.Γ k) (FF k)) :
-    ∃ U : Y.X.Opens, genPt Or.𝔐.ξ₀ ∈ U ∧ (∀ p : Sp ℂ ⟶ Y.X, ⊤ ≤ p ⁻¹ᵁ U → genPt Or.𝔐.ξ₀ ⤳ centre p) ∧
+    ∃ U : Y.X.Opens, genPt Or.𝔐.ξ₀ ∈ U ∧ (∀ p : Sp ℂ ⟶ Y.X, ⊤ ≤ p ⁻¹ᵁ U → genPt Or.𝔐.ξ₀ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre p) ∧
       Nonempty (Sheets Or B FF (nSheets Or B U)) := by
   classical
   have : CharZero Ω := algebraRat.charZero Ω
@@ -156,7 +156,7 @@ theorem exists_sheets (h1 : HolNull) (h2 : ChartMeets) (h3 : RootBranches) (h4 :
   · obtain ⟨x, hx⟩ := IsAlgClosed.exists_root (monicOf fun i => valAt' p U (a i)) fun h =>
       Or.cover.1.ne' ((natDegree_monicOf _).symm.trans (natDegree_eq_of_degree_eq_some h))
     obtain ⟨z, rfl, -⟩ := (hc p hp).2.1 x hx
-    exact hgen ▸ (Or.𝔐.all (centre z)).map Or.𝔐.f.continuous
+    exact hgen ▸ (Or.𝔐.all (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).map Or.𝔐.f.continuous
   let T : Fin B.np → Set (Fin Dc.n → ℂ) := fun k => {t ∈ GlobalTheory.CompanionTheory.Ar.Cusp.ballDom (B.F k).q | ⊤ ≤ B.pt k t ⁻¹ᵁ U}
   let A : Fin B.np → (Fin Dc.n → ℂ) → Fin Or.deg → ℂ := fun k t i => valAt' (B.pt k t) U (a i)
   let w : Fin B.np → (Fin Dc.n → ℂ) → ℂ → (Σ k, J k) → ℂ := fun k t θ s => ∑ i, valAt' (B.pt k t) U (cf s i) * θ ^ (i : ℕ)
