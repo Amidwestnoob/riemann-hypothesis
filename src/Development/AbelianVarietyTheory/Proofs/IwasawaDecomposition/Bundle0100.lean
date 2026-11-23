@@ -239,7 +239,7 @@ theorem valAt_locF (w : HeightOneSpectrum (𝓞 L)) (v : HeightOneSpectrum (𝓞
     exact HeightOneSpectrum.valuedAdicCompletion_eq_valuation' w _
   · exact Finset.prod_eq_one fun Q hQ => valAt_localIdele_ne (fun e : w = Q => hw (by rw [e]; exact (hm Q).1 hQ)) _
 
-def balanced : Subgroup (Ideles L) where
+def balanced : Subgroup (Neutral.B1.Ideles L) where
   carrier := {a | ∀ w w' : HeightOneSpectrum (𝓞 L), w'.under (𝓞 F) = w.under (𝓞 F) → valAt w a = valAt w' a}
   one_mem' := fun w w' _ => by rw [map_one, map_one]
   mul_mem' := fun {a b} ha hb w w' h => by rw [map_mul, map_mul, ha w w' h, hb w w' h]
@@ -257,13 +257,13 @@ theorem locF_mem_balanced
 
 theorem mem_sup_of_balanced
     (hu : ∀ (P : HeightOneSpectrum (𝓞 L)) (k : Fˣ), ordF P (upF F k) = ordF (P.under (𝓞 F)) k)
-    (G : Subgroup (Ideles L)) (hG : ∀ v k, locF (L := L) F v k ∈ G) (a : Ideles L)
+    (G : Subgroup (Neutral.B1.Ideles L)) (hG : ∀ v k, locF (L := L) F v k ∈ G) (a : Neutral.B1.Ideles L)
     (ha : a ∈ balanced (L := L) F) : a ∈ G ⊔ unitIdl L := by
   classical
   let T : Finset (HeightOneSpectrum (𝓞 F)) := (finite_valAt_ne_one a).toFinset.image fun w => w.under (𝓞 F)
   let m : HeightOneSpectrum (𝓞 F) → ℤ := fun v =>
     if h : ∃ w : HeightOneSpectrum (𝓞 L), w.under (𝓞 F) = v then -WithZero.log (valAt h.choose a) else 0
-  let b : Ideles L := ∏ v ∈ T, locF (L := L) F v (unif v) ^ m v
+  let b : Neutral.B1.Ideles L := ∏ v ∈ T, locF (L := L) F v (unif v) ^ m v
   have hb : b ∈ G := prod_mem fun v _ => zpow_mem (hG _ _) _
   have hval : ∀ w, valAt w b = valAt w a := fun w => by
     have h1 : ∀ v, v ≠ w.under (𝓞 F) → valAt w (locF (L := L) F v (unif v) ^ m v) = 1 := fun v hv => by
@@ -294,7 +294,7 @@ end GlobalTheory.Mem.Chr.KDVal
 
 open GlobalTheory.Mem.Chr.KDVal in
 open Classical in
-theorem GlobalTheory.Mem.Chr.mem_KD_sup_unitIdl_iff : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (a : Ideles H.E), a ∈ KD H ⊔ unitIdl H.E ↔ ∀ w w', IsConjPl H w w' → Valued.v ((a : AdeleRing (𝓞 H.E) H.E).2 w) = Valued.v ((a : AdeleRing (𝓞 H.E) H.E).2 w') := by
+theorem GlobalTheory.Mem.Chr.mem_KD_sup_unitIdl_iff : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (a : Neutral.B1.Ideles H.E), a ∈ KD H ⊔ unitIdl H.E ↔ ∀ w w', IsConjPl H w w' → Valued.v ((a : AdeleRing (𝓞 H.E) H.E).2 w) = Valued.v ((a : AdeleRing (𝓞 H.E) H.E).2 w') := by
   intro R H a
   obtain ⟨c, hc, hcm, hu, -⟩ := GlobalTheory.Mem.HostCM.host_cm R H
   have hiff : ∀ w w' : HeightOneSpectrum (𝓞 H.E),
