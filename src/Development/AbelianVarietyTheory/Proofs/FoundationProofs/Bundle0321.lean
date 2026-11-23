@@ -354,13 +354,13 @@ theorem subquotient_prinSeries_of_hasVec : GlobalTheory.Published.BernsteinZelev
     intro h
     exact hv0 (_root_.GlobalTheory.PsType.eq_zero_of_mem_twKer_unipB k n ψ V π hπ hψ hord v ((Submodule.Quotient.mk_eq_zero _).1 h) hv)
   have hact : ∀ t ∈ torusO k (Fin n), jacB π t (Submodule.Quotient.mk v) =
-      (torusChar ψ t : ℂ) • (Submodule.Quotient.mk v : Jacquet π (unipB k (Fin n))) := by
+      (GlobalTheory.SmGL.torusChar ψ t : ℂ) • (Submodule.Quotient.mk v : Jacquet π (unipB k (Fin n))) := by
     intro t ht
     have hgrp : diagT k (Fin n) t ∈ grp ψ := by
       refine ⟨iwahori_le_KO k _ (diagT_mem_iwahori ht), fun i j hij => ?_⟩
       rw [val_diagT, Matrix.diagonal_apply_ne _ hij.ne]
       exact (_root_.GlobalTheory.PsType.triv_ev_props k).2.2.1 _
-    have hth : theta ψ (diagT k (Fin n) t) = (torusChar ψ t : ℂ) := by
+    have hth : theta ψ (diagT k (Fin n) t) = (GlobalTheory.SmGL.torusChar ψ t : ℂ) := by
       rw [_root_.GlobalTheory.PsType.theta_of_triangular k n ψ (diagT k (Fin n) t) t ht (fun i => by rw [val_diagT, Matrix.diagonal_apply_eq])
         (Or.inr fun i j hij => by rw [val_diagT, Matrix.diagonal_apply_ne _ hij.ne'])]
       simp

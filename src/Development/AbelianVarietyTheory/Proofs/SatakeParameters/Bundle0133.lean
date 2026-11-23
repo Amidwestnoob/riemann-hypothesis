@@ -79,7 +79,7 @@ theorem deltaHalf_eq (n : ℕ) (g : Levi k (fun _ : Fin n => Fin 1)) :
 theorem inSupport_of_eigenform (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin n) k) V) (ψ : Fin n → kˣ →* ℂˣ)
     (l : Jacquet π (unipB k (Fin n)) →ₗ[ℂ] ℂ) (hl0 : l ≠ 0)
-    (hl : ∀ t y, l (jacB π t y) = (torusChar ψ t : ℂ) * l y) (i : Fin n) : InSupport π (ψ i) := by
+    (hl : ∀ t y, l (jacB π t y) = (GlobalTheory.SmGL.torusChar ψ t : ℂ) * l y) (i : Fin n) : InSupport π (ψ i) := by
   let f := Equiv.sigmaUnique (Fin n) fun _ : Fin n => Fin 1
   have hmono : StrictMono (blk f) := fun a b h => by simpa [blk, f] using h
   have h : unipRad k f = unipB k (Fin n) := unipRad_eq k f hmono
@@ -99,8 +99,8 @@ theorem inSupport_of_eigenform (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ
       conv_lhs => rw [eq_torusToLevi n g]
       exact leviEmb_torusToLevi k f t
     rw [jac_mk, map_smul, hl', hl', deltaHalf_eq n g, hEmb, ← ht]
-    have hc : (χ g : ℂ) = (torusChar ψ t : ℂ) := by
-      simp [χ, leviChar_apply, torusChar_apply, t]
+    have hc : (χ g : ℂ) = (GlobalTheory.SmGL.torusChar ψ t : ℂ) := by
+      simp [χ, leviChar_apply, GlobalTheory.SmGL.torusChar_apply, t]
     rw [hc, ← h1]
   refine ⟨n, fun _ => 1, f, i, rfl, ℂ, inferInstance, inferInstance, ofChar χ, isIrreducible_ofChar χ, ?_, ?_⟩
   · refine IsSubquotient.of_surjective ⟨l', fun g => ?_⟩ ?_

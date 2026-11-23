@@ -162,7 +162,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 theorem mem_principalSeriesSpace_of_indSp {n : ℕ} (α : Fin n → ℂˣ)
     (f : IndSp (points (Fin n))
-      ((GlobalTheory.SmGL.ofChar (torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)) :
+      ((GlobalTheory.SmGL.ofChar (GlobalTheory.SmGL.torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)) :
     (fun g => f.1.1 g) ∈ principalSeriesSpace k n (paramChar k α) :=
   _root_.GlobalTheory.CompanionTheory.SphSupp.PsBridge.indSp_mem_principalSeriesSpace k n α f
 
