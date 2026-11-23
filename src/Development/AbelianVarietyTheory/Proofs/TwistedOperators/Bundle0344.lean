@@ -345,7 +345,7 @@ theorem chiR_eq_zero {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F �
     intro c
     refine (chi_ker hψ _).1 fun δ => ?_
     have h1 := h ((-c) • (δ : WO S T))
-    simp only [chiR, chi, GlobalTheory.FinTranslate.symplOH_smul_left] at h1 ⊢
+    simp only [chiR, GlobalTheory.ThetaAllChar.chi, GlobalTheory.FinTranslate.symplOH_smul_left] at h1 ⊢
     rw [symplOH_skew' (δ : WO S T) (γ : WO S T), mul_neg, ← neg_mul]
     exact h1
   have h1 : GlobalTheory.FinTranslate.eInf D • (γ : WO S T) = 0 :=
@@ -371,7 +371,7 @@ theorem sum_coef_mul_translate : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), 
   have hg : IsThetaFunO ψ S T g := (GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ S T).1 w f₀ hf₀
 
   have hb : ∀ γ : ratL T S, heisO ψ S T ((γ : WO S T) + w) f₀ =
-      fun y => ψ (-(symplOH S T γ w)) * (chi ψ S T γ y * g y) := by
+      fun y => ψ (-(symplOH S T γ w)) * (GlobalTheory.ThetaAllChar.chi ψ S T γ y * g y) := by
     intro γ
     have e1 := (GlobalTheory.HeisThetaLaws.heis_theta_laws D ψ hψ S T).2.1 γ w f₀
     rw [heisO_rat γ.2 hg] at e1
@@ -397,7 +397,7 @@ theorem sum_coef_mul_translate : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), 
     rw [star_mul, star_mul, star_psi hn, neg_neg, star_chi hn]
     simp only [AddSubgroup.coe_neg]
     ring
-  have hJ : ∀ γ : ratL T S, J (-γ) = chi ψ S T γ x * I γ := by
+  have hJ : ∀ γ : ratL T S, J (-γ) = GlobalTheory.ThetaAllChar.chi ψ S T γ x * I γ := by
     intro γ
     have e := GlobalTheory.CompactQuotientFourier.setIntegral_translate (ratL T S) μ 𝓕 h𝓕
       (fun z => chiR ψ S T (-γ) (z + -x) * F z)
@@ -407,7 +407,7 @@ theorem sum_coef_mul_translate : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), 
     rw [e, ← integral_const_mul]
     congr 1
     funext z
-    rw [lx, show chiR ψ S T (-γ) (-x) = chi ψ S T γ x by simp only [chiR, AddSubgroup.coe_neg]; exact chi_neg_neg ψ _ _]
+    rw [lx, show chiR ψ S T (-γ) (-x) = GlobalTheory.ThetaAllChar.chi ψ S T γ x by simp only [chiR, AddSubgroup.coe_neg]; exact chi_neg_neg ψ _ _]
     ring
   have hkey : ∀ γ : ratL T S, thPair μ 𝓕 f (heisO ψ S T ((γ : WO S T) + w) f₀) * heisO ψ S T ((γ : WO S T) + w) f₀ x =
       g x * J (-γ) := by
@@ -415,7 +415,7 @@ theorem sum_coef_mul_translate : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), 
     have hp1 : ψ (symplOH S T γ w) * ψ (-(symplOH S T γ w)) = 1 := by
       rw [← AddChar.map_add_eq_mul, add_neg_cancel, AddChar.map_zero_eq_one]
     rw [hcoef, hb γ, hJ]
-    linear_combination (I γ * chi ψ S T γ x * g x) * hp1
+    linear_combination (I γ * GlobalTheory.ThetaAllChar.chi ψ S T γ x * g x) * hp1
   have hnorm : ∀ γ : ratL T S, ‖J (-γ)‖ = ‖thPair μ 𝓕 f (heisO ψ S T ((γ : WO S T) + w) f₀)‖ := by
     intro γ
     rw [hJ, hcoef, norm_mul, norm_mul, hn, GlobalTheory.ThetaAllChar.norm_chi hn]

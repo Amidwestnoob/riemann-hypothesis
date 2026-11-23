@@ -234,7 +234,7 @@ variable {k : Type} [Field k] {X : Type} [AddCommGroup X]
 theorem val_splitTorusPoint (t : Multiplicative X →* kˣ) (b : X) :
     SplitTorus.val (splitTorusPoint t) b =
       (Scheme.ΓSpecIso (CommRingCat.of k)).inv.hom (t (Multiplicative.ofAdd b) : k) := by
-  have h : (torusIso k X).hom.appTop.hom (chi X b) =
+  have h : (torusIso k X).hom.appTop.hom (ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht.chi X b) =
       (Scheme.ΓSpecIso (CommRingCat.of (AddMonoidAlgebra k X))).inv.hom (AddMonoidAlgebra.single b 1) := by
     have := torusGamma_chi k X b
     rw [torusGamma, CommRingCat.comp_apply] at this

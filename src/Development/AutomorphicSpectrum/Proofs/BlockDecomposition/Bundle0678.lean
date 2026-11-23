@@ -80,7 +80,7 @@ theorem lintegral_UsetF_eq_MidF : ∀ (F E : Type) [Field F] [NumberField F] [Fi
         ((Unfold.measurable_vec (((a x : Rˣ) : R) ⊗ₜ[F] (1 : E))).comp measurable_snd)
     exact hφ.comp (hcm.comp hg)
   have hae : ∀ᵐ y₀ ∂(m₁ (hermScal R σ (algebraMap F R t))),
-      chi σ J t s a b lam ((UsetF σ J t B₀ : Set (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E)).indicator φ)
+      GlobalTheory.CompanionTheory.SW.PiLocalization₂.chi σ J t s a b lam ((UsetF σ J t B₀ : Set (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E)).indicator φ)
           (scl (((a x : Rˣ) : R) ⊗ₜ[F] (1 : E)) y₀) =
         ∫⁻ c : Fin n → R ⊗[F] E, ∫⁻ S', ∫⁻ X, f y₀ c X ∂(m' S') ∂(coordHerm R σ b lam n)
           ∂(Measure.pi fun _ => coordK R b lam) := by

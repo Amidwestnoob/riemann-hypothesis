@@ -200,14 +200,14 @@ theorem adj_inv (d : GL (Fin n) E) (t : GA E n) (ht : t ∈ adCent d) :
     _ = t.val := by rw [hv, mul_assoc, h1, mul_one]
 
 theorem chi_sg (d : GL (Fin n) E) (e : Matrix (Fin n) (Fin n) E) (t : GA E n) (ht : t ∈ adCent d)
-    (hc : t.val * rm (sg d e) = rm (sg d e) * t.val) : chi (sg d e) t = conjAd E (chi e t⁻¹) := by
+    (hc : t.val * rm (sg d e) = rm (sg d e) * t.val) : GlobalTheory.CompanionTheory.TorusCh.chi (sg d e) t = conjAd E (GlobalTheory.CompanionTheory.TorusCh.chi e t⁻¹) := by
   have h1 : rm d.val * rm (d⁻¹ : GL (Fin n) E).val = 1 := by
     rw [← rm_mul, Units.mul_inv, rm_one]
   have h2 : rm (d⁻¹ : GL (Fin n) E).val * rm d.val = 1 := by
     rw [← rm_mul, Units.inv_mul, rm_one]
   have hcom : (t.val - 1) * rm (sg d e) = rm (sg d e) * (t.val - 1) := by
     rw [sub_mul, mul_sub, hc, one_mul, mul_one]
-  rw [chi, chi, map_det_adj (conjAd E) (rm e) _ t.val _ _ h1 h2 (adj_inv d t ht), adj_rm, hcom]
+  rw [GlobalTheory.CompanionTheory.TorusCh.chi, GlobalTheory.CompanionTheory.TorusCh.chi, map_det_adj (conjAd E) (rm e) _ t.val _ _ h1 h2 (adj_inv d t ht), adj_rm, hcom]
 
 theorem lam_sg (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (d : GL (Fin n) E)
     (e : Matrix (Fin n) (Fin n) E) (he : e * e = e) (t : GA E n) (ht : t ∈ adCent d)
