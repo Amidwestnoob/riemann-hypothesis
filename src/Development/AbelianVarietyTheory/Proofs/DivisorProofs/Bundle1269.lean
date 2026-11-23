@@ -245,7 +245,7 @@ variable {F : Type} [Field F] [NumberField F]
 private theorem gaussAbs_eq_iSup_local {K ι : Type} [Field K] [NumberField K]
     (v : FinitePlace K) (g : MvPolynomial ι K) (s : Finset (ι →₀ ℕ))
     (hs : g.support ⊆ s) (hne : s.Nonempty) :
-    gaussAbs v g = ⨆ k : s, v (AddMonoidAlgebra.coeff g (k : ι →₀ ℕ)) := by
+    ReciprocityTheory.MultiplicativeHeights.gaussAbs v g = ⨆ k : s, v (AddMonoidAlgebra.coeff g (k : ι →₀ ℕ)) := by
   classical
   have : Nonempty s := hne.to_subtype
   have hsup : (g.support.sup fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal) =
@@ -255,7 +255,7 @@ private theorem gaussAbs_eq_iSup_local {K ι : Type} [Field K] [NumberField K]
     · exact Finset.le_sup (f := fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal) hm'
     · rw [MvPolynomial.notMem_support_iff.1 hm', map_zero, Real.toNNReal_zero]
       exact bot_le
-  unfold gaussAbs
+  unfold ReciprocityTheory.MultiplicativeHeights.gaussAbs
   rw [hsup]
   obtain ⟨k, hk, hkeq⟩ := Finset.exists_mem_eq_sup s hne fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal
   rw [hkeq, Real.coe_toNNReal _ (apply_nonneg _ _)]
@@ -312,7 +312,7 @@ theorem absNorm_span_eq (c : 𝓞 F) (hc : c ≠ 0) (I : Submodule (𝓞 F) F) (
 theorem finsum_log_gaussAbs_le : ∀ (F : Type) [Field F] [NumberField F] (τ : Type) (g : MvPolynomial τ F), g ≠ 0 →
     ∀ (I : Submodule (𝓞 F) F) (δ : F), δ ≠ 0 → 1 ≤ I →
     (∃ c : 𝓞 F, c ≠ 0 ∧ ∀ y ∈ I, c • y ∈ (1 : Submodule (𝓞 F) F)) → (∀ m, AddMonoidAlgebra.coeff g m / δ ∈ I) →
-    ∑ᶠ q : FinitePlace F, Real.log (gaussAbs q g) ≤
+    ∑ᶠ q : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs q g) ≤
       Real.log ((1 : Submodule (𝓞 F) F).toAddSubgroup.relIndex I.toAddSubgroup) +
         ∑ᶠ q : FinitePlace F, Real.log (q δ) := by
   intro F _ _ τ g hg I δ hδ h1I ⟨c, hc, hcI⟩ hcoef
@@ -338,7 +338,7 @@ theorem finsum_log_gaussAbs_le : ∀ (F : Type) [Field F] [NumberField F] (τ : 
     simpa [i₀] using MvPolynomial.mem_support_iff.1 hm₀
   have hb0 : b ≠ 0 := Function.ne_iff.2 ⟨i₀, fun h => hbi₀ (by rw [h]; rfl)⟩
   have hz0 : (fun i => (b i : F) / c) ≠ 0 := Function.ne_iff.2 ⟨i₀, div_ne_zero hbi₀ hc'⟩
-  have hloc : ∀ q : FinitePlace F, Real.log (gaussAbs q g) =
+  have hloc : ∀ q : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs q g) =
       Real.log (q δ) + Real.log (⨆ i, q ((b i : F) / c)) := by
     intro q
     have hpos : 0 < ⨆ i, q ((b i : F) / c) :=

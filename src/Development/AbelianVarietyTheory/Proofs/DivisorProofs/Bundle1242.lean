@@ -458,7 +458,7 @@ namespace GlobalTheory.HSChoice.BaseChange
 
 theorem gaussAbs_eq_iSup {K ι : Type} [Field K] [NumberField K] (v : FinitePlace K) (g : MvPolynomial ι K)
     (s : Finset (ι →₀ ℕ)) (hs : g.support ⊆ s) (hne : s.Nonempty) :
-    gaussAbs v g = ⨆ k : s, v (AddMonoidAlgebra.coeff g (k : ι →₀ ℕ)) := by
+    ReciprocityTheory.MultiplicativeHeights.gaussAbs v g = ⨆ k : s, v (AddMonoidAlgebra.coeff g (k : ι →₀ ℕ)) := by
   classical
   have : Nonempty s := hne.to_subtype
   have hsup : (g.support.sup fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal) = s.sup fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal := by
@@ -467,7 +467,7 @@ theorem gaussAbs_eq_iSup {K ι : Type} [Field K] [NumberField K] (v : FinitePlac
     · exact Finset.le_sup (f := fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal) hm'
     · rw [MvPolynomial.notMem_support_iff.1 hm', map_zero, Real.toNNReal_zero]
       exact bot_le
-  unfold gaussAbs
+  unfold ReciprocityTheory.MultiplicativeHeights.gaussAbs
   rw [hsup]
   obtain ⟨k, hk, hkeq⟩ := Finset.exists_mem_eq_sup s hne fun m => (v (AddMonoidAlgebra.coeff g m)).toNNReal
   rw [hkeq, Real.coe_toNNReal _ (apply_nonneg _ _)]

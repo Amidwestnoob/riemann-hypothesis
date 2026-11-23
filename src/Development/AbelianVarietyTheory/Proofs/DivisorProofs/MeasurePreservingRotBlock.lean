@@ -261,7 +261,7 @@ theorem homog_coeff_along {K : Type} [Field K] {B N : ℕ} (b : Fin B) (u : Fin 
     omega
 
 theorem gaussAbs_coeff_along_le {K ι : Type} [Field K] [NumberField K] (v : FinitePlace K) {d : ι → K}
-    (hd : ∀ p, v (d p) ≤ 1) (f : MvPolynomial ι K) (j : ℕ) : gaussAbs v ((along d f).coeff j) ≤ gaussAbs v f := by
+    (hd : ∀ p, v (d p) ≤ 1) (f : MvPolynomial ι K) (j : ℕ) : ReciprocityTheory.MultiplicativeHeights.gaussAbs v ((along d f).coeff j) ≤ ReciprocityTheory.MultiplicativeHeights.gaussAbs v f := by
   classical
   refine gauss_abs_le_of_coeff_le v _ (GlobalTheory.GaussSubst.gaussAbs_nonneg v f) fun s => ?_
   rw [along, optionEquivLeft_coeff_coeff]
