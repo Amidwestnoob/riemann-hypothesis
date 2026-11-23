@@ -371,7 +371,7 @@ theorem galois_relation_away_from_l (hLP : TieLP N A) (hAut : TieAut N A) (hGal 
     let ρ2 := twGL ρ1 (Matrix.GeneralLinearGroup.det.comp χA)
     have c2 : ContQ N i ρ2 := cont_twGL ρ1 χA c1 cA
     refine ⟨twGL ρ2 (Matrix.GeneralLinearGroup.det.comp χB), cont_twGL ρ2 χB c2 cB,
-      isSSRep_twGL _ _ (isSSRep_twGL _ _ ss1), fun w hw => ?_⟩
+      GlobalTheory.TwistLG.isSSRep_twGL _ _ (GlobalTheory.TwistLG.isSSRep_twGL _ _ ss1), fun w hw => ?_⟩
     rw [(htw a ρ2 χB c2 cB).2.1 w (Or.inl hw) (Or.inl hw), (htw a ρ1 χA c1 cA).2.1 w (Or.inl hw) (Or.inl hw),
       awayA w hw, awayB w hw]
     have k1 := ((away1 w hw).char hLP (A.lpTw (A.locG A.etaT w) (1 / 2)) (by rw [A.lpDim_tw, A.locG_dim])
@@ -393,7 +393,7 @@ theorem galois_relation_away_from_l (hLP : TieLP N A) (hAut : TieAut N A) (hGal 
       exact ⟨n + j - k - 1, by push_cast at hn hj ⊢; linear_combination hn + hj⟩
     obtain ⟨ρ1, c1, ss1, away1, -⟩ := (hG i).1 a ha _ hcsd hralg
     obtain ⟨χ1, cχ, awayχ, -⟩ := (hG i).2.2 A.etaTinv ((k : ℝ) + 1 / 2) (eta_alg N A hAut k · |>.2)
-    refine ⟨twGL ρ1 (Matrix.GeneralLinearGroup.det.comp χ1), cont_twGL ρ1 χ1 c1 cχ, isSSRep_twGL _ _ ss1,
+    refine ⟨twGL ρ1 (Matrix.GeneralLinearGroup.det.comp χ1), cont_twGL ρ1 χ1 c1 cχ, GlobalTheory.TwistLG.isSSRep_twGL _ _ ss1,
       fun w hw => ?_⟩
     rw [(htw a ρ1 χ1 c1 cχ).2.1 w (Or.inl hw) (Or.inl hw), awayχ w hw]
     have k1 := (away1 w hw).char hLP (A.lpTw (A.locG A.etaTinv w) ((k : ℝ) + 1 / 2))
