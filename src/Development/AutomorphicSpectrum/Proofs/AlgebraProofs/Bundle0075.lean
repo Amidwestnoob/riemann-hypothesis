@@ -68,7 +68,7 @@ theorem log_norm_sub_fsSum_eq {n e : ℕ} (h : HermNorm n) (u : Fin n → ℂ)
 
 theorem defect_eq_of_linForm_notMem : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
     (g : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (u u' : Fin n → ℂ),
-    IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g → linForm u ∉ W → linForm u' ∉ W →
+    IsProjPrime W → IsChowForm W (e + 1) g → IsMultiHomog δ g → GroundTheory.Heights₂.Heights.linForm u ∉ W → GroundTheory.Heights₂.Heights.linForm u' ∉ W →
       mahler h e (specFirst g u) - coneIntegral h W e (fsLog h u) =
         mahler h e (specFirst g u') - coneIntegral h W e (fsLog h u') := by
   intro n e δ h W g u u' hW hg hδ hu hu'
