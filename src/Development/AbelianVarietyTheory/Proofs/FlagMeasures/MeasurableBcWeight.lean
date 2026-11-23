@@ -295,6 +295,6 @@ theorem schurSt_of_big_tie : ∀ Cg cb Cu cT CT C0 C1 : ℝ, ∃ C₀ : ℝ, ∀
   rw [hE, hk', hX2, hr, SchurBound.dp_dq_div_eq_mul_div _ _ _ _ _ _ _ _ _ _ _ _ _ hc0 hVn (volUn_pos _) (volUn_pos _) hdeg hTw hTw' hθ0
     hX hP (by positivity)]
   refine mul_le_mul_of_nonneg_left ?_ (mul_nonneg hP.le (by positivity))
-  exact factor_le _ _ _ _ _ _ _ _ _ (by linarith) hm1 hTw hTw' hθ0 (hTr w) (hTr w') hθw.2 hC
+  exact GlobalTheory.Amp.SchurBound.factor_le _ _ _ _ _ _ _ _ _ (by linarith) hm1 hTw hTw' hθ0 (hTr w) (hTr w') hθw.2 hC
 
 end GlobalTheory.Amp
