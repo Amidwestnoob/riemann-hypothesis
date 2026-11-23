@@ -370,7 +370,7 @@ theorem pchern_of (hsep : ∀ {R : Type} [CommRing R] (A : Over (Sp R)) [GrpObj 
   obtain ⟨K, r, j, hR, hS, hF, hj⟩ := hcharts (fibUnif u) (hsep A hA) M.U hM.cover
   have hB : K.Based := by
     obtain ⟨k, hk⟩ := hR.1 (0, 0) trivial
-    exact ⟨k, fun z _ ↦ by rwa [Subsingleton.elim z 0]⟩
+    exact ⟨k, fun z _ ↦ by rwa [show z = 0 from funext (fun e ↦ Empty.elim e)]⟩
   obtain ⟨i, uu, ℓ, hi, huu, hℓ, hz⟩ := hpull K r M j hj _ hc
   obtain ⟨fr, af, lg, f1, f2, a1, a2, a3, a4, a5⟩ := hframe A L u M u' hM hex H χ hAH K r hF j hj
   obtain ⟨e, he⟩ := hlift K r M hM j hj fr af f1 f2 i hi uu huu
