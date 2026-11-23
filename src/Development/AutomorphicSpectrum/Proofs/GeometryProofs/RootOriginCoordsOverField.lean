@@ -48,7 +48,7 @@ theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
   have hv := isBlockMap_blkV bx hbk
   haveI : Nonempty K := ⟨bk o.k₀⟩
   obtain ⟨hbir, harith⟩ := _root_.GlobalTheory.CompanionTheory.Ar.flagged_model_dim E H D l Xo c _ _ Y S Ω K J y 𝔐 Fl hβ
-  have harith' : IsArithVar (mCoordIdeal y) (Top.dimFl (CMType H) (D.p + D.q) + 1) := harith
+  have harith' : ReciprocityTheory.ChartRestriction.G.Geo.IsArithVar (mCoordIdeal y) (Top.dimFl (CMType H) (D.p + D.q) + 1) := harith
   obtain ⟨R'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.nonempty_anLogRes_of_smoothGenericFibre K J Ω y _ harith' hsm
   have hP₀ : ¬ (⊤ : Ideal (MRing R.ι)) ≤ mCoordIdeal R.y := fun h' =>
     R.arith.2.1.1.ne_top (top_le_iff.1 h')
