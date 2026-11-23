@@ -28,7 +28,7 @@ variable {X : Type} [AddCommGroup X] [Module ℂ X] {j : X →ₗ[ℂ] (WO V W �
 
 variable (ψ θ j r S) in
 def Tame : Prop :=
-  (∀ U x, j x ∈ thetaLevel ψ V W U → j (S x) ∈ thetaLevel ψ V W U) ∧
+  (∀ U x, j x ∈ GlobalTheory.Size.thetaLevel ψ V W U → j (S x) ∈ GlobalTheory.Size.thetaLevel ψ V W U) ∧
     ∃ c : ℝ≥0, ∀ μ 𝓕 d x, IsThetaFunO ψ V W (j x) → sobO ψ θ μ 𝓕 d (j (S x)) ≤ c * sobO ψ θ μ 𝓕 (d + r) (j x)
 
 theorem Tame.theta (h : Tame ψ θ j r S) {x : X} (hx : IsThetaFunO ψ V W (j x)) : IsThetaFunO ψ V W (j (S x)) := by
@@ -190,7 +190,7 @@ private theorem tame_id_of_tame_coeB (hψ : IsStdChar D ψ (-1)) {r : ℕ} {G : 
   obtain ⟨hlev, c, hc⟩ := hG
   refine ⟨fun U f hf => ?_, c, fun μ 𝓕 d f hf => ?_⟩
   · have hf' : IsThetaFunO ψ V W f := hf.1
-    have hB : coeB ψ V W (toB hψ f hf') ∈ thetaLevel ψ V W U := by
+    have hB : coeB ψ V W (toB hψ f hf') ∈ GlobalTheory.Size.thetaLevel ψ V W U := by
       show ((toB hψ f hf').1 : WO V W → ℂ) ∈ _
       rw [coe_toB]
       exact hf

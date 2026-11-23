@@ -326,8 +326,8 @@ theorem liftInt_zero_of_approx {θ : InfFam D} {ψ : AddChar (AF D.host.F) ℂ} 
     {cls : (GA D W → ℂ) → Prop} (hL : LiftLaws θ ψ ω ν 𝓕 cls) {Φ : GA D W → ℂ} (hΦ : cls Φ)
     {μ : Measure (WO V W)} {𝓓 : Set (WO V W)} (hμ : μ.IsAddHaarMeasure)
     (h𝓓 : IsAddFundamentalDomain (ratL W V) 𝓓 μ) {U : AddSubgroup (WO V W)} (hU : IsOpen (U : Set (WO V W)))
-    {f : WO V W → ℂ} (hf : f ∈ thetaLevel ψ V W U)
-    (happ : ∀ (d : ℕ) (δ : ℝ≥0∞), 0 < δ → ∃ g ∈ thetaLevel ψ V W U,
+    {f : WO V W → ℂ} (hf : f ∈ GlobalTheory.Size.thetaLevel ψ V W U)
+    (happ : ∀ (d : ℕ) (δ : ℝ≥0∞), 0 < δ → ∃ g ∈ GlobalTheory.Size.thetaLevel ψ V W U,
       Lift.liftInt ν 𝓕 (thetaKO ω) g Φ = 0 ∧ sobO ψ θ μ 𝓓 d (f - g) < δ) :
     Lift.liftInt ν 𝓕 (thetaKO ω) f Φ = 0 := by
   obtain ⟨A, hA⟩ := hL.bound
@@ -341,7 +341,7 @@ theorem liftInt_zero_of_approx {θ : InfFam D} {ψ : AddChar (AF D.host.F) ℂ} 
       (C : ℝ≥0∞) * decayInt ν 𝓕 A Φ * δ := by
     intro δ hδ
     obtain ⟨g, hgU, hg0, hlt⟩ := happ d δ hδ
-    have hfg : f - g ∈ thetaLevel ψ V W U := sub_mem hf hgU
+    have hfg : f - g ∈ GlobalTheory.Size.thetaLevel ψ V W U := sub_mem hf hgU
     have e : Lift.liftInt ν 𝓕 (thetaKO ω) f Φ x = Lift.liftInt ν 𝓕 (thetaKO ω) (f - g) Φ x := by
       have e' : Lift.liftInt ν 𝓕 (thetaKO ω) (f - g) Φ x =
           Lift.liftInt ν 𝓕 (thetaKO ω) f Φ x - Lift.liftInt ν 𝓕 (thetaKO ω) g Φ x := by
@@ -379,7 +379,7 @@ theorem lowAll_of_lowFock : ∀ (D : D7) (X : ProvA), Inputs D X → LowFock D X
   have hI : ∀ f, IsThetaFunO ψ V' W f → ∀ x, IntegrableOn (fun h => thetaKO ω' x h f * F v h) 𝓕 ν :=
     fun f hf x => by simpa only [rTr, mul_one] using hL.integ f (F v) hf hFv x 1
   have hspan := LowAllPf.liftInt_span_zero hI
-    (s := {g | ∃ f₀ P, IsVacF ψ θ A (Fr.ofModel M') f₀ ∧ f₀ ∈ thetaLevel ψ V' W U ∧
+    (s := {g | ∃ f₀ P, IsVacF ψ θ A (Fr.ofModel M') f₀ ∧ f₀ ∈ GlobalTheory.Size.thetaLevel ψ V' W U ∧
       g = ptF ψ θ A (Fr.ofModel M') f₀ P})
     (by
       rintro _ ⟨f₀, P, hv, -, rfl⟩

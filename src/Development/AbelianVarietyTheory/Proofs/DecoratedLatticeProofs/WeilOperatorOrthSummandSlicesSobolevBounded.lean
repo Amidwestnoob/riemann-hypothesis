@@ -206,7 +206,7 @@ theorem isSobForm_slice {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ : 
     obtain ⟨μ, 𝓕, hμ⟩ := exists_isCovolOne A T
     obtain ⟨K, hKs⟩ := sobO_slice_le (T := T) hψ hθ o d
     refine ⟨d, C * (ENNReal.ofReal ((height A p.1 * height T p.2) ^ e)).toNNReal * K, fun f hf => ?_⟩
-    have hsl : slA o f ∈ thetaLevel ψ A T U' := by
+    have hsl : slA o f ∈ GlobalTheory.Size.thetaLevel ψ A T U' := by
       refine ⟨((_root_.GlobalTheory.BoxSlice.main D ψ hψ S A B T o).2.2.2 f hf.1).1 0, fun u hu h0 => ?_⟩
       rw [heisO_slice, ← extA_apply, hf.2 _ hu]
       rw [extA_apply, symm_left, Matrix.map_mul, h0, Matrix.zero_mul]
