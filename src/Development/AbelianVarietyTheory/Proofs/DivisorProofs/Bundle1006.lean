@@ -386,19 +386,19 @@ theorem eq_of_gram {n d : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) (hA : A.PosDef) 
 variable {K : Type} [Field K] [StarRing K]
 
 theorem map_conjTranspose_twist (σ : K →+* ℂ) {n d : ℕ} (E : Matrix (Fin n) (Fin d) K) :
-    (Eᴴ).map σ = (E.map (twist σ))ᴴ := by
+    (Eᴴ).map σ = (E.map (Formalism.DivisionValues.twist σ))ᴴ := by
   ext a i
-  simp only [Matrix.map_apply, Matrix.conjTranspose_apply, twist, RingHom.comp_apply, starRingEnd_apply, star_star]
+  simp only [Matrix.map_apply, Matrix.conjTranspose_apply, Formalism.DivisionValues.twist, RingHom.comp_apply, starRingEnd_apply, star_star]
 
-theorem twist_twist (σ : K →+* ℂ) : twist (twist σ) = σ := by
+theorem twist_twist (σ : K →+* ℂ) : Formalism.DivisionValues.twist (Formalism.DivisionValues.twist σ) = σ := by
   ext a
-  simp [twist]
+  simp [Formalism.DivisionValues.twist]
 
 theorem map_twist_of_mem (σ : K →+* ℂ) {n d : ℕ} (H : Matrix (Fin n) (Fin d) K) (hH : ∀ i j, H i j ∈ cmMax K) :
-    H.map (twist σ) = H.map σ := by
+    H.map (Formalism.DivisionValues.twist σ) = H.map σ := by
   ext i j
   have : σ (star (H i j)) = starRingEnd ℂ (σ (H i j)) := hH i j σ
-  simp only [Matrix.map_apply, twist, RingHom.comp_apply, starRingEnd_apply (R := K), this, Complex.conj_conj]
+  simp only [Matrix.map_apply, Formalism.DivisionValues.twist, RingHom.comp_apply, starRingEnd_apply (R := K), this, Complex.conj_conj]
 
 theorem entries_mem_cmMax [NumberField K] {n d : ℕ} (H : Matrix (Fin n) (Fin n) K) (hH : ∀ i j, H i j ∈ cmMax K)
     (hpos : ∀ v : InfinitePlace K, (H.map v.embedding).PosDef) (E : Matrix (Fin n) (Fin d) K)
@@ -410,7 +410,7 @@ theorem entries_mem_cmMax [NumberField K] {n d : ℕ} (H : Matrix (Fin n) (Fin n
     have h2 := hP.2
     rw [Matrix.mul_sub, Matrix.mul_one, sub_eq_zero] at h2
     rw [Matrix.mul_assoc (Eᴴ * H), ← h2]
-  have hv : ∀ v : InfinitePlace K, (Eᴴ).map v.embedding * H.map v.embedding * E.map (twist v.embedding) =
+  have hv : ∀ v : InfinitePlace K, (Eᴴ).map v.embedding * H.map v.embedding * E.map (Formalism.DivisionValues.twist v.embedding) =
       (Eᴴ * H * E).map v.embedding := by
     intro v
     have hq := (quotFrameIsQuot K n d H hpos Pr hsurj v).2
@@ -420,7 +420,7 @@ theorem entries_mem_cmMax [NumberField K] {n d : ℕ} (H : Matrix (Fin n) (Fin n
     · rw [← hr]
       exact (Matrix.isUnit_iff_isUnit_det _).mp (metOfSpec d _ (hR.2 v).1).1.isUnit
     · rw [← Matrix.map_mul, hGP, Matrix.map_mul, map_conjTranspose_twist]
-  have hall : ∀ σ : K →+* ℂ, (Eᴴ).map σ * H.map σ * E.map (twist σ) = (Eᴴ * H * E).map σ := by
+  have hall : ∀ σ : K →+* ℂ, (Eᴴ).map σ * H.map σ * E.map (Formalism.DivisionValues.twist σ) = (Eᴴ * H * E).map σ := by
     intro σ
     rcases InfinitePlace.mk_eq_iff.mp (InfinitePlace.mk_embedding (InfinitePlace.mk σ)) with h | h
     · rw [← h]; exact hv _
@@ -428,16 +428,16 @@ theorem entries_mem_cmMax [NumberField K] {n d : ℕ} (H : Matrix (Fin n) (Fin n
       simp only [Matrix.map_mul (f := starRingEnd ℂ), Matrix.map_map] at h1
       rw [← h]
       exact h1
-  have hE : ∀ v : InfinitePlace K, E.map v.embedding = E.map (twist v.embedding) := by
+  have hE : ∀ v : InfinitePlace K, E.map v.embedding = E.map (Formalism.DivisionValues.twist v.embedding) := by
     intro v
     refine eq_of_gram _ (hpos v) ((Eᴴ * H * E).map v.embedding) _ _ ?_ ?_ ?_
     · rw [← map_conjTranspose_twist]; exact hall _
-    · have h1 := hall (twist v.embedding)
+    · have h1 := hall (Formalism.DivisionValues.twist v.embedding)
       rwa [map_conjTranspose_twist, twist_twist, map_twist_of_mem _ H hH, map_twist_of_mem _ _ hR.1] at h1
     · rw [Matrix.map_mul, Matrix.map_mul, map_conjTranspose_twist]
   intro i a σ
   have h1 := congrFun (congrFun (hE (InfinitePlace.mk σ)) i) a
-  simp only [Matrix.map_apply, twist, RingHom.comp_apply, starRingEnd_apply] at h1
+  simp only [Matrix.map_apply, Formalism.DivisionValues.twist, RingHom.comp_apply, starRingEnd_apply] at h1
   rcases InfinitePlace.mk_eq_iff.mp (InfinitePlace.mk_embedding (InfinitePlace.mk σ)) with h | h
   · rw [h] at h1
     rw [h1, starRingEnd_apply, star_star]

@@ -155,7 +155,7 @@ theorem tri_crys : LocalPublishedTheorems → ∀ {l : ℕ} [Fact l.Prime] {G : 
   have hmat : ∀ g h (i j : Fin 3), (ρ (g * h) : Matrix (Fin 3) (Fin 3) B) i j =
       ((ρ g : Matrix (Fin 3) (Fin 3) B) * (ρ h : Matrix (Fin 3) (Fin 3) B)) i j := fun g h i j => by
     rw [map_mul, Units.val_mul]
-  have hZ : (fun g => (z g, y g)) ∈ Z1 (twist (κ 2)⁻¹ (ext2 (κ 0) (κ 1) x hx)) := by
+  have hZ : (fun g => (z g, y g)) ∈ Z1 (UpperTheory.V.Loc.twist (κ 2)⁻¹ (ext2 (κ 0) (κ 1) x hx)) := by
     refine ⟨hz.prodMk hyc, fun g h => ?_⟩
     have h02 := hmat g h 0 2
     have h12 := hmat g h 1 2
