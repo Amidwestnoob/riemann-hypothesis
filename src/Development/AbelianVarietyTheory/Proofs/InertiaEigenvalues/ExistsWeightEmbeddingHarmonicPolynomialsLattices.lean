@@ -75,7 +75,7 @@ theorem coefFn_eq_cfn {n : ℕ} {K : Type} [Field K] (σ : K →+* ℂ) (lam : D
   change _ = coefFn (RingHom.id ℂ) lam (MvPolynomial.map σ F.1) x
   simp only [coefFn, MvPolynomial.eval₂Hom_map_hom, RingHom.id_comp]
 
-theorem exists_psi {m n : ℕ} (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m) :
+theorem exists_psi {m n : ℕ} (w : GlobalTheory.ExportSeries.Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m) :
     ∃ Ψ : VV ℂ w.lam →ₗ[ℂ] PolF D m n, (∀ F, Ψ F ∈ harm m w B) ∧ (∀ F, harmFn m w B (Ψ F) = cfn w.lam F) ∧
       ∀ P ∈ harm m w B, ∃ F, Ψ F = P := by
   let H := harm m w B
@@ -105,11 +105,11 @@ theorem exists_psi {m n : ℕ} (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm 
     change ((e1.symm (e3 (e2 (e2.symm (e3.symm (e1 ⟨P, hP⟩))))) : H) : PolF D m n) = P
     rw [LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply, LinearEquiv.symm_apply_apply]
 
-theorem psi_inj {m n : ℕ} {w : Weight D n} {B : GLR D n} {Ψ : VV ℂ w.lam →ₗ[ℂ] PolF D m n}
+theorem psi_inj {m n : ℕ} {w : GlobalTheory.ExportSeries.Weight D n} {B : GLR D n} {Ψ : VV ℂ w.lam →ₗ[ℂ] PolF D m n}
     (h2 : ∀ F, harmFn m w B (Ψ F) = cfn w.lam F) : Function.Injective Ψ := fun F G h =>
   cfn_injective w.lam (by rw [← h2, ← h2, h])
 
-theorem psi_rhoVr {m n : ℕ} {w : Weight D n} {B : GLR D n} (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
+theorem psi_rhoVr {m n : ℕ} {w : GlobalTheory.ExportSeries.Weight D n} {B : GLR D n} (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
     {Ψ : VV ℂ w.lam →ₗ[ℂ] PolF D m n} (h1 : ∀ F, Ψ F ∈ harm m w B) (h2 : ∀ F, harmFn m w B (Ψ F) = cfn w.lam F)
     (γ : GL (Fin n) D.host.E) (F : VV ℂ w.lam) :
     Ψ (rhoVr (tauE D) w.lam γ F) = fockGL m w B (embGL (tauE D) γ) (Ψ F) := by

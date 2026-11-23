@@ -90,12 +90,12 @@ def nCol : ℕ := 8 * ((∑ f : Lt1 Dw, 2 * rk f) / 8 + Fintype.card (Lt1 Dw) + 
 
 
 variable (Dw) in
-def shift (u : Weight Dw) (n : ℕ) (τ : Psi H) : ℤ :=
+def shift (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (τ : Psi H) : ℤ :=
   ((n / 2 : ℕ) : ℤ) + 1 - if h : 0 < Dw.p then u τ ⟨Dw.p - 1, by omega⟩ else 0
 
 
 variable (Dw) in
-def thA (u : Weight Dw) (n : ℕ) : (E →+* ℂ) × ℕ → ℕ :=
+def thA (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) : (E →+* ℂ) × ℕ → ℕ :=
   fun x => ((wtOf Dw (u + GlobalTheory.FlatLine.parWt Dw (shift Dw u n)) ((n / 2 : ℕ) : ℤ)).1 x).toNat
 
 theorem eight_dvd_nCol : 8 ∣ nCol Dw := Dvd.intro _ rfl
@@ -118,11 +118,11 @@ section Point
 variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
   {Y0 : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y0 cX} {Csz : ℝ} (p : PtAt ex Csz) (i : Fin D.R.m)
 
-abbrev aOf (u1 : Weight (dat p i)) : (D.host.E →+* ℂ) × ℕ → ℕ := thA (dat p i) u1 (nCol (dat p i))
+abbrev aOf (u1 : GlobalTheory.AllWt.Weight (dat p i)) : (D.host.E →+* ℂ) × ℕ → ℕ := thA (dat p i) u1 (nCol (dat p i))
 
-abbrev GOf (u1 : Weight (dat p i)) : WTZ D.host.E := wtZ (aOf p i u1) (nCol (dat p i))
+abbrev GOf (u1 : GlobalTheory.AllWt.Weight (dat p i)) : WTZ D.host.E := wtZ (aOf p i u1) (nCol (dat p i))
 
-def SumAt (PP C : ℝ) (u1 : Weight (dat p i)) : Prop :=
+def SumAt (PP C : ℝ) (u1 : GlobalTheory.AllWt.Weight (dat p i)) : Prop :=
   ∃ (S : Finset ℕ) (e : ℕ → ℝ) (s : ℝ), PrimeSum S e s ∧ lenT p i PP * s ≤ C * unitE p ∧
     ∀ (q : ℕ) [Fact q.Prime], (∀ k, q ≠ D.host.g k) →
       OscLe (p.T.Q.Xo ((i : ℕ) + 1)) p.T.Q.c q (gap (dat p i) (aOf p i u1)) (e q)
@@ -256,12 +256,12 @@ structure HostNum (D : D7) (L : SizeData₂ D) (PP A M : ℝ) : Prop where
   room : (L.sc.x ^ A) ^ M ≤ L.sc.b
   low : Real.sqrt L.sc.b ≤ L.sc.w'' D.R.n
 
-def wtsAt (PP : ℝ) (h0 : ℤ) (S eta : ℝ) (u1 : Weight (dat p i)) :
+def wtsAt (PP : ℝ) (h0 : ℤ) (S eta : ℝ) (u1 : GlobalTheory.AllWt.Weight (dat p i)) :
     GlobalTheory.MeanTop.Wts (Psi p.T.Q.H) ((dat p i).p + (dat p i).q) :=
   { kc := D.R.k - 1, p := (dat p i).p, T := lenT p i PP, Dd := dimFlag (dat p i), c0 := cZero D ((i : ℕ) + 1), h0 := h0, S := S,
     eta := eta, b := 4 * L.sc.b, w := fun τ => (anchor (dat p i) (wtA (p.κ i)) (p.κ i).n (D.R.k - 1) τ : ℝ), u := uW p i, u1 := u1 }
 
-theorem quo_iff (PP : ℝ) (h0 : ℤ) (S eta : ℝ) (u1 : Weight (dat p i)) : Quo p i PP u1 ↔ (wtsAt p i PP h0 S eta u1).IsDiv :=
+theorem quo_iff (PP : ℝ) (h0 : ℤ) (S eta : ℝ) (u1 : GlobalTheory.AllWt.Weight (dat p i)) : Quo p i PP u1 ↔ (wtsAt p i PP h0 S eta u1).IsDiv :=
   Iff.rfl
 
 structure WtNum (PP : ℝ) : Prop where

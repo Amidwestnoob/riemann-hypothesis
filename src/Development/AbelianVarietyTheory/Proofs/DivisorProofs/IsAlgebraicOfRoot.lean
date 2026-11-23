@@ -357,7 +357,7 @@ theorem baseOf_of_realPin {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 I0 T
       ΛS := hp.latS i j b, ΛT := hp.latT i j b, βS := hp.frS i j b, βT := hp.frT i j b, vac := hp.vac i j b,
       Pg := hp.Pg i j b, mu0 := hp.mu0 i j b, eta := hp.eta i j b, lam := hlam, delta := ?_, p := hP, q := hQ,
       c := funext hc }
-  rw [← liftWeight_delta, Weight.delta, Weight.delta, hP, hQ, hAP, hAM]
+  rw [← liftWeight_delta, GlobalTheory.ExportSeries.Weight.delta, GlobalTheory.ExportSeries.Weight.delta, hP, hQ, hAP, hAM]
   rfl
 
 abbrev phs {eps : ℝ} {Fm : FamP eps} {x : ℝ} {hx : Fm.x1 < x} {i : Fm.Ix x} (p : Pt Fm x hx i) (j : Fin (Fm.D x i).R.m) : ℂ :=

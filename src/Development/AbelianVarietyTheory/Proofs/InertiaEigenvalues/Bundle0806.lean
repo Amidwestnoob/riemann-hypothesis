@@ -482,7 +482,7 @@ theorem baseOf_of_pin : ∀ (D : D7) (X : RealSide D) (ρ : Setup D.ntw), ρ.Goo
       ΛS := hp.latS i j b, ΛT := hp.latT i j b, βS := hp.frS i j b, βT := hp.frT i j b, vac := hp.vac i j b,
       Pg := hp.Pg i j b, mu0 := hp.mu0 i j b, eta := hp.eta i j b, lam := hlam, delta := ?_, p := hP, q := hQ,
       c := funext hc }
-  rw [← GlobalTheory.ConjTwist.liftWeight_delta, Weight.delta, Weight.delta, hP, hQ, hAP, hAM]
+  rw [← GlobalTheory.ConjTwist.liftWeight_delta, GlobalTheory.ExportSeries.Weight.delta, GlobalTheory.ExportSeries.Weight.delta, hP, hQ, hAP, hAM]
   rfl
 
 end GlobalTheory.PinBase

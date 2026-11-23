@@ -408,7 +408,7 @@ theorem sum_idem_mul [Fintype (Comp Xo c)] (f : Rul Xo c) : ∑ Z : Comp Xo c, i
 
 namespace ConstSec
 
-variable {r : ℕ} {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {x : ℝ} {Z : Comp Xo c} {la : Weight Dw}
+variable {r : ℕ} {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {x : ℝ} {Z : Comp Xo c} {la : GlobalTheory.AllWt.Weight Dw}
   {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s : ConstSec U x Z la δ)
 
 end ConstSec

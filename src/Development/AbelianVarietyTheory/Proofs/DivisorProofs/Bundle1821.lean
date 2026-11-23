@@ -361,7 +361,7 @@ theorem baseOf_of_realPin_at {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 I
       ΛS := hp.latS i j b, ΛT := hp.latT i j b, βS := hp.frS i j b, βT := hp.frT i j b, vac := hp.vac i j b,
       Pg := hp.Pg i j b, mu0 := hp.mu0 i j b, eta := hp.eta i j b, lam := hlam, delta := ?_, p := hP, q := hQ,
       c := funext hc }
-  rw [← liftWeight_delta, Weight.delta, Weight.delta, hP, hQ, hAP, hAM]
+  rw [← liftWeight_delta, GlobalTheory.ExportSeries.Weight.delta, GlobalTheory.ExportSeries.Weight.delta, hP, hQ, hAP, hAM]
   rfl
 
 theorem smallInt_isCoefRing (D : D7) : IsCoefRing (embLL0 D) (labLL0 D) (smallInt D) :=
