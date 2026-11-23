@@ -223,12 +223,12 @@ section Core
 variable {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} (I : TC B X) (h : I.Ok) (l : I.Laws) (hX : B.fields.Ok)
 
 theorem eq_rowForm' (u : B.Word) (a : I.ι) (z : MtildeV (Pr := B.primes X) B.wts I.Ch I.sel (I.tup a) I.Ps) (G : (I.per l u a).Mt)
-    (hG : SameForm I l u a (toCx I hX a z) G) : G = rowForm I l h u a z :=
+    (hG : GlobalTheory.Mem.Df.SameForm I l u a (toCx I hX a z) G) : G = rowForm I l h u a z :=
   Subtype.ext (funext fun _ => funext fun p => hG p)
 
 theorem rowPin_core (Z : TC.Later B (I.cols l)) (e0 : ∀ a : (I.cols l).Tup, MtCx I a ≃ₗ[ℂ] Z.W.Amb a)
     (u : B.Word) (a : (I.cols l).Tup) (e : (I.per l u a).Mt ≃ₗ[ℂ] Z.W.Amb a)
-    (he : ∀ F, SameForm I l u a F (e.symm (e0 a F)))
+    (he : ∀ F, GlobalTheory.Mem.Df.SameForm I l u a F (e.symm (e0 a F)))
     (hgen : ∀ v ∈ (Z.W.Mtilde a).gen, ∃ z, e0 a (toCx I hX a z) = v)
     (hlat : ∀ z, z ∈ Formalism.L2.Col.MtildeL (Pr := B.primes X) B.wts I.Ch I.sel (I.tup a) I.Ps ↔ ∃ c : Z.W.Amb a → 𝓞 B.LL,
       e0 a (toCx I hX a z) = ∑ v ∈ (Z.W.Mtilde a).gen, B.embLL ((c v : 𝓞 B.LL) : B.LL) • v) :
