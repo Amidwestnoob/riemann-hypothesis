@@ -157,9 +157,9 @@ theorem tau_fst : tau R I e X ≫ torusFst (Spec (CommRingCat.of (R ⧸ I ^ (e +
   simp only [tau, Category.assoc]
   rw [h', reassoc_of% hι, ← h, reassoc_of% hinv]
 
-theorem tau_chi (a : X) : (tau R I e X).appTop.hom (chi (S := Spec (CommRingCat.of (R ⧸ I ^ (e + 1 + 1)))) X a) =
-    chi (S := Spec (CommRingCat.of (R ⧸ I ^ (e + 1)))) X a := by
-  rw [chi, chi, coord, coord]
+theorem tau_chi (a : X) : (tau R I e X).appTop.hom (ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht.chi (S := Spec (CommRingCat.of (R ⧸ I ^ (e + 1 + 1)))) X a) =
+    ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht.chi (S := Spec (CommRingCat.of (R ⧸ I ^ (e + 1)))) X a := by
+  rw [ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht.chi, ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht.chi, coord, coord]
   simp only [Over.id_left, Category.id_comp]
   conv_rhs => rw [← tau_fst R I e X]
   rw [CommRingCat.comp_apply, CommRingCat.comp_apply, appTop_comp_apply]
