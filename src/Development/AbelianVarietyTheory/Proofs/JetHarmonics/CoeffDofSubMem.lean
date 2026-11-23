@@ -87,8 +87,8 @@ theorem dof_baseChange (hJ : JetAlgSt) (hRep : RepSt) (hSer : SerSt) [IsLocalRin
     {G : Over (Spec (CommRingCat.of V))} [GrpObj G] {d : ℕ} {x : Fam G (Fin d)} (hx : IsUnivChart G d x)
     (Gl : FGLaw V d) (hGl : IsLawOf x Gl.F) {U : G.left.Opens} (hU : ⊤ ≤ η[G].left ⁻¹ᵁ U) {l : ℕ}
     (s : Fin l → Γ(G.left, U)) (S : Fin l → PS V 1 d) (hS : ∀ i, IsSer1 x U (s i) (S i)) (c : Fin l → R)
-    (v : Fin d → R) (y : R) (φ : JetR V (Fin d) 1 →ₐ[V] DualNumber R)
-    (hφ : ∀ i, φ (zR 1 i) = TrivSqZeroExt.inr (v i))
+    (v : Fin d → R) (y : R) (φ : ReciprocityTheory.ChartRestriction.G.Chart.JetR V (Fin d) 1 →ₐ[V] DualNumber R)
+    (hφ : ∀ i, φ (ReciprocityTheory.ChartRestriction.G.Chart.zR 1 i) = TrivSqZeroExt.inr (v i))
     (H : ∀ (A : Type) [CommRing A] [Algebra V A] (θ : DualNumber R →ₐ[V] A) (r : sp (R₀ := V) A ⟶ G),
       ⊤ ≤ r.left ⁻¹ᵁ U → ⊤ ≤ (r * (spMap θ ≫ spMap φ ≫ x 1)).left ⁻¹ᵁ U →
       ∑ i, θ (TrivSqZeroExt.inl (c i)) * fnVal (r * (spMap θ ≫ spMap φ ≫ x 1)).left U (s i) =

@@ -104,10 +104,10 @@ section Coeff
 
 
 variable (R R') in
-def jetCoeff (κ : Type) (m : ℕ) : JetR R κ m →ₐ[R] JetR R' κ m :=
-  jetLift R (RingHom.ker (jetAug R' κ m)) (ker_jetAug_pow κ m) (zR m) (zR_mem_ker m)
+def jetCoeff (κ : Type) (m : ℕ) : ReciprocityTheory.ChartRestriction.G.Chart.JetR R κ m →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' κ m :=
+  jetLift R (RingHom.ker (jetAug R' κ m)) (ker_jetAug_pow κ m) (ReciprocityTheory.ChartRestriction.G.Chart.zR m) (zR_mem_ker m)
 
-theorem jetCoeff_zR {κ : Type} (m : ℕ) (j : κ) : jetCoeff R R' κ m (zR m j) = zR m j :=
+theorem jetCoeff_zR {κ : Type} (m : ℕ) (j : κ) : jetCoeff R R' κ m (ReciprocityTheory.ChartRestriction.G.Chart.zR m j) = ReciprocityTheory.ChartRestriction.G.Chart.zR m j :=
   jetLift_zR _ _ _ _ j
 
 theorem jetCoeff_mk {κ : Type} (m : ℕ) (p : MvPolynomial κ R) :
@@ -153,9 +153,9 @@ theorem exists_pt_of_aug (C : Chart G) {A B : Type} [CommRing A] [Algebra R A] [
 
 theorem chart_aug {d : ℕ} {x : Fam G (Fin d)} (hx : IsUnivChart G d x) (m : ℕ) :
     spMap (jetAug R (Fin d) m) ≫ x m = 1 := by
-  have : jetAug R (Fin d) m = (jetAug R (Fin d) 0).comp (jetZeroR R (Fin d) m) :=
+  have : jetAug R (Fin d) m = (jetAug R (Fin d) 0).comp (ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin d) m) :=
     jet_ext fun j => (jetAug_zR m j).trans (jetAug_zR 0 j).symm
-  rw [this, ← spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
+  rw [this, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
 
 def fib {A : Type} [CommRing A] [Algebra R A] (q : A →ₐ[R] R') : Subalgebra R (R × A) :=
   AlgHom.equalizer ((Algebra.ofId R R').comp (AlgHom.fst R R A)) (q.comp (AlgHom.snd R R A))
@@ -193,20 +193,20 @@ theorem isUnivChart_baseChange [IsLocalRing R] {d : ℕ} {x : Fam G (Fin d)} (hx
     {x' : Fam G' (Fin d)} (hx' : ∀ m, push hπ (x' m) = spMap (jetCoeff R R' (Fin d) m) ≫ x m) :
     IsUnivChart G' d x' := by
   refine ⟨fun m => push_injective hπ ?_, fun m => push_injective hπ ?_, ?_⟩
-  · rw [push_spMap, hx', hx', ← hx.1 m, ← Category.assoc, ← Category.assoc, spMap_comp, spMap_comp]
+  · rw [push_spMap, hx', hx', ← hx.1 m, ← Category.assoc, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
     congr 2
     refine jet_ext fun j => ?_
-    show jetTruncR R' _ m (jetCoeff R R' _ _ (zR _ j)) = jetCoeff R R' _ _ (zR _ j)
+    show ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R' _ m (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)) = jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)
     rw [jetCoeff_zR, jetCoeff_zR]
     rfl
-  · rw [push_spMap, hx', push_one, ← Category.assoc, spMap_comp]
-    have : ((jetZeroR R' (Fin d) m).restrictScalars R).comp (jetCoeff R R' (Fin d) m) =
-        (jetCoeff R R' (Fin d) 0).comp (jetZeroR R (Fin d) m) := by
+  · rw [push_spMap, hx', push_one, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
+    have : ((ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R' (Fin d) m).restrictScalars R).comp (jetCoeff R R' (Fin d) m) =
+        (jetCoeff R R' (Fin d) 0).comp (ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin d) m) := by
       refine jet_ext fun j => ?_
-      show jetZeroR R' _ m (jetCoeff R R' _ _ (zR _ j)) = jetCoeff R R' _ _ (zR _ j)
+      show ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R' _ m (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)) = jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)
       rw [jetCoeff_zR, jetCoeff_zR]
       rfl
-    rw [this, ← spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
+    rw [this, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
   intro A _ _ aug m hJ y hy
   letI : Algebra R A := ((algebraMap R' A).comp (algebraMap R R')).toAlgebra
   haveI : IsScalarTower R R' A := IsScalarTower.of_algebraMap_eq fun _ => rfl
@@ -222,29 +222,29 @@ theorem isUnivChart_baseChange [IsLocalRing R] {d : ℕ} {x : Fam G (Fin d)} (hx
   obtain ⟨ψ₀, ⟨ha, hψ₀⟩, hu⟩ := hx.2.2 (fib q) (fibFst q) m (fib_ker q hJq) (ReciprocityTheory.ChartRestriction.G.Chart.pt C h₀) (by
     rw [spMap_pt]
     exact pt_eps_self C)
-  have hb : ∀ j, fibSnd q (ψ₀ (zR m j)) ∈ RingHom.ker aug := fun j => by
+  have hb : ∀ j, fibSnd q (ψ₀ (ReciprocityTheory.ChartRestriction.G.Chart.zR m j)) ∈ RingHom.ker aug := fun j => by
     show q _ = 0
-    rw [fib_cond, show fibFst q (ψ₀ (zR m j)) = 0 from (AlgHom.congr_fun ha _).trans (jetAug_zR m j), map_zero]
+    rw [fib_cond, show fibFst q (ψ₀ (ReciprocityTheory.ChartRestriction.G.Chart.zR m j)) = 0 from (AlgHom.congr_fun ha _).trans (jetAug_zR m j), map_zero]
   refine ⟨jetLift R' (RingHom.ker aug) hJ _ hb, ⟨jet_ext fun j => ?_, push_injective hπ ?_⟩, ?_⟩
   · rw [AlgHom.comp_apply, jetLift_zR, jetAug_zR]
     exact hb j
   · have : ((jetLift R' (RingHom.ker aug) hJ _ hb).restrictScalars R).comp (jetCoeff R R' (Fin d) m) =
         (fibSnd q).comp ψ₀ := by
       refine jet_ext fun j => ?_
-      show jetLift R' (RingHom.ker aug) hJ _ hb (jetCoeff R R' _ _ (zR _ j)) = _
+      show jetLift R' (RingHom.ker aug) hJ _ hb (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)) = _
       rw [jetCoeff_zR, jetLift_zR]
       rfl
-    rw [push_spMap, hx', ← Category.assoc, spMap_comp, this, ← spMap_comp, Category.assoc, ← hψ₀, spMap_pt, hh]
+    rw [push_spMap, hx', ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, this, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, ← hψ₀, spMap_pt, hh]
     rfl
   · rintro ψ ⟨hψa, hψ⟩
     let v := (ψ.restrictScalars R).comp (jetCoeff R R' (Fin d) m)
     have hv : q.comp v = (Algebra.ofId R R').comp (jetAug R (Fin d) m) := by
       refine jet_ext fun j => ?_
-      show aug.comp ψ (jetCoeff R R' _ _ (zR _ j)) = algebraMap R R' (jetAug R _ m (zR m j))
+      show aug.comp ψ (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)) = algebraMap R R' (jetAug R _ m (ReciprocityTheory.ChartRestriction.G.Chart.zR m j))
       rw [jetCoeff_zR, hψa, jetAug_zR, jetAug_zR, map_zero]
     have hvk : h = v.comp k := by
       apply pt_injective C
-      rw [← hh, hψ, push_spMap, hx', ← Category.assoc, spMap_comp, hk, spMap_pt]
+      rw [← hh, hψ, push_spMap, hx', ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, hk, spMap_pt]
     have e := hu (fibLift q (jetAug R (Fin d) m) v hv) ⟨rfl, by
       rw [hk, spMap_pt]
       congr 1
@@ -253,7 +253,7 @@ theorem isUnivChart_baseChange [IsLocalRing R] {d : ℕ} {x : Fam G (Fin d)} (hx
       · exact AlgHom.congr_fun hvk s⟩
     refine jet_ext fun j => ?_
     rw [jetLift_zR, ← e]
-    show _ = ψ (jetCoeff R R' _ _ (zR _ j))
+    show _ = ψ (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j))
     rw [jetCoeff_zR]
 
 end Univ
@@ -263,7 +263,7 @@ section Test
 variable {d n N : ℕ}
 
 def IsMove (a : Fin N → Pt R' n d)
-    (Θ : ∀ m, JetR R (Fin N × Fin d) m →ₐ[R] JetR R' (Fin n × Fin d) m) : Prop :=
+    (Θ : ∀ m, ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin N × Fin d) m →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m) : Prop :=
   ∀ m g, Θ m (toJet m g) = toJet m (ev a (MvPowerSeries.map (algebraMap R R') g))
 
 theorem exists_isMove (hJ : JetAlgSt) (a : Fin N → Pt R' n d) (ha : ∀ i, GP (a i)) :
@@ -314,10 +314,10 @@ theorem const_map {κ : Type} {g : MvPowerSeries κ R} (hg : constantCoeff g = 0
     constantCoeff (MvPowerSeries.map (algebraMap R R') g) = 0 := by
   rw [MvPowerSeries.constantCoeff_map, hg, map_zero]
 
-theorem hasSer_move {a : Fin N → Pt R' n d} {Θ : ∀ m, JetR R (Fin N × Fin d) m →ₐ[R] JetR R' (Fin n × Fin d) m}
+theorem hasSer_move {a : Fin N → Pt R' n d} {Θ : ∀ m, ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin N × Fin d) m →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m}
     (hΘ : IsMove a Θ) {X Y : Scheme.{0}} (q : X ⟶ Y)
-    (r : ∀ m, Spec (CommRingCat.of (JetR R' (Fin n × Fin d) m)) ⟶ X)
-    (p : ∀ m, Spec (CommRingCat.of (JetR R (Fin N × Fin d) m)) ⟶ Y)
+    (r : ∀ m, Spec (CommRingCat.of (ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m)) ⟶ X)
+    (p : ∀ m, Spec (CommRingCat.of (ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin N × Fin d) m)) ⟶ Y)
     (h : ∀ m, r m ≫ q = (spMap (Θ m)).left ≫ p m) (U : Y.Opens) (f : Γ(Y, U)) (g : PS R N d)
     (hg : HasSer p U f g) :
     HasSer r (q ⁻¹ᵁ U) ((q.app U).hom f) (ev a (MvPowerSeries.map (algebraMap R R') g)) := by
@@ -335,19 +335,19 @@ variable {G : Over (Spec (CommRingCat.of R))} [GrpObj G] {G' : Over (Spec (CommR
 theorem rep_iff (hJ : JetAlgSt) {x : Fam G (Fin d)} {x' : Fam G' (Fin d)}
     (hx' : ∀ m, push hπ (x' m) = spMap (jetCoeff R R' (Fin d) m) ≫ x m)
     {a : Fin N → Pt R' n d} (ha : ∀ i, GP (a i))
-    {Θ : ∀ m, JetR R (Fin N × Fin d) m →ₐ[R] JetR R' (Fin n × Fin d) m} (hΘ : IsMove a Θ)
+    {Θ : ∀ m, ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin N × Fin d) m →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m} (hΘ : IsMove a Θ)
     {b : Pt R N d} {t : Fam G (Fin N × Fin d)} (ht : Rep x b t) (y : Fam G' (Fin n × Fin d)) :
     Rep x' (fun j => ev a (MvPowerSeries.map (algebraMap R R') (b j))) y ↔
       ∀ m, push hπ (y m) = spMap (Θ m) ≫ t m := by
-  have key : ∀ m (ψ : JetR R' (Fin d) m →ₐ[R'] JetR R' (Fin n × Fin d) m),
-      (∀ j, ψ (zR m j) = toJet m (ev a (MvPowerSeries.map (algebraMap R R') (b j)))) →
+  have key : ∀ m (ψ : ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin d) m →ₐ[R'] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m),
+      (∀ j, ψ (ReciprocityTheory.ChartRestriction.G.Chart.zR m j) = toJet m (ev a (MvPowerSeries.map (algebraMap R R') (b j)))) →
       push hπ (spMap ψ ≫ x' m) = spMap (Θ m) ≫ t m := by
     intro m ψ hψ
     obtain ⟨φ, hφ, e⟩ := ht.2 m
-    rw [push_spMap, hx', e, ← Category.assoc, ← Category.assoc, spMap_comp, spMap_comp]
+    rw [push_spMap, hx', e, ← Category.assoc, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
     congr 2
     refine jet_ext fun j => ?_
-    show ψ (jetCoeff R R' _ _ (zR _ j)) = Θ m (φ (zR m j))
+    show ψ (jetCoeff R R' _ _ (ReciprocityTheory.ChartRestriction.G.Chart.zR _ j)) = Θ m (φ (ReciprocityTheory.ChartRestriction.G.Chart.zR m j))
     rw [jetCoeff_zR, hψ, hφ, hΘ]
   constructor
   · intro h m
@@ -363,7 +363,7 @@ theorem rep_iff (hJ : JetAlgSt) {x : Fam G (Fin d)} {x' : Fam G' (Fin d)}
 theorem exists_move (hJ : JetAlgSt) {x : Fam G (Fin d)} {x' : Fam G' (Fin d)}
     (hx' : ∀ m, push hπ (x' m) = spMap (jetCoeff R R' (Fin d) m) ≫ x m)
     (a : Fin N → Pt R' n d) (y : Fin N → Fam G' (Fin n × Fin d)) (hy : ∀ i, Rep x' (a i) (y i)) :
-    ∃ (Θ : ∀ m, JetR R (Fin N × Fin d) m →ₐ[R] JetR R' (Fin n × Fin d) m) (t : Fin N → Fam G (Fin N × Fin d)),
+    ∃ (Θ : ∀ m, ReciprocityTheory.ChartRestriction.G.Chart.JetR R (Fin N × Fin d) m →ₐ[R] ReciprocityTheory.ChartRestriction.G.Chart.JetR R' (Fin n × Fin d) m) (t : Fin N → Fam G (Fin N × Fin d)),
       IsMove a Θ ∧ (∀ i, Rep x (ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ.pt R d i) (t i)) ∧
       ∀ i m, push hπ (y i m) = spMap (Θ m) ≫ t i m := by
   have ha : ∀ i, GP (a i) := fun i => (hy i).1

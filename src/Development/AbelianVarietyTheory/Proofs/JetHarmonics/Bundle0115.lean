@@ -57,19 +57,19 @@ theorem isUnivSp_baseChange [IsLocalRing R] {κ : Type} {x : ∀ m : ℕ, sp (R�
     (hx' : ∀ m, push hπ (x' m) = spMap (jetCoeff R R' κ m) ≫ x m) :
     IsUnivSp G' κ x' := by
   refine ⟨fun m => push_injective hπ ?_, fun m => push_injective hπ ?_, ?_⟩
-  · rw [push_spMap, hx', hx', ← hx.1 m, ← Category.assoc, ← Category.assoc, spMap_comp, spMap_comp]
+  · rw [push_spMap, hx', hx', ← hx.1 m, ← Category.assoc, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
     congr 2
     refine jet_ext fun j => ?_
     show jetTruncR R' _ m (jetCoeff R R' _ _ (zR _ j)) = jetCoeff R R' _ _ (zR _ j)
     rw [jetCoeff_zR, jetCoeff_zR]
     rfl
-  · rw [push_spMap, hx', push_one, ← Category.assoc, spMap_comp]
+  · rw [push_spMap, hx', push_one, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp]
     have : ((jetAug R' κ m).restrictScalars R).comp (jetCoeff R R' κ m) =
         (Algebra.ofId R R').comp (jetAug R κ m) := by
       refine jet_ext fun j => ?_
       show jetAug R' _ m (jetCoeff R R' _ _ (zR _ j)) = algebraMap R R' (jetAug R _ m (zR m j))
       rw [jetCoeff_zR, jetAug_zR, jetAug_zR, map_zero]
-    rw [this, ← spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
+    rw [this, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, hx.2.1, MonObj.comp_one]
   intro A _ _ aug m hJ y hy
   letI : Algebra R A := ((algebraMap R' A).comp (algebraMap R R')).toAlgebra
   haveI : IsScalarTower R R' A := IsScalarTower.of_algebraMap_eq fun _ => rfl
@@ -97,7 +97,7 @@ theorem isUnivSp_baseChange [IsLocalRing R] {κ : Type} {x : ∀ m : ℕ, sp (R�
       show jetLift R' (RingHom.ker aug) hJ _ hb (jetCoeff R R' _ _ (zR _ j)) = _
       rw [jetCoeff_zR, jetLift_zR]
       rfl
-    rw [push_spMap, hx', ← Category.assoc, spMap_comp, this, ← spMap_comp, Category.assoc, ← hψ₀, spMap_pt, hh]
+    rw [push_spMap, hx', ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, this, ← ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, Category.assoc, ← hψ₀, spMap_pt, hh]
     rfl
   · rintro ψ ⟨hψa, hψ⟩
     let v := (ψ.restrictScalars R).comp (jetCoeff R R' κ m)
@@ -107,7 +107,7 @@ theorem isUnivSp_baseChange [IsLocalRing R] {κ : Type} {x : ∀ m : ℕ, sp (R�
       rw [jetCoeff_zR, hψa, jetAug_zR, jetAug_zR, map_zero]
     have hvk : h = v.comp k := by
       apply pt_injective C
-      rw [← hh, hψ, push_spMap, hx', ← Category.assoc, spMap_comp, hk, spMap_pt]
+      rw [← hh, hψ, push_spMap, hx', ← Category.assoc, ReciprocityTheory.ChartRestriction.G.Chart.spMap_comp, hk, spMap_pt]
     have e := hu (fibLift q (jetAug R κ m) v hv) ⟨rfl, by
       rw [hk, spMap_pt]
       congr 1
