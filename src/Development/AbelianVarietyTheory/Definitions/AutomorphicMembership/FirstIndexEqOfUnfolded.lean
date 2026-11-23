@@ -301,7 +301,7 @@ def cxOfModels : CxPkg Tau r j Comp where
   connN := fun z => onQuot (connNorm (hodgeI (hodgeC (Y z.1) (κ z.1))) (B z.1).met (B z.1).beta) z.2
   curvN := fun z => onQuot (curvNorm (hodgeI (hodgeC (Y z.1) (κ z.1))) (B z.1).beta) z.2
   normDetInf := fun t z => onQuot
-    (fun w => detNorm (hodgeC (Y z.1) (κ z.1)) ((s z.1 t : ℂ) / (mat (x0F (Y z.1)) (κ z.1 t)).det) w t) z.2
+    (fun w => GlobalTheory.HodgeDomain.detNorm (hodgeC (Y z.1) (κ z.1)) ((s z.1 t : ℂ) / (mat (x0F (Y z.1)) (κ z.1 t)).det) w t) z.2
 
 end Models
 

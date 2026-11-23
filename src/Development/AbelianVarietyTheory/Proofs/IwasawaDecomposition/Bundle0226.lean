@@ -299,8 +299,8 @@ theorem ent_mul (x y : GL (Fin j) (Cinf E)) : ent E j (x * y) = ent E j x * ent 
   rw [Units.val_mul, Matrix.mul_apply, Matrix.mul_apply, Finset.sum_apply]
   rfl
 
-theorem detNorm_ent_pos (y : GL (Fin j) (Cinf E)) : 0 < detNorm E j (ent E j y) := by
-  unfold detNorm
+theorem detNorm_ent_pos (y : GL (Fin j) (Cinf E)) : 0 < GlobalTheory.FlagMeas.detNorm E j (ent E j y) := by
+  unfold GlobalTheory.FlagMeas.detNorm
   refine Finset.prod_pos fun w _ => ?_
   have h1 : Matrix.of (ent E j y w) =
       (y : Matrix (Fin j) (Fin j) (Cinf E)).map (Pi.evalRingHom (fun _ => ℂ) w) := by
@@ -315,8 +315,8 @@ theorem detNorm_ent_pos (y : GL (Fin j) (Cinf E)) : 0 < detNorm E j (ent E j y) 
   positivity
 
 theorem haarGL_lt_top_of_isCompact (S : Set (InfinitePlace E → Fin j → Fin j → ℂ)) (hS : IsCompact S)
-    (hpos : ∀ x ∈ S, 0 < detNorm E j x) : haarGL E j S < ⊤ := by
-  have hd : Continuous fun x : InfinitePlace E → Fin j → Fin j → ℂ => detNorm E j x :=
+    (hpos : ∀ x ∈ S, 0 < GlobalTheory.FlagMeas.detNorm E j x) : haarGL E j S < ⊤ := by
+  have hd : Continuous fun x : InfinitePlace E → Fin j → Fin j → ℂ => GlobalTheory.FlagMeas.detNorm E j x :=
     GlobalTheory.HaarLeftInv.continuous_detNorm E j
   haveI := GlobalTheory.HaarLeftInv.isAddHaar_volume E j
   rcases S.eq_empty_or_nonempty with h | h
@@ -324,31 +324,31 @@ theorem haarGL_lt_top_of_isCompact (S : Set (InfinitePlace E → Fin j → Fin j
   obtain ⟨x0, hx0, hmin⟩ := hS.exists_isMinOn h hd.continuousOn
   have hm := hpos x0 hx0
   show Measure.withDensity (volume : Measure (InfinitePlace E → Fin j → Fin j → ℂ))
-    (fun x => ENNReal.ofReal ((detNorm E j x)⁻¹ ^ j)) S < ⊤
+    (fun x => ENNReal.ofReal ((GlobalTheory.FlagMeas.detNorm E j x)⁻¹ ^ j)) S < ⊤
   rw [withDensity_apply _ hS.isClosed.measurableSet]
   refine (setLIntegral_mono' hS.isClosed.measurableSet
-    (g := fun _ => ENNReal.ofReal ((detNorm E j x0)⁻¹ ^ j)) fun x hx => ?_).trans_lt ?_
+    (g := fun _ => ENNReal.ofReal ((GlobalTheory.FlagMeas.detNorm E j x0)⁻¹ ^ j)) fun x hx => ?_).trans_lt ?_
   · exact ENNReal.ofReal_le_ofReal (pow_le_pow_left₀ (inv_nonneg.2 (hpos x hx).le)
       (inv_anti₀ hm (hmin hx)) j)
   · rw [setLIntegral_const]
     exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top hS.measure_lt_top
 
 theorem haarGL_ne_zero_of_isOpen (S : Set (InfinitePlace E → Fin j → Fin j → ℂ)) (hS : IsOpen S)
-    (hne : S.Nonempty) (hpos : ∀ x ∈ S, 0 < detNorm E j x) : haarGL E j S ≠ 0 := by
-  have hd : Continuous fun x : InfinitePlace E → Fin j → Fin j → ℂ => detNorm E j x :=
+    (hne : S.Nonempty) (hpos : ∀ x ∈ S, 0 < GlobalTheory.FlagMeas.detNorm E j x) : haarGL E j S ≠ 0 := by
+  have hd : Continuous fun x : InfinitePlace E → Fin j → Fin j → ℂ => GlobalTheory.FlagMeas.detNorm E j x :=
     GlobalTheory.HaarLeftInv.continuous_detNorm E j
   haveI := GlobalTheory.HaarLeftInv.isAddHaar_volume E j
   show Measure.withDensity (volume : Measure (InfinitePlace E → Fin j → Fin j → ℂ))
-    (fun x => ENNReal.ofReal ((detNorm E j x)⁻¹ ^ j)) S ≠ 0
-  have hf : Measurable fun x : InfinitePlace E → Fin j → Fin j → ℂ => ENNReal.ofReal ((detNorm E j x)⁻¹ ^ j) :=
+    (fun x => ENNReal.ofReal ((GlobalTheory.FlagMeas.detNorm E j x)⁻¹ ^ j)) S ≠ 0
+  have hf : Measurable fun x : InfinitePlace E → Fin j → Fin j → ℂ => ENNReal.ofReal ((GlobalTheory.FlagMeas.detNorm E j x)⁻¹ ^ j) :=
     ((hd.measurable.inv).pow_const j).ennreal_ofReal
   rw [Ne, withDensity_apply_eq_zero' hf.aemeasurable]
-  have : {x : InfinitePlace E → Fin j → Fin j → ℂ | ENNReal.ofReal ((detNorm E j x)⁻¹ ^ j) ≠ 0} ∩ S = S :=
+  have : {x : InfinitePlace E → Fin j → Fin j → ℂ | ENNReal.ofReal ((GlobalTheory.FlagMeas.detNorm E j x)⁻¹ ^ j) ≠ 0} ∩ S = S :=
     Set.inter_eq_right.2 fun x hx => (ENNReal.ofReal_pos.2 (pow_pos (inv_pos.2 (hpos x hx)) j)).ne'
   rw [this]
   exact hS.measure_ne_zero volume hne
 
-theorem haarGL_image_mul (a : MatInf E j) (ha : 0 < detNorm E j a) (T : Set (MatInf E j)) :
+theorem haarGL_image_mul (a : MatInf E j) (ha : 0 < GlobalTheory.FlagMeas.detNorm E j a) (T : Set (MatInf E j)) :
     haarGL E j ((fun g => a * g) '' T) = haarGL E j T := by
   obtain ⟨hemb, hmp⟩ := GlobalTheory.HaarLeftInv.measurePreserving_mul_left E j a ha
   have := hemb.map_apply (haarGL E j) ((fun g => a * g) '' T)
