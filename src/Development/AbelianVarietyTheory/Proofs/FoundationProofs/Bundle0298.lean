@@ -263,29 +263,29 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [Seco
   [MeasurableSpace G] [BorelSpace G] {Γ : Subgroup G} [DiscreteTopology Γ] {μ : Measure G}
   [μ.IsMulLeftInvariant] [μ.IsMulRightInvariant] {f : G → ℂ}
 
-theorem integrableOn_rmul (F : L2 Γ μ) (y : G) {s : Set (Quot Γ)} (hs : quotMeasure Γ μ s ≠ ⊤) :
-    IntegrableOn (fun q => F (rmul Γ y q)) s (quotMeasure Γ μ) :=
+theorem integrableOn_rmul (F : L2 Γ μ) (y : G) {s : Set (Quot Γ)} (hs : GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ s ≠ ⊤) :
+    IntegrableOn (fun q => F (rmul Γ y q)) s (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
   (integrableOn_Lp_of_measure_ne_top (R Γ μ y F) (by norm_num) hs).congr (ae_restrict_of_ae (coeFn_R y F))
 
-theorem setIntegral_norm_rmul_le (F : L2 Γ μ) (y : G) {s : Set (Quot Γ)} (hs : quotMeasure Γ μ s ≠ ⊤) :
-    ∫ q in s, ‖F (rmul Γ y q)‖ ∂quotMeasure Γ μ ≤
-      (quotMeasure Γ μ).real s + ∫ q, ‖F q‖ ^ 2 ∂quotMeasure Γ μ := by
-  have h2 : Integrable (fun q => ‖F q‖ ^ 2) (quotMeasure Γ μ) :=
+theorem setIntegral_norm_rmul_le (F : L2 Γ μ) (y : G) {s : Set (Quot Γ)} (hs : GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ s ≠ ⊤) :
+    ∫ q in s, ‖F (rmul Γ y q)‖ ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ ≤
+      (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).real s + ∫ q, ‖F q‖ ^ 2 ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
+  have h2 : Integrable (fun q => ‖F q‖ ^ 2) (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
     (memLp_two_iff_integrable_sq_norm (Lp.aestronglyMeasurable F)).1 (Lp.memLp F)
-  have h3 : Integrable (fun q => ‖F (rmul Γ y q)‖ ^ 2) (quotMeasure Γ μ) :=
+  have h3 : Integrable (fun q => ‖F (rmul Γ y q)‖ ^ 2) (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
     ((measurePreserving_rmul y).integrable_comp h2.1).2 h2
-  have h4 : ∫ q, ‖F (rmul Γ y q)‖ ^ 2 ∂quotMeasure Γ μ = ∫ q, ‖F q‖ ^ 2 ∂quotMeasure Γ μ := by
-    have h := integral_map (μ := quotMeasure Γ μ) (measurable_rmul (Γ := Γ) y).aemeasurable
+  have h4 : ∫ q, ‖F (rmul Γ y q)‖ ^ 2 ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ = ∫ q, ‖F q‖ ^ 2 ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
+    have h := integral_map (μ := GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) (measurable_rmul (Γ := Γ) y).aemeasurable
       (f := fun q => ‖F q‖ ^ 2) (by rw [(measurePreserving_rmul y).map_eq]; exact h2.1)
     rw [(measurePreserving_rmul y).map_eq] at h
     exact h.symm
-  have h1 : IntegrableOn (fun _ => (1 : ℝ)) s (quotMeasure Γ μ) := integrableOn_const hs
-  calc ∫ q in s, ‖F (rmul Γ y q)‖ ∂quotMeasure Γ μ
-      ≤ ∫ q in s, (1 + ‖F (rmul Γ y q)‖ ^ 2) ∂quotMeasure Γ μ :=
+  have h1 : IntegrableOn (fun _ => (1 : ℝ)) s (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) := integrableOn_const hs
+  calc ∫ q in s, ‖F (rmul Γ y q)‖ ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ
+      ≤ ∫ q in s, (1 + ‖F (rmul Γ y q)‖ ^ 2) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ :=
         integral_mono (integrableOn_rmul F y hs).norm (Integrable.add h1 h3.integrableOn) fun q => by
           beta_reduce
           nlinarith [sq_nonneg (‖F (rmul Γ y q)‖ - 1), norm_nonneg (F (rmul Γ y q))]
-    _ = (quotMeasure Γ μ).real s + ∫ q in s, ‖F (rmul Γ y q)‖ ^ 2 ∂quotMeasure Γ μ := by
+    _ = (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).real s + ∫ q in s, ‖F (rmul Γ y q)‖ ^ 2 ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
         rw [integral_add h1 h3.integrableOn]
         simp
     _ ≤ _ := by
@@ -294,14 +294,14 @@ theorem setIntegral_norm_rmul_le (F : L2 Γ μ) (y : G) {s : Set (Quot Γ)} (hs 
 
 variable [SigmaFinite μ]
 
-theorem integrable_prod (hf : Integrable f μ) (F : L2 Γ μ) {s : Set (Quot Γ)} (hs : quotMeasure Γ μ s ≠ ⊤) :
-    Integrable (fun p : Quot Γ × G => f p.2 * F (rmul Γ p.2 p.1)) (((quotMeasure Γ μ).restrict s).prod μ) := by
-  haveI : IsFiniteMeasure ((quotMeasure Γ μ).restrict s) := isFiniteMeasure_restrict.2 hs
+theorem integrable_prod (hf : Integrable f μ) (F : L2 Γ μ) {s : Set (Quot Γ)} (hs : GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ s ≠ ⊤) :
+    Integrable (fun p : Quot Γ × G => f p.2 * F (rmul Γ p.2 p.1)) (((GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).restrict s).prod μ) := by
+  haveI : IsFiniteMeasure ((GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).restrict s) := isFiniteMeasure_restrict.2 hs
   have hm : AEStronglyMeasurable (fun p : Quot Γ × G => f p.2 * F (rmul Γ p.2 p.1))
-      (((quotMeasure Γ μ).restrict s).prod μ) :=
+      (((GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).restrict s).prod μ) :=
     hf.1.comp_snd.mul ((Lp.stronglyMeasurable F).comp_measurable measurable_rmul_uncurry).aestronglyMeasurable
   refine (integrable_prod_iff' hm).2 ⟨.of_forall fun y => (integrableOn_rmul F y hs).const_mul (f y), ?_⟩
-  refine (hf.norm.mul_const ((quotMeasure Γ μ).real s + ∫ q, ‖F q‖ ^ 2 ∂quotMeasure Γ μ)).mono'
+  refine (hf.norm.mul_const ((GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).real s + ∫ q, ‖F q‖ ^ 2 ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ)).mono'
     hm.norm.prod_swap.integral_prod_right' (.of_forall fun y => ?_)
   rw [Real.norm_of_nonneg (integral_nonneg fun _ => norm_nonneg _)]
   simp only [norm_mul]
@@ -309,17 +309,17 @@ theorem integrable_prod (hf : Integrable f μ) (F : L2 Γ μ) {s : Set (Quot Γ)
   exact mul_le_mul_of_nonneg_left (setIntegral_norm_rmul_le F y hs) (norm_nonneg _)
 
 theorem ae_integrable (hf : Integrable f μ) (F : L2 Γ μ) :
-    ∀ᵐ q ∂quotMeasure Γ μ, Integrable (fun y => f y * F (rmul Γ y q)) μ := by
-  haveI : SigmaFinite (quotMeasure Γ μ) :=
+    ∀ᵐ q ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ, Integrable (fun y => f y * F (rmul Γ y q)) μ := by
+  haveI : SigmaFinite (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
     SigmaFinite.of_map _ (measurePreserving_sec (Γ := Γ) (μ := μ)).measurable.aemeasurable
       (by rw [measurePreserving_sec.map_eq]; infer_instance)
   refine ae_of_forall_measure_lt_top_ae_restrict _ fun s _ hs => ?_
-  haveI : IsFiniteMeasure ((quotMeasure Γ μ).restrict s) := isFiniteMeasure_restrict.2 hs.ne
+  haveI : IsFiniteMeasure ((GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ).restrict s) := isFiniteMeasure_restrict.2 hs.ne
   exact (integrable_prod hf F hs.ne).prod_right_ae
 
 theorem coeFn_Rop [LocallyCompactSpace G] [IsFiniteMeasureOnCompacts μ] (hf : Integrable f μ) (F : L2 Γ μ) :
-    Rop Γ μ f F =ᵐ[quotMeasure Γ μ] fun q => ∫ y, f y * F (rmul Γ y q) ∂μ := by
-  haveI : SigmaFinite (quotMeasure Γ μ) :=
+    Rop Γ μ f F =ᵐ[GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ] fun q => ∫ y, f y * F (rmul Γ y q) ∂μ := by
+  haveI : SigmaFinite (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
     SigmaFinite.of_map _ (measurePreserving_sec (Γ := Γ) (μ := μ)).measurable.aemeasurable
       (by rw [measurePreserving_sec.map_eq]; infer_instance)
   refine ae_eq_of_forall_setIntegral_eq_of_sigmaFinite

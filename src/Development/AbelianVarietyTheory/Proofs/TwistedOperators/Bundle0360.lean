@@ -405,8 +405,8 @@ theorem elliptic_expansion {E : Type} [Field E] [NumberField E] {F : Subfield E}
       ∏ w, Phi (J := J) (μa w) (dta P w) (fa w)) :
     (∀ P, (torVol P (dt P) ≠ ⊤ ∧ (∀ v, PhiOK (J := J) (μf v) (dtf P v) (ff v)) ∧
       ∀ᶠ v in cofinite, Phi (J := J) (μf v) (dtf P v) (ff v) = 1) ∧ ∀ w, PhiOK (J := J) (μa w) (dta P w) (fa w)) ∧
-    (Function.support t).Finite ∧ Integrable (descend (ratPts σ J) K) (quotMeasure (ratPts σ J) μ) ∧
-      ∫ q, descend (ratPts σ J) K q ∂quotMeasure (ratPts σ J) μ = ∑ᶠ P, t P := by
+    (Function.support t).Finite ∧ Integrable (descend (ratPts σ J) K) (GlobalTheory.AutomorphicL2Unitary.quotMeasure (ratPts σ J) μ) ∧
+      ∫ q, descend (ratPts σ J) K q ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure (ratPts σ J) μ = ∑ᶠ P, t P := by
   have ha' : ∀ w, Continuous (fa w) ∧ HasCompactSupport (fa w) := fun w =>
     ⟨continuous_of_mem_ccSmooth (continuous_archCoord σ J w) (ha w), (ha w).1⟩
   have hc := (continuous_of_mem_ccAd (tensor_mem_ccAd ha hf)).2
