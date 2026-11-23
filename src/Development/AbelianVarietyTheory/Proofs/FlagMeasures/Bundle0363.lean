@@ -172,8 +172,8 @@ theorem wit_sub_dvd {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpac
     (h : AdmWit Λ g F F' ξ) (h' : AdmWit Λ g F F' ξ') (a b : Fin (r + 1)) : (g : 𝓞 E) ∣ (ξ - ξ') a b := by
   have hM : ModG S Λ g (∑ c, (((ξ - ξ') c b : 𝓞 E) : E) • frame F c) := by
     have heq : ∑ c, (((ξ - ξ') c b : 𝓞 E) : E) • frame F c =
-        (frame F' b - frameAct (frame F) ξ' b) - (frame F' b - frameAct (frame F) ξ b) := by
-      simp only [frameAct, Matrix.sub_apply, RingOfIntegers.coe_eq_algebraMap, map_sub, sub_smul,
+        (frame F' b - Formalism.MainNotions.S.Lat.frameAct (frame F) ξ' b) - (frame F' b - Formalism.MainNotions.S.Lat.frameAct (frame F) ξ b) := by
+      simp only [Formalism.MainNotions.S.Lat.frameAct, Matrix.sub_apply, RingOfIntegers.coe_eq_algebraMap, map_sub, sub_smul,
         Finset.sum_sub_distrib]
       abel
     rw [heq]
@@ -241,13 +241,13 @@ theorem witness_congr : ∀ (D : D7) (Z : LocDat D) (u u' : D.what₂.Word) (F0 
           ⟨⟨((D.host.g 1 : ℕ) : (D.s.atP p).Ep) * (D.s.atP p).ιE (y : D.host.E),
             mul_mem (natCast_mem _ _) hyO⟩, ?_⟩
         rw [Subring.smul_def, smul_eq_mul, hl]
-        simp only [gS, Nat.cast_mul]
+        simp only [Formalism.MainNotions.S.Lat.gS, Nat.cast_mul]
         ring
       · refine Submodule.mem_span_singleton.2
           ⟨⟨((D.host.g 0 : ℕ) : (D.s.atP p).Ep) * (D.s.atP p).ιE (y : D.host.E),
             mul_mem (natCast_mem _ _) hyO⟩, ?_⟩
         rw [Subring.smul_def, smul_eq_mul, hl]
-        simp only [gS, Nat.cast_mul]
+        simp only [Formalism.MainNotions.S.Lat.gS, Nat.cast_mul]
         ring
 
 end GlobalTheory.WitCong
