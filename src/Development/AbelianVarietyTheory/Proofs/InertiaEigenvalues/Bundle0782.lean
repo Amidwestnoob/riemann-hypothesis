@@ -374,7 +374,7 @@ theorem thetaKO_transSum_eq_short_series : ∀ (D : D7) (H : Geo.Tor.Host D.host
     (fun q => (p q).2) hY hp w
   obtain ⟨hP, -, hV0, hW0, hVs, hWs, hVstd, -, hvac⟩ := hVP
   have hψ := hP.weil.std
-  haveI := finite_levQ Dw l₂
+  haveI := GlobalTheory.AdTh.ShortSeries.finite_levQ Dw l₂
   letI : Fintype (Fin V.rank → LevQ Dw l₂) := Fintype.ofFinite _
   obtain ⟨hhs, hks, -, hlat, hV1, -⟩ := GlobalTheory.MovedLat.moved_lattices D _ _ _ _ hV0 hW0 hVs hWs h k
   obtain ⟨-, -, hmv, -⟩ := GlobalTheory.MovedLat.moved_lattices D _ _ _ _ hV0 hW0 hVs hWs 1 k
