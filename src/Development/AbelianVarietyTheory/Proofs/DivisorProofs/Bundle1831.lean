@@ -334,11 +334,11 @@ theorem oscLe_inert_large : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     have : (2 : ℝ) ≤ p := by exact_mod_cast hp2
     linarith
   intro la
-  set w : Lt1 Dw → ℝ := fun f => if IsBig k f then 5 * (m : ℝ) * cx f / ((p : ℝ) - 1)
+  set w : Lt1 Dw → ℝ := fun f => if GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f then 5 * (m : ℝ) * cx f / ((p : ℝ) - 1)
     else (rk f : ℝ) * cx f / ((p : ℝ) - 1) with hw
   have key : ∀ f, ∃ ab : ℝ × ℝ, FacBetween Xo la f (cx f) ab.1 ab.2 ∧ ab.2 - ab.1 ≤ w f := by
     intro f
-    by_cases hb : IsBig k f
+    by_cases hb : GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f
     · obtain ⟨A, B, hAB, hBA⟩ := _root_.GlobalTheory.RefSum.facBetween_inert E H Dw l Xo c p la hdisc hin f (cx f) hb.1
       refine ⟨(A, B), hAB, ?_⟩
       simp only [hw, if_pos hb]
@@ -353,8 +353,8 @@ theorem oscLe_inert_large : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
 
   have hcard : (Finset.univ.filter (fun τ : E →+* ℂ => InPsi H τ)).card = F := by
     rw [card_filter_inPsi H, hF]; omega
-  have hB : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f), (cx f : ℝ) ≤ F * Mb := by
-    rw [← Finset.sum_fiberwise_of_maps_to (s := Finset.univ.filter (fun f : Lt1 Dw => IsBig k f))
+  have hB : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), (cx f : ℝ) ≤ F * Mb := by
+    rw [← Finset.sum_fiberwise_of_maps_to (s := Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f))
       (t := Finset.univ.filter (fun τ : E →+* ℂ => InPsi H τ)) (g := fun f : Lt1 Dw => f.1)
       (fun f hf => by simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hf ⊢; exact hf.1)]
     calc _ ≤ ∑ τ ∈ Finset.univ.filter (fun τ : E →+* ℂ => InPsi H τ), Mb := by
@@ -364,7 +364,7 @@ theorem oscLe_inert_large : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
           rw [Finset.filter_filter]
           convert h using 2
       _ = F * Mb := by rw [Finset.sum_const, hcard, nsmul_eq_mul]
-  have hSS : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => ¬ IsBig k f), (rk f : ℝ) * cx f = (sumSmallSpread k cx : ℝ) := by
+  have hSS : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => ¬ GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), (rk f : ℝ) * cx f = (sumSmallSpread k cx : ℝ) := by
     unfold sumSmallSpread
     push_cast
     refine Finset.sum_congr ?_ fun _ _ => rfl
@@ -374,7 +374,7 @@ theorem oscLe_inert_large : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   rw [Finset.sum_ite, ← Finset.sum_div, ← Finset.sum_div, ← add_div, ← Finset.mul_sum, hSS]
   refine div_le_div_of_nonneg_right ?_ hp1.le
   have hm0 : (0 : ℝ) ≤ m := Nat.cast_nonneg _
-  have h5 : 5 * (m : ℝ) * ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f), (cx f : ℝ) ≤ 5 * m * (F * Mb) :=
+  have h5 : 5 * (m : ℝ) * ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), (cx f : ℝ) ≤ 5 * m * (F * Mb) :=
     mul_le_mul_of_nonneg_left hB (by positivity)
   have h6 : 5 * (m : ℝ) * (F * Mb) ≤ 6 * F * m * Mb := by
     have : (0 : ℝ) ≤ F * m * Mb := by positivity
@@ -419,11 +419,11 @@ theorem degree_le_of_exponentBound {E : Type} [Field E] [NumberField E] [IsCMFie
     (∑ f : Lt1 Dw, (rk f : ℝ) * (cx f : ℝ)) ≤ F * (Dw.p + Dw.q : ℕ) * Mb + Sm := by
   obtain ⟨hMb, hbig, hsm, -⟩ := hE
   have hF : Module.finrank ℚ E = 2 * F := hS.2.2.2.2.2
-  rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (IsBig k)]
+  rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k)]
   refine add_le_add ?_ ?_
-  · have hB : ∑ f ∈ Finset.univ.filter (IsBig k), (cx f : ℝ) ≤ F * Mb := by
-      rw [← Finset.sum_fiberwise (Finset.univ.filter (IsBig k)) (fun f : Lt1 Dw => f.1)]
-      calc ∑ τ : E →+* ℂ, ∑ f ∈ (Finset.univ.filter (IsBig k)).filter (fun f : Lt1 Dw => f.1 = τ), (cx f : ℝ)
+  · have hB : ∑ f ∈ Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k), (cx f : ℝ) ≤ F * Mb := by
+      rw [← Finset.sum_fiberwise (Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k)) (fun f : Lt1 Dw => f.1)]
+      calc ∑ τ : E →+* ℂ, ∑ f ∈ (Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k)).filter (fun f : Lt1 Dw => f.1 = τ), (cx f : ℝ)
           ≤ ∑ τ : E →+* ℂ, if InPsi H τ then Mb else 0 := by
             refine Finset.sum_le_sum fun τ _ => ?_
             split_ifs with hτ
@@ -444,13 +444,13 @@ theorem degree_le_of_exponentBound {E : Type} [Field E] [NumberField E] [IsCMFie
       have h2 : Dw.mult f.1 ≤ Dw.p + Dw.q := by
         unfold Datum.mult; split_ifs <;> omega
       exact_mod_cast h1.trans h2
-    calc ∑ f ∈ Finset.univ.filter (IsBig k), (rk f : ℝ) * (cx f : ℝ)
-        ≤ ∑ f ∈ Finset.univ.filter (IsBig k), ((Dw.p + Dw.q : ℕ) : ℝ) * (cx f : ℝ) :=
+    calc ∑ f ∈ Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k), (rk f : ℝ) * (cx f : ℝ)
+        ≤ ∑ f ∈ Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k), ((Dw.p + Dw.q : ℕ) : ℝ) * (cx f : ℝ) :=
           Finset.sum_le_sum fun f _ => mul_le_mul_of_nonneg_right (hN f) (Nat.cast_nonneg _)
-      _ = ((Dw.p + Dw.q : ℕ) : ℝ) * ∑ f ∈ Finset.univ.filter (IsBig k), (cx f : ℝ) := by rw [Finset.mul_sum]
+      _ = ((Dw.p + Dw.q : ℕ) : ℝ) * ∑ f ∈ Finset.univ.filter (GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k), (cx f : ℝ) := by rw [Finset.mul_sum]
       _ ≤ ((Dw.p + Dw.q : ℕ) : ℝ) * (F * Mb) := mul_le_mul_of_nonneg_left hB (Nat.cast_nonneg _)
       _ = F * (Dw.p + Dw.q : ℕ) * Mb := by ring
-  · have he : ∑ f ∈ Finset.univ.filter (fun f => ¬ IsBig k f), (rk f : ℝ) * (cx f : ℝ) = (sumSmallSpread k cx : ℝ) := by
+  · have he : ∑ f ∈ Finset.univ.filter (fun f => ¬ GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), (rk f : ℝ) * (cx f : ℝ) = (sumSmallSpread k cx : ℝ) := by
       unfold sumSmallSpread
       push_cast
       apply Finset.sum_congr _ (fun _ _ => rfl)
