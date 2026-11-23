@@ -390,7 +390,7 @@ namespace GlobalTheory.AutomorphicL2KernelIntegral
 theorem integrable_descend_orbitSum {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G] {Γ : Subgroup G} [DiscreteTopology Γ]
     {μ : Measure G} [μ.IsMulLeftInvariant] {h : G → ℂ} (hh : Integrable h μ) :
-    Integrable (descend Γ (orbitSum Γ h)) (quotMeasure Γ μ) := by
+    Integrable (descend Γ (orbitSum Γ h)) (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) := by
   refine ⟨?_, ?_⟩
   · rw [aestronglyMeasurable_quotMeasure_iff_lift, (leftInv_orbitSum h).lift_descend]
     have hm : ∀ γ : Γ, AEMeasurable (fun x => h (γ * x)) μ := fun γ =>
@@ -404,8 +404,8 @@ theorem convR_eq_integral_kernelQ : ∀ (G : Type) [Group G] [TopologicalSpace G
     [SecondCountableTopology G] [LocallyCompactSpace G] [T2Space G] [MeasurableSpace G] [BorelSpace G]
     (Γ : Subgroup G) [DiscreteTopology Γ] (μ : Measure G) [μ.IsHaarMeasure] [μ.IsMulRightInvariant],
     ∀ f : G → ℂ, Continuous f → HasCompactSupport f → ∀ (F : L2 Γ μ) (x : G),
-      Integrable (fun q => kernelQ Γ f (mk Γ x) q * F q) (quotMeasure Γ μ) ∧
-        convR μ f (lift Γ F) x = ∫ q, kernelQ Γ f (mk Γ x) q * F q ∂quotMeasure Γ μ := by
+      Integrable (fun q => kernelQ Γ f (mk Γ x) q * F q) (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) ∧
+        convR μ f (lift Γ F) x = ∫ q, kernelQ Γ f (mk Γ x) q * F q ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
   intro G _ _ _ _ _ _ _ _ Γ _ μ _ _ f hf hc F x
   have hf' : Continuous fun y => f (x⁻¹ * y) := hf.comp (continuous_const_mul _)
   have hc' : HasCompactSupport fun y => f (x⁻¹ * y) := hc.comp_homeomorph (Homeomorph.mulLeft x⁻¹)

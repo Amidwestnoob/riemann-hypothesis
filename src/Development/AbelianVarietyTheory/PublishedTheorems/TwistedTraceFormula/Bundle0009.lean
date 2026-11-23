@@ -389,7 +389,7 @@ def absChi (i : Fin (wittIndex V)) : PA Φ.flag0 →* ℝ≥0 :=
 
 def H0 (x : GA D V) : A0 (wittIndex V) := WithLp.toLp 2 fun i => Real.log (Doubling.iwAbs (absChi Φ i) K x)
 
-def unipMeas (𝔉 : IsoFlag V) : Measure (NA 𝔉) := (quotMeasure (NQ 𝔉) Measure.haar Set.univ)⁻¹ • Measure.haar
+def unipMeas (𝔉 : IsoFlag V) : Measure (NA 𝔉) := (GlobalTheory.AutomorphicL2Unitary.quotMeasure (NQ 𝔉) Measure.haar Set.univ)⁻¹ • Measure.haar
 
 def kerP (J : Finset (Fin (wittIndex V))) (𝔬 : Set (GF V)) (f : GA D V → ℂ) (x y : GA D V) : ℂ :=
   ∑' δ : {δ : GF V // δ ∈ 𝔬 ∧ rat V δ ∈ Φ.levi D.sp.cm (AF D.host.F) (stdPar J)},
@@ -411,7 +411,7 @@ def weight (𝔞 : Submodule ℝ (A0 (wittIndex V))) (T : A0 (wittIndex V)) (x :
   ∫ H : aMQ 𝔞 ∅, gamM 𝔞 ∅ (Yfam Φ K x T) H
 
 def volA (𝔞 : Submodule ℝ (A0 (wittIndex V))) (I : Subgroup (GA D V)) (dt : Measure I) : ℝ :=
-  (quotMeasure ((GQ V).subgroupOf I) dt).real {q | ‖𝔞.starProjection (H0 Φ K (q.out : I))‖ < 1} /
+  (GlobalTheory.AutomorphicL2Unitary.quotMeasure ((GQ V).subgroupOf I) dt).real {q | ‖𝔞.starProjection (H0 Φ K (q.out : I))‖ < 1} /
     (volume : Measure (aMQ 𝔞 ∅)).real (Metric.ball 0 1)
 
 def IsMinLevi (γ : GF V) (P : Finset (SV (wittIndex V))) : Prop :=
