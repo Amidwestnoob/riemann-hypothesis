@@ -168,7 +168,7 @@ theorem exists_rem_of_concl {D : D7} {B : WeightFamilies.Prov D} {P6 : ModuliInt
       (∀ S' : Finset (HeightOneSpectrum (𝓞 K)), ∑ v ∈ S', Formalism.DivisionValues.lw v * r v ≤ (n : ℝ) * (a * b * c * d)) ∧
       ∀ (v : HeightOneSpectrum (𝓞 K)) (e : ℕ), (T : ℝ) * nus (placeBelow (K := B.KO) v) ≤ e →
         ∀ W : Submodule K (Fin n → K),
-          (lix v (cut W (spanK z (B.Mlat j ka : Set _))) (cut W (spanK z {F | X.inc ka F ∈ X.Theta S ka wL wF T})) : ℝ) ≤
+          (lix v (Formalism.EigenvalueLevelCeiling.cut W (spanK z (B.Mlat j ka : Set _))) (Formalism.EigenvalueLevelCeiling.cut W (spanK z {F | X.inc ka F ∈ X.Theta S ka wL wF T})) : ℝ) ≤
             ((ramOver (K := B.KO) v * e : ℕ) : ℝ) * (Module.finrank K W : ℝ) + r v := by
   have hM' := isLattice_of_spanK z _ hM
   letI := hM'
@@ -218,7 +218,7 @@ theorem exists_rem_of_tie {D : D7} {B : WeightFamilies.Prov D} {P6 : ModuliInteg
       (∀ S' : Finset (HeightOneSpectrum (𝓞 K)), ∑ v ∈ S', Formalism.DivisionValues.lw v * r v ≤ (O.nZ i : ℝ) * (a * b * c * d)) ∧
       ∀ (v : HeightOneSpectrum (𝓞 K)), FormTieK X hinj EX p ka wL wF T O v i z act →
         ∀ e : ℕ, (T : ℝ) * nus (placeBelow (K := B.KO) v) ≤ e → ∀ W : Submodule K (Fin (O.nZ i) → K),
-          (lix v (cut W (O.Ms i)) (cut W (O.Th v i)) : ℝ) ≤
+          (lix v (Formalism.EigenvalueLevelCeiling.cut W (O.Ms i)) (Formalism.EigenvalueLevelCeiling.cut W (O.Th v i)) : ℝ) ≤
             ((ramOver (K := B.KO) v * e : ℕ) : ℝ) * (Module.finrank K W : ℝ) + r v := by
   obtain ⟨ρ, h0, h1, h2⟩ := exists_rem_of_concl X _ ka wL wF T nus a b c d z (ht.Ms_eq ▸ hM) hC
   refine ⟨ρ, h0, h1, fun v hv e he W => ?_⟩
@@ -253,7 +253,7 @@ theorem hasIndexBound_of_runs : ∀ CK : ℝ, ∀ (D : D7) (G : Type) [Group G] 
       (∀ S' : Finset (HeightOneSpectrum (𝓞 D.what₂.LL)),
         ∑ v ∈ S', Formalism.DivisionValues.lw v * ρ v ≤ (O.nZ i : ℝ) * (D.R.f * D.R.m * L.sc.b * L.de2)) ∧
       ∀ v, (Formalism.EigenvalueLevelCeiling.plc v = D.host.pde ↔ q) → ∀ W : Submodule D.what₂.LL (Fin (O.nZ i) → D.what₂.LL),
-        (lix v (cut W (O.Ms i)) (cut W (O.Th v i)) : ℝ) ≤ (O.E v i : ℝ) * (finrank D.what₂.LL W : ℝ) + ρ v := by
+        (lix v (Formalism.EigenvalueLevelCeiling.cut W (O.Ms i)) (Formalism.EigenvalueLevelCeiling.cut W (O.Th v i)) : ℝ) ≤ (O.E v i : ℝ) * (finrank D.what₂.LL W : ℝ) + ρ v := by
     intro q i
     by_cases hq : ∃ v₁ : HeightOneSpectrum (𝓞 D.what₂.LL), (Formalism.EigenvalueLevelCeiling.plc v₁ = D.host.pde ↔ q)
     · obtain ⟨v₁, hv₁⟩ := hq
@@ -291,7 +291,7 @@ theorem hasIndexBound_of_runs : ∀ CK : ℝ, ∀ (D : D7) (G : Type) [Group G] 
   refine ⟨O.Th, a, fun v i => ρ False i v, fun v i => ρ True i v, L.de2, ?_, L.thickDensity_pos.le, L.thickDensity_le_one,
     fun v i => ⟨h0 _ i v, h0 _ i v⟩, fun i S' => ⟨h1 _ i S', h1 _ i S'⟩⟩
   have hloc : ∀ v (i : Fin D.R.m) (W : Submodule D.what₂.LL (Fin (O.nZ i) → D.what₂.LL)),
-      (lix v (cut W (O.Ms i)) (cut W (O.Th v i)) : ℝ) ≤ (O.E v i : ℝ) * (finrank D.what₂.LL W : ℝ) +
+      (lix v (Formalism.EigenvalueLevelCeiling.cut W (O.Ms i)) (Formalism.EigenvalueLevelCeiling.cut W (O.Th v i)) : ℝ) ≤ (O.E v i : ℝ) * (finrank D.what₂.LL W : ℝ) +
         (if Formalism.EigenvalueLevelCeiling.plc v = O.pde then ρ True i v else ρ False i v) := by
     intro v i W
     rw [hO.pde_eq]
