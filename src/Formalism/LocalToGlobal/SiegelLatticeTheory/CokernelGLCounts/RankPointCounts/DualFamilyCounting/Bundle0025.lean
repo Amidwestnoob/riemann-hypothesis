@@ -276,7 +276,7 @@ theorem family_meet_holds : FamMeet := by
   have hGl : ∀ i, G (Sum.inl i) = if vF 𝔭 (a i) = 0 then b i else
       ((p)⁻¹ ^ vF 𝔭 (a i)) • (b i + w (τ i)) := fun i => rfl
   have hGr : ∀ j, G (Sum.inr j) = w j := fun j => rfl
-  have hUloc : locF 𝔭 (U.restrictScalars (𝓞 K)) = U.restrictScalars (𝓞 K) :=
+  have hUloc : Formalism.HermitianLattices.Ext.L3.locF 𝔭 (U.restrictScalars (𝓞 K)) = U.restrictScalars (𝓞 K) :=
     Formalism.L2.SG.Pf.G7.locF_subspace U h𝔭.isPrime
   apply le_antisymm
   ·
@@ -357,7 +357,7 @@ theorem family_meet_holds : FamMeet := by
         rw [e1]
         exact Submodule.sub_mem _ (Submodule.smul_mem _ _ (Submodule.subset_span ⟨_, rfl⟩))
           (Submodule.subset_span ⟨_, rfl⟩)
-    · calc locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) ≤ locF 𝔭 (U.restrictScalars (𝓞 K)) :=
+    · calc Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) ≤ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (U.restrictScalars (𝓞 K)) :=
             LocF.locF_mono 𝔭 (Submodule.span_le.2 (by rintro _ ⟨i, rfl⟩; exact hbU i))
         _ = U.restrictScalars (𝓞 K) := hUloc
 

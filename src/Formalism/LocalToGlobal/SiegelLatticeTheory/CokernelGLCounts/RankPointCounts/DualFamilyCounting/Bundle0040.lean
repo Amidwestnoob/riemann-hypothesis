@@ -51,7 +51,7 @@ theorem gram_det_ne_zero {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm) (hnd
   exact β.equivFun.symm.injective (by rw [h0, map_zero])
 
 private lemma mem_locF_lemma (𝔭 : Ideal (𝓞 F)) (L : Submodule (𝓞 K) K) (x : K) :
-    x ∈ locF 𝔭 L ↔ ∃ s ∈ Submonoid.closure
+    x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 L ↔ ∃ s ∈ Submonoid.closure
       {s : 𝓞 K | ∃ t : 𝓞 F, t ∉ 𝔭 ∧ algebraMap (𝓞 F) (𝓞 K) t = s}, s • x ∈ L := Iff.rfl
 
 private lemma star_fix_lemma_2 (hF : IsFixF K F) {𝔭 : Ideal (𝓞 F)} {s : 𝓞 K}
@@ -75,16 +75,16 @@ private lemma star_mem_SP' (hF : IsFixF K F) {𝔭 : Ideal (𝓞 F)} [𝔭.IsPri
 
 theorem det_unit_of_selfdual (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm)
     (hnd : Nondeg h) (β : Basis κ K V) {𝔭 : Ideal (𝓞 F)} [𝔭.IsPrime]
-    (hsd : dualF h 𝔭 (locF 𝔭 (spanO β)) = locF 𝔭 (spanO β)) :
+    (hsd : dualF h 𝔭 (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β)) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β)) :
     (gramK h β).det ∈ SP K 𝔭 ∧ (gramK h β).det⁻¹ ∈ SP K 𝔭 := by
   have hdet := gram_det_ne_zero hs hnd β
   have hunit : IsUnit (gramK h β).det := isUnit_iff_ne_zero.mpr hdet
-  have hmemL : ∀ x, x ∈ locF 𝔭 (spanO β) ↔ ∀ i, β.equivFun x i ∈ SP K 𝔭 :=
+  have hmemL : ∀ x, x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β) ↔ ∀ i, β.equivFun x i ∈ SP K 𝔭 :=
     fun x => mem_locF_iff_repr β x
-  have hβ : ∀ i, β i ∈ locF 𝔭 (spanO β) := fun i => by
+  have hβ : ∀ i, β i ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β) := fun i => by
     simpa using smul_basis_mem β (SP K 𝔭).one_mem i
-  have hdual : ∀ x ∈ locF 𝔭 (spanO β), ∀ y ∈ locF 𝔭 (spanO β),
-      h y x ∈ locF 𝔭 (1 : Submodule (𝓞 K) K) := by
+  have hdual : ∀ x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β), ∀ y ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β),
+      h y x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K) := by
     intro x hx
     rw [← hsd] at hx
     exact hx
@@ -95,9 +95,9 @@ theorem det_unit_of_selfdual (hF : IsFixF K F) {h : V →ₗ⋆[K] V →ₗ[K] K
     intro k l
     obtain ⟨x, hxdef⟩ : ∃ x : V, β.equivFun x = (gramK h β)⁻¹ *ᵥ Pi.single k (1 : K) :=
       ⟨_, LinearEquiv.apply_symm_apply _ _⟩
-    have hx : x ∈ locF 𝔭 (spanO β) := by
+    have hx : x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β) := by
       rw [← hsd]
-      change ∀ y ∈ locF 𝔭 (spanO β), h y x ∈ locF 𝔭 (1 : Submodule (𝓞 K) K)
+      change ∀ y ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (spanO β), h y x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K)
       intro y hy
       rw [← mem_SP_iff_locF, form_repr h β, hxdef, Matrix.mulVec_mulVec, hinv, Matrix.one_mulVec]
       convert star_mem_SP' hF ((hmemL y).mp hy k) using 1
@@ -176,7 +176,7 @@ theorem unitary_discriminant_model : UDModel := by
     apply top_unique
     rw [← hbspan, Submodule.span_le]
     rintro _ ⟨i, rfl⟩
-    have hmem : b i ∈ locF 𝔭 L := by
+    have hmem : b i ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 L := by
       rw [← hloc]
       exact Formalism.HermitianLattices.Ext.L3.localizedQuotients.le_locF 𝔭 _
         (Submodule.subset_span ⟨i, rfl⟩)
@@ -211,10 +211,10 @@ theorem unitary_discriminant_model : UDModel := by
       algebraMap (𝓞 K) K (gramO a (liftQ Y.1) i j) / (algebraMap (𝓞 K) K (algebraMap (𝓞 F) (𝓞 K) (a i)) * algebraMap (𝓞 K) K (algebraMap (𝓞 F) (𝓞 K) (a j))) ∈ HU.SP K 𝔭 := fun Y =>
     (condW_iff hne hk2 (liftQ Y.1)).1 (by rw [liftQ_map]; exact Y.2.2)
   let f0 : udPre K 𝔭 k a → {P : Module.End (𝓞 K) (DiscMod h ⊤ L 𝔭) //
-      ∀ x y x' y' : ↥(locF 𝔭 (dualIn h ⊤ L)),
+      ∀ x y x' y' : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h ⊤ L)),
         Submodule.Quotient.mk x' = P (Submodule.Quotient.mk x) →
         Submodule.Quotient.mk y' = P (Submodule.Quotient.mk y) →
-        h (x' : V) (y' : V) - h (x : V) (y : V) ∈ locF 𝔭 (1 : Submodule (𝓞 K) K)} :=
+        h (x' : V) (y' : V) - h (x : V) (y : V) ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K)} :=
     fun Y => ⟨J.E (liftQ Y.1) (hA Y), J.E_isom (liftQ Y.1) (hA Y) (hW Y)⟩
   have hresp : ∀ Y Y' : udPre K 𝔭 k a, s.r Y Y' → f0 Y = f0 Y' := by
     rintro Y Y' ⟨Z, hZ⟩
