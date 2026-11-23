@@ -85,7 +85,7 @@ theorem symTranslate_expandsF : AllVC fun {V} _ _ _ {D} {A} {G} _ _ U {C} _ _ {N
       exact smul_right_injective _ (Int.natCast_ne_zero.2 hm0) h'
     have hinj : Function.Injective E.h := fun a b h => hsm (by simpa only [hEh] using h)
     have hpull := (PullExp.main hL V _ hB D A G hG U C E hinj (m ^ 2) 1 le_rfl hm2
-      (exists_gen_pow U.LG U.cubG U.symG U.symG_gen m E.aG hEG)).2 w₀ ρ hN (mulT A.A _ m) (snd _ A.A ^ m) (lift_snd _ _)
+      (GlobalTheory.Ex.CoordSeries.exists_gen_pow U.LG U.cubG U.symG U.symG_gen m E.aG hEG)).2 w₀ ρ hN (mulT A.A _ m) (snd _ A.A ^ m) (lift_snd _ _)
       (lift_fst _ _) (by rw [hEA, MonObj.comp_pow, Category.comp_id]) α hα hαn th s₁ ϑ σ₁ hth hσ₁ hs₁
     rw [hEB] at hpull
     obtain ⟨κ, hκ⟩ := exists_kap (D := D.toPre) hL.1.mulPull m
