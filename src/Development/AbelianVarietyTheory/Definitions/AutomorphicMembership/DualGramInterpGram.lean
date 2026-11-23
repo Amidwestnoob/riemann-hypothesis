@@ -258,7 +258,7 @@ omit [NumberField F] in
 theorem genSq_pos {p : Y.Y.pts σ} (g : Y.FrameAt p) : 0 < Y.genSq G n g :=
   Finset.prod_pos fun _ _ => zpow_pos (grSq_pos (G.pos _ _ _) _) _
 
-def met : Met Y.Y σ (divOf Y n) where
+def met : GlobalTheory.ProjVar.Var.Met Y.Y σ (divOf Y n) where
   h g p := ‖Var.tv g (prodPow (Y.exists_adapted p).choose.1 n) p‖ ^ 2 * Y.genSq G n (Y.exists_adapted p).choose.2
   nonneg _ _ := mul_nonneg (sq_nonneg _) (Y.genSq_pos G n _).le
   trans g g' p hg hg' := by rw [← _root_.mul_assoc, ← mul_pow, ← norm_mul, tv_mul hg hg']
