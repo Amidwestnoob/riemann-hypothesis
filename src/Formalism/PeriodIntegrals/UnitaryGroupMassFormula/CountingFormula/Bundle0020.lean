@@ -177,10 +177,10 @@ theorem gZ_ne_zero (D : Formalism.BasicNotions.D7) (T T' : D.host.E) (Z : MatZ D
   rw [h0, map_zero, Complex.zero_re] at this
   exact lt_irrefl _ this
 
-theorem gS_ne_zero (D : Formalism.BasicNotions.D7) : ((gS D : D.host.E)) ≠ 0 := by
+theorem gS_ne_zero (D : Formalism.BasicNotions.D7) : ((Formalism.MainNotions.S.Lat.gS D : D.host.E)) ≠ 0 := by
   have h1 := (D.host.g_prime 0).pos
   have h2 := (D.host.g_prime 1).pos
-  unfold gS
+  unfold Formalism.MainNotions.S.Lat.gS
   exact_mod_cast (Nat.mul_pos h1 h2).ne'
 
 theorem prod_tri {c : ℚ} (hc : c ≠ 0) :
@@ -249,13 +249,13 @@ theorem normMM_of (hN : NMPseudo) (hM : MMPseudo) (hΔ : DetGa) : NormMM := by
     obtain ⟨a, ha⟩ := D.R.m_even
     unfold Formalism.BasicNotions.Ranks.rS
     omega
-  have hy : (gram (VS D).hT (flagDifferenceVectors D F0 F')).det = (-1) ^ (D.R.rS + 1) * (GZ (Tn u) (Tn u') Z / ((gS D : D.host.E) ^ D.R.m)) := by
+  have hy : (gram (VS D).hT (flagDifferenceVectors D F0 F')).det = (-1) ^ (D.R.rS + 1) * (GZ (Tn u) (Tn u') Z / ((Formalism.MainNotions.S.Lat.gS D : D.host.E) ^ D.R.m)) := by
     rw [hdet, hm, div_eq_mul_inv, ← inv_pow]
     ring
   have hN2 : (FractionalIdeal.absNorm ((∏ i, (Sum.elim (differentIdealPowers D) (differentIdealPowers D) i) ^ 2) *
       FractionalIdeal.spanSingleton (nonZeroDivisors (𝓞 D.host.E)) (gram (VS D).hT (flagDifferenceVectors D F0 F')).det) : ℝ) =
       ((((NumberField.discr D.host.F).natAbs : ℚ) ^ 2) ^ (-((D.R.rS * (D.R.rS + 1) : ℕ) : ℤ)) : ℚ) ^ 2 *
-        |(Algebra.norm ℚ (GZ (Tn u) (Tn u') Z / ((gS D : D.host.E) ^ D.R.m)) : ℚ)| := by
+        |(Algebra.norm ℚ (GZ (Tn u) (Tn u') Z / ((Formalism.MainNotions.S.Lat.gS D : D.host.E) ^ D.R.m)) : ℚ)| := by
     rw [map_mul, FractionalIdeal.absNorm_span_singleton, hy, abs_norm_negOnePow, map_prod,
       Fintype.prod_sum_type]
     simp only [Sum.elim_inl, Sum.elim_inr, map_pow]
