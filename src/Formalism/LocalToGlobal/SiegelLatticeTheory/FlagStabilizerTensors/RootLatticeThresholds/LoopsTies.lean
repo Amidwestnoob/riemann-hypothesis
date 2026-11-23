@@ -204,7 +204,7 @@ theorem gval_mem (T : TermTie D) {u u' : D.what₂.Word} (t : D.s.Term u u')
     rfl
 
 def GzNonnegC : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X) (H : TieHyp W hI)
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X) (H : TieHyp W hI)
     (A : AmpDat X) (hV : PvalForm W hI A) (u u' : D.what₂.Word) (t : D.s.Term u u'), D.s.Gterm t ≠ 0 →
     D.s.relevant t → ∀ τ, 0 ≤ Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u')
       (BridgeLemma₂.termGramMatrix (termTieOf W hI H A hV) t) τ
@@ -340,7 +340,7 @@ theorem gram_determinant_term_of_det (T : TermTie D) {u u' : D.what₂.Word}
   rw [h t hG, Formalism.MainNotions.GramProductBounds.NE_pow D, div_eq_mul_inv, inv_pow]
 
 def DetUUC : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X) (H : TieHyp W hI)
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X) (H : TieHyp W hI)
     (A : AmpDat X) (hV : PvalForm W hI A) (u u' : D.what₂.Word) (t : D.s.Term u u'), D.s.Gterm t ≠ 0 →
     NG ((termTieOf W hI H A hV).abelian₂ t) ((termTieOf W hI H A hV).fl t) ((termTieOf W hI H A hV).fl' t) =
       ∏ τ, Formalism.MainNotions.S.Cnt.Gz D (Tu D u) (Tu D u') (BridgeLemma₂.termGramMatrix (termTieOf W hI H A hV) t) τ
@@ -358,7 +358,7 @@ variable {eps : ℝ} (Fm : FamP eps) (C1 : ℝ)
   (X : ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x, HidaSetting (Fm.D x i))
   (Y : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), Full (X x hx i))
   (hF : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), FinX (Y x hx i))
-  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (sOf (hF x hx i)))
+  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (Formalism.L2.SG.PackageTie2.sOf (hF x hx i)))
   (W : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), WittDat (X x hx i))
   (H : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), TieHyp (W x hx i) (hI x hx i))
   (A : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), AmpDat (X x hx i))

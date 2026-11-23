@@ -466,7 +466,7 @@ namespace Formalism.L2.SG.Pf.LoopBFrame
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 theorem rowLat_fl' {u u' : D.what₂.Word} (t : D.s.Term u u') :
     IsRowLat D (fl'Of W hI t).fl (lamOf W hI t) := by
