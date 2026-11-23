@@ -206,7 +206,7 @@ end TC
 
 open TC in
 theorem thConst_of (hL : LocDist) (hG : GoodNe) (hC : ConstOfGood) (hF : Factor) (hM : MatchEx) (hT : ThetaBasic) (hD : KDecay)
-    (h1 : GrpTop) (h2 : EpsOf) (h3 : FinVolU) (h4 : Unimod) (hS : SplitModel) (hO : SoSt) : ThConst := by
+    (h1 : GrpTop) (h2 : EpsOf) (h3 : FinVolU) (h4 : Unimod) (hS : _root_.GlobalTheory.ThK.Dbl.TC.SplitModel) (hO : SoSt) : ThConst := by
   intro F E _ _ _ _ _ σ B a a' G X om om' R Rf hm s t hr μ D hμ hD' y hy
   obtain ⟨C, C', c1, c2⟩ := exists_maps hD hF hm s t
   obtain ⟨m1, m2, -⟩ := hM F E σ B a a' G X om om' R Rf hm
