@@ -29,7 +29,7 @@ def DnMvL (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0)
   (∀ (x : ↥(Ld D u 0 (Nat.zero_le _) ((D.fm u).dn 0 v c g)))
     (hx : γ.1.1 *ᵥ x.1 ∈ Lk T.atT 0 (Nat.zero_le _) v c),
     (D.fm u).fv 0 v _ (T.lv0.pr v _ x) = g (T.lv0.prk v c ⟨_, hx⟩)) ∧
-  ∀ (h : (D.mem u).C.Y 0 → ℂ) s s', IsTr (atInf (embT D) γ.1.1) (T.val0.eY s') (T.val0.eY s) →
+  ∀ (h : (D.mem u).C.Y 0 → ℂ) s s', IsTr (atInf (Formalism.L2.Forms.embT D) γ.1.1) (T.val0.eY s') (T.val0.eY s) →
     (D.fm u).dnT 0 v c g h s = (((T.cls0.lev.chi κ)⁻¹ : ℂˣ) : ℂ) * h s'
 
 def UpMvL (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0) (z : ↥(Ld D u 0 (Nat.zero_le _) c))
@@ -47,7 +47,7 @@ def UpMvL (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0) (z : ↥
   (∀ (x : ↥(Ld D u 0 (Nat.zero_le _) ((D.fm u).up 0 v c (T.lv0.pr v c z))))
     (hx : (((D.mem u).A.T : ℕ) : 𝓞 D.host.E) • (γ.1.1 *ᵥ x.1) ∈ Ld D u 0 (Nat.zero_le _) c),
     (D.fm u).fv 0 v _ (T.lv0.pr v _ x) = (D.fm u).fv 0 v c (T.lv0.pr v c ⟨_, hx⟩)) ∧
-  ∀ (h : (D.mem u).C.Y 0 → ℂ) s s', IsTr (atInf (embT D) γ.1.1) (T.val0.eY s') (T.val0.eY s) →
+  ∀ (h : (D.mem u).C.Y 0 → ℂ) s s', IsTr (atInf (Formalism.L2.Forms.embT D) γ.1.1) (T.val0.eY s') (T.val0.eY s) →
     (D.fm u).upT 0 v c (T.lv0.pr v c z) h s = (((T.cls0.lev.chi κ)⁻¹ : ℂˣ) : ℂ) * h s'
 
 def IsPtZ (T : Forms0 D u) (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0)
@@ -95,8 +95,8 @@ theorem dnMvL_dnMvs (T : Forms0 D u) {v : (D.mem u).A.vT} {c : (D.mem u).C.cls 0
   rw [h5 f s _ ?_, Units.val_inv_eq_inv_val]
   intro τ
   rw [Equiv.apply_symm_apply]
-  show (T.val0.eY s).1 τ = atInf (embT D) γ.1.1 τ *
-    (atInf (embT D) ((γ.1⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix _ _ D.host.E) τ * (T.val0.eY s).1 τ)
+  show (T.val0.eY s).1 τ = atInf (Formalism.L2.Forms.embT D) γ.1.1 τ *
+    (atInf (Formalism.L2.Forms.embT D) ((γ.1⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix _ _ D.host.E) τ * (T.val0.eY s).1 τ)
   rw [← mul_assoc]
   simp only [atInf, ← Matrix.map_mul, Units.mul_inv, Matrix.map_one _ (map_zero _) (map_one _), one_mul]
 
@@ -115,8 +115,8 @@ theorem upMvL_isUp (T : Forms0 D u) {v : (D.mem u).A.vT} {c : (D.mem u).C.cls 0}
   rw [h6 f s _ ?_, Units.val_inv_eq_inv_val]
   intro τ
   rw [Equiv.apply_symm_apply]
-  show (T.val0.eY s).1 τ = atInf (embT D) γ.1.1 τ *
-    (atInf (embT D) ((γ.1⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix _ _ D.host.E) τ * (T.val0.eY s).1 τ)
+  show (T.val0.eY s).1 τ = atInf (Formalism.L2.Forms.embT D) γ.1.1 τ *
+    (atInf (Formalism.L2.Forms.embT D) ((γ.1⁻¹ : GL (Fin (D.R.N 0)) D.host.E) : Matrix _ _ D.host.E) τ * (T.val0.eY s).1 τ)
   rw [← mul_assoc]
   simp only [atInf, ← Matrix.map_mul, Units.mul_inv, Matrix.map_one _ (map_zero _) (map_one _), one_mul]
 
@@ -148,17 +148,17 @@ def PtSurj (T : Forms0 D u) : Prop :=
     ∀ γ η κ, DnMvL T v c g γ η κ → ∀ y, ∃ x, IsPt T v c g γ x y
 
 def ValSame (T : Forms0 D u) : Prop :=
-  ∀ (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0), ∀ G ∈ AdFun T.cls0.lev (embT D),
+  ∀ (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0), ∀ G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D),
     ∀ g η κ μ g' η' κ' μ' y, IsPair T v c g η κ μ y → IsPair T v c g' η' κ' μ' y →
       G (T.cls0.y c * hcomp T η κ μ) = G (T.cls0.y c * hcomp T η' κ' μ')
 
 def ValTe (T : Forms0 D u) : Prop :=
-  ∀ (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0), ∀ G ∈ AdFun T.cls0.lev (embT D),
+  ∀ (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0), ∀ G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D),
     ∀ g η κ μ, IsPair T v c g η κ μ ((D.fm u).te 0 v c) → G (T.cls0.y c * hcomp T η κ μ) = G (T.cls0.y c)
 
 def ValDia (T : Forms0 D u) : Prop :=
   ∀ (v : (D.mem u).A.vT) (c : (D.mem u).C.cls 0), ∃ τ : ((D.mem u).A.Fv v)ˣ ≃ ((D.mem u).A.Fv v)ˣ,
-    ∀ G ∈ AdFun T.cls0.lev (embT D), ∀ (a : ((D.mem u).A.Fv v)ˣ) g η κ μ,
+    ∀ G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D), ∀ (a : ((D.mem u).A.Fv v)ˣ) g η κ μ,
       IsPair T v c g η κ μ ((a : (D.mem u).A.Fv v) • (D.fm u).te 0 v c) →
       ∀ (k : ℤ), (k : (D.mem u).A.Fv v) = ((τ a : ((D.mem u).A.Fv v)ˣ) : (D.mem u).A.Fv v) →
       ∀ δ, IsDia T.cls0.lev (T.atT.eV v).1 (T.atT.eV v).2 k δ → G (T.cls0.y c * hcomp T η κ μ) = G (T.cls0.y c * δ)
@@ -266,7 +266,7 @@ theorem val_of_mem (T : Forms0 D u) (v : (D.mem u).A.vT)
     (hs2 : ∀ v', v' ≠ (T.atT.eV v).1 → bc (prV (E := D.host.E) v') h2.1 = 1)
     (hm : h1.1⁻¹ * h2.1 ∈ T.cls0.lev.U)
     (G : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ)
-    (hG : G ∈ AdFun T.cls0.lev (embT D)) :
+    (hG : G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D)) :
     G (y * h2) = G (y * h1) := by
   have hx : (y * h2).1 = bc (inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F))
       (1 : GL (Fin (D.R.N 0)) D.host.E) * (y * h1).1 * (⟨h1.1⁻¹ * h2.1, hm⟩ : T.cls0.lev.U).1 := by

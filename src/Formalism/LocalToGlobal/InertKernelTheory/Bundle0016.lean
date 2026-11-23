@@ -157,7 +157,7 @@ def nrmR (β : S.Ch) : (C.cls i → C.Y i → ℂ) →ₗ[ℂ] ({c // S.chOf c =
   S.kTw β • ((nrm (S.tw β) (S.K β).y).toLinearMap ∘ₗ rawR S β)
 
 def relS (β : S.Ch) (a : S.cmpt β) (L : G.P.Tup) : Submodule ℂ ((C.cls i → C.Y i → ℂ) × XR G.P ℂ) :=
-  relV (S.K β).lev (embT D) (S.charts.gat β) (S.loc β) S.pos (nrmR S β) (S.K β).y a L
+  relV (S.K β).lev (Formalism.L2.Forms.embT D) (S.charts.gat β) (S.loc β) S.pos (nrmR S β) (S.K β).y a L
 
 def rdS {Kc : Type} [Field Kc] (ι : ℂ →+* Kc) (c' : G.comp) (L : G.P.Tup) :
     (C.cls i → C.Y i → ℂ) →ₛₗ[ι] MvPolynomial (Var G.P) Kc :=

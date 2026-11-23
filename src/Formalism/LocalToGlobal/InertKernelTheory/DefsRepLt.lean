@@ -91,7 +91,7 @@ def FrameLinLt (S : ∀ j, X.Lt j → X.Lt (j + 1) →
       LocBasis D p (YYl D (large₂ j L0 La') (Lg' j L0 La')) b ∧ Orthonormal D b ∧
       ∃ (σ : MaximalUnramifiedExtension p →+* MaximalUnramifiedExtension p) (f f' : X.EA j → Fin r → MaximalUnramifiedExtension p), UnrOK (MaximalUnramifiedExtension p) p σ ∧ IsHypPair σ f f' ∧
         ∀ k, linFrame X E pos' φ (S j L0 La') k =
-          ∑ i, MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i
+          ∑ i, MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i
 
 def FrameStdLt (lam : Qbar →+* ℂ_[p]) (c : ℂ_[p]) : Prop :=
   ∀ j, j < X.mm → ∀ (L0 : X.Lt j), L0 ∈ Formalism.L2.G.Pend.repOf X.Lv hfin j → ∀ La' : X.Lt (j + 1),
@@ -100,7 +100,7 @@ def FrameStdLt (lam : Qbar →+* ℂ_[p]) (c : ℂ_[p]) : Prop :=
       LocBasis D p (YYl D (large₂ j L0 La') (Lg' j L0 La')) b ∧ Orthonormal D b ∧
       ∃ (σ : MaximalUnramifiedExtension p →+* MaximalUnramifiedExtension p) (f f' : X.EA j → Fin r → MaximalUnramifiedExtension p), UnrOK (MaximalUnramifiedExtension p) p σ ∧ IsHypPair σ f f' ∧
         ∀ k, stdLin X E pos' M φ k =
-          ∑ i, MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i
+          ∑ i, MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i
 
 def OnbExLt : Prop :=
   ∀ j, j < X.mm → ∀ (L0 : X.Lt j), L0 ∈ Formalism.L2.G.Pend.repOf X.Lv hfin j → ∀ La' : X.Lt (j + 1),

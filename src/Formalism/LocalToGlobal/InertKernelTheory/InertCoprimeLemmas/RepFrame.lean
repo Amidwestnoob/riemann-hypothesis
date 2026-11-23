@@ -77,7 +77,7 @@ theorem subst_hypLin_thOrth (D : D7) (lam : Qbar →+* ℂ_[p]) (c : ℂ_[p]) {N
     (G : MvPowerSeries (D.what₂.Tau × Fin N' × Fin N) ℂ_[p]) :
     MvPowerSeries.subst (hypLin p f f') (thOrth D lam c b G) =
       MvPowerSeries.subst (fun k : D.what₂.Tau × Fin N' × Fin N =>
-        ∑ i, MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i) G := by
+        ∑ i, MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) * hypLin p f f' i) G := by
   rw [thOrth, MvPowerSeries.subst_comp_subst_apply (hasSubst_linFam _) (hasSubst_hypLin p f f')]
   congr 1
   funext k
@@ -722,7 +722,7 @@ variable {p : ℕ} [Fact p.Prime] (X : Sys p) [IsFractionRing X.G.O X.G.Kf] (E :
   (b : Fin r → Matrix (Fin ((X.Pj (j + 1)).m + 1)) (Fin ((X.Pj j).m + 1)) D.host.E)
   (ρ : ∀ v : X.Pl, D.host.E →+* X.G.P.Qq v)
   (twK : ∀ (v : X.Pl) (s : Fin (X.G.P.n' v)), X.G.P.Qq v →+* MaximalUnramifiedExtension p) (wK : WW p →+* MaximalUnramifiedExtension p)
-  (hρ : ∀ v s x, lamC lam (embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
+  (hρ : ∀ v s x, lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
   (htwK : ∀ v s x, ((twK v s x : MaximalUnramifiedExtension p) : ℂ_[p]) = twE X E v s x)
 
 include hρ htwK in
@@ -848,7 +848,7 @@ variable {p : ℕ} [Fact p.Prime] (X : Sys p) [IsFractionRing X.G.O X.G.Kf] (E :
   (b : Fin r → Matrix (Fin ((X.Pj (j + 1)).m + 1)) (Fin ((X.Pj j).m + 1)) D.host.E)
   (ρ : ∀ v : X.Pl, D.host.E →+* X.G.P.Qq v)
   (twK : ∀ (v : X.Pl) (s : Fin (X.G.P.n' v)), X.G.P.Qq v →+* MaximalUnramifiedExtension p) (wK : WW p →+* MaximalUnramifiedExtension p)
-  (hρ : ∀ v s x, lamC lam (embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
+  (hρ : ∀ v s x, lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
   (htwK : ∀ v s x, ((twK v s x : MaximalUnramifiedExtension p) : ℂ_[p]) = twE X E v s x)
 
 theorem Gmi_mul_Gm (hM : ∀ v, IsUnit (M j L0 v).det) (v : X.Pl) : Gmi X M φ v * Gm X M φ v = 1 := by
@@ -949,7 +949,7 @@ variable {p : ℕ} [Fact p.Prime] (X : Sys p) [IsFractionRing X.G.O X.G.Kf] (E :
   (b : Fin r → Matrix (Fin ((X.Pj (j + 1)).m + 1)) (Fin ((X.Pj j).m + 1)) D.host.E)
   (ρ : ∀ v : X.Pl, D.host.E →+* X.G.P.Qq v)
   (twK : ∀ (v : X.Pl) (s : Fin (X.G.P.n' v)), X.G.P.Qq v →+* MaximalUnramifiedExtension p) (wK : WW p →+* MaximalUnramifiedExtension p)
-  (hρ : ∀ v s x, lamC lam (embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
+  (hρ : ∀ v s x, lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D (pos ⟨v, s⟩) x) = twE X E v s (ρ v (if IsOddPos s then D.host.conj x else x)))
   (htwK : ∀ v s x, ((twK v s x : MaximalUnramifiedExtension p) : ℂ_[p]) = twE X E v s x)
   (hwK : ∀ w, ((wK w : MaximalUnramifiedExtension p) : ℂ_[p]) = wE p w)
 

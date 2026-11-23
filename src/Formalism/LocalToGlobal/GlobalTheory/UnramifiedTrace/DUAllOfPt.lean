@@ -29,7 +29,7 @@ def DUPt0F (T : Forms0 D u) : Prop :=
       (τ : ((D.mem u).A.Fv v)ˣ ≃ ((D.mem u).A.Fv v)ˣ),
       (∀ g : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c), g ≠ 0 → ∀ x, g (ι g x) = 1) ∧
       (∀ g : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c), g ≠ 0 → ∀ y, g y = 1 → ∃! x, ι g x = y) ∧
-      ∀ G ∈ AdFun T.cls0.lev (embT D),
+      ∀ G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D),
         (∀ p : PD D u v c, ι p.1.1 p.2 = (D.fm u).te 0 v c →
           G (T.cls0.y c * hcomp T (η p.1.1) (κ p.1.1) (Mu p.1.1 p.2)) = G (T.cls0.y c)) ∧
         (∀ (p : PD D u v c) (q : PE D u v c), ι p.1.1 p.2 = ι q.1.1 q.2 →
