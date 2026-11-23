@@ -155,7 +155,7 @@ def indFun (e : (Σ a, m a) ≃ n) (j : k ≃+* k') (hj : Continuous j.symm)
       (deltaHalf k' m (leviProj k' e p) : ℂ) • ρ' (leviProj k' e p) (f.1.1 (GeneralLinearGroup.map (j.symm : k' →+* k) g))
     rw [map_mul]
     exact h1⟩, by
-    have hf : IsOpen {g : GL n k | ind (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e)) g f.1 = f.1} := f.2
+    have hf : IsOpen {g : GL n k | ind (parab k e) ((GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)) g f.1 = f.1} := f.2
     show IsOpen {g' : GL n k' | _}
     convert hf.preimage (continuous_glMap (n := n) (j.symm : k' →+* k) hj) using 1
     ext g'

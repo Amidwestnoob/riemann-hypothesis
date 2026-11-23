@@ -394,8 +394,8 @@ open GlobalTheory.SmGL GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.Pro
 theorem card_le_ncard_unrTwist : GlobalTheory.Published.BernsteinZelevinskyFiniteness → GlobalTheory.Published.GeometricLemma → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n s s' : ℕ) (χ : kˣ →* ℂˣ) (π : Irr k n) (d : Fin s → ℕ) (σ : ∀ a, Irr k (d a)) (d' : Fin s' → ℕ) (e : (Σ j, Fin (d' j)) ≃ Fin n) (A : Finset (Fin s')) (x : GlobalTheory.PRep.Jacquet π.π (GlobalTheory.SmGL.unipRad k e)), GlobalTheory.SmGL.IsSmoothChar χ → GlobalTheory.SmGL.IsCuspSupport π.π d (fun a => (σ a).π) → (∀ j ∈ A, d' j = 1) → x ≠ 0 → (∀ j ∈ A, ∀ g ∈ GlobalTheory.SplitWeil.KO k (Fin (d' j)), GlobalTheory.SmGL.jac e π.π (Pi.mulSingle j g) x = (χ (Matrix.GeneralLinearGroup.det g) : ℂ) • x) → A.card ≤ Set.ncard {a | d a = 1 ∧ ∃ α : ℂˣ, Nonempty ((σ a).π.Equiv (GlobalTheory.SmGL.detRep (Fin (d a)) (χ * GlobalTheory.SmGL.unrChar k α)))} := by
   intro _ hG k _ _ _ _ n s s' χ π d σ d' e A x hχ hcs hA hx hact
   obtain ⟨-, hσ, e₀, hsub⟩ := hcs
-  obtain ⟨Y, _, _, τ, y, hτ, hτs, hy, hτy⟩ := _root_.GlobalTheory.VecSubquot.exists_irreducible_subquotient_of_ne_zero _ _ (jac e π.π) x hx
-  have hτP : IsSubquotient τ (jac e (multiProd e₀ fun a => (σ a).π)) :=
+  obtain ⟨Y, _, _, τ, y, hτ, hτs, hy, hτy⟩ := _root_.GlobalTheory.VecSubquot.exists_irreducible_subquotient_of_ne_zero _ _ (GlobalTheory.SmGL.jac e π.π) x hx
+  have hτP : IsSubquotient τ (GlobalTheory.SmGL.jac e (multiProd e₀ fun a => (σ a).π)) :=
     hτs.trans (GlobalTheory.JacquetExact.isSubquotient_jac e (isSmooth_parInd _ _) hsub)
   obtain ⟨b, f, g, t, hrow, hcol⟩ := exists_cell_of_isSubquotient (hG k).1 (hG k).2 e₀ e
     (fun a => (σ a).smooth) (fun a => hasFiniteLength_of_isIrreducible (σ a).irr) hτ hτP

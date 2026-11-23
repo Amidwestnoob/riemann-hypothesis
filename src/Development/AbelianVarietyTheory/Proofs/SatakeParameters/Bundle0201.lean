@@ -251,7 +251,7 @@ theorem smInd_central {G W : Type} [Group G] [TopologicalSpace G] [IsTopological
 
 theorem one_case (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (σ : Fin 2 → Irr k 1) (hσ : ∀ i, 0 < 1 ∧ IsCuspidal (σ i).π)
-    (hnt : ¬ Nonempty ((σ 0).π.Equiv (twist (σ 1).π (detChar (Fin 1) (unrChar k 1))))) :
+    (hnt : ¬ Nonempty ((σ 0).π.Equiv (GlobalTheory.SmGL.twist (σ 1).π (detChar (Fin 1) (unrChar k 1))))) :
     ∃ (z : Levi k fun _ : Fin 2 => Fin 1) (c c' : ℂ), (∀ g, g * z = z * g) ∧ c ≠ c' ∧
       (∀ x, (piTensor fun j => (σ (Equiv.swap 0 1 j)).π) z x = c • x) ∧
       ∀ (b : SizeMatrix (fun _ : Fin 2 => Fin 1) (fun _ : Fin 2 => Fin 1)),
@@ -349,7 +349,7 @@ theorem one_case (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsN
 theorem exists_central_scalar_ne_cell : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (d : Fin 2 → ℕ) (σ : ∀ i, Irr k (d i)), (∀ i, 0 < d i ∧ IsCuspidal (σ i).π) → d 1 = 1 →
     (∀ (h : d 0 = d 1) (α : ℂˣ), ¬ Nonempty ((h ▸ σ 0 : Irr k (d 1)).π.Equiv
-      (twist (σ 1).π (detChar (Fin (d 1)) (unrChar k α))))) →
+      (GlobalTheory.SmGL.twist (σ 1).π (detChar (Fin (d 1)) (unrChar k α))))) →
     ∃ (z : Levi k fun j : Fin 2 => Fin (d (Equiv.swap 0 1 j))) (c c' : ℂ), (∀ g, g * z = z * g) ∧ c ≠ c' ∧
       (∀ x, (piTensor fun j => (σ (Equiv.swap 0 1 j)).π) z x = c • x) ∧
       ∀ (b : SizeMatrix (fun i : Fin 2 => Fin (d i)) (fun j : Fin 2 => Fin (d (Equiv.swap 0 1 j)))),

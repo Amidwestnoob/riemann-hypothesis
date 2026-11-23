@@ -285,7 +285,7 @@ theorem deg_eq_one_of_isLSeg [CharZero k] {Δ : Segment k} {y : IrrGL (k := k)} 
   exact not_isSpherical_quotient _ hd (fun _ => rfl) (by omega) (isUnram_mul hu (isUnram_absPow k _)) φ hφ hi q hq hs
 
 theorem isTemperedGL_twist {N : ℕ} {π : Representation ℂ (GL (Fin N) k) Y} (h : IsTemperedGL π) {χ : kˣ →* ℂˣ}
-    (hχ : IsSmoothChar χ) (hu : IsUnitaryChar χ) : IsTemperedGL (twist π (detChar (Fin N) χ)) := by
+    (hχ : IsSmoothChar χ) (hu : IsUnitaryChar χ) : IsTemperedGL (GlobalTheory.SmGL.twist π (detChar (Fin N) χ)) := by
   obtain ⟨r, δ, hd, h1, ⟨φ⟩⟩ := h
   refine ⟨r, fun a => (δ a).tw χ hχ, hd, fun a => ?_, ⟨(twistEquiv φ _).trans (prodIrrTwistEquiv δ hd χ hχ)⟩⟩
   obtain ⟨⟨Δ, hΔ⟩, B, b1, b2, b3⟩ := h1 a

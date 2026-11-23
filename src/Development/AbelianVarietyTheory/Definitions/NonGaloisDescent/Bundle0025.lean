@@ -186,7 +186,7 @@ structure LawsLit (a : Weil h →* (w.adicCompletion E)ˣ) (ha : IsLocalArtin h 
     (e : AddChar (w.adicCompletion E) Circle → WD h → ℂˣ) (rc : IrrGL (k := w.adicCompletion E) → WD h) : Prop
     extends LawsMin a ha e rc where
 
-  twist : ∀ x χ hχ, rc (x.tw χ hχ) = (rc x).lpChar (rc (.ofChar χ hχ))
+  GlobalTheory.SmGL.twist : ∀ x χ hχ, rc (x.tw χ hχ) = (rc x).lpChar (rc (.ofChar χ hχ))
 
   central : ∀ (x : IrrGL (k := w.adicCompletion E)) ω, HasCentralChar x.rep ω →
     ∀ σ, ((rc x).eig σ).prod = (ω (a σ) : ℂ)
@@ -202,7 +202,7 @@ def IsRecLit (rc : IrrGL (k := w.adicCompletion E) → WD h) : Prop :=
 theorem Laws.toLit {a : Weil h →* (w.adicCompletion E)ˣ} {ha : IsLocalArtin h a} {ε : EpsFamily A}
     {rc : IrrGL (k := w.adicCompletion E) → WD h} (H : Laws a ha ε rc) : LawsLit a ha (ε E w h) rc :=
   { bij := H.bij, dim := H.dim, one := H.one, eps := H.eps, cusp := H.cusp, langlands := H.langlands,
-    twist := H.twist, central := H.central, dual := H.dual }
+    GlobalTheory.SmGL.twist := H.twist, central := H.central, dual := H.dual }
 
 theorem IsRec.toLit {rc : IrrGL (k := w.adicCompletion E) → WD h} (H : IsRec h rc) : IsRecLit h rc :=
   let ⟨a, ha, ε, hε, H⟩ := H; ⟨a, ha, ε, hε, H.toLit⟩

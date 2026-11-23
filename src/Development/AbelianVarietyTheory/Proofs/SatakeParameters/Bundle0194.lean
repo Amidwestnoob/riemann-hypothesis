@@ -255,7 +255,7 @@ theorem parInd_exact : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpa
     have h0 : ∀ g, q (φ.1.1 g) = 0 := fun g =>
       congrFun (congrArg (fun χ : IndSp e ζ => χ.1.1) hφ) g
     choose x hx using fun g => hex _ (h0 g)
-    have hlaw : x ∈ indSpace (parab k e) ((twist ξ (deltaHalf k m)).comp (leviProj k e)) := by
+    have hlaw : x ∈ indSpace (parab k e) ((GlobalTheory.SmGL.twist ξ (deltaHalf k m)).comp (leviProj k e)) := by
       intro p g
       apply hi
       rw [hx]
@@ -263,9 +263,9 @@ theorem parInd_exact : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpa
       rw [h1, ← hx g]
       show _ = i ((deltaHalf k m (leviProj k e p) : ℂ) • ξ (leviProj k e p) (x g))
       rw [map_smul, i.isIntertwining]
-    let x' : indSpace (parab k e) ((twist ξ (deltaHalf k m)).comp (leviProj k e)) := ⟨x, hlaw⟩
-    have hset : {g : GL n k | ind (parab k e) ((twist ξ (deltaHalf k m)).comp (leviProj k e)) g x' = x'} =
-        {g : GL n k | ind (parab k e) ((twist η (deltaHalf k m)).comp (leviProj k e)) g φ.1 = φ.1} := by
+    let x' : indSpace (parab k e) ((GlobalTheory.SmGL.twist ξ (deltaHalf k m)).comp (leviProj k e)) := ⟨x, hlaw⟩
+    have hset : {g : GL n k | ind (parab k e) ((GlobalTheory.SmGL.twist ξ (deltaHalf k m)).comp (leviProj k e)) g x' = x'} =
+        {g : GL n k | ind (parab k e) ((GlobalTheory.SmGL.twist η (deltaHalf k m)).comp (leviProj k e)) g φ.1 = φ.1} := by
       ext g
       simp only [Set.mem_setOf_eq]
       constructor
@@ -284,8 +284,8 @@ theorem parInd_exact : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpa
         change x (y * g) = x y
         apply hi
         rw [hx, hx, hy]
-    have hsm : x' ∈ smoothPart (ind (parab k e) ((twist ξ (deltaHalf k m)).comp (leviProj k e))) := by
-      have ho : IsOpen {g : GL n k | ind (parab k e) ((twist ξ (deltaHalf k m)).comp (leviProj k e)) g x' = x'} := by
+    have hsm : x' ∈ smoothPart (ind (parab k e) ((GlobalTheory.SmGL.twist ξ (deltaHalf k m)).comp (leviProj k e))) := by
+      have ho : IsOpen {g : GL n k | ind (parab k e) ((GlobalTheory.SmGL.twist ξ (deltaHalf k m)).comp (leviProj k e)) g x' = x'} := by
         rw [hset]; exact φ.2
       exact ho
     refine ⟨⟨x', hsm⟩, ?_⟩

@@ -449,10 +449,10 @@ theorem absPow_det_invTranspose (n : ℕ) (s : ℂ) (g : GL (Fin n) k) :
 
 theorem twist_comp_invTranspose (n : ℕ) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin n) k) V) (s : ℂ) :
-    (twist π (detChar (Fin n) (absPow k s))).comp (GlobalTheory.TypeTame.invTranspose n) =
-      twist (π.comp (GlobalTheory.TypeTame.invTranspose n)) (detChar (Fin n) (absPow k (-s))) := by
+    (GlobalTheory.SmGL.twist π (detChar (Fin n) (absPow k s))).comp (GlobalTheory.TypeTame.invTranspose n) =
+      GlobalTheory.SmGL.twist (π.comp (GlobalTheory.TypeTame.invTranspose n)) (detChar (Fin n) (absPow k (-s))) := by
   ext g v
-  simp only [MonoidHom.comp_apply, twist, MonoidHom.coe_mk, OneHom.coe_mk, absPow_det_invTranspose]
+  simp only [MonoidHom.comp_apply, GlobalTheory.SmGL.twist, MonoidHom.coe_mk, OneHom.coe_mk, absPow_det_invTranspose]
 
 end GlobalTheory.InvTransposeTwist
 
