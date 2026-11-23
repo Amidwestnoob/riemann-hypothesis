@@ -209,6 +209,8 @@ theorem cusp_of_fibre_vanish : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → �
       rw [GlobalTheory.Dec.coe_nwSub]
       exact hνv
     obtain ⟨hcl, hhaar⟩ := isHaarSub_map_emb (incl B.I v) (isClosedEmbedding_incl B.I v) _ hN0 νv hν0
+    haveI : SFinite ν :=
+      @MeasureTheory.instSFiniteOfSigmaFinite _ _ ν (@MeasureTheory.IsFiniteMeasure.toSigmaFinite _ _ ν hνfin)
     have hFm : Measurable (fun z : B.I.GA => ∫ m, f (m * z) ∂ν) :=
       ((hfc.comp (continuous_snd.mul continuous_fst)).stronglyMeasurable.integral_prod_right').measurable
     have hφm : Measurable (fun z : B.I.GA => phe B d (x⁻¹ * z)) :=
