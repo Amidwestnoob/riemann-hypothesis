@@ -273,7 +273,7 @@ section KS
 open DeRham Cris
 
 def IsKSRow {R : Type} [CommRing R] {A : Over (Sp R)} [GrpObj A] {A' : Over (Sp (DualNumber R))} [GrpObj A']
-    {i : A.left ⟶ A'.left} (h : IsGrpPullback A A' (epsRed R) i) (ψ : LinearMap.BilinForm R (HdR A)) {J : Type}
+    {i : A.left ⟶ A'.left} (h : IsGrpPullback A A' (GlobalTheory.DeRham.epsRed R) i) (ψ : LinearMap.BilinForm R (HdR A)) {J : Type}
     (hb : J → HdR A) (a : J) (w : epsR R ⟶ A) : Prop :=
   ∃ f ∈ Fil A, (∀ k, ψ f (hb k) = if k = a then 1 else 0) ∧ IsKSValue h f w
 
@@ -288,7 +288,7 @@ theorem IsDef.isTanX {y : FrPt Xo c K} {v : FrPt Xo c (DualNumber K)} (h : IsDef
 def IsKS (Φ : Finset (E →+* ℂ)) (y : FrPt Xo c K) (x' : Sp (DualNumber K) ⟶ Xo.X) (M : HIx Dw Φ → K) : Prop :=
   ∃ (A : Over (Sp K)) (_ : GrpObj A) (A' : Over (Sp (DualNumber K))) (_ : GrpObj A')
     (π : A.left ⟶ Xo.univ.t.G.left) (π' : A'.left ⟶ Xo.univ.t.G.left) (i : A.left ⟶ A'.left)
-    (h : IsGrpPullback A A' (epsRed K) i) (ψ : LinearMap.BilinForm K (HdR A))
+    (h : IsGrpPullback A A' (GlobalTheory.DeRham.epsRed K) i) (ψ : LinearMap.BilinForm K (HdR A))
     (ub : ∀ σ : E →+* ℂ, Fin (Dw.mult σ) → (epsR K ⟶ A)) (hb : (Σ σ : E →+* ℂ, Fin (Dw.mult σ)) → HdR A),
     IsGrpPullback A Xo.univ.t.G y.x π ∧ IsGrpPullback A' Xo.univ.t.G x' π' ∧ i ≫ π' = π ∧
     IsPolForm (dp0 K) (𝟙 _) A (Xo.univ.t.PP.L.pull π) ψ ∧
