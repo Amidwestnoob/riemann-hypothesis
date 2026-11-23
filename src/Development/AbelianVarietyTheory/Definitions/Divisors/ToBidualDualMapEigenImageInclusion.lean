@@ -57,7 +57,7 @@ theorem IsRegularFn.eq_zero_of_smul {D : Γ(X, ⊤)} (h : IsRegularFn D) [Mono (
   refine QCoh.injective_app_of_mono (cartierDualToBidual F) V (Eq.trans ?_ (map_zero _).symm)
   refine dual_ext fun W hW l => h W _ ?_
   have := congrArg (fun t => dualApp l le_rfl (resM F hW t)) e
-  simp only [resM_smul, map_smul, resG_resG, map_zero] at this
+  simp only [resM_smul, map_smul, GlobalTheory.LB.resG_resG, map_zero] at this
   exact this
 
 theorem IsRegularFn.hom_eq_zero {D : Γ(X, ⊤)} (h : IsRegularFn D) [Mono (cartierDualToBidual F)]

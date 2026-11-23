@@ -29,9 +29,9 @@ def SecondBranchCoordinates (D : D7) (u : D.what₂.Word) : Prop :=
       (∀ c, IsLocBasis (D.mem u).A.T (Ld D u 0 (Nat.zero_le _) c : Set _) (B c)) ∧
       (∀ c, IsLocBasis (D.mem u).A.T (Lk T.atT 0 (Nat.zero_le _) v c : Set _) (B' c)) ∧
       (∀ c, (((((B c)⁻¹ * B' c : GL (Fin (D.R.N 0)) D.host.E) : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E)).map
-          (embT D ((D.fm u).tauOf w v))).det * (((D.mem u).A.T : ℂ))⁻¹ ∈ bwA_Ow D w ∧
+          (Formalism.L2.Forms.embT D ((D.fm u).tauOf w v))).det * (((D.mem u).A.T : ℂ))⁻¹ ∈ bwA_Ow D w ∧
         ((D.mem u).A.T : ℂ) * ((((((B c)⁻¹ * B' c : GL (Fin (D.R.N 0)) D.host.E) :
-          Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E)).map (embT D ((D.fm u).tauOf w v))).det)⁻¹ ∈ bwA_Ow D w) ∧
+          Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E)).map (Formalism.L2.Forms.embT D ((D.fm u).tauOf w v))).det)⁻¹ ∈ bwA_Ow D w) ∧
       OntoAt T w v B B'
 
 def DuCount (D : D7) (u : D.what₂.Word) : Prop :=

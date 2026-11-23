@@ -21,7 +21,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X0 : S
 
 def tanModel {S : Type} [CommRing S] (x : Sp S ⟶ X0) : GlobalTheory.CompanionTheory.Ar.LieModel t.G x (TanM x t.G) where
   pt := tv
-  tan e := (isTanAtG_of _ (tv_zero' e)).2
+  tan e := (GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' e)).2
   inj := tv_injective
   onto v hv := ⟨mkT (ovT (t := t) ⟨Over.w v, hv⟩) (smT_zero_ovT _), rfl⟩
   add := tv_add
@@ -29,7 +29,7 @@ def tanModel {S : Type} [CommRing S] (x : Sp S ⟶ X0) : GlobalTheory.CompanionT
 
 theorem tanBasis_of_basis {S : Type} [CommRing S] (x : Sp S ⟶ X0) {n : ℕ} (b : Module.Basis (Fin n) S (TanM x t.G)) :
     IsTanBasisG t x fun k => (tv (b k)).left := by
-  refine ⟨fun k => isTanAtG_of _ (tv_zero' _), fun w hw => ?_⟩
+  refine ⟨fun k => GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' _), fun w hw => ?_⟩
   have key : ∀ a : Fin n → S, IsCombAtG t x (m := Fintype.card (Fin n))
       (fun i => (tv (b ((Fintype.equivFin (Fin n)).symm i))).left) (fun i => a ((Fintype.equivFin (Fin n)).symm i)) w ↔
       b.equivFun.symm a = mkT (ovT hw) (smT_zero_ovT hw) := fun a => by

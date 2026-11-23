@@ -137,7 +137,7 @@ variable {β : GL (Fin V.rank) (Lev.EAf D)} {Λ : Submodule (𝓞 D.host.E) (Fin
 
 def OffLevel (L : LevDat D.host.E ℂ V.rank) (N : ℕ) (P : Pl D.host.E) : Prop :=
   Formalism.HermitianLatticesTheory.conjIdeal (K := D.host.E) P.asIdeal ≠ P.asIdeal ∧ ((N : ℕ) : 𝓞 D.host.E) ∉ P.asIdeal ∧
-    ∀ PP, PP ∈ L.Pg ∨ PP ∈ L.Q → PP ≠ P ∧ ¬ IsConjPl PP P
+    ∀ PP, PP ∈ L.Pg ∨ PP ∈ L.Q → PP ≠ P ∧ ¬ Formalism.IndefR.Lev.IsConjPl PP P
 
 def LocRep (J : Subgroup (GA D V)) (P : Pl D.host.E) (x : GA D V) (A : Finset (GA D V)) : Prop :=
   (∃ e, IsIdemAt e P ∧ SuppAt e V x ∧ ∀ a ∈ A, SuppAt e V a) ∧ IsDC J x A

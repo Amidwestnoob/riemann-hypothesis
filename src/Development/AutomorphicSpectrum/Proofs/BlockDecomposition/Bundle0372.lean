@@ -154,7 +154,7 @@ theorem dualCl_eq (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (x : Irr
 theorem nonempty_equiv_contra_twist (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) {n : ℕ} {V : Type} [AddCommGroup V]
     [Module ℂ V] (π : Representation ℂ (GL (Fin n) k) V) (hs : IsSmooth π) (hi : π.IsIrreducible)
     {χ χ' : kˣ →* ℂˣ} (hχ : IsSmoothChar χ) (hχ' : IsSmoothChar χ') (h : χ * χ' = 1) :
-    Nonempty ((twist (contra π) (detChar (Fin n) χ')).Equiv (contra (twist π (detChar (Fin n) χ)))) := by
+    Nonempty ((GlobalTheory.SmGL.twist (contra π) (detChar (Fin n) χ')).Equiv (contra (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)))) := by
   have hψ : IsSmoothChar (detChar (Fin n) χ) := hχ.detChar
   have hinv : ∀ g : GL (Fin n) k,
       ((detChar (Fin n) χ' g : ℂˣ) : ℂ) = ((detChar (Fin n) χ g⁻¹ : ℂˣ) : ℂ) := by
@@ -167,7 +167,7 @@ theorem nonempty_equiv_contra_twist (hA : GlobalTheory.Published.IrreducibleAdmi
       ((χ (Matrix.GeneralLinearGroup.det g⁻¹) : ℂˣ) : ℂ)
     rw [h2, map_inv, map_inv]
   have hdual : ∀ (g : GL (Fin n) k) (l : Module.Dual ℂ V),
-      (twist π (detChar (Fin n) χ)).dual g l = ((detChar (Fin n) χ g⁻¹ : ℂˣ) : ℂ) • π.dual g l := by
+      (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)).dual g l = ((detChar (Fin n) χ g⁻¹ : ℂˣ) : ℂ) • π.dual g l := by
     intro g l
     apply LinearMap.ext
     intro v
@@ -180,7 +180,7 @@ theorem nonempty_equiv_contra_twist (hA : GlobalTheory.Published.IrreducibleAdmi
     rw [map_inv, hg, inv_one, Units.val_one]
   have hkn : ((detChar (Fin n) χ).ker : Set (GL (Fin n) k)) ∈ nhds (1 : GL (Fin n) k) :=
     IsOpen.mem_nhds hψ (Subgroup.one_mem _)
-  have heq : smoothPart π.dual = smoothPart (twist π (detChar (Fin n) χ)).dual := by
+  have heq : smoothPart π.dual = smoothPart (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)).dual := by
     ext l
     constructor
     · intro hl
@@ -191,26 +191,26 @@ theorem nonempty_equiv_contra_twist (hA : GlobalTheory.Published.IrreducibleAdmi
         rfl)) hkn) ?_
       rintro g ⟨hg1, hg2⟩
       have h3 : π.dual g l = l := hg1
-      show (twist π (detChar (Fin n) χ)).dual g l = l
+      show (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)).dual g l = l
       rw [hdual, hker g hg2, one_smul]
       exact h3
     · intro hl
       apply mem_smoothPart_of_nhds
       refine Filter.mem_of_superset (Filter.inter_mem (IsOpen.mem_nhds hl (by
-        show (twist π (detChar (Fin n) χ)).dual 1 l = l
+        show (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)).dual 1 l = l
         rw [map_one]
         rfl)) hkn) ?_
       rintro g ⟨hg1, hg2⟩
-      have h3 : (twist π (detChar (Fin n) χ)).dual g l = l := hg1
+      have h3 : (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)).dual g l = l := hg1
       rw [hdual, hker g hg2, one_smul] at h3
       show π.dual g l = l
       exact h3
   have htw : ∀ (g : GL (Fin n) k) (l : smoothPart π.dual),
-      ((twist (contra π) (detChar (Fin n) χ') g l : smoothPart π.dual) : Module.Dual ℂ V) =
+      ((GlobalTheory.SmGL.twist (contra π) (detChar (Fin n) χ') g l : smoothPart π.dual) : Module.Dual ℂ V) =
         ((detChar (Fin n) χ' g : ℂˣ) : ℂ) • ((contra π g l : smoothPart π.dual) : Module.Dual ℂ V) :=
     fun _ _ => rfl
   have htw2 : ∀ (g : GL (Fin n) k) (v : V),
-      (twist π (detChar (Fin n) χ)) g v = ((detChar (Fin n) χ g : ℂˣ) : ℂ) • π g v :=
+      (GlobalTheory.SmGL.twist π (detChar (Fin n) χ)) g v = ((detChar (Fin n) χ g : ℂˣ) : ℂ) • π g v :=
     fun _ _ => rfl
   exact ⟨{ toLinearEquiv := LinearEquiv.ofEq _ _ heq
            isIntertwining' := fun g => by
@@ -279,7 +279,7 @@ theorem dualCl_nu : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace 
     rw [absPow_neg, mul_inv_cancel]
   have hψ : IsSmoothChar (detChar (Fin x.fst) (absPow k s)) := hs'.detChar
   have hψn : IsSmoothChar (detChar (Fin x.fst) (absPow k (-s))) := hn'.detChar
-  obtain ⟨e1⟩ : Nonempty ((x.nu s).rep.Equiv (twist x.rep (detChar (Fin x.fst) (absPow k s)))) :=
+  obtain ⟨e1⟩ : Nonempty ((x.nu s).rep.Equiv (GlobalTheory.SmGL.twist x.rep (detChar (Fin x.fst) (absPow k s)))) :=
     IrrRep.nonempty_equiv_rep (irrTwist x.snd.rep (detChar (Fin x.fst) (absPow k s)) hψ)
   obtain ⟨e2⟩ := nonempty_contra_equiv_of_equiv e1
   obtain ⟨e3⟩ := nonempty_equiv_contra_twist hA x.rep x.2.rep.smooth x.2.rep.irr hs' hn' hmul

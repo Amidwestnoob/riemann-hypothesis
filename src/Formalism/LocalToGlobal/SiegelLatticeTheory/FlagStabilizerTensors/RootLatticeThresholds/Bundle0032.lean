@@ -42,7 +42,7 @@ theorem compat_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.wha
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j) (towersOf X C u u' e j).base.π
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ) :
-    Formalism.L2.SG.DataInst.Compat (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' := by
+    Formalism.L2.SG.DataInst.Compat (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' := by
   exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, Formalism.MainNotions.LatticeGluingRadicals.d_card D⟩
 
 theorem builtFromX_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.what₂.Tau) (he : PlaceTie X e)
@@ -53,7 +53,7 @@ theorem builtFromX_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j) (towersOf X C u u' e j).base.π
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ) :
-    BuiltFromX X (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u'
+    BuiltFromX X (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u'
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).τ
@@ -111,7 +111,7 @@ theorem baseFromX_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j) (towersOf X C u u' e j).base.π
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ) (hi : ∀ v, i0 v = i0' v) :
-    BaseFromX X (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' i0 i0'
+    BaseFromX X (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' i0 i0'
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).τ
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).Q
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).Qi
@@ -128,9 +128,9 @@ theorem topTie_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.wha
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ)
     (sc : ℝ) (i0 i0'' : ∀ _ : InfinitePlace X.B.I.F, Fin D.R.k) (FdN FdN' : Set X.B.I.Ginf)
     (νq : X.B.I.Ginf → Measure X.B.I.Ginf)
-    (hPG : Formalism.FourierDecayAlt.C.PropGram (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    (hPG : Formalism.FourierDecayAlt.C.PropGram (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (VtPt X u u' sc i0 i0'' FdN FdN' νq)) :
-    TopTie X (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' sc i0 i0'' FdN FdN' νq
+    TopTie X (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' sc i0 i0'' FdN FdN' νq
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).τ :=
   Formalism.L2.SG.Pf.CarrierTop.topTie_of X _ u u' sc i0 i0'' FdN FdN' νq _ hPG (fun j x => embE_apply X e j x)
     (G_sOf _)
@@ -157,23 +157,23 @@ theorem carrierDataBuilt_of_compact_test (Cb Cc C₆ : ℝ) (u u' : D.what₂.Wo
         Formalism.FourierDecayAlt.P5.IsData (parE e u u' de de' j) (towersOf X C u u' e j).base.z (towersOf X C u u' e j).base.z'
           (towersOf X C u u' e j).base.π (towersOf X C u u' e j).base.π' Xo μ L st (l + 1) ∧
         Formalism.FourierDecayAlt.KB.IsTopLift2 (parE e u u' de de' j) (l + 1) (towersOf X C u u' e j).base L st (Θ j))
-    (hB : Formalism.FourierDecayAlt.KB.IsLeadingFormPlace Cb Cc (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    (hB : Formalism.FourierDecayAlt.KB.IsLeadingFormPlace Cb Cc (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (fun j => plOf X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀ hN hty hl2 hΘ j)
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).χ A₀)
-    (hSB : Formalism.FourierDecayAlt.JCT.SliceBudget (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) A₀)
-    (hcut : ∀ v, C₆ * ((D.R.k : ℝ) * (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).Ntop *
+    (hSB : Formalism.FourierDecayAlt.JCT.SliceBudget (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) A₀)
+    (hcut : ∀ v, C₆ * ((D.R.k : ℝ) * (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).Ntop *
         ((D.R.rS : ℝ) + 1) ^ 2 +
-        ((sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).Ntop : ℝ) ^ 2 * ((D.R.rS : ℝ) + 1) ^ 2) ≤
-      (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).cutHi v -
-        (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).cutLo v)
-    (hVt : Formalism.FourierDecayAlt.JCT.VtTensor (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+        ((Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).Ntop : ℝ) ^ 2 * ((D.R.rS : ℝ) + 1) ^ 2) ≤
+      (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).cutHi v -
+        (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)).cutLo v)
+    (hVt : Formalism.FourierDecayAlt.JCT.VtTensor (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (nuE X C u' e i0') (m0E X C u u' e) (VtPt X u u' sc i0 i0' FdN FdN' νq))
-    (hPG : Formalism.FourierDecayAlt.C.PropGram (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    (hPG : Formalism.FourierDecayAlt.C.PropGram (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (VtPt X u u' sc i0 i0' FdN FdN' νq))
-    (hVJ : VJoint X (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' sc i0 i0' νq
+    (hVJ : VJoint X (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) u u' sc i0 i0' νq
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (nuE X C u' e i0') (m0E X C u u' e)
@@ -185,15 +185,15 @@ theorem carrierDataBuilt_of_compact_test (Cb Cc C₆ : ℝ) (u u' : D.what₂.Wo
       (j : ∀ v : Fin (nfE D), Formalism.FourierDecayAlt.M.Ty (parE e u u' de de' v) →
         Formalism.FourierDecayAlt.MA.SmQ D.R.rS (parE e u u' de de' v).TT)
       (lam : ∀ v : Fin (nfE D), Fin (D.R.k + 2 * D.R.rS + 1) → ℝ) (Cm σ : Fin (nfE D) → ℝ),
-      (∀ v, Formalism.FourierDecayAlt.JC.IsModelPlace (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+      (∀ v, Formalism.FourierDecayAlt.JC.IsModelPlace (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
         (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
         (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
         (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).χ v (L v) (j v) (lam v) c (Cm v) (σ v)) →
-      (∏ v, Formalism.FourierDecayAlt.JCT.jvModel (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) j Cm v) = jn)
+      (∏ v, Formalism.FourierDecayAlt.JCT.jvModel (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)) j Cm v) = jn)
     (hi : ∀ v, i0 v = i0' v) :
     CarrierDataBound X u u' sc i0 i0' FdN FdN' νq jn CA (Formalism.L2.SG.SpectralTiesReal.gOf D e) de de' l C₆ Cc Cb :=
   ⟨_, _, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance,
-    sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀),
+    Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀),
     fun j => plOf X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀ hN hty hl2 hΘ j,
     (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc,
     (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).χ, A₀, c,

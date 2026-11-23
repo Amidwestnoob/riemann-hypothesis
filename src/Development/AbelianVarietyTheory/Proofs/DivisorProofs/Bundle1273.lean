@@ -302,9 +302,9 @@ theorem formHeight_mul {F : Type} [Field F] [NumberField F] {B N n : ℕ} (δ δ
     formHeight (δ + δ') w A (f * g) = formHeight δ w A f + formHeight δ' w A g := by
   have hlf := GlobalTheory.HeightUnique.linSubst_ne_zero hP hf
   have hlg := GlobalTheory.HeightUnique.linSubst_ne_zero hP hg
-  have hfin : ∑ᶠ v : FinitePlace F, Real.log (gaussAbs v (linSubst w (f * g))) =
-      ∑ᶠ v : FinitePlace F, Real.log (gaussAbs v (linSubst w f)) +
-        ∑ᶠ v : FinitePlace F, Real.log (gaussAbs v (linSubst w g)) := by
+  have hfin : ∑ᶠ v : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs v (linSubst w (f * g))) =
+      ∑ᶠ v : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs v (linSubst w f)) +
+        ∑ᶠ v : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs v (linSubst w g)) := by
     rw [← finsum_add_distrib (gauss_abs_log_support_finite _ hlf) (gauss_abs_log_support_finite _ hlg)]
     refine finsum_congr fun v => ?_
     rw [linSubst_mul, gauss_abs_mul v _ _ hlf hlg,
@@ -329,7 +329,7 @@ theorem formHeight_mul {F : Type} [Field F] [NumberField F] {B N n : ℕ} (δ δ
 theorem formHeight_one {F : Type} [Field F] [NumberField F] {B N n : ℕ}
     (w : Matrix (Fin N) (Fin n) F) (A : (F →+* ℂ) → Matrix (Fin N) (Fin N) ℂ) :
     formHeight 0 w A (1 : MvPolynomial (Fin B × Fin N) F) = 0 := by
-  have h1 : ∀ v : FinitePlace F, gaussAbs v (1 : MvPolynomial (Fin B × Fin n) F) = 1 := fun v => by
+  have h1 : ∀ v : FinitePlace F, ReciprocityTheory.MultiplicativeHeights.gaussAbs v (1 : MvPolynomial (Fin B × Fin n) F) = 1 := fun v => by
     simpa using GlobalTheory.HeightUnique.gaussAbs_C (σ := Fin B × Fin n) v (1 : F)
   unfold formHeight
   simp [linSubst, h1, blockSphereMean]

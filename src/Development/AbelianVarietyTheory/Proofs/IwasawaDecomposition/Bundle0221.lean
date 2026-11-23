@@ -38,7 +38,7 @@ open GlobalTheory.FlagMeas GlobalTheory.MeanDual
 
 variable (E : Type) [Field E] [NumberField E] (j : ℕ)
 
-theorem covol_le_of_mul_left (Γ Γ' : Set (MatInf E j)) (h : MatInf E j) (hh : 0 < detNorm E j h)
+theorem covol_le_of_mul_left (Γ Γ' : Set (MatInf E j)) (h : MatInf E j) (hh : 0 < GlobalTheory.FlagMeas.detNorm E j h)
     (A B : Set (MatInf E j)) (hAB : ∀ x ∈ A, h * x ∈ B)
     (hΓ : ∀ δ ∈ Γ', ∃ δ₀ ∈ Γ, ∀ x, h * (δ₀ * x) = δ * (h * x)) :
     covol Γ (haarGL E j) A ≤ covol Γ' (haarGL E j) B := by
@@ -68,24 +68,24 @@ theorem scal_mul_comm (r : ℝ) (δ x : MatInf E j) : scal E j r * (δ * x) = δ
   simp only [of_mul, of_scal, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul]
 
 theorem detNorm_scal (r : ℝ) (hr : 0 < r) :
-    detNorm E j (scal E j r) = (r ^ (2 * j)) ^ Fintype.card (InfinitePlace E) := by
-  unfold detNorm
+    GlobalTheory.FlagMeas.detNorm E j (scal E j r) = (r ^ (2 * j)) ^ Fintype.card (InfinitePlace E) := by
+  unfold GlobalTheory.FlagMeas.detNorm
   simp only [of_scal, Matrix.det_smul, Matrix.det_one, mul_one, Fintype.card_fin]
   rw [Finset.prod_const, Finset.card_univ]
   congr 1
   rw [norm_pow, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hr, ← pow_mul, mul_comm]
 
-theorem exists_scal (hj : 1 ≤ j) (c : ℝ) (hc : 0 < c) : ∃ r : ℝ, 0 < r ∧ detNorm E j (scal E j r) = c := by
+theorem exists_scal (hj : 1 ≤ j) (c : ℝ) (hc : 0 < c) : ∃ r : ℝ, 0 < r ∧ GlobalTheory.FlagMeas.detNorm E j (scal E j r) = c := by
   have hN : Fintype.card (InfinitePlace E) ≠ 0 := Fintype.card_ne_zero
   refine ⟨c ^ (((2 * j * Fintype.card (InfinitePlace E) : ℕ) : ℝ))⁻¹, Real.rpow_pos_of_pos hc _, ?_⟩
   rw [detNorm_scal E j _ (Real.rpow_pos_of_pos hc _), ← pow_mul]
   exact Real.rpow_inv_natCast_pow hc.le (by positivity)
 
-def slab (c : ℝ) : Set (MatInf E j) := {x | c ≤ detNorm E j x ∧ detNorm E j x < c * Real.exp 1}
+def slab (c : ℝ) : Set (MatInf E j) := {x | c ≤ GlobalTheory.FlagMeas.detNorm E j x ∧ GlobalTheory.FlagMeas.detNorm E j x < c * Real.exp 1}
 
 theorem covol_slab_le (hj : 1 ≤ j) (Λ : Submodule (𝓞 E) (Fin j → E)) (c : ℝ) (hc : 0 < c) :
     covol (autGL E j Λ) (haarGL E j) (slab E j c) ≤
-      covol (autGL E j Λ) (haarGL E j) {x | 1 ≤ detNorm E j x ∧ detNorm E j x < Real.exp 1} := by
+      covol (autGL E j Λ) (haarGL E j) {x | 1 ≤ GlobalTheory.FlagMeas.detNorm E j x ∧ GlobalTheory.FlagMeas.detNorm E j x < Real.exp 1} := by
   obtain ⟨r, hr, hd⟩ := exists_scal E j hj c⁻¹ (inv_pos.2 hc)
   refine covol_le_of_mul_left E j _ _ (scal E j r) (hd ▸ inv_pos.2 hc) _ _ ?_
     (fun δ hδ => ⟨δ, hδ, fun x => scal_mul_comm E j r δ x⟩)
@@ -96,8 +96,8 @@ theorem covol_slab_le (hj : 1 ≤ j) (Λ : Submodule (𝓞 E) (Fin j → E)) (c 
   · rw [inv_mul_eq_div, div_lt_iff₀ hc, mul_comm]; exact h2
 
 theorem covol_le_of_carries {γ : GL (Fin j) E} {Λ Λ' : Submodule (𝓞 E) (Fin j → E)} (h : Carries E j γ Λ Λ') :
-    covol (autGL E j Λ) (haarGL E j) {x | 1 ≤ detNorm E j x ∧ detNorm E j x < Real.exp 1} ≤
-      covol (autGL E j Λ') (haarGL E j) (slab E j (detNorm E j (embInf E j γ))) := by
+    covol (autGL E j Λ) (haarGL E j) {x | 1 ≤ GlobalTheory.FlagMeas.detNorm E j x ∧ GlobalTheory.FlagMeas.detNorm E j x < Real.exp 1} ≤
+      covol (autGL E j Λ') (haarGL E j) (slab E j (GlobalTheory.FlagMeas.detNorm E j (embInf E j γ))) := by
   refine covol_le_of_mul_left E j _ _ (embInf E j γ) (detNorm_embInf E j γ) _ _ ?_ ?_
   · rintro x ⟨h1, h2⟩
     simp only [slab, Set.mem_setOf_eq, detNorm_mul]

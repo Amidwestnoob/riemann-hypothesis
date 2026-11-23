@@ -365,7 +365,7 @@ theorem lintegral_sq_le {G : Type*} [Group G] [TopologicalSpace G] [IsTopologica
     [MeasurableSpace G] [BorelSpace G] (Γ : Subgroup G) [DiscreteTopology Γ] (μ : Measure G) [μ.IsMulLeftInvariant]
     {S : Set G} (hS : MeasurableSet S) (N : ℝ≥0∞) (hN : ∀ x : G, {γ : Γ | (γ : G) * x ∈ S}.encard ≤ N)
     (F : L2 Γ μ) :
-    ∫⁻ z in S, ‖lift Γ F z‖ₑ ^ (2 : ℝ) ∂μ ≤ N * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂quotMeasure Γ μ := by
+    ∫⁻ z in S, ‖lift Γ F z‖ₑ ^ (2 : ℝ) ∂μ ≤ N * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
   have hm : AEStronglyMeasurable (lift Γ F) μ :=
     aestronglyMeasurable_quotMeasure_iff_lift.1 (Lp.aestronglyMeasurable F)
   rw [← lintegral_indicator hS,
@@ -432,12 +432,12 @@ theorem norm_convR_le_height : ∀ {D : D7} {V : HSp D} (μ : Measure (GA D V)) 
     rw [eLpNorm_comp_measurePreserving hm.restrict hmp, Measure.restrict_apply_univ]
     norm_num
 
-  have h3 : eLpNorm φ 2 (μ.restrict S) ≤ ENNReal.ofReal b * eLpNorm F 2 (quotMeasure (GQ V) μ) := by
+  have h3 : eLpNorm φ 2 (μ.restrict S) ≤ ENNReal.ofReal b * eLpNorm F 2 (GlobalTheory.AutomorphicL2Unitary.quotMeasure (GQ V) μ) := by
     rw [eLpNorm_eq_lintegral_rpow_enorm_toReal two_ne_zero ENNReal.ofNat_ne_top,
       eLpNorm_eq_lintegral_rpow_enorm_toReal two_ne_zero ENNReal.ofNat_ne_top]
     simp only [ENNReal.toReal_ofNat]
     calc (∫⁻ z in S, ‖φ z‖ₑ ^ (2 : ℝ) ∂μ) ^ (1 / 2 : ℝ)
-        ≤ (ENNReal.ofReal b ^ 2 * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂quotMeasure (GQ V) μ) ^ (1 / 2 : ℝ) :=
+        ≤ (ENNReal.ofReal b ^ 2 * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure (GQ V) μ) ^ (1 / 2 : ℝ) :=
           ENNReal.rpow_le_rpow (lintegral_sq_le (GQ V) μ hS _ hcount F) (by norm_num)
       _ = _ := by
         rw [ENNReal.mul_rpow_of_nonneg _ _ (by norm_num)]
@@ -448,7 +448,7 @@ theorem norm_convR_le_height : ∀ {D : D7} {V : HSp D} (μ : Measure (GA D V)) 
   have hE := h1.trans (mul_le_mul_of_nonneg_left (h2.trans (mul_le_mul_of_nonneg_right h3 zero_le))
     zero_le)
   have hμ : μ Ω ^ (1 / 2 : ℝ) ≠ ⊤ := ENNReal.rpow_ne_top_of_nonneg (by norm_num) hΩ.measure_lt_top.ne
-  have hfin : ENNReal.ofReal M * (ENNReal.ofReal b * eLpNorm F 2 (quotMeasure (GQ V) μ) * μ Ω ^ (1 / 2 : ℝ)) ≠ ⊤ :=
+  have hfin : ENNReal.ofReal M * (ENNReal.ofReal b * eLpNorm F 2 (GlobalTheory.AutomorphicL2Unitary.quotMeasure (GQ V) μ) * μ Ω ^ (1 / 2 : ℝ)) ≠ ⊤ :=
     ENNReal.mul_ne_top ENNReal.ofReal_ne_top
       (ENNReal.mul_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top (Lp.eLpNorm_ne_top F)) hμ)
   have := ENNReal.toReal_mono hfin hE

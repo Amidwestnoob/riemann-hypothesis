@@ -99,7 +99,7 @@ def facWith : SlopeBoundLiftData c.F (pageOf Q) where
   g := g
   PPh := 3 / 2 * Real.log (Fintype.card Hb) + (numAt Q j).U0
   abelian₂ := lamKap Q j + Real.log (Fintype.card Hb)
-  δ := del D
+  δ := GlobalTheory.IndefiniteRowSideFullHecke.DescentConstants.del D
   o' := GlobalTheory.IndefiniteRowSideFullHecke.HalfLatticeTypes.ringCost c.F
   n2 := measureMove D L
 

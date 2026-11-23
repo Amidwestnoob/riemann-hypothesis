@@ -239,11 +239,11 @@ theorem step_vals {a b t : ℕ} (hb : b = a + t) {E F : Finset ℚ} (δ c : ℚ)
     rw [h2, hB r hr]
 
 private theorem wt_grid_eq_highestWeight {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (τ : D.what₂.Tau) {j : ℕ} (hj : j ≤ D.R.m)
-    (hc : (entries (parV D sc.cGap j D.R.m τ)).card = (G.V (.grid j D.R.m)).rank)
-    (hc' : ((entries (parV D sc.cGap j D.R.m τ)).image Neg.neg).card = (G.V (.grid j D.R.m)).rank)
+    (hc : (GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)).card = (G.V (.grid j D.R.m)).rank)
+    (hc' : ((GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)).image Neg.neg).card = (G.V (.grid j D.R.m)).rank)
     (r : Fin (G.V (.grid j D.R.m)).rank) :
-    ((wt G (.grid j D.R.m) τ).w r : ℚ) = highestWeight ((entries (parV D sc.cGap j D.R.m τ)).image Neg.neg) hc' r := by
-  have hin : InCoset ((((G.V (.grid j D.R.m)).rank : ℚ) - 1) / 2) (entries (parV D sc.cGap j D.R.m τ)) :=
+    ((wt G (.grid j D.R.m) τ).w r : ℚ) = highestWeight ((GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)).image Neg.neg) hc' r := by
+  have hin : InCoset ((((G.V (.grid j D.R.m)).rank : ℚ) - 1) / 2) (GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)) :=
     (isHC_grid D sc.cGap τ hj (rank_grid G hj)).2.2
   rw [highestWeight_neg hc hc' r]
   show (((-(listedWt G (.grid j D.R.m) τ).w r.rev : ℤ)) : ℚ) = _
@@ -265,22 +265,22 @@ theorem grid_vals {i : ℕ} (hi : i + 1 ≤ D.R.m) (τ : D.what₂.Tau)
     rw [rank_grid G hi, rank_grid G hi0]
     simp only [rankV]
     ring
-  have cardP : ∀ j, j ≤ D.R.m → (entries (parV D sc.cGap j D.R.m τ)).card = (G.V (.grid j D.R.m)).rank := by
+  have cardP : ∀ j, j ≤ D.R.m → (GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)).card = (G.V (.grid j D.R.m)).rank := by
     intro j hj
     unfold parV
     rw [entries_shift, Finset.card_image_of_injective _ (add_left_injective _)]
     exact (GlobalTheory.FunObj.card_entries_parD D sc.cGap τ hj).trans (rank_grid G hj).symm
   have cardN : ∀ j, j ≤ D.R.m →
-      ((entries (parV D sc.cGap j D.R.m τ)).image Neg.neg).card = (G.V (.grid j D.R.m)).rank := by
+      ((GlobalTheory.SignedHC.entries (parV D sc.cGap j D.R.m τ)).image Neg.neg).card = (G.V (.grid j D.R.m)).rank := by
     intro j hj
     rw [Finset.card_image_of_injective _ neg_injective, cardP j hj]
-  have hFe : (entries (parV D sc.cGap (i + 1) D.R.m τ)).image Neg.neg =
-      ((entries (parV D sc.cGap i D.R.m τ)).image Neg.neg).image (· + ((if Odd (i + D.R.m) then -(1 / 2) else 0) - (if Odd (i + 1 + D.R.m) then -(1 / 2) else 0))) ∪
+  have hFe : (GlobalTheory.SignedHC.entries (parV D sc.cGap (i + 1) D.R.m τ)).image Neg.neg =
+      ((GlobalTheory.SignedHC.entries (parV D sc.cGap i D.R.m τ)).image Neg.neg).image (· + ((if Odd (i + D.R.m) then -(1 / 2) else 0) - (if Odd (i + 1 + D.R.m) then -(1 / 2) else 0))) ∪
         TPar.block (-(cen D sc.cGap τ (D.R.m - i) : ℚ) - (if Odd (i + 1 + D.R.m) then -(1 / 2) else 0)) (sLen D) := by
     unfold parV
     rw [entries_shift, entries_shift, GlobalTheory.FunObj.entries_parD_succ D sc.cGap τ hi]
     exact neg_step _ _ _ _ _
-  have hlt : ∀ x ∈ (entries (parV D sc.cGap i D.R.m τ)).image Neg.neg,
+  have hlt : ∀ x ∈ (GlobalTheory.SignedHC.entries (parV D sc.cGap i D.R.m τ)).image Neg.neg,
       ∀ y ∈ TPar.block (-(cen D sc.cGap τ (D.R.m - i) : ℚ) - (if Odd (i + 1 + D.R.m) then -(1 / 2) else 0)) (sLen D), y < x + ((if Odd (i + D.R.m) then -(1 / 2) else 0) - (if Odd (i + 1 + D.R.m) then -(1 / 2) else 0)) := by
     intro x hx y hy
     obtain ⟨x1, hx1, rfl⟩ := Finset.mem_image.mp hx

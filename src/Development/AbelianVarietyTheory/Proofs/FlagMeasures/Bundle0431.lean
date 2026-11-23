@@ -185,11 +185,11 @@ theorem main : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.W
     exact congrArg (fun x => frFac _ p b • baseChange₂ D p x) (hMv.2.2.2.1 b)
   have hf' : ∀ b, (move g t0).f' b = scaled (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) p (fun b => ∑ a, B0 a b • frame F'0 a) b := by
     intro b
-    show g (frFac (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D).δ p b • baseChange₂ D p (frameAct (frame t₀.frame) ξ0⁻¹ b)) = frFac (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D).δ p b • baseChange₂ D p _
+    show g (frFac (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D).δ p b • baseChange₂ D p (Formalism.MainNotions.S.Lat.frameAct (frame t₀.frame) ξ0⁻¹ b)) = frFac (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D).δ p b • baseChange₂ D p _
     rw [map_smul, hgE]
     congr 2
     set_option synthInstance.maxHeartbeats 100000 in
-      simp only [frameAct, map_sum, map_smul, hMv.2.2.2.2, Finset.smul_sum, smul_smul, hB0, Matrix.mul_apply,
+      simp only [Formalism.MainNotions.S.Lat.frameAct, map_sum, map_smul, hMv.2.2.2.2, Finset.smul_sum, smul_smul, hB0, Matrix.mul_apply,
       Finset.sum_smul]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun c _ => ?_

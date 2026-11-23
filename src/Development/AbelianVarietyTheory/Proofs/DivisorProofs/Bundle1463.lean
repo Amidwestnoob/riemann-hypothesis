@@ -195,7 +195,7 @@ def IsKSR (Φ : Finset (E →+* ℂ)) {S : Type} [CommRing S] [Algebra c.F S] (y
     (x' : Sp (DualNumber S) ⟶ Xo.X) (M : HIx Dw Φ → S) : Prop :=
   ∃ (A : Over (Sp S)) (_ : GrpObj A) (A' : Over (Sp (DualNumber S))) (_ : GrpObj A')
     (π : A.left ⟶ Xo.univ.t.G.left) (π' : A'.left ⟶ Xo.univ.t.G.left) (i : A.left ⟶ A'.left)
-    (h : IsGrpPullback A A' (epsRed S) i) (ψ : LinearMap.BilinForm S (HdR A))
+    (h : IsGrpPullback A A' (GlobalTheory.DeRham.epsRed S) i) (ψ : LinearMap.BilinForm S (HdR A))
     (ub : ∀ σ : E →+* ℂ, Fin (Dw.mult σ) → (epsR S ⟶ A)) (hb : (Σ σ : E →+* ℂ, Fin (Dw.mult σ)) → HdR A),
     IsGrpPullback A Xo.univ.t.G y.x π ∧ IsGrpPullback A' Xo.univ.t.G x' π' ∧ i ≫ π' = π ∧
     IsPolForm (dp0 S) (𝟙 _) A (Xo.univ.t.PP.L.pull π) ψ ∧
@@ -214,14 +214,14 @@ theorem IsKSR.baseChange (P : AbelianDeRham) {Φ : Finset (E →+* ℂ)} {S S' :
   let : Algebra S S' := ψ.toRingHom.toAlgebra
   obtain ⟨B, _, φ, hφ⟩ := exists_isGrpPullback A (spMap (algebraMap S S'))
   obtain ⟨B', _, φ', hφ'⟩ := exists_isGrpPullback A' (spMap (dualMap (algebraMap S S')))
-  have e₀ : spMap (algebraMap S S') ≫ epsRed S = epsRed S' ≫ spMap (dualMap (algebraMap S S')) := by
+  have e₀ : spMap (algebraMap S S') ≫ GlobalTheory.DeRham.epsRed S = GlobalTheory.DeRham.epsRed S' ≫ spMap (dualMap (algebraMap S S')) := by
     rw [← Cris.spMap_comp, ← Cris.spMap_comp]
     congr 1
     ext a <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-  have w : (φ ≫ i) ≫ A'.hom = (B.hom ≫ epsRed S') ≫ spMap (dualMap (algebraMap S S')) := by
+  have w : (φ ≫ i) ≫ A'.hom = (B.hom ≫ GlobalTheory.DeRham.epsRed S') ≫ spMap (dualMap (algebraMap S S')) := by
     rw [(hφ.comp hi).1.w, e₀, Category.assoc]
   have sq : hφ'.1.lift _ _ w ≫ φ' = φ ≫ i := hφ'.1.lift_fst _ _ _
-  have hj : IsGrpPullback B B' (epsRed S') (hφ'.1.lift _ _ w) :=
+  have hj : IsGrpPullback B B' (GlobalTheory.DeRham.epsRed S') (hφ'.1.lift _ _ w) :=
     hφ'.cancel ((hφ.comp hi).congr e₀ sq.symm) (hφ'.1.lift_snd _ _ _)
   have hU := ObjDim.isAbelianScheme Xo.univ
   have hg := ObjDim.smoothOfRelativeDimension Xo.univ

@@ -362,7 +362,7 @@ theorem nonempty_equiv_parInd {α n : Type} {m : α → Type} [Fintype α] [Line
     (hd : ∀ z, deltaHalf k m z = 1) (L : V ≃ₗ[ℂ] W)
     (law0 : ∀ (p : parab k e) v, ρ (leviProj k e p) (L v) = L (π p v)) :
     Nonempty (π.Equiv (parInd e ρ)) := by
-  have law : ∀ (p : parab k e) v, twist ρ (deltaHalf k m) (leviProj k e p) (L v) = L (π p v) := fun p v => by
+  have law : ∀ (p : parab k e) v, GlobalTheory.SmGL.twist ρ (deltaHalf k m) (leviProj k e p) (L v) = L (π p v) := fun p v => by
     simp only [twist_apply, hd, Units.val_one, one_smul, law0]
   let f : π.IntertwiningMap (parInd e ρ) :=
     { toFun := fun v => ⟨⟨fun x => L (π x v), fun p x => by

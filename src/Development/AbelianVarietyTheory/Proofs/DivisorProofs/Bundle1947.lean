@@ -71,7 +71,7 @@ theorem two_mul_card_psi_le :
 
 open Classical in
 theorem card_big_fiber_le {Dw : Datum H} {F k m : ℕ} (hS : Shape Dw F k m) (τ : E →+* ℂ) :
-    (Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ)).card ≤ m + 1 := by
+    (Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ f.1 = τ)).card ≤ m + 1 := by
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := hS
   calc _ ≤ (Finset.Ico (k - 2) Dw.p).card := by
         refine Finset.card_le_card_of_injOn (fun f => f.2.val) ?_ ?_
@@ -132,7 +132,7 @@ theorem boundFine_le {p N q i c m M : ℕ} (hp : 2 ≤ p) (hq : q ≤ m) (hi : N
 open Classical in
 theorem sum_bound_le {Dw : Datum H} {F k m M : ℕ} {Mb Sm : ℝ} {cx : Lt1 Dw → ℕ} {p : ℕ}
     (hS : Shape Dw F k m) (hB : ExpBd Dw k cx Mb Sm M) (hp : 2 ≤ p) (hM : 1 ≤ M) :
-    ∑ f, (if IsBig k f ∧ 1 ≤ cx f then boundFine p (Dw.p + Dw.q) Dw.q (rk f) (cx f) else boundAll p (rk f) (cx f))
+    ∑ f, (if GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ 1 ≤ cx f then boundFine p (Dw.p + Dw.q) Dw.q (rk f) (cx f) else boundAll p (rk f) (cx f))
       ≤ eSmall F (Dw.p + Dw.q) m Mb Sm M p := by
   have hfib := card_big_fiber_le hS
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := hS
@@ -148,17 +148,17 @@ theorem sum_bound_le {Dw : Datum H} {F k m M : ℕ} {Mb Sm : ℝ} {cx : Lt1 Dw �
   set Y : ℝ := ((Dw.p + Dw.q : ℕ) : ℝ) ^ 2 * (Real.logb p M + 1) with hY
   have hX0 : 0 ≤ X := by positivity
   have hY0 : 0 ≤ Y := by positivity
-  have hmaps : ∀ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f),
+  have hmaps : ∀ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f),
       f.1 ∈ Finset.univ.filter (fun τ : E →+* ℂ => InPsi H τ) := fun f hf =>
     Finset.mem_filter.2 ⟨Finset.mem_univ _, (Finset.mem_filter.1 hf).2.1⟩
-  have hbig : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f), ((cx f : ℝ) * X + Y) ≤
+  have hbig : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), ((cx f : ℝ) * X + Y) ≤
       F * (Mb * X + (m + 1) * Y) := by
     rw [← Finset.sum_fiberwise_of_maps_to hmaps]
     calc _ ≤ ∑ _τ ∈ Finset.univ.filter (fun τ : E →+* ℂ => InPsi H τ), (Mb * X + (m + 1) * Y) := by
           refine Finset.sum_le_sum fun τ _ => ?_
           rw [Finset.filter_filter, Finset.sum_add_distrib, ← Finset.sum_mul, Finset.sum_const, nsmul_eq_mul]
           have a1 := hτ τ
-          have a2 : ((Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ)).card : ℝ) ≤ m + 1 := by
+          have a2 : ((Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ f.1 = τ)).card : ℝ) ≤ m + 1 := by
             exact_mod_cast hfib τ
           rw [Nat.cast_sum] at a1
           refine add_le_add (mul_le_mul_of_nonneg_right ?_ hX0) (mul_le_mul_of_nonneg_right ?_ hY0)
@@ -167,7 +167,7 @@ theorem sum_bound_le {Dw : Datum H} {F k m M : ℕ} {Mb Sm : ℝ} {cx : Lt1 Dw �
       _ ≤ _ := by
           rw [Finset.sum_const, nsmul_eq_mul]
           exact mul_le_mul_of_nonneg_right hF' (by positivity)
-  have hsm : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => ¬ IsBig k f), boundAll p (rk f) (cx f) ≤
+  have hsm : ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => ¬ GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f), boundAll p (rk f) (cx f) ≤
       Sm / ((p : ℝ) - 1) := by
     refine le_trans (le_of_eq ?_) (div_le_div_of_nonneg_right hSm hp1.le)
     unfold sumSmallSpread boundAll
@@ -175,14 +175,14 @@ theorem sum_bound_le {Dw : Datum H} {F k m M : ℕ} {Mb Sm : ℝ} {cx : Lt1 Dw �
     refine Finset.sum_congr ?_ fun f _ => by rw [Nat.cast_mul]
     ext f
     simp only [Finset.mem_filter, not_isBig_iff]
-  rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun f : Lt1 Dw => IsBig k f)]
+  rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f)]
   have e : eSmall F (Dw.p + Dw.q) m Mb Sm M p = F * (Mb * X + (m + 1) * Y) + Sm / ((p : ℝ) - 1) := by
     rw [hX, hY]
     unfold eSmall
     ring
   rw [e]
   refine add_le_add (le_trans (Finset.sum_le_sum fun f hf => ?_) hbig) (le_trans (le_of_eq ?_) hsm)
-  · have hb : IsBig k f := (Finset.mem_filter.1 hf).2
+  · have hb : GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f := (Finset.mem_filter.1 hf).2
     have hm : Dw.mult f.1 = Dw.p := if_pos hb.1
     have hr := rk_le f
     have hk := hb.2
@@ -202,7 +202,7 @@ theorem oscLe_eSmall_of_inert : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   intro E _ _ _ H Dw l Xo c F k m M Mb Sm cx hS hB p hp hp2 hpd hin hM la
   classical
   have key : ∀ f : Lt1 Dw, ∃ A B : ℝ, FacBetween Xo la f (cx f) A B ∧ B - A ≤
-      (if IsBig k f ∧ 1 ≤ cx f then boundFine p (Dw.p + Dw.q) Dw.q (rk f) (cx f) else boundAll p (rk f) (cx f)) := by
+      (if GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ 1 ≤ cx f then boundFine p (Dw.p + Dw.q) Dw.q (rk f) (cx f) else boundAll p (rk f) (cx f)) := by
     intro f
     split_ifs with h
     · exact _root_.GlobalTheory.RefSum.facBetween_fine E H Dw l Xo c p la hp2 hpd hin f (cx f) h.1.1 h.2

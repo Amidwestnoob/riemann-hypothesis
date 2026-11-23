@@ -96,15 +96,31 @@ theorem card_isReps_inv (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace 
     (R R' : Finset (GL (A ⊕ D) k)) (d d' : GL (A ⊕ D) k → kˣ) :
     IsReps g R d → IsReps g⁻¹ R' d' → R.card = R'.card ∧ R.Nonempty := by
   intro hR hR'
-  letI : MeasurableSpace k := borel k
-  haveI : BorelSpace k := ⟨rfl⟩
+  letI : MeasurableSpace (GL (A ⊕ D) k) := borel _
+  haveI : BorelSpace (GL (A ⊕ D) k) := ⟨rfl⟩
   haveI : IsTopologicalGroup (GL (A ⊕ D) k) := inferInstance
   haveI : LocallyCompactSpace (GL (A ⊕ D) k) := inferInstance
   haveI : SecondCountableTopology (GL (A ⊕ D) k) := inferInstance
-  haveI : BorelSpace (GL (A ⊕ D) k) := GlobalTheory.SplitFlip.borel_GL
   obtain ⟨hJo, hJc⟩ := GlobalTheory.ParahoricOpenCompact.isOpen_isCompact_parahoric k A D
-  haveI : (Measure.haar : Measure (GL (A ⊕ D) k)).IsMulRightInvariant :=
-    GlobalTheory.SplitFlip.isMulRightInvariant_of_haar _
+
+  have hRI : ∀ (μ : Measure (GL (A ⊕ D) k)) [μ.IsHaarMeasure], μ.IsMulRightInvariant := by
+    intro μ _
+    haveI : μ.Regular := Measure.Regular.of_sigmaCompactSpace_of_isLocallyFiniteMeasure μ
+    refine ⟨fun g => ?_⟩
+    have h : Measure.modularCharacter g = 1 := by
+      refine GlobalTheory.SplitFlip.hom_eq_one_of_center Measure.modularCharacter (fun z hz => ?_) g
+      have h1 := Measure.map_right_mul_eq_modularCharacterFun_smul μ z
+      rw [show (fun x => x * z) = fun x => z * x from funext fun x => (hz x).symm,
+        Measure.IsMulLeftInvariant.map_mul_left_eq_self] at h1
+      have h2 := congrArg (fun m : Measure (GL (A ⊕ D) k) => m (KO k (A ⊕ D))) h1
+      have hne : μ (KO k (A ⊕ D)) ≠ 0 := (GlobalTheory.SplitFlip.isOpen_KO.measure_pos μ ⟨1, one_mem _⟩).ne'
+      have hnt : μ (KO k (A ⊕ D)) ≠ ⊤ := GlobalTheory.SplitFlip.isCompact_KO.measure_lt_top.ne
+      simp only [Measure.coe_nnreal_smul_apply] at h2
+      have h3 : (Measure.modularCharacterFun z : ENNReal) = 1 :=
+        (ENNReal.mul_left_inj hne hnt).1 (by rw [one_mul]; exact h2.symm)
+      exact_mod_cast h3
+    rw [Measure.map_right_mul_eq_modularCharacterFun_smul μ g, show Measure.modularCharacterFun g = 1 from h, one_smul]
+  haveI := hRI (Measure.haar : Measure (GL (A ⊕ D) k))
   refine ⟨card_eq_of_unimodular (Measure.haar : Measure (GL (A ⊕ D) k)) (parahoric k A D) hJo
     hJc.measure_lt_top.ne g R R' (fun j hj => (hR.1 j hj).1) hR.2
     (fun j hj => (hR'.1 j hj).1) hR'.2, ?_⟩

@@ -227,12 +227,12 @@ theorem exists_frame_mulVec (X : Data E r) {p : ℕ} (hr : r = p + X.p0) (ρ : (
 set_option maxHeartbeats 1000000 in
 theorem exists_adapted {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ}
     {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ))
-    (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => relab c σ (e j).1))
+    (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1))
     (y : FrPt Xo c (CAt σ)) (k : Fin F.n) (P : (F.Di k).La →+ (Fin g → ℂ))
-    (hP : IsPeriod (F.Di k) (fun j => relab c σ (e j).1) P) (hy : F.u k P = y.x) :
+    (hP : IsPeriod (F.Di k) (fun j => Formalism.L2.PjFree.relab c σ (e j).1) P) (hy : F.u k P = y.x) :
     ∃ (V : Matrix (Fin g) (Fin g) ℂ) (P' : (F.Di k).La →+ (Fin g → ℂ)), IsUnit V.det ∧
       (∀ j j', V j j' ≠ 0 → (e j).1 = (e j').1) ∧ (∀ a, P' a = V *ᵥ P a) ∧
-      IsPeriod (F.Di k) (fun j => relab c σ (e j).1) P' ∧ y.x = F.u k P' ∧
+      IsPeriod (F.Di k) (fun j => Formalism.L2.PjFree.relab c σ (e j).1) P' ∧ y.x = F.u k P' ∧
       ∀ τ (i : Fin (Dw.mult τ)),
         IsDerivAt0 (fun z => (F.ex k P' z).left) (Pi.single (e.symm ⟨τ, i⟩) 1) (y.u τ i) := by
   classical
@@ -273,7 +273,7 @@ theorem exists_adapted {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw
   exact this
 
 theorem exists_frBor {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ}
-    (U : Unf Xo c σ r) (hU : IsUnf U) (hσ : GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
+    (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : IsUnf U) (hσ : GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
     (h : (U.un k x).x = y.x) :
     ∃ b : Frame (U.X k).Ψ r, (∀ τ, (mat b τ).det ≠ 0) ∧
       (∀ τ (a c : Fin r), (c : ℕ) < (U.X k).p0 → ¬ (a : ℕ) < (U.X k).p0 → b τ a c = 0) ∧
@@ -284,7 +284,7 @@ theorem exists_frBor {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l
   obtain ⟨hp0, hΨ⟩ := hty k
   obtain ⟨P, hPe, hP, hx, -, -⟩ := hpt k x
   obtain ⟨V, P', hV, hVt, hP'e, hP', hy, hd⟩ := exists_adapted e F y (ik k) P hP (hx.symm.trans h)
-  obtain ⟨b, hb, hb0, hbe⟩ := exists_frame_mulVec (U.X k) (p := Dw.p) (by omega) (relab c σ) hbij Dw.mult
+  obtain ⟨b, hb, hb0, hbe⟩ := exists_frame_mulVec (U.X k) (p := Dw.p) (by omega) (Formalism.L2.PjFree.relab c σ) hbij Dw.mult
     (fun τ h => by unfold Datum.mult; rw [if_pos ((hrt τ).1 ((hΨ _).1 h))])
     (fun τ h => by unfold Datum.mult; rw [if_neg (fun h' => h ((hΨ _).2 ((hrt τ).2 h'))), hp0]) e V hV hVt x.1
   have hm := rmul_mem_dom (U.X k) x.2 b hb hb0

@@ -161,7 +161,7 @@ theorem thOrth_sclY {p : ℕ} [Fact p.Prime] {N N' r : ℕ} (D : D7) (lam : Qbar
       (MvPowerSeries.C c * MvPowerSeries.X k : MvPowerSeries (D.what₂.Tau × Fin N' × Fin N) ℂ_[p])) :=
     MvPowerSeries.hasSubst_of_constantCoeff_zero fun k => by simp
   have hb : MvPowerSeries.HasSubst (fun k : D.what₂.Tau × Fin N' × Fin N =>
-      ∑ i, MvPowerSeries.C ((1 : ℂ_[p]) * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) *
+      ∑ i, MvPowerSeries.C ((1 : ℂ_[p]) * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) *
         (MvPowerSeries.X i : MvPowerSeries (Fin r) ℂ_[p])) :=
     MvPowerSeries.hasSubst_of_constantCoeff_zero fun k => by simp
   unfold thOrth sclY

@@ -122,10 +122,10 @@ theorem frameStdLt_of (lam : Qbar →+* ℂ_[p]) (c : ℂ_[p]) (hc0 : c ≠ 0) (
   rw [(isLin_stdLin X E pos M φ k).repr, Fintype.sum_sum_type]
   simp only [hypLin, Finset.mul_sum, mul_add, Finset.sum_add_distrib]
   rw [Finset.sum_comm (s := Finset.univ) (t := Finset.univ)
-      (f := fun i e => MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) *
+      (f := fun i e => MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) *
         (MvPowerSeries.C (f e i : ℂ_[p]) * MvPowerSeries.X (Sum.inl e))),
     Finset.sum_comm (s := Finset.univ) (t := Finset.univ)
-      (f := fun i e => MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) *
+      (f := fun i e => MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) *
         (MvPowerSeries.C (f' e i : ℂ_[p]) * MvPowerSeries.X (Sum.inr e)))]
   congr 1
   · refine Finset.sum_congr rfl fun e _ => ?_

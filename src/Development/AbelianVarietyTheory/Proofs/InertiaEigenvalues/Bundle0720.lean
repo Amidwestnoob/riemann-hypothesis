@@ -335,7 +335,7 @@ theorem isSubquotient_multiProd_prinSeries {n : ℕ} (e : (Σ _ : Fin n, Fin 1) 
     simpa [σ] using mem_parab_iff.1 p.2 a b () () hab
   let κ := (PiTensorProduct.constantBaseRingEquiv (Fin n) ℂ).toLinearEquiv
   let Ψ : IndSp e (piTensor fun a => detRep (Fin 1) (χ a)) →ₗ[ℂ]
-      IndSp (points (Fin n)) ((ofChar (torusChar χ)).comp (leviTorus k (Fin n)).symm.toMonoidHom) :=
+      IndSp (points (Fin n)) ((ofChar (GlobalTheory.SmGL.torusChar χ)).comp (leviTorus k (Fin n)).symm.toMonoidHom) :=
     { toFun := fun F => ⟨⟨fun g => κ (F.1.1 (P * g)), fun p g => by
           let q : parab k e := ⟨P * p * P⁻¹, hq p⟩
           have e1 : P * ((p : GL (Fin n) k) * g) = (q : GL (Fin n) k) * (P * g) := by
@@ -359,8 +359,8 @@ theorem isSubquotient_multiProd_prinSeries {n : ℕ} (e : (Σ _ : Fin n, Fin 1) 
           show κ ((deltaHalf k (fun _ : Fin n => Fin 1) (leviProj k e q) : ℂ) •
               piTensor (fun a => detRep (Fin 1) (χ a)) (leviProj k e q) t) =
             (deltaHalf k (fun _ : Fin n => Unit) (leviProj k (points (Fin n)) p) : ℂ) •
-              ofChar (torusChar χ) ((leviTorus k (Fin n)).symm (leviProj k (points (Fin n)) p)) (κ t)
-          rw [map_smul, hd, ofChar_apply, torusChar_apply]
+              ofChar (GlobalTheory.SmGL.torusChar χ) ((leviTorus k (Fin n)).symm (leviProj k (points (Fin n)) p)) (κ t)
+          rw [map_smul, hd, ofChar_apply, GlobalTheory.SmGL.torusChar_apply]
           congr 1
           refine (constEquiv_piTensor_detRep χ _ t).trans ?_
           rw [Units.coe_prod]

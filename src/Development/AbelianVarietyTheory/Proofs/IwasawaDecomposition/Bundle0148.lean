@@ -435,7 +435,7 @@ theorem Generates.ideal_comap_top_le [IsAffine W] {J : X.IdealSheafData} {σ : F
     rw [hJ.2 k V (hV.trans inf_le_right)] at h1
     have h2 : resG W hB (resG W hA ((g.app U.1).hom a)) =
         (g.appLE V.1 B.1 hBV).hom (resG X (hV.trans inf_le_left) a) := by
-      rw [appLE_resG, resG_resG]
+      rw [appLE_resG, GlobalTheory.Cartier.resG_resG]
       rfl
     rw [h2]
     rw [← Ideal.mem_comap]

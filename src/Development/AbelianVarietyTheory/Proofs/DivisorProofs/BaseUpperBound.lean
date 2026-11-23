@@ -336,7 +336,7 @@ theorem baseOf_of_realPin {ρ : Setup D.ntw} (hρ : ρ.Good) (hp : RealPin p.R p
       Pg := hp.Pg i j b, mu0 := hp.mu0 i j b, eta := hp.eta i j b,
       lam := GlobalTheory.BaseLiftWeight.lam_eq D _ _ _ j _ hL hB (hp.mu0 i j b) (hp.ap i j b) (hp.am i j b), delta := ?_, p := hP, q := hQ,
       c := funext fun τ => GlobalTheory.BaseLiftWeight.c_eq hL hB (hp.mu0 i j b) τ }
-  rw [← liftWeight_delta, Weight.delta, Weight.delta, hP, hQ, hAP, hAM]
+  rw [← liftWeight_delta, GlobalTheory.ExportSeries.Weight.delta, GlobalTheory.ExportSeries.Weight.delta, hP, hQ, hAP, hAM]
   rfl
 
 end GlobalTheory.BigOn.Exp

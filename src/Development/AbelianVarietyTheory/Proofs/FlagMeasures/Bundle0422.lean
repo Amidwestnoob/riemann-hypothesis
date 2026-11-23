@@ -321,7 +321,7 @@ theorem base_data_of_global_term : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.wh
   have hA1 : Uni ((admXi D Λ (lf D F0) F')⁻¹.map (fun x : 𝓞 D.host.E => (x : D.host.E))) :=
     ⟨fun a b h => by simp [hinv.1 a b h], fun a => by simp [hinv.2 a]⟩
   obtain ⟨F'1, hF'1⟩ := (GlobalTheory.FlagChange.flag_change D F' hT').1 _ hA1
-  have hfr1 : frame F'1 = frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹ := funext fun b => (hF'1 b).trans rfl
+  have hfr1 : frame F'1 = Formalism.MainNotions.S.Lat.frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹ := funext fun b => (hF'1 b).trans rfl
   have hTri1 : Tri D.host.E (frame F') (frame F'1) := ⟨_, hA1, hF'1⟩
 
   obtain ⟨-, hB1⟩ := _root_.GlobalTheory.LocOver.base_frames_at_point D (lf D F0) F' w hT hT' hw
@@ -337,7 +337,7 @@ theorem base_data_of_global_term : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.wh
   have hf'eq : ∀ p, (locU Z p Λ (lf D F0) F' (Tu D u) (Tu D u')).f' = scaled Z p (frame F'1) := by
     intro p
     funext b
-    show frFac Z.δ p b • baseChange₂ D p (frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹ b) =
+    show frFac Z.δ p b • baseChange₂ D p (Formalism.MainNotions.S.Lat.frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹ b) =
       frFac Z.δ p b • baseChange₂ D p (frame F'1 b)
     rw [hfr1]
 

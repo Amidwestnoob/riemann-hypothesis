@@ -674,7 +674,7 @@ theorem local_orthonormal_basis : LocBasisMM := by
     exact hn1
   ·
     let e := Fintype.equivFin D.what₂.Tau
-    let N : Matrix D.what₂.Tau D.what₂.Tau ℂ := Matrix.of fun τ τ' => embT D τ (b (e τ'))
+    let N : Matrix D.what₂.Tau D.what₂.Tau ℂ := Matrix.of fun τ τ' => Formalism.MainNotions.TaylorLogMetric.embT D τ (b (e τ'))
     have hGN : (D.host.φ₀.comp (algebraMap D.host.K D.host.E)).mapMatrix (G.submatrix e e) =
         N.transpose * N.map (starRingEnd ℂ) := by
       ext τ₁ τ₂
@@ -700,7 +700,7 @@ theorem local_orthonormal_basis : LocBasisMM := by
       apply hNne
       rw [← hNQ, ← RingHom.map_det, h0, map_zero]
     have e2 : (Matrix.of fun (τ τ' : D.what₂.Tau) =>
-        lamC lam (embT D τ (bm (Fintype.equivFin D.what₂.Tau τ') 0 0))) = lam.mapMatrix NQ := by
+        lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D τ (bm (Fintype.equivFin D.what₂.Tau τ') 0 0))) = lam.mapMatrix NQ := by
       ext τ τ'
       simp only [Matrix.of_apply, RingHom.mapMatrix_apply, Matrix.map_apply, bm, NQ]
       exact IntegralOrthonormalChange.lamC_embT D lam τ _

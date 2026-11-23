@@ -218,7 +218,7 @@ theorem exists_mul_eq_eSF {F : Type} [Field F] [NumberField F] (S : Finset (Heig
   classical
   refine ⟨((fun w => (evInf F w n)⁻¹ : Ainf F), ∑ v ∈ S, singleFin v (evFin F v n)⁻¹), ?_⟩
   rw [GlobalTheory.CompanionTheory.RgEisUnif.EIdemP.eSF_eq]
-  refine Prod.ext ?_ (af_ext fun u => ?_)
+  refine Prod.ext ?_ (GlobalTheory.AdelicU.af_ext fun u => ?_)
   · funext w
     exact mul_inv_cancel₀ (h1 w)
   · change evalV F u (n.2 * ∑ v ∈ S, singleFin v (evFin F v n)⁻¹) = evalV F u (∑ v ∈ S, singleFin v 1)

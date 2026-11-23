@@ -186,7 +186,7 @@ theorem schurSt_of_big_tie_uniform : ∀ Cg cb Cu cT CT C1 : ℝ, ∃ C₀ : ℝ
       mul_comm]
     exact hMM
   refine hMM2.trans (ENNReal.ofReal_le_ofReal ?_)
-  have hf := factor_le large₂.sc.b D.R.m (Tr D w) (Tr D w') θ CT C1 C D.R.rS hb1 (by exact_mod_cast hm1) hT hT' hθ0
+  have hf := GlobalTheory.Amp.SchurBound.factor_le large₂.sc.b D.R.m (Tr D w) (Tr D w') θ CT C1 C D.R.rS hb1 (by exact_mod_cast hm1) hT hT' hθ0
     (hTb w) (hTb w') hθ.2 hC
   have hκ2 : κ ^ 2 = θ ^ 2 / (2 * D.host.v) ^ (2 * D.R.rS * D.R.k) := by
     rw [hκ, Real.rpow_neg (by linarith), ← Nat.cast_mul, Real.rpow_natCast, mul_assoc 2, mul_comm 2 (D.R.rS * D.R.k),

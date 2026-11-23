@@ -25,7 +25,7 @@ def LocBasisMM : Prop :=
       LocBasis D p (YYl D (Formalism.MainNotions.StandardLatticesGL3.stdL D 1) (Formalism.MainNotions.StandardLatticesGL3.stdL D 1)) b ∧
       ‖(Matrix.of fun m n => lamC lam (D.host.φ₀ ((hYY D (b m) (b n) : D.host.K) : D.host.E))).det‖ = 1 ∧
       (Matrix.of fun (τ τ' : D.what₂.Tau) =>
-        lamC lam (embT D τ (b (Fintype.equivFin D.what₂.Tau τ') 0 0))).det ≠ 0
+        lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D τ (b (Fintype.equivFin D.what₂.Tau τ') 0 0))).det ≠ 0
 
 def RatCoord : Prop :=
   ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) (B : Base D cc δ), IsCurveIdeal D cc → IsDiscriminantTwelfthRootOfIdealLattice D cc δ →
@@ -42,7 +42,7 @@ def RatCoord : Prop :=
       LocBasis D p (YYl D (Formalism.MainNotions.StandardLatticesGL3.stdL D 1) (Formalism.MainNotions.StandardLatticesGL3.stdL D 1)) b →
     ∃ c : Fin 4 × D.what₂.Tau → Fin 4 → Fin (Fintype.card D.what₂.Tau) → D.host.K,
       (∀ w i' τ, g₁.symm (Pi.single w 1) (i', τ) =
-        ∑ m, D.host.φ₀ ((c w i' m : D.host.K) : D.host.E) * embT D τ (b m 0 0)) ∧
+        ∑ m, D.host.φ₀ ((c w i' m : D.host.K) : D.host.E) * Formalism.MainNotions.TaylorLogMetric.embT D τ (b m 0 0)) ∧
       (∀ w i' m, ∃ s : ℕ, Nat.Coprime s p ∧ IsIntegral ℤ ((s : D.host.K) * c w i' m)) ∧
       ∀ w w', ∑ i', ∑ m, ∑ n, ((c w i' m : D.host.K) : D.host.E) * ((hYY D (b m) (b n) : D.host.K) : D.host.E) *
         D.host.conj ((c w' i' n : D.host.K) : D.host.E) = if w = w' then 1 else 0
@@ -95,7 +95,7 @@ def thOrth (D : D7) {N N' r : ℕ} {p : ℕ} [Fact p.Prime] (lam : Qbar →+* �
     (b : Fin r → Matrix (Fin N') (Fin N) D.host.E) (F₀ : MvPowerSeries (D.what₂.Tau × Fin N' × Fin N) ℂ_[p]) :
     MvPowerSeries (Fin r) ℂ_[p] :=
   MvPowerSeries.subst (fun k : D.what₂.Tau × Fin N' × Fin N =>
-    ∑ i, MvPowerSeries.C (c * lamC lam (embT D k.1 (b i k.2.1 k.2.2))) * MvPowerSeries.X i) F₀
+    ∑ i, MvPowerSeries.C (c * lamC lam (Formalism.MainNotions.TaylorLogMetric.embT D k.1 (b i k.2.1 k.2.2))) * MvPowerSeries.X i) F₀
 
 variable {p : ℕ} [Fact p.Prime] (X : Sys p) [IsFractionRing X.G.O X.G.Kf] (E : Formalism.L2.G.Pend.CEmbC X.G)
     (hfin : ∀ j c, (X.Lv.lev j c).FinClasses) (D : D7) (pos : (Σ v : X.Pl, Fin (X.G.P.n' v)) ≃ D.what₂.Tau)

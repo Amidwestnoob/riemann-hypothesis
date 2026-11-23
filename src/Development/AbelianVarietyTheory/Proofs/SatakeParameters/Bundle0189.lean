@@ -319,7 +319,7 @@ theorem injective_of_jacquet_surjective {k : Type} [Field k] [ValuativeRel k] [T
     [IsNonarchimedeanLocalField k] {n : ℕ} (π : Irr k n) {s : ℕ} {d : Fin s → ℕ}
     (e : (Σ a, Fin (d a)) ≃ Fin n) {Y : Type} [AddCommGroup Y] [Module ℂ Y]
     {τ : Representation ℂ (Levi k fun a => Fin (d a)) Y} (hirr : τ.IsIrreducible)
-    (q : (jac e π.π).IntertwiningMap τ) (hq : Function.Surjective q) :
+    (q : (GlobalTheory.SmGL.jac e π.π).IntertwiningMap τ) (hq : Function.Surjective q) :
     ∃ φ : π.π.IntertwiningMap (parInd e τ), Function.Injective φ := by
   obtain ⟨φ, hφ⟩ := (Model.evalOne_bijective e π.smooth τ).2 q
   refine ⟨φ, (injective_iff_map_eq_zero _).2 fun v hv => ?_⟩
@@ -340,32 +340,32 @@ theorem injective_of_jacquet_surjective {k : Type} [Field k] [ValuativeRel k] [T
   rw [(eq_bot_or_eq_top φ.ker).resolve_right hK] at hv'
   exact hv'
 
-theorem exists_embedding_parInd_of_jacquet_nontrivial : GlobalTheory.Published.BernsteinZelevinskyFiniteness → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (π : Irr k n) (s : ℕ) (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin n), ¬ Subsingleton (Jacquet π.π (unipRad k e)) → ∃ (Y : Type) (_ : AddCommGroup Y) (_ : Module ℂ Y) (τ : Representation ℂ (Levi k fun a => Fin (d a)) Y), τ.IsIrreducible ∧ IsSmooth τ ∧ IsSubquotient τ (jac e π.π) ∧ ∃ φ : π.π.IntertwiningMap (parInd e τ), Function.Injective φ := by
+theorem exists_embedding_parInd_of_jacquet_nontrivial : GlobalTheory.Published.BernsteinZelevinskyFiniteness → ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (π : Irr k n) (s : ℕ) (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin n), ¬ Subsingleton (Jacquet π.π (unipRad k e)) → ∃ (Y : Type) (_ : AddCommGroup Y) (_ : Module ℂ Y) (τ : Representation ℂ (Levi k fun a => Fin (d a)) Y), τ.IsIrreducible ∧ IsSmooth τ ∧ IsSubquotient τ (GlobalTheory.SmGL.jac e π.π) ∧ ∃ φ : π.π.IntertwiningMap (parInd e τ), Function.Injective φ := by
   intro hBZ k _ _ _ _ n π s d e hJ
-  have hfl : HasFiniteLength (jac e π.π) :=
+  have hfl : HasFiniteLength (GlobalTheory.SmGL.jac e π.π) :=
     (hBZ k).2.1 (Fin s) (Fin n) (fun a => Fin (d a)) e π.V π.π π.smooth
       (hasFiniteLength_of_isIrreducible π.irr)
-  haveI : WellFoundedGT (Subrepresentation (jac e π.π)) :=
+  haveI : WellFoundedGT (Subrepresentation (GlobalTheory.SmGL.jac e π.π)) :=
     ((hasFiniteLength_iff_wellFounded _).1 hfl).1
-  have hne : (⊥ : Subrepresentation (jac e π.π)) ≠ ⊤ := by
+  have hne : (⊥ : Subrepresentation (GlobalTheory.SmGL.jac e π.π)) ≠ ⊤ := by
     intro h
     apply hJ
     constructor
     intro x y
-    have hx : x ∈ (⊥ : Subrepresentation (jac e π.π)) := h ▸ trivial
-    have hy : y ∈ (⊥ : Subrepresentation (jac e π.π)) := h ▸ trivial
+    have hx : x ∈ (⊥ : Subrepresentation (GlobalTheory.SmGL.jac e π.π)) := h ▸ trivial
+    have hy : y ∈ (⊥ : Subrepresentation (GlobalTheory.SmGL.jac e π.π)) := h ▸ trivial
     exact (hx : x = 0).trans (hy : y = 0).symm
   obtain ⟨M, hM, -⟩ :=
-    (eq_top_or_exists_le_coatom (⊥ : Subrepresentation (jac e π.π))).resolve_left hne
-  let q : (jac e π.π).IntertwiningMap (subQuot ⊤ M) :=
-    ⟨(Submodule.mkQ _) ∘ₗ LinearMap.codRestrict (⊤ : Subrepresentation (jac e π.π)).toSubmodule
+    (eq_top_or_exists_le_coatom (⊥ : Subrepresentation (GlobalTheory.SmGL.jac e π.π))).resolve_left hne
+  let q : (GlobalTheory.SmGL.jac e π.π).IntertwiningMap (subQuot ⊤ M) :=
+    ⟨(Submodule.mkQ _) ∘ₗ LinearMap.codRestrict (⊤ : Subrepresentation (GlobalTheory.SmGL.jac e π.π)).toSubmodule
       LinearMap.id (fun v => trivial), fun g => rfl⟩
   have hq : Function.Surjective q := by
     intro y
     obtain ⟨⟨v, hv⟩, rfl⟩ := Submodule.Quotient.mk_surjective _ y
     exact ⟨v, rfl⟩
   have hirr : (subQuot ⊤ M).IsIrreducible := isIrreducible_subQuot hM.covBy_top
-  have hsq : IsSubquotient (subQuot ⊤ M) (jac e π.π) := .of_surjective q hq
+  have hsq : IsSubquotient (subQuot ⊤ M) (GlobalTheory.SmGL.jac e π.π) := .of_surjective q hq
   refine ⟨_, _, _, subQuot ⊤ M, hirr, hsq.isSmooth (isSmooth_jac e π.smooth), hsq, ?_⟩
   exact injective_of_jacquet_surjective π e hirr q hq
 

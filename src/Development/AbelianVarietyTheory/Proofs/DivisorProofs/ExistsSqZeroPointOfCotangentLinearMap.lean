@@ -379,7 +379,7 @@ theorem cotMap_ptM_rhoM (D : Der A.hom (unitSec A) (pushO O M)) (hD : VanD O M A
   congr 1
   have e1 : (ptM D hD).left.appLE W (deformM D hD ⁻¹ᵁ W) le_rfl f =
       resG (TM O M).left (deformM_preimage D hD W).le (psiM D hD W f) := deformM_appLE' D hD W le_rfl f
-  rw [e1, centerFn, resG_resG, resG_self, GlobalTheory.DualPull.appLE_resG,
+  rw [e1, centerFn, GlobalTheory.LB.resG_resG, resG_self, GlobalTheory.DualPull.appLE_resG,
     ← GlobalTheory.DualPull.appLE_resG (TM O M).hom hW' le_rfl,
     GlobalTheory.DualPull.resG_appLE, zeroSec_psiM, psiM_apply, Scheme.Hom.appLE_eq_app]
   abel

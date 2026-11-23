@@ -398,15 +398,15 @@ theorem memLp_restrict_compact : ∀ (G : Type) [Group G] [TopologicalSpace G] [
   have hN : N ≠ ⊤ := by
     have hfin : {γ : Γ | (γ : G) ∈ C * C⁻¹}.Finite := finite_mem_compact (Γ := Γ) (hC.mul hC.inv)
     simpa [N] using hfin.encard_lt_top.ne
-  have hF2 : ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂quotMeasure Γ μ < ∞ := by
+  have hF2 : ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ < ∞ := by
     have := (Lp.memLp F).eLpNorm_lt_top
     rw [eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top two_ne_zero ENNReal.ofNat_ne_top (Lp.aestronglyMeasurable F)] at this
     simpa using this
   have key : ∫⁻ g, ‖lift Γ F g‖ₑ ^ (2 : ℝ) ∂μ.restrict C < ∞ := by
     rw [← lintegral_indicator hCm,
       lintegral_eq_lintegral_tsum (Γ := Γ) ((hmeas.enorm.pow_const (2 : ℝ)).indicator hCm)]
-    calc ∫⁻ q, ∑' γ : Γ, C.indicator (fun g => ‖lift Γ F g‖ₑ ^ (2 : ℝ)) (γ * q.out) ∂quotMeasure Γ μ
-        ≤ ∫⁻ q, N * ‖F q‖ₑ ^ (2 : ℝ) ∂quotMeasure Γ μ := by
+    calc ∫⁻ q, ∑' γ : Γ, C.indicator (fun g => ‖lift Γ F g‖ₑ ^ (2 : ℝ)) (γ * q.out) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ
+        ≤ ∫⁻ q, N * ‖F q‖ₑ ^ (2 : ℝ) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := by
           refine lintegral_mono fun q => ?_
           have e : ∀ γ : Γ, C.indicator (fun g => ‖lift Γ F g‖ₑ ^ (2 : ℝ)) (γ * q.out)
               = C.indicator (fun _ => ‖F q‖ₑ ^ (2 : ℝ)) (γ * q.out) := by
@@ -417,7 +417,7 @@ theorem memLp_restrict_compact : ∀ (G : Type) [Group G] [TopologicalSpace G] [
             · rfl
           simp_rw [e]
           exact tsum_indicator_le Γ C q.out _
-      _ = N * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂quotMeasure Γ μ := lintegral_const_mul' _ _ hN
+      _ = N * ∫⁻ q, ‖F q‖ₑ ^ (2 : ℝ) ∂GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ := lintegral_const_mul' _ _ hN
       _ < ∞ := ENNReal.mul_lt_top hN.lt_top hF2
   have hLp : MemLp (lift Γ F) 2 (μ.restrict C) := by
     rw [memLp_iff, eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top two_ne_zero ENNReal.ofNat_ne_top hmeas.restrict]

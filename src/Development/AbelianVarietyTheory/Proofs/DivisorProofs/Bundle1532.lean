@@ -203,7 +203,7 @@ theorem psiLoc_eventually_trivial_integers {F : Type} [Field F] [NumberField F] 
     have : ι 0 = 0 := by
       refine Prod.ext rfl ?_
       show RestrictedProduct.structureMap _ _ _ _ = (0 : Af F)
-      refine af_ext fun w => ?_
+      refine GlobalTheory.AdelicU.af_ext fun w => ?_
       rfl
     simp [this, AddChar.map_zero_eq_one]
   obtain ⟨I, u, hu, hsub⟩ := isOpen_pi_iff.1 hopen 0 h0
@@ -217,7 +217,7 @@ theorem psiLoc_eventually_trivial_integers {F : Type} [Field F] [NumberField F] 
       rw [this]; exact (hu a ha).2
     have hmem := hsub hy
     have hιy : ι y = LinearMap.inr F (Ainf F) (Af F) (singleFin v x) := by
-      refine congrArg (LinearMap.inr F (Ainf F) (Af F)) (af_ext fun w => ?_)
+      refine congrArg (LinearMap.inr F (Ainf F) (Af F)) (GlobalTheory.AdelicU.af_ext fun w => ?_)
       by_cases e : w = v
       · subst e; rw [evalV_singleFin_self]
         show ((y w : w.adicCompletion F)) = x

@@ -142,7 +142,7 @@ theorem exists_arcIn_of_unif {V : ValuationSubring c.F} (Y : Model Xo c V.subtyp
     exact Submodule.smul_mem_smul ((Ideal.mul_le_inf hm).1) Submodule.mem_top
   choose pM hpM using fun v => exists_rational_pair hA P hT Y.oF.t z ψ gψ hM0 (rat _ dM) _ (tM v)
   choose pA hpA using fun v => exists_rational_pair hA P hT Y.oF.t z ψ gψ l.A_pos (rat _ dA) _ (tA v)
-  refine ⟨{ D₀ := twist P.D.toPre H.w0 tf
+  refine ⟨{ D₀ := GlobalTheory.TauTwist.twist P.D.toPre H.w0 tf
             mod := P.mod
             oa := twistAct hw ht P.oD
             nontriv := hX
@@ -188,10 +188,10 @@ theorem exists_arcIn_of_unif {V : ValuationSubring c.F} (Y : Model Xo c V.subtyp
         (∀ (q : QkPt P.D.toPre F k) (x : TFK (R := T.V) F ⟶ P.A.A), QkExt (algebraMap _ F) p q →
           x.left ≫ ψ = jFK (R := T.V) F ≫ z ≫ σ.left → P.ToA F k q x) → ∀ q',
         QkExt (algebraMap _ F) (qkScale hw ht hq (hr hd) _ p) q' →
-        QkPt.Equiv (twist P.D.toPre H.w0 tf) F q' (I'.ev k v) := by
+        QkPt.Equiv (GlobalTheory.TauTwist.twist P.D.toPre H.w0 tf) F q' (I'.ev k v) := by
       intro k hk hd p v σ hσ hp q' hq'
       obtain ⟨q, rfl⟩ := (qkScaleEquiv hw ht hq (s₁ k hk) _).surjective q'
-      have e₁ := qkRel_qkScaleEquiv (D := P.D.toPre) (hψ := (twist P.D.toPre H.w0 tf).psi_gen)
+      have e₁ := qkRel_qkScaleEquiv (D := P.D.toPre) (hψ := (GlobalTheory.TauTwist.twist P.D.toPre H.w0 tf).psi_gen)
         hw ht hq (s₁ k hk) q
       have e₂ : (e.symm (J.ev k v)).left ≫ ψ = (J.ev k v).left := by rw [← he, MulEquiv.apply_symm_apply]
       refine e₁.equiv hw ht hq (s₁ k hk) (s₅ k hk v) (eI k hk v q _ e₂ (hp q _ (QkRel.qkExt_of (fun y x => ?_)

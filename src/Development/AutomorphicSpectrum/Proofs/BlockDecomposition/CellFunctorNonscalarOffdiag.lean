@@ -47,7 +47,7 @@ def cellChar (f : ∀ i, (Σ j, c i j) ≃ m i) (g : ∀ j, (Σ i, c i j) ≃ m'
 theorem cellFunctor_law (f : ∀ i, (Σ j, c i j) ≃ m i) (g : ∀ j, (Σ i, c i j) ≃ m' j)
     (ρ : Representation ℂ (Levi k m) W) (χ' : Levi k m →* ℂˣ)
     (hρ : ∀ y v, ρ y v = ((χ' y : ℂˣ) : ℂ) • v) (p : relParab k g) (y : Levi k m')
-    (w : smoothPart (ind (relParab k g) ((twist ((relJac f ρ).comp (swapBlocks k c))
+    (w : smoothPart (ind (relParab k g) ((GlobalTheory.SmGL.twist ((relJac f ρ).comp (swapBlocks k c))
       (relDeltaHalf k fun j i => c i j)).comp (relProj k g)))) :
     w.1.1 (p.1 * y) = ((cellChar f g χ' p : ℂˣ) : ℂ) • w.1.1 y := by
   rw [w.1.2 p y]
@@ -76,7 +76,7 @@ theorem cellChar_conj (f : ∀ i, (Σ j, c i j) ≃ m i) (g : ∀ j, (Σ i, c i 
 theorem cellFunctor_of_top (f : ∀ i, (Σ j, c i j) ≃ m i) (g : ∀ j, (Σ i, c i j) ≃ m' j)
     (ρ : Representation ℂ (Levi k m) W) (χ' : Levi k m →* ℂˣ)
     (hρ : ∀ y v, ρ y v = ((χ' y : ℂˣ) : ℂ) • v) (hP : ∀ x, x ∈ relParab k g) (x : Levi k m')
-    (w : smoothPart (ind (relParab k g) ((twist ((relJac f ρ).comp (swapBlocks k c))
+    (w : smoothPart (ind (relParab k g) ((GlobalTheory.SmGL.twist ((relJac f ρ).comp (swapBlocks k c))
       (relDeltaHalf k fun j i => c i j)).comp (relProj k g)))) :
     cellFunctor f g ρ x w = ((cellChar f g χ' ⟨x, hP x⟩ : ℂˣ) : ℂ) • w := by
   apply Subtype.ext

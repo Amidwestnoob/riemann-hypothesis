@@ -78,7 +78,7 @@ theorem sobBdd_absThetaInt : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T 
   intro D ψ S T χS χT om hom θ hθ μ 𝓕 hc m _ Z hadd hsm hZ hcomm hint U hU K hK
   obtain ⟨U', hU', hl, hb⟩ := _root_.GlobalTheory.ThetaDens.om_compact_sobCont D ψ S T χS χT om hom θ hθ μ 𝓕 hc (K ×ˢ {1})
     (hK.prod isCompact_singleton) U hU
-  have pt : ∀ h : GA D T, ∃ (d : ℕ) (C : ℝ≥0), ∀ g ∈ thetaLevel ψ S T U',
+  have pt : ∀ h : GA D T, ∃ (d : ℕ) (C : ℝ≥0), ∀ g ∈ GlobalTheory.Size.thetaLevel ψ S T U',
       ‖thetaKO om 1 h (Z g)‖ₑ ≤ C * sobO ψ θ μ 𝓕 d g := by
     intro h
     obtain ⟨U₁, hU₁, hl₁, hb₁⟩ := hZ U' hU'
@@ -112,7 +112,7 @@ theorem sobBdd_absThetaInt : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T 
       refine (tendsto_enorm_of_le C (ht d) fun j => ?_).liminf_eq.ge
       refine le_of_eq_of_le ?_ (hp _ (sub_mem (hu j) hf))
       have e : u j - f = u j + (-1 : ℂ) • f := by rw [neg_one_smul, sub_eq_add_neg]
-      have hf' : (-1 : ℂ) • f ∈ thetaLevel ψ S T U' := Submodule.smul_mem _ _ hf
+      have hf' : (-1 : ℂ) • f ∈ GlobalTheory.Size.thetaLevel ψ S T U' := Submodule.smul_mem _ _ hf
       rw [e, hadd _ _ (hu j).1 hf'.1, hsm _ _ hf.1]
       simp only [GlobalTheory.AutomorphicL2Unitary.descend, thetaKO, map_add (f := _), Pi.add_apply, neg_one_smul,
         sub_eq_add_neg, map_neg, Pi.neg_apply])

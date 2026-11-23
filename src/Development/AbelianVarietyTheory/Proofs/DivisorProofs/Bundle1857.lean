@@ -351,7 +351,7 @@ theorem short_at_frame : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 :
     ring
   have hH := hPh'.1
   have hhom : (MvPolynomial.rename Dc.eL (MvPolynomial.map (O i).s0 P)).IsHomogeneous d :=
-    ((isHomogeneous_of_rowDeg _ _ _ _ hH.2.2).map _).rename_isHomogeneous
+    ((GlobalTheory.PtId.isHomogeneous_of_rowDeg _ _ _ _ hH.2.2).map _).rename_isHomogeneous
   have hser := hδ' χ _ _ ω φ' hK.weil _ hK.chr hK.fin hK.ram hK.pl (GlobalTheory.OnCmp.readsOnly_omegaFree R i _ ξR y₀) hφ' _ φc hphi
     hhalf hrt g' _ _ Dc.hr Dc.bas Dc.idx _ vr hX Dc.sympl hon hinv (hbas _) hvr
     (badN D * (T.dδ ((i : ℕ) + 1) (Vc D i).rank).l₂.M) N h (γ * g) Λ mk₂ e Ps yd hbadP he hPs hGf hsupp hyd hLa hTd hLev ha₂

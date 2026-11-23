@@ -242,11 +242,11 @@ theorem exists_irreducible_sub {b : ℕ} (hb : 0 < b) {X : Type} [AddCommGroup X
     IsSubquotient.isSmooth ⟨S, Representation.IntertwiningMap.id _, Function.surjective_id⟩ hτ.1
   obtain ⟨ω, hω, hωc⟩ := GlobalTheory.LocGL.exists_smooth_hasCentralChar hρc.1 hρi
   obtain ⟨ψ, hψ, hψ1⟩ := exists_root_norm hω hb
-  have hc' : IsCuspidal (twist ρ (detChar (Fin b) ψ)) := GlobalTheory.LocGL.isCuspidal_twist hρc hψ
+  have hc' : IsCuspidal (GlobalTheory.SmGL.twist ρ (detChar (Fin b) ψ)) := GlobalTheory.LocGL.isCuspidal_twist hρc hψ
   have hsc := GlobalTheory.CuspCoef.isSupercuspidal_of_isCuspidal k b Y _ hc'
   haveI : Nontrivial Y := GlobalTheory.SmGL.Model.nontrivial_of_isIrreducible hρi
   obtain ⟨y, hy⟩ := exists_ne (0 : Y)
-  obtain ⟨l, hl, hly⟩ := _root_.GlobalTheory.SmoothForm.exists_smooth_form_ne_zero _ _ (twist ρ (detChar (Fin b) ψ)) (fun U hU => by
+  obtain ⟨l, hl, hly⟩ := _root_.GlobalTheory.SmoothForm.exists_smooth_form_ne_zero _ _ (GlobalTheory.SmGL.twist ρ (detChar (Fin b) ψ)) (fun U hU => by
     obtain ⟨γ, hγ, h⟩ := GlobalTheory.CentralExponent.exists_cong_subset (n := Fin b) hU
     exact ⟨_, GlobalTheory.CentralExponent.isOpen_cong γ hγ, GlobalTheory.CentralExponent.isCompact_cong γ hγ, h⟩) hc'.1 y hy
   have hu := _root_.GlobalTheory.isUnitarisable_of_isSupercuspidal _ _ _ l hl (fun h => hly (by rw [h]; rfl)) (GlobalTheory.LocGL.isIrreducible_twist hρi _) hsc
@@ -256,7 +256,7 @@ theorem exists_irreducible_sub {b : ℕ} (hb : 0 < b) {X : Type} [AddCommGroup X
       have h := GlobalTheory.LocGL.hasCentralChar_twist hωc ψ z
       rw [Fintype.card_fin] at h
       exact ⟨_, hψ1 z, h⟩)
-  obtain ⟨ι, hι⟩ := _root_.GlobalTheory.CuspBack.exists_back _ _ _ (twist S.toRepresentation (detChar (Fin b) ψ)) _ (twistMap p _)
+  obtain ⟨ι, hι⟩ := _root_.GlobalTheory.CuspBack.exists_back _ _ _ (GlobalTheory.SmGL.twist S.toRepresentation (detChar (Fin b) ψ)) _ (twistMap p _)
     (isSmooth_twist hSs hψ.detChar) hsc hu
     (fun z hz' => by
       obtain ⟨c, hc⟩ := hz z hz'

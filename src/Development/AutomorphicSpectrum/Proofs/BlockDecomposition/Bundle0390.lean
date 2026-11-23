@@ -459,7 +459,7 @@ variable {i t : ℕ} {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup 
 
 def qRep (τ : Representation ℂ (Mir k i) V) (σ : Representation ℂ (GL (Fin t) k) W) :
     Representation ℂ (Qp k i t) (Jacquet τ (MirUin k i) ⊗[ℂ] W) :=
-  twist ((extTensor (psiMinus k τ) σ).comp (qBlocks k i t))
+  GlobalTheory.SmGL.twist ((extTensor (psiMinus k τ) σ).comp (qBlocks k i t))
     ((detChar (Fin t) (absPow k (1 : ℂ))).comp ((MonoidHom.snd _ _).comp (qBlocks k i t)))
 
 abbrev hRep (τ : Representation ℂ (Mir k i) V) (σ : Representation ℂ (GL (Fin t) k) W) :

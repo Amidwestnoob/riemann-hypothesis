@@ -179,10 +179,10 @@ theorem gram (h : V →ₗ⋆[K] V →ₗ[K] K) (hn : h.Nondegenerate) {n : ℕ}
   have hd : A.det ≠ 0 := fun h0 => by
     obtain ⟨c, hc0, hc⟩ := Matrix.exists_vecMul_eq_zero_iff.2 h0
     refine hc0 (b.equivFun.symm.map_eq_zero_iff.1 (hn.2 _ fun y => ?_))
-    rw [form_eq hst h b, ← hA, LinearEquiv.apply_symm_apply, herm_eq_dotProduct, Matrix.dotProduct_mulVec, hc, zero_dotProduct]
+    rw [form_eq hst h b, ← hA, LinearEquiv.apply_symm_apply, GlobalTheory.SelfDualGenus.herm_eq_dotProduct, Matrix.dotProduct_mulVec, hc, zero_dotProduct]
   refine ⟨A⁻¹, fun i j => ?_, Matrix.mul_nonsing_inv _ hd.isUnit⟩
   have := (hb _).1 ((hm (b.equivFun.symm (Pi.single i 1 ᵥ* A⁻¹))).2 fun y hy => by
-    rw [form_eq hst h b, ← hA, LinearEquiv.apply_symm_apply, herm_eq_dotProduct, Matrix.dotProduct_mulVec,
+    rw [form_eq hst h b, ← hA, LinearEquiv.apply_symm_apply, GlobalTheory.SelfDualGenus.herm_eq_dotProduct, Matrix.dotProduct_mulVec,
       Matrix.vecMul_vecMul, Matrix.nonsing_inv_mul _ hd.isUnit, Matrix.vecMul_one, single_dotProduct, one_mul]
     exact cc_mem_semiLoc v ((hb y).1 hy i)) j
   rw [← b.equivFun_apply, LinearEquiv.apply_symm_apply] at this
@@ -213,7 +213,7 @@ theorem exists_isom [Algebra.Unramified (𝓞 (maximalRealSubfield K)) (𝓞 K)]
     (Matrix.toLinearEquiv' γ (Matrix.invertibleOfIsUnitDet γ hγd.isUnit))).trans b.equivFun.symm
   have hg : ∀ x, b.equivFun (g x) = γ *ᵥ b.equivFun x := fun x => b.equivFun.apply_symm_apply _
   have hgi : ∀ x y, h (g x) (g y) = h x y := fun x y => by
-    rw [form_eq hst h b, form_eq hst h b y x, hg, hg, herm_mulVec, hγ]
+    rw [form_eq hst h b, form_eq hst h b y x, hg, hg, GlobalTheory.SelfDualGenus.herm_mulVec, hγ]
   have hle : ∀ x ∈ loc (K := K) P L, g x ∈ loc (K := K) P L' := fun x hx => (hb' _).2 fun i => by
     have e : b'.repr (g x) i = ((b'.toMatrix b * γ) *ᵥ b.equivFun x) i := by
       rw [← Matrix.mulVec_mulVec, ← hg]

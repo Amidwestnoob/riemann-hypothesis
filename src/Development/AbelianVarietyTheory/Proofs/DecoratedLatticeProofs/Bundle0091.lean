@@ -63,7 +63,7 @@ variable {D : D7} {v : Pl D} {e : AE D}
 theorem splitAt_of {ε : AF D.host.F} (h : IsSplitIdem D e) (hε : IsPlaceIdem D v ε)
     (he : e + cA D e = algebraMap (AF D.host.F) (AE D) ε) : SplitAt D v e := by
   obtain ⟨α, rfl, h3, h4⟩ := hε
-  have : α = singleV D.host.F v 1 := af_ext _ fun w => by
+  have : α = singleV D.host.F v 1 := GlobalTheory.SplitIdem.af_ext _ fun w => by
     by_cases hw : w = v
     · subst hw; rw [h3, evalV_singleV_same]
     · rw [h4 w hw, evalV_singleV_ne _ v _ hw]

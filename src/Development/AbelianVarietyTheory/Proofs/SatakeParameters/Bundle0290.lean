@@ -418,7 +418,7 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL
 theorem fixed_iwahori_ne_bot_of_twist {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] {n : ℕ} {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     {ρ : Representation ℂ (GL (Fin n) k) V} {ρ' : Representation ℂ (GL (Fin n) k) W} (s : ℂ)
-    (T : (twist ρ (detChar (Fin n) (absPow k s))).Equiv ρ') (h : fixed ρ' (iwahori k (Fin n)) ≠ ⊥) :
+    (T : (GlobalTheory.SmGL.twist ρ (detChar (Fin n) (absPow k s))).Equiv ρ') (h : fixed ρ' (iwahori k (Fin n)) ≠ ⊥) :
     fixed ρ (iwahori k (Fin n)) ≠ ⊥ := by
   obtain ⟨y, hy, h0⟩ := (Submodule.ne_bot_iff _).1 h
   obtain ⟨x, rfl⟩ := T.toLinearEquiv.surjective y

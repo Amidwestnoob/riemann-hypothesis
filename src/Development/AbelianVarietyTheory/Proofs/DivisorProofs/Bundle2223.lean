@@ -453,9 +453,9 @@ theorem gtExt_eq_self_of_charVal_fixed : ∀ (R : Type) [CommRing R] [IsDomain R
   refine gt_ext_val ((gtExt_b σ hσ g).trans hb') fun χ y J' hJ' => ?_
   obtain rfl : y = closedPoint F := Subsingleton.elim (α := PrimeSpectrum F) _ _
   have hdel : ∀ ψ : Spec (CommRingCat.of F) ⟶ D.P.A.left, Spec.map (CommRingCat.ofHom σ) ≫ ψ = ψ →
-      del D.P.L σ J J' ψ = del D.P.L (RingHom.id F) J J' ψ := by
+      GlobalTheory.BXOf.del D.P.L σ J J' ψ = GlobalTheory.BXOf.del D.P.L (RingHom.id F) J J' ψ := by
     intro ψ h
-    unfold del
+    unfold GlobalTheory.BXOf.del
     rw [h, CommRingCat.ofHom_id, Spec.map_id, Category.id_comp]
   have e₁ := val_nat (g.isGen χ) σ hJ hJ' (𝟙 _)
   have e₂ := val_nat (g.isGen χ) (RingHom.id F) hJ hJ' (𝟙 _)

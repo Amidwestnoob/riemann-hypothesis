@@ -451,7 +451,7 @@ theorem parInd_isSubquotient : ∀ (k : Type) [Field k] [ValuativeRel k] [Topolo
     intro φ ψ hφψ
     refine Subtype.ext (Subtype.ext (funext fun g => hι ?_))
     exact congrFun (congrArg (fun χ : IndSp e ρ' => χ.1.1) hφψ) g
-  let σ₀ : Representation ℂ (parab k e) S.toSubmodule := (twist S.toRepresentation (deltaHalf k m)).comp (leviProj k e)
+  let σ₀ : Representation ℂ (parab k e) S.toSubmodule := (GlobalTheory.SmGL.twist S.toRepresentation (deltaHalf k m)).comp (leviProj k e)
   let z : Representation.IntertwiningMap σ₀ σ₀ :=
     { toLinearMap := 0, isIntertwining' := fun _ => by ext; simp }
   have hsurj : Function.Surjective (parIndMap e f) := by

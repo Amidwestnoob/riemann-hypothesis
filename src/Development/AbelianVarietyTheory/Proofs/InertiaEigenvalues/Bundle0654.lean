@@ -357,7 +357,7 @@ theorem eq_of_hasSupport_singleton {y z : IrrGL (k := k)} (h : HasSupport y.rep 
       intro g x y
       rw [← hw (w⁻¹ * g * w⁻¹⁻¹) x y]
       simp [mul_assoc]
-    let ρ := twist (piTensor fun _ : Fin 1 => z.rep) (deltaHalf k fun _ : Fin 1 => Fin z.1)
+    let ρ := GlobalTheory.SmGL.twist (piTensor fun _ : Fin 1 => z.rep) (deltaHalf k fun _ : Fin 1 => Fin z.1)
     have conjugate {f f' : (Σ _ : Fin 1, Fin z.1) ≃ Fin z.1} {v : GL (Fin z.1) k}
         (hv : Placing.Moves f f' v) (p : parab k f) :
         ∃ q : parab k f', (q : GL (Fin z.1) k) = v * p * v⁻¹ ∧

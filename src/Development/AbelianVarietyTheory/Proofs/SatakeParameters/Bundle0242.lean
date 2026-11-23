@@ -292,7 +292,7 @@ theorem charPol_satWD (h : IsPlaceOver A w) (n : ℕ) (B : Multiset ℂˣ) (g : 
     (satWD h n B).charPol g = (B.map fun b : ℂˣ =>
       X - C ((((normV w : ℕ) : ℂ) ^ (((((1 : ℝ) - n) / 2 : ℝ)) : ℂ)) ^ deg g * ((b : ℂ)⁻¹) ^ deg g)).prod := by
   classical
-  have hs : ∀ {ι : Type} (c : ℂ) (d : ι → ℂ), c • diagEnd d = diagEnd (fun i => c * d i) := fun c d =>
+  have hs : ∀ {ι : Type} (c : ℂ) (d : ι → ℂ), c • GlobalTheory.WeilDeligne.diagEnd d = GlobalTheory.WeilDeligne.diagEnd (fun i => c * d i) := fun c d =>
     LinearMap.ext fun v => funext fun i => by simp [mul_assoc]
   rw [satWD, WD.lpUnr, WD.lpTw_mk, WD.charPol_mk, WDRep.tw_ρ, WDRep.diag_ρ, hs, charpoly_diagEnd,
     ← Finset.prod_map_val]

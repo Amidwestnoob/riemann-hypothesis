@@ -205,7 +205,7 @@ theorem thetaKO_eq_short_series_tw : ∀ (D : D7) (G : Type) [Group G] [Fintype 
   choose p hp using fun q => exists_finOf (Vc D i) (Wc D i) (rank_Wc i) ((δ : ℤ) • Y q)
   have hdat := hδ χ Q Ω ω φv hω ξ hchr hfin hram hQ hΩ hvec l₂ φ hφ hl bad N h k Λ mk hbad ⟨hh, e, Ps, he, hPs, hsupp⟩ hΛ
     htriv hlev hmk Y (fun q => (p q).1) (fun q => (p q).2) hY hp
-  haveI := finite_levQ Dw l₂
+  haveI := GlobalTheory.AdTh.ShortSeries.finite_levQ Dw l₂
   letI : Fintype (Fin (Vc D i).rank → LevQ Dw l₂) := Fintype.ofFinite _
   obtain ⟨hhs, hks, -, hlat, hV1, -⟩ := GlobalTheory.MovedLat.moved_lattices D _ _ _ _ hV0 hW0 hVs hWs h k
   obtain ⟨-, -, hmv, -⟩ := GlobalTheory.MovedLat.moved_lattices D _ _ _ _ hV0 hW0 hVs hWs 1 k

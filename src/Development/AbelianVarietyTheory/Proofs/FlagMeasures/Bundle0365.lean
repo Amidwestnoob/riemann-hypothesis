@@ -356,7 +356,7 @@ theorem chiN_kOf_eq_inv_psiInf_sgUp : ∀ (D : D7) (X : HidaSetting D) (Y : Full
   have hRL : Formalism.L2.SG.TermOp.RatLink X t.pt t.lin := t.rep.2.1
   have hiso : t.lin ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT := t.rep.2.2.1
   have hM : Formalism.L2.SG.NormCut.ModGAt X := hidaSetting_modGAt X
-  have hξm : ∀ c, ModG (VS D) t.lam (gS D) (t.lin (frame (lf D (X.Fu u')) c) - frameAct (frame (lf D (X.Fu u))) ξ c) := by
+  have hξm : ∀ c, ModG (VS D) t.lam (gS D) (t.lin (frame (lf D (X.Fu u')) c) - Formalism.MainNotions.S.Lat.frameAct (frame (lf D (X.Fu u))) ξ c) := by
     intro c
     have h3 := hξ.2.2 c
     have h4 := Formalism.L2.SG.NormCut.frame_mapLF hiso (lf D (X.Fu u')) c

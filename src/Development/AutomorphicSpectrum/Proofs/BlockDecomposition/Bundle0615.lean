@@ -224,18 +224,18 @@ section
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
 
 theorem char_apply (α : Fin n → ℂˣ) (p : GroundTheory.Automorphic.Iwasawa.blockUpper k n (id : Fin n → Fin n)) (z : ℂ) :
-    ((GlobalTheory.SmGL.ofChar (torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)
+    ((GlobalTheory.SmGL.ofChar (GlobalTheory.SmGL.torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)
         (GlobalTheory.SmGL.leviProj k (points (Fin n)) (toParab p)) z =
       (∏ i, ((α i ^ ord k (diagUnit p i) : ℂˣ) : ℂ)) * z := by
   have h1 : ∀ i, ((leviTorus k (Fin n)).symm (GlobalTheory.SmGL.leviProj k (points (Fin n)) (toParab p))) i =
       diagUnit p i := det_leviProj p
-  change GlobalTheory.SmGL.ofChar (torusChar fun i => unrChar k (α i))
+  change GlobalTheory.SmGL.ofChar (GlobalTheory.SmGL.torusChar fun i => unrChar k (α i))
     ((leviTorus k (Fin n)).symm (GlobalTheory.SmGL.leviProj k (points (Fin n)) (toParab p))) z = _
-  rw [GlobalTheory.SmGL.ofChar_apply, torusChar_apply, Units.coe_prod]
+  rw [GlobalTheory.SmGL.ofChar_apply, GlobalTheory.SmGL.torusChar_apply, Units.coe_prod]
   simp only [h1, unrChar_apply]
 
 theorem addChar_theta_law_rearrangement_identity (α : Fin n → ℂˣ)
-    (f : IndSp (points (Fin n)) ((GlobalTheory.SmGL.ofChar (torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom))
+    (f : IndSp (points (Fin n)) ((GlobalTheory.SmGL.ofChar (GlobalTheory.SmGL.torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom))
     (p : GroundTheory.Automorphic.Iwasawa.blockUpper k n (id : Fin n → Fin n)) (g : GL (Fin n) k) :
     f.1.1 ((p : GL (Fin n) k) * g) = borelChar (paramChar k α) p * f.1.1 g := by
   have h := parInd_law (points (Fin n)) _ f (toParab p) g
@@ -252,7 +252,7 @@ theorem induced_vector_smooth_open_subgroup (ρ : Representation ℂ (Levi k fun
   exact (parInd_apply (points (Fin n)) ρ x g f).symm.trans h
 end
 
-theorem indSp_mem_principalSeriesSpace : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (α : Fin n → ℂˣ) (f : IndSp (points (Fin n)) ((GlobalTheory.SmGL.ofChar (torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)), (fun g => f.1.1 g) ∈ principalSeriesSpace k n (paramChar k α) := by
+theorem indSp_mem_principalSeriesSpace : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (α : Fin n → ℂˣ) (f : IndSp (points (Fin n)) ((GlobalTheory.SmGL.ofChar (GlobalTheory.SmGL.torusChar fun i => unrChar k (α i))).comp (leviTorus k (Fin n)).symm.toMonoidHom)), (fun g => f.1.1 g) ∈ principalSeriesSpace k n (paramChar k α) := by
   intro k _ _ _ _ n α f
   rw [mem_principalSeriesSpace]
   exact ⟨fun p g => addChar_theta_law_rearrangement_identity α f p g, induced_vector_smooth_open_subgroup _ f⟩

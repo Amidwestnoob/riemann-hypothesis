@@ -88,7 +88,7 @@ theorem repRel_tw (i : k ≃+* k') {n : ℕ} (π : IrrRep (GL (Fin n) k)) (π' :
     RepRel i ((cls π).tw χ hχ) ((cls π').tw χ' hχ') := by
   refine ⟨n, irrTwist π _ hχ.detChar, irrTwist π' _ hχ'.detChar, e, congrArg (Sigma.mk n) (clTwist_cl π _ hχ.detChar),
     congrArg (Sigma.mk n) (clTwist_cl π' _ hχ'.detChar), fun g (v : π.V) => ?_⟩
-  show e (twist π.ρ (detChar _ χ) g v) = twist π'.ρ (detChar _ χ') (GeneralLinearGroup.map i.toRingHom g) (e v)
+  show e (GlobalTheory.SmGL.twist π.ρ (detChar _ χ) g v) = GlobalTheory.SmGL.twist π'.ρ (detChar _ χ') (GeneralLinearGroup.map i.toRingHom g) (e v)
   rw [twist_apply, twist_apply, map_smul, he, detChar_apply, detChar_apply, det_map, hc]
 
 end GlobalTheory.LocLanglands.TransportGL

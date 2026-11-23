@@ -40,7 +40,7 @@ open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LFun GlobalTheory.SplitWei
 variable {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E))
 
 def toFun {n : ℕ} (χ : Fin n → (w.adicCompletion E)ˣ →* ℂˣ) :
-    IndSp (points (Fin n)) ((ofChar (torusChar χ)).comp (leviTorus (w.adicCompletion E) (Fin n)).symm.toMonoidHom)
+    IndSp (points (Fin n)) ((ofChar (GlobalTheory.SmGL.torusChar χ)).comp (leviTorus (w.adicCompletion E) (Fin n)).symm.toMonoidHom)
       →ₗ[ℂ] (GL (Fin n) (w.adicCompletion E) → ℂ) where
   toFun f := f.1.1
   map_add' _ _ := rfl
@@ -92,7 +92,7 @@ theorem cB_one (μ : kˣ →* ℂˣ) (p : parab k (points (Fin 1))) :
 def oneEquiv (μ : kˣ →* ℂˣ) (hμ : IsSmoothChar μ) :
     (detRep (Fin 1) μ).Equiv (prinSeries fun _ : Fin 1 => μ) := by
   let Ψ : ℂ →ₗ[ℂ] IndSp (points (Fin 1))
-      ((ofChar (torusChar fun _ : Fin 1 => μ)).comp (leviTorus k (Fin 1)).symm.toMonoidHom) :=
+      ((ofChar (GlobalTheory.SmGL.torusChar fun _ : Fin 1 => μ)).comp (leviTorus k (Fin 1)).symm.toMonoidHom) :=
     { toFun := fun c => ⟨⟨fun g => (μ (Matrix.GeneralLinearGroup.det g) : ℂ) * c, fun p g => by
           show _ = PrinProd.sB (fun _ : Fin 1 => μ) p _
           rw [PrinProd.sB_apply, cB_one]

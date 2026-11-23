@@ -280,7 +280,7 @@ theorem main : GlobalTheory.Published.BhattScholzeCrystallineLattices → ∀ (l
   let x' : ↥(resF (unitLat (Gl l) : QLat LL) (ϖ.field a)).L.T := ⟨(1 : ↥LL.1), hx⟩
   have hTriv : IsTriv (resF (unitLat (Gl l) : QLat LL) (ϖ.field a)) := fun _ _ => rfl
   let b : Module.Basis Unit ↥(OL LL) ↥(resF (unitLat (Gl l) : QLat LL) (ϖ.field a)).L.T :=
-    ⟨(LinearEquiv.ofInjective (Algebra.linearMap ↥(OL LL) ↥LL.1) IsUnitBall.inj).symm.trans
+    ⟨(LinearEquiv.ofInjective (Algebra.linearMap ↥(OL LL) ↥LL.1) (IsUnitBall.inj (O := ↥(OL LL)) (K := ↥LL.1))).symm.trans
       (Finsupp.LinearEquiv.finsuppUnique _ _ _).symm⟩
   have hb : b () = x' := by
     apply Subtype.ext

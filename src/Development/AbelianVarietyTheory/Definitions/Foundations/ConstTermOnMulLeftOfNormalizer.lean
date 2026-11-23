@@ -29,7 +29,7 @@ variable [IsTopologicalGroup G] [SecondCountableTopology G] [MeasurableSpace G] 
   [LocallyCompactSpace N]
 
 def probMeasure : Measure (Quot (Γ.subgroupOf N)) :=
-  (quotMeasure (Γ.subgroupOf N) Measure.haar univ)⁻¹ • quotMeasure (Γ.subgroupOf N) Measure.haar
+  (GlobalTheory.AutomorphicL2Unitary.quotMeasure (Γ.subgroupOf N) Measure.haar univ)⁻¹ • GlobalTheory.AutomorphicL2Unitary.quotMeasure (Γ.subgroupOf N) Measure.haar
 
 def constTermOn (φ : G → ℂ) (x : G) : ℂ := ∫ q, φ ((q.out : N) * x) ∂probMeasure Γ N
 
@@ -42,7 +42,7 @@ theorem leftInv_integrand (hφ : LeftInv Γ φ) (x : G) : LeftInv (Γ.subgroupOf
   fun γ hγ n => by simp only [Subgroup.coe_mul, mul_assoc]; exact hφ _ hγ _
 
 theorem probMeasure_eq (μ : Measure N) [μ.IsHaarMeasure] :
-    probMeasure Γ N = (quotMeasure (Γ.subgroupOf N) μ univ)⁻¹ • quotMeasure (Γ.subgroupOf N) μ := by
+    probMeasure Γ N = (GlobalTheory.AutomorphicL2Unitary.quotMeasure (Γ.subgroupOf N) μ univ)⁻¹ • GlobalTheory.AutomorphicL2Unitary.quotMeasure (Γ.subgroupOf N) μ := by
   have h0 : ((Measure.haarScalarFactor μ Measure.haar : NNReal) : ℝ≥0∞) ≠ 0 :=
     ENNReal.coe_ne_zero.2 (Measure.haarScalarFactor_pos_of_isHaarMeasure μ Measure.haar).ne'
   conv_rhs => rw [Measure.isMulLeftInvariant_eq_smul μ Measure.haar]

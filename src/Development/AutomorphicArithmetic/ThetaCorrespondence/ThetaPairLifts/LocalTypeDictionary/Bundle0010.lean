@@ -344,7 +344,7 @@ theorem deriv_characterTrace_realLift : _root_.GlobalTheory.FunPr.ThetaLocalInpu
   have inv_mul : ∀ h ∈ U, hinv h * h = 1 := fun h hh => by
     funext w
     rw [Pi.mul_apply, hhinv, Matrix.mul_assoc, Matrix.mul_assoc, ← Matrix.mul_assoc _ (Jm R S) (h w), hh w,
-      jm_mul_self, Pi.one_apply]
+      GlobalTheory.RealLift.OneParam.jm_mul_self, Pi.one_apply]
   have mul_inv : ∀ h ∈ U, h * hinv h = 1 := fun h hh => by
     funext w
     have := congrFun (inv_mul h hh) w

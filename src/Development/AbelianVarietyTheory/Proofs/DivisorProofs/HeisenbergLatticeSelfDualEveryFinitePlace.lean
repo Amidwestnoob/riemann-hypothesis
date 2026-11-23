@@ -26,7 +26,7 @@ theorem exists_codiff_sub {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (v : Pl (F 
     rw [GlobalTheory.SplitUnram.mem_adelicIdeal_codiff_iff hψ.1 (GlobalTheory.LatVacArith.psi_fin_rat hψ)]
     intro β hβ
     have e : β * α = singleFin v (c * β v) := by
-      apply af_ext
+      apply GlobalTheory.AdelicU.af_ext
       intro u
       by_cases hu : u = v
       · subst hu

@@ -141,7 +141,7 @@ theorem dataAR_row (D : D7) (hS : GlobalTheory.IndefiniteRowSideFullHecke.CuspAl
     show _ ≤ D.R.k + D.R.m * (D.R.t + sLen D + 1)
     unfold rkV Ranks.r at h0
     omega
-  have hcos : InCoset (-(G.e (j + 1) : ℚ) + δ + ((D.R.t : ℚ) + 1) / 2) (entries P) := by
+  have hcos : InCoset (-(G.e (j + 1) : ℚ) + δ + ((D.R.t : ℚ) + 1) / 2) (GlobalTheory.SignedHC.entries P) := by
     intro x hx
     obtain ⟨s, hs⟩ := mem_entries.1 hx
     have hy := fst_mem_entries (mem_shift.1 hs)

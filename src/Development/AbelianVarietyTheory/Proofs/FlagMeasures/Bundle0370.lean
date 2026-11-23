@@ -282,7 +282,7 @@ theorem locU_isTerm : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.what₂.Word) (
     exact hm
   · have hu := admissibility_witness_unitriangular Λ (lf D F0) F'
     have hinv := inv_unitri _ hu.1 hu.2
-    obtain ⟨Ap, hAp, -⟩ := GlobalTheory.LocOver.tri_scaled D Z (frame F') (frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹)
+    obtain ⟨Ap, hAp, -⟩ := GlobalTheory.LocOver.tri_scaled D Z (frame F') (Formalism.MainNotions.S.Lat.frameAct (frame F') (admXi D Λ (lf D F0) F')⁻¹)
       ((admXi D Λ (lf D F0) F')⁻¹.map (fun x : 𝓞 D.host.E => (x : D.host.E)))
       ⟨fun a b h => by simp [hinv.1 a b h], fun a => by simp [hinv.2 a]⟩ (fun b => rfl)
     exact ⟨Ap p, (hAp p).1, (hAp p).2⟩

@@ -249,7 +249,7 @@ variable (u : D.what₂.Word)
 theorem bwG_change_mem (w : D.what₂.places.Pl) (hw : OverT D u w) (τ : D.what₂.Tau) {n : ℕ}
     {L : Set (Fin n → D.host.E)} {B B₂ : GL (Fin n) D.host.E}
     (hB : IsLocBasis (D.mem u).A.T L B) (hB₂ : IsLocBasis (D.mem u).A.T L B₂) (a b : Fin n) :
-    atInf (embT D) ((B₂⁻¹ * B : GL (Fin n) D.host.E) : Matrix (Fin n) (Fin n) D.host.E) τ a b ∈ bwA_Ow D w := by
+    atInf (Formalism.L2.Forms.embT D) ((B₂⁻¹ * B : GL (Fin n) D.host.E) : Matrix (Fin n) (Fin n) D.host.E) τ a b ∈ bwA_Ow D w := by
   obtain ⟨s, hs, hx⟩ := bwE_col_loc D u w hw hB b
   have h := bwE_locBasis_int D u w hw τ hB₂ _ s hs hx a
   rw [bwE_mulVec_col, ← Units.val_mul] at h

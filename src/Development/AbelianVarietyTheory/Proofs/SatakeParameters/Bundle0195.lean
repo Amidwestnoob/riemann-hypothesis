@@ -329,8 +329,8 @@ theorem exists_prinSeries (hBZ : GlobalTheory.Published.BernsteinZelevinskyFinit
 
 theorem hasFiniteLength_prinSeries (hBZ : GlobalTheory.Published.BernsteinZelevinskyFiniteness) {n : ℕ}
     {ψ : Fin n → kˣ →* ℂˣ} (hψ : ∀ i, IsSmoothChar (ψ i)) : HasFiniteLength (prinSeries ψ) := by
-  have hs : IsSmoothChar (torusChar ψ) := by
-    unfold torusChar
+  have hs : IsSmoothChar (GlobalTheory.SmGL.torusChar ψ) := by
+    unfold GlobalTheory.SmGL.torusChar
     refine Finset.prod_induction _ IsSmoothChar (fun _ _ => IsSmoothChar.mul) isSmoothChar_one fun a _ => ?_
     exact (hψ a).comp _ (continuous_apply a)
   refine (hBZ k).2.2.1 _ _ _ (points (Fin n)) _ _ ?_ ?_

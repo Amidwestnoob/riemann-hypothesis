@@ -280,7 +280,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 abbrev sQ {r t N : ℕ} (h : r + t = N) (π₁ : Representation ℂ (GL (Fin r) k) V)
     (π₂ : Representation ℂ (GL (Fin t) k) W) :
     Representation ℂ (parab k (two (stdSum h))) (⨂[ℂ] x, TwoT V W x) :=
-  (twist (piTensor (twoRep π₁ π₂)) (deltaHalf k (Two (Fin r) (Fin t)))).comp (leviProj k (two (stdSum h)))
+  (GlobalTheory.SmGL.twist (piTensor (twoRep π₁ π₂)) (deltaHalf k (Two (Fin r) (Fin t)))).comp (leviProj k (two (stdSum h)))
 
 abbrev tE (V W : Type) [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W] :
     (⨂[ℂ] x, TwoT V W x) ≃ₗ[ℂ] V ⊗[ℂ] W :=

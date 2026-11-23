@@ -55,7 +55,7 @@ def DUFib0F (T : Forms0 D u) : Prop :=
         if x = (D.fm u).te 0 v c then (D.mem u).A.T ^ (D.R.N 0 - 1)
         else if x ∈ Submodule.span ((D.mem u).A.Fv v) {(D.fm u).te 0 v c} then 0
         else (D.mem u).A.T ^ (D.R.N 0 - 2)) ∧
-      ∀ G ∈ AdFun T.cls0.lev (embT D),
+      ∀ G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D),
         (∀ p, πD p = (D.fm u).te 0 v c →
           G (T.cls0.y c * hcomp T (η p.1.1) (κ p.1.1) (Mu p.1.1 p.2)) = G (T.cls0.y c)) ∧
         (∀ p q, πD p = πE q → G (T.cls0.y c * hcomp T (η p.1.1) (κ p.1.1) (Mu p.1.1 p.2)) =
@@ -71,7 +71,7 @@ def DUFib0F (T : Forms0 D u) : Prop :=
 set_option maxHeartbeats 4000000 in
 theorem dopU_eq (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {G : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
-    (hG : G ∈ AdFun T.cls0.lev (embT D))
+    (hG : G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D))
     (hψ : ∀ c, ψ c = fun s => G (T.cls0.y c) (T.val0.eY s)) (c : (D.mem u).C.cls 0)
     (γ : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c) → UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (η : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c) →
@@ -100,7 +100,7 @@ theorem dopU_eq (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
 set_option maxHeartbeats 4000000 in
 theorem eopU_eq (T : Forms0 D u) (v : (D.mem u).A.vT) (ψ : Fn D u 0)
     {G : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) → Fr D 0 (Nat.zero_le _) → ℂ}
-    (hG : G ∈ AdFun T.cls0.lev (embT D))
+    (hG : G ∈ AdFun T.cls0.lev (Formalism.L2.Forms.embT D))
     (hψ : ∀ c, ψ c = fun s => G (T.cls0.y c) (T.val0.eY s)) (c : (D.mem u).C.cls 0)
     (γ : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c) → UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (η : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c) →

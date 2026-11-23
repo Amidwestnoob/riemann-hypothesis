@@ -277,7 +277,7 @@ theorem exists_coprime_scaled_isometry : ∀ (E : Type) [Field E] [NumberField E
     rw [h1, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, hφ]
   refine ⟨N, f, hN, fun x y => ?_⟩
   have h2 := hEF₂ (f x) (f y)
-  rw [hf, hf, GlobalTheory.HermModel.herm_smul_left, GlobalTheory.HermModel.herm_smul_right, herm_mulVec, hγ] at h2
+  rw [hf, hf, GlobalTheory.HermModel.herm_smul_left, GlobalTheory.HermModel.herm_smul_right, GlobalTheory.SelfDualGenus.herm_mulVec, hγ] at h2
   have hc : cc (N : E) = N := by simp [cc]
   have h3 : (H.rt : E) * ((N : E) * (herm G (φ₁ x) (φ₁ y) * cc (N : E))) =
       ((N : ℚ) ^ 2) • ((H.rt : E) * herm G (φ₁ x) (φ₁ y)) := by

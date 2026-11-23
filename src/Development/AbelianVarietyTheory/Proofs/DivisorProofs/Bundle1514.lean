@@ -129,7 +129,7 @@ theorem phiP_independent : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   rw [← algebraMap_smul K (τ (x a)) e, smul_eq_zero] at h0
   have hτa : τ (x a) = 0 :=
     (map_eq_zero_iff _ (IsFractionRing.injective (𝓞 K) K)).1 (h0.resolve_right he0)
-  exact ringOfIntegers_hom_injective τ (by rw [hτa, map_zero])
+  exact GlobalTheory.CM.ringOfIntegers_hom_injective τ (by rw [hτa, map_zero])
 
 end GlobalTheory.FlatCM.HomIndep
 

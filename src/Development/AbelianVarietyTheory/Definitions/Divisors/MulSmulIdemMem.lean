@@ -171,7 +171,7 @@ def symm (s : TwSec U x Z G₀) : TwSec U x Z (-G₀) where
   finite_hi := by simpa using s.finite_lo
   pts := s.pts
 
-def ofConst {la : Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s : ConstSec U x Z la δ)
+def ofConst {la : GlobalTheory.AllWt.Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s : ConstSec U x Z la δ)
     (hδ : (Function.support δ).Finite)
     (h₁ : ∀ G : WTZ E, Even G.2 → ∀ f ∈ cuspOn U Z G, f * s.sig ∈ cuspOn U Z (G + wtOf Dw la 0))
     (h₂ : ∀ G : WTZ E, Even G.2 → ∀ f ∈ cuspOn U Z (G + wtOf Dw la 0), f * s.inv ∈ cuspOn U Z G) :

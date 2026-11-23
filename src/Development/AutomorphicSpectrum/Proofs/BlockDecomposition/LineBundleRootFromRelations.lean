@@ -140,7 +140,7 @@ theorem rootRatio_mul (h : VeroneseRel u) {W : X.Opens} {i j : τ} (l : τ) (hi 
   have ui : IsUnit (resG X hc ((u fun _ => i).f c)) := isUnit_resG_sec _ c hi' hc
   have uj : IsUnit (resG X hc ((u fun _ => j).f c)) := isUnit_resG_sec _ c hj' hc
   refine ui.mul_right_cancel ?_
-  rw [map_mul, resG_resG, resG_resG, resG_resG]
+  rw [map_mul, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG]
   have e3 := mul_word_update (x := fun w => resG X hc ((u w).f c)) (h.resG hc) (i := j) (j := l)
     (l₀ := ⟨0, hk⟩) uj (rootRatio_chart hk u l hj' hc) (oneLetter hk i j) ⟨0, hk⟩
     (by simp [oneLetter])
@@ -183,7 +183,7 @@ theorem rootG_cocycle (h : VeroneseRel u) (i j l : τ) :
   Units.ext (by
     change resG X _ (resG X _ (rootRatio hk u i j)) * resG X _ (resG X _ (rootRatio hk u j l)) =
       resG X _ (resG X _ (rootRatio hk u i l))
-    simp only [resG_resG]
+    simp only [GlobalTheory.Cartier.resG_resG]
     exact rootRatio_mul hk h l _ _)
 
 theorem rootLB_isLB (h : VeroneseRel u) (hc : ⨆ i : τ, nonzeroLocus (u fun _ => i) = ⊤) :
@@ -212,12 +212,12 @@ theorem rootIso_isGen (h : VeroneseRel u) : (rootIso hk h).IsGen := by
         change (rootG hk h i i') ^ (k : ℤ) = _
         exact zpow_natCast _ _
       rw [this, Units.val_pow_eq_pow_val]
-      exact (map_pow (resG X (le_inf hq hq')) _ k).trans (congrArg (· ^ k) (resG_resG _ _ _))
+      exact (map_pow (resG X (le_inf hq hq')) _ k).trans (congrArg (· ^ k) (GlobalTheory.Cartier.resG_resG _ _ _))
     change resG X (le_inf hp hq) (resG X inf_le_left ((u fun _ => (show τ from i)).f c)) *
         resG X (le_inf hq hq') (A.g i i').val =
       resG X (le_inf hp hp') (Q.g c c').val *
         resG X (le_inf hp' hq') (resG X inf_le_left ((u fun _ => (show τ from i')).f c'))
-    rw [resG_resG, resG_resG, ← sec_compat _ c c' hp hp', eg, mul_comm]
+    rw [GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, ← sec_compat _ c c' hp hp', eg, mul_comm]
     exact rootRatio_pow hk h _ _ _
   change res (le_inf hp hq) (@id (Γ(X, Q.U c ⊓ A.U i)ˣ) ((rootIso hk h).s (c, i))) =
     res (le_inf hp hp') (Q.g c c') * (res (le_inf hq hq') (A.g i i'))⁻¹ *
@@ -270,9 +270,9 @@ theorem appLE_rootRatio_mul (hQ : Q.IsLB) (hL : L.IsLB)
           ((@id (Γ(Y, (pw L D).U p ⊓ (Q.pull b).U c')ˣ) (θ.s (p, c'))).val *
             resG Y inf_le_right ((secPull (u w) b).f c')) :=
       congrArg _ (hm w (p, c'))
-    rw [map_mul, resG_resG, resG_resG] at e
+    rw [map_mul, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG] at e
     refine (map_prod (resG Y hp') _ _).symm.trans (e.trans (congrArg (t * ·) ?_))
-    exact (resG_resG _ _ _).trans rfl
+    exact (GlobalTheory.Cartier.resG_resG _ _ _).trans rfl
   have hρ : ρ * β (fun _ => i) = β (oneLetter hk i j) := appLE_rootRatio_chart hk b j hi' hcb
   have e1 := prod_update_mul α (fun _ : Fin k => i) ⟨0, hk⟩ j
   have hP := S fun _ => i
@@ -281,7 +281,7 @@ theorem appLE_rootRatio_mul (hQ : Q.IsLB) (hL : L.IsLB)
   have uP : IsUnit (∏ _l : Fin k, α i) := by
     rw [Finset.prod_const]
     exact uα.pow _
-  rw [map_mul, resG_appLE, resG_resG, resG_resG]
+  rw [map_mul, resG_appLE, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG]
   change ρ * α i = α j
   refine uP.mul_left_cancel ?_
   calc (∏ _l : Fin k, α i) * (ρ * α i) = t * (ρ * β fun _ => i) * α i := by
@@ -319,15 +319,15 @@ theorem rootPullIso_isGen (h : VeroneseRel u) (hQ : Q.IsLB) (hL : L.IsLB)
       have e := congrArg (fun v => resG Y (le_inf hq hq') (Units.val v)) (pull_g (rootLB hk h) b i i')
       refine e.trans ?_
       change resG Y _ (resG Y _ ((b.app _).hom (resG X inf_le_left (rootRatio hk u (i ⟨⟩) (i' ⟨⟩))))) = _
-      refine (resG_resG _ _ _).trans ?_
+      refine (GlobalTheory.Cartier.resG_resG _ _ _).trans ?_
       refine (congrArg (resG Y _) (app_resG b _ _)).trans ?_
-      refine (resG_resG _ _ _).trans ?_
+      refine (GlobalTheory.Cartier.resG_resG _ _ _).trans ?_
       rfl
     change resG Y (le_inf hp hq) (resG Y inf_le_left ((a (i ⟨⟩)).f l)) *
         resG Y (le_inf hq hq') (P.g i i').val =
       resG Y (le_inf hp hp') (M.g l l').val *
         resG Y (le_inf hp' hq') (resG Y inf_le_left ((a (i' ⟨⟩)).f l'))
-    rw [resG_resG, resG_resG, ← sec_compat _ l l' hp hp', eg, mul_comm]
+    rw [GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG, ← sec_compat _ l l' hp hp', eg, mul_comm]
     exact appLE_rootRatio_mul hk b hD a θ hQ hL hm _ hi l hp
   change res (le_inf hp hq)
       (@id (Γ(Y, M.U l ⊓ P.U i)ˣ) ((rootPullIso hk b hD a θ h hQ hL hm).s (l, i))) =

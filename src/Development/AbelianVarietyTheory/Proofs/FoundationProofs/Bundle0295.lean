@@ -295,10 +295,10 @@ theorem exists_compact_image_eq_univ {G : Type*} [Group G] [TopologicalSpace G] 
   obtain ⟨x, hx, y, hy, e⟩ := Set.mem_iUnion₂.1 (ht (Set.mem_univ q))
   exact ⟨y, Set.mem_iUnion₂.2 ⟨x, hx, interior_subset hy⟩, e⟩
 
-theorem cocompact : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [SecondCountableTopology G] [LocallyCompactSpace G] [T2Space G] [MeasurableSpace G] [BorelSpace G] (Γ : Subgroup G) [DiscreteTopology Γ] (μ : Measure G) [μ.IsHaarMeasure] [μ.IsMulRightInvariant], CompactSpace (Quot Γ) → IsFiniteMeasure (quotMeasure Γ μ) ∧ (∃ C : Set G, IsCompact C ∧ mk Γ '' C = Set.univ) ∧ ∀ φ : G → ℂ, LeftInv Γ φ → Continuous φ → MemL2Quotient Γ μ φ := by
+theorem cocompact : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [SecondCountableTopology G] [LocallyCompactSpace G] [T2Space G] [MeasurableSpace G] [BorelSpace G] (Γ : Subgroup G) [DiscreteTopology Γ] (μ : Measure G) [μ.IsHaarMeasure] [μ.IsMulRightInvariant], CompactSpace (Quot Γ) → IsFiniteMeasure (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) ∧ (∃ C : Set G, IsCompact C ∧ mk Γ '' C = Set.univ) ∧ ∀ φ : G → ℂ, LeftInv Γ φ → Continuous φ → MemL2Quotient Γ μ φ := by
   intro G _ _ _ _ _ _ _ _ Γ _ μ _ _ hc
   obtain ⟨C, hC, hCe⟩ := exists_compact_image_eq_univ Γ
-  have hfin : IsFiniteMeasure (quotMeasure Γ μ) :=
+  have hfin : IsFiniteMeasure (GlobalTheory.AutomorphicL2Unitary.quotMeasure Γ μ) :=
     ⟨(quotMeasure_le MeasurableSet.univ hCe.ge).trans_lt hC.measure_lt_top⟩
   refine ⟨hfin, ⟨C, hC, hCe⟩, fun φ hφ hcont => ⟨hφ, ?_⟩⟩
   obtain ⟨B, hB⟩ := hC.exists_bound_of_continuousOn hcont.continuousOn

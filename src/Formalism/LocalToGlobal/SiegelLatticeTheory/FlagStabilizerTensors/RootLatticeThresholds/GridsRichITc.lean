@@ -46,7 +46,7 @@ theorem gridsRich_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ)
     (hlen : 6 * ((4 * Formalism.FourierDecayAlt.C.Kst * (D.R.rS + 1) : ℕ) : ℝ) ^ 3 + 6 * ((4 * Formalism.FourierDecayAlt.C.Kst * (D.R.rS + 1) : ℕ) : ℝ) ≤
       (D.s.Del : ℝ) / 2 - 5 / 2) :
-    Formalism.FourierDecayAlt.KB.GridsRich (sOf (ITc X C u u' e he hv CA de de' l (gridT e l) (grid1T e l) fc c i0' Θ TP A₀)) :=
+    Formalism.FourierDecayAlt.KB.GridsRich (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l (gridT e l) (grid1T e l) fc c i0' Θ TP A₀)) :=
   Formalism.L2.SG.Pf.CarrierSz.gridsRich_ch _ hlen (fun v => by show gridT e l v = _; unfold gridT; rfl)
     (fun v => by show grid1T e l v = _; unfold grid1T; rfl)
 
@@ -60,7 +60,7 @@ theorem gridsOK_ITc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E ≃ D.wh
     (hlen : 6 * ((4 * Formalism.FourierDecayAlt.C.Kst * (D.R.rS + 1) : ℕ) : ℝ) ^ 3 + 6 * ((4 * Formalism.FourierDecayAlt.C.Kst * (D.R.rS + 1) : ℕ) : ℝ) ≤
       (D.s.Del : ℝ) / 2 - 5 / 2)
     (hOk : ∀ w, ((Formalism.L2.SG.SpectralTiesReal.gOf D e).place w).Ok) (hl2 : l + 2 ≤ D.R.k) :
-    Formalism.FourierDecayAlt.C.GridsOK (sOf (ITc X C u u' e he hv CA de de' l (gridT e l) (grid1T e l) fc c i0' Θ TP A₀)) := by
+    Formalism.FourierDecayAlt.C.GridsOK (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l (gridT e l) (grid1T e l) fc c i0' Θ TP A₀)) := by
   have hDel : (0 : ℝ) < (D.s.Del : ℝ) := by exact_mod_cast D.s.Del_pos
   refine Formalism.L2.SG.Pf.CarrierSz.gridsOK_ch _ hlen (fun v => by show gridT e l v = _; unfold gridT; rfl)
     (fun v => by show grid1T e l v = _; unfold grid1T; rfl)

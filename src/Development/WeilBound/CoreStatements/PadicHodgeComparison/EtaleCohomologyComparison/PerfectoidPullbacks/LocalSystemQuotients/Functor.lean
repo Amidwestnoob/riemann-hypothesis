@@ -41,6 +41,7 @@ def mq : QMor (sW l F ρ n) (sW l F ρ (n + 1)) (IdF.span _ ((l : WittVector l k
     subst h'
     exact DividedPowers.Quotient.dpow_apply T.obj.δ (subPd hn T.obj) hy
 
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain in
 def qα (T : Thick (Wc.L l F ρ (n + 1))) : T ⟶ (Wc.redM l F ρ n).functor.obj (qT hn T) where
   φ := Ideal.Quotient.mk (lI n T)
   u j := j.elim

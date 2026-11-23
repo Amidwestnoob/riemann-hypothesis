@@ -238,7 +238,7 @@ theorem exists_frame_op (θ : 𝓞 E) (hθ : (θ : E) + star (θ : E) = 1) (hlat
     (hanti : ∀ a b, a ≤ b → aa b ≤ aa a)
     (hc : ∀ c : Fin (r + 1) → E, ∑ j, c j • frame F j ∈ Λ ↔ ∀ j, c j ∈ aa j)
     (ξ : Matrix (Fin (r + 1)) (Fin (r + 1)) (𝓞 E)) (h1 : ∀ a b, b < a → ξ a b = 0) (h2 : ∀ a, ξ a a = 1) :
-    ∃ n ∈ NLam Λ F, ∀ b, n (frame F b) = frameAct (frame F) ξ b := by
+    ∃ n ∈ NLam Λ F, ∀ b, n (frame F b) = Formalism.MainNotions.S.Lat.frameAct (frame F) ξ b := by
   let w : Fin (r + 1) → S.V := fun b => ∑ a, (if a < b then (ξ a b : E) else 0) • frame F a
   have hw : ∀ b : Fin (r + 1), w b ∈ Xflag F b := by
     intro b
@@ -262,7 +262,7 @@ theorem exists_frame_op (θ : 𝓞 E) (hθ : (θ : E) + star (θ : E) = 1) (hlat
   rw [h]
   have : frame F b = ∑ a, (if a = b then (1 : E) else 0) • frame F a := by simp
   rw [this]
-  simp only [w, frameAct, ← Finset.sum_add_distrib, ← add_smul]
+  simp only [w, Formalism.MainNotions.S.Lat.frameAct, ← Finset.sum_add_distrib, ← add_smul]
   refine Finset.sum_congr rfl fun a _ => ?_
   congr 1
   rcases lt_trichotomy a b with hab | rfl | hab
@@ -331,13 +331,13 @@ theorem coord_iff (aa : Fin (r + 1) → FractionalIdeal (nonZeroDivisors (𝓞 E
 
 theorem exists_moved (hT : T ≠ 0) (n : S.V ≃ₗ[E] S.V) (hn : n ∈ Formalism.HermitianLatticesTheory.isom S.hT)
     (B : Matrix (Fin (r + 1)) (Fin (r + 1)) (𝓞 E)) (h1 : ∀ a b, b < a → B a b = 0) (h2 : ∀ a, B a a = 1) :
-    ∃ G : LFlag S r T, G.zt = G.fl.z ∧ frame G = frameAct (fun a => n (frame F a)) B := by
-  set g := frameAct (frame F) B with hg
+    ∃ G : LFlag S r T, G.zt = G.fl.z ∧ frame G = Formalism.MainNotions.S.Lat.frameAct (fun a => n (frame F a)) B := by
+  set g := Formalism.MainNotions.S.Lat.frameAct (frame F) B with hg
   have hX : ∀ b, ∃ x ∈ Xsp F, g b = x + (B (Fin.last r) b : E) • F.fl.z := by
     intro b
     refine ⟨∑ a : Fin r, (B a.castSucc b : E) • F.fl.e a,
       Submodule.sum_mem _ fun a _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨a, rfl⟩), ?_⟩
-    simp only [hg, frameAct]
+    simp only [hg, Formalism.MainNotions.S.Lat.frameAct]
     rw [Fin.sum_univ_castSucc]; simp only [frame_cast, frame_last]
   have he : ∀ a : Fin r, g a.castSucc ∈ Xsp F := by
     intro a
@@ -347,7 +347,7 @@ theorem exists_moved (hT : T ≠ 0) (n : S.V ≃ₗ[E] S.V) (hn : n ∈ Formalis
   have ho : ∀ x ∈ Xsp F, ∀ b, S.hT x (g b) = 0 := by
     intro x hx b
     set_option synthInstance.maxHeartbeats 100000 in
-      simp [hg, frameAct, map_sum, X_orth_frame hx]
+      simp [hg, Formalism.MainNotions.S.Lat.frameAct, map_sum, X_orth_frame hx]
   have hli : LinearIndependent E g := by
     obtain ⟨η, -, -, e⟩ := uni_inv h1 h2
     have e' : η * B = 1 := mul_eq_one_comm.1 e
@@ -356,7 +356,7 @@ theorem exists_moved (hT : T ≠ 0) (n : S.V ≃ₗ[E] S.V) (hn : n ∈ Formalis
     have h3 := Fintype.linearIndependent_iff.1 (frame_indep (F := F) hT)
       ((B.map (algebraMap (𝓞 E) E)).mulVec c) (by
         rw [← hc]
-        simp only [hg, frameAct, Finset.smul_sum, smul_smul, Matrix.mulVec, dotProduct, Finset.sum_smul,
+        simp only [hg, Formalism.MainNotions.S.Lat.frameAct, Finset.smul_sum, smul_smul, Matrix.mulVec, dotProduct, Finset.sum_smul,
           Matrix.map_apply]
         rw [Finset.sum_comm]
         exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by rw [mul_comm])
@@ -496,7 +496,7 @@ theorem exists_exact_frame : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) 
     change (hS D).hT (frame (lf D F0) a) (frame G b) = _
     rw [hG]
     set_option synthInstance.maxHeartbeats 100000 in
-      simp only [frameAct, map_sum, map_smul, hadj, hmf, Matrix.mul_apply, Matrix.map_apply, smul_eq_mul]
+      simp only [Formalism.MainNotions.S.Lat.frameAct, map_sum, map_smul, hadj, hmf, Matrix.mul_apply, Matrix.map_apply, smul_eq_mul]
     refine Finset.sum_congr rfl fun c _ => ?_
     rw [mul_comm]
     congr 1
@@ -513,12 +513,12 @@ theorem exists_exact_frame : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) 
       (Submodule.neg_mem _ (hn.2.2 x (orth_X_of_frame h1)))
     · rw [hadj, hmf]
       set_option synthInstance.maxHeartbeats 100000 in
-        simp only [frameAct, map_sum, LinearMap.sum_apply, LinearMap.map_smulₛₗ, LinearMap.smul_apply]
+        simp only [Formalism.MainNotions.S.Lat.frameAct, map_sum, LinearMap.sum_apply, LinearMap.map_smulₛₗ, LinearMap.smul_apply]
       refine Finset.sum_eq_zero fun c _ => ?_
       rw [h1, smul_zero]
     · rw [hG]
       set_option synthInstance.maxHeartbeats 100000 in
-        simp only [frameAct, map_sum, LinearMap.sum_apply, LinearMap.map_smulₛₗ, LinearMap.smul_apply]
+        simp only [Formalism.MainNotions.S.Lat.frameAct, map_sum, LinearMap.sum_apply, LinearMap.map_smulₛₗ, LinearMap.smul_apply]
       refine Finset.sum_eq_zero fun c _ => ?_
       rw [hn.1.1, h2, smul_zero]
 

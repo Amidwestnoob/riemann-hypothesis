@@ -229,7 +229,7 @@ theorem holAt_of_isAffineOpen {N : Set V} {c : V → (Sp ℂ ⟶ X)} {A : X.Open
     have hval : ∀ b ∈ M, valAt' (c b) U f * valAt' (c b) A r ^ k = valAt' (c b) A hh := by
       intro b hb
       have e := congrArg (valAt' (c b) (X.basicOpen r)) hk
-      rw [valAt'_mul, ReciprocityTheory.ChartRestriction.G.TB.ValAt.valAt'_res (c b) hrU (hD b hb)] at e
+      rw [ReciprocityTheory.ChartRestriction.G.TB.ValAt.valAt'_mul, ReciprocityTheory.ChartRestriction.G.TB.ValAt.valAt'_res (c b) hrU (hD b hb)] at e
       have e2 : ∀ x : Γ(X, A), valAt' (c b) (X.basicOpen r) (algebraMap Γ(X, A) Γ(X, X.basicOpen r) x) =
           valAt' (c b) A x := fun x => ReciprocityTheory.ChartRestriction.G.TB.ValAt.valAt'_res (c b) (X.basicOpen_le r) (hD b hb) x
       rw [e2, e2, ← hks] at e

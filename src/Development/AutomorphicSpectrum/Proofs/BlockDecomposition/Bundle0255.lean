@@ -32,8 +32,8 @@ lemma idealSumMap_comp_natural {A : Type} [CommRing A] [IsNoetherianRing A] {Z :
     idealSumMap F J ≫ g = biproduct.map (fun _ => g) ≫ idealSumMap G J := by
   apply biproduct.hom_ext'
   intro k
-  simp only [idealSumMap, biproduct.ι_desc_assoc, biproduct.ι_map_assoc, smulHom_comp,
-    biproduct.ι_desc]
+  simp only [idealSumMap, biproduct.ι_desc_assoc, biproduct.ι_map_assoc,
+    GroundTheory.Arith.SchemeCoh.smulHom_comp, biproduct.ι_desc]
 
 lemma idealPowι_comp_cokernel {A : Type} [CommRing A] [IsNoetherianRing A] (I : Ideal A)
     {Z : Scheme.{0}} [Z.Over (Spec (.of A))] {F G : Z.Modules} (g : F ⟶ G) (m : ℕ) :

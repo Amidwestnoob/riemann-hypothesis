@@ -305,7 +305,7 @@ theorem isRec_of_isRecLit : DepthZeroCuspidalLL → DepthZeroInduction → Langl
   refine ⟨a, ha, ε, hε, ?_⟩
   exact
     { bij := L.bij, dim := L.dim, one := L.one, eps := L.eps, cusp := L.cusp, langlands := L.langlands,
-      twist := L.twist, central := L.central, dual := L.dual,
+      GlobalTheory.SmGL.twist := L.twist, central := L.central, dual := L.dual,
       det := GlobalTheory.T.determinant_rec_compatible hSC E Ω A w h a ha _ rc L
       prod := GlobalTheory.T.twist_rec_compatible hEx hLM hSC E Ω A w h a ha _ rc L
       supp := GlobalTheory.T.central_character_rec_compatible hEx hZP hGL hBZ E Ω A w h a ha _ rc L

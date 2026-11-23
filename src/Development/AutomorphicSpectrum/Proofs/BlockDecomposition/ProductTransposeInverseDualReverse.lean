@@ -242,15 +242,15 @@ theorem parInd_thetaW {h N : ℕ} (d : Fin h → ℕ) (hd : ∑ a, d a = N) (hd'
         Subtype.ext (GlobalTheory.CompanionTheory.ThetaInv.thetaW_thetaW N (q : GL (Fin N) k))
       rw [← hpq, leviProj_thetaW d hd hd' p]
     refine ⟨p, rfl, ?_⟩
-    show twist (ρ'.comp (thetaL d)) (deltaHalf k _) (leviProj k _ p) =
-      twist ρ' (deltaHalf k _) (leviProj k _ q)
+    show GlobalTheory.SmGL.twist (ρ'.comp (thetaL d)) (deltaHalf k _) (leviProj k _ p) =
+      GlobalTheory.SmGL.twist ρ' (deltaHalf k _) (leviProj k _ q)
     rw [hq]
     ext v
     simp only [twist_apply, MonoidHom.comp_apply, deltaHalf_thetaL]
   · refine ⟨⟨thetaW k N p, (thetaW_mem_parab_iff d hd hd' _).2 p.2⟩, rfl, ?_⟩
     have hl := leviProj_thetaW d hd hd' p
-    show twist ρ' (deltaHalf k _) (leviProj k _ _) =
-      twist (ρ'.comp (thetaL d)) (deltaHalf k _) (leviProj k _ p)
+    show GlobalTheory.SmGL.twist ρ' (deltaHalf k _) (leviProj k _ _) =
+      GlobalTheory.SmGL.twist (ρ'.comp (thetaL d)) (deltaHalf k _) (leviProj k _ p)
     rw [hl]
     ext v
     simp only [twist_apply, MonoidHom.comp_apply, deltaHalf_thetaL]

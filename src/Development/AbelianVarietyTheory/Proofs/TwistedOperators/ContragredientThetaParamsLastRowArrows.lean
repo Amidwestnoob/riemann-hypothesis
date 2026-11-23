@@ -212,7 +212,7 @@ theorem pairPar_top : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.CuspAl
   have hT : (((D.R.t + 1 : ℕ) : ℚ) + 1) / 2 = (D.R.t : ℚ) / 2 + 1 := by push_cast; ring
   have hne : (G.parX j).Nonempty := by
     refine ⟨(G.a 0, true), mem_plus.2 ⟨GridData.mem_weightX.2 (Or.inl (GridData.mem_tops.2 ⟨0, by omega, rfl⟩)), rfl⟩⟩
-  have hcos : InCoset (c + (((D.R.t + 1 : ℕ) : ℚ) + 1) / 2) (entries (G.parX j)) := by
+  have hcos : InCoset (c + (((D.R.t + 1 : ℕ) : ℚ) + 1) / 2) (GlobalTheory.SignedHC.entries (G.parX j)) := by
     rw [GridData.parX, entries_plus, hT]
     intro x hx
     obtain ⟨z, hz⟩ := grid_inCoset_weightX D τ (j := j) x hx

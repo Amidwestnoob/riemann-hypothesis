@@ -251,7 +251,7 @@ theorem pureTensorO_zero_eq_thP : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) 
   have hsm := I2.contDiff_of_diff hΘ
   have main : ∀ Q : MvPolynomial (FVar D W.rank V.rank) ℂ,
       pureTensorO ψ θ V W (fun _ => 1) s (fun _ => 1) BW G Q 0 =
-        polyDeriv (MvPolynomial.aeval (fun v => MvPolynomial.C (c v) * MvPolynomial.X (vr.symm v)) Q)
+        ReciprocityTheory.ChartRestriction.G.I2.polyDeriv (MvPolynomial.aeval (fun v => MvPolynomial.C (c v) * MvPolynomial.X (vr.symm v)) Q)
           (letterDir X hq idx) Θ 0 := by
     intro Q
     induction Q using MvPolynomial.induction_on' with

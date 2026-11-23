@@ -209,7 +209,7 @@ theorem exists_eigenform {G V : Type} [Group G] [TopologicalSpace G] [IsTopologi
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem exists_eq_torusChar {n : ℕ} (μ : (Fin n → kˣ) →* ℂˣ) (hμ : ∀ t ∈ torusO k (Fin n), μ t = 1) :
-    ∃ α : Fin n → ℂˣ, torusChar (fun i => unrChar k (α i)) = μ := by
+    ∃ α : Fin n → ℂˣ, GlobalTheory.SmGL.torusChar (fun i => unrChar k (α i)) = μ := by
   obtain ⟨ϖ, hϖ⟩ : ∃ ϖ : kˣ, valuation k (ϖ : k) = uniformizer k := by
     obtain ⟨c, hc⟩ := valuation_surjective (uniformizer k)
     refine ⟨Units.mk0 c fun h => ?_, hc⟩
@@ -221,7 +221,7 @@ theorem exists_eq_torusChar {n : ℕ} (μ : (Fin n → kˣ) →* ℂˣ) (hμ : �
     · subst h; simpa using hx
     · simp [Pi.mulSingle_eq_of_ne h]
   refine ⟨fun i => c i ϖ, MonoidHom.ext fun t => ?_⟩
-  rw [torusChar_apply]
+  rw [GlobalTheory.SmGL.torusChar_apply]
   simp only [← GlobalTheory.SmGL.eq_unrChar (hc _) hϖ]
   conv_rhs => rw [← Finset.univ_prod_mulSingle t, map_prod]
   rfl

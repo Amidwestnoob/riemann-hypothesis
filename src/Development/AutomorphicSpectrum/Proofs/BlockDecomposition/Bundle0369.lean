@@ -298,7 +298,7 @@ theorem extChar : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     z ≠ 0 → ord k ϖ = 1 → (∀ t ∈ torusO k (Fin n), R t z = z) →
     (∀ x : Fin n → ℤ, StrictAnti x → R (fun i => ϖ ^ x i) z = (c * GlobalTheory.BCT.pw ξ x) • z) →
     ∀ t : Fin n → kˣ,
-      R t z = (((torusChar fun i => unrChar k (ξ i)) t : ℂˣ) : ℂ) • z := by
+      R t z = (((GlobalTheory.SmGL.torusChar fun i => unrChar k (ξ i)) t : ℂˣ) : ℂ) • z := by
   intro k _ _ _ _ n M _ _ R z ϖ ξ c hz hϖ hO hx t
   have hc : c = 1 := const_eq_one R hz hx
   subst hc
@@ -317,7 +317,7 @@ theorem extChar : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
   have h1 : R t z = R (dg ϖ e) z := by
     conv_lhs => rw [ht]
     rw [map_mul, Module.End.mul_apply, hO _ hu]
-  rw [h1, eig_all R hx e, torusChar_apply]
+  rw [h1, eig_all R hx e, GlobalTheory.SmGL.torusChar_apply]
   congr 1
   simp [GlobalTheory.BCT.pw, he, unrChar_apply]
 

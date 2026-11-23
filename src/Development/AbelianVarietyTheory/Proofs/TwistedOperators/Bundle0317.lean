@@ -371,7 +371,7 @@ theorem parOK_core : ParOK := by
     have := GlobalTheory.ParPairArrows.gap_parPi G hN hs1 hsγ hi.le _ hx _ hy hne'
     rw [e, sub_self, abs_zero] at this
     linarith
-  have hco : InCoset (-c + (((GlobalTheory.ChiGrid.sLen D - 1 : ℕ) : ℚ) + 1) / 2) (entries (dualPar (G.parPi i))) := by
+  have hco : InCoset (-c + (((GlobalTheory.ChiGrid.sLen D - 1 : ℕ) : ℚ) + 1) / 2) (GlobalTheory.SignedHC.entries (dualPar (G.parPi i))) := by
     intro x hx
     obtain ⟨s', hs'⟩ := mem_entries.1 hx
     rw [mem_dualPar'] at hs'

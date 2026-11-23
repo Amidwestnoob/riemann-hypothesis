@@ -90,10 +90,10 @@ def ofCut (φ : P ⟶ cut T) : Γ(dual P, T) :=
     { toFun s := resG Y (le_cutO h le_rfl) (cutEquiv T W (φ.app W s))
       map_add' s t := by simp only [map_add (f := _)]
       map_smul' a s := by
-        rw [Scheme.Modules.Hom.app_smul, cutEquiv_smul, map_mul, resG_resG, resG_self]; rfl })
+        rw [Scheme.Modules.Hom.app_smul, cutEquiv_smul, map_mul, GlobalTheory.LB.resG_resG, resG_self]; rfl })
     fun W W' h h' s => by
       change resG Y _ (cutEquiv T W' (φ.app W' (resM P h' s))) = resG Y h' (resG Y _ _)
-      rw [app_resM, cutEquiv_res, resG_resG, resG_resG]
+      rw [app_resM, cutEquiv_res, GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG]
 
 theorem dualApp_ofCut (φ : P ⟶ cut T) {W : Y.Opens} (h : W ≤ T) (s : Γ(P, W)) :
     dualApp (ofCut φ) h s = resG Y (le_cutO h le_rfl) (cutEquiv T W (φ.app W s)) := rfl

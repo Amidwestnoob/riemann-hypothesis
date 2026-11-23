@@ -220,14 +220,14 @@ theorem isBuiltPlace_of_compact_test (Cb Cc : ℝ) (u u' : D.what₂.Word) (e : 
     (hOk : ∀ w, ((Formalism.L2.SG.SpectralTiesReal.gOf D e).place w).Ok)
     (hw : Formalism.FourierDecayAlt.Sz.IsWord D.R.k de) (hw' : Formalism.FourierDecayAlt.Sz.IsWord D.R.k de') (hl1 : 1 ≤ l) (hl2 : l + 2 ≤ D.R.k)
     (hne : de l ≠ de' l)
-    (hG : Formalism.FourierDecayAlt.C.GridsOK (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
-    (hR : Formalism.FourierDecayAlt.KB.GridsRich (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
-    (hL : Formalism.FourierDecayAlt.JCT.LongCut Cc (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
+    (hG : Formalism.FourierDecayAlt.C.GridsOK (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
+    (hR : Formalism.FourierDecayAlt.KB.GridsRich (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
+    (hL : Formalism.FourierDecayAlt.JCT.LongCut Cc (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
     (hCA : Cc ≤ CA) (hsm : ∀ j, Formalism.FourierDecayAlt.B.CkOn ⊤ (Formalism.FourierDecayAlt.B.GV D.R.k D.R.rS) (fc j))
     (hA : Cc * ((D.R.rS : ℝ) + 1) ^ 4 *
       (((4 * Formalism.FourierDecayAlt.C.Kst * (D.R.rS + 1) : ℕ) : ℝ) * (2 * (D.R.rS : ℝ) + D.R.k + 1) ^ 2 +
         (2 * (D.R.rS : ℝ) + D.R.k + 1) ^ 3) ≤ A₀) :
-    Formalism.FourierDecayAlt.KB.IsLeadingFormPlace Cb Cc (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    Formalism.FourierDecayAlt.KB.IsLeadingFormPlace Cb Cc (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (fun j => plOf X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀ hN hty hl2 hΘ j)
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).χ A₀ := by

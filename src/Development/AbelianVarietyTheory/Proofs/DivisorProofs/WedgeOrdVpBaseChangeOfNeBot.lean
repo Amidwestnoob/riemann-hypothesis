@@ -205,14 +205,14 @@ theorem IsKS.baseChange (P : AbelianDeRham) (h : FrMap ψ y y') {x : Sp (DualNum
   let : Algebra K K' := ψ.toRingHom.toAlgebra
   obtain ⟨B, _, φ, hφ⟩ := exists_isGrpPullback A (spMap (algebraMap K K'))
   obtain ⟨B', _, φ', hφ'⟩ := exists_isGrpPullback A' (spMap (dualMap (algebraMap K K')))
-  have e₀ : spMap (algebraMap K K') ≫ epsRed K = epsRed K' ≫ spMap (dualMap (algebraMap K K')) := by
+  have e₀ : spMap (algebraMap K K') ≫ GlobalTheory.DeRham.epsRed K = GlobalTheory.DeRham.epsRed K' ≫ spMap (dualMap (algebraMap K K')) := by
     rw [← Cris.spMap_comp, ← Cris.spMap_comp]
     congr 1
     ext a <;> simp [dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-  have w : (φ ≫ i) ≫ A'.hom = (B.hom ≫ epsRed K') ≫ spMap (dualMap (algebraMap K K')) := by
+  have w : (φ ≫ i) ≫ A'.hom = (B.hom ≫ GlobalTheory.DeRham.epsRed K') ≫ spMap (dualMap (algebraMap K K')) := by
     rw [(hφ.comp hi).1.w, e₀, Category.assoc]
   have sq : hφ'.1.lift _ _ w ≫ φ' = φ ≫ i := hφ'.1.lift_fst _ _ _
-  have hj : IsGrpPullback B B' (epsRed K') (hφ'.1.lift _ _ w) :=
+  have hj : IsGrpPullback B B' (GlobalTheory.DeRham.epsRed K') (hφ'.1.lift _ _ w) :=
     hφ'.cancel ((hφ.comp hi).congr e₀ sq.symm) (hφ'.1.lift_snd _ _ _)
   have hU := ObjDim.isAbelianScheme Xo.univ
   have hg := ObjDim.smoothOfRelativeDimension Xo.univ

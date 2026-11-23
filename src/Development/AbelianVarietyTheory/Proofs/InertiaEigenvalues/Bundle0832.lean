@@ -401,7 +401,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.IntExpOnto
 
-theorem exists_harm_complex {D : D7} (m n : ℕ) (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
+theorem exists_harm_complex {D : D7} (m n : ℕ) (w : GlobalTheory.ExportSeries.Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
     (F : Pol ℂ D.what₂.Tau n) (hF : F ∈ VV ℂ w.lam) :
     ∃ P ∈ harm m w B, harmFn m w B P = coefFn (RingHom.id ℂ) w.lam F := by
   obtain ⟨s, hs⟩ := GlobalTheory.ExportSeries.DeltaExtremal.harmFn_delta D m n w B hw hm
@@ -424,7 +424,7 @@ theorem exists_harm_complex {D : D7} (m n : ℕ) (w : Weight D n) (B : GLR D n) 
     exact Submodule.subset_span ⟨_, ⟨_, rfl⟩, rfl⟩
   exact hle ⟨F, hF, rfl⟩
 
-theorem exists_harm {D : D7} (m n : ℕ) (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
+theorem exists_harm {D : D7} (m n : ℕ) (w : GlobalTheory.ExportSeries.Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m)
     {K : Type} [Field K] [CharZero K] (σ : K →+* ℂ) (F : VV K w.lam) :
     ∃ P ∈ harm m w B, harmFn m w B P = coefFn σ w.lam (F : Pol K D.what₂.Tau n) := by
   obtain ⟨P, hP, e⟩ := exists_harm_complex m n w B hw hm (MvPolynomial.map σ F.1) (GlobalTheory.Proof.TensorMapDescent.map_mem_VV _ _ _ F.2)

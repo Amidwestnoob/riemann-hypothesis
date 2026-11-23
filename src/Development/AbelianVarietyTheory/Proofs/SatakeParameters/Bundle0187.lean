@@ -303,7 +303,7 @@ theorem repE_twGL' {L : FinExt l} (χ : ↥Gw →* (↥L.1)ˣ) (s : ↥Gw →* G
   change Matrix.toLin' ((GlobalTheory.TwistAbove.twGL χ s (Bw.e.symm g) : GL (Fin a) ↥L.1) : Matrix (Fin a) (Fin a) ↥L.1) x =
     ((χ (Bw.e.symm g) : (↥L.1)ˣ) : ↥L.1) •
       Matrix.toLin' ((s (Bw.e.symm g) : GL (Fin a) ↥L.1) : Matrix (Fin a) (Fin a) ↥L.1) x
-  rw [twGL_val, Matrix.toLin'_apply, Matrix.toLin'_apply]
+  rw [GlobalTheory.TwistAbove.twGL_val, Matrix.toLin'_apply, Matrix.toLin'_apply]
   exact Matrix.smul_mulVec _ _ _
 
 theorem isModel_untwist {L : FinExt l} {r : ↥Gw →* GL (Fin a) (Om l)} {c : ↥Gw →* GL (Fin 1) (Om l)}
@@ -356,7 +356,7 @@ theorem isdRAt_twist_iff : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : L
         (mapRep (IntermediateField.inclusion l₂).toRingHom c₂) := by
       rw [characterAsRankOneRep_det_comp]; exact m₂.enlarge l₂
     refine ⟨_, _, isModel_twGL Bw (r' := Formalism.MainNotions.SumRepresentations.At.twGL r (Matrix.GeneralLinearGroup.det.comp c))
-      (μ := Matrix.GeneralLinearGroup.det.comp c) (fun g => by rw [twGL_eq]; exact twGL_val _ _ _)
+      (μ := Matrix.GeneralLinearGroup.det.comp c) (fun g => by rw [twGL_eq]; exact GlobalTheory.TwistAbove.twGL_val _ _ _)
       (m₁.enlarge l₁) mc, (twist_common Bw _ _ T).1 ((local_ext P Bw l₁ r₁).2.1.2 d₁)
         ((local_ext P Bw l₂ c₂).2.1.2 d₂)⟩
 

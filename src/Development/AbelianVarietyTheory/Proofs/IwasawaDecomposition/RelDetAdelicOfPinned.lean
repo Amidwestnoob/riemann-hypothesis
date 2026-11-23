@@ -372,9 +372,9 @@ theorem val_conj (w : HeightOneSpectrum (𝓞 H.E)) (x : H.E) : w.valuation H.E 
 theorem bar_bar (w : HeightOneSpectrum (𝓞 H.E)) : bar H (bar H w) = w :=
   ((existsUnique_conjPl H.conj.toRingEquiv (bar H w)).choose_spec.2 w fun x => val_conj H w x).symm
 
-def expo (a : Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : ℤ := log (valAt (bar H w) a) - log (valAt w a)
+def expo (a : Neutral.B1.Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : ℤ := log (valAt (bar H w) a) - log (valAt w a)
 
-theorem expo_finite (a : Ideles H.E) : {w | expo H a w ≠ 0}.Finite := by
+theorem expo_finite (a : Neutral.B1.Ideles H.E) : {w | expo H a w ≠ 0}.Finite := by
   have h := finite_valAt_ne_one a
   refine (h.union (h.image (bar H))).subset fun w hw => ?_
   by_contra hn
@@ -384,14 +384,14 @@ theorem expo_finite (a : Ideles H.E) : {w | expo H a w ≠ 0}.Finite := by
     exact hn.2 ⟨bar H w, h3, bar_bar H w⟩
   exact hw (by simp [expo, hn.1, h2])
 
-theorem expo_mul (a b : Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : expo H (a * b) w = expo H a w + expo H b w := by
+theorem expo_mul (a b : Neutral.B1.Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : expo H (a * b) w = expo H a w + expo H b w := by
   simp only [expo, map_mul, log_mul (valAt_ne_zero _ _) (valAt_ne_zero _ _)]
   ring
 
-theorem expo_bar (a : Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : expo H a (bar H w) = -expo H a w := by
+theorem expo_bar (a : Neutral.B1.Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) : expo H a (bar H w) = -expo H a w := by
   simp [expo, bar_bar]
 
-def normIdeal : Ideles H.E →* FractionalIdeal (𝓞 H.E)⁰ H.E where
+def normIdeal : Neutral.B1.Ideles H.E →* FractionalIdeal (𝓞 H.E)⁰ H.E where
   toFun a := idealExp (expo H a)
   map_one' := GlobalTheory.Idele.eq_of_count_eq (idealExp_ne_zero _) one_ne_zero fun w => by
     rw [count_idealExp (expo_finite H _), FractionalIdeal.count_one]
@@ -401,12 +401,12 @@ def normIdeal : Ideles H.E →* FractionalIdeal (𝓞 H.E)⁰ H.E where
       rw [FractionalIdeal.count_mul _ w (idealExp_ne_zero _) (idealExp_ne_zero _), count_idealExp (expo_finite H _),
         count_idealExp (expo_finite H _), count_idealExp (expo_finite H _), expo_mul]
 
-theorem normIdeal_ne_zero (a : Ideles H.E) : normIdeal H a ≠ 0 := idealExp_ne_zero _
+theorem normIdeal_ne_zero (a : Neutral.B1.Ideles H.E) : normIdeal H a ≠ 0 := idealExp_ne_zero _
 
-theorem count_normIdeal (a : Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) :
+theorem count_normIdeal (a : Neutral.B1.Ideles H.E) (w : HeightOneSpectrum (𝓞 H.E)) :
     FractionalIdeal.count H.E w (normIdeal H a) = expo H a w := count_idealExp (expo_finite H a) w
 
-theorem normIdeal_eq_one_iff (a : Ideles H.E) : normIdeal H a = 1 ↔ a ∈ KD H ⊔ unitIdl H.E := by
+theorem normIdeal_eq_one_iff (a : Neutral.B1.Ideles H.E) : normIdeal H a = 1 ↔ a ∈ KD H ⊔ unitIdl H.E := by
   rw [mem_KD_sup_unitIdl_iff]
   constructor
   · intro h w w' hw
@@ -427,10 +427,10 @@ def classIdeal : DtT H ⧸ UOT H →* FractionalIdeal (𝓞 H.E)⁰ H.E :=
       rintro _ ⟨a, ha, rfl⟩
       exact (normIdeal_eq_one_iff H a).2 (Subgroup.mem_sup_right ha))
 
-theorem classIdeal_mk (a : Ideles H.E) :
+theorem classIdeal_mk (a : Neutral.B1.Ideles H.E) :
     classIdeal H (QuotientGroup.mk (QuotientGroup.mk a)) = normIdeal H a := rfl
 
-theorem exists_mk_mk (x : DtT H ⧸ UOT H) : ∃ a : Ideles H.E, x = QuotientGroup.mk (QuotientGroup.mk a) := by
+theorem exists_mk_mk (x : DtT H ⧸ UOT H) : ∃ a : Neutral.B1.Ideles H.E, x = QuotientGroup.mk (QuotientGroup.mk a) := by
   obtain ⟨t, rfl⟩ := QuotientGroup.mk_surjective x
   obtain ⟨a, rfl⟩ := QuotientGroup.mk_surjective t
   exact ⟨a, rfl⟩

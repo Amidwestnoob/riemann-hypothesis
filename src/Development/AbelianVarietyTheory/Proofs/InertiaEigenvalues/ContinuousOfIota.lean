@@ -154,7 +154,7 @@ theorem lattice_of_point (hLaw : GlobalTheory.ThetaExh.ParamLaws N A) (hO : Form
     refine Continuous.matrix_fromBlocks hR1c continuous_const continuous_const ?_
     exact Continuous.matrix_diagonal (continuous_pi fun c => hιc.comp (N.chi_cont a _))
   have hRqs : IsSSRep Rq :=
-    GlobalTheory.SSComplement.blockM_ss _ _ _ (isSSRep_twGL _ _ hs0) (diagM_ss_local χ)
+    GlobalTheory.SSComplement.blockM_ss _ _ _ (GlobalTheory.ParamRep.isSSRep_twGL _ _ hs0) (diagM_ss_local χ)
   have hq : Formalism.MainNotions.SumRepresentations.At.IsHeckeGaloisQ N A a x Rq := by
     refine ⟨hRqc, hRqs, fun v hso B g hBv hg => ?_⟩
     have h4 : A.unr (A.locG π v) := hun v fun k hk => hso.2.2.1 ((N.S_def a v).2 ⟨by
@@ -233,7 +233,7 @@ theorem lattice_of_point (hLaw : GlobalTheory.ThetaExh.ParamLaws N A) (hO : Form
     rw [e]
     exact (hξc.comp continuous_inv).smul hρc
   · rw [mapRep_twGL]
-    exact isSSRep_twGL _ _ hρs
+    exact GlobalTheory.ParamRep.isSSRep_twGL _ _ hρs
   · filter_upwards [hfin.eventually_cofinite_notMem, A.locG_unr_ae π] with w h1 h2 B σ hBw hσ
     have iso : isoLoc N A [⟨R.r, π, 1⟩] w = A.locG π w := by
       simp [isoLoc, spehLoc, A.lpSum_zero, A.lpTw_zero]

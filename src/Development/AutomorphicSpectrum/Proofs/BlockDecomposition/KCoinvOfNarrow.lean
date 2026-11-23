@@ -69,9 +69,9 @@ theorem irr_gen_narrow (NB : Narrow) (n t : ℕ) {μ : kˣ →* ℂˣ} (hμ : Is
   have hρ : IsSmooth ρ := isSmooth_comp hτ _ ((continuous_apply false).prodMk (continuous_apply true))
   have hI : (parInd (two e) ρD).IsIrreducible := NB k n t 1 μ (by unfold IsSmoothChar; simp) hμ
     (fun _ => by simp) hu (Or.inr (Ne.symm hμ1))
-  let σ := (twist ρ (deltaHalf k (Two (Fin n) (Fin t)))).comp (leviProj k (two e))
+  let σ := (GlobalTheory.SmGL.twist ρ (deltaHalf k (Two (Fin n) (Fin t)))).comp (leviProj k (two e))
   have hσ : IsSmooth σ := isSmooth_comp (isSmooth_twist hρ (isSmoothChar_deltaHalf k)) _ hcont
-  let α : Representation.IntertwiningMap σ ((twist ρD (deltaHalf k (Two (Fin n) (Fin t)))).comp (leviProj k (two e))) :=
+  let α : Representation.IntertwiningMap σ ((GlobalTheory.SmGL.twist ρD (deltaHalf k (Two (Fin n) (Fin t)))).comp (leviProj k (two e))) :=
     compMap (twistMap q _) _
   let T : Γ → Representation.IntertwiningMap σ σ := fun γ =>
     compMap (twistMap (actFst τ γ) (deltaHalf k (Two (Fin n) (Fin t)))) (leviProj k (two e))

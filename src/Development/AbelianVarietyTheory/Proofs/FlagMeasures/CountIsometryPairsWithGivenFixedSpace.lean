@@ -144,11 +144,11 @@ theorem hRes_nondeg (h : V →ₗ⋆[K] V →ₗ[K] K) (hP : GlobalTheory.Mass.P
 
 
 omit [FiniteDimensional K V] in
-theorem fixLat_le {H : HermSpace K V} {g : ℕ} {L₀ : Submodule (𝓞 K) V} {j x : ℕ}
+theorem fixLat_le {H : Formalism.HermitianLatticeCounting.S6.HermSpace K V} {g : ℕ} {L₀ : Submodule (𝓞 K) V} {j x : ℕ}
     {d : Submodule (𝓞 K) V × Submodule (𝓞 K) (V × V)} (hd : IsDat H g L₀ j x d) : fixLat d.2 ≤ L₀ :=
   fun _ hv => (hd.2.2.1.1 hv).2
 
-theorem disc_trace (H : HermSpace K V) (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hP : GlobalTheory.Mass.PD H.B.flip)
+theorem disc_trace (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hP : GlobalTheory.Mass.PD H.B.flip)
     {L M : Submodule (𝓞 K) V} (hL : GlobalTheory.Mass.IsIntLat H.B.flip L) (hM : M ≤ L) (h : idx L M ≠ 0)
     (U : Submodule K V) :
     GlobalTheory.Mass.idxN (GlobalTheory.Mass.latIn U L) (GlobalTheory.Mass.latIn U M) ≠ 0 ∧
@@ -162,7 +162,7 @@ theorem disc_trace (H : HermSpace K V) (hK : Formalism.HermitianLatticesTheory.I
     (GlobalTheory.Mass.PrimMean.isIntLat_latIn _ hM' U)).2.2.1 _ (GlobalTheory.Mass.PrimMean.isIntLat_latIn _ hL U)
     (Submodule.comap_mono hM)
 
-theorem dat_count (H : HermSpace K V) (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hP : GlobalTheory.Mass.PD H.B.flip)
+theorem dat_count (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V) (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (hP : GlobalTheory.Mass.PD H.B.flip)
     (L₀ : Submodule (𝓞 K) V) (g j D₀ : ℕ) (hL : GlobalTheory.Mass.IsIntLat H.B.flip L₀)
     (hD : GlobalTheory.Mass.discN H.B.flip L₀ = D₀) (hG : GenBy (Formalism.HermitianLatticesTheory.dual H.B.flip L₀) L₀ 1) (hg : 2 ≤ g)
     (x : ℕ) (hx : 1 ≤ x) (U : Submodule K V) (M : Submodule (𝓞 K) V) :
@@ -239,7 +239,7 @@ theorem prod_bound (B c : ℝ) (x x' D s e C : ℕ) (hB : 0 ≤ B) (hx : 1 ≤ x
         (((x : ℝ) * D) ^ e * ((x' : ℝ) * D) ^ e) * (C : ℝ) ^ C) * (x * x') := by gcongr
     _ = _ := by ring
 
-theorem main : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (H : HermSpace K V), Formalism.HermitianLatticesTheory.IsCMUnram K → GlobalTheory.Mass.PD H.B.flip → ∀ (L₀ : Submodule (𝓞 K) V) (g j D₀ : ℕ), GlobalTheory.Mass.IsIntLat H.B.flip L₀ → GlobalTheory.Mass.discN H.B.flip L₀ = D₀ → GenBy (Formalism.HermitianLatticesTheory.dual H.B.flip L₀) L₀ 1 → 2 ≤ g → ∀ (x x' s n : ℕ) (U : Submodule K V), 1 ≤ x → 1 ≤ x' → 1 ≤ n → Module.finrank K U + s = (Module.finrank K V) → GlobalTheory.Mass.discN (GlobalTheory.Mass.hRes H.B.flip U) (GlobalTheory.Mass.latIn U L₀) = n → ((({p ∈ Trip H g L₀ j x x' | fixSp p.2.2 = U}).encard : ℕ∞) : ℝ≥0∞) ≤ if (n : ℝ) ≤ (D₀ : ℝ) * x * x' then ENNReal.ofReal (((2 / (g : ℝ)) ^ (2 * s * (Formalism.HermitianLatticesTheory.fDeg K)) * D₀ * x * x' / n) ^ (((Module.finrank K V) : ℝ) / 2) * ((x : ℝ) * x') ^ (2 * (s : ℝ) + 2 * cf K + 1) * ((x : ℝ) * x' * (D₀ : ℝ) ^ 2) ^ (3 * (2 * j + 1)) * ((4 * s * (Formalism.HermitianLatticesTheory.fDeg K) : ℕ) : ℝ) ^ (4 * s * (Formalism.HermitianLatticesTheory.fDeg K))) else 0 := by
+theorem main : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] (H : Formalism.HermitianLatticeCounting.S6.HermSpace K V), Formalism.HermitianLatticesTheory.IsCMUnram K → GlobalTheory.Mass.PD H.B.flip → ∀ (L₀ : Submodule (𝓞 K) V) (g j D₀ : ℕ), GlobalTheory.Mass.IsIntLat H.B.flip L₀ → GlobalTheory.Mass.discN H.B.flip L₀ = D₀ → GenBy (Formalism.HermitianLatticesTheory.dual H.B.flip L₀) L₀ 1 → 2 ≤ g → ∀ (x x' s n : ℕ) (U : Submodule K V), 1 ≤ x → 1 ≤ x' → 1 ≤ n → Module.finrank K U + s = (Module.finrank K V) → GlobalTheory.Mass.discN (GlobalTheory.Mass.hRes H.B.flip U) (GlobalTheory.Mass.latIn U L₀) = n → ((({p ∈ Trip H g L₀ j x x' | fixSp p.2.2 = U}).encard : ℕ∞) : ℝ≥0∞) ≤ if (n : ℝ) ≤ (D₀ : ℝ) * x * x' then ENNReal.ofReal (((2 / (g : ℝ)) ^ (2 * s * (Formalism.HermitianLatticesTheory.fDeg K)) * D₀ * x * x' / n) ^ (((Module.finrank K V) : ℝ) / 2) * ((x : ℝ) * x') ^ (2 * (s : ℝ) + 2 * cf K + 1) * ((x : ℝ) * x' * (D₀ : ℝ) ^ 2) ^ (3 * (2 * j + 1)) * ((4 * s * (Formalism.HermitianLatticesTheory.fDeg K) : ℕ) : ℝ) ^ (4 * s * (Formalism.HermitianLatticesTheory.fDeg K))) else 0 := by
   intro hM K V _ _ _ _ _ _ _ _ H hK hP L₀ g j D₀ hL hD hG hg x x' s n U hx hx' hn hs hdisc
   haveI : IsTotallyComplex K := hK.1
   have hsub : Module.finrank K V - Module.finrank K U = s := by omega

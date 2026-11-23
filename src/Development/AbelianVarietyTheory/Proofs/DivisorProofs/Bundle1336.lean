@@ -257,10 +257,10 @@ theorem finPart_sub_mean_le_deg : ∀ (F V : Type) [Field F] [NumberField F] [Ad
     · rw [h0, Nat.cast_zero, Real.log_zero]
       exact Real.log_nonneg (by exact_mod_cast Nat.one_le_iff_ne_zero.mpr hidx)
     · exact Real.log_le_log (by exact_mod_cast h0) (by exact_mod_cast hind)
-  have hkey : ∑ᶠ q : FinitePlace F, Real.log (gaussAbs q g) ≤
+  have hkey : ∑ᶠ q : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs q g) ≤
       Real.log (L.toAddSubgroup.relIndex M.toAddSubgroup : ℝ) - Real.log |((Algebra.norm ℚ δ : ℚ) : ℝ)| := by
     linarith
-  calc _ = ((∑ᶠ q : FinitePlace F, Real.log (gaussAbs q g)) - (∑ σ : F →+* ℂ, Real.log (nm.gram σ ⇑b).det.re) / 2) /
+  calc _ = ((∑ᶠ q : FinitePlace F, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs q g)) - (∑ σ : F →+* ℂ, Real.log (nm.gram σ ⇑b).det.re) / 2) /
         (Module.finrank ℚ F : ℝ) := by ring
     _ ≤ (Real.log (L.toAddSubgroup.relIndex M.toAddSubgroup : ℝ) - 1 / 2 * (2 * Real.log |((Algebra.norm ℚ δ : ℚ) : ℝ)| +
         ∑ σ : F →+* ℂ, Real.log (nm.gram σ ⇑b).det.re)) / (Module.finrank ℚ F : ℝ) := by

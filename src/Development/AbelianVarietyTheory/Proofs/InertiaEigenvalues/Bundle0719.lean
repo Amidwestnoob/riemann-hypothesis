@@ -301,7 +301,7 @@ theorem extTensor_twist_apply {a b : ℕ} {W W' : Type} [AddCommGroup W] [Module
     (σ : Representation ℂ (GL (Fin a) ℚ_[g]) W) (ρ : Representation ℂ (GL (Fin b) ℚ_[g]) W')
     (χ₁ : GL (Fin a) ℚ_[g] →* ℂˣ) (χ₂ : GL (Fin b) ℚ_[g] →* ℂˣ) (x : GL (Fin a) ℚ_[g]) (y : GL (Fin b) ℚ_[g])
     (w : W ⊗[ℂ] W') :
-    extTensor (twist σ χ₁) (twist ρ χ₂) (x, y) w = ((χ₁ x * χ₂ y : ℂˣ) : ℂ) • TensorProduct.map (σ x) (ρ y) w := by
+    extTensor (GlobalTheory.SmGL.twist σ χ₁) (GlobalTheory.SmGL.twist ρ χ₂) (x, y) w = ((χ₁ x * χ₂ y : ℂˣ) : ℂ) • TensorProduct.map (σ x) (ρ y) w := by
   induction w using TensorProduct.induction_on with
   | zero => simp
   | add u v hu hv => rw [map_add (f := _), hu, hv, map_add (f := _), smul_add]
@@ -328,8 +328,8 @@ theorem law {a b : ℕ} {V W W' : Type} [AddCommGroup V] [Module ℂ V] [AddComm
         TensorProduct.map (σ x) (ρ y) (Λ v))
     (q : parab ℚ_[g] (two (stdSum (rfl : a + b = a + b)))) (w : V) :
     Λ (π q w) = (deltaHalf ℚ_[g] (Two (Fin a) (Fin b)) (leviProj ℚ_[g] _ q) : ℂ) •
-      extTensor (twist σ (detChar (Fin a) (ν₁ * (absPow ℚ_[g] ((b : ℂ) / 2))⁻¹)))
-        (twist ρ (detChar (Fin b) (ν₂ * (absPow ℚ_[g] (-(a : ℂ) / 2))⁻¹)))
+      extTensor (GlobalTheory.SmGL.twist σ (detChar (Fin a) (ν₁ * (absPow ℚ_[g] ((b : ℂ) / 2))⁻¹)))
+        (GlobalTheory.SmGL.twist ρ (detChar (Fin b) (ν₂ * (absPow ℚ_[g] (-(a : ℂ) / 2))⁻¹)))
         ((leviTwo ℚ_[g] (Fin a) (Fin b)).symm (leviProj ℚ_[g] _ q)) (Λ w) := by
   set X := ((leviTwo ℚ_[g] (Fin a) (Fin b)).symm (leviProj ℚ_[g] _ q)).1 with hX
   set Y := ((leviTwo ℚ_[g] (Fin a) (Fin b)).symm (leviProj ℚ_[g] _ q)).2 with hY
@@ -381,8 +381,8 @@ theorem supp_of_mapsToProd : GlobalTheory.Published.ZelevinskyPolynomialRing →
   have hμ₂ : GlobalTheory.SplitWeil.IsUnram (ν₂ * (absPow ℚ_[g] (-(a : ℂ) / 2))⁻¹) :=
     isUnram_mul (isUnram_of_supp h₂) (isUnram_inv (isUnram_absPow _ _))
   refine ⟨_, _, hμ₁, hμ₂, ?_⟩
-  let T : π.IntertwiningMap (prod₂ (twist σ (detChar (Fin a) (ν₁ * (absPow ℚ_[g] ((b : ℂ) / 2))⁻¹)))
-      (twist ρ (detChar (Fin b) (ν₂ * (absPow ℚ_[g] (-(a : ℂ) / 2))⁻¹)))) :=
+  let T : π.IntertwiningMap (prod₂ (GlobalTheory.SmGL.twist σ (detChar (Fin a) (ν₁ * (absPow ℚ_[g] ((b : ℂ) / 2))⁻¹)))
+      (GlobalTheory.SmGL.twist ρ (detChar (Fin b) (ν₂ * (absPow ℚ_[g] (-(a : ℂ) / 2))⁻¹)))) :=
     { toFun := fun v => ⟨⟨fun x => Λ (π x v), fun q x => by
           show Λ (π (q * x) v) = _
           rw [map_mul, Module.End.mul_apply]

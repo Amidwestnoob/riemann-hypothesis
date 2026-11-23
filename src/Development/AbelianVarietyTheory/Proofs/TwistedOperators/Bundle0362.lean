@@ -38,7 +38,7 @@ variable (F) in
 def idem (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) : AF F := pairA F 0 (singleFin v 1)
 
 theorem af_ext' {a b : AF F} (h1 : fstA F a = fstA F b) (h2 : ∀ u : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F), evFin F u a = evFin F u b) : a = b :=
-  Prod.ext h1 (af_ext fun u => h2 u)
+  Prod.ext h1 (GlobalTheory.AdelicU.af_ext fun u => h2 u)
 
 theorem fst_idem (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) : fstA F (idem F v) = 0 := rfl
 

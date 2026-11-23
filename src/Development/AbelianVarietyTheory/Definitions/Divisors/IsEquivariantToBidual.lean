@@ -60,8 +60,8 @@ instance isIso_dualQuotHom : IsIso (dualQuotHom ρ σ) := by
       (mem_eigenSub_iff.1 ((eigenSub (dualAct ρ) σ).incl_app_mem s) a)
     refine ((DualPull.toCut_app l W _).trans ?_).trans (DualPull.cutEquiv_smul V W _ _).symm
     refine (congrArg _ (app_resM (act ρ a) _ t).symm).trans (this.trans ?_)
-    rw [dualApp_smul, resG_resG]
-    exact congrArg₂ (fun x y : Γ(X, DualPull.cutO V W) => x * y) (resG_resG _ _ _).symm rfl
+    rw [dualApp_smul, GlobalTheory.LB.resG_resG]
+    exact congrArg₂ (fun x y : Γ(X, DualPull.cutO V W) => x * y) (GlobalTheory.LB.resG_resG _ _ _).symm rfl
   refine ⟨ofCut (eigenDesc _ hl), (eigenSub (dualAct ρ) σ).incl_app_injective V
     (dual_ext fun W h t => ?_)⟩
   refine (DualPull.dualApp_ofCut _ h ((eigenπ ρ σ).app W t)).trans ?_

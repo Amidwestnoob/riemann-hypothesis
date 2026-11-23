@@ -173,25 +173,25 @@ theorem rdS_cmpJ (S : StepIn M i hi G) {Kc : Type} [Field Kc] [iA : Algebra G.Kf
     (H : ∀ β, S.Core e β) (hS : BlockRationalityField) (ι : ℂ →+* Kc)
     (hι : ∀ r : D.what₂.LL, ι (D.what₂.embLL r) = algebraMap G.Kf Kc (e r)) (x : (M.lat i).V) (c' : G.comp) (L : G.P.Tup) :
     MvPolynomial.map (algebraMap G.Kf Kc) (S.cmpJ e x c' L) = rdS S ι c' L (M.emb i x) := by
-  have hcmp : S.cmpJ e x c' L = cmpC (S.K (S.eC.symm c').1).lev (embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1) e
+  have hcmp : S.cmpJ e x c' L = cmpC (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1) e
       (S.loc (S.eC.symm c').1) S.pos (S.embN (S.eC.symm c').1) (S.K (S.eC.symm c').1).y x (S.eC.symm c').2 L := rfl
   rw [hcmp]
   by_cases hL : G.P.IsLatTup L
   · simp only [cmpC, rdS, hL, ↓reduceIte]
     have hH := (H (S.eC.symm c').1).toHyp hS
     have hv := valC_spec hH.ex x (S.eC.symm c').2 L hL
-    have hV : IsValV (S.K (S.eC.symm c').1).lev (embT D) (S.charts.gat (S.eC.symm c').1) (S.loc (S.eC.symm c').1) S.pos
+    have hV : IsValV (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) (S.charts.gat (S.eC.symm c').1) (S.loc (S.eC.symm c').1) S.pos
         (nrmR S (S.eC.symm c').1) (S.K (S.eC.symm c').1).y (M.emb i x) (S.eC.symm c').2 L
-        (MvPolynomial.map D.what₂.embLL (valC (S.K (S.eC.symm c').1).lev (embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1)
+        (MvPolynomial.map D.what₂.embLL (valC (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1)
           (S.loc (S.eC.symm c').1) S.pos (S.embN (S.eC.symm c').1) (S.K (S.eC.symm c').1).y x (S.eC.symm c').2 L)) :=
       hv.2
-    have hsel : selOf (relV (S.K (S.eC.symm c').1).lev (embT D) (S.charts.gat (S.eC.symm c').1) (S.loc (S.eC.symm c').1) S.pos
+    have hsel : selOf (relV (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) (S.charts.gat (S.eC.symm c').1) (S.loc (S.eC.symm c').1) S.pos
         (nrmR S (S.eC.symm c').1) (S.K (S.eC.symm c').1).y (S.eC.symm c').2 L) (M.emb i x) =
-        MvPolynomial.map D.what₂.embLL (valC (S.K (S.eC.symm c').1).lev (embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1)
+        MvPolynomial.map D.what₂.embLL (valC (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) D.what₂.embLL (S.charts.gat (S.eC.symm c').1)
           (S.loc (S.eC.symm c').1) S.pos (S.embN (S.eC.symm c').1) (S.K (S.eC.symm c').1).y x (S.eC.symm c').2 L) :=
-      selOf_relV (embT_conj D) (evInj_pf (embT D) _ _ _) hH.ptEx hL hV
+      selOf_relV (embT_conj D) (evInj_pf (Formalism.L2.Forms.embT D) _ _ _) hH.ptEx hL hV
     rw [LinearMap.comp_apply]
-    show _ = MvPolynomial.map ι (selOf (relV (S.K (S.eC.symm c').1).lev (embT D) (S.charts.gat (S.eC.symm c').1)
+    show _ = MvPolynomial.map ι (selOf (relV (S.K (S.eC.symm c').1).lev (Formalism.L2.Forms.embT D) (S.charts.gat (S.eC.symm c').1)
       (S.loc (S.eC.symm c').1) S.pos (nrmR S (S.eC.symm c').1) (S.K (S.eC.symm c').1).y (S.eC.symm c').2 L) (M.emb i x))
     have hcomp : (algebraMap G.Kf Kc).comp e = ι.comp D.what₂.embLL := RingHom.ext fun r => (hι r).symm
     rw [hsel, MvPolynomial.map_map, MvPolynomial.map_map, hcomp]
@@ -214,13 +214,13 @@ theorem trC_heq {C C' : ColumnChain D.R D.what₂.Tau (D.hcW u)} (hC : C = C') (
 theorem rdJ_of_isValV (I : CmpJIn Tw u μ w h Lv) (hC : OnChain I) (H : CmpJHyp c I) (hS : BlockRationalityField) {Kc : Type} [Field Kc]
     (ι : ℂ →+* Kc) (j : ℕ) (hj : j + 1 ≤ D.R.m) (c' : Lv.comp (j + 1)) (L' : (Fl.Pj (j + 1)).Tup) (hL' : (Fl.Pj (j + 1)).IsLatTup L')
     (φ : (D.chTw u μ).cls (j + 1) → (D.chTw u μ).Y (j + 1) → ℂ) (Q : XR (Fl.Pj (j + 1)) ℂ)
-    (hQ : IsValV ((I.at' j hj).st.K ((I.at' j hj).st.eC.symm c').1).lev (embT D)
+    (hQ : IsValV ((I.at' j hj).st.K ((I.at' j hj).st.eC.symm c').1).lev (Formalism.L2.Forms.embT D)
       ((I.at' j hj).st.charts.gat ((I.at' j hj).st.eC.symm c').1) ((I.at' j hj).st.loc ((I.at' j hj).st.eC.symm c').1)
       (I.at' j hj).st.pos (nrmR (I.at' j hj).st ((I.at' j hj).st.eC.symm c').1)
       ((I.at' j hj).st.K ((I.at' j hj).st.eC.symm c').1).y (trC (hC j hj) (j + 1) φ) ((I.at' j hj).st.eC.symm c').2 L' Q) :
     rdJ I hC ι j c' L' φ = MvPolynomial.map ι Q := by
   have hH := ((H.core j hj) ((I.at' j hj).st.eC.symm c').1).toHyp hS
-  have hsel := selOf_relV (embT_conj D) (evInj_pf (embT D) _ _ _) hH.ptEx hL' hQ
+  have hsel := selOf_relV (embT_conj D) (evInj_pf (Formalism.L2.Forms.embT D) _ _ _) hH.ptEx hL' hQ
   unfold rdJ
   rw [dite_eq_left hj]
   simp only [rdS, hL', ↓reduceIte]
