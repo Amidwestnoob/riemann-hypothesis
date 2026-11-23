@@ -310,7 +310,7 @@ open scoped TensorProduct DirectSum Classical
 namespace GlobalTheory.SepTypes
 
 theorem coeffSpan_finiteDimensional {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W]
-    (ρ : Representation ℂ G W) : FiniteDimensional ℂ (coeffSpan ρ) := by
+    (ρ : Representation ℂ G W) : FiniteDimensional ℂ (GlobalTheory.Published.AutFin.coeffSpan ρ) := by
   first
   | exact @_root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
   | exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients
@@ -320,9 +320,9 @@ theorem coeffSpan_finiteDimensional {G W : Type} [Group G] [AddCommGroup W] [Mod
   | (intros; exact _root_.GlobalTheory.CoefficientSpanFinite.finiteDimensional_span_coefficients ..)
 
 theorem coeffSpan_rtrans {G W : Type} [Group G] [AddCommGroup W] [Module ℂ W]
-    (ρ : Representation ℂ G W) (c : G) {h : G → ℂ} (hh : h ∈ coeffSpan ρ) :
-    (fun k => h (k * c)) ∈ coeffSpan ρ := by
-  have hle : coeffSpan ρ ≤ (coeffSpan ρ).comap (LinearMap.funLeft ℂ ℂ (fun k : G => k * c)) := by
+    (ρ : Representation ℂ G W) (c : G) {h : G → ℂ} (hh : h ∈ GlobalTheory.Published.AutFin.coeffSpan ρ) :
+    (fun k => h (k * c)) ∈ GlobalTheory.Published.AutFin.coeffSpan ρ := by
+  have hle : GlobalTheory.Published.AutFin.coeffSpan ρ ≤ (GlobalTheory.Published.AutFin.coeffSpan ρ).comap (LinearMap.funLeft ℂ ℂ (fun k : G => k * c)) := by
     refine Submodule.span_le.2 ?_
     rintro f ⟨ℓ, w, rfl⟩
     refine Submodule.subset_span ⟨ℓ, ρ c w, funext fun k => ?_⟩
@@ -336,15 +336,15 @@ theorem exists_space {ι : Type} [Fintype ι] [DecidableEq ι] {G : Type} [Group
     (ρ : ∀ i, Representation ℂ (Γ i) (W i)) :
     ∃ S : Submodule ℂ (K → ℂ), FiniteDimensional ℂ S ∧ (∀ f ∈ S, Continuous f) ∧
       (∀ f ∈ S, ∀ k, (fun x => f (x * k)) ∈ S) ∧
-      ∀ φ : G → ℂ, Continuous φ → (∀ i x, (fun k => φ (x * a i k)) ∈ coeffSpan (ρ i)) →
+      ∀ φ : G → ℂ, Continuous φ → (∀ i x, (fun k => φ (x * a i k)) ∈ GlobalTheory.Published.AutFin.coeffSpan (ρ i)) →
         ∀ g, (fun k : K => φ (g * k)) ∈ S := by
   let S : Submodule ℂ (K → ℂ) :=
-    { carrier := {f | Continuous f ∧ ∀ τ (k₀ : K), (fun κ => f (k₀ * j (Pi.mulSingle τ κ))) ∈ coeffSpan (ρ τ)}
+    { carrier := {f | Continuous f ∧ ∀ τ (k₀ : K), (fun κ => f (k₀ * j (Pi.mulSingle τ κ))) ∈ GlobalTheory.Published.AutFin.coeffSpan (ρ τ)}
       add_mem' := fun {a b} ha hb => ⟨ha.1.add hb.1, fun τ k₀ => Submodule.add_mem _ (ha.2 τ k₀) (hb.2 τ k₀)⟩
       zero_mem' := ⟨continuous_const, fun τ k₀ => Submodule.zero_mem _⟩
       smul_mem' := fun c {a} ha => ⟨ha.1.const_smul c, fun τ k₀ => Submodule.smul_mem _ c (ha.2 τ k₀)⟩ }
-  have hfd : ∀ τ, FiniteDimensional ℂ (coeffSpan (ρ τ)) := fun τ => coeffSpan_finiteDimensional (ρ τ)
-  have hfin := GlobalTheory.finiteDimensional_span_separately ι Γ (fun τ => coeffSpan (ρ τ)) hfd
+  have hfd : ∀ τ, FiniteDimensional ℂ (GlobalTheory.Published.AutFin.coeffSpan (ρ τ)) := fun τ => coeffSpan_finiteDimensional (ρ τ)
+  have hfin := GlobalTheory.finiteDimensional_span_separately ι Γ (fun τ => GlobalTheory.Published.AutFin.coeffSpan (ρ τ)) hfd
   have hupd : ∀ (x : ∀ τ, Γ τ) τ y,
       Function.update x τ y = Function.update x τ 1 * Pi.mulSingle τ y := by
     intro x τ y
@@ -353,7 +353,7 @@ theorem exists_space {ι : Type} [Fintype ι] [DecidableEq ι] {G : Type} [Group
     · subst h; simp
     · simp [Function.update_of_ne h, Pi.mulSingle_eq_of_ne h]
   let M := Submodule.span ℂ {F : (∀ τ, Γ τ) → ℂ |
-    ∀ τ x, (fun y => F (Function.update x τ y)) ∈ coeffSpan (ρ τ)}
+    ∀ τ x, (fun y => F (Function.update x τ y)) ∈ GlobalTheory.Published.AutFin.coeffSpan (ρ τ)}
   let T : S →ₗ[ℂ] M :=
     { toFun := fun f => ⟨fun x => (f : K → ℂ) (j x), Submodule.subset_span fun τ x => by
         have := f.2.2 τ (j (Function.update x τ 1))
