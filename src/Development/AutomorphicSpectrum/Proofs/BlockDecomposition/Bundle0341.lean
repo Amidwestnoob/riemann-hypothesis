@@ -411,7 +411,7 @@ theorem twKer_one_congr {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V]
 theorem torusChar_stdBlocks {k : Type} [Field k] {n : ℕ} (χ : Fin n → kˣ →* ℂˣ)
     (t : ∀ _ : Fin n, GL (Fin 1) k) :
     PositivityTheory.Lbc.torusChar χ t =
-      (torusChar χ (fun a => Matrix.GeneralLinearGroup.det (t a)) : ℂ) := by
+      (GlobalTheory.SmGL.torusChar χ (fun a => Matrix.GeneralLinearGroup.det (t a)) : ℂ) := by
   rw [PositivityTheory.Lbc.torusChar, GlobalTheory.SmGL.torusChar, MonoidHom.finsetProd_apply, Units.coe_prod]
   rfl
 
@@ -441,7 +441,7 @@ theorem stdBridge : PositivityTheory.Rg.BcB.F.Tail.PExp.StdBridge := by
     have key : (jac (points (Fin n)) π
         (leviTorus k (Fin n) fun a => Matrix.GeneralLinearGroup.det (t a)))
           (Submodule.Quotient.mk w) =
-        ((torusChar χ fun a => Matrix.GeneralLinearGroup.det (t a) : ℂˣ) : ℂ) •
+        ((GlobalTheory.SmGL.torusChar χ fun a => Matrix.GeneralLinearGroup.det (t a) : ℂˣ) : ℂ) •
           Submodule.Quotient.mk w :=
       heig (fun a => Matrix.GeneralLinearGroup.det (t a))
     have hD : leviEmb k (points (Fin n))

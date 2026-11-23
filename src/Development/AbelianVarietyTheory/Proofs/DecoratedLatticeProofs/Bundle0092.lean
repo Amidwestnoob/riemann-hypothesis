@@ -28,12 +28,12 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 variable (k) in
 def unrBorel (α : Fin N → ℂˣ) : borel k (Fin N) →* ℂˣ :=
-  ((torusChar fun i => SmGL.unrChar k (α i)).comp (leviTorus k (Fin N)).symm.toMonoidHom).comp
+  ((GlobalTheory.SmGL.torusChar fun i => SmGL.unrChar k (α i)).comp (leviTorus k (Fin N)).symm.toMonoidHom).comp
     (leviProj k (points (Fin N)))
 
 theorem unrBorel_apply (α : Fin N → ℂˣ) (b : borel k (Fin N)) :
     unrBorel k α b = ∏ i : Fin N, α i ^ ord k (diagU b i) :=
-  torusChar_apply _ _
+  GlobalTheory.SmGL.torusChar_apply _ _
 
 theorem unrBorel_eq_one (α : Fin N → ℂˣ) (b : borel k (Fin N)) (hb : b.1 ∈ KO k (Fin N)) :
     unrBorel k α b = 1 := by

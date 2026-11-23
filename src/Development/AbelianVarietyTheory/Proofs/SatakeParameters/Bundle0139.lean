@@ -234,26 +234,26 @@ theorem secondCountableTopology_units : SecondCountableTopology kˣ := by
 
 variable {k} in
 theorem isSmoothChar_torusChar {n : ℕ} {θ : Fin n → kˣ →* ℂˣ} (hθ : ∀ i, IsSmoothChar (θ i)) :
-    IsSmoothChar (torusChar θ) :=
+    IsSmoothChar (GlobalTheory.SmGL.torusChar θ) :=
   Finset.prod_induction _ IsSmoothChar (fun _ _ => IsSmoothChar.mul) (by
     show IsOpen _
     rw [MonoidHom.ker_one]
     exact isOpen_univ) fun i _ => (hθ i).comp _ (continuous_apply i)
 
-theorem main : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (ρ : Representation ℂ (Fin n → kˣ) V) (x : V) (θ : Fin n → kˣ →* ℂˣ), IsSmooth ρ → HasFiniteLength ρ → (∀ i, IsSmoothChar (θ i)) → x ≠ 0 → (∀ t ∈ torusO k (Fin n), ρ t x = (torusChar θ t : ℂ) • x) → ∃ (ψ : Fin n → kˣ →* ℂˣ) (l : V →ₗ[ℂ] ℂ), l ≠ 0 ∧ (∀ t y, l (ρ t y) = (torusChar ψ t : ℂ) * l y) ∧ ∀ i (u : kˣ), valuation k (u : k) = 1 → ψ i u = θ i u := by
+theorem main : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (ρ : Representation ℂ (Fin n → kˣ) V) (x : V) (θ : Fin n → kˣ →* ℂˣ), IsSmooth ρ → HasFiniteLength ρ → (∀ i, IsSmoothChar (θ i)) → x ≠ 0 → (∀ t ∈ torusO k (Fin n), ρ t x = (GlobalTheory.SmGL.torusChar θ t : ℂ) • x) → ∃ (ψ : Fin n → kˣ →* ℂˣ) (l : V →ₗ[ℂ] ℂ), l ≠ 0 ∧ (∀ t y, l (ρ t y) = (GlobalTheory.SmGL.torusChar ψ t : ℂ) * l y) ∧ ∀ i (u : kˣ), valuation k (u : k) = 1 → ψ i u = θ i u := by
   intro k _ _ _ _ n V _ _ ρ x θ hρ hl hθ hx hxH
   haveI := secondCountableTopology_units k
   obtain ⟨μ, l, hl0, hle, hμ⟩ := exists_eigenform hρ hl (SmGL.UnramFixed.isCompact_torusO k (Fin n))
     (isSmoothChar_torusChar hθ) hx hxH
   refine ⟨fun i => μ.comp (MonoidHom.mulSingle (fun _ => kˣ) i), l, hl0, fun t y => ?_, fun i u hu => ?_⟩
-  · rw [hle, torusChar_apply]
+  · rw [hle, GlobalTheory.SmGL.torusChar_apply]
     conv_lhs => rw [← Finset.univ_prod_mulSingle t, map_prod]
     rfl
   · have h := hμ (Pi.mulSingle i u) fun j => by
       by_cases h : j = i
       · subst h; simpa using hu
       · simp [Pi.mulSingle_eq_of_ne h]
-    rw [torusChar_apply, Finset.prod_eq_single i (fun j _ hj => by simp [Pi.mulSingle_eq_of_ne hj])
+    rw [GlobalTheory.SmGL.torusChar_apply, Finset.prod_eq_single i (fun j _ hj => by simp [Pi.mulSingle_eq_of_ne hj])
       (by simp), Pi.mulSingle_eq_same] at h
     exact h
 

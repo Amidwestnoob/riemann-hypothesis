@@ -350,9 +350,9 @@ theorem fixed_iwahori_ne_bot : GlobalTheory.Published.GeometricLemma → GlobalT
     rw [hu, map_zero]
   unfold wordMult at hw
   split_ifs at hw with hlen
-  · have hθ : ∀ t ∈ torusO k (Fin n), torusChar (fun i : Fin n => unrChar k (w.getD i 1)) t = 1 := by
+  · have hθ : ∀ t ∈ torusO k (Fin n), GlobalTheory.SmGL.torusChar (fun i : Fin n => unrChar k (w.getD i 1)) t = 1 := by
       intro t ht
-      rw [torusChar_apply]
+      rw [GlobalTheory.SmGL.torusChar_apply]
       exact Finset.prod_eq_one fun i _ =>
         isUnram_unrChar k _ (t i) ((show ∀ i, valuation k (t i : k) = 1 from ht) i)
     rw [UnramFixed.jhMult_jacB_eq_expMult k n V π hs _ hθ] at hw
