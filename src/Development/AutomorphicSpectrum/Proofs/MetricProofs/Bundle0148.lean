@@ -136,7 +136,7 @@ theorem exists_latEmb : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   have hintegral : IsIntegralOn h e.range := by
     rintro _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
     exact hint x y
-  have hDI : IsDIntegral h (e.range.relIndex (dualLattice h e.range)) e.range := ⟨hlat, hintegral, hdual, le_rfl⟩
+  have hDI : IsDIntegral h (e.range.relIndex (GroundTheory.Heights₂.Heights.FiniteCovolume.dualLattice h e.range)) e.range := ⟨hlat, hintegral, hdual, le_rfl⟩
   have horth : ∀ x y, h.toSesq (e x) (e y) = 0 ↔ ∀ a : 𝓞 E, F.form (a • x) y = 0 := by
     intro x y
     have hsw : h.toSesq (e x) (e y) = 0 ↔ h.toSesq (e y) (e x) = 0 := by
