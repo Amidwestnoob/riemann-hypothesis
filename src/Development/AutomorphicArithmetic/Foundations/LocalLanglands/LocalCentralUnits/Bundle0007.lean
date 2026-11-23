@@ -187,7 +187,7 @@ private theorem charPol_seg (H : CuspT a ha r) (Δ : Segment (w.adicCompletion E
         ((Multiset.range l).map fun j : ℕ => (x.lpTw j).charPol σ).prod := by
     induction x using WD.ind with
     | hP n a =>
-      have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+      have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
       rw [WD.lpSp, WD.lpTw_mk, WD.lpChar_mk, WD.charPol_mk, WDRep.tensor_ρ, WDRep.sp_ρ,
         GlobalTheory.WeilDeligne.SpCharpoly.charpoly_map_diagEnd]
       change _ = ∏ j ∈ Finset.range l, ((WD.mk a).lpTw (j : ℕ)).charPol σ

@@ -212,7 +212,7 @@ private theorem df_cyc (ha : IsLocalArtin h a) {d : Weil h →* (Qbar l)ˣ} (H :
   have h4 : alg (l := l) (fun _ => 1) (a σ) * alg (l := l) (fun _ => -1) (a σ) = 1 := by
     rw [← MonoidHom.mul_apply, ← alg_add]
     simp [alg]
-  have h5 : ((normV w : ℕ) : Qbar l) ^ deg σ ≠ 0 := zpow_ne_zero _ (Nat.cast_ne_zero.2 (one_lt_normV w).ne_bot)
+  have h5 : ((normV w : ℕ) : Qbar l) ^ deg σ ≠ 0 := zpow_ne_zero _ (Nat.cast_ne_zero.2 (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot)
   simp only [MonoidHom.mul_apply, MonoidHom.comp_apply, Units.val_mul] at h1
   change (cycBar F Ω l (σ : G F Ω) : Qbar l) * _ * _ = _ at h1
   rw [h2, h3, mul_assoc (_ ^ _), ← Units.val_mul, h4, Units.val_one, mul_one] at h1

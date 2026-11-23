@@ -110,7 +110,7 @@ private theorem not_linked (H : GlobalTheory.Published.GlobalArtinReciprocity) (
     have h1 := norm_one ε (Units.continuous_val.comp hεc) (inc (frob h))
     rw [hε, deg_frob, zpow_one, algPow, finprod_of_isEmpty, mul_one, GlobalTheory.Pst.normV_eq_pow (l := l) hw, Nat.cast_pow, norm_pow] at h1
     have h2 := (pow_eq_one_iff_of_nonneg (norm_nonneg _) (fun h0 => by
-      have := one_lt_normV w
+      have := GlobalTheory.WeilDeligne.one_lt_normV w
       rw [GlobalTheory.Pst.normV_eq_pow (l := l) hw, h0] at this
       exact lt_irrefl _ this)).1 h1
     exact (GlobalTheory.PlaceBridge.norm_l_lt_one (l := l)).ne h2

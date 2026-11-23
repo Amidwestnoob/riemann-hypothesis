@@ -139,7 +139,7 @@ theorem UpperTheory.V.Z.Sym.W.awayW :
     have h1 := GlobalTheory.SatChar.absPow_art ha (-1 : ℝ) S
     rw [hd] at h1
     have hq : ((normV w : ℕ) : ℂ) ≠ 0 := by
-      exact_mod_cast (zero_lt_one.trans (one_lt_normV w)).ne'
+      exact_mod_cast (zero_lt_one.trans (GlobalTheory.WeilDeligne.one_lt_normV w)).ne'
     rw [map_mul, hz, map_natCast, map_one]
     have h2 : ((absPow (w.adicCompletion L) (((-1 : ℤ) : ℂ)) (a S) : ℂˣ) : ℂ) = (((normV w : ℕ) : ℂ)⁻¹) ^ j' := by
       simpa [Complex.cpow_neg_one] using h1

@@ -317,7 +317,7 @@ theorem UpperTheory.V.Af.weil_deligne_above_of_printed_results :
         simp [ψ, ε]
       rw [h1, ← hκ, ← hcyc L, Units.val_mul, Units.val_zpow_eq_zpow_val, MulMemClass.coe_mul]
       congr 1) hV
-  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hN : wdN (Loc.PP l) ι ρ = 0 := by
     rcases hor with hne | ⟨O', _, _, _, Bw', hj', hpc⟩
     · by_contra h0

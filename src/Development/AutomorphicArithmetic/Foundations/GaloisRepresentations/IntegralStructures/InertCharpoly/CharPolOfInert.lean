@@ -77,7 +77,7 @@ theorem tor_of_fix {y : WD h} (ht : IsTameWD y) {γ : G E Ω} (hγ : TameGenAt A
   have ha : a.Tame := fun σ hσ => ha' σ (TameWeilRepresentationIrreducibility.wild_inertia_isWild hσ)
   let u := a.ρ.toHomUnits
   let g : Weil h := ineIncl h ⟨γ, hγ.1⟩
-  have hq : 1 ≤ normV w := (one_lt_normV w).le
+  have hq : 1 ≤ normV w := (GlobalTheory.WeilDeligne.one_lt_normV w).le
   have p1 : a.ρ g ^ (normV w - 1) = 1 := pow_eq_one_of_roots (a.semisimple g) fun z hz => k z (by rwa [WD.charPol_mk])
   have p2 : a.ρ (frob h * g * (frob h)⁻¹) = a.ρ g := by
     rw [ha.conj_eq_pow hγ.1 deg_frob, ← Nat.sub_add_cancel hq, pow_succ, p1, one_mul]

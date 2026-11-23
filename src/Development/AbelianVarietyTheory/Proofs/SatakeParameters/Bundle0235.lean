@@ -123,7 +123,7 @@ theorem exists_conj (h : IsPlaceOver A v) (h' : IsPlaceOver A v') (hl : ((l : �
     (hc : ∀ σ, tval t (ResEx.resI (K := K) σ) = c * tval t' σ) :
     ∃ β : Qbar l, ∀ g : Weil h', exp (β • N) * wdMat t' (deg_frob (h := h')) (resTo L r) (c • N) g =
       wdMat t (deg_frob (h := h)) r N (ResEx.resW h h' g) * exp (β • N) := by
-  have hq0 : ((normV v : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV v).ne_bot
+  have hq0 : ((normV v : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV v).ne_bot
   have hf : deg (ResEx.resW h h' (frob h')) ≠ 0 := by
     intro h0
     have h1 : ((frob h' : Weil h') : G L Ω) ∈ Ine (F := L) A :=
@@ -137,7 +137,7 @@ theorem exists_conj (h : IsPlaceOver A v) (h' : IsPlaceOver A v') (hl : ((l : �
     have h3 : (((normV v : ℕ) : ℚ) ^ deg (ResEx.resW h h' (frob h')) : ℚ) = 1 := by
       rw [← Rat.cast_inj (α := Qbar l)]; push_cast; exact h1
     exact hf ((zpow_eq_one_iff_right₀ (Nat.cast_nonneg _)
-      (Nat.cast_ne_one.mpr (one_lt_normV v).ne')).mp h3)
+      (Nat.cast_ne_one.mpr (GlobalTheory.WeilDeligne.one_lt_normV v).ne')).mp h3)
   have key : ∀ m : ℤ,
       tval t (inePart (deg_frob (h := h)) (ResEx.resW h h' (frob h') ^ m)) *
         (1 - (((normV v : ℕ) : Qbar l) ^ deg (ResEx.resW h h' (frob h')))⁻¹) =
@@ -328,7 +328,7 @@ open GlobalTheory.AboveL.WeilUp in
 theorem mem_weil_of_fix : ∀ (K L Ω : Type) [Field Ω] [Field K] [NumberField K] [Algebra K Ω] [IsAlgClosure K Ω] [Field L] [NumberField L] [Algebra L Ω] [IsAlgClosure L Ω] [Algebra K L] [IsScalarTower K L Ω] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 K)) (v' : HeightOneSpectrum (𝓞 L)) (h : IsPlaceOver A v) (h' : IsPlaceOver A v') (σ : Weil h) (g : G L Ω), (∀ z : Ω, (σ : G K Ω) z = g z) → g ∈ Weil h' := by
   intro K L Ω _ _ _ _ _ _ _ _ _ _ _ A v v' h h' σ g hg
   obtain ⟨f, hf⟩ := normV_eq_pow v v' (comap_eq_of_placeOver h h')
-  have hq : 1 < normV v := one_lt_normV v
+  have hq : 1 < normV v := GlobalTheory.WeilDeligne.one_lt_normV v
 
   have hcong : ∀ a b : ℕ, ActsAs A (normV v) (σ : G K Ω) a b →
       normV v ^ a ≡ normV v ^ b [MOD normV v ^ f - 1] := by

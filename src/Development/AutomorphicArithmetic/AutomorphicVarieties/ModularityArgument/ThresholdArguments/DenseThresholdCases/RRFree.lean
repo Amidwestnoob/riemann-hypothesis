@@ -56,8 +56,8 @@ theorem UpperTheory.V.Z.Win.RR.purLocA_alt :
       ((continuous_algebraMap ℚ_[l] (Qbar l)).comp continuous_subtype_val)).comp
       (continuous_cycZ F Ω l)).comp continuous_subtype_val
   have hχc : ∀ i, Continuous (χ i) := fun i => (hψc i).mul ((continuous_zpow (-m i)).comp hεc)
-  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
-  have hq' : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot
+  have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
+  have hq' : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hAlgPow (c : ℤ) (y : w.adicCompletion F) :
       Hi.algPow (l := l) w (-fun _ => -c) y = Hi.algPow w (fun _ => 1) y ^ c := by
     have := GlobalTheory.HeckeGal.finite_contEmb (l := l) w
@@ -237,7 +237,7 @@ theorem UpperTheory.V.Z.Win.RR.purLocA_alt :
       · exact mono0_of_charPol_eq_prod_of_ne_normV_pow_mul x μ hμ hx h1
       · exact h1
     have hR := ht hm
-    have hq1 : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast one_lt_normV w
+    have hq1 : (1 : ℝ) < ((normV w : ℕ) : ℝ) := by exact_mod_cast GlobalTheory.WeilDeligne.one_lt_normV w
     have hq0 : (0 : ℝ) < ((normV w : ℕ) : ℝ) := by linarith
     have hpos : ∀ l g, 0 < ‖(μ l g : ℂ)‖ := fun l g => norm_pos_iff.mpr (Units.ne_zero _)
     have hmem : ∀ g l, (μ l g : ℂ) ∈ x.eig g := by
@@ -292,7 +292,7 @@ theorem UpperTheory.V.Z.Win.RR.purLocA_alt :
     rw [← norm_pow, ← norm_pow, ← map_pow, ← map_pow, ← Units.val_pow_eq_pow_val, ← Units.val_pow_eq_pow_val]
     exact congrArg (fun u : (Qbar l)ˣ => ‖ι (u : Qbar l)‖) e
   have h0 : ‖ι (ψ j (inc s) : Qbar l)‖ ≠ 0 := norm_ne_zero_iff.2 ((map_ne_zero ι).mpr (Units.ne_zero _))
-  have hq1 : (1 : ℝ) < (normV w : ℕ) := by exact_mod_cast one_lt_normV w
+  have hq1 : (1 : ℝ) < (normV w : ℕ) := by exact_mod_cast GlobalTheory.WeilDeligne.one_lt_normV w
   refine hm.injective (sub_eq_zero.1 (hn s hs (m i - m j) ?_))
   rw [hμ, hμ, h8, h8, norm_mul, norm_mul, h9, norm_zpow, norm_zpow, Complex.norm_natCast, ← mul_assoc,
     ← zpow_add₀ (zero_lt_one.trans hq1).ne']

@@ -187,7 +187,7 @@ private theorem core0 {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSp
     · subst hjk
       have h1 := congrArg (fun x : ℂˣ => (x : ℂ)) (left_eq_mul.1 (DFunLike.congr_fun e (frob h)))
       simp only [unrChar_apply, deg_frob, zpow_one, hq, Units.val_one, Nat.cast_eq_one] at h1
-      exact (one_lt_normV w).ne' h1
+      exact (GlobalTheory.WeilDeligne.one_lt_normV w).ne' h1
     · exact (hμ j k hjk).2 e
   · rw [unrChar_apply, Units.val_zpow_eq_zpow_val, hq]
     exact wdRho_wdN P ι Bw h hj ρ σ

@@ -420,7 +420,7 @@ private theorem sat_of_frob {F Ω : Type} [Field F] [NumberField F] [Field Ω] [
   obtain ⟨σ, hσ⟩ := ReciprocityTheory.Gal.exists_isFrob hA
   have e := congrArg Polynomial.roots (((h A hA).2 σ hσ).symm.trans ((h' A hA).2 σ hσ))
   rw [roots_multiset_prod_X_sub_C, roots_multiset_prod_X_sub_C] at e
-  have hq : (0 : ℝ) < (normV w : ℕ) := Nat.cast_pos.2 (lt_trans one_pos (one_lt_normV w))
+  have hq : (0 : ℝ) < (normV w : ℕ) := Nat.cast_pos.2 (lt_trans one_pos (GlobalTheory.WeilDeligne.one_lt_normV w))
   have hc : (((normV w : ℝ) ^ (((n : ℝ) - 1) / 2) : ℝ) : ℂ) ≠ 0 :=
     Complex.ofReal_ne_zero.2 (Real.rpow_pos_of_pos hq _).ne'
   have e' := Multiset.map_injective (mul_right_injective₀ hc) (a₁ := B.map Units.val) (a₂ := B'.map Units.val)

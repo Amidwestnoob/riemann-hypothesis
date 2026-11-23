@@ -245,7 +245,7 @@ theorem WeilDeligne.WD.lpTw_one_ne {E Ω : Type} [Field E] [NumberField E] [Fiel
     have := mul_right_cancel₀ hB (hdet.trans (one_mul _).symm)
     exact this
   have hq' : (normV w : ℕ) ^ n = 1 := by exact_mod_cast hq
-  have h1q := one_lt_normV w
+  have h1q := GlobalTheory.WeilDeligne.one_lt_normV w
   have : 1 < (normV w : ℕ) ^ n := Nat.one_lt_pow hn.ne' h1q
   omega
 
