@@ -189,6 +189,7 @@ theorem isCrisVal_toW {P : PhiMod O K l e a ι} (jB : (ι → OB l O) ≃ₗ[OB 
 variable [TameDescentExponentData K l e a] {η H : ℕ}
 
 
+attribute [-instance] GlobalTheory.AdmLoc.modFun in
 set_option maxHeartbeats 1600000 in
 theorem classOf {D : BKDat O K l e a ι η H} {Dp : BKDat O K l e a κ η H} {Du : BKDat O K l e a μ η H}
     (R : GalDat t ϖ (sQ l) D T) (Rp : GalDat t ϖ (sQ l) Dp Tp) (Ru : GalDat t ϖ (sQ l) Du U)
@@ -230,7 +231,9 @@ theorem classOf {D : BKDat O K l e a ι η H} {Dp : BKDat O K l e a κ η H} {Du
   have h3 : Φ (R.jB (toBcris t ϖ D.toPhiMod ⟨σ, hσ⟩) - b₀) =
       (l ^ n) • ((1 : OB l O) ⊗ₜ[O] (⟨v, hv⟩ : ↥Tp.L.T)) - Rp.jB (toBcris t ϖ Dp.toPhiMod ⟨_, hξ⟩) := by
     rw [map_sub, h2, ← N.1 ⟨σ, hσ⟩ ⟨_, hFS⟩ rfl,
-      show (⟨F.app σ, hFS⟩ : Dp.MMl) = ⟨_, hS⟩ - ⟨_, hξ⟩ from Subtype.ext hFσ, map_sub, map_sub]
+      show (⟨F.app σ, hFS⟩ : Dp.MMl) = ⟨_, hS⟩ - ⟨_, hξ⟩ from Subtype.ext hFσ]
+    have e1 := map_sub (toBcris t ϖ Dp.toPhiMod) (⟨Dp.phi x₂, hS⟩ : Dp.MMl) ⟨Dp.xi (red (Dp.phi x₂)), hξ⟩
+    erw [e1, map_sub]
     abel
   intro γ k s hs
   apply map_injective hfg (OB l O)

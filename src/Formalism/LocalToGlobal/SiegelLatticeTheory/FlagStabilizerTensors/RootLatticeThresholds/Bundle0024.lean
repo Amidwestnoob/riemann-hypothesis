@@ -193,7 +193,7 @@ end admitted
 
 section AtOne
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
   (H : TieHyp W hI) (A : AmpDat X) (hV : PvalForm W hI A)
 
 theorem jtPin_of (hA : AmpFibreConst Y) : JtPin hF hI (termTieOf W hI H A hV) := by
@@ -235,7 +235,7 @@ end Ev
 
 section Summ
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} {hI : SIso D.s (sOf hF)}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} {hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)}
 
 
 end Summ
@@ -246,7 +246,7 @@ variable {eps : ℝ} (Fm : FamP eps) (C1 : ℝ)
   (X : ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x, HidaSetting (Fm.D x i))
   (Y : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), Full (X x hx i))
   (hF : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), FinX (Y x hx i))
-  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (sOf (hF x hx i)))
+  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (Formalism.L2.SG.PackageTie2.sOf (hF x hx i)))
   (W : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), WittDat (X x hx i))
   (H : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), TieHyp (W x hx i) (hI x hx i))
   (A : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), AmpDat (X x hx i))
@@ -269,28 +269,28 @@ end Fam
 section Closed
 
 def NormTieC : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X) (H : TieHyp W hI)
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X) (H : TieHyp W hI)
     (A : AmpDat X) (hV : PvalForm W hI A) (u u' : D.what₂.Word),
     BridgeLemma₂.wordPairNormRelation (termTieOf W hI H A hV) u u'
 
 def GramDeterminantCount : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X) (H : TieHyp W hI)
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X) (H : TieHyp W hI)
     (A : AmpDat X) (hV : PvalForm W hI A) (u u' : D.what₂.Word),
     @Formalism.MainNotions.BridgeLemma.LatticeDeterminantFactorization D (termTieOf W hI H A hV) u u'
 
 def EntryLatC : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X) (H : TieHyp W hI)
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X) (H : TieHyp W hI)
     (A : AmpDat X) (hV : PvalForm W hI A) (u u' : D.what₂.Word),
     BridgeLemma₂.wordPairEntriesInLattice (termTieOf W hI H A hV) u u'
 
 def FrameChangeC : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (W : WittDat X), FrameChangeAt W hI
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (W : WittDat X), FrameChangeAt W hI
 
 variable {eps : ℝ} (Fm : FamP eps) (C1 : ℝ)
   (X : ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x, HidaSetting (Fm.D x i))
   (Y : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), Full (X x hx i))
   (hF : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), FinX (Y x hx i))
-  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (sOf (hF x hx i)))
+  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (Formalism.L2.SG.PackageTie2.sOf (hF x hx i)))
   (W : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), WittDat (X x hx i))
   (H : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), TieHyp (W x hx i) (hI x hx i))
   (A : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), AmpDat (X x hx i))

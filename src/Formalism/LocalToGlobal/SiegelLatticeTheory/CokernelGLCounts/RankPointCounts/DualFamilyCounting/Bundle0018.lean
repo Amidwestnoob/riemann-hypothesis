@@ -94,46 +94,46 @@ theorem push_dualIn (L : Submodule (𝓞 K) ↥X) :
 variable {𝔭 : Ideal (𝓞 F)}
 
 theorem map_incl_dual (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    (locF 𝔭 (dualIn (formOn h X) ⊤ L)).map (incl X) = locF 𝔭 (dualIn h X (push X L)) := by
+    (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)).map (incl X) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)) := by
   change push X _ = _
   rw [push_locF X hp, push_dualIn]
 
 def dualEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L)) ≃ₗ[𝓞 K] ↥(locF 𝔭 (dualIn h X (push X L))) :=
+    ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)) ≃ₗ[𝓞 K] ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L))) :=
   (Submodule.equivMapOfInjective (incl X) (incl_injective X) _).trans
     (LinearEquiv.ofEq _ _ (map_incl_dual hp L))
 
 theorem dualEquiv_apply (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (x : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
-    ((dualEquiv (h := h) hp L x : ↥(locF 𝔭 (dualIn h X (push X L)))) : V) = ((x : ↥X) : V) := rfl
+    (x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
+    ((dualEquiv (h := h) hp L x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) : V) = ((x : ↥X) : V) := rfl
 
 theorem dualEquiv_symm_apply (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (y : ↥(locF 𝔭 (dualIn h X (push X L)))) :
-    ((((dualEquiv (h := h) hp L).symm y : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) : ↥X) : V) = (y : V) := by
+    (y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) :
+    ((((dualEquiv (h := h) hp L).symm y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) : ↥X) : V) = (y : V) := by
   have := dualEquiv_apply hp L ((dualEquiv (h := h) hp L).symm y)
   rw [LinearEquiv.apply_symm_apply] at this
   exact this.symm
 
 theorem map_dualEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
-    ((locF 𝔭 L).comap (locF 𝔭 (dualIn (formOn h X) ⊤ L)).subtype).map
+    ((Formalism.HermitianLattices.Ext.L3.locF 𝔭 L).comap (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L)).subtype).map
         (dualEquiv (h := h) hp L : _ →ₗ[𝓞 K] _) =
-      (locF 𝔭 (push X L)).comap (locF 𝔭 (dualIn h X (push X L))).subtype := by
+      (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (push X L)).comap (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L))).subtype := by
   rw [Submodule.map_equiv_eq_comap_symm]
   ext y
   simp only [Submodule.mem_comap, Submodule.subtype_apply]
   rw [← coe_mem_push (X := X), push_locF X hp]
-  exact Iff.of_eq (congrArg (fun v => v ∈ locF 𝔭 (push X L)) (dualEquiv_symm_apply (h := h) hp L y))
+  exact Iff.of_eq (congrArg (fun v => v ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (push X L)) (dualEquiv_symm_apply (h := h) hp L y))
 
 def discEquiv (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X) :
     DiscMod (formOn h X) ⊤ L 𝔭 ≃ₗ[𝓞 K] DiscMod h X (push X L) 𝔭 :=
   Submodule.Quotient.equiv _ _ (dualEquiv (h := h) hp L) (map_dualEquiv (h := h) hp L)
 
 theorem discEquiv_mk (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (x : ↥(locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
+    (x : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn (formOn h X) ⊤ L))) :
     discEquiv (h := h) hp L (Submodule.Quotient.mk x) = Submodule.Quotient.mk (dualEquiv (h := h) hp L x) := rfl
 
 theorem discEquiv_symm_mk (hp : 𝔭.IsPrime) (L : Submodule (𝓞 K) ↥X)
-    (y : ↥(locF 𝔭 (dualIn h X (push X L)))) :
+    (y : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h X (push X L)))) :
     (discEquiv (h := h) hp L).symm (Submodule.Quotient.mk y) =
       Submodule.Quotient.mk ((dualEquiv (h := h) hp L).symm y) := rfl
 

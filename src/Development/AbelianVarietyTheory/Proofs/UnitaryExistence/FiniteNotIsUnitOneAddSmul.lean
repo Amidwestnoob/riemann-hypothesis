@@ -237,6 +237,7 @@ theorem exists_sub_mem_locOrder (T : Finset (HeightOneSpectrum (𝓞 (maximalRea
   ring
 
 variable (v : HeightOneSpectrum (𝓞 (maximalRealSubfield E)))
+local instance : CommRing (LocAlg v) := inferInstance
 
 theorem exists_inv_one_add {p : ℕ} (hp : (p : 𝓞 (maximalRealSubfield E)) ∈ v.asIdeal) (z : LocAlg v)
     (hz : z ∈ locOrder v) : ∃ w ∈ locOrder v, (1 + p • z) * w = 1 := by

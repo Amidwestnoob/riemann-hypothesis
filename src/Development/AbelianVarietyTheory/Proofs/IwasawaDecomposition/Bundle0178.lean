@@ -421,8 +421,9 @@ theorem kMat_neg_mul : kMat B v (-y) * kMat B v y = 1 := by
   rw [← Matrix.mulVec_mulVec, kMat_mulVec, kMat_mulVec, Matrix.one_mulVec, hA_neg_right]
   simp only [hA_sub, hA_add, hA_smul, hv, hA_yv hv, hA_self hη hy, mul_zero, add_zero, sub_zero]
   have h0 : (hA B x y * hA B v v) • y = 0 := by
-    rw [mul_comm, mul_smul, hA_smul_self hη hy, smul_zero]
-  rw [smul_neg, add_smul, h0, neg_smul]
+    funext i; have h := congrFun (hA_smul_self hη hy x) i; simp only [Pi.smul_apply, smul_eq_mul, Pi.zero_apply] at h ⊢; rw [mul_comm (hA B x y), mul_assoc, h, mul_zero]
+  have hn : -hA B x y • v = -(hA B x y • v) := by funext i; exact neg_mul (hA B x y) (v i)
+  rw [smul_neg, add_smul, h0, hn]
   abel
 
 include hη hy hv in

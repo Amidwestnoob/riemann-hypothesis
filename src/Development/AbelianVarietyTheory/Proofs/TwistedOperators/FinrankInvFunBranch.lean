@@ -180,7 +180,7 @@ theorem iso_dual_dual {n : ℕ} (hn : 0 < n) (lam : DomWeight n) : Iso (irr n la
 
 theorem finrank_invFun_branch {n N : ℕ} (h : n + 1 = N) (hn : 0 < n) (lam : DomWeight N) (kap : DomWeight n)
     (hI : Formalism.MainNotions.PrimeDegreeVariant.Interlace h lam kap.dual) :
-    Module.finrank ℂ (invFun (Representation.tprod ((irr N lam).comp (embed1 h)) (irr n kap))) = 1 := by
+    Module.finrank ℂ (invFun (V := ↥(nablaSq ℂ N lam) ⊗[ℂ] ↥(nablaSq ℂ n kap)) (Representation.tprod ((irr N lam).comp (embed1 h)) (irr n kap))) = 1 := by
   have e : (irr N lam).comp (embed1 h) = resRep (unitaryIncl n) h lam :=
     MonoidHom.ext fun g => congrArg (sqRep ℂ N lam) (Units.ext rfl)
   rw [e, ((Iso.tprod_comm _ _).trans ((iso_dual_dual hn kap).symm.tprod (Iso.refl _))).finrank_invFun]
@@ -253,10 +253,10 @@ theorem oneLine : OneLine := by
   have i1 := (GlobalTheory.T.outer_irr_iso_weylRep_of_pos ι _ (nR_pos S _) (psiWt P) (fun τ => lam τ 0) hl0).symm
   have i2 := ((GlobalTheory.T.outer_irr_iso_weylRep_of_pos ι _ (nC_pos S _) (baseWt P) (fun τ => (kap τ 0).dual) hk0).symm.dual.trans
     (_root_.GlobalTheory.OneFunctional.iso_outer_dual ι _ _ _)).trans (Iso.outer fun τ => iso_dual_dual (nC_pos S _) (kap τ 0))
-  let c := (outer fun τ => irr _ (lam τ 0)).comp ((Pi.evalMonoidHom _ 0).comp (rowComp (ι := ι) S))
+  let c : Representation ℂ (Gc ι S) (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nR (0 : Fin (S.m + 1))) (lam τ 0))) := (outer fun τ => irr _ (lam τ 0)).comp ((Pi.evalMonoidHom _ 0).comp (rowComp (ι := ι) S))
   let d := (outer fun τ => irr _ (kap τ 0)).comp
     ((Pi.evalMonoidHom (fun i : Fin (S.m + 1) => UG ι (S.nC i)) 0).comp (MonoidHom.snd (∀ j : Fin S.m, UG ι (S.nR j)) _))
-  have j1 : Iso (psiRep P) c := i1.comp _
+  have j1 : Iso (psiRep P) c := by unfold psiRep; exact i1.comp _
   have j2 : Iso (baseRep P).dual d := (iso_dual_comp _ _).trans (i2.comp _)
   let r : Gc ι S →* UG ι (S.nC S.m) :=
     (Pi.evalMonoidHom (fun i : Fin (S.m + 1) => UG ι (S.nC i)) (Fin.last _)).comp (MonoidHom.snd _ _)
