@@ -241,13 +241,13 @@ theorem witness_congr : ∀ (D : D7) (Z : LocDat D) (u u' : D.what₂.Word) (F0 
           ⟨⟨((D.host.g 1 : ℕ) : (D.s.atP p).Ep) * (D.s.atP p).ιE (y : D.host.E),
             mul_mem (natCast_mem _ _) hyO⟩, ?_⟩
         rw [Subring.smul_def, smul_eq_mul, hl]
-        simp only [gS, Nat.cast_mul]
+        simp only [Formalism.MainNotions.S.Lat.gS, Nat.cast_mul]
         ring
       · refine Submodule.mem_span_singleton.2
           ⟨⟨((D.host.g 0 : ℕ) : (D.s.atP p).Ep) * (D.s.atP p).ιE (y : D.host.E),
             mul_mem (natCast_mem _ _) hyO⟩, ?_⟩
         rw [Subring.smul_def, smul_eq_mul, hl]
-        simp only [gS, Nat.cast_mul]
+        simp only [Formalism.MainNotions.S.Lat.gS, Nat.cast_mul]
         ring
 
 end GlobalTheory.WitCong

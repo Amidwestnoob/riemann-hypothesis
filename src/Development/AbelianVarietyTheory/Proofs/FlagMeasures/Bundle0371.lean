@@ -34,7 +34,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.CrtG
 
 theorem gS_ne_zero (D : D7) : gS D ≠ 0 := by
-  unfold gS; exact Nat.mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero
+  unfold Formalism.MainNotions.S.Lat.gS; exact Nat.mul_ne_zero (D.host.g_prime 0).ne_zero (D.host.g_prime 1).ne_zero
 
 theorem exists_crt (D : D7) (p : PlF D) :
     ∃ a₀ : 𝓞 D.host.F,
