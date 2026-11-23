@@ -117,7 +117,7 @@ def Rel (τ : ∀ w : InfinitePlace F, EmbOver E w) (ε : InfinitePlace F → �
     (θ' : InfinitePlace F → Matrix β β ℂ) (u u' : Matrix (Fin m) β (AE F E)) : Prop :=
   ∀ w, u'.map (piInf (τ w)) = (((ε w : ℤ) : ℂ) * Complex.I) • (θ w * u.map (piInf (τ w)) * (θ' w)ᵀ)
 
-def dd0 (p : (κ → AF F) × (κ → AF F)) (f : SInf F κ) : SInf F κ := dop (nf p.1) (linForm (nf p.2)) f
+def dd0 (p : (κ → AF F) × (κ → AF F)) (f : SInf F κ) : SInf F κ := dop (nf p.1) (GlobalTheory.ThK.Dbl.Dense.linForm (nf p.2)) f
 
 def Gs (e : Matrix (Fin m) β (AE F E) ≃ₗ[AF F] (κ → AF F) × (κ → AF F)) (τ : ∀ w : InfinitePlace F, EmbOver E w)
     (ε : InfinitePlace F → ℤˣ) (θ : InfinitePlace F → Matrix (Fin m) (Fin m) ℂ) (θ' : InfinitePlace F → Matrix β β ℂ)
@@ -137,11 +137,11 @@ theorem Gs.gau (h : IsCMExt F E σ) (hf : Gs e τ ε θ θ' f) (h0 : f ≠ 0) : 
         rw [smul_comm] }
   obtain ⟨S, J, sAt, sev, sJ⟩ := exists_real_structure' σ h τ e C
   let T : (κ → mixedEmbedding.mixedSpace F) →ₗ[ℝ] (κ → mixedEmbedding.mixedSpace F) →ₗ[ℝ] ℝ :=
-    LinearMap.mk₂ ℝ (fun y b => linForm b y) (fun y y' b => map_add _ y y') (fun t y b => map_smul _ t y)
+    LinearMap.mk₂ ℝ (fun y b => GlobalTheory.ThK.Dbl.Dense.linForm b y) (fun y y' b => map_add _ y y') (fun t y b => map_smul _ t y)
       (fun y b b' => by simp only [linForm_apply, Pi.add_apply, mul_add, Finset.sum_add_distrib, map_add (f := _)])
       (fun t y b => by simp only [linForm_apply, Pi.smul_apply, mul_smul_comm, ← Finset.smul_sum, map_smul])
   obtain ⟨k, hk⟩ := GlobalTheory.CompanionTheory.Twist.FockLogDeriv.main T (fun b hb => funext fun i => trace_mul_eq_zero _ fun y => by
-      have : linForm b (Pi.single i y) = 0 := hb _
+      have : GlobalTheory.ThK.Dbl.Dense.linForm b (Pi.single i y) = 0 := hb _
       rw [linForm_apply, Finset.sum_eq_single i (fun j _ hj => by simp [hj]) (by simp), Pi.single_eq_same, mul_comm] at this
       exact this) J f h0 fun p y => by
     have := congrArg (fun g : SInf F κ => g y) (hf (S p) (S (J p)) (sAt _) (sAt _) fun w => sJ p w)
@@ -173,7 +173,7 @@ theorem Gs.same (h : IsCMExt F E σ) (hf : Gs e τ ε θ θ' f) (hf' : Gs e τ �
   have h2 := hf' _ _ hv (fun c hc => by rw [smul_neg, hv' c hc, neg_zero]) hs'
   have en : ∀ z : κ → AF F, nf (-z) = -nf z := fun z => funext fun i =>
     map_neg (InfiniteAdeleRing.ringEquiv_mixedSpace F) (z i).1
-  have el : ∀ b : κ → mixedEmbedding.mixedSpace F, linForm (-b) = -linForm b := fun b => by
+  have el : ∀ b : κ → mixedEmbedding.mixedSpace F, GlobalTheory.ThK.Dbl.Dense.linForm (-b) = -GlobalTheory.ThK.Dbl.Dense.linForm b := fun b => by
     exact ContinuousLinearMap.ext fun y => by
       simp only [linForm_apply, Pi.neg_apply, mul_neg, Finset.sum_neg_distrib, map_neg, ContinuousLinearMap.neg_apply]
   rw [map_neg, dd0, Prod.fst_neg, Prod.snd_neg, en, en, el] at h2
