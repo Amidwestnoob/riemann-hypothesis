@@ -41,8 +41,8 @@ theorem idealPowι_comp_pullback_map_cokernel_eq_zero {A : Type} [CommRing A] [I
   rw [comp_zero, ← Category.assoc, Abelian.image.fac]
   apply biproduct.hom_ext'
   intro k
-  rw [comp_zero, idealSumMap, biproduct.ι_desc_assoc, smulHom_comp, ← appTop_algebraMap φ hφ,
-    ← pullback_map_smulHom_appTop, ← Functor.map_comp, ← smulHom_comp]
+  rw [comp_zero, idealSumMap, biproduct.ι_desc_assoc, GroundTheory.Arith.SchemeCoh.smulHom_comp, ← appTop_algebraMap φ hφ,
+    ← pullback_map_smulHom_appTop, ← Functor.map_comp, ← GroundTheory.Arith.SchemeCoh.smulHom_comp]
   obtain ⟨L, hL⟩ := exists_smulHom_eq_comp_idealSumMap E (I ^ m) (idealGen_mem (I ^ m) k)
   have hι : idealPowι I E m ≫ cokernel.π D.arrow = 0 := by
     have h := Subobject.ofMkLE_arrow (f := idealPowι I E m) (X := D) hD
