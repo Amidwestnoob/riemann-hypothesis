@@ -50,7 +50,7 @@ theorem wchar_ex_sign {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Re
   show (t none : S) ^ (m + m) = 1
   rw [← two_mul, pow_mul, h0, one_pow]
 
-theorem normUn_gamma : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)) (k : Fin F.n) (T : ThetaData e F M k), GoodEmb c σ → ModelBase M → NegXi M → IsNormUn T (un k) → ∀ γ ∈ (M.X k).Γ, ∀ (x : (M.X k).dom) (h : lact γ x.1 ∈ (M.X k).dom), ∃ t : Ix Dw → (CAt σ)ˣ, FrBor t (un k x) (un k ⟨_, h⟩) ∧ ∀ a n, Dom a n → toC (wchar (ex Dw a n) t) = 1 := by
+theorem normUn_gamma : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)) (k : Fin F.n) (T : ThetaData e F M k), GoodEmb c σ → ModelBase M → NegXi M → IsNormUn T (un k) → ∀ γ ∈ (M.X k).Γ, ∀ (x : (M.X k).dom) (h : lact γ x.1 ∈ (M.X k).dom), ∃ t : Ix Dw → (CAt σ)ˣ, FrBor t (un k x) (un k ⟨_, h⟩) ∧ ∀ a n, Dom a n → Formalism.L2.PjFree.toC (wchar (ex Dw a n) t) = 1 := by
   intro hS E _ _ _ H Dw l Xo c σ g e F r M un k T hσ hM hN hun γ hγ x h
   obtain ⟨gam, hgam, hP⟩ := GlobalTheory.per_gam E H Dw l Xo c σ g e F r M hσ hM hN k T.Pf T.per γ hγ
   obtain ⟨κ, hκ, hy⟩ := hun x
@@ -68,12 +68,12 @@ theorem normUn_gamma : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField 
     have h1 := hd τ i
     rw [inv_one, Matrix.one_mulVec] at h1
     exact ((GlobalTheory.isDerivAt0_ex_isTanAt E H Dw l Xo _ g _ F k _ (T.isPer _ hb)).2.1 _).unique h1 (hy.2.1 τ i)
-  have hC : (normConst (fun j => relab c σ (e j).1) (M.X k).ξ0 : ℂ) ≠ 0 := by
+  have hC : (normConst (fun j => Formalism.L2.PjFree.relab c σ (e j).1) (M.X k).ξ0 : ℂ) ≠ 0 := by
     rw [Complex.ofReal_ne_zero]
     refine (Real.sqrt_pos.2 (div_pos (by positivity) (Finset.prod_pos fun j _ => ?_))).ne'
-    have : relab c σ (e j).1 (M.X k).ξ0 ≠ 0 := (map_ne_zero _).2 (M.X k).ξ0_ne
+    have : Formalism.L2.PjFree.relab c σ (e j).1 (M.X k).ξ0 ≠ 0 := (map_ne_zero _).2 (M.X k).ξ0_ne
     positivity
-  have ht2 : toC (t₀ : CAt σ) ^ 2 = 1 := by
+  have ht2 : Formalism.L2.PjFree.toC (t₀ : CAt σ) ^ 2 = 1 := by
     have d1 := (T.norm _ hb).1.ne_zero
     have d2 := (T.norm _ hb').1.ne_zero
     rw [hκ, hκ', Matrix.det_one, mul_one] at ht
@@ -154,7 +154,7 @@ theorem normConst_ne_zero {E : Type} [Field E] {g : ℕ} (ty : Fin g → (E →+
   refine Complex.ofReal_ne_zero.mpr (Real.sqrt_pos.2 (div_pos (by positivity) ?_)).ne'
   exact Finset.prod_pos fun j _ => mul_pos two_pos (norm_pos_iff.2 ((map_ne_zero _).2 h))
 
-theorem normUn_bor : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)) (k : Fin F.n) (T : ThetaData e F M k), GoodEmb c σ → ModelBase M → NegXi M → IsNormUn T (un k) → ∀ (x : (M.X k).dom) b (_hb : b ∈ Bor (M.X k).Ψ r) (h : rmul x.1 b ∈ (M.X k).dom), ∃ t : Ix Dw → (CAt σ)ˣ, FrBor t (un k x) (un k ⟨_, h⟩) ∧ ∀ a n, Dom a n → toC (wchar (ex Dw a n) t) = bchar (laU (unfOf e F M un) a n k) b := by
+theorem normUn_bor : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)) (k : Fin F.n) (T : ThetaData e F M k), GoodEmb c σ → ModelBase M → NegXi M → IsNormUn T (un k) → ∀ (x : (M.X k).dom) b (_hb : b ∈ Bor (M.X k).Ψ r) (h : rmul x.1 b ∈ (M.X k).dom), ∃ t : Ix Dw → (CAt σ)ˣ, FrBor t (un k x) (un k ⟨_, h⟩) ∧ ∀ a n, Dom a n → Formalism.L2.PjFree.toC (wchar (ex Dw a n) t) = bchar (laU (unfOf e F M un) a n k) b := by
   intro hS E _ _ _ H Dw l Xo c σ g e F r M un k T hG hB hN hU x b hb h
   obtain ⟨h₀, hdet, hP, htri, -, -, hw⟩ :=
     _root_.GlobalTheory.per_bor E H Dw l Xo c σ g e F r M hG hB hN k T.Pf T.per x.1 x.2 b hb
@@ -170,8 +170,8 @@ theorem normUn_bor : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E]
     (fun a => by
       simp only [ContinuousLinearEquiv.apply_symm_apply, LinearEquiv.refl_apply]
       exact hP a)
-  have hsq : toC (t₀ : CAt σ) ^ 2 * h₀.det = 1 := by
-    have hc := normConst_ne_zero (fun j => relab c σ (e j).1) (M.X k).ξ0_ne
+  have hsq : Formalism.L2.PjFree.toC (t₀ : CAt σ) ^ 2 * h₀.det = 1 := by
+    have hc := normConst_ne_zero (fun j => Formalism.L2.PjFree.relab c σ (e j).1) (M.X k).ξ0_ne
     have h1 := (T.norm _ hx).1.ne_zero
     have h2 := (T.norm _ hx').1.ne_zero
     rw [hκ, hκ'] at ht₀
@@ -196,8 +196,8 @@ theorem normUn_bor : Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E]
     rw [h2]
     simp [spMap]
   · intro a n hD
-    rw [← hw un a n (toC (t₀ : CAt σ)) hD.2 hsq]
-    show (∏ o : Ix Dw, toC ((t o : (CAt σ)ˣ) : CAt σ) ^ ex Dw a n o) = _
+    rw [← hw un a n (Formalism.L2.PjFree.toC (t₀ : CAt σ)) hD.2 hsq]
+    show (∏ o : Ix Dw, Formalism.L2.PjFree.toC ((t o : (CAt σ)ˣ) : CAt σ) ^ ex Dw a n o) = _
     rw [Fintype.prod_option, mul_comm]
     congr 1
     rw [← Equiv.prod_comp e]
