@@ -257,6 +257,8 @@ theorem unrTriv_of_finrank {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI : LocAi
     UnrTriv (P.PD K) (LL := ↥LL.1) (IK K) := by
   have hZ : finrank ↥LL.1 ↥(finiteCocycles (P.PD K) (1 : Representation ↥LL.1 ↥(GK K) ↥LL.1)) = 1 :=
     (finrank_Z1f_trivial P K LL).trans h1
+  haveI : Module.Free ↥LL.1 ↥(finiteCocycles (P.PD K) (1 : Representation ↥LL.1 ↥(GK K) ↥LL.1)) :=
+    Module.Free.of_divisionRing _ _
   haveI : FiniteDimensional ↥LL.1 ↥(finiteCocycles (P.PD K) (1 : Representation ↥LL.1 ↥(GK K) ↥LL.1)) :=
     Module.finite_of_finrank_eq_succ hZ
   have hle := unramifiedCocycles_le_blochKatoFinite_trivial AI T K LL
