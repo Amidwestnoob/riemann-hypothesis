@@ -46,7 +46,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 theorem jac_mk {α n : Type} {m : α → Type} [Fintype α] [LinearOrder α] [∀ a, Fintype (m a)]
     [∀ a, DecidableEq (m a)] [Fintype n] [DecidableEq n] {V : Type} [AddCommGroup V] [Module ℂ V]
     (e : (a : α) × m a ≃ n) (π : Representation ℂ (GL n k) V) (g : Levi k m) (v : V) :
-    jac e π g (Submodule.Quotient.mk v) =
+    GlobalTheory.SmGL.jac e π g (Submodule.Quotient.mk v) =
       (((deltaHalf k m g)⁻¹ : ℂˣ) : ℂ) • (Submodule.Quotient.mk (π (leviEmb k e g) v) : Jacquet π (unipRad k e)) := rfl
 
 theorem jacB_mk {n : Type} [Fintype n] [DecidableEq n] [LinearOrder n] {V : Type} [AddCommGroup V] [Module ℂ V]
@@ -90,7 +90,7 @@ theorem inSupport_of_eigenform (n : ℕ) (V : Type) [AddCommGroup V] [Module ℂ
   have hl' : ∀ v : V, l' (Submodule.Quotient.mk v) = l (Submodule.Quotient.mk v) := fun v => rfl
   let χ : Levi k (fun _ : Fin n => Fin 1) →* ℂˣ := leviChar _ ψ
   have key : ∀ (g : Levi k (fun _ : Fin n => Fin 1)) (v : V),
-      l' (jac f π g (Submodule.Quotient.mk v)) = (χ g : ℂ) * l' (Submodule.Quotient.mk v) := by
+      l' (GlobalTheory.SmGL.jac f π g (Submodule.Quotient.mk v)) = (χ g : ℂ) * l' (Submodule.Quotient.mk v) := by
     intro g v
     set t : Fin n → kˣ := fun j => Matrix.GeneralLinearGroup.det (g j) with ht
     have h1 := hl t (Submodule.Quotient.mk v : Jacquet π (unipB k (Fin n)))

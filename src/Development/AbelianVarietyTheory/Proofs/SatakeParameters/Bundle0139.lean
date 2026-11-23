@@ -171,7 +171,7 @@ theorem exists_eigenform {ρ : Representation ℂ G V} (hρ : IsSmooth ρ) (hl :
     (hH : IsCompact (H : Set G)) {χ : G →* ℂˣ} (hχ : IsSmoothChar χ) {x : V} (hx : x ≠ 0)
     (hxH : ∀ t ∈ H, ρ t x = (χ t : ℂ) • x) :
     ∃ (μ : G →* ℂˣ) (l : V →ₗ[ℂ] ℂ), l ≠ 0 ∧ (∀ g v, l (ρ g v) = (μ g : ℂ) * l v) ∧ ∀ h ∈ H, μ h = χ h := by
-  let ρ' := twist ρ χ⁻¹
+  let ρ' := GlobalTheory.SmGL.twist ρ χ⁻¹
   have hρ' : ∀ g v, ρ' g v = ((χ g)⁻¹ : ℂˣ) • ρ g v := fun _ _ => rfl
   have hc := LocGL.isCompl_fixed_twKer (isSmooth_twist hρ hχ.inv) hH
   let T : Subrepresentation ρ := ⟨twKer ρ' H 1, fun g v hv => by
