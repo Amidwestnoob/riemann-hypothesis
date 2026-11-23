@@ -588,7 +588,7 @@ theorem exists_kappa (D : D7) : ∃ κ : (AE D)ˣ →* ℂˣ, (∀ u, IntU D u �
   have hsol := fun (n : ℕ) (g : GA D n) => exists_solution a1 a2 h1 h2 g
   have heO : ε + sgA D ε ∈ OhE D := add_mem hε (VacMove.sgA_mem D hε)
   generalize ε + sgA D ε = e at h1 h2 h3 hsol heO
-  let P : (AE D)ˣ →* (AE D)ˣ := Units.map (cut e h1)
+  let P : (AE D)ˣ →* (AE D)ˣ := Units.map (GlobalTheory.VacuumScalar.cut e h1)
   have hP : ∀ x, ((P x : (AE D)ˣ) : AE D) = e * x + (1 - e) := fun x => by
     change e * x + (1 - e) * 1 = _
     rw [mul_one]
@@ -608,9 +608,9 @@ theorem exists_kappa (D : D7) : ∃ κ : (AE D)ˣ →* ℂˣ, (∀ u, IntU D u �
       change _ = sgA D (P (incU D b) : (AE D)ˣ)
       rw [hP, hP, map_add (f := _), map_mul, map_sub, map_one, h2]
       rfl
-    have hsplit : incU D b = P (incU D b) * Units.map (cut (1 - e) (compl_idem h1)) (incU D b) :=
+    have hsplit : incU D b = P (incU D b) * Units.map (GlobalTheory.VacuumScalar.cut (1 - e) (compl_idem h1)) (incU D b) :=
       Units.ext (cut_mul_cut e h1 (incU D b : AE D)).1.symm
-    have htriv : ψ.f (Units.map (cut (1 - e) (compl_idem h1)) (incU D b)) = 1 := by
+    have htriv : ψ.f (Units.map (GlobalTheory.VacuumScalar.cut (1 - e) (compl_idem h1)) (incU D b)) = 1 := by
       refine GlobalTheory.InertTrivial.character_trivial_at_inert D _ Even.zero ψ _ fun q hq hi => ?_
       convert VacMove.zeroAt_mul D hq ((h3 q hq).2 hi) ((incU D b : AE D) - 1) using 1
       change (1 - e) * (incU D b : AE D) + (1 - (1 - e)) * 1 - 1 = _

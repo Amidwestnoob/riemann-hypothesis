@@ -43,7 +43,7 @@ section Main
 open GlobalTheory.SplitDetChar
 
 theorem cut_add {R : Type} [CommRing R] {a b : R} (ha : a * a = a) (hb : b * b = b) (hab : a * b = 0)
-    (h : (a + b) * (a + b) = a + b) (u : Rˣ) : cut _ h u = cut a ha u * cut b hb u := Units.ext (by
+    (h : (a + b) * (a + b) = a + b) (u : Rˣ) : GlobalTheory.SplitDetChar.cut _ h u = GlobalTheory.SplitDetChar.cut a ha u * GlobalTheory.SplitDetChar.cut b hb u := Units.ext (by
   rw [Units.val_mul, cut_val, cut_val, cut_val]
   linear_combination (-((u : R) - 1) ^ 2) * hab)
 
@@ -67,13 +67,13 @@ theorem exists_idempotentUnitEmbeddings_character_relation {R E H : Type} [CommR
   have h3 : σ ε * σ ε = σ ε := by rw [← map_mul, h1]
   have h4 : (ε + σ ε) * (ε + σ ε) = ε + σ ε := by linear_combination h1 + h3 + 2 * h2
   let i : Eˣ →* Rˣ := Units.map j.toMonoidHom
-  refine ⟨(cut ε h1).comp i, (cut _ h4).comp i, fun _ => rfl, fun _ => rfl, fun u => ?_⟩
+  refine ⟨(GlobalTheory.SplitDetChar.cut ε h1).comp i, (GlobalTheory.SplitDetChar.cut _ h4).comp i, fun _ => rfl, fun _ => rfl, fun u => ?_⟩
   have e1 := cut_add h1 h3 h2 h4 (i u)
-  have e3 : (cut ε h1 (i (star u)) : R) = σ (cut _ h3 (i u) : R) := by
+  have e3 : (GlobalTheory.SplitDetChar.cut ε h1 (i (star u)) : R) = σ (GlobalTheory.SplitDetChar.cut _ h3 (i u) : R) := by
     show ε * j (star (u : E)) + (1 - ε) = σ (σ ε * j u + (1 - σ ε))
     rw [map_add (f := _), map_mul, map_sub, map_one, hσ, hj]
-  have e2 := hη (cut _ h3 (i u)) (cut _ h3 (i u) * cut ε h1 (i (star u))) (by rw [Units.val_mul, e3])
-  show η (cut _ h4 (i u)) * η (cut ε h1 (i (star u))) = η (cut ε h1 (i u))
+  have e2 := hη (GlobalTheory.SplitDetChar.cut _ h3 (i u)) (GlobalTheory.SplitDetChar.cut _ h3 (i u) * GlobalTheory.SplitDetChar.cut ε h1 (i (star u))) (by rw [Units.val_mul, e3])
+  show η (GlobalTheory.SplitDetChar.cut _ h4 (i u)) * η (GlobalTheory.SplitDetChar.cut ε h1 (i (star u))) = η (GlobalTheory.SplitDetChar.cut ε h1 (i u))
   rw [e1, map_mul, mul_assoc, ← map_mul, e2, mul_one]
 
 theorem exists_phi {η : (AE D)ˣ →* Circle} (hη : ResEta D η 1) {ε : AE D} (hε : IsHalfIdem D ε) :
