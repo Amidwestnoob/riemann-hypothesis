@@ -452,7 +452,7 @@ theorem exists_sec_pull {L : LB X} {L' : LB Y} (hL : L.IsLB) (hL' : L'.IsLB) (F 
   let t : Γ(toMod L', ⊤) := (toMod L').presheaf.map (homOfLE hO).op s'
   refine ⟨⟨fun k => resG Y (le_inf le_top le_rfl) (coord t k), fun i j => ?_⟩, fun y i hy => ?_⟩
   · change resG Y _ (resG Y _ _) = _ * resG Y _ (resG Y _ _)
-    rw [resG_resG, resG_resG, coord_rel t i j _ _ le_rfl, resG_self]
+    rw [GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG, coord_rel t i j _ _ le_rfl, resG_self]
   obtain ⟨k, hk⟩ := nonvanishing_of_iso hL' hP w hw s' y (fun _ => i) (by
     change y ∈ Y.basicOpen (coord (e.hom.app _ s') _)
     rw [hs]

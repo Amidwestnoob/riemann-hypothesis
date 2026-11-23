@@ -284,7 +284,7 @@ theorem exists_isFrame_of_bijective_stalk {e : ι → Γ(F, U)} (he : IsFrame e)
     (X.mem_basicOpen _ x hx).2 hv, fun V h => ?_⟩
   simp only [resM_resM]
   rw [bijective_iff_isUnit_det (he.basis ((h.trans (X.basicOpen_le _)).trans le_rfl)),
-    ← he.resG_det, ← resG_resG (X.basicOpen_le _) h]
+    ← he.resG_det, ← GlobalTheory.LB.resG_resG (X.basicOpen_le _) h]
   exact (X.toRingedSpace.isUnit_res_basicOpen _).map _
 
 end GlobalTheory.VB.Ker

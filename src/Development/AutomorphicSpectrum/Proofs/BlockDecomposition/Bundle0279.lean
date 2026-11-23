@@ -48,9 +48,9 @@ theorem secMaps_of_cover {A B : LB X} (hA : A.IsLB) (hB : B.IsLB) (w : LB.Iso A 
   rw [h a, GlobalTheory.LB.coord_ofSec, GlobalTheory.LB.coord_ofSec] at e
   have hxW : x ∈ O a ⊓ (B.U p ⊓ A.U q) := ⟨ha, hx⟩
   change resG X hp (resG X _ (t.f p)) = resG X hh _ * resG X hq (resG X _ (s.f q)) at e
-  rw [resG_resG, resG_resG] at e
+  rw [GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG] at e
   refine (germ_resG hh x hxW _).symm.trans ((congrArg _ ?_).trans (germ_resG hh x hxW _))
-  rw [map_mul, resG_resG, resG_resG]
+  rw [map_mul, GlobalTheory.Cartier.resG_resG, GlobalTheory.Cartier.resG_resG]
   exact e
 
 section Tower

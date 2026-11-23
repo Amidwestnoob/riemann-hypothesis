@@ -215,7 +215,7 @@ theorem gen_eq_basicOpen {g : O} (hg : g ≠ 0) (hm : g ∈ maximalIdeal O) :
 
 theorem isUnit_const {g : O} (hg : g ≠ 0) {V : Z.X.Opens} (h : V ≤ Z.gen) :
     IsUnit (resG Z.X (le_top : V ≤ ⊤) (Z.const g)) := by
-  rw [← resG_resG (Z.X.basicOpen_le (Z.const g)) (h.trans (Z.gen_le_basicOpen hg))]
+  rw [← GlobalTheory.LB.resG_resG (Z.X.basicOpen_le (Z.const g)) (h.trans (Z.gen_le_basicOpen hg))]
   exact (Z.X.toRingedSpace.isUnit_res_basicOpen _).map _
 
 theorem isRegularFn_const {g : O} (hg : g ≠ 0) : IsRegularFn (Z.const g) :=
@@ -569,7 +569,7 @@ theorem isUnit_eqn (i : P.M.ι) {W : Z.X.Opens} (h : W ≤ Z.gen ⊓ P.M.U i) : 
   (P.isUnit i).map _
 
 @[simp] theorem resG_eqn (i : P.M.ι) {W W' : Z.X.Opens} (h : W ≤ Z.gen ⊓ P.M.U i) (h' : W' ≤ W) :
-    resG Z.X h' (P.eqn i h) = P.eqn i (h'.trans h) := resG_resG _ _ _
+    resG Z.X h' (P.eqn i h) = P.eqn i (h'.trans h) := GlobalTheory.LB.resG_resG _ _ _
 
 theorem eqn_rel (i j : P.M.ι) {W : Z.X.Opens} (hi : W ≤ Z.gen ⊓ P.M.U i)
     (hj : W ≤ Z.gen ⊓ P.M.U j) (hij : W ≤ P.M.U i ⊓ P.M.U j) :
@@ -583,7 +583,7 @@ theorem eqn_mul_rel (i j : P.M.ι) (i' j' : P'.M.ι) {W V : Z.X.Opens} (hi : W �
       resG Z.X h (res hij (P.M.g i j) * res hij' (P'.M.g i' j')).val *
         (P.eqn j hj * P'.eqn j' hj') := by
   rw [P.eqn_rel i j hi hj (h.trans hij), P'.eqn_rel i' j' hi' hj' (h.trans hij'), mul_mul_mul_comm,
-    Units.val_mul, map_mul, val_res, val_res, resG_resG, resG_resG]
+    Units.val_mul, map_mul, val_res, val_res, GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG]
 
 def ofUnits (M : LB Z.X) (hM : M.IsLB) (u : ∀ i, Γ(Z.X, Z.gen ⊓ M.U i))
     (hu : ∀ i, IsUnit (u i)) (h : u ∈ secOn M Z.gen) : VertDiv Z :=
@@ -602,7 +602,7 @@ def const (g : O) (hg : g ≠ 0) : VertDiv Z :=
   ofUnits (LB.triv _) (LB.isLB_triv _) (fun _ => resG Z.X le_top (Z.const g))
     (fun _ => Z.isUnit_const hg inf_le_left) fun _ _ => by
       change _ = resG Z.X _ 1 * _
-      simp only [map_one, one_mul, resG_resG]
+      simp only [map_one, one_mul, GlobalTheory.LB.resG_resG]
 
 def add : VertDiv Z :=
   ofUnits (tens P.M P'.M) (isLB_tens P.isLB P'.isLB)
@@ -613,7 +613,7 @@ def add : VertDiv Z :=
 
 def ofEff (I : Z.effVert) : VertDiv Z :=
   ⟨(effData I).lb, (effData I).isLB_lb, ofSec (effData I).canonical _, fun i => by
-    refine (resG_resG (Z.X.basicOpen_le ((effData I).f i)) (le_basicOpen_effData I i) _).subst ?_
+    refine (GlobalTheory.LB.resG_resG (Z.X.basicOpen_le ((effData I).f i)) (le_basicOpen_effData I i) _).subst ?_
     exact (Z.X.toRingedSpace.isUnit_res_basicOpen _).map _⟩
 
 def IsIsom : Prop := ∃ w : LB.Iso P.M P'.M, w.IsGen ∧ ∀ (p : P'.M.ι) (q : P.M.ι),
@@ -630,7 +630,7 @@ theorem Extends.resG_f (h : P.Extends g s) (i : P.M.ι) {W : Z.X.Opens}
     (hW : W ≤ Z.gen ⊓ P.M.U i) :
     resG Z.X (hW.trans inf_le_right) (s.f i) = resG Z.X le_top (Z.const g) * P.eqn i hW := by
   have := congrArg (fun t => resG Z.X hW (coord t i)) h
-  simpa only [LB.coord_ofSec, LB.coord_smul, map_mul, resG_resG, eqn] using this
+  simpa only [LB.coord_ofSec, LB.coord_smul, map_mul, GlobalTheory.LB.resG_resG, eqn] using this
 
 theorem Extends.le_basicOpen (h : P.Extends g s) (hg : g ≠ 0) (i : P.M.ι) :
     Z.gen ⊓ P.M.U i ≤ Z.X.basicOpen (s.f i) :=
@@ -647,7 +647,7 @@ def Extends.eff (h : P.Extends g s) (hg : g ≠ 0) : Z.effVert :=
 theorem Extends.smul (h : P.Extends g s) (g' : O) : P.Extends (g' * g) (Z.const g' • s) :=
   LB.sec_ext fun i => by
     have := h.resG_f i le_rfl
-    simp only [LB.coord_ofSec, LB.coord_smul, LB.smul_f, map_mul, resG_resG, this, eqn, resG_self,
+    simp only [LB.coord_ofSec, LB.coord_smul, LB.smul_f, map_mul, GlobalTheory.LB.resG_resG, this, eqn, resG_self,
       mul_assoc]
 
 
@@ -690,7 +690,7 @@ theorem IsSum.ofEff_sub (H : IsSum P P' P'') (h : P.Extends g s) (h' : P'.Extend
       resG Z.X le_top (Z.const g') = u.val * (resG Z.X (inf_le_left.trans inf_le_left) (s.f p.1.1) *
         resG Z.X (inf_le_left.trans inf_le_right) (s'.f p.1.2) * resG Z.X le_top (Z.const g'')) := by
     refine Z.resG_injective inf_le_right le_rfl ?_
-    simp only [map_mul, resG_resG]
+    simp only [map_mul, GlobalTheory.LB.resG_resG]
     rw [h''.resG_f _ (inf_le_inf_left _ inf_le_right), hu,
       h.resG_f _ (inf_le_inf_left _ (inf_le_left.trans inf_le_left)),
       h'.resG_f _ (inf_le_inf_left _ (inf_le_left.trans inf_le_right))]
@@ -720,8 +720,8 @@ theorem IsIsom.isSum (H : IsIsom P P') : IsSum P (zero Z) P' := fun i _ k => by
   refine ⟨res (le_inf inf_le_right (inf_le_left.trans inf_le_left)) (Twist.isoUnit w k i), ?_⟩
   have := congrArg (resG Z.X (inf_le_inf_left _ (le_inf inf_le_right
     (inf_le_left.trans inf_le_left)) : Z.gen ⊓ (P.M.U i ⊓ ⊤ ⊓ P'.M.U k) ≤ _)) (hw k i)
-  simp only [map_mul, resG_eqn, resG_resG] at this
-  refine this.trans (congrArg₂ (· * ·) (resG_resG _ _ _).symm ?_)
+  simp only [map_mul, resG_eqn, GlobalTheory.LB.resG_resG] at this
+  refine this.trans (congrArg₂ (· * ·) (GlobalTheory.LB.resG_resG _ _ _).symm ?_)
   exact (mul_one _).symm.trans (congrArg _ (map_one _).symm)
 
 

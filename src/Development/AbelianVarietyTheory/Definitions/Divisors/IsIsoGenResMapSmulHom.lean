@@ -223,9 +223,9 @@ theorem cls_div_of_smul {φ : Z.GenIso E E} {g : O} (hg : g ≠ 0)
     (inf_le_right.trans inf_le_right), (eqn_div_of_hom hE hE hφ c c' le_rfl inf_le_right).trans ?_⟩
   change _ = _ * (resG _ _ (resG _ _ _) * resG _ _ 1)
   simp only [smulHom_app_apply, IsFrame.val_detUnit]
-  rw [AlternatingMap.map_smul_univ, map_one, mul_one, smul_eq_mul, map_mul, mul_comm, resG_resG]
+  rw [AlternatingMap.map_smul_univ, map_one, mul_one, smul_eq_mul, map_mul, mul_comm, GlobalTheory.LB.resG_resG]
   simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, Model.const, map_pow]
-  exact congrArg (_ * · ^ r) (resG_resG _ _ _)
+  exact congrArg (_ * · ^ r) (GlobalTheory.LB.resG_resG _ _ _)
 
 end GenIso
 

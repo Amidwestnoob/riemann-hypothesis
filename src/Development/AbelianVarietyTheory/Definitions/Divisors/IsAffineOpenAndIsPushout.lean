@@ -179,7 +179,7 @@ def univ : Der π e (conormal e) where
   res_app h h' f := resM_cls _ h' _ _
   app_res {W W' V} h k f := cls_congr _ _ (le_nhd he h) le_rfl
     (inf_le_inf k (π.preimage_mono (e.preimage_mono k))) _ _ (by
-      rw [resG_self, center_apply, center_apply, map_sub, resG_resG, resG_resG, resG_appLE,
+      rw [resG_self, center_apply, center_apply, map_sub, GlobalTheory.LB.resG_resG, GlobalTheory.LB.resG_resG, resG_appLE,
         appLE_resG, ← resG_appLE e (e.preimage_mono k) le_rfl, appLE_resG])
   app_mul {W V} h f g := by
     have h₁ := cls_mul (le_nhd he h) (resG X inf_le_left f) _ (appLE_center he g)
