@@ -191,16 +191,16 @@ theorem VeroneseTop.proof (hCM : GraphChangeOfModel.Statement) (hA : VeroneseAri
     (hIm : VeroneseGraphImage.Statement) (hDeg : VeroneseGraphDeg.Statement) : VeroneseTop.Statement := by
   intro D hD I hI
   obtain ⟨G, J, hJ, hJ1⟩ := hDeg D hD
-  have hfs : IsSmoothHerm (HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) :=
+  have hfs : IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) :=
     BlockImageTop.isSmoothHerm_ofCone ProjLine.isSmoothMetric_fs
   have hP : IsArithVar (⊥ : Ideal (MRing (GlobalTheory (Fin (D + 1))))) (D + 1) := IndefiniteRowSideFullHecke.Inter.isArithVar_bot D
   have key := hCM I hI Unit (GlobalTheory (Fin (D + 1))) Unit (GlobalTheory (Veronese.Idx D)) ⊥ (D + 1) (Veronese.forms D)
-    (fun _ _ => 2) G J (fun _ => HermLine.ofCone (Veronese.metric D))
-    (fun _ => (HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))).tensor
-      (HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))))
+    (fun _ _ => 2) G J (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (Veronese.metric D))
+    (fun _ => (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))).tensor
+      (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))))
     hP (isMultiHomog_forms D) (isBasePtFree_forms D) (by rw [hIm D]; exact hA D hD) hJ
     (fun _ => BlockImageTop.isSmoothHerm_ofCone (Veronese.isSmoothMetric_metric D)) (fun _ => hfs.mul hfs)
-    (fun _ k => by cases k; simp [HermLine.tensor, HermLine.ofCone])
+    (fun _ k => by cases k; simp [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.tensor, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone])
     (fun _ z _ => (metric_forms D z).symm)
   rw [hIm D, hJ1] at key
   have h2 := tensor_self (hI Unit (GlobalTheory (Fin (D + 1)))) hP hfs

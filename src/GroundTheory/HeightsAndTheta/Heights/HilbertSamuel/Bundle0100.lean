@@ -405,11 +405,11 @@ theorem mass_pullFS (hPM : ProjFSMass.Statement) (d : HSMDatum D Ω κ) {e : Fin
     {m₀ : ConeMetric ℂ (Ix κ)} (hfr : IsProjFrame d.x e) (h₀ : IsSmoothMetric m₀) (hFS : IsPullFS d.x e m₀) :
     mInt d.R.A (fun _ => resPot d m₀) (fun _ => 1) = (projDeg d.x e : ℝ) := by
   obtain ⟨Ψ, hΨ, hmass⟩ := hPM D Ω κ d.x e m₀ hfr hFS
-  let A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine (GlobalTheory κ) := HermLine.ofWeight (fun _ => (1 : ℝ)) (fun _ _ _ => rfl)
+  let A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine (GlobalTheory κ) := ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight (fun _ => (1 : ℝ)) (fun _ _ _ => rfl)
   have hA : IsSmoothHerm A := contDiffOn_const
   have hlog : logNorm A 1 = fun _ => (1 : ℝ) := by
     funext z
-    simp [A, logNorm, HermLine.ofWeight]
+    simp [A, logNorm, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight]
   have hsec : IsSectionOn (coordIdeal ℤ d.x) A 1 := by
     refine ⟨fun _ => 0, fun _ => rfl, ?_, ?_⟩
     · intro a ha k
@@ -417,7 +417,7 @@ theorem mass_pullFS (hPM : ProjFSMass.Statement) (d : HSMDatum D Ω κ) {e : Fin
       simp only [Finset.mem_singleton] at ha
       simp [ha]
     · exact (Ideal.ne_top_iff_one _).1 d.arith.2.1.1.ne_top
-  have key := AnResBridge.bridge d.R Ψ (fun _ => HermLine.ofCone m₀) A 1 d.arith hΨ
+  have key := AnResBridge.bridge d.R Ψ (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₀) A 1 d.arith hΨ
     (fun _ => gbamix_smoothHerm_ofCone h₀) hA hsec
   rw [hlog] at key
   rw [← hmass]

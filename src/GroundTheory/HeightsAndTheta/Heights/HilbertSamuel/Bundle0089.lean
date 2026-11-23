@@ -448,12 +448,12 @@ theorem mass_potOf (hGG : GenDegGeomDeg.Statement) (d : HSMBlockDatum D K ι Ω)
       (genDeg (mCoordIdeal d.y) D (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg d.k₀) : ℝ) := by
   have hex : ∃ Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (D + 1) → ℂ), IsGoodProj (mCoordIdeal d.y) Ψ :=
     goodProjExists K ι (mCoordIdeal d.y) D d.arith
-  let B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := HermLine.ofWeight (fun _ => (-1 : ℝ)) (fun _ _ _ => rfl)
+  let B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight (fun _ => (-1 : ℝ)) (fun _ _ _ => rfl)
   have hB : IsSmoothHerm B := contDiffOn_const
   have hlog : logNorm B.inv 1 = fun _ => (1 : ℝ) := by
     funext z
     rw [logNorm_inv_one]
-    simp [B, HermLine.ofWeight]
+    simp [B, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight]
   have hsec : IsSectionOn (mCoordIdeal d.y) B.inv 1 := isSectionOn_inv_one d.arith.2.1.1 rfl
   have key := AnResBridge.bridge d.R hex.choose (fun _ => A₀) B.inv 1 d.arith hex.choose_spec
     (fun _ => h₀) (isSmoothHerm_inv hB) hsec

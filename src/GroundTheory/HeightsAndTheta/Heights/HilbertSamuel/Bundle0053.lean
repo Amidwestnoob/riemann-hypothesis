@@ -183,7 +183,7 @@ theorem smallGen_of_trivial (y : (Σ k, ι k) → Ω) (E : ReciprocityTheory.Cha
 omit [∀ k, Fintype (ι k)] in
 theorem fsH_a [∀ k, Fintype (ι k)] : (fsH ι).a = fun _ => 1 := by
   funext k
-  simp [fsH, HermLine.ofMetrics]
+  simp [fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics]
 
 theorem smallGen_fsH (y : (Σ k, ι k) → Ω) : SmallGen y (fsH ι) := by
   classical
@@ -220,7 +220,7 @@ theorem smallGen_fsH (y : (Σ k, ι k) → Ω) : SmallGen y (fsH ι) := by
     refine mul_le_mul_of_nonneg_left ?_ (norm_nonneg _)
     simp only [Pi.one_apply, pow_one, norm_prod]
     have hH : (fsH ι).h z = ∏ k, ‖WithLp.toLp 2 (fun i => z ⟨k, i⟩)‖ := by
-      simp [fsH, HermLine.ofMetrics, fsMetric]
+      simp [fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics, fsMetric]
     rw [hH]
     refine Finset.prod_le_prod₀ (fun k _ => norm_nonneg _) fun k _ => ?_
     have := PiLp.norm_apply_le (WithLp.toLp 2 (fun i => z ⟨k, i⟩)) ((e.symm j) k)

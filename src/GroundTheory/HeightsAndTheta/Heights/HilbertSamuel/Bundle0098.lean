@@ -163,7 +163,7 @@ namespace TwoBlockTop
 variable {κ : Type}
 
 theorem isPullHerm_blockLine [Fintype κ] (m : ConeMetric ℂ (Ix κ)) (b : Fin 2) :
-    IsPullHerm (blkOf b) (blkV κ b) (HermLine.ofCone m) (blockLine m b) := by
+    IsPullHerm (blkOf b) (blkV κ b) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m) (blockLine m b) := by
   refine ⟨?_, fun z => rfl⟩
   funext k
   show (Pi.single b 1 : Fin 2 → ℤ) k = Function.extend (blkOf b) (fun _ : Unit => (1 : ℤ)) 0 k
@@ -223,7 +223,7 @@ theorem TwoBlockTop.proof (hPF : PFCoordStatement) (hIm : ImageCoordStatement) (
       rw [hIm Unit (GlobalTheory κ) (Fin 2) (FinTwoTypeFamily κ) (blkOf b) (blkV κ b) Ω _ (isBlockMap_blkV κ b), hz,
         coordIdeal_eq_mCoordIdeal]
     have h := hPF I hI Unit (GlobalTheory κ) (Fin 2) (FinTwoTypeFamily κ) (blkOf b) (blkV κ b) Ω (pair x (matAct B x)) (D + 1)
-      (fun _ => HermLine.ofCone μ) (fun _ => blockLine μ b) (isBlockMap_blkV κ b) hpA
+      (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone μ) (fun _ => blockLine μ b) (isBlockMap_blkV κ b) hpA
       (by rw [himg, coordIdeal_eq_mCoordIdeal]; exact hzA)
       (fun _ => gbamix_smoothHerm_ofCone hμ) (fun _ => isPullHerm_blockLine μ b)
     rw [IntermediateField.relfinrank_eq_one_iff.mpr (by rw [hz, hzF, hFp]), Nat.cast_one, one_mul] at h

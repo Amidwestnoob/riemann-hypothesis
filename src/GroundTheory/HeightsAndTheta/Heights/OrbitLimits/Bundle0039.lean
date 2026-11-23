@@ -137,7 +137,7 @@ theorem le_of_common (hNot : ChartSectionNotMem.Statement) {W₁ W₂ : Ideal (M
   refine Ideal.span_le.2 fun f hf => ?_
   by_contra hfW
   obtain ⟨a, ha⟩ := hS f hf
-  have hsec : IsSectionOn W₁ (HermLine.sqMetric (ι := ι) a) f := ⟨a, fun _ => rfl, ha, hfW⟩
+  have hsec : IsSectionOn W₁ (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.sqMetric (ι := ι) a) f := ⟨a, fun _ => rfl, ha, hfW⟩
   exact hNot K ι W₁ n m σ i _ f h₁ hsec W' hW₁
     ((mem_segreChartComponents.1 hW₂).1.2 (chartSection_mem h₂' σ i (Ideal.subset_span hf)))
 

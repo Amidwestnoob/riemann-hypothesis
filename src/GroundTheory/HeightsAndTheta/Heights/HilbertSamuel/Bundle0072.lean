@@ -79,7 +79,7 @@ theorem isBasePtFree_blockForms {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω}
   rwa [sub_add_cancel] at this
 
 theorem isSmoothHerm_ofCone {m : ConeMetric ℂ (Ix κ)} (hm : IsSmoothMetric m) :
-    IsSmoothHerm (HermLine.ofCone m) := by
+    IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m) := by
   refine hm.mono fun z hz => ?_
   obtain ⟨i, hi⟩ := hz ()
   exact fun h0 => hi (congrFun h0 _)
@@ -99,11 +99,11 @@ theorem BlockImageTop.proof (hCM : GraphChangeOfModel.Statement) (hIm : BlockGra
   obtain ⟨G, J, hJ, hJ1⟩ := hDeg D K ι Ω κ y k₀ M N x hP hB hx hBI
   have himg := hIm K ι Ω κ y k₀ M N x hBI
   have key := hCM I hI K ι Unit (GlobalTheory κ) (mCoordIdeal y) (D + 1) (blockForms k₀ M) (fun _ => blockDeg k₀ 1) G J
-    (fun _ => HermLine.ofCone m) (fun _ => A) hP (isMultiHomog_blockForms k₀ M) (isBasePtFree_blockForms hBI)
+    (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m) (fun _ => A) hP (isMultiHomog_blockForms k₀ M) (isBasePtFree_blockForms hBI)
     (by rw [himg]; exact hx) hJ (fun _ => isSmoothHerm_ofCone hm) (fun _ => hA)
     (fun _ k => by
       rw [ha]
-      by_cases hk : k = k₀ <;> simp [ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg, blockDeg, HermLine.ofCone, hk])
+      by_cases hk : k = k₀ <;> simp [ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg, blockDeg, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone, hk])
     (fun _ z hz => by rw [hh z hz, formApply_blockForms]; rfl)
   rw [himg, hJ1] at key
   simpa [top] using key

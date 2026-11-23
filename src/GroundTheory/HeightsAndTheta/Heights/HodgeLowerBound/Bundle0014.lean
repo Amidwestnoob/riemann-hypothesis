@@ -132,7 +132,7 @@ theorem PtsBddConv.proof (hAbs : Inter.PtsAbsIntegrable.Statement) : PtsBddConv.
     have hfin : ∀ y, (ReciprocityTheory.ChartRestriction.G.Geo.fibre P Ψ y).Finite := fibreFinite K ι P e Ψ hP hΨ
     have hL' : ∀ j : Fin e, IsSmoothHerm ((fun _ => L) j) := fun _ => hL
     have hone : IsSectionOn P (oneLine (ι := ι)) 1 := by
-      refine ⟨0, fun k => by simp [oneLine, HermLine.ofWeight], fun m hm k => ?_,
+      refine ⟨0, fun k => by simp [oneLine, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight], fun m hm k => ?_,
         fun h => hP.2.1.1.ne_top ((Ideal.eq_top_iff_one P).2 h)⟩
       rw [MvPolynomial.support_one, Finset.mem_singleton] at hm
       subst hm

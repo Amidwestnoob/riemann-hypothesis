@@ -338,7 +338,7 @@ theorem VeroneseSemipos.proof : VeroneseSemipos.Statement := by
       intro h0
       obtain ⟨i, hi⟩ := hz.1 ()
       exact hi (congrFun h0 _)
-    have e : (fun z => Real.log ((HermLine.ofCone (metric D)).h z)) =
+    have e : (fun z => Real.log ((ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (metric D)).h z)) =
         (fun y => Real.log ((fsMetric (ι := Ix (Idx D))).ρ y)) ∘ scaleL D := rfl
     have hφ : ∀ᶠ y in 𝓝 z, DifferentiableAt ℝ (fun y => Real.log ((fsMetric (ι := Ix (Idx D))).ρ y)) (scaleL D y) := by
       filter_upwards [isOpen_ne.mem_nhds hz0] with y hy

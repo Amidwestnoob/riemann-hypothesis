@@ -64,9 +64,9 @@ theorem SemilocResidueFibreDim.proof (hFD : FibreDivSupp.Statement) (hDim : Fibr
     have h : s ∈ imageZ v W' := hW'.2.2 ▸ hsW
     exact h
   have hD' : W' ∈ divSupp P' (rename v s) := ((hFD K ι K' ι' κ v P' n s α W hv hP' hZ hs hsP hW W').1 ⟨hW', hsW'⟩).1
-  have hsec' : IsSectionOn P' (HermLine.sqMetric (ι := ι') (Function.extend κ α 0)) (rename v s) :=
+  have hsec' : IsSectionOn P' (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.sqMetric (ι := ι') (Function.extend κ α 0)) (rename v s) :=
     ⟨Function.extend κ α 0, fun _ => rfl, isMultiHomog_rename hv hs, hsP⟩
-  have hsec : IsSectionOn (imageZ v P') (HermLine.sqMetric (ι := ι) α) s := ⟨α, fun _ => rfl, hs, hsP⟩
+  have hsec : IsSectionOn (imageZ v P') (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.sqMetric (ι := ι) α) s := ⟨α, fun _ => rfl, hs, hsP⟩
   have divSuppArith : DivSuppArithStatement := by
     intro K _ ι _ P n A s W hP hs hW
     obtain ⟨hK, ⟨hPp, hPh, -⟩, -, hPdim⟩ := hP

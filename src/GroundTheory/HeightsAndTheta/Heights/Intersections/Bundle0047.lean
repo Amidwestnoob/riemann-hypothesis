@@ -274,7 +274,7 @@ theorem smooth_tensor {A B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine �
   hA.mul hB
 
 def segreLine (m : ℕ) : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=
-  HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (fun _ => (m : ℤ))
+  ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (fun _ => (m : ℤ))
 
 theorem segreLine_a (m : ℕ) : (segreLine m : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι).a = fun _ => (m : ℤ) := rfl
 
@@ -282,7 +282,7 @@ theorem isSmoothHerm_segreLine (m : ℕ) : IsSmoothHerm (segreLine m : Reciproci
   have hfun : (segreLine m : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι).h =
       fun z => ∏ k, Real.sqrt (∑ i : ι k, ‖z ⟨k, i⟩‖ ^ 2) ^ m := by
     funext z
-    simp only [segreLine, HermLine.ofMetrics, fsMetric, zpow_natCast, EuclideanSpace.norm_eq]
+    simp only [segreLine, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics, fsMetric, zpow_natCast, EuclideanSpace.norm_eq]
   unfold IsSmoothHerm
   rw [hfun]
   refine contDiffOn_prod fun k _ => (ContDiffOn.sqrt ?_ fun z hz => ?_).pow m
@@ -319,7 +319,7 @@ theorem sec_mul {P : Ideal (MRing ι)} (hpr : P.IsPrime) {A B : ReciprocityTheor
   obtain ⟨a, ha, has, hsP⟩ := hs
   obtain ⟨b, hb, hbt, htP⟩ := ht
   refine ⟨a + b, fun k => ?_, ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul has hbt, fun h => ?_⟩
-  · simp [HermLine.tensor, ha, hb]
+  · simp [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.tensor, ha, hb]
   · rcases hpr.mem_or_mem h with h | h
     exacts [hsP h, htP h]
 
@@ -340,7 +340,7 @@ theorem upDeg_cast (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (k
 
 theorem isSectionOn_up {P : Ideal (MRing ι)} {d : ℕ} (hP : IsArithVar P d) (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) :
     IsSectionOn P (A.tensor (segreLine (shift A))) (secOf P (upDeg A)) :=
-  ⟨upDeg A, fun _ => by simp [HermLine.tensor, segreLine_a, upDeg_cast], (secOf_spec hP _).1,
+  ⟨upDeg A, fun _ => by simp [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.tensor, segreLine_a, upDeg_cast], (secOf_spec hP _).1,
     (secOf_spec hP _).2⟩
 
 theorem isSectionOn_segre {P : Ideal (MRing ι)} {d : ℕ} (hP : IsArithVar P d) (m : ℕ) :

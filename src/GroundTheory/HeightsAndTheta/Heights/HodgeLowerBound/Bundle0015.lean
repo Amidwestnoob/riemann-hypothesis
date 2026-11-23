@@ -97,7 +97,7 @@ theorem StokesStep.proof (hE : ResExistsStatement) : StokesStep.Statement := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   obtain ⟨J, ⟨R⟩⟩ := exists_anLogRes hE hP
   set C := A'.tensor A.inv with hCdef
-  have hC0 : C.a = 0 := by simp [C, HermLine.tensor, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.inv, ha]
+  have hC0 : C.a = 0 := by simp [C, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.tensor, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.inv, ha]
   have hCs : IsSmoothHerm C := hA'.1.mul (isSmoothHerm_inv hA.1)
   have hlogC : ∀ z, (∀ k, ∃ i, z ⟨k, i⟩ ≠ 0) →
       Real.log (C.h z) = Real.log (A'.h z) - Real.log (A.h z) := by

@@ -86,7 +86,7 @@ theorem induct (I : Ideal (MRing ι) → (n : ℕ) → (Fin n → ReciprocityThe
     set A := L (Fin.last n) with hA
     set A' := L' (Fin.last n) with hA'
     let b : K → ℕ := fun k => (A.a k).natAbs
-    let B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := HermLine.sqMetric b
+    let B : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := ReciprocityTheory.ChartRestriction.G.Geo.HermLine.sqMetric b
     have hB : ReciprocityTheory.ChartRestriction.G.Geo.IsSmoothHerm B := isSmoothHerm_sqMetric b
     let c : K → ℕ := fun k => (A.a k + (A.a k).natAbs).toNat
     have hBa : ∀ k, B.a k = b k := fun k => rfl

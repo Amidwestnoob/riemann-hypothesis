@@ -250,9 +250,9 @@ def linPullMetric {κ J : Type} [Fintype κ] [Fintype J] (N : Matrix κ J ℤ)
 def BlockImageMetrics.Statement : Prop :=
   (∀ (κ J : Type) [Fintype κ] [Fintype J] (N : Matrix κ (Ix J) ℤ)
       (hN : ∀ u : Ix J → ℂ, (fun i => ∑ j, (N i j : ℂ) * u j) = 0 → u = 0) (P : Ideal (MRing (GlobalTheory J))),
-      IsSemipositiveRel ⊥ P (HermLine.ofCone (linPullMetric N hN))) ∧
+      IsSemipositiveRel ⊥ P (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (linPullMetric N hN))) ∧
     ∀ (K : Type) [Fintype K] [DecidableEq K] (ι : K → Type) [∀ k, Fintype (ι k)] (k₀ : K) (P : Ideal (MRing ι)),
-      IsSemipositiveRel ⊥ P (HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg k₀))
+      IsSemipositiveRel ⊥ P (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg k₀))
 
 section Inhabitants
 

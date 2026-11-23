@@ -453,7 +453,7 @@ theorem semipos_tr (d : HSMDatum D Ω κ) {B B' : Matrix (Ix κ) (Ix κ) ℚ} (h
     (hB'B : B' * B = 1) (hB : IsInvMat B) {c : ℕ} (hc : c ≠ 0) {M : Ix κ → Ix κ → ℤ}
     (hM : ∀ i j, (c : ℚ) * B' i j = M i j) (hA : ∀ v : Ix κ → ℂ, matActC B' v = 0 → v = 0) :
     IsSemipositiveRel (coordIdeal ℤ (matAct B d.x)) (coordIdeal ℤ (matAct B d.x))
-      (HermLine.ofCone (metricTr d.m B' hA)) := by
+      (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (metricTr d.m B' hA)) := by
   have hc' : (c : ℂ) ≠ 0 := Nat.cast_ne_zero.2 hc
   refine ⟨(smooth_tr d.m d.smooth hBB' hA).mono fun z hz => (blk_ne_zero_iff z).1 hz, fun z hz w hw => ?_⟩
   have hz0 : z ≠ 0 := (blk_ne_zero_iff z).1 hz.1
@@ -475,7 +475,7 @@ theorem semipos_tr (d : HSMDatum D Ω κ) {B B' : Matrix (Ix κ) (Ix κ) ℚ} (h
     rw [clmAct_apply, clmAct_apply]
     exact this
   have hsem := d.semipos.2 _ hLz _ htan
-  have heq : (fun y => Real.log ((HermLine.ofCone (metricTr d.m B' hA)).h y)) =ᶠ[𝓝 z]
+  have heq : (fun y => Real.log ((ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (metricTr d.m B' hA)).h y)) =ᶠ[𝓝 z]
       fun y => Real.log (d.m.ρ (clmAct M y)) - Real.log c := by
     filter_upwards [isOpen_ne.mem_nhds hz0] with y hy
     have hy' : matActC B' y ≠ 0 := fun h => hy ((matAct_eq_zero_iff hBB' y).1 h)
@@ -529,7 +529,7 @@ theorem resGram_mk (x0 : Ix κ → Ω) (m : ConeMetric ℂ (Ix κ)) (P0 J : Idea
     [MeasurableSpace Xt] [BorelSpace Xt] (dV : Measure Xt) (one_le : 1 ≤ D)
     (arith : IsArithVar (ι := GlobalTheory κ) (coordIdeal ℤ x0) (D + 1)) (indep : LinearIndependent ℤ x0)
     (smooth : IsSmoothMetric m) (conjInv : IsConjInvariant m) (normalForm_baseLattice_le_dualSpan_sup_line : P0 ≤ coordIdeal ℤ x0)
-    (semipos : IsSemipositiveRel P0 (coordIdeal ℤ x0) (HermLine.ofCone m)) (vol : IsSmoothVolume A dV)
+    (semipos : IsSemipositiveRel P0 (coordIdeal ℤ x0) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m)) (vol : IsSmoothVolume A dV)
     (n r : ℕ) (b : Fin r → MvPolynomial (Ix κ) ℚ) :
     resGram (HSMDatum.mk x0 m P0 J (AnRes.mk homog nondeg Xt A U isOpen_U mem_U lift holo mem compat surj inj null)
       dV one_le arith indep smooth conjInv normalForm_baseLattice_le_dualSpan_sup_line semipos vol) n b =
