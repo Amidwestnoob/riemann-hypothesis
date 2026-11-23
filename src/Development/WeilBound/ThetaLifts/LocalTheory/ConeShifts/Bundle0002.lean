@@ -54,8 +54,8 @@ theorem pres_of_hat {X : Spc F E n} {g : Matrix (Fin n) (Fin n) (AE F E)}
 variable (σ) in
 def USub' (X : Spc F E n) (v : Pl F) : Subgroup (UA σ X.J) where
   carrier := UAt σ X (evFin F v)
-  one_mem' := one_mem_UAt X v
-  mul_mem' := mul_mem_UAt
+  one_mem' := PositivityTheory.ThKH.Locrep.one_mem_UAt X v
+  mul_mem' := PositivityTheory.ThKH.Locrep.mul_mem_UAt
   inv_mem' := fun {g} hg => by
     have e0 : mat g⁻¹ * mat g = 1 := g.1.inv_mul
     have e : mat g⁻¹ - 1 = 0 - mat g⁻¹ * (mat g - 1) := by rw [mul_sub, e0, mul_one, zero_sub, neg_sub]
@@ -103,7 +103,7 @@ theorem vacFixX_of (hSt : GlobalTheory.ThK.StabEx) : VacFixX := by
     refine eigen M.co hB.std (latAtV X W v) hAt (fun z hz h => mem_latAtV hB P.herm P.skew v hz h) _ hsb h0
       (fun γ hγ => (eq_of_acts v h₁ (h₀ _ hsb) (GlobalTheory.VacBridge.rho_acts_locCo M.co B.ψ v γ (hAt γ hγ) _)).trans
         (eq_of_acts v h₁ (h₀ _ hsb) (hθ γ hγ)).symm) (om (k, 1)) (hs.pres _) (hs.adm _) (actAB (cA σ) (k, 1)) (hs.impl _)
-      (fun u hu => act_away (hU k hk) (one_mem_UAt W v) hu) fun γ hγ => ⟨mat k⁻¹ * γ, mul_latAtV (hP _ (inv_mem hk)) hγ, ?_, ?_⟩
+      (fun u hu => act_away (hU k hk) (PositivityTheory.ThKH.Locrep.one_mem_UAt W v) hu) fun γ hγ => ⟨mat k⁻¹ * γ, mul_latAtV (hP _ (inv_mem hk)) hγ, ?_, ?_⟩
     · have : mat k * mat k⁻¹ = 1 := k.1.mul_inv
       change mat k * (mat k⁻¹ * γ) * (1 : Matrix _ _ _)ᵀ = γ
       rw [← Matrix.mul_assoc, this, Matrix.one_mul, Matrix.transpose_one, Matrix.mul_one]
