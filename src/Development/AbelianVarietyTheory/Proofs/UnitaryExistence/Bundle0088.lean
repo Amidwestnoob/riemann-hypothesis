@@ -335,7 +335,7 @@ variable {Xo : Moduli Dw l} {c : Coeff l}
 
 theorem exists_baseChange {S T : Type} [CommRing S] [Algebra c.F S] [CommRing T] [Algebra c.F T] (φ : S →ₐ[c.F] T)
     (y : FrPt Xo c S) : ∃ z : FrPt Xo c T, FrMap φ y z :=
-  FramedBaseChange.exists_frMap GlobalTheory.abelianSchemeLaws_all.1.secBaseChange E H Dw l Xo c S T φ y
+  _root_.GlobalTheory.Frames.FramedBaseChange.exists_frMap GlobalTheory.abelianSchemeLaws_all.1.secBaseChange E H Dw l Xo c S T φ y
 
 theorem fromTest_of_same_point {S : Type} [Field S] [Algebra c.F S] {y y' : FrPt Xo c S} (hx : y'.x = y.x)
     (hy : FromTest (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) y) :
