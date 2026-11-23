@@ -328,7 +328,7 @@ theorem exists_open_sub_charKer : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E
     have e : b.ρ (g₁ * g₂ * g₁⁻¹ * g₂⁻¹) = 1 := by
       rw [WDRep.ofChars_ρ]
       refine LinearMap.ext fun v => funext fun i => ?_
-      rw [diagEnd_apply, hc i, Units.val_one, one_mul, Module.End.one_apply]
+      rw [GlobalTheory.WeilDeligne.diagEnd_apply, hc i, Units.val_one, one_mul, Module.End.one_apply]
     rw [e, LinearMap.charpoly_one]
   obtain ⟨V, hV1, hV2, hV3, hV4⟩ := GlobalTheory.AboveL.AbSub.exists_open_sub E Ω A w h (WD.mk b) hy g hg
   refine ⟨V, hV1, hV2, hV3, ?_⟩
@@ -337,7 +337,7 @@ theorem exists_open_sub_charKer : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E
   rw [WD.charPol_mk, WD.lpDim_mk] at hc
   have h1 := GlobalTheory.AboveL.AbSub.eq_one_of_charpoly _ (b.semisimple _) hc
   have h2 := congrArg (fun f : Module.End ℂ (Fin n → ℂ) => f (Pi.single j 1) j) h1
-  simp only [b, WDRep.ofChars_ρ, diagEnd_apply, Module.End.one_apply, Pi.single_eq_same, mul_one, χ,
+  simp only [b, WDRep.ofChars_ρ, GlobalTheory.WeilDeligne.diagEnd_apply, Module.End.one_apply, Pi.single_eq_same, mul_one, χ,
     MonoidHom.comp_apply] at h2
   exact Units.ext h2
 

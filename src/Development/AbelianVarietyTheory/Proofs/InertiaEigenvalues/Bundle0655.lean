@@ -144,7 +144,7 @@ theorem eq_of_induced : BrauerDegreeZero → ∀ (E Ω : Type) [Field E] [Number
         show LinearMap.trace ℂ (Fin 1 → ℂ)
           ((WDRep.ofChars h (ι := Fin 1) (fun _ => μ) fun _ => hμ).ρ σ) = _
         rw [WDRep.ofChars_ρ]
-        have e : (diagEnd fun _ : Fin 1 => (μ σ : ℂ)) = (μ σ : ℂ) • (1 : Module.End ℂ (Fin 1 → ℂ)) := by
+        have e : (GlobalTheory.WeilDeligne.diagEnd fun _ : Fin 1 => (μ σ : ℂ)) = (μ σ : ℂ) • (1 : Module.End ℂ (Fin 1 → ℂ)) := by
           ext v i
           simp
         rw [e, map_smul, LinearMap.trace_one, smul_eq_mul, Module.finrank_fin_fun, Nat.cast_one,

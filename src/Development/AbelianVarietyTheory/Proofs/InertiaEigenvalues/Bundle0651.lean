@@ -178,7 +178,7 @@ theorem spEig_rev {n : ℕ} (i : Fin n) : WDRep.spEig w n i.rev = (WDRep.spEig w
   ring
 
 theorem diagEnd_single {n : ℕ} (c : Fin n → ℂ) (j : Fin n) :
-    diagEnd c (Pi.single j 1) = c j • Pi.single j (1 : ℂ) := by
+    GlobalTheory.WeilDeligne.diagEnd c (Pi.single j 1) = c j • Pi.single j (1 : ℂ) := by
   ext k; by_cases hk : k = j
   · subst hk; simp
   · simp [hk]
@@ -207,7 +207,7 @@ theorem iso_sp_dual (n : ℕ) : (WDRep.sp h n).dual.Iso (WDRep.sp h n) := by
     (by simp [Subspace.dual_finrank_eq]), fun σ f => ?_, fun f => ?_⟩
   · ext i
     simp only [LinearMap.linearEquivOfInjective_apply, spDualMap_apply, WDRep.dual_ρ, WDRep.sp_ρ,
-      LinearMap.dualMap_apply, diagEnd_single, map_smul, smul_eq_mul, diagEnd_apply, spEig_rev]
+      LinearMap.dualMap_apply, diagEnd_single, map_smul, smul_eq_mul, GlobalTheory.WeilDeligne.diagEnd_apply, spEig_rev]
     simp
     ring
   · ext i
