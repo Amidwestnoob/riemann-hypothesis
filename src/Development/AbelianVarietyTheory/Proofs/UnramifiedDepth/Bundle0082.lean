@@ -72,7 +72,7 @@ theorem colength_bound_split_place_chart : ∀ (p : ℕ) [Fact p.Prime], AvFSt p
       congr 2
       funext z
       simp) hB
-  have hρf : (ρ : OE → Matrix (Fin d) (Fin d) O) = fun a => linPart (actMap iota act a) :=
+  have hρf : (ρ : OE → Matrix (Fin d) (Fin d) O) = fun a => ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.linPart (actMap iota act a) :=
     funext fun a => (hρ a).1
   obtain ⟨xs, hxs, hle⟩ := GlobalTheory.T.colength_bound_split_place_linear_data p C v O hv OE cp hS _ H d r m _ B ρ N _ hL w t vd hvd rp rm W
     (fun j => by rw [hρf]; exact (isEigBasis_iff _ _ _).1 (hW j))
@@ -211,7 +211,7 @@ theorem unramified_companion_chart_characters : ∀ (p : ℕ) [Fact p.Prime], Up
       ext z
       simp)
     hht
-  have hρ' : (ρ : OE → Matrix (Fin d) (Fin d) O) = fun a => linPart (actMap iota act a) :=
+  have hρ' : (ρ : OE → Matrix (Fin d) (Fin d) O) = fun a => ReciprocityTheory.ChartRestriction.G.Pdiv.ChartF.linPart (actMap iota act a) :=
     funext fun a => (hρ a).1
   obtain ⟨xs, hxs, hle⟩ := GlobalTheory.T.linearData_unramified_length_bound p C v O hv OE cp hset _ H d rk m _ B ρ N _ hdat hp2 hdisc w t hfrob r W
     (fun τ => by rw [hρ']; exact (isEigBasis_iff _ _ _).1 (hW τ)) j
