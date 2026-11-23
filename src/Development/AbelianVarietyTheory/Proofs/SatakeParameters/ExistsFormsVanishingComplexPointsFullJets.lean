@@ -48,7 +48,7 @@ theorem frac_smul_n {N n : ℕ} (V : (PSpace ℂ N).Opens) (f g : MvPolynomial (
     (hcf : c • f ∈ grading ℂ N n) :
     frac (grading ℂ N) V (c • f) g hcf hg hV = algebraMap ℂ Γ(PSpace ℂ N, V) c * frac (grading ℂ N) V f g hf hg hV := by
   refine ext fun x hx => ?_
-  obtain ⟨i, hi⟩ := exists_mem_chart ℂ N x
+  obtain ⟨i, hi⟩ := GlobalTheory.ProjSpace.exists_mem_chart ℂ N x
   have hW : V ⊓ chart ℂ N i ≤ V := inf_le_left
   have hxW : x ∈ V ⊓ chart ℂ N i := ⟨hx, hi⟩
   rw [← ev_resG hW x hxW, ← ev_resG hW x hxW, map_mul, resG_algebraMap, resG_frac, resG_frac,
