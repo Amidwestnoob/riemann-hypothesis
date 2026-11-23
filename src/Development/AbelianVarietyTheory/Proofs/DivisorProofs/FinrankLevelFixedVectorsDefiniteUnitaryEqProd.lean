@@ -34,7 +34,7 @@ def lev (S : Set (Pl E)) (K' : ∀ w : Pl E, Subgroup (UL n w)) : Subgroup (UA E
   (globLev S K').map (finU (E := E) (n := n)).subtype
 
 theorem mem_lev {S : Set (Pl E)} {K' : ∀ w : Pl E, Subgroup (UL n w)} {g : UA E n} :
-    g ∈ lev S K' ↔ cInf g = 1 ∧ ∀ w ∈ S, (⟨cLoc w g, cLoc_mem_UL w g⟩ : UL n w) ∈ K' w := by
+    g ∈ lev S K' ↔ cInf g = 1 ∧ ∀ w ∈ S, (⟨cLoc w g, GlobalTheory.BCT.GlobLev.cLoc_mem_UL w g⟩ : UL n w) ∈ K' w := by
   constructor
   · rintro ⟨k, hk, rfl⟩
     exact ⟨k.2, (mem_globLev S K' k).1 hk⟩
@@ -115,7 +115,7 @@ theorem inl_mem_lev (v : InfinitePlace E) (g : UA E n) : proj n S (.inl v) g ∈
     exact Subtype.ext (cLoc_inl v g w)
 
 theorem inr_mem_lev (hS : IsSection S) (w : S) (g : UA E n) :
-    proj n S (.inr w) g ∈ lev S K' ↔ (⟨cLoc w.1 g, cLoc_mem_UL w.1 g⟩ : UL n w.1) ∈ K' w.1 := by
+    proj n S (.inr w) g ∈ lev S K' ↔ (⟨cLoc w.1 g, GlobalTheory.BCT.GlobLev.cLoc_mem_UL w.1 g⟩ : UL n w.1) ∈ K' w.1 := by
   rw [mem_lev]
   refine ⟨fun h => ?_, fun h => ⟨cInf_inr w g, fun w' hw' => ?_⟩⟩
   · convert h.2 w.1 w.2 using 1
@@ -204,7 +204,7 @@ theorem hasComp_inr (hU : Unr E) (hn : 1 ≤ n) (hS : IsSection S) (π : AutSub 
   obtain ⟨p, hp, -, f, hf0, hfm, hf⟩ := h
   obtain ⟨e, he⟩ := GlobalTheory.BCT.LocCompU.exists_equiv hU n w.1
   have hpe : ∀ x, p x = e x := fun x => Subtype.ext ((hp x).trans (he x).symm)
-  have hq : ∀ g, p (ret w.1 n g) = ⟨cLoc w.1 g, cLoc_mem_UL w.1 g⟩ := fun g =>
+  have hq : ∀ g, p (ret w.1 n g) = ⟨cLoc w.1 g, GlobalTheory.BCT.GlobLev.cLoc_mem_UL w.1 g⟩ := fun g =>
     Subtype.ext ((hp _).trans (cLoc_inr_eq w g rfl))
   haveI := ((GlobalTheory.CuspRep.isIrreducible_iff _).1 σ.irred).1
   obtain ⟨x, hx⟩ := exists_ne (0 : σ.V)
