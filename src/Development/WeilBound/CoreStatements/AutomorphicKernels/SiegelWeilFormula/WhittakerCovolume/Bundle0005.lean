@@ -236,7 +236,7 @@ theorem linRedC : LinRedC := by
   simp_rw [← MeasureTheory.integral_const_mul]
   rw [← MeasureTheory.integral_finsetSum]
   · refine MeasureTheory.integral_congr_ae (Filter.Eventually.of_forall (fun β => ?_))
-    simp only [flat, section_linear_finset_sum, Finset.mul_sum, Finset.sum_mul]
+    simp only [GlobalTheory.ThK.Dbl.flat, section_linear_finset_sum, Finset.mul_sum, Finset.sum_mul]
     refine Finset.sum_congr rfl (fun i _ => ?_)
     ring
   · exact fun i _ => (hint i).const_mul (cs i)

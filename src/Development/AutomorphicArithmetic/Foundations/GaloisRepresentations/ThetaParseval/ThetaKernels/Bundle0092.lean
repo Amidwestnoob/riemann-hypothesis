@@ -198,7 +198,7 @@ theorem majorant_w_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) {s�
   refine ⟨fun q => |C0| * (|M| ^ σ' + (|M'|⁻¹) ^ σ') * d.a ((Quotient.out q).1 * 1) ^ σ', (hsum 1).1.mul_left _,
     fun g hg q => ?_⟩
   have hΦ : (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) = flat d.a f s₁ z := funext fun y => by
-    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, flat]
+    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, GlobalTheory.ThK.Dbl.flat]
     rw [Real.coe_toNNReal _ (hpos y).le]
   rw [hΦ]
   show ‖flat d.a f s₁ z ((Quotient.out q).1 * g)‖ ≤ _
@@ -227,7 +227,7 @@ theorem eisWk_k : _root_.PositivityTheory.SiegelWeilFormula.EisWk_k := by
   obtain ⟨t2, hmaj⟩ := _root_.PositivityTheory.SiegelWeilFormula.Aeis.majorant_w_k d hf
   have hinv := eis_left_rat_w d.ok.hgt hf d.ok.hecke t Ê hsum
   have hfl : ∀ z, (fun y => ((d.Ht y : ℝ) : ℂ) ^ (z - s₁) * f y) = flat d.a f s₁ z := fun z => funext fun y => by
-    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, flat]
+    simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.Ht, GlobalTheory.ThK.Dbl.flat]
     rw [Real.coe_toNNReal _ (GlobalTheory.CompanionTheory.EisRat.hgt_nonneg d.ok.hgt y)]
   have Heisenberg₂ : ∀ z : ℂ, t < z.re → ∀ g, d.eis f s₁ z g = Ê z g := fun z hz g => by
     simp only [_root_.PositivityTheory.SiegelWeilFormula.SD_k.eis]

@@ -65,7 +65,7 @@ theorem majorant (d : SD σ) (hS : d.Strong) {s₁ : ℂ} {f : d.G → ℂ} (hf 
   refine ⟨fun q => |C0| * (|M| ^ σ' + (|M'|⁻¹) ^ σ') * d.a ((Quotient.out q).1 * 1) ^ σ', (hsum 1).1.mul_left _,
     fun g hg q => ?_⟩
   have hΦ : (fun x => ((d.Ht x : ℝ) : ℂ) ^ (z - s₁) * f x) = flat d.a f s₁ z := funext fun y => by
-    simp only [SD.Ht, flat]
+    simp only [SD.Ht, GlobalTheory.ThK.Dbl.flat]
     rw [Real.coe_toNNReal _ (hpos y).le]
   rw [hΦ]
   show ‖flat d.a f s₁ z ((Quotient.out q).1 * g)‖ ≤ _
