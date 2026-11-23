@@ -34,7 +34,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.p
 
 variable {D : D7} {V : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n}
 
-theorem triv_iff (hQ : StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E n) :
+theorem triv_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E n) :
     TrivOutside {s.v} κ ↔ Q.ψ κ ∈ (emb D.sp.cm.sig V.gram (s.w.under (𝓞 D.host.F))).range := by
   obtain ⟨⟨β, β', h1, h2, hβ⟩, -⟩ := hQ
   rw [range_emb, mem_atPts, triv_cast hF, and_iff_right (show Q.ψ κ ∈ finPts D.sp.cm.sig V.gram from Q.into κ)]
@@ -46,7 +46,7 @@ theorem triv_iff (hQ : StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E
   refine (map_conj_eq_one_iff φ h1 h2 _).trans ?_
   exact ⟨fun h => Subtype.ext (Units.ext (e2.trans h)), fun h => e2.symm.trans (by rw [h]; rfl)⟩
 
-theorem hyp_iff (hQ : StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E n) :
+theorem hyp_iff (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E n) :
     Q.ψ κ ∈ hyp V s.w ↔ κ ∈ locK n s.v := by
   rw [GlobalTheory.HypDict.mem_hyp_iff_embV D _ s.w rfl]
   constructor
@@ -56,7 +56,7 @@ theorem hyp_iff (hQ : StdPsi hF Q) (s : SplitPlace D.host.E) (κ : GAf D.host.E 
     obtain ⟨k, e⟩ := (triv_iff hQ s κ).1 h2
     exact ⟨k, (Supp.emb_mem_KsphC V k).1 (e ▸ (hQ.2 κ).1 h1), e.symm⟩
 
-theorem exists_locMat {Q : principalLevelFrame.RowPsi V V.rank} (hQ : StdPsi hF Q) (s : SplitPlace D.host.E)
+theorem exists_locMat {Q : principalLevelFrame.RowPsi V V.rank} (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (s : SplitPlace D.host.E)
     (i : s.v.adicCompletion (maximalRealSubfield D.host.E) ≃+* s.w.adicCompletion D.host.E) (hi : Continuous i)
     (hic : ∀ x : D.host.E, i (s.i x) = algebraMap D.host.E (s.w.adicCompletion D.host.E) x) :
     ∃ b : GL (Fin V.rank) (s.w.adicCompletion D.host.E), ∀ κ,
@@ -72,7 +72,7 @@ theorem exists_locMat {Q : principalLevelFrame.RowPsi V V.rank} (hQ : StdPsi hF 
   rw [e]
   rfl
 
-theorem rank_eq (hQ : StdPsi hF Q) (w : HeightOneSpectrum (𝓞 D.host.E)) : n = V.rank := by
+theorem rank_eq (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (w : HeightOneSpectrum (𝓞 D.host.E)) : n = V.rank := by
   obtain ⟨⟨β, β', h1, h2, -⟩, -⟩ := hQ
   have m1 := map_mul_eq_one (GlobalTheory.LFun.compAt D.host.F w) h1
   have m2 := map_mul_eq_one (GlobalTheory.LFun.compAt D.host.F w) h2
@@ -83,7 +83,7 @@ theorem rank_eq (hQ : StdPsi hF Q) (w : HeightOneSpectrum (𝓞 D.host.E)) : n =
 
 
 set_option maxHeartbeats 1000000 in
-theorem sphEig_eq_satEig (hQ : StdPsi hF Q) (π : NG.FinTyp D.host.E n) (s : SplitPlace D.host.E)
+theorem sphEig_eq_satEig (hQ : GlobalTheory.StdFrame.StdPsi hF Q) (π : NG.FinTyp D.host.E n) (s : SplitPlace D.host.E)
     (hs : Formalism.MainNotions.SchurIrreducible.IsSplit (E := D.host.E) (s.w.under (𝓞 D.host.F)))
     (τ : GlobalTheory.SmGL.IrrRep (GL (Fin n) (s.w.adicCompletion D.host.E))) (hτ : IsLocS π.S s τ) {α : Fin n → ℂˣ}
     (hα : GlobalTheory.SmGL.HasSatake τ.ρ α) {k : ℕ} (hk : k ≤ n) :
