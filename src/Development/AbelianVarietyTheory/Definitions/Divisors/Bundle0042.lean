@@ -90,7 +90,7 @@ def spec {F E : Type} [CommRing F] [CommRing E] [Algebra F E] {D N : ℕ} (s : F
 def lin {K : Type} [CommRing K] {N : ℕ} (y : Fin N → K) : MvPolynomial (Fin 1 × Fin N) K := ∑ j, X ((0 : Fin 1), j) * C (y j)
 
 def finPart {K ι : Type} [Field K] [NumberField K] (g : MvPolynomial ι K) : ℝ :=
-  (∑ᶠ v : FinitePlace K, Real.log (gaussAbs v g)) / (Module.finrank ℚ K : ℝ)
+  (∑ᶠ v : FinitePlace K, Real.log (ReciprocityTheory.MultiplicativeHeights.gaussAbs v g)) / (Module.finrank ℚ K : ℝ)
 
 def mean (K : Type) [Field K] [NumberField K] (a : (K →+* ℂ) → ℝ) : ℝ := (∑ τ, a τ) / (Module.finrank ℚ K : ℝ)
 
