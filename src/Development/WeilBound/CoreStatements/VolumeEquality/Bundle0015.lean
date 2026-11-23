@@ -313,7 +313,7 @@ theorem geoPF : PtDim → GeoPF := by
       rw [← hbc]
       congr 1
       ext f
-      simp only [Ideal.mem_comap, fibreIdeal, RingHom.mem_ker, MvPolynomial.aeval_rename]
+      simp only [Ideal.mem_comap, ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal, RingHom.mem_ker, MvPolynomial.aeval_rename]
       rw [MvPolynomial.aeval_eq_eval₂Hom]
       congr! 3
       funext s
