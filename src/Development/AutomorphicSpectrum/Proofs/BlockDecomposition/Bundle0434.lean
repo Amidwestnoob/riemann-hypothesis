@@ -51,7 +51,7 @@ theorem twAct_equiv {ρ : Representation ℂ G V} {σ : Representation ℂ G W} 
     rw [eint e]
 
 theorem twKer_twist (ρ : Representation ℂ G V) (N : Subgroup G) (θ : N →* ℂˣ) (χ : G →* ℂˣ) (hN : ∀ n : N, χ n = 1) :
-    twKer (twist ρ χ) N θ = twKer ρ N θ := by
+    twKer (GlobalTheory.SmGL.twist ρ χ) N θ = twKer ρ N θ := by
   unfold twKer
   congr 1
   ext w
@@ -60,8 +60,8 @@ theorem twKer_twist (ρ : Representation ℂ G V) (N : Subgroup G) (θ : N →* 
 theorem twAct_twist (ρ : Representation ℂ G V) (N : Subgroup G) (θ : N →* ℂˣ) (s : M →* G)
     (hs : ∀ (m : M) (n : N), ∃ h : s m * (n : G) * (s m)⁻¹ ∈ N, θ ⟨_, h⟩ = θ n) (χ : G →* ℂˣ) (χ' : M →* ℂˣ)
     (hN : ∀ n : N, χ n = 1) (hχ : ∀ m, χ (s m) = χ' m) :
-    Nonempty ((twAct (twist ρ χ) N θ s hs).Equiv (twist (twAct ρ N θ s hs) χ')) := by
-  refine ⟨Representation.Equiv.mk (Submodule.quotEquivOfEq (twKer (twist ρ χ) N θ) (twKer ρ N θ) (twKer_twist ρ N θ χ hN)) fun x => ?_⟩
+    Nonempty ((twAct (GlobalTheory.SmGL.twist ρ χ) N θ s hs).Equiv (GlobalTheory.SmGL.twist (twAct ρ N θ s hs) χ')) := by
+  refine ⟨Representation.Equiv.mk (Submodule.quotEquivOfEq (twKer (GlobalTheory.SmGL.twist ρ χ) N θ) (twKer ρ N θ) (twKer_twist ρ N θ χ hN)) fun x => ?_⟩
   refine Submodule.linearMap_qext _ (LinearMap.ext fun v => ?_)
   show Submodule.Quotient.mk (p := twKer ρ N θ) ((χ (s x) : ℂ) • ρ (s x) v) =
     (χ' x : ℂ) • Submodule.Quotient.mk (p := twKer ρ N θ) (ρ (s x) v)
@@ -133,19 +133,19 @@ theorem dpowM_levi {n : ℕ} (s : ℝ) (m : GL (Fin n) k) : dpowM n s (levi k n 
   rfl
 
 theorem tw_tw {n : ℕ} (π : GRep k n) (s t : ℝ) : GIso ((π.tw s).tw t) (π.tw (s + t)) := by
-  show Nonempty ((twist (twist π.ρ (dpow n s)) (dpow n t)).Equiv (twist π.ρ (dpow n (s + t))))
+  show Nonempty ((GlobalTheory.SmGL.twist (GlobalTheory.SmGL.twist π.ρ (dpow n s)) (dpow n t)).Equiv (GlobalTheory.SmGL.twist π.ρ (dpow n (s + t))))
   exact equiv_of_eq (by rw [twist_twist, dpow_add])
 
 theorem tw_zero {n : ℕ} (π : GRep k n) : GIso (π.tw 0) π := by
-  show Nonempty ((twist π.ρ (dpow n 0)).Equiv π.ρ)
+  show Nonempty ((GlobalTheory.SmGL.twist π.ρ (dpow n 0)).Equiv π.ρ)
   exact equiv_of_eq (by rw [dpow_zero, twist_one])
 
 theorem mtw_mtw {n : ℕ} (τ : MRep k n) (s t : ℝ) : MIso (mtw (mtw τ s) t) (mtw τ (s + t)) := by
-  show Nonempty ((twist (twist τ.ρ (dpowM n s)) (dpowM n t)).Equiv (twist τ.ρ (dpowM n (s + t))))
+  show Nonempty ((GlobalTheory.SmGL.twist (GlobalTheory.SmGL.twist τ.ρ (dpowM n s)) (dpowM n t)).Equiv (GlobalTheory.SmGL.twist τ.ρ (dpowM n (s + t))))
   exact equiv_of_eq (by rw [twist_twist, dpowM_add])
 
 theorem mtw_zero {n : ℕ} (τ : MRep k n) : MIso (mtw τ 0) τ := by
-  show Nonempty ((twist τ.ρ (dpowM n 0)).Equiv τ.ρ)
+  show Nonempty ((GlobalTheory.SmGL.twist τ.ρ (dpowM n 0)).Equiv τ.ρ)
   exact equiv_of_eq (by rw [dpowM_zero, twist_one])
 
 theorem miso_mtw {n : ℕ} {A B : MRep k n} (s : ℝ) (h : MIso A B) : MIso (mtw A s) (mtw B s) := by

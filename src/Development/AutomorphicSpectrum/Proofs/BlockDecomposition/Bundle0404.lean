@@ -139,22 +139,22 @@ end SlopeTestRemainingChoices
 
 theorem nonempty_twist_cInd_equiv : ∀ {G W : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [AddCommGroup W] [Module ℂ W]
     (H : Subgroup G) (σ : Representation ℂ H W) (χ : G →* ℂˣ), IsOpen (χ.ker : Set G) →
-    Nonempty ((twist (cInd H σ) χ).Equiv (cInd H (twist σ (χ.comp H.subtype)))) := by
+    Nonempty ((GlobalTheory.SmGL.twist (cInd H σ) χ).Equiv (cInd H (GlobalTheory.SmGL.twist σ (χ.comp H.subtype)))) := by
   intro G W _ _ _ _ _ H σ χ hχ
   have h1 : ∀ x ∈ χ.ker, χ x = 1 := fun x hx => hx
   have h2 : ∀ x ∈ χ.ker, χ⁻¹ x = 1 := fun x hx => by
     rw [MonoidHom.inv_apply, show χ x = 1 from hx, inv_one]
-  have t1 : ∀ (h : H) (w : W), twist σ (χ.comp H.subtype) h w = ((χ h : ℂˣ) : ℂ) • σ h w :=
+  have t1 : ∀ (h : H) (w : W), GlobalTheory.SmGL.twist σ (χ.comp H.subtype) h w = ((χ h : ℂˣ) : ℂ) • σ h w :=
     fun _ _ => rfl
   have t2 : ∀ (h : H) (w : W), σ h w =
-      (((χ⁻¹) h : ℂˣ) : ℂ) • twist σ (χ.comp H.subtype) h w := fun h w => by
+      (((χ⁻¹) h : ℂˣ) : ℂ) • GlobalTheory.SmGL.twist σ (χ.comp H.subtype) h w := fun h w => by
     rw [t1, smul_smul, ← Units.val_mul, MonoidHom.inv_apply, inv_mul_cancel, Units.val_one,
       one_smul]
   have cancel : ∀ g, (((χ⁻¹) g : ℂˣ) : ℂ) * ((χ g : ℂˣ) : ℂ) = 1 := fun g => by
     rw [← Units.val_mul, MonoidHom.inv_apply, inv_mul_cancel, Units.val_one]
   have cancel' : ∀ g, ((χ g : ℂˣ) : ℂ) * (((χ⁻¹) g : ℂˣ) : ℂ) = 1 := fun g => by
     rw [mul_comm, cancel]
-  let e : cIndSpace H σ ≃ₗ[ℂ] cIndSpace H (twist σ (χ.comp H.subtype)) :=
+  let e : cIndSpace H σ ≃ₗ[ℂ] cIndSpace H (GlobalTheory.SmGL.twist σ (χ.comp H.subtype)) :=
     { toFun := mulC hχ h1 t1
       map_add' := fun a b => cIndSpace_ext fun g => smul_add _ (a.1.1.1 g) (b.1.1.1 g)
       map_smul' := fun c a => cIndSpace_ext fun g => smul_comm _ c (a.1.1.1 g)

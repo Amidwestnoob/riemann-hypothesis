@@ -187,7 +187,7 @@ theorem eq_zero_of_nu_eq (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (
   have h3 := LinearMap.congr_fun (φ.isIntertwining' z) v
   have hLv : φ.toLinearEquiv v ≠ 0 := fun e => hv (φ.toLinearEquiv.map_eq_zero_iff.1 e)
   have h4 : φ.toLinearEquiv (((absPow k (s : ℂ) (ϖ ^ x.1) : ℂˣ) : ℂ) • x.rep z v) = x.rep z (φ.toLinearEquiv v) := by
-    have h5 : φ.toLinearEquiv ((twist x.rep (detChar _ (absPow k (s : ℂ)))) z v) = x.rep z (φ.toLinearEquiv v) := h3
+    have h5 : φ.toLinearEquiv ((GlobalTheory.SmGL.twist x.rep (detChar _ (absPow k (s : ℂ)))) z v) = x.rep z (φ.toLinearEquiv v) := h3
     rwa [twist_apply, detChar_apply, hdet] at h5
   rw [hω, hω, map_smul, map_smul, smul_smul] at h4
   have h6 : ((absPow k (s : ℂ) (ϖ ^ x.1) : ℂˣ) : ℂ) * ω = ω := smul_left_injective ℂ hLv h4

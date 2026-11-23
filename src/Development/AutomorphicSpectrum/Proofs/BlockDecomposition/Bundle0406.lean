@@ -33,7 +33,7 @@ variable {k : Type} [Field k]
 
 theorem twKer_twist {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V]
     (ρ : Representation ℂ G V) (N : Subgroup G) (θ : N →* ℂˣ) (χ : G →* ℂˣ)
-    (h : ∀ n : N, χ (n : G) = 1) : twKer (twist ρ χ) N θ = twKer ρ N θ := by
+    (h : ∀ n : N, χ (n : G) = 1) : twKer (GlobalTheory.SmGL.twist ρ χ) N θ = twKer ρ N θ := by
   unfold twKer
   congr 1
   ext w
@@ -90,14 +90,14 @@ theorem dpowM_levi (n : ℕ) (t : ℝ) (p : Mir k n) :
 
 theorem phiMinus_twist_equiv : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (ψ : AddChar k Circle) (j : ℕ) (W : Type) [AddCommGroup W] [Module ℂ W]
     (τ : Representation ℂ (Mir k (j + 1)) W) (t : ℝ),
-    Nonempty ((phiMinus k ψ (twist τ (dpowM (j + 1) t))).Equiv (twist (phiMinus k ψ τ) (dpowM j t))) := by
+    Nonempty ((phiMinus k ψ (GlobalTheory.SmGL.twist τ (dpowM (j + 1) t))).Equiv (GlobalTheory.SmGL.twist (phiMinus k ψ τ) (dpowM j t))) := by
   intro k _ _ _ _ ψ j W _ _ τ t
   have hK := twKer_twist τ (MirUin k (j + 1)) (mirChar k ψ j) (dpowM (j + 1) t) (dpowM_unip (j + 1) t)
   refine ⟨Representation.Equiv.mk (Submodule.quotEquivOfEq _ _ hK) fun p => ?_⟩
   apply Submodule.linearMap_qext
   ext v
-  show Submodule.Quotient.mk ((twist τ (dpowM (j + 1) t)) ((levi k (j + 1)).comp (Mir k j).subtype p) v) =
-    twist (phiMinus k ψ τ) (dpowM j t) p (Submodule.Quotient.mk v)
+  show Submodule.Quotient.mk ((GlobalTheory.SmGL.twist τ (dpowM (j + 1) t)) ((levi k (j + 1)).comp (Mir k j).subtype p) v) =
+    GlobalTheory.SmGL.twist (phiMinus k ψ τ) (dpowM j t) p (Submodule.Quotient.mk v)
   rw [twist_apply, twist_apply, dpowM_levi]
   rfl
 

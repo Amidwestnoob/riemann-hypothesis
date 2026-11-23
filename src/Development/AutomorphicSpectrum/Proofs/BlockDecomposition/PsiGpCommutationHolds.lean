@@ -187,7 +187,7 @@ abbrev Zt (m : ℕ) : Type := (mtw τ (-((m : ℕ) : ℝ) / 2)).V
 abbrev sig := (extTensor (ρ.tw (((j + 1 : ℕ) : ℝ) / 2)).ρ (mtw τ (-((m : ℕ) : ℝ) / 2)).ρ).comp (gpProj k m j)
 
 abbrev sigP : Representation ℂ (parab k (eMJ m j)) (PiTensorProduct ℂ (TwoT ρ.V (psiN τ).V)) :=
-  (twist (piTensor (twoRep ρ.ρ (psiN τ).ρ)) (deltaHalf k (Two (Fin m) (Fin j)))).comp (leviProj k (eMJ m j))
+  (GlobalTheory.SmGL.twist (piTensor (twoRep ρ.ρ (psiN τ).ρ)) (deltaHalf k (Two (Fin m) (Fin j)))).comp (leviProj k (eMJ m j))
 
 abbrev mkY : τ.V →ₗ[ℂ] (psiN τ).V := (twKer τ.ρ (MirUin k j) 1).mkQ
 
@@ -423,7 +423,7 @@ theorem exE (hρ : IsSmooth ρ.ρ) (hτ : IsSmooth τ.ρ) :
 
 set_option synthInstance.maxHeartbeats 100000 in
 theorem psiMinus_cInd_equiv_smInd (hρ : IsSmooth ρ.ρ) (hτ : IsSmooth τ.ρ) :
-    Nonempty ((twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2))).Equiv
+    Nonempty ((GlobalTheory.SmGL.twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2))).Equiv
       (smInd (parab k (eMJ m j)) (sigP ρ τ))) := by
   refine (exE ρ τ hρ hτ).elim fun E hE => ?_
   have key := coinv_intertwine _ _ _ (levi k (m + j)) (dpow (m + j) (-1 / 2)) _ _ _ E hE
@@ -431,9 +431,9 @@ theorem psiMinus_cInd_equiv_smInd (hρ : IsSmooth ρ.ρ) (hτ : IsSmooth τ.ρ) 
   intro g
   refine LinearMap.ext fun y => ?_
   refine Submodule.Quotient.induction_on _ y fun f => ?_
-  have h1 : twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2)) g (Submodule.Quotient.mk f) =
+  have h1 : GlobalTheory.SmGL.twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2)) g (Submodule.Quotient.mk f) =
       ((dpow (m + j) (-1 / 2) g : ℂˣ) : ℂ) • Submodule.Quotient.mk (cInd (MirabolicParabolic k m j) (sig ρ τ) (levi k (m + j) g) f) := rfl
-  have h2 : E (twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2)) g (Submodule.Quotient.mk f)) =
+  have h2 : E (GlobalTheory.SmGL.twist (psiMinus k (cInd (MirabolicParabolic k m j) (sig ρ τ))) (dpow (m + j) (-1 / 2)) g (Submodule.Quotient.mk f)) =
       smInd (parab k (eMJ m j)) (sigP ρ τ) g (E (Submodule.Quotient.mk f)) := (congrArg E h1).trans (key g f)
   exact h2
 

@@ -271,7 +271,7 @@ theorem parIndMap_surjective {α n : Type} {m : α → Type} [Fintype α] [Linea
     (hf : Function.Surjective f) : Function.Surjective (parIndMap e f) := by
   obtain ⟨-, -, -, -, -, hcont, hP, -, hPK⟩ := GlobalTheory.SmGL.LeviInt.levi_integral_facts k α n m e
   obtain ⟨_, _⟩ := SplitWeil.Model.secondCountable_and_t2_local_field (k := k)
-  let σ₀ : Representation ℂ (parab k e) V := (twist ρ (deltaHalf k m)).comp (leviProj k e)
+  let σ₀ : Representation ℂ (parab k e) V := (GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)
   let z : Representation.IntertwiningMap σ₀ σ₀ :=
     { toLinearMap := 0, isIntertwining' := fun _ => by ext; simp }
   refine (GlobalTheory.SmGL.IndCoinv.smInd_coinvariants (GL n k) (parab k e) (KO k n) hP SplitFlip.isCompact_KO
