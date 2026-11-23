@@ -62,7 +62,7 @@ theorem tr_upq {p q : ℕ} {Y : Mat p q} (h : Y ∈ upq p q) : starRingEnd ℂ Y
     Matrix.one_mul, Matrix.trace_conjTranspose, Matrix.trace_zero] at h2
   exact eq_neg_of_add_eq_zero_left h2
 
-theorem star_E {p q : ℕ} (a b : Ix p q) :
+theorem star_E {p q : ℕ} (a b : _root_.Formalism.BasicNotions.TH.Ix p q) :
     Jm p q * (FockH1Action.Eab a b)ᴴ * Jm p q = PositivityTheory.KReal.epsB a b • FockH1Action.Eab b a := by
   have e : Jm p q = Matrix.diagonal (Sum.elim (fun _ => 1) fun _ => -1) := by
     ext (i | i) (j | j) <;> simp [Jm, Formalism.UG.Jpq, Matrix.diagonal_apply, Matrix.one_apply] <;> split_ifs <;> simp
@@ -112,7 +112,7 @@ end At
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
 theorem line_at {m P Q R S r s : ℕ} {κ : Type} [Fintype κ] (hcm : IsCMExt F E σ) {τ : ∀ w : InfinitePlace F, EmbOver E w}
-    {J : Matrix (Fin m) (Fin m) (AE F E)} {b : ℂ} {C : InfinitePlace F → Matrix (Fin m) (Ix r s) ℂ}
+    {J : Matrix (Fin m) (Fin m) (AE F E)} {b : ℂ} {C : InfinitePlace F → Matrix (Fin m) (_root_.Formalism.BasicNotions.TH.Ix r s) ℂ}
     (hC : ∀ w, IsFrame (b • J.map (piInf (τ w))) (C w)) {o : UG (cA σ) J →* Module.End ℂ ((κ → AF F) → ℂ)}
     {Φ : Tens F P Q R S →ₗ[ℂ] SInf F κ} {act : Mat r s →ₗ[ℂ] Module.End ℂ (Formalism.BasicNotions.TH.Pol P Q R S)} {c : InfinitePlace F → ℂ}
     (h : ActsBy τ C o Φ act c) (w : InfinitePlace F) {Z : Mat r s} (hZ : Z ∈ upq r s) :
@@ -128,7 +128,7 @@ theorem line_at {m P Q R S r s : ℕ} {κ : Type} [Fintype κ] (hcm : IsCMExt F 
   exact this
 
 theorem radMax_pair {n d P Q R S : ℕ} {X : Spc F E n} {W : Spc F E d} {B : Base F E} {M : Model σ X W} {om : Rep σ X W}
-    (hcm : IsCMExt F E σ) {A : InfinitePlace F → Matrix (Fin n) (Ix P Q) ℂ} {C : InfinitePlace F → Matrix (Fin d) (Ix R S) ℂ}
+    (hcm : IsCMExt F E σ) {A : InfinitePlace F → Matrix (Fin n) (_root_.Formalism.BasicNotions.TH.Ix P Q) ℂ} {C : InfinitePlace F → Matrix (Fin d) (_root_.Formalism.BasicNotions.TH.Ix R S) ℂ}
     (fr : Framed B.emb (incM F X.J) (incM F W.J) 1 Complex.I A C) {Φ : Tens F P Q R S →ₗ[ℂ] SInf F (Fin n × Fin d)}
     (inj : Function.Injective Φ) (hr : LinearMap.range Φ = M.Pol B.ψ B.emb) {c₁ c₂ : InfinitePlace F → ℂ}
     (h1 : ActsBy B.emb A (om.comp (MonoidHom.inl _ _)) Φ (fockAct1 P Q R S) c₁)
