@@ -373,7 +373,7 @@ theorem isLocalRing_closure (A : Type) [CommRing A] [HenselianLocalRing A] (P : 
 theorem main : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] [IsNoetherianRing A], SH A → IsUnit (q : A) →
   ∀ (n i : ℤ), 2 ≤ n → ∀ x : Ht q (sp (LaurentPolynomial A)) n i,
   ∃ (A' : Type) (_ : CommRing A') (_ : Algebra A A'), Module.Finite A A' ∧ RingHom.ker (algebraMap A A') ≤ nilradical A ∧
-    pull _ (spMap (laurentMap (algebraMap A A'))) _ _ x = 0 := by
+    pull _ (spMap (GlobalTheory.EtC.GmStep.laurentMap (algebraMap A A'))) _ _ x = 0 := by
   classical
   intro q _ A _ _ hA hq n i hn x
   obtain ⟨hHens, -⟩ := hA
@@ -401,7 +401,7 @@ theorem main : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] [IsNoetherianRin
       exact (GlobalTheory.T.tateTwistCohomology_laurent_absIntClosedLocalDomain q (T k) (GlobalTheory.aic_integralClosure_algebraicClosure (A ⧸ P k)) hqk n i).1 hn
     haveI := subsingleton_pi q n i _ (fun k => LaurentPolynomial (T k)) hT
     exact subsingleton_of_ringEquiv q n i (RingEquiv.ofBijective _ (GlobalTheory.T.laurent_pi_bijective _ T)).symm
-  have hx0 : pull _ (spMap (laurentMap (algebraMap A (∀ k, T k)))) _ _ x = 0 := Subsingleton.elim _ _
+  have hx0 : pull _ (spMap (GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (∀ k, T k)))) _ _ x = 0 := Subsingleton.elim _ _
   obtain ⟨t, ht⟩ := GlobalTheory.T.laurent_class_vanishes_finitely_generated_subalgebra q A (∀ k, T k) hq n i x hx0
   refine ⟨Algebra.adjoin A (t : Set (∀ k, T k)), inferInstance, inferInstance,
     GlobalTheory.EtC.IntAcyc.finite_finDiag A (∀ k, T k) t, ?_, ht⟩
