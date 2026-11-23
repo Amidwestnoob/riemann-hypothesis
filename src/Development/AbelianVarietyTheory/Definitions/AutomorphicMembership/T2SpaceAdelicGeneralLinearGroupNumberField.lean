@@ -307,6 +307,7 @@ theorem memL2_iff_isSqInt (hc : Continuous φ) (h : ∀ γ g, φ (ratGL E a γ *
   have hd := isFundamentalDomain_stdDom (latticeGL E a) μ
   refine ⟨fun hm => ⟨h', μ, _, inferInstance, hd, (key _ _).1 ((memL2_iff_fundamental_domain hd).1 hm).2⟩, ?_⟩
   rintro ⟨-, ν, 𝓕, hν, h𝓕, hi⟩
+  have : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
   refine (memL2_iff_fundamental_domain (h𝓕.mono (Measure.absolutelyContinuous_isHaarMeasure μ ν))).2 ⟨hl, (key _ _).2 ?_⟩
   rw [Measure.isMulLeftInvariant_eq_smul μ ν, Measure.restrict_smul, lintegral_smul_measure]
   exact ENNReal.mul_lt_top ENNReal.coe_lt_top hi
