@@ -22,7 +22,7 @@ theorem trace_mem {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (hv : PsiUnr ψ v) 
     algebraMap F (Fv F v) (Algebra.trace F E z) ∈ v.adicCompletionIntegers F := by
   refine (hv _).1 fun y hy => ?_
   have := GlobalTheory.LatVacArith.psi_int hψ (Algebra.trace F E z) (fun a => ?_) (singleFin v y) (fun u => ?_)
-  · refine Eq.trans (congrArg (fun t : Af F => ψ (pairA F 0 t)) (af_ext fun u => ?_)) this
+  · refine Eq.trans (congrArg (fun t : Af F => ψ (pairA F 0 t)) (GlobalTheory.AdelicU.af_ext fun u => ?_)) this
     change Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV F u (singleFin v _) = _
     rw [map_mul (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV F u)]
     by_cases e : u = v
@@ -140,7 +140,7 @@ theorem ae_locInt (z : E) : ∀ᶠ v : Pl F in cofinite, LocInt v z := by
   exact ⟨m, fun k => h (Ideal.dvd_span_singleton.2 k), ⟨_, hi⟩, by simp⟩
 
 theorem exists_ad {B : Base F E} (hB : B.IsGood σ) {Y : Spc F E n} {r s : ℕ} (hY : Y.IsHerm σ B r s ∨ Y.IsSkew σ B r s)
-    (hJ : Y.J.det ≠ 0) (c : InfinitePlace F → GL (Fin n) ℂ) : ∃ a g : GL (Fin n) (AE F E), IsLatticeFrame Y.L a ∧
+    (hJ : Y.J.det ≠ 0) (c : InfinitePlace F → GL (Fin n) ℂ) : ∃ a g : GL (Fin n) (AE F E), GlobalTheory.AdelicU.IsLatticeFrame Y.L a ∧
       (∀ v, (∃ l : (Fv F v ⊗[F] E)ˣ, (bc (compFin F E v) a).1 = l.1 • (bc (compFin F E v) g).1) ∧ Uni σ v Y.J (bc (compFin F E v) g)) ∧
       ∀ w, bc (piInf (B.emb w)) g = c w := by
   classical

@@ -149,7 +149,7 @@ variable {D : D7}
 theorem phiE_one (v : GlobalTheory.FinPl.Pl D) : phiE (D := D) v 1 = idem D (· = v) := by
   classical
   have h : sglV v (1 : v.adicCompletion D.host.F) = GlobalTheory.FinPlLoc.ePl D (· = v) := by
-    apply af_ext; intro u
+    apply Formalism.IndefR.Fin.af_ext; intro u
     rw [GlobalTheory.FinPlLoc.evalV_ePl]
     by_cases hu : u = v
     · subst hu; rw [sglV_same, if_pos rfl]

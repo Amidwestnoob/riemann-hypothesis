@@ -423,7 +423,7 @@ theorem rest_of_rest : ∀ {F : Type} [Field F] [NumberField F] {κ : Type} [Fin
     · change u.1 * 0 = 0
       exact mul_zero _
     · change u.2 * (singleFin v (x₀ i) - singleFin v (evalV F v (x i).2)) = 0
-      refine af_ext fun w => ?_
+      refine GlobalTheory.AdelicU.af_ext fun w => ?_
       rw [map_mul, map_zero]
       by_cases hw : w = v
       · subst hw

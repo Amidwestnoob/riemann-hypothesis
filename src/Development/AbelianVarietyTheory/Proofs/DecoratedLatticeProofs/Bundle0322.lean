@@ -474,7 +474,7 @@ variable {D : D7}
 theorem splitAt_of {v : HeightOneSpectrum (𝓞 D.host.F)} {e : AE D} {ε : AF D.host.F} (he : IsSplitIdem D e)
     (hε : IsPlaceIdem D v ε) (h : e + cA D e = algebraMap (AF D.host.F) (AE D) ε) : SplitAt D v e := by
   obtain ⟨α, rfl, h3, h4⟩ := hε
-  have : α = singleV D.host.F v 1 := af_ext _ fun w => by
+  have : α = singleV D.host.F v 1 := GlobalTheory.SplitIdem.af_ext _ fun w => by
     by_cases hw : w = v
     · subst hw; rw [h3, evalV_singleV_same]
     · rw [h4 w hw, evalV_singleV_ne _ v _ hw]

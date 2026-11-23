@@ -80,11 +80,11 @@ theorem exists_ne_one (ψ : AddChar (AF F) ℂ) (hψ : ∀ w : Pl (F := F), ∃ 
   obtain ⟨v, hv⟩ : ∃ v, evalV F v a ≠ 0 := by
     by_contra h
     push_neg at h
-    exact ha (af_ext fun u => by rw [h u, map_zero])
+    exact ha (GlobalTheory.AdelicU.af_ext fun u => by rw [h u, map_zero])
   obtain ⟨t, ht⟩ := hψ v
   refine ⟨singleFin v (t / evalV F v a), ?_⟩
   have e : a * singleFin v (t / evalV F v a) = singleFin v t := by
-    apply af_ext
+    apply GlobalTheory.AdelicU.af_ext
     intro u
     rw [map_mul]
     by_cases hu : u = v
