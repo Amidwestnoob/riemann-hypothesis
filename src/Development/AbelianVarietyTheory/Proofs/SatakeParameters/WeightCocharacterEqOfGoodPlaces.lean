@@ -53,12 +53,12 @@ theorem sphOp_rep {V : HSp D} {P : Pl D.host.E} {d : List ℤ} (h : IsLab V P d)
   exact h.choose_spec
 
 theorem eq_of_split {V : HSp D} {M : Type} [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (P : Pl D.host.E)
-    (hP : conjPl P ≠ P) (u u' : M) (hu : u ≠ 0) (hu' : u' ≠ 0) (fu : ∀ k ∈ hyp V P, π k u = u) (fu' : ∀ k ∈ hyp V P, π k u' = u')
+    (hP : Formalism.DivisionValues.conjPl P ≠ P) (u u' : M) (hu : u ≠ 0) (hu' : u' ≠ 0) (fu : ∀ k ∈ hyp V P, π k u = u) (fu' : ∀ k ∈ hyp V P, π k u' = u')
     (a a' b b' : List ℤ → ℂ)
     (ha : ∀ d, IsLab V P d → opOf π P (Finsupp.single d 1) u = a d • u)
     (ha' : ∀ d, IsLab V P d → opOf π P (Finsupp.single d 1) u' = a' d • u')
-    (hb : ∀ d, IsLab V (conjPl P) d → opOf π (conjPl P) (Finsupp.single d 1) u = b d • u)
-    (hb' : ∀ d, IsLab V (conjPl P) d → opOf π (conjPl P) (Finsupp.single d 1) u' = b' d • u')
+    (hb : ∀ d, IsLab V (Formalism.DivisionValues.conjPl P) d → opOf π (Formalism.DivisionValues.conjPl P) (Finsupp.single d 1) u = b d • u)
+    (hb' : ∀ d, IsLab V (Formalism.DivisionValues.conjPl P) d → opOf π (Formalism.DivisionValues.conjPl P) (Finsupp.single d 1) u' = b' d • u')
     (ea : ∀ k, k ≤ V.rank → a (splitLab V.rank k) = a' (splitLab V.rank k))
     (eb : ∀ k, k ≤ V.rank → b (splitLab V.rank k) = b' (splitLab V.rank k)) :
     ∀ d, IsLab V P d → a d = a' d := by
@@ -75,7 +75,7 @@ theorem eq_of_split {V : HSp D} {M : Type} [AddCommGroup M] [Module ℂ M] (π :
         rw [Finsupp.mapDomain_single]
       rw [hd] at hc
       rw [← hc u fu, ← hc u' fu']
-      by_cases hl : IsLab V (conjPl P) (splitLab V.rank k)
+      by_cases hl : IsLab V (Formalism.DivisionValues.conjPl P) (splitLab V.rank k)
       · exact ⟨_, hb _ hl, by rw [hb' _ hl, eb k hk]⟩
       · exact ⟨0, by simp [opOf_single_of_not π _ _ hl], by simp [opOf_single_of_not π _ _ hl]⟩) x hx
   rw [hxe u fu, ha d hd] at h1
@@ -126,7 +126,7 @@ theorem mem_partFull {V : HSp D} {S : D.what₂.Tau → SPar} (θ : D.what₂.Ta
   simp only [Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.smul_apply,
     LinearMap.id_apply, sub_eq_zero]
 
-theorem part_eq_of_labels : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Core R F → ∀ SF, IsSF R SF → ∀ i (c c' : Pl D.host.E → List ℤ → ℂ), Wcc R SF i c ≠ ⊥ → Wcc R SF i c' ≠ ⊥ → (∀ P, Good R A.μ0 P → conjPl P ≠ P → ∀ k, k ≤ (Wc D i).rank → c P (splitLab (Wc D i).rank k) = c' P (splitLab (Wc D i).rank k)) → (∀ P d, Good R A.μ0 P → conjPl P = P → IsLab (Wc D i) P d → c P d = c' P d) → Wcc R SF i c = Wcc R SF i c' := by
+theorem part_eq_of_labels : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Core R F → ∀ SF, IsSF R SF → ∀ i (c c' : Pl D.host.E → List ℤ → ℂ), Wcc R SF i c ≠ ⊥ → Wcc R SF i c' ≠ ⊥ → (∀ P, Good R A.μ0 P → Formalism.DivisionValues.conjPl P ≠ P → ∀ k, k ≤ (Wc D i).rank → c P (splitLab (Wc D i).rank k) = c' P (splitLab (Wc D i).rank k)) → (∀ P d, Good R A.μ0 P → Formalism.DivisionValues.conjPl P = P → IsLab (Wc D i) P d → c P d = c' P d) → Wcc R SF i c = Wcc R SF i c' := by
   intro D G _ _ Pl0 T A Ks _ _ _ R F hC SF hSF i c c' hc hc' hs hi
   obtain ⟨hQ, hgood, hoff, -⟩ := _root_.GlobalTheory.GoodPrimes.good_primes R F hC.lev
   obtain ⟨n, hβ⟩ := hC.lev.βW i
@@ -147,11 +147,11 @@ theorem part_eq_of_labels : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T
   have hp' := (mem_partFull _ _ _ _ _ _ _).1 (Submodule.mem_inf.1 (Submodule.mem_comap.1 hx')).2
   have key : ∀ P, Good R A.μ0 P → ∀ d, IsLab (Wc D i) P d → c P d = c' P d := by
     intro P hP
-    by_cases hcP : conjPl P = P
+    by_cases hcP : Formalism.DivisionValues.conjPl P = P
     · exact fun d hd => hi P d hP hcP hd
-    · have hP' : Good R A.μ0 (conjPl P) := (hgood _ P hP).2.1
-      have hcc : conjPl (conjPl P) = P := ValuationRepresentative.conjPl_conjPl P
-      refine eq_of_split (rRep (R.MW i (sg0 D A))) P hcP _ _ hu hu' ?_ ?_ (c P) (c' P) (c (conjPl P)) (c' (conjPl P)) ?_ ?_ ?_ ?_
+    · have hP' : Good R A.μ0 (Formalism.DivisionValues.conjPl P) := (hgood _ P hP).2.1
+      have hcc : Formalism.DivisionValues.conjPl (Formalism.DivisionValues.conjPl P) = P := ValuationRepresentative.conjPl_conjPl P
+      refine eq_of_split (rRep (R.MW i (sg0 D A))) P hcP _ _ hu hu' ?_ ?_ (c P) (c' P) (c (Formalism.DivisionValues.conjPl P)) (c' (Formalism.DivisionValues.conjPl P)) ?_ ?_ ?_ ?_
         (hs P hP hcP) (hs _ hP' (by rw [hcc]; exact fun h => hcP h.symm))
       · exact fun k hk => mult_lev _ _ _ _ _ hp.1 k ((hlev P hP).1 k hk).1 ((hlev P hP).1 k hk).2
       · exact fun k hk => mult_lev _ _ _ _ _ hp'.1 k ((hlev P hP).1 k hk).1 ((hlev P hP).1 k hk).2

@@ -103,7 +103,7 @@ theorem evC_single (V : HSp D) (P : Pl D.host.E) (a : List ℤ → ℂ) (d : Lis
     evC V P a (Finsupp.single d 1) = a d := by
   simp [evC, hd]
 
-theorem isLab_splitLab (V : HSp D) (P : Pl D.host.E) (hP : conjPl P ≠ P) (k : ℕ) (hk : k ≤ V.rank) :
+theorem isLab_splitLab (V : HSp D) (P : Pl D.host.E) (hP : Formalism.DivisionValues.conjPl P ≠ P) (k : ℕ) (hk : k ≤ V.rank) :
     IsLab V P (splitLab V.rank k) := by
   refine (_root_.GlobalTheory.LabChar.labels_char V P _).2 ⟨?_, ?_, fun h => absurd h hP⟩
   · simp [splitLab]
@@ -116,7 +116,7 @@ theorem isLab_splitLab (V : HSp D) (P : Pl D.host.E) (hP : conjPl P ≠ P) (k : 
       rw [List.eq_of_mem_replicate ha, List.eq_of_mem_replicate hb]
       norm_num
 
-theorem evC_splitC (V : HSp D) (P : Pl D.host.E) (hP : conjPl P ≠ P) (a : List ℤ → ℂ) (z : ℕ → ℂ) :
+theorem evC_splitC (V : HSp D) (P : Pl D.host.E) (hP : Formalism.DivisionValues.conjPl P ≠ P) (a : List ℤ → ℂ) (z : ℕ → ℂ) :
     evC V P a (splitC V.rank z) = ∑ j ∈ Finset.range (V.rank + 1), z j * a (splitLab V.rank j) := by
   unfold evC splitC
   rw [← Finsupp.sum_finsetSum_index (fun _ => by simp) (fun _ _ _ => by split_ifs <;> ring)]

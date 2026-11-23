@@ -77,10 +77,10 @@ theorem poly_id (q r t : ℕ) (u v : ℂ) (a : ℕ → ℂ) :
 
 variable {D : D7}
 
-theorem not_isConjPl {P : Pl D.host.E} (h : conjPl P ≠ P) : ¬ Formalism.IndefR.Lev.IsConjPl P P := by
+theorem not_isConjPl {P : Pl D.host.E} (h : Formalism.DivisionValues.conjPl P ≠ P) : ¬ Formalism.IndefR.Lev.IsConjPl P P := by
   intro hc
   apply h
-  refine HeightOneSpectrum.ext ((conjPl P).isMaximal.eq_of_le P.isPrime.ne_top ?_)
+  refine HeightOneSpectrum.ext ((Formalism.DivisionValues.conjPl P).isMaximal.eq_of_le P.isPrime.ne_top ?_)
   refine Ideal.map_le_iff_le_comap.2 fun c hcP => ?_
   obtain ⟨c', hc', he⟩ := hc c hcP
   have : Formalism.DivisionValues.cO D.host.E c = c' := RingOfIntegers.ext he.symm
