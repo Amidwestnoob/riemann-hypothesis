@@ -397,13 +397,13 @@ theorem split (hs : h.IsSymm) (hc' : IsCompl U (orthK h U)) (x y : V) :
   ring
 
 theorem form_mem_of_dual (hd : dualF h 𝔭 Λ = Λ) {a b : V} (ha : a ∈ Λ) (hb : b ∈ Λ) :
-    h a b ∈ locF 𝔭 (1 : Submodule (𝓞 K) K) := by
+    h a b ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K) := by
   have hb' : b ∈ dualF h 𝔭 Λ := by rw [hd]; exact hb
   exact hb' a ha
 
 theorem mem_T_of (hG : Good hc M T 𝔭 Λ) (hd : dualF h 𝔭 Λ = Λ) {b : V} (hb : b ∈ orthK h U)
-    (H : ∀ b' ∈ locF 𝔭 (dualIn h (orthK h U) T), h b' b ∈ locF 𝔭 (1 : Submodule (𝓞 K) K)) :
-    b ∈ locF 𝔭 T := by
+    (H : ∀ b' ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T), h b' b ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K)) :
+    b ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T := by
   have hbΛ : b ∈ Λ := by
     rw [← hd]
     intro y hy
@@ -413,10 +413,10 @@ theorem mem_T_of (hG : Good hc M T 𝔭 Λ) (hd : dualF h 𝔭 Λ = Λ) {b : V} 
   exact Submodule.mem_inf.2 ⟨hbΛ, hb⟩
 
 def FP (P : Module.End (𝓞 K) (DiscMod h (orthK h U) T 𝔭)) : Prop :=
-  ∀ x y x' y' : ↥(locF 𝔭 (dualIn h (orthK h U) T)),
+  ∀ x y x' y' : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T)),
     Submodule.Quotient.mk x' = P (Submodule.Quotient.mk x) →
     Submodule.Quotient.mk y' = P (Submodule.Quotient.mk y) →
-    h (x' : V) (y' : V) - h (x : V) (y : V) ∈ locF 𝔭 (1 : Submodule (𝓞 K) K)
+    h (x' : V) (y' : V) - h (x : V) (y : V) ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K)
 
 theorem FP.injective (hG : Good hc M T 𝔭 Λ) (hd : dualF h 𝔭 Λ = Λ)
     {P : Module.End (𝓞 K) (DiscMod h (orthK h U) T 𝔭)} (hP : FP P) : Function.Injective P := by
@@ -425,7 +425,7 @@ theorem FP.injective (hG : Good hc M T 𝔭 Λ) (hd : dualF h 𝔭 Λ = Λ)
   obtain ⟨x, rfl⟩ := Submodule.Quotient.mk_surjective _ q
   obtain ⟨z, -, hz⟩ := hG.oW (x : V) x.2
   have hxW : (x : V) ∈ orthK h U := hz ▸ prO_symm_mem hc z
-  have H : ∀ b' ∈ locF 𝔭 (dualIn h (orthK h U) T), h b' x ∈ locF 𝔭 (1 : Submodule (𝓞 K) K) := by
+  have H : ∀ b' ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T), h b' x ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (1 : Submodule (𝓞 K) K) := by
     intro b' hb'
     obtain ⟨b'', hb''⟩ := Submodule.Quotient.mk_surjective _ (P (Submodule.Quotient.mk ⟨b', hb'⟩))
     have e := hP ⟨b', hb'⟩ x b'' 0 hb'' (by rw [hq, Submodule.Quotient.mk_zero])
@@ -436,7 +436,7 @@ theorem FP.injective (hG : Good hc M T 𝔭 Λ) (hd : dualF h 𝔭 Λ = Λ)
 
 theorem fp_of (hs : h.IsSymm) (hd₀ : dualF h 𝔭 Λ₀ = Λ₀) (hd : dualF h 𝔭 Λ = Λ)
     (P : Module.End (𝓞 K) (DiscMod h (orthK h U) T 𝔭))
-    (H : ∀ b x' : ↥(locF 𝔭 (dualIn h (orthK h U) T)),
+    (H : ∀ b x' : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T)),
       Submodule.Quotient.mk x' = P (Submodule.Quotient.mk b) →
       ∃ z ∈ Λ₀, ∃ w ∈ Λ, prO hc.symm z = b ∧ prO hc.symm w = x' ∧ prO hc z = prO hc w) : FP P := by
   intro x y x' y' hx hy
@@ -455,8 +455,8 @@ theorem fp_of (hs : h.IsSymm) (hd₀ : dualF h 𝔭 Λ₀ = Λ₀) (hd : dualF h
 def glue (hc' : IsCompl U (orthK h U)) (T : Submodule (𝓞 K) V) (𝔭 : Ideal (𝓞 F))
     (Λ₀ : Submodule (𝓞 K) V) (P : Module.End (𝓞 K) (DiscMod h (orthK h U) T 𝔭)) :
     Submodule (𝓞 K) V where
-  carrier := {x | ∃ b : ↥(locF 𝔭 (dualIn h (orthK h U) T)), (b : V) = prO hc'.symm x ∧
-    ∃ y ∈ Λ₀, ∃ c : ↥(locF 𝔭 (dualIn h (orthK h U) T)), (c : V) = prO hc'.symm y ∧
+  carrier := {x | ∃ b : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T)), (b : V) = prO hc'.symm x ∧
+    ∃ y ∈ Λ₀, ∃ c : ↥(Formalism.HermitianLattices.Ext.L3.locF 𝔭 (dualIn h (orthK h U) T)), (c : V) = prO hc'.symm y ∧
       prO hc' y = prO hc' x ∧ Submodule.Quotient.mk b = P (Submodule.Quotient.mk c)}
   zero_mem' := ⟨0, by simp, 0, Λ₀.zero_mem, 0, by simp, by simp, by simp⟩
   add_mem' := by

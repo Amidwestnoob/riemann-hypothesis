@@ -250,7 +250,7 @@ section Vec
 variable {V : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
 
 theorem smul_mem_locF_of_SP {𝔭 : Ideal (𝓞 F)} [hp : 𝔭.IsPrime] {L : Submodule (𝓞 K) V} {r : K}
-    (hr : r ∈ SP K 𝔭) {v : V} (hv : v ∈ L) : r • v ∈ locF 𝔭 L := by
+    (hr : r ∈ SP K 𝔭) {v : V} (hv : v ∈ L) : r • v ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 L := by
   obtain ⟨t, ht, z, hz⟩ := mem_SP.mp hr
   refine ⟨algebraMap (𝓞 F) (𝓞 K) t, Submonoid.subset_closure ⟨t, ht, rfl⟩, ?_⟩
   have he : algebraMap (𝓞 F) (𝓞 K) t • r • v = z • v := by

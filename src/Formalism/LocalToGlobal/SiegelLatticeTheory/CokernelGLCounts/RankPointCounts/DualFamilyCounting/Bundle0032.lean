@@ -281,8 +281,8 @@ theorem dualF_le_of_inv {ι : Type} [Fintype ι] [DecidableEq ι] {h : V →ₗ�
     (hG : Submodule.span K (Set.range G) = ⊤)
     (hinv : ∀ u, ∃ κ : ι → K, (∀ t, κ t ∈ SP K 𝔭) ∧
       ∀ s, ∑ t, κ t * h (G s) (G t) = if s = u then 1 else 0) :
-    dualF h 𝔭 (locF 𝔭 (Submodule.span (𝓞 K) (Set.range G))) ≤
-      locF 𝔭 (Submodule.span (𝓞 K) (Set.range G)) := by
+    dualF h 𝔭 (Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Submodule.span (𝓞 K) (Set.range G))) ≤
+      Formalism.HermitianLattices.Ext.L3.locF 𝔭 (Submodule.span (𝓞 K) (Set.range G)) := by
   choose κ hκS hκ using hinv
   intro x hx
   have hX : ∀ u, h (G u) x ∈ SP K 𝔭 := fun u => by

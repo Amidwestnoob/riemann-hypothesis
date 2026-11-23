@@ -111,12 +111,12 @@ theorem jl_closure {s : 𝓞 D.host.E}
     exact ⟨t * t', fun h => (p.isPrime.mem_or_mem h).elim ht ht', map_mul _ _ _⟩
 
 theorem jl_latP_le (hA : Agree δ M p) {A B : Submodule (𝓞 D.host.E) (VS D).V}
-    (h : locF (F := D.host.F) (K := D.host.E) p.asIdeal A ≤ locF (F := D.host.F) (K := D.host.E) p.asIdeal B) :
+    (h : Formalism.HermitianLattices.Ext.L3.locF (F := D.host.F) (K := D.host.E) p.asIdeal A ≤ Formalism.HermitianLattices.Ext.L3.locF (F := D.host.F) (K := D.host.E) p.asIdeal B) :
     lattice₂ L p A ≤ lattice₂ L p B := by
   unfold lattice₂
   rw [Submodule.span_le]
   rintro _ ⟨a, ha, rfl⟩
-  have haA : a ∈ locF (F := D.host.F) (K := D.host.E) p.asIdeal A :=
+  have haA : a ∈ Formalism.HermitianLattices.Ext.L3.locF (F := D.host.F) (K := D.host.E) p.asIdeal A :=
     ⟨1, Submonoid.one_mem _, by rwa [one_smul]⟩
   obtain ⟨s, hs, hsb⟩ := h haA
   obtain ⟨t, ht, rfl⟩ := jl_closure p hs
@@ -310,11 +310,11 @@ theorem card_eq [FiniteDimensional K V] (hs : h.IsSymm) (h𝔭 : 𝔭.IsMaximal)
   have G0 : Good hc M T 𝔭 Λ₀ := hgood Λ₀ h0
   have hd₀ : dualF h 𝔭 Λ₀ = Λ₀ := h0.2.1
 
-  have hTW : ∀ {d : V}, d ∈ locF 𝔭 T → d ∈ orthK h U := by
+  have hTW : ∀ {d : V}, d ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T → d ∈ orthK h U := by
     intro d hd
     have : d ∈ Λ₀ ⊓ (orthK h U).restrictScalars (𝓞 K) := by rw [G0.cW]; exact hd
     exact this.2
-  have hTL : ∀ {Λ : Submodule (𝓞 K) V}, Good hc M T 𝔭 Λ → ∀ {d : V}, d ∈ locF 𝔭 T → d ∈ Λ := by
+  have hTL : ∀ {Λ : Submodule (𝓞 K) V}, Good hc M T 𝔭 Λ → ∀ {d : V}, d ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T → d ∈ Λ := by
     intro Λ hG d hd
     have : d ∈ Λ ⊓ (orthK h U).restrictScalars (𝓞 K) := by rw [hG.cW]; exact hd
     exact this.1
@@ -330,7 +330,7 @@ theorem card_eq [FiniteDimensional K V] (hs : h.IsSymm) (h𝔭 : 𝔭.IsMaximal)
     obtain ⟨w, hw, hwz⟩ := hG.oU (prO hc z) (G0.iU z hz)
     have hb : b = ⟨prO hc.symm z, G0.iW z hz⟩ := Subtype.ext hzb.symm
     rw [hb, isoOf_mk G0 hG hz hw hwz, Submodule.Quotient.eq, Submodule.mem_comap] at hx'
-    have hd : (x' : V) - prO hc.symm w ∈ locF 𝔭 T := by simpa using hx'
+    have hd : (x' : V) - prO hc.symm w ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T := by simpa using hx'
     have hdW := hTW hd
     refine ⟨z, hz, w + ((x' : V) - prO hc.symm w), Λ.add_mem hw (hTL hG hd), hzb, ?_, ?_⟩
     · rw [map_add (f := _), hsW hdW]; abel
@@ -350,7 +350,7 @@ theorem card_eq [FiniteDimensional K V] (hs : h.IsSymm) (h𝔭 : 𝔭.IsMaximal)
       obtain ⟨w, hw, hwy⟩ := hG.oU (prO hc y) (G0.iU y hy)
       have hc' : c = ⟨prO hc.symm y, G0.iW y hy⟩ := Subtype.ext hcy
       rw [hc', isoOf_mk G0 hG hy hw hwy, Submodule.Quotient.eq, Submodule.mem_comap] at hP
-      have hd : (b : V) - prO hc.symm w ∈ locF 𝔭 T := by simpa using hP
+      have hd : (b : V) - prO hc.symm w ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T := by simpa using hP
       rw [hb] at hd
       exact mem_of_proj hG hw (hwy.trans hU) hd
     · intro hx

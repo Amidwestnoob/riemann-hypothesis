@@ -351,10 +351,10 @@ variable {h : V →ₗ⋆[K] V →ₗ[K] K} {U : Submodule K V} {hc : IsCompl U 
 
 def InFib (h : V →ₗ⋆[K] V →ₗ[K] K) (U : Submodule K V) (𝔭 : Ideal (𝓞 F)) (M T Λ : Submodule (𝓞 K) V) :
     Prop :=
-  (∃ Λ₀ : Submodule (𝓞 K) V, Submodule.IsLattice K Λ₀ ∧ locF 𝔭 Λ₀ = Λ) ∧
+  (∃ Λ₀ : Submodule (𝓞 K) V, Submodule.IsLattice K Λ₀ ∧ Formalism.HermitianLattices.Ext.L3.locF 𝔭 Λ₀ = Λ) ∧
     dualF h 𝔭 Λ = Λ ∧
-    Λ ⊓ U.restrictScalars (𝓞 K) = locF 𝔭 M ∧
-    Λ ⊓ (orthK h U).restrictScalars (𝓞 K) = locF 𝔭 T
+    Λ ⊓ U.restrictScalars (𝓞 K) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 M ∧
+    Λ ⊓ (orthK h U).restrictScalars (𝓞 K) = Formalism.HermitianLattices.Ext.L3.locF 𝔭 T
 
 theorem mem_W_of_prO_zero {x : V} (hx : prO hc x = 0) : x ∈ orthK h U ∧ prO hc.symm x = x := by
   have e := prO_add hc x
@@ -369,8 +369,8 @@ theorem mem_W_of_prO_zero {x : V} (hx : prO hc x = 0) : x ∈ orthK h U ∧ prO 
   | exact Submodule.projection_apply_mem _
   | simp
 
-theorem prO_symm_locF (hp : 𝔭.IsPrime) {N : Submodule (𝓞 K) V} {y : V} (hy : y ∈ locF 𝔭 N) :
-    prO hc.symm y ∈ locF 𝔭 (N.map (prO hc.symm)) := by
+theorem prO_symm_locF (hp : 𝔭.IsPrime) {N : Submodule (𝓞 K) V} {y : V} (hy : y ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 N) :
+    prO hc.symm y ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 (N.map (prO hc.symm)) := by
   obtain ⟨t, ht, hty⟩ := (LocF.mem_locF_iff hp N y).mp hy
   refine (LocF.mem_locF_iff hp _ _).mpr ⟨t, ht, ?_⟩
   have hs := (prO hc.symm).map_smul (algebraMap (𝓞 F) (𝓞 K) t) y
@@ -402,17 +402,17 @@ theorem glue_mem [FiniteDimensional K V] (hs : h.IsSymm) (h𝔭 : 𝔭.IsMaximal
     rw [locF_dualF h𝔭, hd]
   · refine sup_le ?_ ?_
     · intro m hm
-      have : m ∈ locF 𝔭 M := LocF.le_locF 𝔭 M hm
+      have : m ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 M := LocF.le_locF 𝔭 M hm
       rw [← hIU] at this
       exact this.1
     · intro m hm
-      have : m ∈ locF 𝔭 T := LocF.le_locF 𝔭 T hm
+      have : m ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 T := LocF.le_locF 𝔭 T hm
       rw [← hIW] at this
       exact this.1
   · rintro x ⟨b, hb, y, hy, c, hcy, hU, hPc⟩
     obtain ⟨z, hz, hzb⟩ := hG₀.oW b b.2
-    have hyN : y ∈ locF 𝔭 N₀ := hΛ₀ ▸ hy
-    have hzN : z ∈ locF 𝔭 N₀ := hΛ₀ ▸ hz
+    have hyN : y ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 N₀ := hΛ₀ ▸ hy
+    have hzN : z ∈ Formalism.HermitianLattices.Ext.L3.locF 𝔭 N₀ := hΛ₀ ▸ hz
     have ex : x = y - prO hc.symm y + prO hc.symm z := by
       have e3 : prO hc y = y - prO hc.symm y := eq_sub_of_add_eq (prO_add hc y)
       calc x = prO hc x + prO hc.symm x := (prO_add hc x).symm
