@@ -97,7 +97,7 @@ theorem exists_cell {O : Type} [CommRing O] [IsDedekindDomain O] [CharZero O] [M
   have := LinearMap.congr_fun₂ he (e.symm a) (e.symm b)
   simpa [LinearMap.sum_apply] using this
 
-theorem exists_isCarrierDim : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (ψ : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) → IsPolyFan bar q ψ → IsTwG w0 ψ → ∃ lab : InvFun O, IsTwG w0 lab ∧ IsCarrierDim bar q ψ lab := by
+theorem exists_isCarrierDim : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (ψ : InvFun O), (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], GlobalTheory.PolFan.Dominates bar X) → IsPolyFan bar q ψ → IsTwG w0 ψ → ∃ lab : InvFun O, IsTwG w0 lab ∧ IsCarrierDim bar q ψ lab := by
   intro O _ _ _ _ bar w0 hb q ψ hD hψ htw
   refine ⟨carFun bar ψ, _root_.GlobalTheory.CompanionTheory.Ar.Fan.TwistedCarrierFunction.isTwG_carFun O bar w0 hb ψ htw, ?_⟩
   intro X _ _ _ _ hX β hβ hp

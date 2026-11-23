@@ -27,7 +27,7 @@ theorem hasRedCover_int_proj (Y : Type) [AddCommGroup Y] [m : Module ℤ Y] [Mod
   exact hasRedCover_int Y
 
 theorem dominates_int_proj (Y : Type) [AddCommGroup Y] [m : Module ℤ Y] [Module.Finite ℤ Y] [Module.Projective ℤ Y] :
-    Dominates (id : ℤ → ℤ) Y := by
+    GlobalTheory.PolFan.Dominates (id : ℤ → ℤ) Y := by
   obtain rfl : m = AddCommGroup.toIntModule Y := Subsingleton.elim _ _
   have : Module.Free ℤ Y := inferInstance
   exact _root_.GlobalTheory.CompanionTheory.Ar.Fan.dominates_int Y

@@ -290,7 +290,7 @@ theorem isTwG_starLab {O : Type} [CommRing O] (w0 : O) {lab w : InvFun O}
   · rw [if_neg (mt hiff.mp hc), if_neg hc]
 
 theorem exists_isTwG_simpLab_star : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [CharZero O] [Module.Finite ℤ O] (bar : O → O) (w0 : O), CMOrd O bar → ∀ (q : ℕ) (φ lab w ψ' : InvFun O),
-    (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], Dominates bar X) →
+    (∀ (X : Type) [AddCommGroup X] [Module O X] [Module.Finite O X] [Module.Projective O X], GlobalTheory.PolFan.Dominates bar X) →
     IsPolyFan bar q φ → IsTwG w0 lab → SimpLab bar q φ lab → IsTwG w0 w → IsCentreSet bar q φ w →
     IsPolyFan bar q ψ' → Subordinate bar q ψ' φ → IsStarOf bar q φ w ψ' →
     ∃ lab' : InvFun O, IsTwG w0 lab' ∧ SimpLab bar q ψ' lab' := by
