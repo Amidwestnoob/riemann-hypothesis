@@ -47,8 +47,8 @@ theorem exists_quot_basis {r : ℕ} (x : Fin r → V)
   obtain ⟨B, hB⟩ : ∃ B : Basis (Fin r × J) K V, ∀ q, B q = ρ (b q.2) (x q.1) :=
     ⟨Basis.mk hli hsp.ge, fun q => by simp⟩
   obtain ⟨φ, hφB⟩ : ∃ φ : V →ₗ[K] (Fin r → K),
-      ∀ q, φ (B q) = χ (b q.2) • Pi.single q.1 (1 : K) :=
-    ⟨B.constr K fun q => χ (b q.2) • Pi.single q.1 (1 : K), fun q => B.constr_basis K _ q⟩
+      ∀ q, φ (B q) = χ (b q.2) • (Pi.single q.1 (1 : K) : Fin r → K) :=
+    ⟨B.constr K fun q => χ (b q.2) • (Pi.single q.1 (1 : K) : Fin r → K), fun q => B.constr_basis K _ q⟩
   obtain ⟨ψ, hψ⟩ : ∃ ψ : (Fin r → K) →ₗ[K] V ⧸ eigSpan ρ χ,
       ∀ j, ψ (Pi.single j 1) = (eigSpan ρ χ).mkQ (x j) :=
     ⟨(Pi.basisFun K (Fin r)).constr K fun j => (eigSpan ρ χ).mkQ (x j), fun j => by
