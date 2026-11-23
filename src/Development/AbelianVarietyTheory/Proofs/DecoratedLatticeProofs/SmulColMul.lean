@@ -38,7 +38,7 @@ theorem id_conj {x : Pl D} {a : AE D} (ha : a ∈ idAt D (· = x)) : cA D a ∈ 
   rw [← cA_idem, ← RingHom.map_mul, ha]
 
 theorem int_conj {x : Pl D} {a : AE D} : cA D a ∈ intAt D (· = x) ↔ a ∈ intAt D (· = x) :=
-  ⟨fun h => ⟨by simpa only [cA_cA] using id_conj h.1, (FrameLat.cA_int_iff a).1 h.2⟩,
+  ⟨fun h => ⟨by simpa only [Formalism.L2.Theta.cA_cA] using id_conj h.1, (FrameLat.cA_int_iff a).1 h.2⟩,
     fun h => ⟨id_conj h.1, (FrameLat.cA_int_iff a).2 h.2⟩⟩
 
 def IsU (x : Pl D) (u : AE D) : Prop := ∀ a ∈ idAt D (· = x), a ∈ intAt D (· = x) ↔ u * a ∈ intAt D (· = x)
@@ -57,7 +57,7 @@ theorem IsU.neg {x : Pl D} {u : AE D} (hu : IsU x u) : IsU x (-u) := fun a ha =>
   rw [neg_mul, int_neg, hu a ha]
 
 theorem IsU.conj {x : Pl D} {u : AE D} (hu : IsU x u) : IsU x (cA D u) := fun a ha => by
-  rw [← int_conj, hu _ (id_conj ha), ← int_conj, RingHom.map_mul, cA_cA]
+  rw [← int_conj, hu _ (id_conj ha), ← int_conj, RingHom.map_mul, Formalism.L2.Theta.cA_cA]
 
 theorem IsU.inv {x : Pl D} {u v : AE D} (hu : IsU x u) (h : u * v = 1) : IsU x v := fun a ha => by
   rw [hu _ (Ideal.mul_mem_left _ v ha), ← mul_assoc, h, one_mul]
@@ -121,7 +121,7 @@ theorem herm_smul (S : HSp D) (a b : AE D) (x y : Fin S.rank → AE D) :
 
 theorem herm_conj (S : HSp D) (x y : Fin S.rank → AE D) : cA D (hermAt S x y) = hermAt S y x := by
   set_option synthInstance.maxHeartbeats 100000 in
-    simp only [hermAt, map_sum, RingHom.map_mul, cA_cA]
+    simp only [hermAt, map_sum, RingHom.map_mul, Formalism.L2.Theta.cA_cA]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   have : cA D (gA S j i) = gA S i j := congrFun (congrFun (adj_gA S) i) j

@@ -428,7 +428,7 @@ theorem exists_normOneAt_pr (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topo
     have h1 : p.sec (p.pr (cA D (p.sec x))) = 0 := by rw [p.sec_pr, hecs]
     have h2 := congrArg p.pr h1
     rwa [p.pr_sec, map_zero] at h2
-  have hcc : ∀ z : AE D, cA D (cA D z) = z := fun z => cA_cA z
+  have hcc : ∀ z : AE D, cA D (cA D z) = z := fun z => Formalism.L2.Theta.cA_cA z
   have he1 : p.sec 1 = p.e := sec_one p
   obtain ⟨f, hfdef⟩ : ∃ f : AE D, f = p.e + cA D p.e := ⟨_, rfl⟩
   have hfm : f ∈ idAt D (· = p.v) := hfdef ▸ sum_mem_idAt p

@@ -88,7 +88,7 @@ theorem hermAt_colMul_jY {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (i :
   rw [d.pX_eq]
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [hermAt, colMul, Matrix.mulVec, dotProduct, Matrix.mul_apply, adj, Matrix.transpose_apply,
-    Matrix.map_apply, map_sum, map_mul, cA_cA, hg, Finset.mul_sum, Finset.sum_mul]
+    Matrix.map_apply, map_sum, map_mul, Formalism.L2.Theta.cA_cA, hg, Finset.mul_sum, Finset.sum_mul]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => ?_
   ring
 
@@ -132,7 +132,7 @@ theorem dualLine_match : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S 
     have e : c * (cA D c * b') = b' := by rw [← mul_assoc, hcc, one_mul]
     have h1 : colMul d.jX i (cA D c * b') ∈ latV S L (· = v) := (hX i _ hbI).2 (by rw [e]; exact hb')
     have h2 := h _ h1
-    rw [map_mul, cA_cA] at h2
+    rw [map_mul, Formalism.L2.Theta.cA_cA] at h2
     have e2 : c * a * cA D b' = a * (c * cA D b') := by ring
     rw [e2]
     exact h2

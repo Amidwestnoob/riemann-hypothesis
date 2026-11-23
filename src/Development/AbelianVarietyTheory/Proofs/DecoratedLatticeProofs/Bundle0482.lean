@@ -237,7 +237,7 @@ theorem lineProj_mem : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topol
   have hzP := latV_le_of M (P := (· = (p i).v)) (P' := P) (fun w hw => by rw [hw]; exact hvP) (e_vecB_mem hsum hlat)
   have hH := (_root_.GlobalTheory.FinPl.SelfDualCompl.selfDual_latV D S₀ M hM P m hmid).1 hm _ hzP
   have h := pr_cA_mem (q := p i) hH
-  rw [pairing_eq o ζ (p i).e c hmdec, RingHom.map_mul, RingHom.map_mul, RingHom.map_mul, cA_cA, hpre, one_mul,
+  rw [pairing_eq o ζ (p i).e c hmdec, RingHom.map_mul, RingHom.map_mul, RingHom.map_mul, Formalism.L2.Theta.cA_cA, hpre, one_mul,
     FrameLat.cA_incA, row_vecB, star_self, RingHom.map_mul] at h
   exact h
 

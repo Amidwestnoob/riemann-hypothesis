@@ -78,7 +78,7 @@ theorem eq_sec_add_csec (q : SplitPt D k) {n : ℕ} {y : Fin n → AE D} (hy : �
     y = (fun i => q.sec (q.pr (y i))) + (fun i => cA D (q.sec (q.pr (cA D (y i))))) := by
   funext i
   have h := (FrameLat.idem_iff q (y i)).1 (hy i)
-  simp only [Pi.add_apply, q.sec_pr, map_mul, cA_cA]
+  simp only [Pi.add_apply, q.sec_pr, map_mul, Formalism.L2.Theta.cA_cA]
   rw [← add_mul, h]
 
 theorem mem_of_sec_iff (q : SplitPt D k) {S : HSp D} {L L' : Lat S} (hL : IsSelfDualC S L) (hL' : IsSelfDualC S L')

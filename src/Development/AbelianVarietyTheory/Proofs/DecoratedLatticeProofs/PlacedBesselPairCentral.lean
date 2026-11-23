@@ -156,7 +156,7 @@ theorem line_moved (q : SplitPt D k) {PP : Formalism.L2.DIV.Pl D.host.E} (hq : F
     mt V t⁻¹ *ᵥ (fun r => a * incA D (u r)) ∈ latV V Λ (· = q.v) ↔ q.pr a / κ ∈ 𝒪[k] ∧ q.pr (cA D a) * κ' ∈ 𝒪[k] := by
   have hI := int_moved q hq V Λ β hβ t G σ hM
   have hae : a = q.sec (q.pr a) + cA D (q.sec (q.pr (cA D a))) := by
-    rw [q.sec_pr, q.sec_pr, RingHom.map_mul, cA_cA, ← add_mul, (idem_iff q a).1 ha]
+    rw [q.sec_pr, q.sec_pr, RingHom.map_mul, Formalism.L2.Theta.cA_cA, ← add_mul, (idem_iff q a).1 ha]
   have hy : (fun r => a * incA D (u r)) = (fun r => q.sec (q.pr a * q.pr (incA D (u r)))) +
       (fun r => cA D (q.sec (q.pr (cA D a) * q.pr (incA D (star (u r)))))) := by
     funext r

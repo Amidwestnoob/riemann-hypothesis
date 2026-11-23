@@ -369,7 +369,7 @@ theorem sMoves_of_wComp : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [To
     intro a; rw [mul_comm, sec_mul_right, mul_comm]
   have hc2 : ∀ b : k, c * cA D (p.sec b) = cA D (p.sec (p.pr (cA D c) * b)) := by
     intro b
-    have h : c * cA D (p.sec b) = cA D (cA D c * p.sec b) := by rw [map_mul, cA_cA]
+    have h : c * cA D (p.sec b) = cA D (cA D c * p.sec b) := by rw [map_mul, Formalism.L2.Theta.cA_cA]
     rw [h, mul_comm, sec_mul_right, mul_comm]
   have hB : ∀ x z : Fin S.rank → k,
       ∑ i, ∑ j, (p.pr c • ((Formalism.L2.Theta.mt S g).map p.pr *ᵥ x)) i * p.pr (cA D (incA D (S.gram i j))) *
@@ -385,7 +385,7 @@ theorem sMoves_of_wComp : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [To
   have hyd : y = (fun i => p.sec (p.pr (y i))) + (fun i => cA D (p.sec (p.pr (cA D (y i))))) := by
     funext i
     simp only [Pi.add_apply, p.sec_pr]
-    rw [map_mul, cA_cA, ← add_mul]
+    rw [map_mul, Formalism.L2.Theta.cA_cA, ← add_mul]
     exact ((idem_iff p _).1 (hy i)).symm
   obtain ⟨u, z, rfl⟩ : ∃ u z : Fin S.rank → k, y = (fun i => p.sec (u i)) + (fun i => cA D (p.sec (z i))) :=
     ⟨_, _, hyd⟩

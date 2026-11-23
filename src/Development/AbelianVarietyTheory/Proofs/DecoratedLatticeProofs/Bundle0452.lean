@@ -190,7 +190,7 @@ theorem pr_ofSplit (q : SplitPt D k) (x : D.host.E) : (ofSplit q).pr x = q.pr (i
 
 theorem eq_sec_add_cA (q : SplitPt D k) {a : AE D} (ha : a ∈ idAt D (· = q.v)) :
     a = q.sec (q.pr a) + cA D (q.sec (q.pr (cA D a))) := by
-  rw [q.sec_pr, q.sec_pr, RingHom.map_mul, cA_cA, ← add_mul, (idem_iff q a).1 ha]
+  rw [q.sec_pr, q.sec_pr, RingHom.map_mul, Formalism.L2.Theta.cA_cA, ← add_mul, (idem_iff q a).1 ha]
 
 theorem pr_mem_of_int (q : SplitPt D k) {a : AE D} (ha : finPart D a ∈ intAE D) : q.pr a ∈ 𝒪[k] := by
   rw [q.int_iff, q.sec_pr, RingHom.map_mul]

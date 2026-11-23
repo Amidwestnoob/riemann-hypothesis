@@ -278,7 +278,7 @@ variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [Is
 
 theorem cA_sec_mul' (p : SplitPt D k) (a : AE D) (t : k) :
     cA D (p.sec t) * a = cA D (p.sec (t * p.pr (cA D a))) := by
-  rw [← sec_mul_right, RingHom.map_mul, cA_cA]
+  rw [← sec_mul_right, RingHom.map_mul, Formalism.L2.Theta.cA_cA]
 
 theorem colMul_split (q : SplitPt D k) {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (i : Fin ρ) {a : AE D}
     (ha : a ∈ idAt D (· = q.v)) :
