@@ -121,7 +121,7 @@ set_option maxHeartbeats 1000000 in
 theorem redFn_conj_eq_one : ∀ (D : D7) (β : GL (Fin (Yc D 0).rank) (EAf D)) (x : (Formalism.L2.SG.InstExistsPf.instOf D).Gf)
     (PP PP' : Formalism.L2.DIV.Pl D.host.E),
     IsFrame β (Formalism.L2.Herm.crdLat (Yc D 0) (Yc D 0).L0) → x ∈ (Formalism.L2.SG.InstExistsPf.instOf D).Kset →
-    IsConjPl PP' PP → Formalism.L2.DIV.redFn β PP' x.1 = 1 → Formalism.L2.DIV.redFn β PP x.1 = 1 := by
+    Formalism.IndefR.Lev.IsConjPl PP' PP → Formalism.L2.DIV.redFn β PP' x.1 = 1 → Formalism.L2.DIV.redFn β PP x.1 = 1 := by
   intro D β x PP PP' hβ hx hc h1
   rw [crdLat_eq_latFrame] at hβ
   have hsd := GlobalTheory.PlaceModel.isSelfDualC_latFrame (Yc D 0)

@@ -363,7 +363,7 @@ theorem hasString_of_lift (R : RealDat D A Ks) (i : Fin D.R.m) (t : T) (ok : Pl 
   have e2 : ‖(valW R i t w : ℂ)‖ = 1 := GlobalTheory.LFun.norm_val _ _
   simpa [e1, e2] using hb w hw b hb'
 
-theorem liftInj_of_typeNZ : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → (∀ i, TypeNZ R i A.μ0 ∧ DownEig R i A.μ0 ∧ UnrCorr R i A.μ0 (fun w => ¬ IsConjPl w w) ∧ UnrCorr R i A.μ0 (fun w => IsConjPl w w) ∧ ParamsEx R i A.μ0) → GlobalTheory.LiftRows.LiftInj R := by
+theorem liftInj_of_typeNZ : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.LiftRows.Given R F → R.FullP → (∀ i, TypeNZ R i A.μ0 ∧ DownEig R i A.μ0 ∧ UnrCorr R i A.μ0 (fun w => ¬ Formalism.IndefR.Lev.IsConjPl w w) ∧ UnrCorr R i A.μ0 (fun w => Formalism.IndefR.Lev.IsConjPl w w) ∧ ParamsEx R i A.μ0) → GlobalTheory.LiftRows.LiftInj R := by
   intro D G _ _ Pl0 T A Ks _ _ _ R F hG _ hZ
   intro i h hops s x y hx hy hxne hyG hy0
   obtain ⟨hT, hDE, hU1, hU2, hPE⟩ := hZ i
@@ -372,7 +372,7 @@ theorem liftInj_of_typeNZ : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T
     apply hxne
     apply (hG.core.models.HW i (sg0 D A)).1
     rw [hG.core.thP.thG i A.μ0 x, h0, map_zero, map_zero]
-  exact hT h hops s (hasString_of_lift R i A.μ0 (fun w => IsConjPl w w) hU1 hU2 hPE hDE hops hx hF) y hy hyG hy0
+  exact hT h hops s (hasString_of_lift R i A.μ0 (fun w => Formalism.IndefR.Lev.IsConjPl w w) hU1 hU2 hPE hDE hops hx hF) y hy hyG hy0
 
 end GlobalTheory.LiftInjProof
 
