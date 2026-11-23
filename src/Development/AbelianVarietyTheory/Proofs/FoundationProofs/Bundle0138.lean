@@ -109,10 +109,10 @@ theorem exists_smul_of_homothetic (τ σ : ℍ) {c : ℂ} (hc : c ≠ 0)
 theorem exists_smul_of_E₄_E₆ :
     ∀ τ σ : ℍ, E₄ τ ^ 3 * E₆ σ ^ 2 = E₆ τ ^ 2 * E₄ σ ^ 3 → ∃ γ : SL(2, ℤ), τ = γ • σ := by
   intro τ σ h
-  have hj : modularJ σ = modularJ τ := by
+  have hj : GroundTheory.Global.Elliptic.modularJ σ = GroundTheory.Global.Elliptic.modularJ τ := by
     have h1 := ModularForm.discriminant_ne_zero τ
     have h2 := ModularForm.discriminant_ne_zero σ
-    rw [modularJ, modularJ, div_eq_div_iff h2 h1,
+    rw [GroundTheory.Global.Elliptic.modularJ, GroundTheory.Global.Elliptic.modularJ, div_eq_div_iff h2 h1,
       ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq τ,
       ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq σ]
     linear_combination h / 1728
