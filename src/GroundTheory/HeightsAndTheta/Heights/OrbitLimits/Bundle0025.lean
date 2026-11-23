@@ -247,18 +247,18 @@ namespace PtsPosDens
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
 theorem logNorm_ofWeight_one {g : ((Σ k, ι k) → ℂ) → ℝ} (hg : IsDegZeroSmooth g) :
-    logNorm (HermLine.ofWeight g hg.2) 1 = g := by
+    logNorm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight g hg.2) 1 = g := by
   funext z
-  simp [logNorm, HermLine.ofWeight, Real.exp_neg, Real.log_exp]
+  simp [logNorm, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight, Real.exp_neg, Real.log_exp]
 
 theorem isSmoothHerm_ofWeight {g : ((Σ k, ι k) → ℂ) → ℝ} (hg : IsDegZeroSmooth g) :
-    IsSmoothHerm (HermLine.ofWeight g hg.2) :=
+    IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight g hg.2) :=
   show ContDiffOn ℝ _ (fun z => Real.exp (-g z)) _ from Real.contDiff_exp.comp_contDiffOn hg.1.neg
 
 theorem isSectionOn_ofWeight_one {P : Ideal (MRing ι)} {d : ℕ} (hP : IsArithVar P d)
     {g : ((Σ k, ι k) → ℂ) → ℝ} (hg : IsDegZeroSmooth g) :
-    IsSectionOn P (HermLine.ofWeight g hg.2) 1 := by
-  refine ⟨0, fun k => by simp [HermLine.ofWeight], fun m hm k => ?_,
+    IsSectionOn P (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight g hg.2) 1 := by
+  refine ⟨0, fun k => by simp [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight], fun m hm k => ?_,
     fun h => hP.2.1.1.ne_top ((Ideal.eq_top_iff_one P).2 h)⟩
   rw [MvPolynomial.support_one, Finset.mem_singleton] at hm
   subst hm
@@ -326,7 +326,7 @@ theorem isSemiPosHerm_tensor {A B : ReciprocityTheory.ChartRestriction.G.Geo.Her
   have heq : (fun t : ℂ => Real.log ((A.tensor B).h (z + t • v))) =ᶠ[𝓝 0]
       (fun t : ℂ => Real.log (A.h (z + t • v))) + fun t : ℂ => Real.log (B.h (z + t • v)) := by
     filter_upwards [hev] with t ht
-    simp only [Pi.add_apply, HermLine.tensor]
+    simp only [Pi.add_apply, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.tensor]
     exact Real.log_mul (A.pos _ ht).ne' (B.pos _ ht).ne'
   rw [(laplacian_congr_nhds heq).eq_of_nhds, (hsm A hA).laplacian_add (hsm B hB)]
   exact add_nonneg (hAp z hz v) (hBp z hz v)

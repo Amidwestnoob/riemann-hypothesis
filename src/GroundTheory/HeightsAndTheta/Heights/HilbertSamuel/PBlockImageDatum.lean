@@ -244,7 +244,7 @@ theorem BlockImageDatum.proof (hA : BlockImageArith.Statement) (hI : BlockImageI
   let d₀ : HSMBlockDatum D K ι Ω :=
     { y := d.y
       k₀ := d.k₀
-      A := HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg d.k₀)
+      A := ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics (fun k => fsMetric (ι := ι k)) (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.unitDeg d.k₀)
       P0 := ⊥
       J := d.J
       R := d.R

@@ -325,16 +325,16 @@ theorem linApply_projMat (e : Fin (D + 1) → Ix κ) (z : Ix κ → ℂ) (k : Fi
   · simp
 
 theorem isSmoothHerm_ofCone {m : ConeMetric ℂ (Ix κ)} (hm : IsSmoothMetric m) :
-    IsSmoothHerm (HermLine.ofCone m) := by
+    IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m) := by
   refine hm.mono fun z hz => ?_
   obtain ⟨i, hi⟩ := hz ()
   exact fun h0 => hi (congrFun h0 _)
 
 theorem fs_linApply (e : Fin (D + 1) → Ix κ) (z : Ix κ → ℂ) :
-    (HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))).h
+    (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))).h
         (linApply (ι := GlobalTheory κ) (ι₂ := GlobalTheory (Fin (D + 1))) (projMat e) z) =
       Real.sqrt (∑ k, ‖z (e k)‖ ^ 2) := by
-  simp only [HermLine.ofCone, fsMetric, EuclideanSpace.norm_eq]
+  simp only [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone, fsMetric, EuclideanSpace.norm_eq]
   congr 1
   rw [Fintype.sum_sigma, Fintype.sum_unique]
   refine Finset.sum_congr rfl fun k _ => ?_
@@ -349,7 +349,7 @@ theorem TopPullFS.proof (hCM : ChangeOfModelStatement) (hBP : ProjFrameBasePtFre
   intro D Ω _ _ κ _ I x m e hI hP hm hfr hFS
   obtain ⟨G, J, hJ, hJe⟩ := hDeg D Ω κ x e hP hfr
   have himg := hIm D Ω κ x e hfr
-  have hSmoothFS : IsSmoothHerm (HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) := by
+  have hSmoothFS : IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) := by
     apply isSmoothHerm_ofCone
     intro z hz
     change ContDiffWithinAt ℝ _ (fun w : Ix (Fin (D + 1)) → ℂ => ‖WithLp.toLp 2 w‖) _ z
@@ -359,7 +359,7 @@ theorem TopPullFS.proof (hCM : ChangeOfModelStatement) (hBP : ProjFrameBasePtFre
     have hz' : WithLp.toLp 2 z ≠ 0 := by simpa using hz
     exact (hL.contDiffAt.norm ℂ hz').contDiffWithinAt
   have key := hCM I hI Unit (GlobalTheory κ) (GlobalTheory (Fin (D + 1))) (coordIdeal ℤ x) (D + 1) (projMat e) G J
-    (fun _ => HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) (fun _ => HermLine.ofCone m) hP
+    (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (fsMetric (ι := Ix (Fin (D + 1))))) (fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m) hP
     (hBP D Ω κ x e hfr) (by rw [himg]; exact IndefiniteRowSideFullHecke.Inter.isArithVar_bot D) hJ
     (fun _ => hSmoothFS) (fun _ => isSmoothHerm_ofCone hm) (fun _ => rfl)
     (fun _ z hz => by

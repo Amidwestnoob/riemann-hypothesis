@@ -129,7 +129,7 @@ theorem proof (hPack : PackingStatement) : MonomialShift.Statement := by
   obtain ⟨e, he⟩ : ∃ e : K → ℕ, e = fun k => (q * n - τ) * a k + n := ⟨_, rfl⟩
   have hBa : ∀ k, (HermLine.zcomb A (fsH ι) q 1).a k = (q : ℤ) * a k + 1 := by
     intro k
-    simp [HermLine.zcomb, fsH, HermLine.ofMetrics, ha]
+    simp [HermLine.zcomb, fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics, ha]
   have hdeg : ∀ k, (n : ℤ) * (HermLine.zcomb A (fsH ι) q 1).a k = τ * A.a k + e k := by
     intro k
     rw [hBa, he]

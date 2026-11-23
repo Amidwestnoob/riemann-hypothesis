@@ -51,13 +51,13 @@ theorem integrable_fibreSum_degZero (hInt : PtsIntegrableStatement) {Q : Ideal (
     {L : Fin e → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hL : ∀ j, ReciprocityTheory.ChartRestriction.G.Geo.IsSmoothHerm (L j)) {u : ((Σ k, ι k) → ℂ) → ℝ}
     (hu : IsDegZeroSmooth u) :
     Integrable (fun y => ∑ᶠ w ∈ ReciprocityTheory.ChartRestriction.G.Geo.fibre Q Ψ y, sheetDensity Q Ψ (pot L) u y w) := by
-  have hsm : ReciprocityTheory.ChartRestriction.G.Geo.IsSmoothHerm (HermLine.ofWeight u hu.2) :=
+  have hsm : ReciprocityTheory.ChartRestriction.G.Geo.IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight u hu.2) :=
     Real.contDiff_exp.comp_contDiffOn hu.1.neg
-  have h := hInt K ι Q e Ψ L (HermLine.ofWeight u hu.2) 1 hQ hΨ hL hsm
+  have h := hInt K ι Q e Ψ L (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight u hu.2) 1 hQ hΨ hL hsm
     (Inter.isSectionOn_one hQ rfl)
-  have hlog : logNorm (HermLine.ofWeight u hu.2) 1 = u := by
+  have hlog : logNorm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight u hu.2) 1 = u := by
     funext z
-    simp [logNorm, HermLine.ofWeight, Real.log_inv, Real.log_exp]
+    simp [logNorm, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight, Real.log_inv, Real.log_exp]
   rwa [hlog] at h
 
 theorem ptsIntegral_finset_sum (hInt : PtsIntegrableStatement) {Q : Ideal (MRing ι)} {e : ℕ}

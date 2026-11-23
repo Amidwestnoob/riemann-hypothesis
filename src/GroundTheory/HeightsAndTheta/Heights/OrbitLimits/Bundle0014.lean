@@ -138,7 +138,7 @@ theorem normSq_smul {A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {
 
 def regLine (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s : MRing ι) (ε : ℝ) {a : K → ℕ} (ha : ∀ k, A.a k = a k)
     (hs : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a) : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=
-  HermLine.ofWeight (fun z => -regLog A s ε z) fun c z hc => by
+  ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight (fun z => -regLog A s ε z) fun c z hc => by
     simp only [regLog, normSq_smul ha hs c z hc]
 
 theorem regLine_a (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s : MRing ι) (ε : ℝ) {a : K → ℕ} (ha : ∀ k, A.a k = a k)
@@ -147,7 +147,7 @@ theorem regLine_a (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s 
 theorem log_regLine (A : ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s : MRing ι) (ε : ℝ) {a : K → ℕ} (ha : ∀ k, A.a k = a k)
     (hs : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a) : (fun z => Real.log ((regLine A s ε ha hs).h z)) = regLog A s ε := by
   funext z
-  simp [regLine, HermLine.ofWeight, Real.log_exp]
+  simp [regLine, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight, Real.log_exp]
 
 theorem contDiff_evalC (s : MRing ι) :
     ContDiff ℝ ∞ (fun z : (Σ k, ι k) → ℂ => eval z (map (Int.castRingHom ℂ) s)) := by

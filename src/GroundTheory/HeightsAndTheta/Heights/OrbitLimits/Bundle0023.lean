@@ -366,8 +366,8 @@ theorem finsum_mem_sum_comm {α T : Type*} [Fintype T] {S : Set α} (hS : S.Fini
 theorem isSmoothHerm_ofWeight {w : ((Σ k, ι k) → ℂ) → ℝ}
     (hw : ∀ (c : K → ℂ) z, (∀ k, c k ≠ 0) → w (fun p => c p.1 * z p) = w z)
     (hs : ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) w {z | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0}) :
-    IsSmoothHerm (HermLine.ofWeight w hw) := by
-  have e : (HermLine.ofWeight w hw).h = fun z => Real.exp (-w z) := rfl
+    IsSmoothHerm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight w hw) := by
+  have e : (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight w hw).h = fun z => Real.exp (-w z) := rfl
   unfold IsSmoothHerm
   rw [e]
   exact Real.contDiff_exp.comp_contDiffOn hs.neg
@@ -381,19 +381,19 @@ theorem integrable_fibreSum (hInt : PtsIntegrableStatement) {P : Ideal (MRing ι
     fun c z hc => by simp only [hf.2 c z hc]
   have hF := isSmoothHerm_ofWeight (w := fun z => -f z) hf' hf.1.neg
   have hG := isSmoothHerm_ofWeight hg.2 hg.1
-  have hLF : ∀ j, IsSmoothHerm ((Fin.cons (HermLine.ofWeight (fun z => -f z) hf') L : Fin (n + 1) → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j) := by
+  have hLF : ∀ j, IsSmoothHerm ((Fin.cons (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight (fun z => -f z) hf') L : Fin (n + 1) → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j) := by
     intro j
     refine Fin.cases ?_ (fun j => ?_) j
     · simpa only [Fin.cons_zero] using hF
     · simpa only [Fin.cons_succ] using hL j
-  have hpot : pot (Fin.cons (HermLine.ofWeight (fun z => -f z) hf') L : Fin (n + 1) → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) = Fin.cons f (pot L) := by
+  have hpot : pot (Fin.cons (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight (fun z => -f z) hf') L : Fin (n + 1) → ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) = Fin.cons f (pot L) := by
     funext j z
     refine Fin.cases ?_ (fun j => ?_) j
-    · simp [pot, HermLine.ofWeight, Real.log_exp]
+    · simp [pot, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight, Real.log_exp]
     · simp [pot]
-  have hlog : logNorm (HermLine.ofWeight g hg.2) 1 = g := by
+  have hlog : logNorm (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight g hg.2) 1 = g := by
     funext z
-    simp [logNorm, HermLine.ofWeight, Real.log_exp]
+    simp [logNorm, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight, Real.log_exp]
   have h1 : (1 : MRing ι) ∉ P := fun h => hP.2.1.1.ne_top ((Ideal.eq_top_iff_one P).mpr h)
   have hm : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (1 : MRing ι) (fun _ => 0) := by
     intro m hm k
@@ -401,8 +401,8 @@ theorem integrable_fibreSum (hInt : PtsIntegrableStatement) {P : Ideal (MRing ι
     simp only [Finset.mem_singleton] at hm
     subst hm
     simp
-  have hsec : IsSectionOn P (HermLine.ofWeight g hg.2) 1 :=
-    ⟨fun _ => 0, fun k => by simp [HermLine.ofWeight], hm, h1⟩
+  have hsec : IsSectionOn P (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight g hg.2) 1 :=
+    ⟨fun _ => 0, fun k => by simp [ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofWeight], hm, h1⟩
   have := hInt K ι P (n + 1) Ψ _ _ 1 hP hΨ hLF hG hsec
   rwa [hpot, hlog] at this
 

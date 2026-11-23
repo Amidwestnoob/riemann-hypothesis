@@ -125,10 +125,10 @@ theorem top_sub_top_mixPot (I : AllFam) (hI : I.IsFamily) {D : ℕ} {Ω : Type} 
   have hadd := (hI Unit (GlobalTheory κ)).2.1
   have htel := Finset.sum_range_sub
     (fun i => I Unit (GlobalTheory κ) (coordIdeal ℤ x) (D + 1) (tele_fam m₀ m₁ (D + 1) i)) (D + 1)
-  have hT0 : tele_fam m₀ m₁ (D + 1) 0 = fun _ => HermLine.ofCone m₀ := by
+  have hT0 : tele_fam m₀ m₁ (D + 1) 0 = fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₀ := by
     funext j
     simp [tele_fam]
-  have hT1 : tele_fam m₀ m₁ (D + 1) (D + 1) = fun _ => HermLine.ofCone m₁ := by
+  have hT1 : tele_fam m₀ m₁ (D + 1) (D + 1) = fun _ => ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₁ := by
     funext j
     simp [tele_fam, j.isLt]
   simp only [hT0, hT1] at htel
@@ -138,17 +138,17 @@ theorem top_sub_top_mixPot (I : AllFam) (hI : I.IsFamily) {D : ℕ} {Ω : Type} 
   rw [Finset.mem_range] at hi
   have e1 : I Unit (GlobalTheory κ) (coordIdeal ℤ x) (D + 1) (tele_fam m₀ m₁ (D + 1) (i + 1)) =
       I Unit (GlobalTheory κ) (coordIdeal ℤ x) (D + 1)
-        (Fin.snoc (tele_fam m₀ m₁ D i) (HermLine.ofCone m₁)) := by
+        (Fin.snoc (tele_fam m₀ m₁ D i) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₁)) := by
     rw [← tele_fam_succAbove m₀ m₁ D i hi (i + 1) (Or.inr rfl)]
-    have : HermLine.ofCone m₁ = tele_fam m₀ m₁ (D + 1) (i + 1) ⟨i, hi⟩ := by
+    have : ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₁ = tele_fam m₀ m₁ (D + 1) (i + 1) ⟨i, hi⟩ := by
       simp [tele_fam]
     rw [this, ← tele_comp_perm]
     exact (hsymm _ _ _ _ hP (tele_fam_smooth hs₀ hs₁ _ _)).symm
   have e0 : I Unit (GlobalTheory κ) (coordIdeal ℤ x) (D + 1) (tele_fam m₀ m₁ (D + 1) i) =
       I Unit (GlobalTheory κ) (coordIdeal ℤ x) (D + 1)
-        (Fin.snoc (tele_fam m₀ m₁ D i) (HermLine.ofCone m₀)) := by
+        (Fin.snoc (tele_fam m₀ m₁ D i) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₀)) := by
     rw [← tele_fam_succAbove m₀ m₁ D i hi i (Or.inl rfl)]
-    have : HermLine.ofCone m₀ = tele_fam m₀ m₁ (D + 1) i ⟨i, hi⟩ := by
+    have : ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₀ = tele_fam m₀ m₁ (D + 1) i ⟨i, hi⟩ := by
       simp [tele_fam]
     rw [this, ← tele_comp_perm]
     exact (hsymm _ _ _ _ hP (tele_fam_smooth hs₀ hs₁ _ _)).symm

@@ -145,7 +145,7 @@ noncomputable section
 def ResolutionMetricPair.Statement : Prop :=
   ∀ (D : ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (κ : Type) [Fintype κ] (d : HSMDatum D Ω κ)
     (m₁ : ConeMetric ℂ (Ix κ)) (P0₁ : Ideal (MRing (GlobalTheory κ))), IsSmoothMetric m₁ →
-    P0₁ ≤ coordIdeal ℤ d.x → IsSemipositiveRel P0₁ (coordIdeal ℤ d.x) (HermLine.ofCone m₁) →
+    P0₁ ≤ coordIdeal ℤ d.x → IsSemipositiveRel P0₁ (coordIdeal ℤ d.x) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m₁) →
     ∃ (A : FinHolAtlas D d.R.X) (L : HolLineBundle A) (W₀ W₁ : Weight L) (dV : SmoothVolume A)
       (σ : ℕ → MvPolynomial (Ix κ) ℚ → Fin A.n → d.R.X → ℂ),
       A.Compatible d.R.A ∧ W₀.IsSemipositive ∧ W₁.IsSemipositive ∧ dV.μ = d.dV ∧

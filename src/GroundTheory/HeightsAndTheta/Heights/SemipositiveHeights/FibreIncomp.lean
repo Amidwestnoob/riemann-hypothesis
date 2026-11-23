@@ -140,7 +140,7 @@ theorem FibreIncomp.full : Inter.FibreIncomp.Statement := by
       (r := Ideal.Quotient.mk W₁ f)
       (mem_nonZeroDivisors_of_ne_zero (by rwa [Ne, Ideal.Quotient.eq_zero_iff_mem]))
       (by rw [Ideal.Quotient.factor_mk, Ideal.Quotient.eq_zero_iff_mem]; exact hf2)
-  have hsec : IsSectionOn (imageZ v P') (HermLine.sqMetric (ι := ι) α) s := ⟨α, fun _ => rfl, hs, hsQ⟩
+  have hsec : IsSectionOn (imageZ v P') (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.sqMetric (ι := ι) α) s := ⟨α, fun _ => rfl, hs, hsQ⟩
   have hA := divSuppArith K ι (imageZ v P') n _ _ W hQ hsec hW
   have hdW : ringKrullDim (MRing ι ⧸ W) = ((n + Fintype.card K : ℕ) : WithBot ℕ∞) := by
     by_cases hh : IsHorizontal W

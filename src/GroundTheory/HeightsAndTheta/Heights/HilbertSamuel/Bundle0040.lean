@@ -211,7 +211,7 @@ theorem G2.proof (hK : KodairaSection.Statement) (hS : SectionProduct.Statement)
   have ha : (HermLine.zcomb M (fsH ι) ((q : ℤ) - k * p) p).a =
       ((q - k * p : ℕ) : ℤ) • M.a + fun _ => ((p : ℕ) : ℤ) := by
     funext i
-    simp [HermLine.zcomb, fsH, HermLine.ofMetrics, Nat.cast_sub hkq]
+    simp [HermLine.zcomb, fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics, Nat.cast_sub hkq]
   have hb0 : (0 : ℤ) ≤ (q : ℤ) - k * p := by
     have : ((k * p : ℕ) : ℤ) ≤ q := by exact_mod_cast hkq
     push_cast at this
@@ -226,14 +226,14 @@ theorem G2.proof (hK : KodairaSection.Statement) (hS : SectionProduct.Statement)
   have hB : e ∈ chartLat y (HermLine.zcomb M (fsH ι) k (-1)).a 1 := by
     have h' : (HermLine.zcomb M (fsH ι) k (-1)).a = (k : ℤ) • M.a - 1 := by
       funext i
-      simp [HermLine.zcomb, fsH, HermLine.ofMetrics]
+      simp [HermLine.zcomb, fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics]
       ring
     rw [h']
     exact he
   have hdeg : ((q * n : ℕ) : ℤ) • M.a = (n : ℤ) • (HermLine.zcomb M (fsH ι) ((q : ℤ) - k * p) p).a +
       ((p * n : ℕ) : ℤ) • (HermLine.zcomb M (fsH ι) k (-1)).a := by
     funext i
-    simp [HermLine.zcomb, fsH, HermLine.ofMetrics]
+    simp [HermLine.zcomb, fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics]
     ring
   have hmet : ∀ z ∈ mcPts (mCoordIdeal y), M.h z ^ (q * n) =
       (HermLine.zcomb M (fsH ι) ((q : ℤ) - k * p) p).h z ^ n *

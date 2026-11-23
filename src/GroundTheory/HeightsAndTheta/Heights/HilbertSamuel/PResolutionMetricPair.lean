@@ -248,7 +248,7 @@ def weight (m : ConeMetric ℂ (Ix κ)) (hm : IsSmoothMetric m) : Weight (bundle
     ring
 
 theorem weight_isSemipositive (m : ConeMetric ℂ (Ix κ)) (hm : IsSmoothMetric m) (P0 : Ideal (MRing (GlobalTheory κ)))
-    (hP0 : P0 ≤ coordIdeal ℤ d.x) (hsp : IsSemipositiveRel P0 (coordIdeal ℤ d.x) (HermLine.ofCone m)) :
+    (hP0 : P0 ≤ coordIdeal ℤ d.x) (hsp : IsSemipositiveRel P0 (coordIdeal ℤ d.x) (ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone m)) :
     (weight d pt hcov m hm).IsSemipositive := by
   intro l y hy w
   have hU := (mem_atlas_target d pt hcov hy).2

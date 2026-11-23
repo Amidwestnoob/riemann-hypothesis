@@ -262,7 +262,7 @@ theorem PullFSExtension.proof (hBP : ProjFrameBasePtFree.Statement) : PullFSExte
     have hzp : z ∈ pts (coordIdeal ℤ x) :=
       ⟨fun h0 => by obtain ⟨i, hi⟩ := hz.1 (); exact hi (congrFun h0 _), hz.2⟩
     have hpz := pr_ne_zero hBP hfr hzp
-    have hev : (fun y => Real.log ((HermLine.ofCone (metric e δ)).h y)) =ᶠ[𝓝 z]
+    have hev : (fun y => Real.log ((ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofCone (metric e δ)).h y)) =ᶠ[𝓝 z]
         fun y => Real.log ((fsMetric (ι := Fin (D + 1))).ρ (pr e y)) := by
       have hr : ∀ᶠ y in 𝓝 z, δ / 2 < ratio e y :=
         (contDiffAt_ratio e hzp.1 (n := 0)).continuousAt.eventually

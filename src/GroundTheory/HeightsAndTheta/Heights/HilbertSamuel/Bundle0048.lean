@@ -407,7 +407,7 @@ theorem KodairaSection.proof (hN : NefOnGenericOfSemipos.Statement)
   obtain ⟨n, hn, hne⟩ := hC K ι Ω y _ 1 e heQ
   have ha : (HermLine.zcomb M (fsH ι) k (-1)).a = (k : ℤ) • M.a - 1 := by
     funext i
-    simp [HermLine.zcomb, fsH, HermLine.ofMetrics]
+    simp [HermLine.zcomb, fsH, ReciprocityTheory.ChartRestriction.G.Geo.HermLine.ofMetrics]
     ring
   obtain ⟨C, hC0, hB⟩ := hS K ι Ω y (HermLine.zcomb M (fsH ι) k (-1)) 1 ((n : Ω) * e)
     (continuousOn_zcomb_fsH hM.semipos.1 k) (by rw [ha]; exact hne)
