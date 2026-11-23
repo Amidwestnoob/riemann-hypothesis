@@ -48,7 +48,7 @@ end PartB
 
 section Point
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 theorem tu_ne (u' : D.what₂.Word) : ((Tu D u' : ℕ) : D.host.E) ≠ 0 :=
   Nat.cast_ne_zero.2 (D.mem u').A.T_prime.ne_zero
@@ -80,7 +80,7 @@ end Point
 
 section Stmts
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF)) {θ : ℝ}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ}
   (C : Choice X θ)
 
 def FrameLiftEx (u u' : D.what₂.Word) : Prop := ∀ t : D.s.Term u u', ∃ g, IsFrameLift hI t g
@@ -185,7 +185,7 @@ end Lemmas
 
 section Clauses
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
 
 theorem jt_irr (hA : Formalism.L2.SG.TermOp.Vanish.AvgCore) (hK : Formalism.L2.SG.TermOp.Vanish.ChiTrivialC)
     (h3 : Formalism.L2.SG.TermOp.Vanish.RCocompactC) (h4 : Formalism.L2.SG.TermOp.Vanish.NonRelCharC)
@@ -307,7 +307,7 @@ section Gram
 
 open scoped ComplexConjugate
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF)) {θ : ℝ}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ}
   (C : Choice X θ)
 
 theorem star_dot_conjT {n m : Type*} [Fintype n] [Fintype m] (Q : Matrix n m ℂ) (x : m → ℂ) (y : n → ℂ) :
@@ -408,7 +408,7 @@ end Gram
 
 section Witt
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 theorem frameLiftEx_holds (u u' : D.what₂.Word) : FrameLiftEx hI u u' := fun t =>
   Formalism.L2.SG.Pf.WittFlags.flag_witt (tu_ne u') rfl (X.Fu u') (repF (tc hI t)).fl
@@ -431,7 +431,7 @@ end Witt
 
 section UHmem
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
 
 private theorem conjTranspose_QiUQ_preserves_QJQ {n m : ℕ} (J : Matrix (Fin n) (Fin n) ℂ) (Q : Matrix (Fin n) (Fin m) ℂ)
     (Qi : Matrix (Fin m) (Fin n) ℂ) (U : Matrix (Fin n) (Fin n) ℂ) (hQQi : Q * Qi = 1) (hU : Uᴴ * J * U = J) :
@@ -557,7 +557,7 @@ end Scale
 
 section Rel
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF)) {θ : ℝ}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ}
   (C : Choice X θ)
 
 theorem det_scaled {K : Type*} [Field K] {N : ℕ} (ρ : Fin N → ℂ) (M : Matrix (Fin N) (Fin N) K) (e : K →+* ℂ) :
@@ -621,7 +621,7 @@ end Rel
 
 section GfSec
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF)) {θ : ℝ}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ}
   (C : Choice X θ)
 
 theorem tz_zB (u : D.what₂.Word) (τ : D.what₂.Tau) :
@@ -665,7 +665,7 @@ theorem embS_star' (D : D7) (τ : D.what₂.Tau) (x : D.host.E) : embS D τ (sta
   rw [Formalism.BasicNotions.bridge_star_holds D.R D.host x]
   exact Formalism.MainNotions.BesselShellMomentBounds.plEmb_conj D τ x
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF)) {θ : ℝ}
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ}
   (C : Choice X θ)
 
 theorem prod_rho_last (D : D7) :
@@ -719,7 +719,7 @@ end GfNe
 
 section Cons
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 def loopTermOf (H : TieHyp W hI) (A : AmpDat X) (hV : PvalForm W hI A) (large₂ : SizeData₂ D) (C1 : ℝ) {θ : ℝ}
     (C : Choice X θ) (hB : WuBessel C) (u u' : D.what₂.Word) (hθ : normWin D large₂ C1 θ)
@@ -744,7 +744,7 @@ end Cons
 
 section ThetaCut
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (hB : WuBessel C)
 
 def dnB (D : D7) (θ : ℝ) : Measure (D.what₂.Tau → Formalism.QuantumDeterminants.Mt D.R.k D.R.rS) := Measure.pi fun _ => muNB D θ
@@ -787,13 +787,13 @@ end ThetaCut
 
 section Assembly
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 end Assembly
 
 section Fact
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (hB : WuBessel C)
 
 def JFactN (u u' : D.what₂.Word) : Prop :=
@@ -827,7 +827,7 @@ theorem thetaEqN_of {u u' : D.what₂.Word} (hJ : JFactN hI C hB u u') : ThetaEq
   rw [Real.rpow_inv_natCast_pow hx hn, div_eq_iff hJ0.ne']
   linear_combination -h
 
-def loopTermOfN {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (sOf hF))
+def loopTermOfN {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (W : WittDat X) (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
     (H : TieHyp W hI) (A : AmpDat X) (hV : PvalForm W hI A) (large₂ : SizeData₂ D) (C1 : ℝ) {θ : ℝ}
     (C : Choice X θ) (hB : WuBessel C) (u u' : D.what₂.Word) (hθ : normWin D large₂ C1 θ)
     (hW : ∀ τ, GoodW D τ u u' θ (locW C u u' τ)) (hS : ∀ τ, GoodS D (lamD D τ) (locS hB u u' τ))

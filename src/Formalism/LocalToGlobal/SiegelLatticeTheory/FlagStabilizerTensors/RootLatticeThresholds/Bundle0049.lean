@@ -302,14 +302,14 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {X : Formalism.L2.SG.HidaSetting.HidaSetting D} {u u' : D.what₂.Word}
 
-theorem jointTensorAt_of_carrier (I : CarrierIn X u u') (Mo : ModelsFor (sOf I)) (sc : ℝ)
+theorem jointTensorAt_of_carrier (I : CarrierIn X u u') (Mo : ModelsFor (Formalism.L2.SG.Pf.Carrier.sOf I)) (sc : ℝ)
     (i0 i0' : ∀ _ : InfinitePlace X.B.I.F, Fin D.R.k) (νq : X.B.I.Ginf → Measure X.B.I.Ginf)
     (hN : NuQPin X u u' νq) (hG : JointQuot.StVGeo X u u') (hpin : JointPin.PinCov (CarrierOf I Mo))
     (hRT : JointPinJB.RelTr (CarrierOf I Mo) sc i0 i0') (hOV : JointPinJB.OrbVecAt (CarrierOf I Mo) sc i0 i0')
     (hsc : 0 < sc) (hFX : (CarrierOf I Mo).FromX) (hBase : (CarrierOf I Mo).Base i0 i0')
     (hEmb : ∀ j x, (CarrierOf I Mo).S.emb j (X.ιE x) = X.B.I.φ ((CarrierOf I Mo).τ j) x)
     (hBuilt : (CarrierOf I Mo).Built) :
-    JointTensorAt X u u' (sOf I) I.T I.fc I.ν' I.m₀ I.τ I.eP I.eQ sc i0 i0' νq :=
+    JointTensorAt X u u' (Formalism.L2.SG.Pf.Carrier.sOf I) I.T I.fc I.ν' I.m₀ I.τ I.eP I.eQ sc i0 i0' νq :=
   JointPin.jointTensor_of_pin (CarrierOf I Mo) sc i0 i0' νq hN (JointQuot.stRel_holds X u u')
     (JointQuot.locUni_of X u u' hG) (JointQuot.globProd_of X u u' hG) hpin
     (JointPinJB.jointBridge_of_open _ sc i0 i0' hRT hOV) hsc hFX hBase hEmb hBuilt
@@ -326,7 +326,7 @@ theorem jointTensorAt_carrierInOf (X : Formalism.L2.SG.HidaSetting.HidaSetting D
     (m₀ : Fin (nfE D) → Formalism.FourierDecayAlt.B.Mat D.R.k D.R.rS)
     (top : ∀ j : Fin (nfE D), (Formalism.FourierDecayAlt.B.Mat D.R.k D.R.rS → (X.Vloc u' (tauE X e j) →L[ℂ] X.Vloc u (tauE X e j))) →
       List Formalism.FourierDecayAlt.C.Letter → Formalism.FourierDecayAlt.C.LPt → Formalism.FourierDecayAlt.C.LPt → ℂ) (A₀ : ℝ)
-    (Mo : ModelsFor (sOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀)))
+    (Mo : ModelsFor (Formalism.L2.SG.Pf.Carrier.sOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀)))
     (sc : ℝ) (i0 i0' : ∀ _ : InfinitePlace X.B.I.F, Fin D.R.k) (νq : X.B.I.Ginf → Measure X.B.I.Ginf)
     (hN : NuQPin X u u' νq) (hG : JointQuot.StVGeo X u u')
     (hpin : JointPin.PinCov (CarrierOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀) Mo))
@@ -336,7 +336,7 @@ theorem jointTensorAt_carrierInOf (X : Formalism.L2.SG.HidaSetting.HidaSetting D
     (hEmb : ∀ j x, (CarrierOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀) Mo).S.emb j
       (X.ιE x) = X.B.I.φ ((CarrierOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀) Mo).τ j) x)
     (hBuilt : (CarrierOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀) Mo).Built) :
-    JointTensorAt X u u' (sOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀))
+    JointTensorAt X u u' (Formalism.L2.SG.Pf.Carrier.sOf (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀))
       (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀).T
       (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀).fc
       (carrierInOf X u u' e he hv C CA de de' l grid grid1 T hT fc χ sg ν' m₀ top A₀).ν'
@@ -367,11 +367,11 @@ theorem jointTensorAt_ITcMo (X : Formalism.L2.SG.HidaSetting.HidaSetting D) {θ 
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j) (towersOf X C u u' e j).base.π
       (towersOf X C u u' e j).base.z (m0E X C u u' e j *ᵥ nuE X C u' e i0' j)) (A₀ : ℝ)
-    (Mo : ModelsFor (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
+    (Mo : ModelsFor (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)))
     (sc : ℝ) (νq : X.B.I.Ginf → Measure X.B.I.Ginf) (hN : NuQPin X u u' νq)
     (hpin : JointPin.PinCov (CarrierOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀) Mo))
     (hsc : 0 < sc) (hBuilt : (CarrierOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀) Mo).Built) :
-    JointTensorAt X u u' (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    JointTensorAt X u u' (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).ν'
@@ -403,13 +403,13 @@ theorem jointTensorAt_ITcMo (X : Formalism.L2.SG.HidaSetting.HidaSetting D) {θ 
     (fun j => Formalism.FourierDecayAlt.Top.topOf (parE e u u' de de' j) (l + 1) (towersOf X C u u' e j) (nuE X C u' e i0' j)
       (m0E X C u u' e j) (Θ j) (TP j)) A₀ Mo sc i0 i0' νq hN hG hpin hsc hFX hBase hEmb hBuilt
 
-theorem TT_nonneg (I : CarrierIn X u u') (v : Fin (sOf I).f) : 0 ≤ (Formalism.FourierDecayAlt.D.parOf (sOf I) v).TT := by
+theorem TT_nonneg (I : CarrierIn X u u') (v : Fin (Formalism.L2.SG.Pf.Carrier.sOf I).f) : 0 ≤ (Formalism.FourierDecayAlt.D.parOf (Formalism.L2.SG.Pf.Carrier.sOf I) v).TT := by
   show 0 ≤ (((D.mem u).A.T : ℕ) : ℝ) * (((D.mem u').A.T : ℕ) : ℝ)
   positivity
 
-def modelsOf (I : CarrierIn X u u') : ModelsFor (sOf I) where
-  L := fun v => (Formalism.FourierDecayAlt.P.level_exists_alt (Formalism.FourierDecayAlt.D.parOf (sOf I) v)
-    (Formalism.FourierDecayAlt.MA.DQ (Formalism.FourierDecayAlt.D.parOf (sOf I) v)) (Formalism.FourierDecayAlt.P.analytic_laws _ _ (TT_nonneg I v))).choose
+def modelsOf (I : CarrierIn X u u') : ModelsFor (Formalism.L2.SG.Pf.Carrier.sOf I) where
+  L := fun v => (Formalism.FourierDecayAlt.P.level_exists_alt (Formalism.FourierDecayAlt.D.parOf (Formalism.L2.SG.Pf.Carrier.sOf I) v)
+    (Formalism.FourierDecayAlt.MA.DQ (Formalism.FourierDecayAlt.D.parOf (Formalism.L2.SG.Pf.Carrier.sOf I) v)) (Formalism.FourierDecayAlt.P.analytic_laws _ _ (TT_nonneg I v))).choose
   j := fun _ _ => 0
   lam := fun _ _ => 0
   c := Formalism.L2.SG.Pf.CarrierT.cutStd
@@ -437,7 +437,7 @@ theorem jointTensor_compact_test (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
       (modelsOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))))
     (hsc : 0 < sc) (hBuilt : (CarrierOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀)
       (modelsOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))).Built) :
-    JointTensorAt X u u' (sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
+    JointTensorAt X u u' (Formalism.L2.SG.Pf.Carrier.sOf (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀))
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).T
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).fc
       (ITc X C u u' e he hv CA de de' l grid grid1 fc c i0' Θ TP A₀).ν'

@@ -371,7 +371,7 @@ theorem AmpCov_holds {D : D7} {X : HidaSetting D} (Y : Formalism.L2.SG.Full.Full
   ampCov_of Formalism.L2.SG.Pf.ratPt_holds Formalism.L2.SG.Closed.ChiTrivialC_holds Y
 
 variable {D : D7} {X : HidaSetting D} {Y : Formalism.L2.SG.Full.Full X} {hF : FinX Y} (W : WittDat X)
-  (hI : SIso D.s (sOf hF))
+  (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF))
 
 end Formalism.L2.SG.Pf.KernelOfEmbedding
 end

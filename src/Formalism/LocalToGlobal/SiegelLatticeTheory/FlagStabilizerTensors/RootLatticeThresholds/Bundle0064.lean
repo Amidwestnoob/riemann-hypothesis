@@ -37,27 +37,27 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Defs
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (hB : WuBessel C) (u u' : D.what₂.Word)
 
 end Defs
 
 section Main
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (hB : WuBessel C) (u u' : D.what₂.Word)
 
 end Main
 
 section Pts
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) (u u' : D.what₂.Word)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) (u u' : D.what₂.Word)
 
 end Pts
 
 section Pin
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF)) {θ : ℝ} (C : Choice X θ)
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (Formalism.L2.SG.PackageTie2.sOf hF)) {θ : ℝ} (C : Choice X θ)
   (hB : WuBessel C) (u u' : D.what₂.Word)
 
 theorem levelVolume_pos : 0 < X.volK2 := by
@@ -343,7 +343,7 @@ theorem pinCov_carrierInTc (u u' : D.what₂.Word) (e : InfinitePlace D.host.E �
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j) (towersOf X C u u' e j).base.π
       (towersOf X C u u' e j).base.z (m₀ j *ᵥ ν' j)) (A₀ : ℝ)
-    (Mo : ModelsFor (sOf (carrierInTc X C u u' e he hv CA de de' l grid grid1 a b ξ ξ' cc c ν' m₀ Θ TP A₀)))
+    (Mo : ModelsFor (Formalism.L2.SG.Pf.Carrier.sOf (carrierInTc X C u u' e he hv CA de de' l grid grid1 a b ξ ξ' cc c ν' m₀ Θ TP A₀)))
     (Hj : ∀ j : Fin (nfE D),
       ∀ (γ : Formalism.REAL.UJ (X.B.I.ε (tauE X e j))) (μRv ν : Measure (Formalism.REAL.UJ (X.B.I.ε (tauE X e j)))),
         Formalism.L2.SG.Pf.Carrier.JointPin.PinHyp
