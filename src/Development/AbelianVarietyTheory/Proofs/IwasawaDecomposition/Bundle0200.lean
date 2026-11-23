@@ -249,7 +249,7 @@ theorem ddS_eq : ddS D = (differentIdeal ℤ (𝓞 D.host.E) : Ideal (𝓞 D.hos
 theorem level_not_dvd (P : HeightOneSpectrum (𝓞 D.host.E)) (h : ((gS D : ℕ) : 𝓞 D.host.E) ∈ P.asIdeal) :
     ¬ P.asIdeal ∣ differentIdeal ℤ (𝓞 D.host.E) := by
   have := P.isPrime
-  rw [gS, Nat.cast_mul] at h
+  rw [Formalism.MainNotions.S.Lat.gS, Nat.cast_mul] at h
   rcases P.isPrime.mem_or_mem h with h | h
   · exact not_dvd_different (D.host.g_prime 0) (D.nd.g_split 0) _ h
   · exact not_dvd_different (D.host.g_prime 1) (D.nd.g_split 1) _ h
