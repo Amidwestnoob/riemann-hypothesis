@@ -294,7 +294,7 @@ theorem mem_La_of {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} {N N' : ℕ}
     {L' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)} {X : Matrix (Fin N') (Fin N) D.host.E}
     (hX : X ∈ AddSubgroup.closure {B | ∃ c ∈ cc, ∃ Z ∈ YYl D L L',
       B = (((c : 𝓞 D.host.K) : D.host.K) : D.host.E) • Z}) :
-    (fun τ i j => δ * embT D τ (X i j) : VC D N N') ∈ La D (tor0 D cc δ) L L' := by
+    (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ (X i j) : VC D N N') ∈ La D (tor0 D cc δ) L L' := by
   induction hX using AddSubgroup.closure_induction with
   | mem B hB =>
     obtain ⟨c, hc, Z, hZ, rfl⟩ := hB
@@ -305,17 +305,17 @@ theorem mem_La_of {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} {N N' : ℕ}
     rw [FL.embT_K D τ _ (c : D.host.K).2]
     ring
   | zero =>
-    have : (fun τ i j => δ * embT D τ ((0 : Matrix (Fin N') (Fin N) D.host.E) i j) : VC D N N') = 0 := by
+    have : (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ ((0 : Matrix (Fin N') (Fin N) D.host.E) i j) : VC D N N') = 0 := by
       funext τ i j; simp
     rw [this]; exact AddSubgroup.zero_mem _
   | add A B _ _ h1 h2 =>
-    have : (fun τ i j => δ * embT D τ ((A + B) i j) : VC D N N') =
-        (fun τ i j => δ * embT D τ (A i j)) + (fun τ i j => δ * embT D τ (B i j)) := by
+    have : (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ ((A + B) i j) : VC D N N') =
+        (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ (A i j)) + (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ (B i j)) := by
       funext τ i j; simp [mul_add]
     rw [this]; exact AddSubgroup.add_mem _ h1 h2
   | neg A _ h1 =>
-    have : (fun τ i j => δ * embT D τ ((-A) i j) : VC D N N') =
-        -(fun τ i j => δ * embT D τ (A i j)) := by
+    have : (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ ((-A) i j) : VC D N N') =
+        -(fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ (A i j)) := by
       funext τ i j; simp
     rw [this]; exact AddSubgroup.neg_mem _ h1
 
@@ -324,7 +324,7 @@ end SD
 theorem SelfDualRec_of_curve (hC : CurveSelfDualRec) : SelfDualRec := by
   intro D cc hcc δ _ h0 N N' L L' hA v hv
   set ℓ : Matrix (Fin N') (Fin N) D.host.E → ℂ := fun Y =>
-    ∑ τ, ∑ i, ∑ j, v τ i j * starRingEnd ℂ (embT D τ (Y i j)) with hℓdef
+    ∑ τ, ∑ i, ∑ j, v τ i j * starRingEnd ℂ (Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ (Y i j)) with hℓdef
 
   have hℓ : ∀ Y ∈ YYl D L L', ∃ c ∈ cc, ℓ Y = δ * D.host.φ₀ (((c : D.host.K) : D.host.E)) := by
     intro Y hY
@@ -345,7 +345,7 @@ theorem SelfDualRec_of_curve (hC : CurveSelfDualRec) : SelfDualRec := by
     ring
 
   obtain ⟨M, hM, hMY⟩ := FL.YY_lower D L L' hA.2.2.1 hA.2.2.2
-  have hcoord : ∀ i j, ∃ x : D.host.E, ∀ τ, v τ i j = δ * embT D τ x := by
+  have hcoord : ∀ i j, ∃ x : D.host.E, ∀ τ, v τ i j = δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ x := by
     intro i j
     apply SD.coord D δ h0
     intro y
@@ -361,7 +361,7 @@ theorem SelfDualRec_of_curve (hC : CurveSelfDualRec) : SelfDualRec := by
       · exact isIntegral_zero
     obtain ⟨c, hc, hcY⟩ := hℓ _ (hMY A hAint)
     have hMm : ((M * m : ℤ) : ℂ) ≠ 0 := by exact_mod_cast mul_ne_zero hM hm
-    have hval : ℓ ((M : D.host.E) • A) = ((M * m : ℤ) : ℂ) * ∑ τ, v τ i j * embT D τ y := by
+    have hval : ℓ ((M : D.host.E) • A) = ((M * m : ℤ) : ℂ) * ∑ τ, v τ i j * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ y := by
       simp only [ℓ, Finset.mul_sum]
       refine Finset.sum_congr rfl fun τ _ => ?_
       rw [Finset.sum_eq_single i, Finset.sum_eq_single j]
@@ -401,7 +401,7 @@ theorem SelfDualRec_of_curve (hC : CurveSelfDualRec) : SelfDualRec := by
     exact Subtype.ext (D.host.φ₀.injective (mul_left_cancel₀ h0 hcY))
 
   have hXS := SD.alg_step cc hcc.1 L L' hA (Matrix.of X) hXc
-  have hv' : v = (fun τ i j => δ * embT D τ ((Matrix.of X) i j) : VC D N N') := by
+  have hv' : v = (fun τ i j => δ * Formalism.L2.Ker.Cd.TaylorLogMetric.embT D τ ((Matrix.of X) i j) : VC D N N') := by
     funext τ i j
     exact hXv i j τ
   rw [hv']
