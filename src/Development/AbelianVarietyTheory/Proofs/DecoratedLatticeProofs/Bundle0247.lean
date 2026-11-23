@@ -337,8 +337,8 @@ theorem word_add (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) (l : List (D.wh
     exact GlobalTheory.Size.dRho_add hψ hθ a.1 _ (GlobalTheory.Size.theta_word hψ hθ l h) (GlobalTheory.Size.theta_word hψ hθ l h')
 
 theorem word_mem (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) (l : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool))
-    {U : AddSubgroup (WO S T)} {f : WO S T → ℂ} (h : f ∈ thetaLevel ψ S T U) :
-    GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l f ∈ thetaLevel ψ S T U := by
+    {U : AddSubgroup (WO S T)} {f : WO S T → ℂ} (h : f ∈ GlobalTheory.Size.thetaLevel ψ S T U) :
+    GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l f ∈ GlobalTheory.Size.thetaLevel ψ S T U := by
   induction l with
   | nil => exact h
   | cons a l ih =>
@@ -359,7 +359,7 @@ theorem sobO_word_le (μ : Measure (WO S T)) (𝓕 : Set (WO S T))
 
 end
 
-theorem uniformCauchySeqOn_word : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ S T : HSp D, ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∀ u : ℕ → WO S T → ℂ, (∀ j, u j ∈ thetaLevel ψ S T U) → (∀ d, ∀ ε : ℝ≥0∞, 0 < ε → ∃ J, ∀ i ≥ J, ∀ j ≥ J, sobO ψ θ μ 𝓕 d (u i - u j) < ε) → ∀ l : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool), UniformCauchySeqOn (fun j => GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l (u j)) Filter.atTop Set.univ := by
+theorem uniformCauchySeqOn_word : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ θ : InfFam D, IsInfFam θ → ∀ S T : HSp D, ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∀ u : ℕ → WO S T → ℂ, (∀ j, u j ∈ GlobalTheory.Size.thetaLevel ψ S T U) → (∀ d, ∀ ε : ℝ≥0∞, 0 < ε → ∃ J, ∀ i ≥ J, ∀ j ≥ J, sobO ψ θ μ 𝓕 d (u i - u j) < ε) → ∀ l : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool), UniformCauchySeqOn (fun j => GlobalTheory.Size.wordAct (GlobalTheory.Size.heisDer ψ θ) l (u j)) Filter.atTop Set.univ := by
   intro D ψ hψ θ hθ S T μ 𝓕 hm U hU u hu hC l
   obtain ⟨d₀, C, hb⟩ := GlobalTheory.ThetaDensSup.sup_le_sobO D ψ hψ θ hθ S T μ 𝓕 hm U hU
   rw [Metric.uniformCauchySeqOn_iff]
@@ -367,7 +367,7 @@ theorem uniformCauchySeqOn_word : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ),
   have hη : (0 : ℝ) < ε / (C + 1) := by positivity
   obtain ⟨J, hJ⟩ := hC (d₀ + l.length) (ENNReal.ofReal (ε / (C + 1))) (ENNReal.ofReal_pos.2 hη)
   refine ⟨J, fun i hi j hj w _ => ?_⟩
-  have hd : u i - u j ∈ thetaLevel ψ S T U := Submodule.sub_mem _ (hu i) (hu j)
+  have hd : u i - u j ∈ GlobalTheory.Size.thetaLevel ψ S T U := Submodule.sub_mem _ (hu i) (hu j)
   have he := word_add hψ hθ l hd.1 (hu j).1
   rw [sub_add_cancel] at he
   have h1 := (hb _ (word_mem hψ hθ l hd) w).trans
