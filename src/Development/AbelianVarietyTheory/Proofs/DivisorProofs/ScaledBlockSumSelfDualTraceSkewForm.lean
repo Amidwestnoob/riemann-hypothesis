@@ -47,11 +47,11 @@ theorem blk_e {R : Type} [Zero R] {p q d : ℕ} (e : Fin p ⊕ Fin q ≃ Fin d) 
   simp [GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk]
 
 theorem form_skewGram (A B : HSp D) {d : ℕ} (e : Fin A.rank ⊕ Fin B.rank ≃ Fin d) (x y : Fin d → D.host.E) :
-    GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.form D.sp.cm.sig (skewGram A B e) y x =
+    GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.form D.sp.cm.sig (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram A B e) y x =
       D.host.xi0 * (hS A (fun k => x (e (.inl k))) (fun k => y (e (.inl k))) +
         hS B (fun k => x (e (.inr k))) (fun k => y (e (.inr k)))) := by
   have hσ : ∀ z : D.host.E, D.sp.cm.sig z = star z := fun _ => rfl
-  simp only [GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.form, skewGram, dotProduct, mulVec, Matrix.smul_apply, hσ, hS, smul_eq_mul]
+  simp only [GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.form, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.skewGram, dotProduct, mulVec, Matrix.smul_apply, hσ, hS, smul_eq_mul]
   rw [← Equiv.sum_comp e]
   simp only [← Equiv.sum_comp e, Fintype.sum_sum_type, blk_e, fromBlocks_apply₁₁,
     fromBlocks_apply₁₂, fromBlocks_apply₂₁, fromBlocks_apply₂₂, transpose_apply, Matrix.zero_apply, mul_zero,
