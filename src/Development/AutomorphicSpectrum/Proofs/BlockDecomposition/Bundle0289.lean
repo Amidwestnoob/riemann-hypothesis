@@ -128,12 +128,12 @@ theorem lam_twKer {S S' : Subrepresentation (parInd e ρ)} (h : IsCompl S S') :
     lam_apply, lam_apply, proj_comm, ev_unip e ρ u.2, sub_self]
 
 def frob {S S' : Subrepresentation (parInd e ρ)} (h : IsCompl S S') :
-    (jac e (parInd e ρ)).IntertwiningMap ρ where
+    (GlobalTheory.SmGL.jac e (parInd e ρ)).IntertwiningMap ρ where
   toLinearMap := (twKer (parInd e ρ) (unipRad k e) 1).liftQ (lam h) (lam_twKer h)
   isIntertwining' g := by
     refine Submodule.linearMap_qext _ (LinearMap.ext fun v => ?_)
     show (twKer (parInd e ρ) (unipRad k e) 1).liftQ (lam h) (lam_twKer h)
-        (jac e (parInd e ρ) g (Submodule.Quotient.mk v)) = ρ g (lam h v)
+        (GlobalTheory.SmGL.jac e (parInd e ρ) g (Submodule.Quotient.mk v)) = ρ g (lam h v)
     rw [jac_mk, ← Submodule.Quotient.mk_smul, Submodule.liftQ_apply, map_smul, lam_apply, proj_comm,
       ev_levi, lam_apply, smul_smul]
     simp
@@ -157,7 +157,7 @@ theorem exists_lam_ne {S S' : Subrepresentation (parInd e ρ)} (h : IsCompl S S'
 
 theorem not_dichotomy {S S' : Subrepresentation (parInd e ρ)} (h : IsCompl S S') (hS : S ≠ ⊥)
     (hS' : S' ≠ ⊥) :
-    ¬ (∀ φ ψ : (jac e (parInd e ρ)).IntertwiningMap ρ,
+    ¬ (∀ φ ψ : (GlobalTheory.SmGL.jac e (parInd e ρ)).IntertwiningMap ρ,
       φ.toLinearMap = 0 ∨ ∃ c : ℂ, ψ.toLinearMap = c • φ.toLinearMap) := by
   intro hd
   obtain ⟨v, hvS, hv⟩ := exists_lam_ne h hS
@@ -175,7 +175,7 @@ theorem not_dichotomy {S S' : Subrepresentation (parInd e ρ)} (h : IsCompl S S'
 
 end Induced
 
-theorem not_dichotomy_det : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (a b : ℕ) (χ₁ χ₂ : kˣ →* ℂˣ) (W W' : Subrepresentation (parInd (two (stdSum (rfl : a + b = a + b))) ((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom))), IsCompl W W' → W ≠ ⊥ → W' ≠ ⊥ → ¬ (∀ φ ψ : (jac (two (stdSum (rfl : a + b = a + b))) (parInd (two (stdSum (rfl : a + b = a + b))) ((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom))).IntertwiningMap (((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom)), φ.toLinearMap = 0 ∨ ∃ c : ℂ, ψ.toLinearMap = c • φ.toLinearMap) := by
+theorem not_dichotomy_det : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (a b : ℕ) (χ₁ χ₂ : kˣ →* ℂˣ) (W W' : Subrepresentation (parInd (two (stdSum (rfl : a + b = a + b))) ((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom))), IsCompl W W' → W ≠ ⊥ → W' ≠ ⊥ → ¬ (∀ φ ψ : (GlobalTheory.SmGL.jac (two (stdSum (rfl : a + b = a + b))) (parInd (two (stdSum (rfl : a + b = a + b))) ((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom))).IntertwiningMap (((extTensor (detRep (Fin a) χ₁) (detRep (Fin b) χ₂)).comp (leviTwo k (Fin a) (Fin b)).symm.toMonoidHom)), φ.toLinearMap = 0 ∨ ∃ c : ℂ, ψ.toLinearMap = c • φ.toLinearMap) := by
   intro k _ _ _ _ a b χ₁ χ₂ W W' h hW hW'
   exact not_dichotomy h hW hW'
 
