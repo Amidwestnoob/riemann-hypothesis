@@ -180,7 +180,7 @@ theorem perp_full {ι : Type} [Fintype ι] [DecidableEq ι] (X : ι → Fin n �
   have hA : cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J * M = (gramG σ J v X).submatrix eq.symm eq.symm := by
     ext p q
     simp only [cT, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
-    simp only [M, Matrix.of_apply, gramG, hR, hform, Matrix.submatrix_apply]
+    simp only [M, Matrix.of_apply, gramG, hR, Formalism.UG.hform, Matrix.submatrix_apply]
     exact Finset.sum_comm
   have hdA : IsUnit (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J).det := by
     have h1 := congrArg det hA
@@ -190,7 +190,7 @@ theorem perp_full {ι : Type} [Fintype ι] [DecidableEq ι] (X : ι → Fin n �
   have hB : (cT (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ) M * JR (Fv F v) J) *ᵥ w = 0 := by
     funext m
     have h2 := hw (eq.symm m)
-    simp only [hR, hform] at h2
+    simp only [hR, Formalism.UG.hform] at h2
     simp only [Matrix.mulVec, dotProduct, cT, Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Pi.zero_apply, Finset.sum_mul]
     simp only [M, Matrix.of_apply]
     rw [Finset.sum_comm]

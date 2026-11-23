@@ -18,30 +18,30 @@ section Coords
 variable {n : ℕ}
 
 def rlM (n : ℕ) : Matrix (Fin n) (Fin n) ℂ →ₗ[ℝ] EuclideanSpace ℝ (Fin n × Fin n × Bool) where
-  toFun X := (WithLp.equiv 2 _).symm (realifyFun X)
+  toFun X := (WithLp.equiv 2 _).symm (Formalism.MainNotions.S.realifyFun X)
   map_add' X Y := by
     ext p
-    simp only [realifyFun, WithLp.equiv_symm_apply, PiLp.add_apply, Matrix.add_apply]
+    simp only [Formalism.MainNotions.S.realifyFun, WithLp.equiv_symm_apply, PiLp.add_apply, Matrix.add_apply]
     split_ifs <;> simp
   map_smul' c X := by
     ext p
-    simp only [realifyFun, WithLp.equiv_symm_apply, PiLp.smul_apply, Matrix.smul_apply, RingHom.id_apply]
+    simp only [Formalism.MainNotions.S.realifyFun, WithLp.equiv_symm_apply, PiLp.smul_apply, Matrix.smul_apply, RingHom.id_apply]
     split_ifs <;> simp
 
 def urM (n : ℕ) : EuclideanSpace ℝ (Fin n × Fin n × Bool) →ₗ[ℝ] Matrix (Fin n) (Fin n) ℂ where
-  toFun x := unrealify x
+  toFun x := Formalism.MainNotions.S.unrealify x
   map_add' x y := by
     ext i j
-    apply Complex.ext <;> simp [unrealify]
+    apply Complex.ext <;> simp [Formalism.MainNotions.S.unrealify]
   map_smul' c x := by
     ext i j
-    apply Complex.ext <;> simp [unrealify]
+    apply Complex.ext <;> simp [Formalism.MainNotions.S.unrealify]
 
 theorem ur_rl (X : Matrix (Fin n) (Fin n) ℂ) : urM n (rlM n X) = X := unr_re X
 
 theorem rl_ur (x : EuclideanSpace ℝ (Fin n × Fin n × Bool)) : rlM n (urM n x) = x := by
   ext ⟨i, j, b⟩
-  cases b <;> simp [rlM, urM, realifyFun, unrealify]
+  cases b <;> simp [rlM, urM, Formalism.MainNotions.S.realifyFun, Formalism.MainNotions.S.unrealify]
 
 theorem frob_ur (x : EuclideanSpace ℝ (Fin n × Fin n × Bool)) : frob (urM n x) = ‖x‖ ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq, Fintype.sum_prod_type]
@@ -50,7 +50,7 @@ theorem frob_ur (x : EuclideanSpace ℝ (Fin n × Fin n × Bool)) : frob (urM n 
   rw [Fintype.sum_prod_type]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Fintype.sum_bool, Complex.sq_norm, Complex.normSq_apply]
-  simp [urM, unrealify, Real.norm_eq_abs, sq]
+  simp [urM, Formalism.MainNotions.S.unrealify, Real.norm_eq_abs, sq]
   ring
 
 def subC (ε : Fin n → Bool) (S : Finset (Fin n)) : Submodule ℝ (Matrix (Fin n) (Fin n) ℂ) where
@@ -154,9 +154,9 @@ theorem orth_CB (ε : Fin n → Bool) (S : Finset (Fin n)) :
   obtain ⟨i, j, b⟩ := p
   by_cases hij : i ∈ S ∧ j ∈ S
   · have h0 : A i j = 0 := hA.2 i hij.1 j hij.2
-    cases b <;> simp [rlM, realifyFun, h0]
+    cases b <;> simp [rlM, Formalism.MainNotions.S.realifyFun, h0]
   · have h0 : B i j = 0 := hB.2 i j (by tauto)
-    cases b <;> simp [rlM, realifyFun, h0]
+    cases b <;> simp [rlM, Formalism.MainNotions.S.realifyFun, h0]
 
 end Split
 
