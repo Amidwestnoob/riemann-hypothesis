@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0027
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open ReciprocityTheory.DiscreteGroups.LocalClassField Matrix
 open scoped TensorProduct Classical
 
