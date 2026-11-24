@@ -187,7 +187,7 @@ theorem relAmple_pull_of_affine (h : IsPullback φ A'.hom A.hom f) (hL : L.IsLB)
   choose s' hs' using fun i => sec_pull_down ((isGen_iff W).1 hW) hP hP' (s i)
   have loc : ∀ i, nonzeroLocus (M := powOver A' L' U' N) (s' i) = ψ ⁻¹ᵁ nonzeroLocus (s i) := fun i => by
     ext y
-    refine (mem_nonzeroLocus _ y).trans (Iff.trans ⟨fun ⟨k, hk, u⟩ => ?_, fun ⟨j, hj, u⟩ => ?_⟩ (mem_nonzeroLocus _ (ψ y)).symm)
+    refine (ReciprocityTheory.ChartRestriction.G.Geo.Tor.mem_nonzeroLocus _ y).trans (Iff.trans ⟨fun ⟨k, hk, u⟩ => ?_, fun ⟨j, hj, u⟩ => ?_⟩ (ReciprocityTheory.ChartRestriction.G.Geo.Tor.mem_nonzeroLocus _ (ψ y)).symm)
     · obtain ⟨j, hj⟩ := exists_chart hP (ψ y)
       have e := hs' i _ (𝟙 _) y j k hj hk
       rw [Category.id_comp, gs_stalkMap ψ y _ hj] at e
