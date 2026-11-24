@@ -277,7 +277,8 @@ theorem const (hc : Crv D cc δ) {A₁ : AddSubgroup (VC D N N')} (k1 : KLat D (
     (hth : th ∈ Th D (tor0 D cc δ) (stdL D N) (stdL D N')) :
     (fun z => th (u.symm z)) = (sgn D i ^ k * ((sN y₁ * sN c) ^ k * ∏ τ, ((‖embT D τ w‖ : ℂ) / embT D τ w) ^ k)) •
       Iop D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') A₁ th := by
-  have k0 : KLat D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') := klat _ (GlobalTheory.VacuumScalar.moves_one D N) (GlobalTheory.VacuumScalar.moves_one D N')
+  have k0 : KLat D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') :=
+    GlobalTheory.RatRow.klat _ (GlobalTheory.VacuumScalar.moves_one D N) (GlobalTheory.VacuumScalar.moves_one D N')
   have hd0 : LinearMap.det (LinearMap.id - (u.symm : VC D N N' →ₗ[ℂ] VC D N N')) ≠ 0 := by
     rw [hd]; exact Finset.prod_ne_zero_iff.2 fun τ _ => pow_ne_zero _ ((map_ne_zero _).2 hw)
   have h2 := (GlobalTheory.ThetaCovIndex.relIndex_one_sub D cc δ hc N N' _ _ k0 k1 u hu hA hd0 hm).2
@@ -317,8 +318,8 @@ theorem col (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
     rw [mul_assoc, ← Matrix.det_mul, mul_sub, h1, mul_one, hd, conj_conj, ← neg_sub γ 1, Matrix.det_neg,
       Fintype.card_fin])
   obtain ⟨y₁, c, a1, a2, a3⟩ := present hy
-  obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').1 L (sd_of_moves hL)
-  have key := const hc (klat _ (GlobalTheory.VacuumScalar.moves_one D N) hL) u
+  obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').1 L (GlobalTheory.VacuumScalar.sd_of_moves hL)
+  have key := const hc (GlobalTheory.RatRow.klat _ (GlobalTheory.VacuumScalar.moves_one D N) hL) u
     (fun z w => by rw [hu, hu, Hf_mulV, mulV_mulV, h2, adj_one, mul_one, mulV_one])
     (fun x => by rw [st3 1 γA 1 γ _ _ (isRat_one D N) hr (GlobalTheory.VacuumScalar.moves_one D N) hL x, adj_one, hu]) hd0
     (by rw [hsub, GlobalTheory.TwoSidedDet.det_mulV]; simp)
@@ -365,8 +366,8 @@ theorem row (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
         ← neg_sub γ 1, Matrix.det_neg, Fintype.card_fin])
   simp only [embT_conj, Complex.norm_conj] at hy2 hy3
   obtain ⟨y₁, c, a1, a2, a3⟩ := present hy
-  obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').2 L (sd_of_moves hL)
-  have key := const hc (klat _ hL (GlobalTheory.VacuumScalar.moves_one D N')) u
+  obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').2 L (GlobalTheory.VacuumScalar.sd_of_moves hL)
+  have key := const hc (GlobalTheory.RatRow.klat _ hL (GlobalTheory.VacuumScalar.moves_one D N')) u
     (hf_unitary _ (by rw [adj_one, Matrix.one_mul]) (by rw [adj_adj, hu']))
     (hmov γA 1 γ 1 L _ hr (isRat_one D N') hL (GlobalTheory.VacuumScalar.moves_one D N')) hdet
     (by rw [hid, GlobalTheory.TwoSidedDet.det_mulV]; simp)
