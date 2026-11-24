@@ -196,7 +196,7 @@ theorem fibOnto_holds : FibOnto := by
     fun p => (mem_cl_emb X _ _).1 (hx (Sum.inr (Sum.inl p)))
   have hD : ∀ a : Fin D.R.rS, ∃ t ∈ imH a, imHom X t =
       fun v => x (Sum.inr (Sum.inr a)) v - -((Hc X u x v a a).re * (embS D (X.pl v) (theta D)).im) :=
-    fun a => (mem_cl_im X u a _).1 (hx (Sum.inr (Sum.inr a)))
+    fun a => (Formalism.L2.SG.Pf.NcReal.JX.NOf.Onto.mem_cl_im X u a _).1 (hx (Sum.inr (Sum.inr a)))
   choose tA htA htA' using hA
   choose xs hxs hxs' using hB
   choose sC hsC hsC' using hC
