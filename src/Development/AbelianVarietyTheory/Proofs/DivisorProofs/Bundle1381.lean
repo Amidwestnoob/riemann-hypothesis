@@ -68,9 +68,9 @@ theorem exists_bridgeD : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   have := hcm.1
   obtain ⟨-, hA, hC⟩ := hfr
   choose IA hIA using fun w =>
-    frame_inv _ (A w) (Jm (P w) (Q w)) (jm_mul_self (P w) (Q w)) (hA w).1 (hA w).2
+    frame_inv _ (A w) (Jm (P w) (Q w)) (_root_.GlobalTheory.VacBridge.jm_mul_self (P w) (Q w)) (hA w).1 (hA w).2
   choose IC hIC using fun w =>
-    frame_inv _ (C w) (Jm (R w) (S w)) (jm_mul_self (R w) (S w)) (hC w).1 (hC w).2
+    frame_inv _ (C w) (Jm (R w) (S w)) (_root_.GlobalTheory.VacBridge.jm_mul_self (R w) (S w)) (hC w).1 (hC w).2
   have hback : ∀ w (X : Matrix α β ℂ), A w * (IA w * X * (IC w)ᵀ) * (C w)ᵀ = X := by
     intro w X
     have hCt : (IC w)ᵀ * (C w)ᵀ = 1 := by rw [← Matrix.transpose_mul, (hIC w).2, Matrix.transpose_one]

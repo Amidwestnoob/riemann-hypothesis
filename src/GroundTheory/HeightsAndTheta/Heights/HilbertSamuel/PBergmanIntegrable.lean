@@ -64,7 +64,7 @@ def core (hV : V ≤ L.sections n) : InnerProductSpace.Core ℂ (SectionInnerPro
   re_inner_nonneg v := by
     show 0 ≤ RCLike.re (∫ x, pairing W n (val V v) (val V v) x ∂dV.μ)
     rw [integral_pairing_self, RCLike.re_to_complex, Complex.ofReal_re]
-    exact integral_nonneg fun x ↦ ptNormSq_nonneg W n _ x
+    exact integral_nonneg fun x ↦ _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.SectionPairing.ptNormSq_nonneg W n _ x
   add_left u v w := by
     show ∫ x, pairing W n (val V (u + v)) (val V w) x ∂dV.μ =
       ∫ x, pairing W n (val V u) (val V w) x ∂dV.μ + ∫ x, pairing W n (val V v) (val V w) x ∂dV.μ
@@ -94,7 +94,7 @@ def core (hV : V ≤ L.sections n) : InnerProductSpace.Core ℂ (SectionInnerPro
       have := isOpenPosMeasure dV
       have hpos := (ptNormSq_continuous W n hs).integral_pos_of_hasCompactSupport_nonneg_nonzero
         (μ := dV.μ) (isCompact_univ.of_isClosed_subset (isClosed_tsupport _) (subset_univ _))
-        (fun y ↦ ptNormSq_nonneg W n _ y) hx
+        (fun y ↦ _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.SectionPairing.ptNormSq_nonneg W n _ y) hx
       rw [sectionL2NormSq] at hl
       linarith
     have hzero : val V v = 0 := by

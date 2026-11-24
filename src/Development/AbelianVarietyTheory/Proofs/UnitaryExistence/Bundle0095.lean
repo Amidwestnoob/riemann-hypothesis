@@ -179,7 +179,7 @@ theorem nonempty_data (E : Type) [Field E] [NumberField E] [IsCMField E] (r : �
       intro x hx y hy
       rw [herm_std, show ((1 : 𝓞 E) : E) = 1 by simp, one_mul]
       exact IsIntegral.sum _ fun a _ =>
-        ((mem_stdLat x).1 hx a).mul (isIntegral_cc ((mem_stdLat y).1 hy a))
+        ((mem_stdLat x).1 hx a).mul (_root_.ReciprocityTheory.ChartRestriction.G.FD.isIntegral_cc ((mem_stdLat y).1 hy a))
     Γ := ⊥
     Γ_stab := by
       intro γ hγ

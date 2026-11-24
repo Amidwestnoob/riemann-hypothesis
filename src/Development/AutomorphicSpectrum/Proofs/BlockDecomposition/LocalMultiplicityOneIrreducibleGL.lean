@@ -252,7 +252,7 @@ theorem local_multiplicity_one_irreducible_GL (hB : Narrow) {L' : (Matrix (Fin n
   have th : ∀ ψ, (μ' ∘ₗ s) (μ ψ) = μ' ψ := fun ψ => by
     have := ker (s (μ ψ) - ψ) (by rw [map_sub, ← LinearMap.comp_apply μ s, hs, LinearMap.id_apply, sub_self])
     rwa [map_sub, sub_eq_zero] at this
-  obtain ⟨c, hc⟩ := dixmier_commutant_scalar _ W ρ hr hi (μ' ∘ₗ s) fun g => LinearMap.ext fun x => by
+  obtain ⟨c, hc⟩ := _root_.PositivityTheory.ThKG.LocalRamifiedLeviRestriction.dixmier_commutant_scalar _ W ρ hr hi (μ' ∘ₗ s) fun g => LinearMap.ext fun x => by
     obtain ⟨ψ, rfl⟩ := LinearMap.range_eq_top.1 top x
     rw [Module.End.mul_apply, Module.End.mul_apply, ← eA, th, th, eA']
   refine ⟨c, fun Φ hΦ => sub_eq_zero.1 (red (L := L' - c • L) (e := e) ⟨fun g Ψ h => ?_, fun g hg Ψ h => ⟨(hL.right g hg Ψ h).1, ?_⟩⟩

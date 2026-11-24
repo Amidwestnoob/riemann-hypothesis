@@ -197,7 +197,7 @@ theorem rank_one_form [Module.Finite ℤ Y] (hY : Module.finrank (𝓞 E) Y = 1)
       have e1 : ((EF (nn (β • v)) v' : ℤ) : ℚ) = EF (nn v') (β • v) := by
         have := (hnn (β • v) v').trans ((hsym _ _).trans (hnn v' (β • v)).symm)
         exact_mod_cast neg_injective this
-      rw [iso, iso, ← trace_cc (-X.ξ0 * herm X.Gm (φ (nn v') : Fin r → E) _), FD.cc_mul, cc_neg, hc0, hcj,
+      rw [iso, iso, ← _root_.GlobalTheory.ArcFlow.trace_cc (-X.ξ0 * herm X.Gm (φ (nn v') : Fin r → E) _), FD.cc_mul, cc_neg, hc0, hcj,
         map_smul nn, hsm, hsm, herm_smul_left, herm_smul_left, ← sub_eq_zero, ← map_sub] at e1
       rw [← neg_eq_zero, ← map_neg, ← e1]
       congr 1; ring

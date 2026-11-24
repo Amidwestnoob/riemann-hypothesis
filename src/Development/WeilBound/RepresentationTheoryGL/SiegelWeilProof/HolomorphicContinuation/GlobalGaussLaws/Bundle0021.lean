@@ -344,7 +344,7 @@ theorem cocycleZ : CocycleZ := by
   refine ⟨hD, hDh, hW, ?_, ?_⟩
   · show ((mR (y * y')).toBlocks₁₁ * Z + (mR (y * y')).toBlocks₁₂) *
         ((mR (y * y')).toBlocks₂₁ * Z + (mR (y * y')).toBlocks₂₂)⁻¹ = actZ y (actZ y' Z)
-    rw [mR_mul, n1, n2, Matrix.mul_inv_rev, Matrix.mul_assoc, ← Matrix.mul_assoc (toBlocks₂₁ (mR y') * Z + toBlocks₂₂ (mR y')),
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.GaussH.mR_mul, n1, n2, Matrix.mul_inv_rev, Matrix.mul_assoc, ← Matrix.mul_assoc (toBlocks₂₁ (mR y') * Z + toBlocks₂₂ (mR y')),
       Matrix.mul_nonsing_inv _ hD, Matrix.one_mul]
     rfl
   · simp only [jF]

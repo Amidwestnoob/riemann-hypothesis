@@ -323,7 +323,7 @@ theorem em_iter (x : O) (a : ZMod d) (k : ℕ) : V.MM (K.em (a + k) x - K.em a x
         (K.em (a + k + 1) x - K.em (a + k) x ^ V.l) + (K.em (a + k) x ^ V.l - (K.em a x ^ V.l ^ k) ^ V.l) := by
       rw [← pow_mul, ← pow_succ, Nat.cast_succ, ← add_assoc]; ring
     rw [e]
-    exact mm_add h1 h2
+    exact _root_.Formalism.L2.FormalSeriesBounds.GmExArith.mm_add h1 h2
 
 theorem em_cong (x : O) (a : ZMod d) : V.MM (K.em a (x ^ V.l ^ d - x)) := by
   have h := em_iter K x a d
