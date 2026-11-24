@@ -36,6 +36,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle008
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsIdemOfAlgebraMap
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice IsDedekindDomain NumberField

@@ -26,6 +26,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle011
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.T2SpaceAfP
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField GlobalTheory.LKTrip IsDedekindDomain
 open scoped TensorProduct Matrix.Norms.L2Operator RestrictedProduct
 
