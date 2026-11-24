@@ -34,7 +34,7 @@ theorem norm_absPow_natCast (k : Type) [Field k] [ValuativeRel k] [TopologicalSp
     [IsNonarchimedeanLocalField k] (t : kˣ) (j : ℕ) :
     ‖((absPow k (j : ℂ) t : ℂˣ) : ℂ)‖ = nabs k t ^ j := by
   rw [val_absPow, Complex.cpow_natCast, norm_pow, Complex.norm_real,
-    Real.norm_of_nonneg (nabs_pos' k t).le]
+    Real.norm_of_nonneg (_root_.GlobalTheory.SmGL.nabs_pos' k t).le]
 
 theorem isOrderedForm_single_rev : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (n : ℕ) (ξ : Fin n → kˣ →* ℂˣ) (hξ : ∀ i, IsUnram (ξ i)),
@@ -56,7 +56,7 @@ theorem isOrderedForm_single_rev : ∀ (k : Type) [Field k] [ValuativeRel k] [To
     rw [he', MonoidHom.mul_apply, Units.val_mul, norm_mul, norm_absPow_natCast] at hle
     have hpos : 0 < ‖((ξ (Fin.rev i) (Zls.unifU k) : ℂˣ) : ℂ)‖ := norm_pos_iff.2 (Units.ne_zero _)
     have hlt : nabs k (Zls.unifU k) ^ m < 1 :=
-      pow_lt_one₀ (nabs_pos' k _).le (nabs_unifU_lt_one k) hm.ne'
+      pow_lt_one₀ (_root_.GlobalTheory.SmGL.nabs_pos' k _).le (nabs_unifU_lt_one k) hm.ne'
     nlinarith
 
 end GlobalTheory.CompanionTheory.OneTermOrder
@@ -285,7 +285,7 @@ theorem deltaHalf_scalar (d : Fin 2 → ℕ) (t : kˣ) :
     simp [modExp, Finset.sum_filter, Fin.sum_univ_two]
   have hm : modulus k (fun a => Fin (d a))
       (fun a => Matrix.GeneralLinearGroup.scalar (Fin (d a)) t) = 1 := by
-    have hp := (nabs_pos' k t).ne'
+    have hp := (_root_.GlobalTheory.SmGL.nabs_pos' k t).ne'
     rw [modulus, Fin.prod_univ_two, h0, h1, nabs_det_scalar, nabs_det_scalar, zpow_natCast, zpow_neg,
       zpow_natCast, ← pow_mul, ← pow_mul, mul_comm (d 0) (d 1)]
     exact mul_inv_cancel₀ (pow_ne_zero _ hp)
@@ -373,7 +373,7 @@ theorem _root_.GlobalTheory.T.last_block_central_scalar_modulus_one : ∀ (k : T
           hab (congrArg Sigma.fst ((stdBlocks d hd).injective e))
         rw [leviEmb_apply_ne k _ _ hab]
         simp [Matrix.GeneralLinearGroup.scalar, this]
-    · have hx : nabs k t ≠ 0 := (nabs_pos' k t).ne'
+    · have hx : nabs k t ≠ 0 := (_root_.GlobalTheory.SmGL.nabs_pos' k t).ne'
       simp only [modulus, nabs_det_zj_last d t j hj]
       have : ∀ a, (nabs k t ^ d a) ^ modExp (fun a => Fin (d a)) a =
           nabs k t ^ ((d a : ℤ) * modExp (fun a => Fin (d a)) a) := fun a => by

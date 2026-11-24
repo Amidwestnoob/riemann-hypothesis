@@ -378,7 +378,7 @@ theorem exists_up {C : Type} (Q : ℕ → C → C → Prop) (h : ∀ k c, ∃ c'
   choose f hf using h
   exact ⟨fun k => Nat.rec (motive := fun _ => C) c0 (fun k c => f k c) k, rfl, fun k => hf k _⟩
 
-theorem twoSided_of_inert : HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Chain.LiftInteg D → Core R F → SchurAll R → ∀ t P, Good R t P → Formalism.DivisionValues.conjPl P = P → FixAll R t P → TwoSided R t P := by
+theorem twoSided_of_inert : HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Chain.LiftInteg D → Core R F → _root_.GlobalTheory.Hk3.SchurAll R → ∀ t P, Good R t P → Formalism.DivisionValues.conjPl P = P → FixAll R t P → TwoSided R t P := by
   intro hHowe D G _ _ Pl0 T A Ks _ _ _ R F hLift hCore hSchur t P hGood hconj hFix
 
   have hY : ∀ k, k + 1 < D.R.m → SphCorr R.ψ (R.ωY t k) P := fun k hk =>

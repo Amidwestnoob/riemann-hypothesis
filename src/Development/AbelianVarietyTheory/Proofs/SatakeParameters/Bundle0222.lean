@@ -72,7 +72,7 @@ theorem heckeTheta_level3_exists_alt : HoweUnram → GlobalTheory.Published.Hari
   have hirr : ∀ χ ∈ A3.A.X, IsAbsIrrChar χ := hOk.ok2.irr
   obtain ⟨hCoreE, hSF, -, -, -, hWc, -⟩ := _root_.GlobalTheory.CoreThree.heckeCharacterisation_places_parts_of_weak R F hC
   have hCore := hCoreE hEx
-  have hSch : SchurAll R.toRealDat :=
+  have hSch : _root_.GlobalTheory.Hk3.SchurAll R.toRealDat :=
     ⟨fun _ _ _ => (GlobalTheory.MultFinite.hcFinite_and_schurMult hHC hCusp D _ _ _ _ _ _ _ _).2,
       (GlobalTheory.MultFinite.hcFinite_and_schurMult hHC hCusp D _ _ _ _ _ _ _ _).2,
       fun _ => (GlobalTheory.MultFinite.hcFinite_and_schurMult hHC hCusp D _ _ _ _ _ _ _ _).2⟩

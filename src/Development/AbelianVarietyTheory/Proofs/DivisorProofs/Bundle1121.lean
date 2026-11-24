@@ -103,7 +103,7 @@ open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab 
 
 namespace GlobalTheory.Hk3
 
-theorem schurAll_of_cuspRapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks), SchurAll R :=
+theorem schurAll_of_cuspRapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks), _root_.GlobalTheory.Hk3.SchurAll R :=
   fun hP _ _ _ _ _ _ _ _ _ _ _ _ =>
     ⟨fun _ _ _ => GlobalTheory.MultFinite.schurMult hP _ _, GlobalTheory.MultFinite.schurMult hP _ _,
       fun _ => GlobalTheory.MultFinite.schurMult hP _ _⟩

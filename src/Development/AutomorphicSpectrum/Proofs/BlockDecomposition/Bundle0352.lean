@@ -465,7 +465,7 @@ theorem zj_last_scalar_modulus (k : Type) [Field k] [ValuativeRel k] [Topologica
         hab (congrArg Sigma.fst ((stdBlocks d hd).injective e))
       rw [leviEmb_apply_ne k _ _ hab]
       simp [Matrix.GeneralLinearGroup.scalar, this]
-  · have hx : nabs k t ≠ 0 := (nabs_pos' k t).ne'
+  · have hx : nabs k t ≠ 0 := (_root_.GlobalTheory.SmGL.nabs_pos' k t).ne'
     simp only [modulus, nabs_det_zj_last d t j hj]
     have : ∀ a, (nabs k t ^ d a) ^ modExp (fun a => Fin (d a)) a =
         nabs k t ^ ((d a : ℤ) * modExp (fun a => Fin (d a)) a) := fun a => by

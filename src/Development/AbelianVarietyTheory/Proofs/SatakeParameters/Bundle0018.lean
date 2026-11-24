@@ -87,8 +87,8 @@ theorem om_trans {r n : ℕ} (θr : GL (Fin r) k →* GL (Fin r) k) (θn : GL (F
     simp only [Matrix.mul_assoc]
   simp only [om, Function.comp_apply, map_one, MonoidHom.one_apply, Units.val_one, inv_one, one_mul,
     Fintype.card_fin]
-  rw [nabs_det_transInv θr hr, nabs_det_transInv θn hn, rpow_inv_half (nabs_pos' k _),
-    rpow_inv_half (nabs_pos' k _), neg_neg, hm]
+  rw [nabs_det_transInv θr hr, nabs_det_transInv θn hn, rpow_inv_half (_root_.GlobalTheory.SmGL.nabs_pos' k _),
+    rpow_inv_half (_root_.GlobalTheory.SmGL.nabs_pos' k _), neg_neg, hm]
   have e1 : trH n r (h⁻¹.val * x.transpose * g.val).transpose = h⁻¹.val * x.transpose * g.val :=
     Matrix.transpose_transpose _
   have e2 : trH n r x = x.transpose := rfl
