@@ -12,6 +12,7 @@ public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.Leib
 @[expose] public section
 
 noncomputable section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier
 open scoped Topology
 namespace GlobalTheory.CompanionTheory.MirLevi

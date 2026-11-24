@@ -22,6 +22,7 @@ public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.Eig
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.BernNarrow
 
 section

@@ -10,6 +10,7 @@ public import GroundTheory.GlobalFields.IdeleGroups.InfiniteProjInfiniteEmbeddin
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.GunrInert
 
 open PositivityTheory.PfSWUS.Loc

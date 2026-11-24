@@ -23,6 +23,7 @@ public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.T
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.SoCoinvNarrow
 
 open PositivityTheory.KCo

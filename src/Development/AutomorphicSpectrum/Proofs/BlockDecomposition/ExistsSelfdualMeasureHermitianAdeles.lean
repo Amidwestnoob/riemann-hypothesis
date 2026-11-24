@@ -10,6 +10,7 @@ public import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerPr
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.SW.HermCoord
 
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField MeasureTheory _root_.Topology
