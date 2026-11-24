@@ -18,6 +18,8 @@ open GlobalTheory.FlipMatch
 noncomputable section
 namespace GlobalTheory.FlipMatch.ZMat
 
+attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
+
 section
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
