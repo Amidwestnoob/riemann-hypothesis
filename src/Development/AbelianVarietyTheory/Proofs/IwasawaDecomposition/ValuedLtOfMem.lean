@@ -23,7 +23,7 @@ theorem ad_ext {a b : AfE F E} (h : ∀ P, adAt F P a = adAt F P b) : a = b :=
   (afIso F E).injective (FiniteAdeleRing.ext _ h)
 
 def idem (F : Type) [Field F] [NumberField F] [Algebra F E] (P : HeightOneSpectrum (𝓞 E)) : AfE F E :=
-  (finAf F E (localIdele E P (atFin P (Units.mk0 2 two_ne_zero))) : AfE F E) - 1
+  (finAf F E (Neutral.B1.localIdele E P (Formalism.L2.Host.atFin P (Units.mk0 2 two_ne_zero))) : AfE F E) - 1
 
 
 open Classical in

@@ -70,7 +70,7 @@ theorem KD_le_ker_of_isChiPsi {χ : Formalism.L2.Host.HChar H.E} (h : Formalism.
 
 
 variable {H} in
-theorem KD_le_ker_of_isMu0 {P : Formalism.L2.Host.PiBar H} {W : Formalism.L2.Host.Omg H} {e : R.Psi → ℚ} {j : ℕ} {χ : Formalism.L2.Host.HChar H.E} (h : IsMu0 P W e j χ) :
+theorem KD_le_ker_of_isMu0 {P : Formalism.L2.Host.PiBar H} {W : Formalism.L2.Host.Omg H} {e : R.Psi → ℚ} {j : ℕ} {χ : Formalism.L2.Host.HChar H.E} (h : Formalism.L2.Host.IsMu0 P W e j χ) :
     KD H ≤ (χ.1.comp (finPartI H.E)).ker :=
   KD_le_ker H h.triv h.tame h.unr
 

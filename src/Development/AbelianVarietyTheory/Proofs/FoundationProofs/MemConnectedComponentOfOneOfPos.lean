@@ -298,30 +298,30 @@ theorem localIdele_mem_rayIdl {𝔪 : Ideal (𝓞 K)} {v : HeightOneSpectrum (�
 
 def unif (v : HeightOneSpectrum (𝓞 K)) : (v.adicCompletion K)ˣ := Formalism.L2.Host.atFin v (Formalism.L2.Host.exists_unif v).choose
 
-theorem isUnifAt_unif (v : HeightOneSpectrum (𝓞 K)) : Formalism.L2.Host.IsUnifAt v (unif v) := (Formalism.L2.Host.exists_unif v).choose_spec
+theorem isUnifAt_unif (v : HeightOneSpectrum (𝓞 K)) : Formalism.L2.Host.IsUnifAt v (Formalism.L2.Host.unif v) := (Formalism.L2.Host.exists_unif v).choose_spec
 
-def unifIdl (𝔪 : Ideal (𝓞 K)) : idealsPrimeTo 𝔪 →* Neutral.B1.Ideles K := extend 𝔪 fun v => Neutral.B1.localIdele K v (unif v)
+def unifIdl (𝔪 : Ideal (𝓞 K)) : idealsPrimeTo 𝔪 →* Neutral.B1.Ideles K := extend 𝔪 fun v => Neutral.B1.localIdele K v (Formalism.L2.Host.unif v)
 
 theorem infPart_unifIdl (𝔪 : Ideal (𝓞 K)) (J : idealsPrimeTo 𝔪) : infPart (unifIdl 𝔪 J) = 1 := by
-  refine (MonoidHom.map_finprod infPart (finite_support_zpow (fun v => Neutral.B1.localIdele K v (unif v)) _)).trans ?_
+  refine (MonoidHom.map_finprod infPart (finite_support_zpow (fun v => Neutral.B1.localIdele K v (Formalism.L2.Host.unif v)) _)).trans ?_
   refine finprod_eq_one_of_forall_eq_one fun v => ?_
-  rw [map_zpow, show infPart (Neutral.B1.localIdele K v (unif v)) = 1 from Units.ext rfl, one_zpow]
+  rw [map_zpow, show infPart (Neutral.B1.localIdele K v (Formalism.L2.Host.unif v)) = 1 from Units.ext rfl, one_zpow]
 
 theorem ev_unifIdl (𝔪 : Ideal (𝓞 K)) (J : idealsPrimeTo 𝔪) (v : HeightOneSpectrum (𝓞 K)) :
     ev v (unifIdl 𝔪 J : AdeleRing (𝓞 K) K) =
-      (unif v : v.adicCompletion K) ^ FractionalIdeal.count K v (J.1 : FractionalIdeal (𝓞 K)⁰ K) := by
-  have := MonoidHom.map_finprod (Units.map (ev v)) (finite_support_zpow (fun v => Neutral.B1.localIdele K v (unif v))
+      (Formalism.L2.Host.unif v : v.adicCompletion K) ^ FractionalIdeal.count K v (J.1 : FractionalIdeal (𝓞 K)⁰ K) := by
+  have := MonoidHom.map_finprod (Units.map (ev v)) (finite_support_zpow (fun v => Neutral.B1.localIdele K v (Formalism.L2.Host.unif v))
     (J.1 : FractionalIdeal (𝓞 K)⁰ K))
   rw [finprod_eq_single (fun w => Units.map (ev v) _) v fun w hw => by
-    rw [map_zpow, show Units.map (ev v) (Neutral.B1.localIdele K w (unif w)) = 1 from Units.ext (ev_local_ne hw.symm _), one_zpow],
-    map_zpow, show Units.map (ev v) (Neutral.B1.localIdele K v (unif v)) = unif v from Units.ext (ev_local_self v _)] at this
+    rw [map_zpow, show Units.map (ev v) (Neutral.B1.localIdele K w (Formalism.L2.Host.unif w)) = 1 from Units.ext (ev_local_ne hw.symm _), one_zpow],
+    map_zpow, show Units.map (ev v) (Neutral.B1.localIdele K v (Formalism.L2.Host.unif v)) = Formalism.L2.Host.unif v from Units.ext (ev_local_self v _)] at this
   rw [← Units.val_zpow_eq_zpow_val, ← this]
   rfl
 
 theorem valued_unifIdl (𝔪 : Ideal (𝓞 K)) (J : idealsPrimeTo 𝔪) (v : HeightOneSpectrum (𝓞 K)) :
     Valued.v (ev v (unifIdl 𝔪 J : AdeleRing (𝓞 K) K)) =
       WithZero.exp (-FractionalIdeal.count K v (J.1 : FractionalIdeal (𝓞 K)⁰ K)) := by
-  have h : Valued.v (unif v : v.adicCompletion K) = WithZero.exp (-1 : ℤ) := isUnifAt_unif v
+  have h : Valued.v (Formalism.L2.Host.unif v : v.adicCompletion K) = WithZero.exp (-1 : ℤ) := isUnifAt_unif v
   rw [ev_unifIdl, map_zpow₀, h, ← WithZero.exp_zsmul]
   simp
 

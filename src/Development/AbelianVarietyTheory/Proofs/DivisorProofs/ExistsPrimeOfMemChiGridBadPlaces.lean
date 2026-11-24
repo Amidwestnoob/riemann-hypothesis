@@ -54,7 +54,7 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     (hS : ∀ w ∈ S, ∀ w', ConjPl c.toRingEquiv w w' → w' ∉ S)
     (hpar : ∀ k : Lˣ, (∃ m : ℕ, 0 < m ∧ (k : L) ^ m = 1) →
       (∏ i, φ i (k : L) ^ e i) * ((∏ w ∈ S, θ w (Formalism.L2.Host.atFin w k) : ℂˣ) : ℂ) = 1) :
-    ∃ χ : HChar L, χ.IsUnitary ∧ χ.TrivOn F ∧ χ.HasInf φ (fun i => 2 * e i) ∧
+    ∃ χ : Formalism.L2.Host.HChar L, χ.IsUnitary ∧ χ.TrivOn F ∧ χ.HasInf φ (fun i => 2 * e i) ∧
       (∀ v, (∀ w ∈ S, v.under (𝓞 F) ≠ w.under (𝓞 F)) → χ.UnrAt v) ∧
       ∀ w ∈ S, ∀ v : HeightOneSpectrum (𝓞 L), v.under (𝓞 F) = w.under (𝓞 F) →
         ∃ σ : (v.adicCompletion L)ˣ → (w.adicCompletion L)ˣ,
@@ -64,16 +64,16 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
   have hcc : ∀ x, c.toRingEquiv (c.toRingEquiv x) = x := conj_conj h
   obtain ⟨C, hC⟩ := exists_isConjI L c.toRingEquiv
   obtain ⟨ψ0, hψ0, hψ0u, hψ0i, -, hψ0N, hψ0d⟩ := exists_modelChar L I φ h.bij e ∅ (fun _ => 1) (by simp)
-  obtain ⟨ψ, hψe⟩ : ∃ ψ : Ideles L →* ℂˣ, ∀ a, ψ a = ψ0 a * ∏ v ∈ S, θ v (Units.map (finEv v) a) :=
+  obtain ⟨ψ, hψe⟩ : ∃ ψ : Neutral.B1.Ideles L →* ℂˣ, ∀ a, ψ a = ψ0 a * ∏ v ∈ S, θ v (Units.map (finEv v) a) :=
     ⟨ψ0 * ∏ v ∈ S, (θ v).comp (Units.map (finEv v)), fun a => by
       rw [MonoidHom.mul_apply, MonoidHom.finsetProd_apply]; rfl⟩
   have hψ : Continuous ψ := by
-    rw [show (ψ : Ideles L → ℂˣ) = _ from funext hψe]
+    rw [show (ψ : Neutral.B1.Ideles L → ℂˣ) = _ from funext hψe]
     exact hψ0.mul (continuous_finsetProd _ fun v hv => (hθc v hv).comp (Continuous.units_map _ (continuous_finEv v)))
   have hψu : ∀ x, ‖((ψ x : ℂˣ) : ℂ)‖ = 1 := fun x => by
     rw [hψe, Units.val_mul, Units.coe_prod, norm_mul, norm_prod, hψ0u, one_mul]
     exact Finset.prod_eq_one fun v hv => hθu v hv _
-  have hψi : ∀ i (k : Lˣ), ((ψ (infIdele L (InfinitePlace.mk (φ i)) (atInf _ k)) : ℂˣ) : ℂ) =
+  have hψi : ∀ i (k : Lˣ), ((ψ (infIdele L (InfinitePlace.mk (φ i)) (Formalism.L2.Host.atInf _ k)) : ℂˣ) : ℂ) =
       (φ i (k : L) / ((‖φ i (k : L)‖ : ℝ) : ℂ)) ^ e i := fun i k => by
     rw [hψe, Finset.prod_eq_one fun v _ => by rw [finEv_inf, map_one], mul_one, hψ0i]
   have hψS : ∀ v ∈ S, ∀ x, ψ (Neutral.B1.localIdele L v x) = θ v x := fun v hv x => by
@@ -84,7 +84,7 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     rw [hψe, hψ0N v (by simp), one_mul]
     refine Finset.prod_eq_one fun w hw => ?_
     rw [finEv_local_ne (fun hh : w = v => hv (hh ▸ hw)), map_one]
-  have h1 : ∀ k : Lˣ, (∃ m : ℕ, 0 < m ∧ (k : L) ^ m = 1) → ψ (diagUnits L k) = 1 := fun k hk => by
+  have h1 : ∀ k : Lˣ, (∃ m : ℕ, 0 < m ∧ (k : L) ^ m = 1) → ψ (Neutral.B1.diagUnits L k) = 1 := fun k hk => by
     apply Units.ext
     rw [hψe, hψ0d, Finset.prod_empty, mul_one, Units.val_mul, Units.val_one, ← hpar k hk]
     congr 1
@@ -101,12 +101,12 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     rw [hχ _ (by rw [hx]; exact div_mem (loc_mem h1) (loc_mem h2)), hx, map_div]
   refine ⟨χ, hχu, ⟨fun v k => ?_, fun w k => ?_⟩, ?_, fun v hv x hx => ?_, fun w hwS v hv => ?_⟩
   · rw [← hfix _ (conj_locF h hC v k)]
-    unfold HChar.resFin locF
+    unfold Formalism.L2.Host.HChar.resFin locF
     rw [MonoidHom.finsetProd_apply, map_prod]
     rfl
-  · unfold HChar.resInf
+  · unfold Formalism.L2.Host.HChar.resInf
     rw [MonoidHom.finsetProd_apply]
-    refine Finset.prod_eq_one fun w' _ => hfix (infIdele L w' (atInf w' (upF F k))) ?_
+    refine Finset.prod_eq_one fun w' _ => hfix (infIdele L w' (Formalism.L2.Host.atInf w' (Formalism.L2.Host.upF F k))) ?_
     rw [conj_inf h hC, conj_upF]
   · refine (GlobalTheory.InfTypeLocal.infType_iff_local L I φ h.bij χ.1 χ.2.1 _).2 fun i k => ?_
     rw [hχ _ (by rw [conj_inf h hC]; exact div_mem (inf_mem _ _) (inf_mem _ _)), conj_inf h hC, ← map_div, ← map_div,
@@ -179,9 +179,9 @@ def oneUnits : Subgroup (v.adicCompletion L)ˣ where
       field_simp; ring, map_div₀, Valuation.map_neg, hx1, div_one]
     exact hx
 
-abbrev unifC : v.adicCompletion L := (Formalism.L2.Host.atFin v (unif v) : (v.adicCompletion L)ˣ)
+abbrev unifC : v.adicCompletion L := (Formalism.L2.Host.atFin v (Formalism.L2.Host.unif v) : (v.adicCompletion L)ˣ)
 
-theorem val_unifC : Valued.v (unifC v) = WithZero.exp (-1 : ℤ) := unif_spec v
+theorem val_unifC : Valued.v (unifC v) = WithZero.exp (-1 : ℤ) := Formalism.L2.Host.unif_spec v
 
 theorem val_div_le {t : v.adicCompletion L} (h : Valued.v t < 1) : Valued.v (t / unifC v) ≤ 1 := by
   rw [map_div₀, val_unifC, div_le_one₀ WithZero.exp_pos]
@@ -285,7 +285,7 @@ theorem exists_wild {p : ℕ} (hp : p.Prime) (hv : (p : 𝓞 L) ∈ v.asIdeal) :
       rw [map_zero, sub_zero, lt_one_iff_le, map_div₀, val_unifC, div_le_iff₀ WithZero.exp_pos, ← WithZero.exp_add]
       exact hx
     rw [MonoidHom.comp_apply, MonoidHom.comp_apply, hf x hx', map_pow, this, one_pow, map_one]
-  · have hk0 : 1 + ((unif v : Lˣ) : L) ≠ 0 := fun h => by
+  · have hk0 : 1 + ((Formalism.L2.Host.unif v : Lˣ) : L) ≠ 0 := fun h => by
       have h1 : 1 + unifC v = 0 := by
         have := congrArg (algebraMap L (v.adicCompletion L)) h
         rwa [map_add, map_one, map_zero] at this
@@ -380,7 +380,7 @@ theorem exists_prime_of_mem_chiGridBadPlaces {D : D7} {v : HeightOneSpectrum (�
   exacts [⟨_, D.host.g_prime 0, h⟩, ⟨_, D.host.g_prime 1, h⟩, ⟨_, D.host.pde_prime, h⟩, ⟨_, D.host.pde'_prime, h⟩]
 
 theorem exists_one (D : D7) (T : Type) (L : LevCh D T) (P : Places L) (h0 : P.v0 ∉ S1 D) (e : D.what₂.Tau → ℤ) :
-    ∃ χ : HChar D.host.E, χ.IsUnitary ∧ χ.TrivOn D.host.F ∧ χ.HasInf (embTau D) (fun τ => 2 * e τ) ∧
+    ∃ χ : Formalism.L2.Host.HChar D.host.E, χ.IsUnitary ∧ χ.TrivOn D.host.F ∧ χ.HasInf (embTau D) (fun τ => 2 * e τ) ∧
       (∀ Q : HeightOneSpectrum (𝓞 D.host.E), Q.under (𝓞 D.host.F) ∉ P.S0 → χ.UnrAt Q) ∧
       (∀ Q : HeightOneSpectrum (𝓞 D.host.E), Q.under (𝓞 D.host.F) ∈ S1 D → (χ.LevelLe Q 2 ∧ ¬ χ.LevelLe Q 1) ∧
         ∀ x : (Q.adicCompletion D.host.E)ˣ, x ^ (Nat.card (𝓞 D.host.E ⧸ Q.asIdeal) - 1) = 1 → χ.loc Q x = 1) ∧

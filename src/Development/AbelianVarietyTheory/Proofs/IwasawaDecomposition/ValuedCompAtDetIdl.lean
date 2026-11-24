@@ -18,8 +18,8 @@ section General
 variable {E : Type} [Field E] [NumberField E]
 
 theorem valuation_eq_exp (w : HeightOneSpectrum (𝓞 E)) (k : Eˣ) :
-    w.valuation E (k : E) = WithZero.exp (-ordF w k) := by
-  unfold ordF
+    w.valuation E (k : E) = WithZero.exp (-Formalism.L2.Host.ordF w k) := by
+  unfold Formalism.L2.Host.ordF
   rw [neg_neg, WithZero.exp_log (by simp)]
 
 variable [StarRing E] {n : ℕ} {ST SG Q : Finset (HeightOneSpectrum (𝓞 E))}
@@ -112,7 +112,7 @@ theorem toDtQ_detPt : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (n : �
   rw [toDtQ_mk]
   symm
   rw [QuotientGroup.eq, inv_mul_eq_div]
-  have h0 : ∀ w (a : Ideles H.E), compAt w a ≠ 0 := fun w a => ((Group.isUnit a).map (compAt w)).ne_zero
+  have h0 : ∀ w (a : Neutral.B1.Ideles H.E), compAt w a ≠ 0 := fun w a => ((Group.isUnit a).map (compAt w)).ne_zero
   refine mem_KDq_of_conj hL' _ (fun w => ?_) fun P hP => ?_
   · rw [map_div, map_div, map_div₀, map_div₀]
     unfold ptIdl
