@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AutPointLatti
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open GlobalTheory.Count Formalism.MainNotions.S Formalism.HN Formalism.REAL Matrix NumberField MeasureTheory Finset
 
 noncomputable section
