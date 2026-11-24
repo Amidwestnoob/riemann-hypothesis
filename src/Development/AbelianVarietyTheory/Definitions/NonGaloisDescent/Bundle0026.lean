@@ -105,7 +105,7 @@ structure LawsT (a : Weil h →* (w.adicCompletion E)ˣ) (ha : IsLocalArtin h a)
   nu : ∀ x (s : ℝ), rc (x.nu s) = (rc x).lpTw s
   absCentral : ∀ (x : IrrGL (k := w.adicCompletion E)) ω, HasCentralChar x.rep ω →
     ∀ σ, ‖((rc x).eig σ).prod‖ = ‖(ω (a σ) : ℂ)‖
-  GlobalTheory.SmGL.twist : ∀ x χ hχ, Good x → rc (x.tw χ hχ) = (rc x).lpChar (rc (.ofChar χ hχ))
+  twist : ∀ x χ hχ, Good x → rc (x.tw χ hχ) = (rc x).lpChar (rc (.ofChar χ hχ))
   central : ∀ (x : IrrGL (k := w.adicCompletion E)) ω, Good x → HasCentralChar x.rep ω →
     ∀ σ, ((rc x).eig σ).prod = (ω (a σ) : ℂ)
   dual : ∀ (n : ℕ) (π π' : IrrRep (GL (Fin n) (w.adicCompletion E))), Good (cls π) →

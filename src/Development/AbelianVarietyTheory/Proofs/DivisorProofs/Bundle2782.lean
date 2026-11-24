@@ -289,7 +289,7 @@ theorem level_extends : ∀ {R₁ : Type} [CommRing R₁] (P₁ : PolAV (Sp R₁
   have hpb' : IsGrpPullback QA P.A j φ' := hψ.cancel (by rw [e₁, ← hc]; exact hpb) e₂
   have hQL' : LBIso QL (P.L.pull φ') := by
     refine LBIso.trans QisLB (pull_isLB P₁.isLB _) (pull_isLB P.isLB _) hQL ?_
-    have := GlobalTheory.ZM.lbIso_pull_comp P₁.isLB ψ φ'
+    have := lbIso_pull_comp P₁.isLB ψ φ'
     rw [e₁] at this
     exact this
   have hP : IsProper P.A.hom := P.isAb.proper
