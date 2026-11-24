@@ -223,7 +223,12 @@ theorem bessel (hP0 : P0) (hP1 : P1) (hψ : StdPsi ψ) {m : ℕ} (hm1 : 1 ≤ m)
 
 theorem sf_B (m : ℕ) : SFinite (rhoB (E := E) (k := k) m) := by unfold rhoB; infer_instance
 
-theorem sf_A (m : ℕ) [Countable (RowT E k m)] : SFinite (rhoA (E := E) (k := k) m) := by unfold rhoA; infer_instance
+theorem sf_A (m : ℕ) [Countable (RowT E k m)] : SFinite (rhoA (E := E) (k := k) m) := by
+  haveI : ∀ ξ : RowT E k m, SFinite (Measure.dirac (ratGL E k (gam ξ))) := fun ξ => by
+    have : IsFiniteMeasure (Measure.dirac (ratGL E k (gam ξ))) := isFiniteMeasure_dirac
+    have : SigmaFinite (Measure.dirac (ratGL E k (gam ξ))) := IsFiniteMeasure.toSigmaFinite _
+    exact MeasureTheory.instSFiniteOfSigmaFinite
+  exact MeasureTheory.instSFiniteSumOfCountable _
 
 end WeightCoefficients
 
