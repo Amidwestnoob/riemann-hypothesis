@@ -438,7 +438,7 @@ theorem mem_latAt_iff {v : Pl (F := F)} {w : HeightOneSpectrum (𝓞 E)} (hw : F
       | mem x hx =>
         obtain ⟨y, hy, rfl⟩ := hx
         intro o
-        obtain ⟨t, ht⟩ := toCompl_surjective h (o : w.adicCompletion E)
+        obtain ⟨t, ht⟩ := GlobalTheory.LFun.InertChart.toCompl_surjective h (o : w.adicCompletion E)
         have htI : t ∈ intLoc F E v := (mem_intLoc_iff hw h t).2 (ht ▸ o.2)
         have e1 : f (o • fun i => algebraMap E (w.adicCompletion E) (y i)) =
             fun i => liftT (E := E) v (t * ((1 : Fv F v) ⊗ₜ[F] y i)) := by
