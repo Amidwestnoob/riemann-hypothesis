@@ -37,7 +37,7 @@ theorem cd_detu1 : ContDiff ℂ ∞ (fun x : M2 n => (u1 x).det) := by
 
 theorem curve_hasDerivAt (X x : M2 n) : HasDerivAt (fun s : ℝ => x * cE X s) (x * X) 0 := by
   have h := (mulL x).hasFDerivAt.comp_hasDerivAt (0 : ℝ) (cE_hasDerivAt0 X)
-  simp only [Function.comp_def, mulL_apply] at h
+  simp only [Function.comp_def, PositivityTheory.Rg.Sw.LVs.II.mulL_apply] at h
   exact h
 
 theorem curve_deriv (Ψ : M2 n → ℂ) (hΨ : ContDiff ℂ ∞ Ψ) (X x : M2 n) :
