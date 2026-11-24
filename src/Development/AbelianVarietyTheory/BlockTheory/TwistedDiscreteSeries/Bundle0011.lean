@@ -273,7 +273,7 @@ theorem liftWeight_complexPoint_eq_twist (R : RealDat D A Ks) (F : Face D A) (b 
   show cj (twAt D.what₂.embLL A.v0) (A.v0.embedding (y k)) •
     ((((Real.sqrt (RealDat.nP F b) : ℝ) : ℂ)) • ((((Real.sqrt (RealDat.nP F b))⁻¹ : ℝ) : ℂ) •
       (R.FW j).j (sg0 D A) (R.bL F b j k))) = _
-  rw [smul_smul (((Real.sqrt (RealDat.nP F b) : ℝ) : ℂ)), hn, one_smul, R.emb0, cj_cj]
+  rw [smul_smul (((Real.sqrt (RealDat.nP F b) : ℝ) : ℂ)), hn, one_smul, R.emb0, Formalism.IndefR.Links.cj_cj]
   congr 1
   exact (DFunLike.congr_fun hs (y k)).symm
 
@@ -281,7 +281,7 @@ theorem twMap_smul {E E' : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E
     (s : Bool) (c : ℂ) (f : E →ₗ[ℂ] E') : Tw.map s (c • f) = cj s c • Tw.map s f := by
   ext u
   show c • f (Tw.out u) = cj s (cj s c) • f (Tw.out u)
-  rw [cj_cj]
+  rw [Formalism.IndefR.Links.cj_cj]
 
 theorem cxPhase_eq (R : RealDat D A Ks) (F : Face D A) (ph : Fin D.R.m → ℂ) :
     cxPhase R F ph = withLift (R.toCx F) fun j t => cj (twAt D.what₂.embLL A.v0) (ph j) • (R.toCx F).θ' j t :=

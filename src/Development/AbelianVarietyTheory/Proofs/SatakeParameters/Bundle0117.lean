@@ -204,7 +204,7 @@ theorem GlobalTheory.TwEig.pairComm_eigSum_sub_iSup : ∀ (s : Bool) {E I : Type
       fun x => funext fun i => cj_cj s (x i), fun x => funext fun i => cj_cj s (x i)⟩
     rw [← e.iSup_comp]
     refine iSup_congr fun x => ?_
-    simp [e, cj_cj]
+    simp [e, Formalism.IndefR.Links.cj_cj]
     exact (sub_iSup' (E := E) s (fun _ : (Q fun i => cj s (x i)) => Formalism.L2.Col.eigAt h x)).symm
 end
 

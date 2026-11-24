@@ -127,7 +127,7 @@ theorem wC_cpt (j : Fin D.R.m) (v : InfinitePlace D.what₂.LL) (c : Fin ((R.toC
   set_option synthInstance.maxHeartbeats 100000 in
     rw [e, Submodule.coe_sum, map_sum, Finset.smul_sum]
   refine Finset.sum_congr rfl fun k _ => ?_
-  rw [Submodule.coe_smul, emb_eq D.what₂.embLL v, cj_cj, LinearMap.map_smulₛₗ, smul_comm]
+  rw [Submodule.coe_smul, emb_eq D.what₂.embLL v, Formalism.IndefR.Links.cj_cj, LinearMap.map_smulₛₗ, smul_comm]
   rfl
 
 theorem sqrt_ne : ((Real.sqrt (RealDat.nP F.lv2 b) : ℝ) : ℂ) ≠ 0 := by
@@ -157,7 +157,7 @@ theorem inner_wC (j : Fin D.R.m) {v : InfinitePlace D.what₂.LL} (hv : v ≠ A3
     Real.mul_self_sqrt (RealDat.nP_pos (F := F.lv2) b).le, hs]
   generalize twAt D.what₂.embLL v = s at ht
   subst ht
-  simp only [cj, RealDat.nP, Bool.false_eq_true, if_false]
+  simp only [Formalism.IndefR.Links.cj, RealDat.nP, Bool.false_eq_true, if_false]
   simp only [cond_false, RingHom.id_apply, Complex.ofReal_inv, Complex.ofReal_natCast]
 
 theorem tC_cpt (cr : Crd A3.fam3.amb3 F.fc) (j : Fin D.R.m) (t : T0)
