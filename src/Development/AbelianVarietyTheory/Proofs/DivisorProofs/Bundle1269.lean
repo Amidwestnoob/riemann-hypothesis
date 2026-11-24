@@ -120,6 +120,8 @@ theorem endo_descent (B : Over (Sp k₀)) [GrpObj B] (hB : IsAbelianScheme B)
     have h₂ := isGrpPullback_pullback ((Over.pullback (spMap (algebraMap k₀ K))).obj B) qΩ
     have h₁₂ := h₂.comp h₁
     let u := pushHom h₁₂ (𝟙_ _) y
+    let : OfNat (Over.mk ((𝟙_ (Over (Sp Ω))).hom ≫ qΩ ≫ spMap (algebraMap k₀ K)) ⟶ B) 1 :=
+      ⟨toUnit _ ≫ η⟩
     have hu : u ^ (l ^ a) = 1 := by rw [← map_pow, hy, map_one]
     obtain ⟨y₀, hy₀, huy⟩ := torsion_descent (K := Ω) B hB (l ^ a)
       (by rw [Nat.cast_pow]; exact pow_ne_zero _ hlk)
