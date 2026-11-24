@@ -20,9 +20,9 @@ def HeckeLAdicParameterAboveAlt : Prop :=
     (art : Ideles E →* Gab E Ω), IsGlobalArtin art → ∀ (χ : HChar E) (n : (E →+* ℂ) → ℤ) (μ : G E Ω →* (Qbar l)ˣ),
     IsAlgPos χ n → Continuous μ → IsLAdicOf art ι χ n μ →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O)
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O)
       (hj : GlobalTheory.Pst.Induces Bw) (ξ : (w.adicCompletion E)ˣ →* ℂˣ) (hξ : GlobalTheory.NPin.IsComp χ w ξ),
-      ∀ rc, _root_.UpperTheory.Zero.LLC.IsRecT h rc → wdAt P ι Bw h hj ((rk1 μ).comp (Dec (F := E) A).subtype) =
+      ∀ rc, _root_.UpperTheory.Zero.LLC.IsRecT h rc → wdAt P ι Bw h hj ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) =
         rc (cls (GlobalTheory.SplitRead.Irr.ofDet 1 ξ hξ.1).toIrrRep)
 end GlobalTheory.Published
 end
