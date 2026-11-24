@@ -31,7 +31,9 @@ def egA (a : MonoidAlgebra ℂ (G0g D.nd)) (x : X.B.I.Gf) : ℂ :=
     a.coeff (Classical.choose h.2) / ((X.B.μf (X.B.I.Kg X.B.g)).toReal : ℂ)
   else 0
 
-theorem goodIdempotent_eq : egA X D.ntypes.e0 = eg X := rfl
+theorem goodIdempotent_eq : egA X D.ntypes.e0 = eg X := by
+  funext x
+  by_cases h : x ∈ X.B.I.Kset ∧ ∃ γ, GoodAt X x γ <;> simp [egA, eg, h]
 
 def tupOf (a : ∀ kv : (Σ k : Fin 2, D.nd.PlG k), Fin D.R.r → ZMod (D.host.g kv.1)) : Tup2 D :=
   haveI : ∀ k, Fact (D.host.g k).Prime := fun k => ⟨D.host.g_prime k⟩
