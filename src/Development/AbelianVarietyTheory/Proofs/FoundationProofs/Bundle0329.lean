@@ -253,7 +253,7 @@ theorem bd_applyAt0 (D : D7) {a d n : ℕ} {B : ℝ} (hB : 0 ≤ B) (G : VC D a 
     rfl
   have hne : (α.prod fun _ n => (n.factorial : ℂ)) ≠ 0 :=
     Finset.prod_ne_zero_iff.2 fun i _ => Nat.cast_ne_zero.2 (Nat.factorial_ne_zero _)
-  rw [taylor, mul_assoc, mul_div_cancel₀ _ hne, MvPolynomial.coeff_map]
+  rw [Formalism.MainNotions.TaylorLogMetric.taylor, mul_assoc, mul_div_cancel₀ _ hne, MvPolynomial.coeff_map]
   have := (Bd.intCast (lam := lam) (AddMonoidAlgebra.coeff P α)).mul (h' _ hdeg
     (fun i => α.toMultiset.toList.get ⟨i, by simpa using i.2⟩))
   rw [one_mul] at this
