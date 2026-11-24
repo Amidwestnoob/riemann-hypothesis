@@ -32,7 +32,7 @@ section Glob
 variable {E : Type} [Field E] [NumberField E]
 
 def id1 (E : Type) [Field E] [NumberField E] (r : ℕ) : Fin (r + 1 + r) → FractionalIdeal (𝓞 E)⁰ E :=
-  Fin.append (fun b : Fin (r + 1) => dInv E (r - (b : ℕ))) fun b : Fin r => (dInv E (r - (b : ℕ)))⁻¹
+  Fin.append (fun b : Fin (r + 1) => GlobalTheory.SgGlob.dInv E (r - (b : ℕ))) fun b : Fin r => (GlobalTheory.SgGlob.dInv E (r - (b : ℕ)))⁻¹
 
 def Adapted {k r : ℕ} (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)
     (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E)

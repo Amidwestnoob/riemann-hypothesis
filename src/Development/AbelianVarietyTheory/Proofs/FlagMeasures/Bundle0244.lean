@@ -21,7 +21,7 @@ open scoped TensorProduct ENNReal nonZeroDivisors
 
 namespace GlobalTheory.SnMass.VolN
 
-theorem exists_lift_antidiag : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (a : Fin r) (l : InfinitePlace E → ℝ), l ∈ skewLat (σ : E →+* E) (dInv E (2 * (r - a.val))) (s a ^ 2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inr (.inr (.inr a))) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inr (.inr (.inr a))) → degB r β ≤ degB r (.inr (.inr (.inr a))) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
+theorem exists_lift_antidiag : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (a : Fin r) (l : InfinitePlace E → ℝ), l ∈ skewLat (σ : E →+* E) (GlobalTheory.SgGlob.dInv E (2 * (r - a.val))) (s a ^ 2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inr (.inr (.inr a))) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inr (.inr (.inr a))) → degB r β ≤ degB r (.inr (.inr (.inr a))) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
   intro F E _ _ _ _ _ σ k r J Λ P f T A s hV a l hl
   obtain ⟨c, hc, hσ, hlw⟩ := hl
   have hσ' : σ c = -c := hσ
@@ -135,7 +135,7 @@ lemma form_cols {E : Type} [Field E] (σ : E →+* E) {n m : ℕ} (J : Matrix (F
     Matrix.map_apply, Finset.mul_sum, Finset.sum_mul, mul_assoc]
   exact Finset.sum_comm
 
-theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (p : UTr r) (l : InfinitePlace E → ℂ), l ∈ ideLat (dInv E (r - p.1.1.val) * dInv E (r - p.1.2.val)) (s p.1.1 * s p.1.2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inr (.inr (.inl p))) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inr (.inr (.inl p))) → degB r β ≤ degB r (.inr (.inr (.inl p))) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
+theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (p : UTr r) (l : InfinitePlace E → ℂ), l ∈ ideLat (GlobalTheory.SgGlob.dInv E (r - p.1.1.val) * GlobalTheory.SgGlob.dInv E (r - p.1.2.val)) (s p.1.1 * s p.1.2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inr (.inr (.inl p))) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inr (.inr (.inl p))) → degB r β ≤ degB r (.inr (.inr (.inl p))) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
   intro F E _ _ _ _ _ σ k r J Λ P f T A s hV p l hl
   obtain ⟨⟨a, b⟩, hab⟩ := p
   have hab' : a.val < b.val := hab
@@ -151,7 +151,7 @@ theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     intro x z
     rw [form_cols, hFr.2]
     simp [TF, Matrix.diagonal_apply, Fin.castSucc_ne_last]
-  have hd : ∀ j, dInv E j ≠ 0 := fun j =>
+  have hd : ∀ j, GlobalTheory.SgGlob.dInv E j ≠ 0 := fun j =>
     pow_ne_zero _ (inv_ne_zero (FractionalIdeal.coeIdeal_ne_zero.2 differentIdeal_ne_bot))
   have hG : rowE (σ : E →+* E) J (fun i => P i b.castSucc) y 0 ∈ GN (σ : E →+* E) J Λ P := by
     refine _root_.GlobalTheory.SnMass.VolN.RowIso.rowE_mem_GN F E σ k r J Λ P f T A s hV b y 0 ?_ ?_ ?_ ?_
@@ -162,9 +162,9 @@ theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
       rw [form_smul_left, form_smul_right, hiso]
       simp
     · intro c' hc'
-      have hmem : c' * c ∈ dInv E (r - a.val) := by
+      have hmem : c' * c ∈ GlobalTheory.SgGlob.dInv E (r - a.val) := by
         have := FractionalIdeal.mul_mem_mul hc' hc
-        rwa [mul_comm (dInv E (r - a.val)), ← mul_assoc, inv_mul_cancel₀ (hd _), one_mul] at this
+        rwa [mul_comm (GlobalTheory.SgGlob.dInv E (r - a.val)), ← mul_assoc, inv_mul_cancel₀ (hd _), one_mul] at this
       have hy : c' • y = (c' * c) • e := by
         simp only [y, smul_smul]
       rw [hy]
@@ -174,7 +174,7 @@ theorem lift_corner : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
       · simpa [id1, Fin.append_left] using hmem
       · ext i
         simp [sideM, Fin.append_left, e]
-    · exact (dInv E _ : Submodule (𝓞 E) E).zero_mem
+    · exact (GlobalTheory.SgGlob.dInv E _ : Submodule (𝓞 E) E).zero_mem
   have hAy : ∀ w : InfinitePlace E, (A w).mulVec (fun l => w.embedding (y l)) =
       (w.embedding c * (s a : ℂ)) • bvec (eI k r a) := by
     intro w
@@ -289,7 +289,7 @@ end GlobalTheory.SnMass.VolN.LiftEntry
 
 namespace GlobalTheory.SnMass.VolN.LiftEntry
 
-theorem lift_entry : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (p : UTr r) (l : InfinitePlace E → ℂ), l ∈ ideLat (dInv E (r - p.1.1.val) * (dInv E (r - p.1.2.val))⁻¹) (s p.1.1 / s p.1.2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inl p) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inl p) → degB r β ≤ degB r (.inl p) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
+theorem lift_entry : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ (p : UTr r) (l : InfinitePlace E → ℂ), l ∈ ideLat (GlobalTheory.SgGlob.dInv E (r - p.1.1.val) * (GlobalTheory.SgGlob.dInv E (r - p.1.2.val))⁻¹) (s p.1.1 / s p.1.2) → ∃ γ ∈ GN (σ : E →+* E) J Λ P, (∀ w, cM k r (.inl p) (Matrix.of.symm (gM A γ w)) = l w) ∧ ∀ β : Bk r, β ≠ (.inl p) → degB r β ≤ degB r (.inl p) → ∀ w, cM k r β (Matrix.of.symm (gM A γ w)) = 0 := by
   intro F E _ _ _ _ _ σ k r J Λ P f T A s hV p l hl
   have hV' := hV
   obtain ⟨hcm, -, -, -, -, hdu, htup, -, hs, had⟩ := hV'
@@ -310,10 +310,10 @@ theorem lift_entry : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
       simp [this]
     · rw [hy, form_smul_left, form_smul_right, form_col, hdu.2]
       simp
-    · have hsu : (σ : E →+* E) u ∈ dInv E (r - a.val) * (dInv E (r - b.val))⁻¹ :=
+    · have hsu : (σ : E →+* E) u ∈ GlobalTheory.SgGlob.dInv E (r - a.val) * (GlobalTheory.SgGlob.dInv E (r - b.val))⁻¹ :=
         (GlobalTheory.SnMass.FrameDual.Stab.mul (GlobalTheory.SnMass.FrameDual.stab_dInv hi _)
           ((GlobalTheory.SnMass.FrameDual.stab_dInv hi _).inv hi (GlobalTheory.SnMass.FrameDual.dInv_ne_zero _))) u hu
-      have hm : c * σ u ∈ (dInv E (r - b.val))⁻¹ := by
+      have hm : c * σ u ∈ (GlobalTheory.SgGlob.dInv E (r - b.val))⁻¹ := by
         have := FractionalIdeal.mul_mem_mul hc hsu
         rwa [← mul_assoc, inv_mul_cancel₀ (GlobalTheory.SnMass.FrameDual.dInv_ne_zero _), one_mul] at this
       have e : c • y = (-(c * σ u)) • fun i => sideM P f i (Fin.natAdd (r + 1) b) := by
@@ -476,7 +476,7 @@ section
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgAlg GlobalTheory.SgGlob GlobalTheory.SnMass GlobalTheory.SnMass.VolN
 open scoped TensorProduct ENNReal nonZeroDivisors
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.integralUnipotent_antidiagonal_mem_skewLattice : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ γ ∈ GN (σ : E →+* E) J Λ P, ∀ a : Fin r, (∀ w, (gM A γ w (eI k r a) (esI k r a)).re = 0) → (fun w => (gM A γ w (eI k r a) (esI k r a)).im) ∈ skewLat (σ : E →+* E) (dInv E (2 * (r - a.val))) (s a ^ 2) := by
+theorem _root_.GlobalTheory.T.integralUnipotent_antidiagonal_mem_skewLattice : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ γ ∈ GN (σ : E →+* E) J Λ P, ∀ a : Fin r, (∀ w, (gM A γ w (eI k r a) (esI k r a)).re = 0) → (fun w => (gM A γ w (eI k r a) (esI k r a)).im) ∈ skewLat (σ : E →+* E) (GlobalTheory.SgGlob.dInv E (2 * (r - a.val))) (s a ^ 2) := by
   first | exact @GlobalTheory.SnMass.VolN.IntG.antidiag_mem_skewLat | exact GlobalTheory.SnMass.VolN.IntG.antidiag_mem_skewLat | (intros; apply GlobalTheory.SnMass.VolN.IntG.antidiag_mem_skewLat <;> assumption)
 end
 
