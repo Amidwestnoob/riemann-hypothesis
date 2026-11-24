@@ -273,7 +273,7 @@ theorem exists_adapted {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw
   exact this
 
 theorem exists_frBor {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ}
-    (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : IsUnf U) (hσ : GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
+    (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : Formalism.L2.PjFree.IsUnf U) (hσ : Formalism.L2.PjFree.GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
     (h : (U.un k x).x = y.x) :
     ∃ b : Frame (U.X k).Ψ r, (∀ τ, (mat b τ).det ≠ 0) ∧
       (∀ τ (a c : Fin r), (c : ℕ) < (U.X k).p0 → ¬ (a : ℕ) < (U.X k).p0 → b τ a c = 0) ∧
