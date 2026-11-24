@@ -229,7 +229,7 @@ theorem card_eq_of_lieMult [Smooth G.hom] {K : Type} [Field K] (f : R →+* K) {
     rw [this]; rfl
   have mem : ∀ w, w ∈ eigenSub ρ' τ ↔ ∀ x, w ᵥ* (M x).map f = τ x • w := fun w => by
     simp only [mem_eigenSub, h₂]
-  rw [← finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
+  rw [← GlobalTheory.LieEigen.finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
   let u' : Fin n → eigenSub ρ' τ := fun k => ⟨u k, (mem _).2 (hu k)⟩
   have hb : Function.Bijective (Fintype.linearCombination K u') :=
     (Function.bijective_iff_existsUnique _).2 fun w => (existsUnique_congr fun cf => by
