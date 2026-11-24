@@ -14,6 +14,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasureImageDoubleCoset
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory GlobalTheory.LocGL
 
