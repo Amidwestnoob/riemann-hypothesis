@@ -5,6 +5,8 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle030
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 noncomputable section
 
 namespace GlobalTheory.Eis.Conv

@@ -5,6 +5,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAux
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 open MeasureTheory Set Filter GlobalTheory.AutomorphicL2Unitary GlobalTheory.RestrMeas
 open scoped ENNReal NNReal Topology Pointwise
 
