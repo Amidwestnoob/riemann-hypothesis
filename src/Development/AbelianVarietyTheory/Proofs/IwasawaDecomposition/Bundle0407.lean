@@ -163,7 +163,7 @@ theorem exists_const {σ : c.F →+* ℂ} (U : Formalism.L2.PjFree.Unf Xo c σ r
     (fun x' hx' hu' => by
       obtain ⟨A', ϑ', hA', hϑ', -, -, hprod'⟩ := hpt x' hx' hu'
       exact hval x' hx' A' ϑ' _ hA' hϑ' hprod') x.1 x.2
-  rw [_root_.GlobalTheory.SW.hval x.1 x.2 A ϑ κ' hA hϑ hprod, map_one, map_one] at h4
+  rw [hval x.1 x.2 A ϑ κ' hA hϑ hprod, map_one, map_one] at h4
   rw [← mul_right_cancel₀ h3 h4]
   exact hprod
 
