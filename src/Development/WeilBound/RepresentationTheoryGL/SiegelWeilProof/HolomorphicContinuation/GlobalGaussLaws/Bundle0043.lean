@@ -413,14 +413,14 @@ theorem lIkvac : LIkvac := by
     rw [annS_tens hC.hθ hC.hfr hM l]
     simp
   have hann2 := annS_stable D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs τ _ hann1 (ι k)
-    (iota_mem_K hC.hθ hC.hι k hk)
+    (PositivityTheory.Rg.Sw.Glob.RhoH.iota_mem_K hC.hθ hC.hι k hk)
   rw [hL k _ hΨ0m 1] at hann2
 
   have hΦ : (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) 1).1 ∈ fockA θ V n l s := by
     rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem 1).1]
     exact (hmem 1).2
   have hst := fock_stable D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs _ hΦ (ι k)
-    (iota_mem_K hC.hθ hC.hι k hk)
+    (PositivityTheory.Rg.Sw.Glob.RhoH.iota_mem_K hC.hθ hC.hι k hk)
   rw [hL k _ hΨ0m 1] at hst
   obtain ⟨Q, hQ⟩ := tens_slice hC.hθ hC.hfr l _ hst
   rw [hQ] at hann2
