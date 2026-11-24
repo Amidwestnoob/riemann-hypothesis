@@ -234,8 +234,7 @@ theorem sig_eq (b : X.B.I.E) : X.ιE (X.B.I.cm.sig b) = star (X.ιE b) := by
   rw [h1, X.ιE_conj, star_eq]
 
 theorem hE_crd (x y : (VS D).V) :
-    X.ιE (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J
-      (crdOf X.B.I X.ιE X.bas x) (crdOf X.B.I X.ιE X.bas y)) = (VS D).hT x y := by
+    X.ιE (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas x) (crdOf X.B.I X.ιE X.bas y)) = (VS D).hT x y := by
   unfold Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE Formalism.UG.hform crdOf
   set_option synthInstance.maxHeartbeats 100000 in
     simp only [map_sum, map_mul, AlgHom.coe_toRingHom, RingHom.coe_coe]

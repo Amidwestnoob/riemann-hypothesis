@@ -284,7 +284,7 @@ namespace GlobalTheory.ValNorm
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ} {r : ℕ}
 
-theorem exists_idx (hσ : GoodEmb c σ) (X : Data E r) (hr : r = Dw.p + Dw.q) (hp0 : X.p0 = Dw.q)
+theorem exists_idx (hσ : Formalism.L2.PjFree.GoodEmb c σ) (X : Data E r) (hr : r = Dw.p + Dw.q) (hp0 : X.p0 = Dw.q)
     (hty : ∀ τ : E →+* ℂ, τ ∈ X.Ψ ↔ τ (H.rt : E) = H.rt0) {g : ℕ}
     (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) :
     ∃ idx : Fin g ≃ X.Ψ × Fin r, (∀ j,
@@ -323,7 +323,7 @@ theorem exists_idx (hσ : GoodEmb c σ) (X : Data E r) (hr : r = Dw.p + Dw.q) (h
       rw [dite_eq_right a, dite_eq_left (show conjEmb (Formalism.L2.PjFree.relab c σ (e j).1) ∈ X.Ψ from hτ), dite_eq_left hn]
       rfl
 
-theorem exists_move (hσ : GoodEmb c σ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (k : U.Comp) (hr : r = Dw.p + Dw.q)
+theorem exists_move (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (k : U.Comp) (hr : r = Dw.p + Dw.q)
     (hp0 : (U.X k).p0 = Dw.q) (hty : ∀ τ : E →+* ℂ, τ ∈ (U.X k).Ψ ↔ τ (H.rt : E) = H.rt0) {g : ℕ}
     (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (x b : Frame (U.X k).Ψ r) (hb : b ∈ Bor (U.X k).Ψ r) :
     ∃ h₀ : Matrix (Fin g) (Fin g) ℂ,
@@ -381,7 +381,7 @@ theorem exists_move (hσ : GoodEmb c σ) (U : Formalism.L2.PjFree.Unf Xo c σ r)
       push_cast
       ring
 
-theorem exists_frBor (hσ : GoodEmb c σ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (hr : r = Dw.p + Dw.q)
+theorem exists_frBor (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (hr : r = Dw.p + Dw.q)
     (hp0 : (U.X k).p0 = Dw.q) (hty : ∀ τ : E →+* ℂ, τ ∈ (U.X k).Ψ ↔ τ (H.rt : E) = H.rt0)
     (x : (U.X k).dom) (b : Frame (U.X k).Ψ r) (hb : b ∈ Bor (U.X k).Ψ r) (h : rmul x.1 b ∈ (U.X k).dom) :
     ∃ (t : Ix Dw → (CAt σ)ˣ) (G : ∀ τ : E →+* ℂ, Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) (CAt σ)),
