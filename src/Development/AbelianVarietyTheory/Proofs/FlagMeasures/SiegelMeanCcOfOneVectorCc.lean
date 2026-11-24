@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.BlockTheory.GlobalSignature.Bundl
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open MeasureTheory NumberField IsDedekindDomain Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Count GlobalTheory.GaussMean
 open Formalism.MainNotions.S (AutInst uMat)
 open scoped TensorProduct Pointwise Topology

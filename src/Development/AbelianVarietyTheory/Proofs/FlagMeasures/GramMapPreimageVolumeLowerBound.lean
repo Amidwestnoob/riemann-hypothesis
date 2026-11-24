@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0263
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.GramPreimageLB
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes PI.VolStabS Topology Filter

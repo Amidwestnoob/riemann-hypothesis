@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0044
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasureLeCardMul
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open MeasureTheory Formalism.MainNotions.S NumberField Matrix
 open scoped TensorProduct
 
