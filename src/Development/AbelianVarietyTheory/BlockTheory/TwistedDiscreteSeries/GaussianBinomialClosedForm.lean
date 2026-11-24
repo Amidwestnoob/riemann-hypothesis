@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatVecU
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.SphericalSectionVariables

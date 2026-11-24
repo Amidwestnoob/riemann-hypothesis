@@ -335,6 +335,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.IwahoriRegularSeparable
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory Matrix GlobalTheory.PRep GlobalTheory.SmGL
 
 noncomputable section

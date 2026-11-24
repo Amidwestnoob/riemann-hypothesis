@@ -5,6 +5,8 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0020
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory

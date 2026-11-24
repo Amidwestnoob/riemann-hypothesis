@@ -411,6 +411,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SiegelMeanCc
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory NumberField Matrix Finset IsDedekindDomain
 open scoped TensorProduct
 

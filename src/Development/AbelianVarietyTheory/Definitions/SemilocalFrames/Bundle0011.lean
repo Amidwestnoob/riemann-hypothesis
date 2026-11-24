@@ -136,6 +136,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GaugeUnfold
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory NumberField Matrix Finset
 
 noncomputable section
