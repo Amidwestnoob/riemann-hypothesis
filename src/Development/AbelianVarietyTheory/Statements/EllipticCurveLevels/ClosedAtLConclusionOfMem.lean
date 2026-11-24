@@ -30,8 +30,8 @@ def SplitAtt (π : CuspSub E a) (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin
 omit [IsCMField E] [IsAlgClosure E Ω] in
 def SstAt (r : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O), Pst.Induces Bw →
-    IsSstAt P Bw (r.comp (Dec (F := E) A).subtype)
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Pst.Induces Bw →
+    IsSstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
 
 def IwaAt (π : CuspSub E a) (w : HeightOneSpectrum (𝓞 E)) : Prop :=
   ∃ σ, π.IsLocComp w σ ∧ PRep.fixed σ.ρ (SmGL.iwahori (w.adicCompletion E) (Fin a)) ≠ ⊥
@@ -81,16 +81,16 @@ def ClosedAtL : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (l : ℕ) [Fact l.Prime] (a : ℕ), 1 ≤ a →
     ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O), Pst.Induces Bw →
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Pst.Induces Bw →
     ∀ (J : (E →+* Qbar l) → Multiset ℤ) (r : G E Ω →* GL (Fin a) (Qbar l)), Continuous r → IsSSRep r →
     ∀ C : Set (G E Ω →* GL (Fin a) (Qbar l)), LinApprox r C →
-      (∀ ρ ∈ C, Continuous ρ ∧ IsSstAt P Bw (ρ.comp (Dec (F := E) A).subtype) ∧
+      (∀ ρ ∈ C, Continuous ρ ∧ IsSstAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
         ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-          IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ (J τ)) →
-      (IsdRAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
+          IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (J τ)) →
+      (IsdRAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
         ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-          IsJumpsAt P Bw (r.comp (Dec (F := E) A).subtype) τ (J τ)) ∧
-      ((∀ ρ ∈ C, IsCrysAt P Bw (ρ.comp (Dec (F := E) A).subtype)) → IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype))
+          IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (J τ)) ∧
+      ((∀ ρ ∈ C, IsCrysAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) → IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))
 
 def Limit : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]

@@ -22,8 +22,8 @@ variable {K L Ω : Type} [Field Ω] [Field K] [NumberField K] [Algebra K Ω] [Is
   [Field L] [NumberField L] [Algebra L Ω] [IsAlgClosure L Ω] [Algebra K L] [IsScalarTower K L Ω]
   {A : ValuationSubring Ω} {v : HeightOneSpectrum (𝓞 K)} {v' : HeightOneSpectrum (𝓞 L)}
 
-theorem res_mem_Dec {σ : G L Ω} (hσ : σ ∈ Dec (F := L) A) :
-    AlgEquiv.restrictScalarsHom K σ ∈ Dec (F := K) A :=
+theorem res_mem_Dec {σ : G L Ω} (hσ : σ ∈ ReciprocityTheory.Gal.Dec (F := L) A) :
+    AlgEquiv.restrictScalarsHom K σ ∈ ReciprocityTheory.Gal.Dec (F := K) A :=
   GlobalTheory.DelEps.WeilRes.mem_Dec_iff.2 fun x => GlobalTheory.DelEps.WeilRes.mem_Dec_iff.1 hσ x
 
 theorem res_mem_Ine {σ : G L Ω} (hσ : σ ∈ Ine (F := L) A) :

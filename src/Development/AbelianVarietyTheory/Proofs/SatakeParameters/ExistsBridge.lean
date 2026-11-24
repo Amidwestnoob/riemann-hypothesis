@@ -22,7 +22,7 @@ section Res
 variable {K L Ω : Type} [Field Ω] [Field K] [NumberField K] [Algebra K Ω] [Field L] [NumberField L] [Algebra L Ω]
   [Algebra K L] [IsScalarTower K L Ω]
 
-def decRes (A : ValuationSubring Ω) : ↥(Dec (F := L) A) →* ↥(Dec (F := K) A) where
+def decRes (A : ValuationSubring Ω) : ↥(ReciprocityTheory.Gal.Dec (F := L) A) →* ↥(ReciprocityTheory.Gal.Dec (F := K) A) where
   toFun g := ⟨AlgEquiv.restrictScalars K (g : G L Ω), by
     have hg := mem_Dec.mp g.2
     rw [mem_Dec]
@@ -47,8 +47,8 @@ variable {l : ℕ} [Fact l.Prime] {K L Ω : Type} [Field Ω] [Field K] [NumberFi
   [Field L] [NumberField L] [Algebra L Ω] [IsAlgClosure L Ω] [Algebra K L] [IsScalarTower K L Ω]
   {A : ValuationSubring Ω} {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
 
-theorem exists_bridge (Bw : LocBridge l K Ω (Dec (F := K) A) O) (hj : Induces Bw) (S : FinExt l) :
-    ∃ (LL' : FinExt l) (Bw' : LocBridge l L Ω (Dec (F := L) A) ↥(OL LL')), Bw'.j = Bw.j ∧ S.1 ≤ Bw'.LL.1 ∧ Bw.Kw.1 ≤ Bw'.Kw.1 := by
+theorem exists_bridge (Bw : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O) (hj : Induces Bw) (S : FinExt l) :
+    ∃ (LL' : FinExt l) (Bw' : LocBridge l L Ω (ReciprocityTheory.Gal.Dec (F := L) A) ↥(OL LL')), Bw'.j = Bw.j ∧ S.1 ≤ Bw'.LL.1 ∧ Bw.Kw.1 ≤ Bw'.Kw.1 := by
   let K' : FinExt l := ⟨IntermediateField.adjoin ℚ_[l] (Set.range fun x : L => Bw.j (algebraMap L Ω x)),
     GlobalTheory.PlaceBridge.finiteDimensional_adjoin_range (Bw.j.comp (algebraMap L Ω))⟩
   have := K'.2
@@ -77,7 +77,7 @@ theorem exists_bridge (Bw : LocBridge l K Ω (Dec (F := K) A) O) (hj : Induces B
   rw [← IsScalarTower.algebraMap_apply]
 
 variable {O' : Type} [CommRing O'] [Algebra ℤ_[l] O'] [TopologicalSpace O']
-  (Bw : LocBridge l K Ω (Dec (F := K) A) O) (Bw' : LocBridge l L Ω (Dec (F := L) A) O')
+  (Bw : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O) (Bw' : LocBridge l L Ω (ReciprocityTheory.Gal.Dec (F := L) A) O')
   (hjj : Bw'.j = Bw.j) (hle : Bw.Kw.1 ≤ Bw'.Kw.1)
 include hjj hle
 
@@ -93,7 +93,7 @@ theorem decRes_e_symm (g' : ↥(GK Bw'.Kw)) :
   rw [hjj] at h1
   exact h1.symm.trans h2
 
-theorem repE_decRes (T : FinExt l) {m : ℕ} (t : ↥(Dec (F := K) A) →* GL (Fin m) ↥T.1) :
+theorem repE_decRes (T : FinExt l) {m : ℕ} (t : ↥(ReciprocityTheory.Gal.Dec (F := K) A) →* GL (Fin m) ↥T.1) :
     Bw'.repE T (t.comp (decRes A)) = GlobalTheory.Pst.resTo (Bw.repE T t) hle := by
   ext g' v i
   simp only [LocBridge.repE, MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom, GlobalTheory.Pst.resTo]

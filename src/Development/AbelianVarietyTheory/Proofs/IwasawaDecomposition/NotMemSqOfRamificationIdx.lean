@@ -96,7 +96,7 @@ theorem isPsi_of_isHeckeOf {R : Ranks} {H : Formalism.BasicNotions.Host R} {Ω :
     {cc : Ω ≃+* Ω} (hcc : IsCMConjOm H.E Ω cc) {art : Ideles H.E →* Gab H.E Ω} (ha : IsGlobalArtin art)
     {r : G H.E Ω →* ℂˣ} {χ : HChar H.E} (h : IsHeckeOf art r χ) {l k : ℕ} (hl : l.Prime) {Q : Finset (PlE H)} {S : Set ℕ}
     (hanti : AntiHom cc r) (hord : ∀ g, r g ^ l ^ k = 1) (hram : RamExactly r (↑Q : Set (PlE H)))
-    (hdec : ∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ Dec (F := H.E) A, r σ = 1)
+    (hdec : ∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A, r σ = 1)
     (hQ : ∀ P ∈ Q, IsSplitPl H P ∧ P.asIdeal.inertiaDeg ℤ = 1 ∧ eWL H.E P = 1)
     (hS : ∀ P ∈ Q, ∀ p ∈ S, p.Prime → P ∉ placesOver H.E p) :
     IsPsi (H := H) l Q χ ∧ χ.OrderDvd (l ^ k) ∧ Chr.IsTwist H S χ := by

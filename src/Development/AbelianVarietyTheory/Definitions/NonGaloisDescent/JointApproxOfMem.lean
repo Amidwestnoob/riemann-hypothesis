@@ -66,16 +66,16 @@ def ClosedPhi : Prop :=
     (ι : Qbar l ≃+* ℂ) (a : ℕ), 1 ≤ a →
     ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (hA : IsPlaceOver A w),
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O)
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O)
       (hBw : Pst.Induces Bw),
     ∀ (J : (E →+* Qbar l) → Multiset ℤ) (r : G E Ω →* GL (Fin a) (Qbar l)), Continuous r → IsSSRep r →
     ∀ C : Set (G E Ω →* GL (Fin a) (Qbar l)),
-      (∀ ρ ∈ C, Continuous ρ ∧ IsCrysAt P Bw (ρ.comp (Dec (F := E) A).subtype) ∧
+      (∀ ρ ∈ C, Continuous ρ ∧ IsCrysAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
         ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-          IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ (J τ)) →
+          IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (J τ)) →
     ∀ (σ : Weil hA) (S : ℕ → Qbar l),
-      JointApprox r C S (fun ρ n => ι.symm (phiSum (wdAt P ι Bw hA hBw (ρ.comp (Dec (F := E) A).subtype)) σ n)) →
-      ∀ n : ℕ, phiSum (wdAt P ι Bw hA hBw (r.comp (Dec (F := E) A).subtype)) σ n = ι (S n)
+      JointApprox r C S (fun ρ n => ι.symm (phiSum (wdAt P ι Bw hA hBw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) σ n)) →
+      ∀ n : ℕ, phiSum (wdAt P ι Bw hA hBw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) σ n = ι (S n)
 
 end GlobalTheory.CongPhi
 

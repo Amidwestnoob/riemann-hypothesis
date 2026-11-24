@@ -287,8 +287,8 @@ theorem sphAt_of_repIso {E Ω : Type} [Field E] [NumberField E] [IsCMField E] [F
   | crys => exact clauseAt_of_repIso E Ω l ι a π r r' hr hiso .crys w hc
   | phi =>
     obtain ⟨p, hp⟩ := hiso
-    have hcd : ∀ (A : ValuationSubring Ω) (g : ↥(Dec (F := E) A)), r'.comp (Dec (F := E) A).subtype g =
-        p * r.comp (Dec (F := E) A).subtype g * p⁻¹ := fun A g => hp g
+    have hcd : ∀ (A : ValuationSubring Ω) (g : ↥(ReciprocityTheory.Gal.Dec (F := E) A)), r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g =
+        p * r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g * p⁻¹ := fun A g => hp g
     intro P AI hT A h O _ _ _ Bw hj g
     have e := GlobalTheory.AboveL.RepConj.wdAt_conj P ι Bw h hj p (hcd A)
     exact (congrArg (fun x => WD.charPol x g) e).trans (hc P AI hT A h O Bw hj g)

@@ -182,8 +182,8 @@ theorem clauseAt_of_repIso : ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMFi
   obtain ⟨p, hp⟩ := hiso
   have hcw : ∀ {A : ValuationSubring Ω} (h : IsPlaceOver A w) (g : Weil h), p * r g = r' g * p :=
     fun h g => by rw [hp]; group
-  have hcd : ∀ (A : ValuationSubring Ω) (g : ↥(Dec (F := E) A)), r'.comp (Dec (F := E) A).subtype g =
-      p * r.comp (Dec (F := E) A).subtype g * p⁻¹ := fun A g => hp g
+  have hcd : ∀ (A : ValuationSubring Ω) (g : ↥(ReciprocityTheory.Gal.Dec (F := E) A)), r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g =
+      p * r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g * p⁻¹ := fun A g => hp g
   cases c with
   | ss =>
     intro hl A h rc hrc σ hσ g
@@ -346,7 +346,7 @@ open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.AboveL
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_abelian_totallyReal_ext_prescribedCompletion : ∀ (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] [Algebra F Ω] [IsAlgClosure F Ω] [IsTotallyReal F] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 F)) (h : IsPlaceOver A v) (V : Subgroup (Dec (F := F) A)), IsOpen (V : Set (Dec (F := F) A)) → commutator (Dec (F := F) A) ≤ V → ∀ T : Finset (HeightOneSpectrum (𝓞 F)), v ∉ T → ∃ F₁ : IntermediateField F Ω, FiniteDimensional F F₁ ∧ IsAbelianGalois F F₁ ∧ (∀ φ : F₁ →+* ℂ, ComplexEmbedding.IsReal φ) ∧ (∀ g : Dec (F := F) A, (g : G F Ω) ∈ F₁.fixingSubgroup ↔ g ∈ V) ∧ ∀ u ∈ T, ∀ A' : ValuationSubring Ω, IsPlaceOver A' u → Dec (F := F) A' ≤ F₁.fixingSubgroup := by
+theorem _root_.GlobalTheory.T.exists_abelian_totallyReal_ext_prescribedCompletion : ∀ (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] [Algebra F Ω] [IsAlgClosure F Ω] [IsTotallyReal F] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 F)) (h : IsPlaceOver A v) (V : Subgroup (ReciprocityTheory.Gal.Dec (F := F) A)), IsOpen (V : Set (ReciprocityTheory.Gal.Dec (F := F) A)) → commutator (ReciprocityTheory.Gal.Dec (F := F) A) ≤ V → ∀ T : Finset (HeightOneSpectrum (𝓞 F)), v ∉ T → ∃ F₁ : IntermediateField F Ω, FiniteDimensional F F₁ ∧ IsAbelianGalois F F₁ ∧ (∀ φ : F₁ →+* ℂ, ComplexEmbedding.IsReal φ) ∧ (∀ g : ReciprocityTheory.Gal.Dec (F := F) A, (g : G F Ω) ∈ F₁.fixingSubgroup ↔ g ∈ V) ∧ ∀ u ∈ T, ∀ A' : ValuationSubring Ω, IsPlaceOver A' u → ReciprocityTheory.Gal.Dec (F := F) A' ≤ F₁.fixingSubgroup := by
   first | exact @GlobalTheory.AbStep.exists_abelian_real_field | exact GlobalTheory.AbStep.exists_abelian_real_field | (intros; apply GlobalTheory.AbStep.exists_abelian_real_field <;> assumption)
 end
 
@@ -390,7 +390,7 @@ open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.AboveL
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.finite_decompositionGroups_cover_openQuotient : ∀ (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] [Algebra F Ω] [IsAlgClosure F Ω] (v : HeightOneSpectrum (𝓞 F)) (N : Subgroup (G F Ω)), IsOpen (N : Set (G F Ω)) → ∃ T : Finset (HeightOneSpectrum (𝓞 F)), v ∉ T ∧ ∀ g : G F Ω, ∃ u ∈ T, ∃ A' : ValuationSubring Ω, IsPlaceOver A' u ∧ ∃ x ∈ Dec (F := F) A', ∃ n ∈ N, g = x * n := by
+theorem _root_.GlobalTheory.T.finite_decompositionGroups_cover_openQuotient : ∀ (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] [Algebra F Ω] [IsAlgClosure F Ω] (v : HeightOneSpectrum (𝓞 F)) (N : Subgroup (G F Ω)), IsOpen (N : Set (G F Ω)) → ∃ T : Finset (HeightOneSpectrum (𝓞 F)), v ∉ T ∧ ∀ g : G F Ω, ∃ u ∈ T, ∃ A' : ValuationSubring Ω, IsPlaceOver A' u ∧ ∃ x ∈ ReciprocityTheory.Gal.Dec (F := F) A', ∃ n ∈ N, g = x * n := by
   first | exact @GlobalTheory.DecCover.main | exact GlobalTheory.DecCover.main | (intros; apply GlobalTheory.DecCover.main <;> assumption)
 end
 
