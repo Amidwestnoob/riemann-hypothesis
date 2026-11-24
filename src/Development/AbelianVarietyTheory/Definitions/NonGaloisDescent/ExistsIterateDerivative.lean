@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Cris
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 set_option synthInstance.maxHeartbeats 400000
 
 noncomputable section
