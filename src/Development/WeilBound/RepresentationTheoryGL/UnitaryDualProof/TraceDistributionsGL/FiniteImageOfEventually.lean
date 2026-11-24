@@ -6,6 +6,8 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Trac
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open Matrix MeasureTheory Topology Filter ValuativeRel GlobalTheory.SplitWeil GlobalTheory.SplitWeil.FourierPi GlobalTheory.BZMir

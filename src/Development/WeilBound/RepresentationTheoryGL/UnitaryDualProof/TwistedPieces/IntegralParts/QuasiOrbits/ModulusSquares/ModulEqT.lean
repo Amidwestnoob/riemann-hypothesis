@@ -5,6 +5,8 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Comp
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 set_option linter.unusedSectionVars false

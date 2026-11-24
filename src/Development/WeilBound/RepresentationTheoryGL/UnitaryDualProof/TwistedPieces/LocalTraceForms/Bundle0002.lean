@@ -123,6 +123,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.LocalTraceForms.ExistsClopenSep
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 open Matrix GroundTheory.Automorphic.Whittaker Set

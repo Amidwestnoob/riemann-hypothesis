@@ -5,6 +5,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle01
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.BZMir
