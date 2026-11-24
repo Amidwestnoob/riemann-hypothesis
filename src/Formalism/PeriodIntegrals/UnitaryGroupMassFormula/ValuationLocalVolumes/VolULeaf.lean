@@ -6,6 +6,8 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.NcVal.VolUL

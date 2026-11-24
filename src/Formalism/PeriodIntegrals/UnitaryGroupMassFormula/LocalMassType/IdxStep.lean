@@ -6,6 +6,8 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalMassOrder.I
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 noncomputable section
 
 namespace PI.LocMassTypW
