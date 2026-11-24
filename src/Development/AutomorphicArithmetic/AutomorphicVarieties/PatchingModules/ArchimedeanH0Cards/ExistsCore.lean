@@ -402,7 +402,7 @@ theorem UpperTheory.V.Pa.B2.selN :
     obtain ⟨m, rfl⟩ := θ.surjective m
     rw [← hθ, hg]
   have hta : ∀ j m, D.M.ρ (T.ta N j) m = m := fun j => htriv _ fun m => by rw [T.ta_ker, map_one]; rfl
-  obtain ⟨V, hV⟩ := coc_ker D0.M (Z1 D0.M.ρ).zero_mem
+  obtain ⟨V, hV⟩ := _root_.coc_ker D0.M (Z1 D0.M.ρ).zero_mem
   have hPV : PL l T.H.toSubgroup ≤ V.toSubgroup := fun g hg => (hV g).2 ⟨fun m => by
     let g' : G0.G₀ := ⟨g, T.H_η g (hle hg)⟩
     apply o0.e.injective
@@ -414,11 +414,11 @@ theorem UpperTheory.V.Pa.B2.selN :
     rw [e1, e2, one_mul, mul_one], rfl⟩
   have hU : ∀ z ∈ Z1 D.M.ρ, ∃ U : OpenNormalSubgroup (T.GN N).Γ, (∀ g, g ∈ U.toSubgroup ↔ (∀ m, D.M.ρ g m = m) ∧ z g = 0) ∧
       PL l (T.H.toSubgroup.comap (T.h N).p) ≤ U.toSubgroup := fun z hz => by
-    obtain ⟨U, hU⟩ := coc_ker D.M hz
+    obtain ⟨U, hU⟩ := _root_.coc_ker D.M hz
     refine ⟨U, hU, iInf₂_le U fun g hg => ?_⟩
     obtain ⟨k, hk⟩ := (hiff V).1 hPV _ hg
     have h1 : ∀ m, D.M.ρ (g ^ l ^ k) m = m := htriv _ (by rw [map_pow]; exact ((hV _).1 hk).1)
-    obtain ⟨U0, hU0⟩ := coc_ker D.M (Z1 D.M.ρ).zero_mem
+    obtain ⟨U0, hU0⟩ := _root_.coc_ker D.M (Z1 D.M.ρ).zero_mem
     refine ⟨k + 1, (hU _).2 ⟨?_, ?_⟩⟩
     · rw [pow_succ, pow_mul]
       exact ((hU0 _).1 (pow_mem ((hU0 _).2 ⟨h1, rfl⟩) l)).1
