@@ -269,6 +269,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OneSubMemIdS
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain Matrix Formalism.L2.Col
 open Formalism.L2.DIV (Pl kP St resS oToS idS cmpS)
 open scoped TensorProduct
