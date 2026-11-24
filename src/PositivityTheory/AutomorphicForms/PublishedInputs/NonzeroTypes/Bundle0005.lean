@@ -424,14 +424,14 @@ def Need_Grp : Prop :=
 def ArtinTransferDecompositionCharacter : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
     (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w) (a : Weil h →* (w.adicCompletion E)ˣ), IsLocalArtin h a →
-    ∀ (n : ℕ) (χ : Fin n → Dec (F := E) A →* ℂˣ), (∀ i, IsOpen ((χ i).ker : Set (Dec (F := E) A))) →
+    ∀ (n : ℕ) (χ : Fin n → ReciprocityTheory.Gal.Dec (F := E) A →* ℂˣ), (∀ i, IsOpen ((χ i).ker : Set (ReciprocityTheory.Gal.Dec (F := E) A))) →
       ∃ μ : Fin n → (w.adicCompletion E)ˣ →* ℂˣ, (∀ i, IsSmoothChar (μ i)) ∧
         ∀ i (σ : Weil h), χ i (Subgroup.inclusion (Weil_le_Dec h) σ) = μ i (a σ)
 
 def LocalArtinCharacterProduct : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
     (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w) (a : Weil h →* (w.adicCompletion E)ˣ), IsLocalArtin h a →
-    ∀ (n : ℕ) (χ : Fin n → Dec (F := E) A →* ℂˣ) (ho : ∀ i, IsOpen ((χ i).ker : Set (Dec (F := E) A)))
+    ∀ (n : ℕ) (χ : Fin n → ReciprocityTheory.Gal.Dec (F := E) A →* ℂˣ) (ho : ∀ i, IsOpen ((χ i).ker : Set (ReciprocityTheory.Gal.Dec (F := E) A)))
       (μ : Fin n → (w.adicCompletion E)ˣ →* ℂˣ), (∀ i (σ : Weil h), χ i (Subgroup.inclusion (Weil_le_Dec h) σ) = μ i (a σ)) →
       ∀ (G : Grp (w.adicCompletion E) n) (σ : Fin n ≃ Fin n), (∀ i, res (G.chi i) = res (μ (σ i))) →
         ∀ s : ↥(Ine (F := E) A), (xOf h χ ho).charPol (ineIncl h s) =

@@ -237,8 +237,8 @@ def PropMV : Prop :=
     (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Ine (F := F) A ≤ ξ.ker) →
     (∃ (u : Pl F) (A : ValuationSubring Ω), normV u = 2 ∧ IsPlaceOver A u ∧ ¬ Ine (F := F) A ≤ ξ.ker) →
     ∀ P : Set (Pl F),
-    (∃ w ∈ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ Dec (F := F) A, ¬ Cong (ξ σ) 1) →
-    (∃ w ∉ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ Dec (F := F) A, ¬ Cong (ξ σ) 1) →
+    (∃ w ∈ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ ReciprocityTheory.Gal.Dec (F := F) A, ¬ Cong (ξ σ) 1) →
+    (∃ w ∉ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ ReciprocityTheory.Gal.Dec (F := F) A, ¬ Cong (ξ σ) 1) →
     ∃ k t : ℕ, 2 ≤ k ∧ 2 ≤ t ∧ l - 1 ∣ k ∧ l - 1 ∣ t ∧ ∃ c a π r,
       OrdForm ι ξ (-(k : ℤ)) c (fun w => if w ∈ P then ![(t : ℤ), -(k : ℤ) - t] else ![0, -(k : ℤ)]) a π r ∧ ResSum r ![1, ξ] ∧
       ∀ (w : Pl F), ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ A, IsPlaceOver A w → ∀ σ : G F Ω, IsFrob A (normV w) σ →
