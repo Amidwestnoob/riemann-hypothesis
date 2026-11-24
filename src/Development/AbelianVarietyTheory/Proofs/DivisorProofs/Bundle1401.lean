@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1320
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodicityLevelHeightBound
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
