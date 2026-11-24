@@ -474,7 +474,7 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     have hi₀ : ψ' y (i₀ x) = ψ x y (i₀ x) := hk2 y hy' _ hne
     beta_reduce
     rw [Fin.prod_univ_castSucc, hs (pr y) hyb]
-    simp only [Fin.snoc_castSucc, Fin.snoc_last, pow_one, hcoe, diagSec, hi₀]
+    simp only [Fin.snoc_castSucc, Fin.snoc_last, pow_one, hcoe, _root_.GlobalTheory.CompanionTheory.Ar.PB.WSq.Sec.diagSec, hi₀]
     refine mul_rearrange _ _ _ _ _ (Finset.prod_congr rfl fun k _ => ?_)
     cases h : σb k <;> simp [hk1 y hy']
 
