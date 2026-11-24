@@ -21,6 +21,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OscillatorMo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 section
 open NumberField Matrix Complex MeasureTheory IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr GlobalTheory.Dict GlobalTheory.AdTh GlobalTheory.ClsVal

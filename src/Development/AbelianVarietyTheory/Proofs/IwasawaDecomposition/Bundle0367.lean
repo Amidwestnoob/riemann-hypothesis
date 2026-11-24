@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NVNeZ
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FinTypRowsExistsIsLocS
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.RecTie Formalism.L2.Rows GlobalTheory.Mem GlobalTheory.Mem.R3 ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
