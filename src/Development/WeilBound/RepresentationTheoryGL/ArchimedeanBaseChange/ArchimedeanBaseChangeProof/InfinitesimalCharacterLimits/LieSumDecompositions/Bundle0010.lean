@@ -14,7 +14,7 @@ namespace PositivityTheory.Rg.BcB.SpectralAccumulation.Cz
 
 open Leaf2Aux in
 theorem leaf_holds2 : Leaf :=
-  leaf_of (core_of (pairLin_of intBnd) pairRt (pairLie_of intBnd) growQHolds) growPHolds
+  leaf_of (PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.Leaf2Aux.core_of (pairLin_of intBnd) pairRt (pairLie_of intBnd) growQHolds) growPHolds
 
 end PositivityTheory.Rg.BcB.SpectralAccumulation.Cz
 end
