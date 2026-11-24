@@ -422,6 +422,9 @@ theorem unfoldC (hO : OffOpen) (hU : PositivityTheory.ThKEnd.Grp.UnipUGood) {B :
           by_contra hn
           exact hq (if_neg (not_not.2 ((neg_iff he q).2 hn)))
     _ = _ := by
+        haveI : SMulInvariantMeasure (ratU σ Y.J) (UA σ Y.J) μ :=
+          ⟨fun δ _ hs => (Measure.IsMulLeftInvariant.smulInvariantMeasure (μ := μ)).measure_preimage_smul
+            (δ : UA σ Y.J) hs⟩
         rw [← hD.integral_eq_tsum'' (fun x => k (h⁻¹ * x)) (ik.comp_mul_left h⁻¹), integral_mul_left_eq_self k]
 
 end GlobalTheory.ThK.Dbl
