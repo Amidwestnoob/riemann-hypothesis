@@ -38,9 +38,9 @@ abbrev cl {w : HeightOneSpectrum (𝓞 E)} {a : ℕ} (σ : SmIrr (GL (Fin a) (w.
 def ParAt {n : ℕ} (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin n) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (p : Par Ω w) : Prop :=
   ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) (rc : IrrGL (k := w.adicCompletion E) → WD h), IsRec h rc →
     (((l : ℕ) : 𝓞 E) ∉ w.asIdeal → Lev.WO ι r (p A h rc)) ∧
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-      IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := E) A).subtype) ∧
-        Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := E) A).subtype)) (p A h rc)
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+      IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+        Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) (p A h rc)
 
 theorem locGlob_iff {n : ℕ} (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin n) (Qbar l)) (w : HeightOneSpectrum (𝓞 E))
     (σ : SmIrr (GL (Fin n) (w.adicCompletion E))) : LocGlob ι r w σ ↔ ParAt ι r w fun _ _ rc => rc (algNorm σ) := Iff.rfl
@@ -295,8 +295,8 @@ theorem isPstAt_conj {Gw : Subgroup (Ω ≃ₐ[E] Ω)} (Bw : LocBridge l E Ω Gw
   exact ⟨L₂, r₂, hm, GlobalTheory.PstConj.isPst_congr P e he (GlobalTheory.PstExt.isPst_enlarge P Bw hL r₁ hp)⟩
 
 theorem wdAt_conj [NumberField E] [IsAlgClosure E Ω] (ι : Om l ≃+* ℂ) {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)}
-    (Bw : LocBridge l E Ω (Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : Induces Bw)
-    {r r' : ↥(Dec (F := E) A) →* GL (Fin m) (Om l)} (p : GL (Fin m) (Om l)) (hc : ∀ g, r' g = p * r g * p⁻¹) :
+    (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : Induces Bw)
+    {r r' : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin m) (Om l)} (p : GL (Fin m) (Om l)) (hc : ∀ g, r' g = p * r g * p⁻¹) :
     wdAt P ι Bw h hj r' = wdAt P ι Bw h hj r := by
   by_cases hr : IsPstAt P Bw r
   · exact GlobalTheory.ConjGal.wdAt_conj P ι Bw h hj r r' p hc hr (isPstAt_conj P Bw p hc hr)
@@ -330,7 +330,7 @@ theorem isGalRepOf_of_iso [NumberField E] [IsAlgClosure E Ω] [IsCMField E] {π 
     fun w hw A h => (H.pure w hw A h).imp fun x hx => ⟨hx.1.of_conj hw g fun s => hg' _, hx.2⟩, H.weights, H.weights_conj,
     fun P AI T w A h O _ _ _ Bw hj => ?_⟩
   have Ha := H.above P AI T w A h O Bw hj
-  have e : ∀ s : ↥(Dec (F := E) A), r'.comp (Dec (F := E) A).subtype s = g * r.comp (Dec (F := E) A).subtype s * g⁻¹ :=
+  have e : ∀ s : ↥(ReciprocityTheory.Gal.Dec (F := E) A), r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype s = g * r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype s * g⁻¹ :=
     fun s => hg s
   obtain ⟨c1, c2, -, c4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l P E Ω O _ Bw m _ _ g e
   exact ⟨c1 Ha.deRham, fun τ L τ' hτ => c4 _ _ (Ha.jumps τ L τ' hτ), fun σ hσ hf =>

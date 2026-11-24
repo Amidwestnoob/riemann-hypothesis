@@ -105,7 +105,7 @@ section
 variable {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] {l : ℕ} [Fact l.Prime]
   {w : HeightOneSpectrum (𝓞 F)} {A : ValuationSubring Ω} {h : IsPlaceOver A w} {a : Weil h →* (w.adicCompletion F)ˣ}
 
-private theorem cyc_cont : Continuous ((cycBar F Ω l).comp (Dec (F := F) A).subtype) :=
+private theorem cyc_cont : Continuous ((cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) :=
   ((Continuous.units_map ((algebraMap ℚ_[l] (Qbar l)).comp PadicInt.Coe.ringHom).toMonoidHom
     ((continuous_algebraMap ℚ_[l] (Qbar l)).comp continuous_subtype_val)).comp (continuous_cycZ F Ω l)).comp continuous_subtype_val
 
@@ -113,7 +113,7 @@ private theorem ex_elt (H : GlobalTheory.Published.GlobalArtinReciprocity) (hw :
     ∃ s : Weil h, deg s ≠ 0 ∧ cycZ F Ω l s = 1 := by
   haveI := GlobalTheory.HeckeGal.finite_contEmb (l := l) w
   haveI := Fintype.ofFinite (W.Emb l w)
-  haveI : CompactSpace (Dec (F := F) A) := isCompact_iff_compactSpace.1 (isClosed_Dec A).isCompact
+  haveI : CompactSpace (ReciprocityTheory.Gal.Dec (F := F) A) := isCompact_iff_compactSpace.1 (isClosed_Dec A).isCompact
   haveI : CharZero (w.adicCompletion F) := algebraRat.charZero _
   have hl : (l : Qbar l) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero
   obtain ⟨s, hs⟩ := ha.surj (Units.mk0 (l : w.adicCompletion F) (Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero))
@@ -160,18 +160,18 @@ private theorem flag_cont {n : ℕ} {Γ : Type} [Group Γ] [TopologicalSpace Γ]
 end
 
 theorem UpperTheory.V.Th.purLocS :
-    Af.Hypotheses₂ → ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (ι : Qbar l ≃+* ℂ) (n : ℕ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r → ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w), ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ x : WD h, (∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw), IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) ∧ Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)) x) → (∃ t : ℝ, (x.lpTw t).tempered) → ∀ (ψ : Fin n → Dec (F := F) A →* (Qbar l)ˣ) (m : Fin n → ℤ) (k : ℕ), W.HasFlag (r.comp (Dec (F := F) A).subtype) ψ → StrictAnti m → 0 < k → (∀ i (g : Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → (ψ i g * cycBar F Ω l g ^ (-m i)) ^ k = 1) → ((∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype) ∨ x.mono0) → ∃ g : Dec (F := F) A, cycZ F Ω l g = 1 ∧ Pr.FreeRatios fun i => ψ i g := by
+    Af.Hypotheses₂ → ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (ι : Qbar l ≃+* ℂ) (n : ℕ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r → ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w), ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ x : WD h, (∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw), IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧ Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)) x) → (∃ t : ℝ, (x.lpTw t).tempered) → ∀ (ψ : Fin n → ReciprocityTheory.Gal.Dec (F := F) A →* (Qbar l)ˣ) (m : Fin n → ℤ) (k : ℕ), W.HasFlag (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ψ → StrictAnti m → 0 < k → (∀ i (g : ReciprocityTheory.Gal.Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → (ψ i g * cycBar F Ω l g ^ (-m i)) ^ k = 1) → ((∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∨ x.mono0) → ∃ g : ReciprocityTheory.Gal.Dec (F := F) A, cycZ F Ω l g = 1 ∧ Pr.FreeRatios fun i => ψ i g := by
   intro P F Ω _ _ _ _ _ l _ _ ι n r hr w A h hw x hx ⟨t, ht⟩ ψ m k hf hm hk hI hor
   have hN := P.litN
   have H := hN.aut.art
   obtain ⟨rc, a, ha, -⟩ := P.exists_rec h
   obtain ⟨O, _, _, _, Bw, hj⟩ := Af.exists_bridge (l := l) h hw
   obtain ⟨hp, hcmp⟩ := hx O Bw hj
-  have hc : Continuous (r.comp (Dec (F := F) A).subtype) := hr.comp continuous_subtype_val
+  have hc : Continuous (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) := hr.comp continuous_subtype_val
   have hψc := flag_cont hc hf
   choose ω hω using fun i => (Loc.ordCharIff H h ι a ha (fun _ => -m i) (ψ i)).1.2
     ⟨hψc i, Loc.laArith H h hw (ψ i) (hψc i) (m i) k hk (hI i)⟩
-  have hpol : ∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)).charPol s =
+  have hpol : ∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)).charPol s =
       ∏ i, (X - C (((ω i).comp a) s : ℂ)) := fun s => by
     obtain ⟨M, hM⟩ := hf
     obtain ⟨T⟩ := UpperTheory.V.Loc.tiedP l
@@ -182,8 +182,8 @@ theorem UpperTheory.V.Th.purLocS :
     exact Finset.prod_congr rfl fun i _ => (hc i).2.2 s
   have hxp := fun s => (hcmp (Or.inl ((Lev.ssCalc F Ω A w h).1 n _ _ hpol)) s).symm.trans (hpol s)
   let inc := Subgroup.inclusion (Weil_le_Dec h)
-  let ε : ↥(Dec (F := F) A) →* (Qbar l)ˣ := (cycBar F Ω l).comp (Dec (F := F) A).subtype
-  let χ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ := fun i => ψ i * ε ^ (-m i)
+  let ε : ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ := (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype
+  let χ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ := fun i => ψ i * ε ^ (-m i)
   have hχc : ∀ i, Continuous (χ i) := fun i => (hψc i).mul ((continuous_zpow (-m i)).comp cyc_cont)
   have hq : ((normV w : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot
   have hq' : ((normV w : ℕ) : Qbar l) ≠ 0 := Nat.cast_ne_zero.mpr (GlobalTheory.WeilDeligne.one_lt_normV w).ne_bot

@@ -143,8 +143,8 @@ private theorem move {F K Ω : Type} [Field F] [NumberField F] [Field K] [Number
     [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω]
     (w : HeightOneSpectrum (𝓞 K)) {A : ValuationSubring Ω} (hA : IsPlaceOver A (w.under (𝓞 F))) :
     ∃ (B : ValuationSubring Ω) (g : G F Ω), IsPlaceOver B w ∧
-      (∀ s ∈ Dec (F := F) A, g⁻¹ * s * g ∈ Dec (F := F) B) ∧
-      (∀ s ∈ Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ Dec (F := F) A) ∧
+      (∀ s ∈ ReciprocityTheory.Gal.Dec (F := F) A, g⁻¹ * s * g ∈ ReciprocityTheory.Gal.Dec (F := F) B) ∧
+      (∀ s ∈ ReciprocityTheory.Gal.Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ ReciprocityTheory.Gal.Dec (F := F) A) ∧
       ∀ s ∈ Ine (F := K) B, g * res F Ω K s * g⁻¹ ∈ Ine (F := F) A := by
   obtain ⟨B, hB⟩ := (exists_isPlaceOver Ω w : ∃ B : ValuationSubring Ω, IsPlaceOver B w)
   have hB' : IsPlaceOver B (w.under (𝓞 F)) := fun x => by
@@ -154,11 +154,11 @@ private theorem move {F K Ω : Type} [Field F] [NumberField F] [Field K] [Number
   have hm : ∀ x, x ∈ B ↔ g x ∈ g • B := fun x => ValuationSubring.smul_mem_pointwise_smul_iff.symm
   have hv : ∀ y, (g • B).valuation (g y) < 1 ↔ B.valuation y < 1 := fun y => by
     rw [valuation_lt_one_iff', valuation_lt_one_iff', ← map_inv₀, ← hm, ← hm, map_eq_zero_iff _ g.injective]
-  have hD : ∀ s ∈ Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ Dec (F := F) (g • B) := fun s hs => by
+  have hD : ∀ s ∈ ReciprocityTheory.Gal.Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ ReciprocityTheory.Gal.Dec (F := F) (g • B) := fun s hs => by
     have h1 : res F Ω K s • B = B := hs
     show (g * res F Ω K s * g⁻¹) • g • B = g • B
     rw [mul_smul, mul_smul, inv_smul_smul, h1]
-  have hD' : ∀ s ∈ Dec (F := F) (g • B), g⁻¹ * s * g ∈ Dec (F := F) B := fun s hs => by
+  have hD' : ∀ s ∈ ReciprocityTheory.Gal.Dec (F := F) (g • B), g⁻¹ * s * g ∈ ReciprocityTheory.Gal.Dec (F := F) B := fun s hs => by
     have h1 : s • g • B = g • B := hs
     show (g⁻¹ * s * g) • B = B
     rw [mul_smul, mul_smul, h1, inv_smul_smul]
@@ -187,15 +187,15 @@ private theorem flag_move {F K Ω : Type} [Field F] [NumberField F] [Field K] [N
     [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω]
     {l : ℕ} [Fact l.Prime] {n M : ℕ} {m : Fin n → ℤ} {r : G F Ω →* GL (Fin n) (Qbar l)}
     (w : HeightOneSpectrum (𝓞 K)) {A : ValuationSubring Ω} (hA : IsPlaceOver A (w.under (𝓞 F)))
-    {κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ} (hκ : FlagAt M m r A κ) :
-    ∃ (B : ValuationSubring Ω) (d : ↥(Dec (F := K) B) →* ↥(Dec (F := F) A)), IsPlaceOver B w ∧
+    {κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ} (hκ : FlagAt M m r A κ) :
+    ∃ (B : ValuationSubring Ω) (d : ↥(ReciprocityTheory.Gal.Dec (F := K) B) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A)), IsPlaceOver B w ∧
       FlagAt M m (r.comp (res F Ω K)) B (fun i => (κ i).comp d) ∧
       (∀ s, cycBar F Ω l (d s) = cycBar K Ω l s) ∧
-      (Dec (F := F) B ≤ (res F Ω K).range → Function.Surjective d) := by
+      (ReciprocityTheory.Gal.Dec (F := F) B ≤ (res F Ω K).range → Function.Surjective d) := by
   obtain ⟨χ, hχ, ⟨P, hP⟩, hκ⟩ := hκ
   obtain ⟨B, g, hB, hD', hD, hI⟩ := move w hA
-  let d : ↥(Dec (F := K) B) →* ↥(Dec (F := F) A) :=
-    (((MulAut.conj g).toMonoidHom.comp (res F Ω K)).comp (Dec (F := K) B).subtype).codRestrict _
+  let d : ↥(ReciprocityTheory.Gal.Dec (F := K) B) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A) :=
+    (((MulAut.conj g).toMonoidHom.comp (res F Ω K)).comp (ReciprocityTheory.Gal.Dec (F := K) B).subtype).codRestrict _
       fun s => hD s s.2
   have hd : ∀ s, (d s : G F Ω) = g * res F Ω K s * g⁻¹ := fun _ => rfl
   refine ⟨B, d, hB, ⟨fun i => (χ i).comp (res F Ω K), fun i s hs => hχ i _ hs,
@@ -208,7 +208,7 @@ private theorem flag_move {F K Ω : Type} [Field F] [NumberField F] [Field K] [N
   · rw [hd, char_conj]
     rfl
   · obtain ⟨t, ht⟩ := H (hD' s s.2)
-    have htD : t ∈ Dec (F := K) B := by
+    have htD : t ∈ ReciprocityTheory.Gal.Dec (F := K) B := by
       have h1 : res F Ω K t • B = B := by
         rw [ht]
         exact hD' s s.2
@@ -222,7 +222,7 @@ private theorem flag_move {F K Ω : Type} [Field F] [NumberField F] [Field K] [N
 end
 
 theorem UpperTheory.V.Th.unlRes :
-    ∀ (K Ω : Type) [Field K] [NumberField K] [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] [Algebra K Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (n M : ℕ) (m : Fin n → ℤ) (r : G ℚ Ω →* GL (Fin n) (Qbar l)), 1 ≤ M → ((∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω).range) → Unl l M m r → Unl l M m (r.comp (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω))) ∧ ((∀ i j, m i ≠ m j + 1) → Af.Level l M m r → Unl l M m (r.comp (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω))) := by
+    ∀ (K Ω : Type) [Field K] [NumberField K] [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] [Algebra K Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (n M : ℕ) (m : Fin n → ℤ) (r : G ℚ Ω →* GL (Fin n) (Qbar l)), 1 ≤ M → ((∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω).range) → Unl l M m r → Unl l M m (r.comp (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω))) ∧ ((∀ i j, m i ≠ m j + 1) → Af.Level l M m r → Unl l M m (r.comp (AlgEquiv.restrictScalarsHom ℚ : G K Ω →* G ℚ Ω))) := by
   intro K Ω _ _ _ _ _ _ _ l _ n M m r hM
   refine ⟨fun hdec H w hw => ?_, fun hm H w hw => ?_⟩
   · obtain ⟨A, hA, κ, hκ, hu⟩ := H (w.under (𝓞 ℚ)) ((nat_mem_under l w).2 hw)

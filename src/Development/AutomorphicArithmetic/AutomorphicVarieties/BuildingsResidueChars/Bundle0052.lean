@@ -242,7 +242,7 @@ theorem UpperTheory.compatible_polarization_of_link :
     H.weights⟩
   · exact ⟨(H.above _ _ ⟨T⟩ w A h O Bw hj).deRham, (H.above _ _ ⟨T⟩ w A h O Bw hj).jumps⟩
   · exact H.away w hw A h rc hrc _ (hσ w)
-  · have hpst : IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := E) A).subtype) :=
+  · have hpst : IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
       Pr.litN.aut.berger.isPstAt T Bw _ (Units.continuous_val.comp (H.cont.comp continuous_subtype_val))
         (H.above _ _ ⟨T⟩ w A h O Bw hj).deRham
     obtain ⟨c1, c2⟩ := (hL w _ ((hσ w).twist ξ) A h rc hrc).2 O Bw hj

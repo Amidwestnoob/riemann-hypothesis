@@ -40,9 +40,9 @@ theorem WDT.of_conj (k : WDT ι r y) (hl : ((l : ℕ) : 𝓞 E) ∉ w.asIdeal) {
 variable (ι r y) in
 def CmpT : Prop :=
   (((l : ℕ) : 𝓞 E) ∉ w.asIdeal → WDT ι r y) ∧
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-      Gd y → IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := E) A).subtype) ∧
-        wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := E) A).subtype) = y
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+      Gd y → IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+        wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) = y
 end Local
 
 variable {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] {l : ℕ} [Fact l.Prime] {n : ℕ}
@@ -59,10 +59,10 @@ def LocGlobT (ι : Qbar l ≃+* ℂ) (r : G F Ω →* GL (Fin n) (Qbar l)) (w : 
 omit [IsAlgClosure F Ω] in
 def HasHTAt (r : G F Ω →* GL (Fin n) (Qbar l)) (HT : (F →+* Qbar l) → Multiset ℤ) (w : HeightOneSpectrum (𝓞 F)) : Prop :=
   ∀ A : ValuationSubring Ω, IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw →
-      IsdRAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) ∧
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw →
+      IsdRAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧
       ∀ (τ : F →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-        IsJumpsAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) τ (HT τ)
+        IsJumpsAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ (HT τ)
 
 
 def CompatT : Prop :=

@@ -43,7 +43,7 @@ structure RibetLatticeEisensteinRep (Φ φ θ : G ℚ Ω →* (Qbar l)ˣ) (k : �
   away : ∀ A : ValuationSubring Ω, ¬ A.valuation (l : Ω) < 1 → ∀ g ∈ Ine (F := ℚ) A, φ g = 1 → θ g = 1 → ρ g = 1
   int : ∀ A, ‖x A‖ ≤ 1
   mem : ∀ E : IntermediateField ℚ_[l] (Qbar l), (∀ g i j, ρ g i j ∈ E) → ∀ A, x A ∈ E
-  flag : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ Dec (F := ℚ) A,
+  flag : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A,
     ρ s 1 0 + ρ s 1 1 * x A = (ρ s 0 0 + ρ s 0 1 * x A) * x A
   ine : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ Ine (F := ℚ) A,
     ρ s 0 0 + ρ s 0 1 * x A = (cycBar ℚ Ω l s ^ (k - 1) : (Qbar l)ˣ) ∧ ρ s 1 1 - x A * ρ s 0 1 = 1
@@ -76,7 +76,7 @@ private theorem norm_unit {c : Coef l} (a : c.Oˣ) : ‖((a : c.O) : PadicAlgCl 
 theorem exists_ribetLattice_of_eisensteinRep (ι : Qbar l ≃+* ℂ) (φ θ Φ : G ℚ Ω →* (Qbar l)ˣ) (k : ℕ) (hk : 1 ≤ k)
     (hΦ : Φ = cycBar ℚ Ω l ^ (k - 1) * φ) (ρ : G ℚ Ω →* GL (Fin 2) (Qbar l)) (hρ : EisRep ι φ θ k ρ)
     (hΦn : ∀ g, ‖(Φ g : Qbar l)‖ = 1)
-    (hloc : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∃ s ∈ Dec (F := ℚ) A, ¬ Cong (Φ s) 1)
+    (hloc : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∃ s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A, ¬ Cong (Φ s) 1)
     (g0 : G ℚ Ω) (hg0 : ¬ Cong (Φ g0) 1) : ∃ ρ' x, RepIso ρ ρ' ∧ RibetLatticeEisensteinRep Φ φ θ k g0 ρ' x := by
   have hres : ResSum ρ ![1, Φ] := by rw [hΦ]; exact hρ.res
   obtain ⟨ρ₁, i1, d01, d10, r1, s₀, hs₀⟩ := UpperTheory.V.Sd.ribetLat l (G ℚ Ω) ρ 1 Φ hρ.cont hρ.irr
@@ -92,12 +92,12 @@ theorem exists_ribetLattice_of_eisensteinRep (ι : Qbar l ≃+* ℂ) (φ θ Φ :
     rw [a, b, c, d]
     exact ⟨(r1 g).2.1, (r1 g).1, (r1 g).2.2.1, (r1 g).2.2.2⟩
   have hx : ∀ A : ValuationSubring Ω, ∃ x : Qbar l, ‖x‖ ≤ 1 ∧ (¬ A.valuation (l : Ω) < 1 → x = 0) ∧
-      (A.valuation (l : Ω) < 1 → (∀ s ∈ Dec (F := ℚ) A, σ s 1 0 + σ s 1 1 * x = (σ s 0 0 + σ s 0 1 * x) * x) ∧
+      (A.valuation (l : Ω) < 1 → (∀ s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A, σ s 1 0 + σ s 1 1 * x = (σ s 0 0 + σ s 0 1 * x) * x) ∧
         ∀ s ∈ Ine (F := ℚ) A, σ s 0 0 + σ s 0 1 * x = (cycBar ℚ Ω l s ^ (k - 1) : (Qbar l)ˣ) ∧ σ s 1 1 - x * σ s 0 1 = 1) := by
     intro A
     by_cases hA : A.valuation (l : Ω) < 1
     · obtain ⟨κ, k1, k2, k3⟩ := hρ.above A hA
-      obtain ⟨x, x1, x2⟩ := UpperTheory.symmetric_cube_line_exists l (G ℚ Ω) (Dec (F := ℚ) A) σ Φ κ (fun g => ⟨(red g).2.1, (red g).2.2.2⟩)
+      obtain ⟨x, x1, x2⟩ := UpperTheory.symmetric_cube_line_exists l (G ℚ Ω) (ReciprocityTheory.Gal.Dec (F := ℚ) A) σ Φ κ (fun g => ⟨(red g).2.1, (red g).2.2.2⟩)
         (k1.of_iso iso) (fun s => by rw [hΦ]; exact k3 0 s) (hloc A hA)
       refine ⟨x, x1, fun h => absurd hA h, fun _ => ⟨fun s hs => ?_, fun s hs => ?_⟩⟩
       · obtain ⟨a, b, -⟩ := x2 ⟨s, hs⟩

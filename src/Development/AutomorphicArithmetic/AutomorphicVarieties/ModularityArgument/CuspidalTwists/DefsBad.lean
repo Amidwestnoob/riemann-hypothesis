@@ -14,12 +14,12 @@ namespace UpperTheory.V.Cu
 
 def GoodAt {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] (K' L : IntermediateField ℚ Ω) [NumberField L]
     (ρ : G ℚ Ω →* GL (Fin 2) (Qbar l)) : Prop :=
-  ∀ p : ℕ, p.Prime → (∀ A : ValuationSubring Ω, A.valuation (p : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup) ∨
+  ∀ p : ℕ, p.Prime → (∀ A : ValuationSubring Ω, A.valuation (p : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup) ∨
     (p ≠ l ∧ ∀ A : ValuationSubring Ω, A.valuation (p : Ω) < 1 → ∀ s ∈ Ine (F := L) A, resQ L s ∈ K'.fixingSubgroup ∧ ρ (resQ L s) = 1)
 
 def GoodOf4 : Prop :=
   ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (c : Coef l) (D : Raw Ω c) (T₀ T : Tower D), D.Good → T₀.Le T →
-    ∀ (K' : IntermediateField ℚ Ω), (∀ p ∈ D.S, ∀ A : ValuationSubring Ω, A.valuation (p : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
+    ∀ (K' : IntermediateField ℚ Ω), (∀ p ∈ D.S, ∀ A : ValuationSubring Ω, A.valuation (p : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
     (∀ g : G T₀.F Ω, resQ T₀.F g ∉ K'.fixingSubgroup → T₀.rb wAl g = -1) →
     ∀ (w : ℕ) (θ : G ℚ Ω →* (Qbar l)ˣ), w.Prime → T₀.Splits w → (∀ A, Raw.Away {w} A → Ine (F := ℚ) A ≤ θ.ker) →
     ∀ (k : ℕ) (g0 : G ℚ Ω) (ρ : G ℚ Ω →* GL (Fin 2) (Qbar l)) (c₁ : Coef l) (h : c.O ≤ c₁.O) (ρ₁ : G ℚ Ω →* M2 c₁.O)

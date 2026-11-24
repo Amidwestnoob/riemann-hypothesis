@@ -170,7 +170,7 @@ theorem UpperTheory.V.Sd.ordAbove :
   obtain ⟨κ, hκ, hv⟩ := UpperTheory.deRham_weights_of_localArtin_characters hP.litN F Ω l hl ι 2 w hw A h ar har _ (H.cont.comp continuous_subtype_val) (m w)
     (fun i j hij => by fin_cases i <;> fin_cases j <;> first | exact hm | exact absurd hij (by decide)) ω hsm
     (Fin.forall_fin_two.2 ⟨hn0, hn1⟩) hdr
-  have k0 : ∀ g : ↥(Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → κ 0 g = cycBar F Ω l g ^ m w 0 := fun g hg => by
+  have k0 : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → κ 0 g = cycBar F Ω l g ^ m w 0 := fun g hg => by
     have h1 := hv 0 (ineIncl h ⟨g, hg⟩)
     rw [hω0, deg_ineIncl, mul_zero, zpow_zero, neg_zero, zpow_zero, map_one, mul_one, one_mul] at h1
     exact Units.ext (h1.trans (Units.val_zpow_eq_zpow_val _ _).symm)

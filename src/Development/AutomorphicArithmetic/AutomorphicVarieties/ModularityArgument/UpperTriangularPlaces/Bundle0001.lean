@@ -23,7 +23,7 @@ private theorem conj_into {F K Ω : Type} [Field F] [NumberField F] [Field K] [N
     [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω]
     (w : HeightOneSpectrum (𝓞 K)) {A B : ValuationSubring Ω} (hA : IsPlaceOver A (w.under (𝓞 F)))
     (hB : IsPlaceOver B w) :
-    ∃ g : G F Ω, (∀ s ∈ Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ Dec (F := F) A) ∧
+    ∃ g : G F Ω, (∀ s ∈ ReciprocityTheory.Gal.Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ ReciprocityTheory.Gal.Dec (F := F) A) ∧
       ∀ s ∈ Ine (F := K) B, g * res F Ω K s * g⁻¹ ∈ Ine (F := F) A := by
   have hB' : IsPlaceOver B (w.under (𝓞 F)) := fun x => by
     rw [IsScalarTower.algebraMap_apply F K Ω]
@@ -32,7 +32,7 @@ private theorem conj_into {F K Ω : Type} [Field F] [NumberField F] [Field K] [N
   have hmem : ∀ x, x ∈ B ↔ g x ∈ g • B := fun x => ValuationSubring.smul_mem_pointwise_smul_iff.symm
   have hval : ∀ y, (g • B).valuation (g y) < 1 ↔ B.valuation y < 1 := fun y => by
     rw [valuation_lt_one_iff', valuation_lt_one_iff', ← map_inv₀, ← hmem, ← hmem, map_eq_zero_iff _ g.injective]
-  have hdec : ∀ s ∈ Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ Dec (F := F) (g • B) := fun s hs => by
+  have hdec : ∀ s ∈ ReciprocityTheory.Gal.Dec (F := K) B, g * res F Ω K s * g⁻¹ ∈ ReciprocityTheory.Gal.Dec (F := F) (g • B) := fun s hs => by
     have h1 : res F Ω K s • B = B := hs
     show (g * res F Ω K s * g⁻¹) • g • B = g • B
     rw [mul_smul, mul_smul, inv_smul_smul, h1]
@@ -48,12 +48,12 @@ private theorem flag_at_place {F K Ω : Type} [Field F] [NumberField F] [Field K
     [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω]
     {l : ℕ} [Fact l.Prime] {n M : ℕ} {m : Fin n → ℤ} {r : G F Ω →* GL (Fin n) (Qbar l)}
     (w : HeightOneSpectrum (𝓞 K)) {A B : ValuationSubring Ω} (hA : IsPlaceOver A (w.under (𝓞 F)))
-    (hB : IsPlaceOver B w) {κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ} (hκ : FlagAt M m r A κ) :
-    ∃ κ' : Fin n → ↥(Dec (F := K) B) →* (Qbar l)ˣ, FlagAt M m (r.comp (res F Ω K)) B κ' := by
+    (hB : IsPlaceOver B w) {κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ} (hκ : FlagAt M m r A κ) :
+    ∃ κ' : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := K) B) →* (Qbar l)ˣ, FlagAt M m (r.comp (res F Ω K)) B κ' := by
   obtain ⟨χ, hχ, ⟨P, hP⟩, hI⟩ := hκ
   obtain ⟨g, hD, hIn⟩ := conj_into w hA hB
-  let d : ↥(Dec (F := K) B) →* ↥(Dec (F := F) A) :=
-    (((MulAut.conj g).toMonoidHom.comp (res F Ω K)).comp (Dec (F := K) B).subtype).codRestrict _
+  let d : ↥(ReciprocityTheory.Gal.Dec (F := K) B) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A) :=
+    (((MulAut.conj g).toMonoidHom.comp (res F Ω K)).comp (ReciprocityTheory.Gal.Dec (F := K) B).subtype).codRestrict _
       fun s => hD s s.2
   have hd : ∀ s, (d s : G F Ω) = g * res F Ω K s * g⁻¹ := fun _ => rfl
   have hcyc : ∀ (ψ : G F Ω →* (Qbar l)ˣ) (s : G K Ω), ψ (g * res F Ω K s * g⁻¹) = ψ (res F Ω K s) := fun ψ s => by

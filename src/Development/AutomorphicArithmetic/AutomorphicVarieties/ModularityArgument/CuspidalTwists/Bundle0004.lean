@@ -145,7 +145,7 @@ private theorem isUp_mid (a : R) {m t : M2 R} {s s' : R} (hm01 : m 0 1 = 0) (hm1
 end Alg
 
 private theorem conj_dec {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {A A' : ValuationSubring Ω} {g s : G ℚ Ω}
-    (hA : ∀ x, g x ∈ A' ↔ x ∈ A) (hs : s ∈ Dec (F := ℚ) A') : g⁻¹ * s * g ∈ Dec (F := ℚ) A :=
+    (hA : ∀ x, g x ∈ A' ↔ x ∈ A) (hs : s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A') : g⁻¹ * s * g ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A :=
   UpperTheory.V.conjGal_mem_Dec (τ := RingEquiv.refl ℚ) (σ := g.toRingEquiv) (fun x => g.commutes x) hA hs
 
 private theorem key {R : Type} [Field R] {g s t : M2 R} {x y : R} (h : g * t = s * g) (hg0 : g 0 0 ≠ 0)
@@ -162,7 +162,7 @@ private theorem key {R : Type} [Field R] {g s t : M2 R} {x y : R} (h : g * t = s
 
 private theorem phi_ne {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [hl : Fact l.Prime] {c : Coef l}
     (D : Raw Ω c) (h : D.Good) (pr : Bool) (k : ℕ) (A : ValuationSubring Ω) (hA : A.valuation (l : Ω) < 1) :
-    ∃ s ∈ Dec (F := ℚ) A, Raw.bar (Phi D pr k) s ≠ 1 := by
+    ∃ s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A, Raw.bar (Phi D pr k) s ≠ 1 := by
   have hT : l ∈ D.T := Finset.mem_insert_self _ _
   obtain ⟨u, hu, -⟩ := (UpperTheory.V.Chr.placesQ Ω).2.2 l _ A hl.out (h.pl_over l hl.out) hA
   have hc : chiO ℚ Ω l c.O (D.sg l) = 1 := by simp [chiO, h.sg_cyc]
@@ -178,7 +178,7 @@ theorem overOf4 : OverOf4 := by
   obtain ⟨v, g, hg⟩ := (d.T₀.cover (T.pl v') (T.ovl v')).exists
   refine ⟨v, g, hg, ?_⟩
   obtain ⟨s, hs, hne⟩ := phi_ne d.D d.ctx.1 d.T₀.pr d.k (T.pl v') (T.ovl v')
-  have ht : (resQ d.T₀.F g)⁻¹ * s * resQ d.T₀.F g ∈ Dec (F := ℚ) (d.T₀.pl v) := conj_dec hg hs
+  have ht : (resQ d.T₀.F g)⁻¹ * s * resQ d.T₀.F g ∈ ReciprocityTheory.Gal.Dec (F := ℚ) (d.T₀.pl v) := conj_dec hg hs
   have h1 : ∀ t, ((d.ρ₁ t).map f) 1 1 = 1 ∧ ((d.ρ₁ t).map f) 0 1 = 0 := fun t =>
     ⟨by simpa [sub_eq_zero] using hf _ (d.mod.red t).2.1, hf _ (d.mod.red t).2.2⟩
   have h0 : ∀ t, ((d.ρ₁ t).map f) 0 0 = f (inc d.h (Phi d.D d.T₀.pr d.k t)) := fun t => by

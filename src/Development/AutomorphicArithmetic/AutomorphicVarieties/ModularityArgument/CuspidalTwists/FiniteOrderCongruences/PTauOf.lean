@@ -262,7 +262,7 @@ def sA (m : ℕ) (A : ValuationSubring Ω) : c.O := if PP K' κ (m : ℤ) A then
 end Kap
 
 theorem excl (K' : IntermediateField ℚ Ω) (hH : ∀ g, g ∈ K'.fixingSubgroup ↔ ∃ x, resQ K' x = g)
-    (hDec : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup)
+    (hDec : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup)
     (κ : G K' Ω →* (Qbar l)ˣ) (m : ℕ) (hm : 1 ≤ m) (B : ValuationSubring Ω) (hB : B.valuation (l : Ω) < 1) :
     ¬ (PP K' κ (m : ℤ) B ∧ PP K' κ (-(m : ℤ)) B) := by
   rintro ⟨h1, h2⟩

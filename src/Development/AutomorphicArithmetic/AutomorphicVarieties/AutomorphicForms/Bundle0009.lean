@@ -120,16 +120,16 @@ def LocGlob (ι : Qbar l ≃+* ℂ) (r : G F Ω →* GL (Fin n) (Qbar l)) (w : H
     (σ : SmIrr (GL (Fin n) (w.adicCompletion F))) : Prop :=
   ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) (rc : IrrGL (k := w.adicCompletion F) → WD h), IsRec h rc →
     (((l : ℕ) : 𝓞 F) ∉ w.asIdeal → Lev.WO ι r (rc (algNorm σ))) ∧
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw),
-      IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) ∧
-        Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)) (rc (algNorm σ))
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw),
+      IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧
+        Lev.SsCmp (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)) (rc (algNorm σ))
 
 def HasHT (r : G F Ω →* GL (Fin n) (Qbar l)) (HT : (F →+* Qbar l) → Multiset ℤ) : Prop :=
   ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw →
-      IsdRAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) ∧
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw →
+      IsdRAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧
       ∀ (τ : F →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-        IsJumpsAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) τ (HT τ)
+        IsJumpsAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ (HT τ)
 
 end Compat
 
@@ -247,7 +247,7 @@ theorem Hypotheses₂.exists_rec (P : Hypotheses₂) {A : ValuationSubring Ω} {
 theorem exists_bridge {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 F)} (h : IsPlaceOver A w)
     (hw : ((l : ℕ) : 𝓞 F) ∈ w.asIdeal) :
     ∃ (O : Type) (_ : CommRing O) (_ : Algebra ℤ_[l] O) (_ : TopologicalSpace O)
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw := by
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw := by
   obtain ⟨j, L0, hj, hLL⟩ := GlobalTheory.PlaceBridge.exists_locBridge l F Ω w A hw h
   obtain ⟨Bw, hBj, -⟩ := hLL L0 le_rfl
   exact ⟨_, _, _, _, Bw, fun x => by rw [hBj]; exact hj x⟩

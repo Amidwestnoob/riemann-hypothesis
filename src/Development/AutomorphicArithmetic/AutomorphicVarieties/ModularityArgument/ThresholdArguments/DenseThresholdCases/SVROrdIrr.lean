@@ -146,7 +146,7 @@ theorem UpperTheory.V.Sd.ordinary_irreducible_of_printed_hida :
     have key : ∀ t ∈ Ine (F := F) A, (X - C (c₁ t : Qbar l)) * (X - C (c₂ t : Qbar l)) =
         (X - C ((cycBar F Ω l t ^ m w 0 : (Qbar l)ˣ) : Qbar l)) * (X - C ((cycBar F Ω l t ^ m w 1 : (Qbar l)ˣ) : Qbar l)) := by
       intro t ht
-      let t' : ↥(Dec (F := F) A) := ⟨t, Ine_le_Dec A ht⟩
+      let t' : ↥(ReciprocityTheory.Gal.Dec (F := F) A) := ⟨t, Ine_le_Dec A ht⟩
       rw [← hch, charpoly_tri g _ (hg t').1, (hg t').2 0, (hg t').2 1, hκ 0 t' ht, hκ 1 t' ht]
     have hp : ∀ t ∈ Ine (F := F) A, c₁ t * c₂ t = cycBar F Ω l t ^ m w 0 * cycBar F Ω l t ^ m w 1 := fun t ht => by
       have := congrArg (eval 0) (key t ht)

@@ -298,9 +298,9 @@ def LocIsotypic {n : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V] (ρ : Repre
   Nontrivial V ∧ ⨆ f : {f : σ.V →ₗ[ℂ] V // ∀ g v, f (σ.ρ g v) = ρ (locGL F n w g) (f v)}, LinearMap.range f.1 = ⊤
 
 def FlagAt {l : ℕ} [Fact l.Prime] {n : ℕ} (M : ℕ) (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)) (A : ValuationSubring Ω)
-    (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ) : Prop :=
-  ∃ χ : Fin n → G F Ω →* (Qbar l)ˣ, (∀ i, KillsMu M (χ i)) ∧ IsFlagOn r (Dec (F := F) A) κ ∧
-    ∀ i (s : ↥(Dec (F := F) A)), (s : G F Ω) ∈ Ine (F := F) A → κ i s = cycBar F Ω l s ^ m i * χ i s
+    (κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ) : Prop :=
+  ∃ χ : Fin n → G F Ω →* (Qbar l)ˣ, (∀ i, KillsMu M (χ i)) ∧ IsFlagOn r (ReciprocityTheory.Gal.Dec (F := F) A) κ ∧
+    ∀ i (s : ↥(ReciprocityTheory.Gal.Dec (F := F) A)), (s : G F Ω) ∈ Ine (F := F) A → κ i s = cycBar F Ω l s ^ m i * χ i s
 
 end Defs
 
@@ -316,19 +316,19 @@ def WDAbove : Prop :=
     ∀ (ι : Qbar l ≃+* ℂ) (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ),
-      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) →
-      ((∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype) ∨ PotCrysAt r A) →
-      IsLevelWD M n (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype))
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ),
+      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) →
+      ((∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∨ PotCrysAt r A) →
+      IsLevelWD M n (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype))
 
 def JumpsAbove : Prop :=
   ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 →
     ∀ (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A w →
     ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw → ∀ (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ),
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw → ∀ (κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ),
       FlagAt M m r A κ → ∀ (τ : F →+* Qbar l) (J : Multiset ℤ),
-      IsJumpsAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) τ J → J = Finset.univ.val.map fun i => -m i
+      IsJumpsAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ J → J = Finset.univ.val.map fun i => -m i
 
 def LocFixed : Prop :=
   ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (n M : ℕ), 1 ≤ M →
@@ -368,12 +368,12 @@ def CrysSlopes : Prop :=
     ¬ (p : ℤ) ∣ discr F → ∀ (ι : Qbar p ≃+* ℂ) (n : ℕ) (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar p)), Continuous r →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[p] O] [TopologicalSpace O]
-      (Bw : LocBridge p F Ω (Dec (F := F) A) O) (hj : Induces Bw),
-      IsCrysAt (Loc.PP p) Bw (r.comp (Dec (F := F) A).subtype) →
+      (Bw : LocBridge p F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw),
+      IsCrysAt (Loc.PP p) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) →
       (∀ (τ : F →+* Qbar p) (LL' : FinExt p) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[p]] ↥LL'.1), IsInduced Bw τ τ' →
-        IsJumpsAt (Loc.PP p) Bw (r.comp (Dec (F := F) A).subtype) τ (Finset.univ.val.map fun i => -m i)) →
+        IsJumpsAt (Loc.PP p) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ (Finset.univ.val.map fun i => -m i)) →
       ∀ (σ : SmIrr (GL (Fin n) (w.adicCompletion F))) (B : Multiset ℂˣ), GlobalTheory.LFun.HasSatGL w σ.ρ B →
-      ∀ rc, IsRec h rc → wdAt (Loc.PP p) ι Bw h hj (r.comp (Dec (F := F) A).subtype) = rc (algNorm σ) →
+      ∀ rc, IsRec h rc → wdAt (Loc.PP p) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) = rc (algNorm σ) →
       ∀ b ∈ algSat n (normV w) B, (∀ a : ℤ, (∀ i, -a ≤ m i) → ‖ι.symm ((normV w : ℂ) ^ a * b⁻¹)‖ ≤ 1) ∧
         ∀ a : ℤ, (∀ i, m i ≤ a) → ‖ι.symm ((normV w : ℂ) ^ a * b)‖ ≤ 1
 

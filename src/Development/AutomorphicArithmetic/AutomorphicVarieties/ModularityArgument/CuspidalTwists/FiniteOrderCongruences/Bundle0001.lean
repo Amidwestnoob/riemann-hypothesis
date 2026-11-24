@@ -326,7 +326,7 @@ private theorem emb_two {K : Type} [Field K] [NumberField K] [_root_.NumberField
 
 theorem emb_unique {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime]
     (K' : IntermediateField ℚ Ω) [NumberField K'] (hdeg : Module.finrank ℚ K' = 2)
-    (hsplit : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup)
+    (hsplit : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup)
     (A : ValuationSubring Ω) (hA : A.valuation (l : Ω) < 1) (w : HeightOneSpectrum (𝓞 K'))
     (hw : Formalism.ConjugateSelfDual.IsPlaceOver A w) (j j' : w.adicCompletion K' →+* Qbar l) (hj : Continuous j) (hj' : Continuous j') :
     j = j' := by
@@ -401,7 +401,7 @@ theorem emb_unique {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l
       ext x
       rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
       rfl
-    have hD : g * resQ K' h ∈ Dec (F := ℚ) A := by
+    have hD : g * resQ K' h ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A := by
       show (g * resQ K' h) • A = A
       rw [mul_smul, e1, hh, smul_inv_smul]
     have hm : resQ K' h ∈ K'.fixingSubgroup :=

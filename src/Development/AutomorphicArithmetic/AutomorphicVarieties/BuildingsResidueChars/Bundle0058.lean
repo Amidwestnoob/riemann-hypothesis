@@ -292,12 +292,12 @@ theorem UpperTheory.sum_two_of_hodge_tate :
   refine ⟨fun hw => hA E Ω l ι a b r r' C.cont C'.cont w hw A h _ _ (a1 hw) (a2 hw), fun O _ _ _ Bw hj => ?_⟩
   obtain ⟨p1, e1⟩ := b1 O Bw hj
   obtain ⟨p2, e2⟩ := b2 O Bw hj
-  have p3 : IsPstAt (Loc.PP l) Bw ((Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (Dec (F := E) A).subtype) := by
+  have p3 : IsPstAt (Loc.PP l) Bw ((Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     refine H.litN.aut.berger.isPstAt T Bw _ (Units.continuous_val.comp (hc.comp continuous_subtype_val)) ?_
     exact (hht w A h O Bw hj).1
   refine ⟨p3, ?_⟩
-  have e : (Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (Dec (F := E) A).subtype =
-      Formalism.MainNotions.SumRepresentations.At.sumRep (r.comp (Dec (F := E) A).subtype) (r'.comp (Dec (F := E) A).subtype) := by
+  have e : (Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+      Formalism.MainNotions.SumRepresentations.At.sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     ext g i j
     rfl
   rw [e] at p3 ⊢

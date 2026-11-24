@@ -30,7 +30,7 @@ structure KapDat {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l :
 def TwistIne : Prop :=
   ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ)
     (K' : IntermediateField ℚ Ω) [NumberField K'], Module.finrank ℚ K' = 2 → IsTotallyComplex K' → ¬ (l : ℤ) ∣ discr K' →
-    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
+    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
     ∀ (cc : G ℚ Ω) (κ₀ : G K' Ω →* (Qbar l)ˣ), IsTwist ι cc κ₀ → ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 →
       (∀ h ∈ Ine (F := K') A, κ₀ h = (cycBar K' Ω l h)⁻¹) ∨ ∀ h ∈ Ine (F := K') A, κ₀ h = 1
 
@@ -43,13 +43,13 @@ def AlgType : Prop :=
 def KapEx : Prop :=
   Af.Hypotheses₂ → ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ)
     (K' : IntermediateField ℚ Ω) [NumberField K'], l ≠ 2 → Module.finrank ℚ K' = 2 → IsTotallyComplex K' → ¬ (l : ℤ) ∣ discr K' →
-    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup) → (∃ cc : G ℚ Ω, Sd.IsCC cc) →
+    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup) → (∃ cc : G ℚ Ω, Sd.IsCC cc) →
     ∃ (m : ℕ) (κ : G K' Ω →* (Qbar l)ˣ), ∀ j : ℕ, 1 ≤ j → KapDat ι K' (m * j) (κ ^ j)
 
 def TauOf : Prop :=
   ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ)
     (K' : IntermediateField ℚ Ω) [NumberField K'], l ≠ 2 → Module.finrank ℚ K' = 2 →
-    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
+    (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ReciprocityTheory.Gal.Dec (F := ℚ) A ≤ K'.fixingSubgroup) →
     ∀ g0 ∉ K'.fixingSubgroup, ∀ (m : ℕ) (κ : G K' Ω →* (Qbar l)ˣ), KapDat ι K' m κ →
     ∀ c₂ : Coef l, (∀ h, (κ h : Qbar l) ∈ c₂.O) → ∃ τ s, TauDat ι K' g0 m c₂ τ s κ
 

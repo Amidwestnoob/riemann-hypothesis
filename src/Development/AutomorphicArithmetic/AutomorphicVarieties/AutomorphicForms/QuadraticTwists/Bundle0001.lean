@@ -183,8 +183,8 @@ open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.V.Af.Cq.exBridge :
-    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), (∀ x : K, Bw.j (algebraMap K Ω x) ∈ Bw.Kw.1) →
-        ∃ Bw' : LocBridge l K Ω (Dec (F := K) A) O, Bw'.Kw = Bw.Kw ∧ Bw'.j = Bw.j ∧ Bw'.LL = Bw.LL := by
+    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), (∀ x : K, Bw.j (algebraMap K Ω x) ∈ Bw.Kw.1) →
+        ∃ Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O, Bw'.Kw = Bw.Kw ∧ Bw'.j = Bw.j ∧ Bw'.LL = Bw.LL := by
   intro F K Ω _ _ _ _ _ _ _ _ _ _ _ l _ A O _ _ _ Bw hK
   haveI : IsGalois K Ω := {}
   haveI : IsGalois F Ω := {}
@@ -193,21 +193,21 @@ theorem UpperTheory.V.Af.Cq.exBridge :
   have hr : Continuous r := continuous_restrictScalarsHom F K Ω
   have hinj : Function.Injective r := fun a b h => AlgEquiv.ext fun x => congrArg (fun g : G F Ω => g x) h
   have hind : Topology.IsInducing r := (hr.isClosedEmbedding hinj).isInducing
-  have hmem : ∀ σ : G K Ω, σ ∈ Dec (F := K) A ↔ r σ ∈ Dec (F := F) A := fun σ => by
+  have hmem : ∀ σ : G K Ω, σ ∈ ReciprocityTheory.Gal.Dec (F := K) A ↔ r σ ∈ ReciprocityTheory.Gal.Dec (F := F) A := fun σ => by
     rw [mem_Dec, mem_Dec]
     exact Iff.rfl
-  have hfix : ∀ (g : ↥(Dec (F := F) A)) (x : K), (g : G F Ω) (algebraMap K Ω x) = algebraMap K Ω x := fun g x => by
+  have hfix : ∀ (g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)) (x : K), (g : G F Ω) (algebraMap K Ω x) = algebraMap K Ω x := fun g x => by
     apply Bw.j.injective
     rw [← Bw.e_comm]
     exact (IntermediateField.mem_fixingSubgroup_iff _ _).1 (Bw.e g).2 _ (hK x)
-  let f : ↥(Dec (F := K) A) →* ↥(Dec (F := F) A) :=
-    (r.comp (Dec (F := K) A).subtype).codRestrict _ fun σ => (hmem σ).1 σ.2
+  let f : ↥(ReciprocityTheory.Gal.Dec (F := K) A) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A) :=
+    (r.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype).codRestrict _ fun σ => (hmem σ).1 σ.2
   have hf : Function.Bijective f := by
     refine ⟨fun a b h => Subtype.ext (hinj (congrArg Subtype.val h)), fun g => ?_⟩
     let σ : G K Ω := AlgEquiv.ofRingEquiv (f := (g : G F Ω).toRingEquiv) (hfix g)
     have hσ : r σ = g := AlgEquiv.ext fun _ => rfl
     exact ⟨⟨σ, (hmem σ).2 (hσ ▸ g.2)⟩, Subtype.ext hσ⟩
-  let φ : ↥(Dec (F := K) A) ≃* ↥(Dec (F := F) A) := MulEquiv.ofBijective f hf
+  let φ : ↥(ReciprocityTheory.Gal.Dec (F := K) A) ≃* ↥(ReciprocityTheory.Gal.Dec (F := F) A) := MulEquiv.ofBijective f hf
   have hφ : Continuous φ := (hr.comp continuous_subtype_val).subtype_mk _
   have hφs : Continuous φ.symm := by
     rw [(hind.comp Topology.IsInducing.subtypeVal).continuous_iff]
@@ -309,7 +309,7 @@ private theorem surj_of_dense {F K : Type} [Field F] [NumberField F] [Field K] [
     exact ⟨x⁻¹, by rw [map_inv₀, hx, inv_inv]⟩
 
 theorem UpperTheory.V.Af.Cq.exPlaceIso :
-    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 F)), IsPlaceOver A v → ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O),
+    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (v : HeightOneSpectrum (𝓞 F)), IsPlaceOver A v → ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O),
         Induces Bw → (∀ x : K, Bw.j (algebraMap K Ω x) ∈ Bw.Kw.1) → ∃ (w : HeightOneSpectrum (𝓞 K)) (_ : IsPlaceOver A w)
           (i : v.adicCompletion F ≃+* w.adicCompletion K), PlaceIso A v A w (RingEquiv.refl Ω) (algebraMap F K) i := by
   intro F K Ω _ _ _ _ _ _ _ _ _ _ _ l _ A v h O _ _ _ Bw hj hK
@@ -340,9 +340,9 @@ open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.V.Af.Cq.pstRes :
-    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O) (Bw' : LocBridge l K Ω (Dec (F := K) A) O),
-        Bw'.Kw = Bw.Kw → Bw'.j = Bw.j → Bw'.LL = Bw.LL → ∀ (n : ℕ) (r : G F Ω →* GL (Fin n) (Qbar l)), IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) →
-        IsPstAt (Loc.PP l) Bw' ((r.comp (AlgEquiv.restrictScalarsHom F : G K Ω →* G F Ω)).comp (Dec (F := K) A).subtype) := by
+    ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O),
+        Bw'.Kw = Bw.Kw → Bw'.j = Bw.j → Bw'.LL = Bw.LL → ∀ (n : ℕ) (r : G F Ω →* GL (Fin n) (Qbar l)), IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) →
+        IsPstAt (Loc.PP l) Bw' ((r.comp (AlgEquiv.restrictScalarsHom F : G K Ω →* G F Ω)).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype) := by
   intro F K Ω _ _ _ _ _ _ _ _ _ _ _ l _ A O _ _ _ Bw Bw' hK hj hL n r hr
   obtain ⟨Kw', j', jE', jd', e', ec', esc', ecomm', LL0', hs', eO', h1', h2', h3'⟩ := Bw'
   dsimp only at hK hj hL
@@ -351,7 +351,7 @@ theorem UpperTheory.V.Af.Cq.pstRes :
   refine ⟨LL', r'.comp (e'.trans Bw.e.symm).toMonoidHom, ⟨hle, ?_⟩, ?_⟩
   · refine MonoidHom.ext fun g => ?_
     have h1 := DFunLike.congr_fun hmap (Bw.e.symm (e' g))
-    have h2 : ((Bw.e.symm (e' g) : ↥(Dec (F := F) A)) : Ω ≃ₐ[F] Ω) =
+    have h2 : ((Bw.e.symm (e' g) : ↥(ReciprocityTheory.Gal.Dec (F := F) A)) : Ω ≃ₐ[F] Ω) =
         AlgEquiv.restrictScalarsHom F (g : Ω ≃ₐ[K] Ω) := by
       refine AlgEquiv.ext fun x => Bw.j.injective ?_
       rw [← Bw.e_comm, MulEquiv.apply_symm_apply, ecomm']

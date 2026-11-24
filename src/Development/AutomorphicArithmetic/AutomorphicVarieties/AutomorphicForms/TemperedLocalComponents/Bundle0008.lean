@@ -168,8 +168,8 @@ private theorem galRepOfR_iso (P : Hypotheses₂) {F Ω : Type} [Field F] [Numbe
   · obtain ⟨x, h1, h2⟩ := H.pure w hw A h
     exact ⟨x, h1.of_conj hw p fun g => by rw [hp, inv_mul_cancel_right], h2⟩
   · obtain ⟨h1, h2, h3, h4⟩ := H.above Q AI hT w A h O Bw hj
-    have hc : ∀ g : ↥(Dec (F := F) A), r'.comp (Dec (F := F) A).subtype g =
-        p * r.comp (Dec (F := F) A).subtype g * p⁻¹ := fun g => hp g
+    have hc : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), r'.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype g =
+        p * r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype g * p⁻¹ := fun g => hp g
     obtain ⟨k1, k2, -, k4⟩ := GlobalTheory.T.padicHodgeProperties_conj_invariant l Q F Ω O _ Bw n _ _ p hc
     refine ⟨k1 h1, fun τ LL' τ' hτ => k4 τ _ (h2 τ LL' τ' hτ), fun σ hσ hI => ⟨isSstAt_conj Q Bw p hc (h3 σ hσ hI).1,
       fun rc hrc => ?_⟩, fun σ hσ hS => k2 (h4 σ hσ hS)⟩

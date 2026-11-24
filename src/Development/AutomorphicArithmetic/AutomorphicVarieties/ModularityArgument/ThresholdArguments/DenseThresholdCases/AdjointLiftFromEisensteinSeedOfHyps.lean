@@ -140,7 +140,7 @@ private theorem ordAt_change {n : ℕ} {r : G F Ω →* GL (Fin n) (Qbar l)} {m 
 private theorem order_at_adjoint_zero {ρ : G F Ω →* GL (Fin 2) (Qbar l)} {m : ℤ} {Φ : G F Ω →* (Qbar l)ˣ} (hΦ : ∀ s, ‖(Φ s : Qbar l)‖ = 1)
     {A : ValuationSubring Ω} (h : OrdAt ρ ![m, 0] ![Φ, 1] A) : OrdAt (ad0 ρ) ![m, 0, -m] ![Φ, 1, Φ⁻¹] A := by
   obtain ⟨κ, h1, h2, h3⟩ := h
-  have h4 : ∀ s : ↥(Dec (F := F) A), Cong ((κ 0 / κ 1) s) (Φ s) := fun s => by
+  have h4 : ∀ s : ↥(ReciprocityTheory.Gal.Dec (F := F) A), Cong ((κ 0 / κ 1) s) (Φ s) := fun s => by
     have := cong_mul (h3 0 s) (cong_inv (h3 1 s) (by simp)) (hΦ s) (by simp)
     simpa [div_eq_mul_inv] using this
   refine ⟨_, (ad0Facts l _ ρ).2.2.2.1 _ κ h1, fun i s hs => ?_, fun i s => ?_⟩

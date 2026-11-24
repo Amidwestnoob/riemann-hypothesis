@@ -287,7 +287,7 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
     [IsScalarTower F K Ω] [IsAlgClosure K Ω] {ι : Qbar l ≃+* ℂ} {π : TR.CuspSub F a} {P : CuspSub K a} (hBC : IsBC π P)
     {r : G F Ω →* GL (Fin a) (Qbar l)} {wt : ℤ} {HT : (K →+* Qbar l) → Multiset ℤ}
     (hG : UpperTheory.GalStar.PropsB (fun h rc => IsRecT h rc) P ι (r.comp (res F Ω K)) wt HT) {v : HeightOneSpectrum (𝓞 F)} {A : ValuationSubring Ω}
-    (h : IsPlaceOver A v) (hdec : Dec (F := F) A ≤ (res F Ω K).range) {HTF : (F →+* Qbar l) → Multiset ℤ}
+    (h : IsPlaceOver A v) (hdec : ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω K).range) {HTF : (F →+* Qbar l) → Multiset ℤ}
     (hHT : ∀ τ : K →+* Qbar l, HT τ = HTF (τ.comp (algebraMap F K))) : At π ι r HTF h := by
   obtain ⟨w, h', i, hi⟩ := GlobalTheory.T.exists_place_completion_iso F Ω K v A h hdec
   have hlw : ((l : ℕ) : 𝓞 F) ∉ v.asIdeal → ((l : ℕ) : 𝓞 K) ∉ w.asIdeal := fun hl hw => by
@@ -342,8 +342,8 @@ theorem local_condition_at_place_of_decomposition_le_range (L : _root_.GlobalThe
           GlobalTheory.LocalFieldIso.absPow_map i hi.cont] at h4
         exact h4
     exact gdOf K Ω A w h' rc' hrc' a σ' hplain
-  have br : ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw →
-      ∃ (Bw' : LocBridge l K Ω (Dec (F := K) A) O) (_ : Induces Bw'), Bw'.Kw = Bw.Kw ∧ Bw'.j = Bw.j ∧ Bw'.LL = Bw.LL :=
+  have br : ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw →
+      ∃ (Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O) (_ : Induces Bw'), Bw'.Kw = Bw.Kw ∧ Bw'.j = Bw.j ∧ Bw'.LL = Bw.LL :=
     fun O _ _ _ Bw hj => by
       obtain ⟨Bw', e1, e2, e3⟩ := UpperTheory.V.Af.Cq.exBridge F K Ω l A O Bw (GlobalTheory.T.local_field_embedding_mem F Ω K l A O Bw hdec)
       exact ⟨Bw', fun x => by rw [e2]; exact hj x, e1, e2, e3⟩
@@ -387,7 +387,7 @@ theorem galois_rep_exists_totally_real_rank_two_of_base_change : _root_.GlobalTh
   intro litN qbc adm F Ω _ _ _ _ _ _ l _ ι a ha2 ha π χ hreg hpol
   let S : Set (QCM F Ω) := {Q | ∃ P : CuspSub ↥Q.K a, IsBC π P}
   have good : ∀ (v : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A v →
-      {Q : QCM F Ω | Dec (F := F) A ≤ (res F Ω ↥Q.K).range ∧ ∃ P : CuspSub ↥Q.K a, IsBC π P}.Infinite := by
+      {Q : QCM F Ω | ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω ↥Q.K).range ∧ ∃ P : CuspSub ↥Q.K a, IsBC π P}.Infinite := by
     intro v A hA
     obtain rfl := ha2.out
     have hT := _root_.GlobalTheory.RealGal.SatAeProof.main adm F 2 π
@@ -429,7 +429,7 @@ theorem galois_rep_exists_totally_real_rank_two_of_base_change : _root_.GlobalTh
   have hwt : ∀ Q : ↥S, wt Q = wt Q0 := fun Q =>
     _root_.GlobalTheory.Glob.symm_multiset_centre_unique (HTF τ0) (wt Q) (wt Q0) (by rw [← Multiset.card_pos, hcard]; exact ha) ((hHT Q).2 τ0) ((hHT Q0).2 τ0)
   have hpick : ∀ (v : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A v →
-      ∃ Q : ↥S, Dec (F := F) A ≤ (res F Ω ↥Q.1.K).range ∧
+      ∃ Q : ↥S, ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω ↥Q.1.K).range ∧
         UpperTheory.GalStar.PropsB (fun h rc => IsRecT h rc) (P Q) ι (ρ.comp (res F Ω ↥Q.1.K)) (wt Q) (HT Q) := by
     intro v A hA
     have hfin := (Filter.eventually_cofinite.1 hgal).image Subtype.val

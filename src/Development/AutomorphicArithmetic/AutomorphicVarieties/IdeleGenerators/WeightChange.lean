@@ -136,8 +136,8 @@ def PropM : Prop :=
     ∀ (ι : Qbar l ≃+* ℂ) (ξ : G F Ω →* (Qbar l)ˣ), IsOpen (ξ.ker : Set (G F Ω)) → (∀ c, IsConjEl c → ξ c = -1) →
     (∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → Ine (F := F) A ≤ ξ.ker) → (∃ A : ValuationSubring Ω, ¬ Ine (F := F) A ≤ ξ.ker) →
     ∀ P : Set (Pl F),
-    (∃ w ∈ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ Dec (F := F) A, ¬ Cong (ξ σ) 1) →
-    (∃ w ∉ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ Dec (F := F) A, ¬ Cong (ξ σ) 1) →
+    (∃ w ∈ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ ReciprocityTheory.Gal.Dec (F := F) A, ¬ Cong (ξ σ) 1) →
+    (∃ w ∉ P, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ ReciprocityTheory.Gal.Dec (F := F) A, ¬ Cong (ξ σ) 1) →
     ∀ B : ℕ, ∃ k ≥ B, l - 1 ∣ k ∧ ∃ c a π r, OrdForm ι ξ (-(k : ℤ)) c (fun _ => ![0, -(k : ℤ)]) a π r ∧ ResSum r ![1, ξ] ∧
       ∀ (w : Pl F), ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ A, IsPlaceOver A w → ∀ σ : G F Ω, IsFrob A (normV w) σ →
         (w ∈ P → a w = (ξ σ⁻¹ : (Qbar l)ˣ)) ∧ (w ∉ P → a w = 1)
@@ -167,9 +167,9 @@ def OrdAbove : Prop :=
   ∀ (F Ω : Type) [Field F] [NumberField F] [IsTotallyReal F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 →
     SplitL F l → ∀ (ι : Qbar l ≃+* ℂ) (ξ : G F Ω →* (Qbar l)ˣ) s c m a π r, OrdForm ι ξ s c m a π r →
     ∀ w : Pl F, ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ A, IsPlaceOver A w →
-      ∃ κ : Fin 2 → ↥(Dec (F := F) A) →* (Qbar l)ˣ, IsFlagOn r (Dec (F := F) A) κ ∧
-        (∀ i (g : ↥(Dec (F := F) A)), (g : G F Ω) ∈ Ine (F := F) A → κ i g = cycBar F Ω l g ^ m w i) ∧
-        ∀ σ : ↥(Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) →
+      ∃ κ : Fin 2 → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ, IsFlagOn r (ReciprocityTheory.Gal.Dec (F := F) A) κ ∧
+        (∀ i (g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)), (g : G F Ω) ∈ Ine (F := F) A → κ i g = cycBar F Ω l g ^ m w i) ∧
+        ∀ σ : ↥(ReciprocityTheory.Gal.Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) →
           ‖((κ 0 σ⁻¹ * cycBar F Ω l (σ : G F Ω) ^ m w 0 : (Qbar l)ˣ) : Qbar l) - a w‖ < 1
 
 def OrdIrr : Prop :=

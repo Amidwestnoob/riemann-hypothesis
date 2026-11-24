@@ -184,14 +184,14 @@ theorem UpperTheory.V.Z.Win.compatTOf :
   · exact WDT.of_conj ⟨wdOf h hw ι R, isWDOf_wdOf hw ι hRc, fun g => (P.away w hw A h rc hrc σ hσ).tor g.1 g.2⟩ hw p
       fun g => by rw [hp, inv_mul_cancel_right]
   · obtain ⟨-, k2, -, k4⟩ := (P.above (Loc.PP l) _ (Loc.tiedP l) w A h O Bw hj).nice σ hσ rc hrc (Or.inr hg.1) hg.2
-    have h3 := GlobalTheory.PstConj.main F Ω l ι n _ _ (Loc.tiedP l) w A h O Bw hj (R.comp (Dec (F := F) A).subtype)
-      (r.comp (Dec (F := F) A).subtype) p (fun g => hp g.1) k2
+    have h3 := GlobalTheory.PstConj.main F Ω l ι n _ _ (Loc.tiedP l) w A h O Bw hj (R.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
+      (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) p (fun g => hp g.1) k2
     exact ⟨h3.1, by rw [h3.2]; exact k4.tor hg.1 hg.2⟩
   · obtain ⟨rc, hrc⟩ := UpperTheory.Zero.LLC.recTExists F Ω A w h
     obtain ⟨g1, g2⟩ := gd_of H hn hrc hσ (plain_all hn hσ hT)
     obtain ⟨k1, -, k3, -⟩ := (P.above (Loc.PP l) _ (Loc.tiedP l) w A h O Bw hj).nice σ hσ rc hrc (Or.inr g1) g2
-    obtain ⟨d1, -, -, d4⟩ := GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n (R.comp (Dec (F := F) A).subtype)
-      (r.comp (Dec (F := F) A).subtype) p fun g => hp g.1
+    obtain ⟨d1, -, -, d4⟩ := GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n (R.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
+      (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) p fun g => hp g.1
     exact ⟨d1 k1, fun τ LL' τ' hi => d4 τ _ (k3 τ LL' τ' hi)⟩
 
 end

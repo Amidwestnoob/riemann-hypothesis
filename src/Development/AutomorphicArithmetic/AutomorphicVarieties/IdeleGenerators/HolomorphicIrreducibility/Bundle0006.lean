@@ -277,7 +277,7 @@ theorem UpperTheory.V.Sd.resFacts :
     rw [← MonoidHom.coe_range, range_galEmb]
     exact hopen
   have hcyc : (cycBar F Ω l).comp (galEmb F E Ω) = cycBar E Ω l := rfl
-  have hD : ∀ (A : ValuationSubring Ω) (s : G E Ω), s ∈ Dec (F := E) A → galEmb F E Ω s ∈ Dec (F := F) A :=
+  have hD : ∀ (A : ValuationSubring Ω) (s : G E Ω), s ∈ ReciprocityTheory.Gal.Dec (F := E) A → galEmb F E Ω s ∈ ReciprocityTheory.Gal.Dec (F := F) A :=
     fun A s hs => hs
   have hI : ∀ (A : ValuationSubring Ω) (s : G E Ω), s ∈ Ine (F := E) A → galEmb F E Ω s ∈ Ine (F := F) A :=
     fun A s hs => ⟨hD A s hs.1, hs.2⟩
@@ -295,8 +295,8 @@ theorem UpperTheory.V.Sd.resFacts :
     obtain ⟨g, hg⟩ := h A hA
     exact ⟨g, fun s hs => hg _ (hI A s hs)⟩
   · rintro m ψ A ⟨κ, ⟨g, hg⟩, h2, h3⟩
-    let j : ↥(Dec (F := E) A) →* ↥(Dec (F := F) A) :=
-      ((galEmb F E Ω).comp (Dec (F := E) A).subtype).codRestrict _ fun s => hD A s s.2
+    let j : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A) :=
+      ((galEmb F E Ω).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype).codRestrict _ fun s => hD A s s.2
     exact ⟨fun i => (κ i).comp j, ⟨g, fun s => hg (j s)⟩, fun i s hs => h2 i (j s) (hI A s hs), fun i s => h3 i (j s)⟩
 end
 
