@@ -64,9 +64,9 @@ theorem interior_range {E : Type} [Field E] [NumberField E] [IsCMField E] {H : H
     (z : Sp ℂ ⟶ 𝔐.X) (hz : 𝔐.Interior z) (x : Sp ℂ ⟶ pullback Y.s (spMap (algebraMap (𝓞 c.F) c.F)))
     (hx : x ≫ pullback.fst _ _ = z ≫ 𝔐.f) : Set.range x ⊆ Set.range Y.jQ := by
   rintro _ ⟨q, rfl⟩
-  have hab : 𝔐.f (centre z) ∈ abLocus Y.t.G :=
+  have hab : 𝔐.f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ∈ abLocus Y.t.G :=
     (abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 _).2 hz
-  have hq : z q = centre z := congrArg z (Subsingleton.elim (α := PrimeSpectrum ℂ) q _)
+  have hq : z q = _root_.GlobalTheory.CompanionTheory.Ar.centre z := congrArg z (Subsingleton.elim (α := PrimeSpectrum ℂ) q _)
   have e : (x ≫ pullback.fst _ _) q = (z ≫ 𝔐.f) q := by rw [hx]
   simp only [Scheme.Hom.comp_apply] at e
   have : x q ∈ pullback.fst Y.s (spMap (algebraMap (𝓞 c.F) c.F)) ⁻¹' abLocus Y.t.G := by
@@ -110,7 +110,7 @@ theorem exists_bdryChart_at : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
   set w : (Fin n → ℂ) → (Σ k, J k) → ℂ := fun u => χ.γ (HodgeMetric.recentre t₀ ρ₀ π u) with hwdef
   have htie := 𝔐.tie
   have hall := 𝔐.all
-  have hex : ∀ u ∈ Metric.ball (0 : Fin n → ℂ) 1, ∃ z : Sp ℂ ⟶ 𝔐.X, genPt 𝔐.ξ ⤳ centre z ∧ CoordsAt 𝔐.ξ y z (w u) := fun u hu =>
+  have hex : ∀ u ∈ Metric.ball (0 : Fin n → ℂ) 1, ∃ z : Sp ℂ ⟶ 𝔐.X, genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z ∧ CoordsAt 𝔐.ξ y z (w u) := fun u hu =>
     (_root_.GlobalTheory.CompanionTheory.Ar.mem_mcPts_iff_exists_coordsAt 𝔐.X Ω 𝔐.ξ K J y htie (w u)).1 (χ.mem _ (hgeo ρ₀ hρ₀ le_rfl u hu).1)
   haveI : Nonempty (Sp ℂ ⟶ 𝔐.X) := ⟨z₀⟩
   choose! p hp₀ hp using hex
@@ -134,11 +134,11 @@ theorem exists_bdryChart_at : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
     have h2 := hBd (p u) (w u) (hp u hu.1)
     by_contra h
     exact (h1.2 hu) (h2.2 h)
-  have hlat : ∀ k : Fin N, s (e.symm k) ∈ 𝔐.M.lat ⟨centre z₀, hall _⟩ := fun k => by
+  have hlat : ∀ k : Fin N, s (e.symm k) ∈ 𝔐.M.lat ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z₀, hall _⟩ := fun k => by
     obtain ⟨_, _, v', hext, _⟩ := hval (e.symm k)
     exact Submodule.subset_span ⟨v', hext⟩
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
-  obtain ⟨W, hW, v, hq, htan, hv⟩ := GlobalTheory.T.lattice_tangent_vectors_affine_open 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨centre z₀, hall _⟩ N
+  obtain ⟨W, hW, v, hq, htan, hv⟩ := GlobalTheory.T.lattice_tangent_vectors_affine_open 𝔐.X 𝔐.t.G Ω 𝔐.ξ 𝔐.Li 𝔐.M ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z₀, hall _⟩ N
     (fun k => s (e.symm k)) 𝔐.tie.gen hlat
   have hW0 : ⊤ ≤ p 0 ⁻¹ᵁ W := fun x _ => by
     have : x = IsLocalRing.closedPoint ℂ := Subsingleton.elim _ _

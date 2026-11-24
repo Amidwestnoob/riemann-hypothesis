@@ -239,13 +239,13 @@ variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {G : CategoryTheory.Over X} [Gr
 
 theorem fibAt_mono (M : LieModel G ξ Li) {L L' : Lat ξ Li} (z : Spec (CommRingCat.of R) ⟶ X)
     (MC : LieModel G (Spec.map (CommRingCat.ofHom (algebraMap R C)) ≫ z) EC)
-    (h : ∀ hh : genPt ξ ⤳ centre z, L ⟨centre z, hh⟩ ≤ L' ⟨centre z, hh⟩) : M.fibAt L z MC ≤ M.fibAt L' z MC :=
+    (h : ∀ hh : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z, L ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hh⟩ ≤ L' ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hh⟩) : M.fibAt L z MC ≤ M.fibAt L' z MC :=
   Submodule.span_mono fun _ ⟨hh, e, he, hv⟩ => ⟨hh, e, h hh he, hv⟩
 
 theorem smul_mem_fibAt [IsCommMonObj G] [IsScalarTower R C EC] (hξ : IsCptGen ξ) (hsm : Smooth G.hom)
     (M : LieModel G ξ Li) {L L' : Lat ξ Li} (z : Spec (CommRingCat.of R) ⟶ X)
     (MC : LieModel G (Spec.map (CommRingCat.ofHom (algebraMap R C)) ≫ z) EC) {a : Ω} {D : R} (ha : ValAt ξ z a D)
-    (h : ∀ (hh : genPt ξ ⤳ centre z) (e : Li), e ∈ L ⟨centre z, hh⟩ → a • e ∈ L' ⟨centre z, hh⟩) {w : EC}
+    (h : ∀ (hh : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (e : Li), e ∈ L ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hh⟩ → a • e ∈ L' ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hh⟩) {w : EC}
     (hw : w ∈ M.fibAt L z MC) : D • w ∈ M.fibAt L' z MC := by
   have hr := LieTangent.valAt_base hξ (algebraMap R C) ha
   induction hw using Submodule.span_induction with
@@ -269,7 +269,7 @@ theorem smul_mem_fibAt [IsCommMonObj G] [IsScalarTower R C EC] (hξ : IsCptGen �
 
 end Fib
 
-theorem fib_V_htDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (SS : Finset ℕ) (RM : Top.RootModel (CMType H) (Dw.p + Dw.q)) (Sys : PB.AnSys (Top.dimFl (CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))) (Fx : FixedData Y Sys) (Or : RootOrigin Y SS RM Fx) (Fr : Small.GenFrame Or) (A : Subring RM.Ω) (p : ℕ) [Fact p.Prime] (z : (Σ k, RM.ι k) → PadicAlgCl p) (ev : A →+* PadicAlgCl p), z ∈ Small.algPts p (mCoordIdeal RM.y) → (∀ x : A, Small.HasVal RM.y 0 (x : RM.Ω) z (ev x)) → FinRd.GoodRing Fr A → ∀ (la : HeightOneSpectrum (𝓞 c.F)) (T : CDVR) (io : c.F →+* T.Fr) (e : ℕ) (y : IntFr Xo c T io) (evT : A →+* T.Fr) (zT : letI := io.toAlgebra; FrPt Xo c T.Fr) (t : Ix Dw → T.Frˣ), FinRd.IsIntPt Fr A ev la T io e y evT zT t → ∀ (zV : Spec (CommRingCat.of T.V) ⟶ Or.𝔐.X), FinRd.Roots.ReadsPt Or.𝔐.ξ A T evT zV → p ∈ SS → ∀ (EC : Type) [AddCommGroup EC] [Module T.Fr EC] [Module T.V EC] [IsScalarTower T.V T.Fr EC] (MC : LieModel Or.𝔐.t.G (FinRd.Roots.gen T zV) EC) (ρC : 𝓞 E →+* Module.End T.Fr EC), ∀ s : CMType H ⊕ CMType H, Or.𝔐.M.fibAt (Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb s)) zV MC ≤ Or.𝔐.M.fibAt (Or.𝔐.V s) zV MC ∧ ∃ D : T.V, (p : ℝ) ^ (-((padicValInt p (discr E) : ℝ) / Module.finrank ℚ E)) ≤ FinRd.absT p la T e (algebraMap T.V T.Fr D) ∧ ∀ w ∈ Or.𝔐.M.fibAt (Or.𝔐.V s) zV MC, D • w ∈ Or.𝔐.M.fibAt (Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb s)) zV MC := by
+theorem fib_V_htDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (SS : Finset ℕ) (RM : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)) (Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))) (Fx : FixedData Y Sys) (Or : RootOrigin Y SS RM Fx) (Fr : Small.GenFrame Or) (A : Subring RM.Ω) (p : ℕ) [Fact p.Prime] (z : (Σ k, RM.ι k) → PadicAlgCl p) (ev : A →+* PadicAlgCl p), z ∈ Small.algPts p (mCoordIdeal RM.y) → (∀ x : A, Small.HasVal RM.y 0 (x : RM.Ω) z (ev x)) → FinRd.GoodRing Fr A → ∀ (la : HeightOneSpectrum (𝓞 c.F)) (T : CDVR) (io : c.F →+* T.Fr) (e : ℕ) (y : IntFr Xo c T io) (evT : A →+* T.Fr) (zT : letI := io.toAlgebra; FrPt Xo c T.Fr) (t : Ix Dw → T.Frˣ), FinRd.IsIntPt Fr A ev la T io e y evT zT t → ∀ (zV : Spec (CommRingCat.of T.V) ⟶ Or.𝔐.X), FinRd.Roots.ReadsPt Or.𝔐.ξ A T evT zV → p ∈ SS → ∀ (EC : Type) [AddCommGroup EC] [Module T.Fr EC] [Module T.V EC] [IsScalarTower T.V T.Fr EC] (MC : LieModel Or.𝔐.t.G (FinRd.Roots.gen T zV) EC) (ρC : 𝓞 E →+* Module.End T.Fr EC), ∀ s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H, Or.𝔐.M.fibAt (Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb s)) zV MC ≤ Or.𝔐.M.fibAt (Or.𝔐.V s) zV MC ∧ ∃ D : T.V, (p : ℝ) ^ (-((padicValInt p (discr E) : ℝ) / Module.finrank ℚ E)) ≤ FinRd.absT p la T e (algebraMap T.V T.Fr D) ∧ ∀ w ∈ Or.𝔐.M.fibAt (Or.𝔐.V s) zV MC, D • w ∈ Or.𝔐.M.fibAt (Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb s)) zV MC := by
   intro E _ _ _ _ H Dw l Xo c O _ β Y SS RM Sys Fx Or Fr A p _ z ev hz hv hG la T io e y evT zT t hI zV hR hp EC _ _ _ _
     MC ρC s
   have hξ : IsCptGen Or.𝔐.ξ := Or.𝔐.tie.gen
@@ -281,22 +281,22 @@ theorem fib_V_htDual : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [I
   have ho : OverLa la T.V io e := hI.2.1
   have hr := FinRd.ram_pos (c := c) hla
   have hp1 : (1 : ℝ) ≤ p := by exact_mod_cast (Fact.out : p.Prime).one_lt.le
-  have hVq : ∀ hh : genPt Or.𝔐.ξ ⤳ centre zV, Or.𝔐.V s ⟨centre zV, hh⟩ = Or.𝔐.HT p s ⟨centre zV, hh⟩ := fun hh =>
+  have hVq : ∀ hh : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre zV, Or.𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩ = Or.𝔐.HT p s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩ := fun hh =>
     Lat.patch_of_unique SS _ _ hp hF fun p' hp' h' => by
       by_contra hne
       exact Lat.not_inFibre_of_coprime _
         ((Nat.coprime_primes (Or.𝔐.S_prime _ hp) (Or.𝔐.S_prime _ hp')).2 (Ne.symm hne)) hF h'
   obtain ⟨hf1, hf2, -, hf4⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Rec.FinRd.absT_facts E H l c p la T e ho.1 hr
-  have hreg : ∀ (hh : genPt Or.𝔐.ξ ⤳ centre zV) (a : 𝓞 E), Or.𝔐.emb s a ∈ regAt Or.𝔐.ξ ⟨centre zV, hh⟩ := fun hh a => by
+  have hreg : ∀ (hh : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre zV) (a : 𝓞 E), Or.𝔐.emb s a ∈ regAt Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩ := fun hh a => by
     obtain ⟨_, g, hg, _⟩ := hσ a
     exact ⟨g, hg⟩
   rcases s with τ | τ
-  · have hsub : ∀ hh : genPt Or.𝔐.ξ ⤳ centre zV,
-        Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb (.inl τ)) ⟨centre zV, hh⟩ ≤
-          Or.𝔐.V (.inl τ) ⟨centre zV, hh⟩ := fun hh x hx => by
+  · have hsub : ∀ hh : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre zV,
+        Or.𝔐.M.htDual Or.𝔐.t.PP.L (p ^ Or.𝔐.R p) Or.𝔐.ρ (Or.𝔐.emb (.inl τ)) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩ ≤
+          Or.𝔐.V (.inl τ) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩ := fun hh x hx => by
       rw [hVq hh]
       refine Submodule.subset_span ⟨Or.𝔐.M.mem_eigSp_of_mem_htDual _ _ _ _ hx, fun d _ => ?_⟩
-      exact Submodule.smul_mem _ (⟨_, hreg hh d⟩ : regAt Or.𝔐.ξ ⟨centre zV, hh⟩) hx
+      exact Submodule.smul_mem _ (⟨_, hreg hh d⟩ : regAt Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre zV, hh⟩) hx
     let μ : 𝓞 E →*₀ ℝ :=
       { toFun := fun a => FinRd.absT p la T e (io (labelEmb c (.inl τ) a))
         map_zero' := by simp [FinRd.absT]

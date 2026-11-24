@@ -100,14 +100,14 @@ theorem exists_spMap_of_point (𝔐 : HodgeCpt Y S y) (hm : Mono (spMap β)) (z 
   have hs : (z ≫ 𝔐.f) ≫ Y.s = spMap g := by
     show _ = Spec.map (CommRingCat.ofHom (Spec.preimage ((z ≫ 𝔐.f) ≫ Y.s)).hom)
     rw [CommRingCat.ofHom_hom, Spec.map_preimage]
-  have hsp : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hsp : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   have h2 := hsp.map (𝔐.f ≫ Y.s).continuous
   have hk : ∀ a, β a = 0 → g a = 0 := by
     intro a ha
     have e1 : (𝔐.f ≫ Y.s) (genPt 𝔐.ξ) = spMap (𝔐.cst.comp β) (IsLocalRing.closedPoint Ω) :=
       (Scheme.Hom.comp_apply 𝔐.ξ (𝔐.f ≫ Y.s) _).symm.trans
         (congrArg (fun m : Sp Ω ⟶ Sp O => m (IsLocalRing.closedPoint Ω)) 𝔐.cst_over)
-    have e2 : (𝔐.f ≫ Y.s) (centre z) = spMap g (IsLocalRing.closedPoint ℂ) :=
+    have e2 : (𝔐.f ≫ Y.s) (_root_.GlobalTheory.CompanionTheory.Ar.centre z) = spMap g (IsLocalRing.closedPoint ℂ) :=
       (Scheme.Hom.comp_apply z (𝔐.f ≫ Y.s) _).symm.trans
         (congrArg (fun m : Sp ℂ ⟶ Sp O => m (IsLocalRing.closedPoint ℂ)) ((Category.assoc _ _ _).symm.trans hs))
     rw [e1, e2] at h2
@@ -165,10 +165,10 @@ theorem lattices_off_fibres (𝔐 : HodgeCpt Y S y) (q : Cpt 𝔐.ξ) (hq : ∀ 
     intro s s' h
     refine HodgeBasic.labelEmb_injective c (RingHom.ext fun a => hcst ?_)
     exact congrArg (fun m : 𝓞 E →+* Ω => m a) h
-  letI : Fintype (CMType H) := Fintype.ofFinite _
-  have hcard : Fintype.card (CMType H ⊕ CMType H) = Module.finrank ℚ E := by
+  letI : Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) := Fintype.ofFinite _
+  have hcard : Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E := by
     rw [Fintype.card_of_bijective (HodgeBasic.labelHom_bijective H), Embeddings.card]
-  have hint := _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (CMType H ⊕ CMType H) 𝔐.emb hinj hcard
+  have hint := _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) 𝔐.emb hinj hcard
   have htop := hint.submodule_iSup_eq_top
   have hreg : ∀ s a, 𝔐.emb s a ∈ regAt 𝔐.ξ q := fun s a =>
     HodgeBasic.mem_regAt_of_isIntegral 𝔐.tie.gen 𝔐.all 𝔐.normal q
@@ -176,7 +176,7 @@ theorem lattices_off_fibres (𝔐 : HodgeCpt Y S y) (q : Cpt 𝔐.ξ) (hq : ∀ 
   have hnat := HodgeChar0.unitAt_natCast (q := q) hq
   have hV : ∀ s, 𝔐.V s q = 𝔐.dR s q := fun s =>
     Lat.patch_of_not S _ _ fun p hp => hq p (𝔐.S_prime p hp)
-  have hintg : ∀ (s : CMType H ⊕ CMType H) a, _root_.IsIntegral ℤ (𝔐.emb s a) := fun s a =>
+  have hintg : ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) a, _root_.IsIntegral ℤ (𝔐.emb s a) := fun s a =>
     (Algebra.IsIntegral.isIntegral (R := ℤ) a).map (𝔐.emb s).toIntAlgHom
   have hsep : ∀ s t, s ≠ t → ∃ a, 𝔐.emb s a ≠ 𝔐.emb t a ∧ (𝔐.emb s a - 𝔐.emb t a)⁻¹ ∈ regAt 𝔐.ξ q := by
     intro s t hst
@@ -192,24 +192,24 @@ theorem lattices_off_fibres (𝔐 : HodgeCpt Y S y) (q : Cpt 𝔐.ξ) (hq : ∀ 
   exact Submodule.sum_mem _ fun s _ =>
     Submodule.mem_iSup_of_mem s ⟨h1 s (Finset.mem_univ s), hf s⟩
 
-theorem exists_gramAt_posDef_of_frame (𝔐 : HodgeCpt Y S y) (z : Sp ℂ ⟶ 𝔐.X) (hgen : genPt 𝔐.ξ ⤳ centre z)
-    (hpol : HodgeMetric.PolarisedAt 𝔐.t z) (s : CMType H ⊕ CMType H) {N : ℕ} (b : Fin N → 𝔐.Li)
-    (hfr : (𝔐.V s).IsFrameAt b ⟨centre z, hgen⟩) :
+theorem exists_gramAt_posDef_of_frame (𝔐 : HodgeCpt Y S y) (z : Sp ℂ ⟶ 𝔐.X) (hgen : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z)
+    (hpol : HodgeMetric.PolarisedAt 𝔐.t z) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {N : ℕ} (b : Fin N → 𝔐.Li)
+    (hfr : (𝔐.V s).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩) :
     ∃ Γ : Matrix (Fin N) (Fin N) ℂ, 𝔐.M.GramAt 𝔐.t.PP.L z b Γ ∧ Γ.PosDef := by
   haveI hchar : CharZero Ω := charZero_of_injective_ringHom 𝔐.cst.injective
   have hξ : IsCptGen 𝔐.ξ := 𝔐.tie.gen
-  obtain ⟨hind, hV, hlat⟩ := lattices_off_fibres 𝔐 ⟨centre z, hgen⟩
+  obtain ⟨hind, hV, hlat⟩ := lattices_off_fibres 𝔐 ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩
     fun r hr => GramEx.not_inFibre_centre hgen hr
-  have hmem : ∀ k, b k ∈ 𝔐.V s ⟨centre z, hgen⟩ := fun k => by
+  have hmem : ∀ k, b k ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := fun k => by
     rw [hfr.2]
     exact Submodule.subset_span ⟨k, rfl⟩
-  have hmemd : ∀ k, b k ∈ 𝔐.dR s ⟨centre z, hgen⟩ := fun k => hV s ▸ hmem k
+  have hmemd : ∀ k, b k ∈ 𝔐.dR s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := fun k => hV s ▸ hmem k
   let bb : Fin N → ↥(𝔐.Vgen s ⊔ 𝔐.Vgen s) := fun k => ⟨b k, Submodule.mem_sup_left (hmemd k).2⟩
   have hfr' : (Lat.comap (fun p => 𝔐.V s p ⊔ 𝔐.V s p) (𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype).IsFrameAt bb
-      ⟨centre z, hgen⟩ := by
+      ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := by
     refine ⟨LinearIndependent.of_comp (𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype hfr.1, le_antisymm (fun x hx => ?_) ?_⟩
-    · have hx' : (x : 𝔐.Li) ∈ 𝔐.V s ⟨centre z, hgen⟩ := by
-        have h0 : (x : 𝔐.Li) ∈ 𝔐.V s ⟨centre z, hgen⟩ ⊔ 𝔐.V s ⟨centre z, hgen⟩ := hx
+    · have hx' : (x : 𝔐.Li) ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := by
+        have h0 : (x : 𝔐.Li) ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ ⊔ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := hx
         rwa [sup_idem] at h0
       rw [hfr.2] at hx'
       obtain ⟨c', hc'⟩ := (Submodule.mem_span_range_iff_exists_fun _).1 hx'
@@ -224,7 +224,7 @@ theorem exists_gramAt_posDef_of_frame (𝔐 : HodgeCpt Y S y) (z : Sp ℂ ⟶ �
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
   obtain ⟨Vz, _, _, ⟨MR⟩⟩ := lieModel_exists 𝔐.X 𝔐.t.G ℂ z
   obtain ⟨f, hHI, hh, hp⟩ := _root_.GlobalTheory.CompanionTheory.Ar.exists_hodgeInnerProduct_form E H 𝔐.X 𝔐.t z Vz MR hpol
-  obtain ⟨π, hπ, hreg⟩ := GramEx.exists_dual_sum 𝔐 hind ⟨centre z, hgen⟩ hV hlat s s bb hfr'
+  obtain ⟨π, hπ, hreg⟩ := GramEx.exists_dual_sum 𝔐 hind ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ hV hlat s s bb hfr'
   have hval : ∀ k, ∃ x : Vz, 𝔐.M.ValAt z (b k) (MR.pt x) := fun k => by
     obtain ⟨w, hw⟩ := (𝔐.M.exists_valAt_iff z _).2 ⟨hgen, (hmemd k).1⟩
     obtain ⟨x, rfl⟩ := MR.onto w hw.isTanAt
@@ -241,11 +241,11 @@ theorem exists_gramAt_posDef_of_frame (𝔐 : HodgeCpt Y S y) (z : Sp ℂ ⟶ �
   exact ⟨Matrix.of fun p q => f (x p) (x q), ⟨fun k => MR.pt (x k), hx, fun p q => (hHI _ _ _).2 rfl⟩,
     GramEx.posDef_of_dual f hh hp x g hg⟩
 
-theorem main : ThetaUnifAV → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (A : HodgeCpt Y S y) (Fl : A.Flag), Mono (spMap β) → ∀ (z : Sp ℂ ⟶ A.X), A.Interior z → ∀ s, ∃ (h : genPt A.ξ ⤳ centre z) (b : Fin (labelRk D s) → A.Li) (Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ), (∀ k, flagStep Ω b k = flagStep Ω (Fl.b s) k) ∧ (A.V s).IsFrameAt b ⟨centre z, h⟩ ∧ A.M.GramAt A.t.PP.L z b Γ ∧ Γ.PosDef := by
+theorem main : ThetaUnifAV → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (A : HodgeCpt Y S y) (Fl : A.Flag), Mono (spMap β) → ∀ (z : Sp ℂ ⟶ A.X), A.Interior z → ∀ s, ∃ (h : genPt A.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (b : Fin (labelRk D s) → A.Li) (Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ), (∀ k, flagStep Ω b k = flagStep Ω (Fl.b s) k) ∧ (A.V s).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ ∧ A.M.GramAt A.t.PP.L z b Γ ∧ Γ.PosDef := by
   intro _ E _ _ _ H D l Xo c O _ β Y S Ω _ K _ J _ y A Fl hm z hz s
-  have hgen : genPt A.ξ ⤳ centre z := A.all _
-  obtain ⟨U, hU, b, hb, hfr⟩ := Fl.sub s ⟨centre z, hgen⟩ (Set.mem_univ _)
-  have hfz := hfr ⟨centre z, hgen⟩ (Set.mem_univ _) hU
+  have hgen : genPt A.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := A.all _
+  obtain ⟨U, hU, b, hb, hfr⟩ := Fl.sub s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ (Set.mem_univ _)
+  have hfz := hfr ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ (Set.mem_univ _) hU
   obtain ⟨Γ, hΓ, hP⟩ := exists_gramAt_posDef_of_frame A z hgen (polarisedAt_of_interior_mono A hm z hz) s b hfz
   exact ⟨hgen, b, Γ, hb, hfz, hΓ, hP⟩
 

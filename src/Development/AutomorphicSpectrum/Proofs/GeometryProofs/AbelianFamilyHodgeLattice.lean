@@ -214,9 +214,9 @@ variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) 
   {Li : Type} [AddCommGroup Li] [Module Ω Li]
 
 theorem exists_value_basis [IsCommMonObj G] [Smooth G.hom] (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ X)
-    (h : genPt ξ ⤳ centre z) {V I : Type} [AddCommGroup V] [Module ℂ V] (Mz : LieModel G z V) [Fintype I]
+    (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {V I : Type} [AddCommGroup V] [Module ℂ V] (Mz : LieModel G z V) [Fintype I]
     (F : I → Li) (hli : LinearIndependent Ω F)
-    (hsp : M.lat ⟨centre z, h⟩ = Submodule.span (regAt ξ ⟨centre z, h⟩) (Set.range F)) :
+    (hsp : M.lat ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ = Submodule.span (regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩) (Set.range F)) :
     ∃ y : Module.Basis I ℂ V, ∀ j, M.ValAt z (F j) (Mz.pt (y j)) :=
   _root_.UpperTheory.Reformulated.B.Ga4.exists_value_basis hξ M z h Mz F hli hsp
 
@@ -232,11 +232,11 @@ theorem eig_of_value (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ 
   obtain ⟨h, v, hv, hw⟩ := hy
   obtain ⟨_, s, hs, hcs⟩ := hc a
   have := act.hom a
-  have e1 : M.Extends ⟨centre z, h⟩ (ρ a e) (v ≫ act.act a) := by
+  have e1 : M.Extends ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ (ρ a e) (v ≫ act.act a) := by
     refine ⟨?_, ?_⟩
     · change _ ≫ v.left ≫ (act.act a).left = _
       rw [← Category.assoc, hv.1]
-      exact congrArg (fun q : Over.mk (X.fromSpecStalk (centre z)) ⟶ G => q.left) (MonObj.one_comp (act.act a))
+      exact congrArg (fun q : Over.mk (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) ⟶ G => q.left) (MonObj.one_comp (act.act a))
     · change (M.pt (ρ a e)).left = _ ≫ (v.left ≫ (act.act a).left)
       rw [hρ a e, Over.comp_left, hv.2, Category.assoc]
   have e2 := hv.smul s
@@ -266,7 +266,7 @@ theorem eig_of_value (hξ : IsCptGen ξ) (M : LieModel G ξ Li) (z : Sp ℂ ⟶ 
 
 end Core
 
-theorem values_eig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (R : Type) [CommRing R] (t : SAB H (Sp R)) (jj : Sp R ⟶ 𝔐.X) (m : SABMap t 𝔐.t jj) (g n : ℕ) (M : LieModel t.G (𝟙 (Sp R)) (Fin g → R)) (B₀ : Set (Fin n → ℂ)) (ψ : (Fin n → ℂ) → (R →+* ℂ)) (e : Flat.FamExp t.G M B₀ ψ) (b : Fin n → ℂ) (Bb : 𝓞 E →+* Module.End ℂ (Fin g → ℂ)) (lab : CMType H ⊕ CMType H) (r : ℕ) (s : Fin r → 𝔐.Li) (sc : Fin r → Fin g → R) (σ : CMType H ⊕ CMType H → (𝓞 E →+* ℂ)), b ∈ B₀ → (∀ a' x, e.ex b (Bb a' x) = e.ex b x ≫ t.act.act a') → 𝔐.LabVal (spMap (ψ b) ≫ jj) id σ → (∀ h : genPt 𝔐.ξ ⤳ centre (spMap (ψ b) ≫ jj), (𝔐.V lab).IsFrameAt s ⟨centre (spMap (ψ b) ≫ jj), h⟩) → (∀ i, ∃ v : epsAt (spMap (ψ b) ≫ jj) ⟶ 𝔐.t.G, 𝔐.M.ValAt (spMap (ψ b) ≫ jj) (s i) v ∧ v.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (sc i)).left ≫ m.φ) → LinearIndependent ℂ (fun i k => ψ b (sc i k)) ∧ Submodule.span ℂ (Set.range fun i k => ψ b (sc i k)) = eigSp Bb (σ lab) := by
+theorem values_eig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (R : Type) [CommRing R] (t : SAB H (Sp R)) (jj : Sp R ⟶ 𝔐.X) (m : SABMap t 𝔐.t jj) (g n : ℕ) (M : LieModel t.G (𝟙 (Sp R)) (Fin g → R)) (B₀ : Set (Fin n → ℂ)) (ψ : (Fin n → ℂ) → (R →+* ℂ)) (e : Flat.FamExp t.G M B₀ ψ) (b : Fin n → ℂ) (Bb : 𝓞 E →+* Module.End ℂ (Fin g → ℂ)) (lab : CMType H ⊕ CMType H) (r : ℕ) (s : Fin r → 𝔐.Li) (sc : Fin r → Fin g → R) (σ : CMType H ⊕ CMType H → (𝓞 E →+* ℂ)), b ∈ B₀ → (∀ a' x, e.ex b (Bb a' x) = e.ex b x ≫ t.act.act a') → 𝔐.LabVal (spMap (ψ b) ≫ jj) id σ → (∀ h : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (spMap (ψ b) ≫ jj), (𝔐.V lab).IsFrameAt s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (spMap (ψ b) ≫ jj), h⟩) → (∀ i, ∃ v : epsAt (spMap (ψ b) ≫ jj) ⟶ 𝔐.t.G, 𝔐.M.ValAt (spMap (ψ b) ≫ jj) (s i) v ∧ v.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (sc i)).left ≫ m.φ) → LinearIndependent ℂ (fun i k => ψ b (sc i k)) ∧ Submodule.span ℂ (Set.range fun i k => ψ b (sc i k)) = eigSp Bb (σ lab) := by
   intro E _ _ _ H D l Xo c Y S Ω _ _ K _ J _ y 𝔐 R _ t jj m g n M B₀ ψ e b Bb lab r s sc σ hb hB hσ hF hV
   classical
   have sm1 := 𝔐.t.semi.smooth
@@ -274,16 +274,16 @@ theorem values_eig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
   have hgen := 𝔐.tie.gen
   obtain ⟨z, hz⟩ : ∃ z, z = spMap (ψ b) ≫ jj := ⟨_, rfl⟩
   rw [← hz] at hσ hF hV
-  let q : Cpt 𝔐.ξ := ⟨centre z, 𝔐.all _⟩
+  let q : Cpt 𝔐.ξ := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩
   have hfib : ∀ r' : ℕ, r'.Prime → ¬ InFibre 𝔐.ξ r' q := by
     intro r' hr'
     refine not_not.2 ⟨Nat.cast_ne_zero.2 hr'.ne_zero, natCast_mem _ _, ?_⟩
-    have hu : IsUnit ((r' : ℕ) : 𝔐.X.presheaf.stalk (centre z)) := by
+    have hu : IsUnit ((r' : ℕ) : 𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) := by
       refine isUnit_of_map_unit (Scheme.stalkClosedPointTo z).hom _ ?_
       rw [map_natCast]
       exact (Nat.cast_ne_zero.2 hr'.ne_zero : (r' : ℂ) ≠ 0).isUnit
     obtain ⟨u, hu⟩ := hu
-    refine ⟨((u⁻¹ : (𝔐.X.presheaf.stalk (centre z))ˣ) : 𝔐.X.presheaf.stalk (centre z)), ?_⟩
+    refine ⟨((u⁻¹ : (𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))ˣ) : 𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)), ?_⟩
     refine eq_inv_of_mul_eq_one_left ?_
     have h1 := congrArg (genMap 𝔐.ξ q) (Units.inv_mul u)
     rw [map_mul, hu, map_natCast, map_one] at h1
@@ -299,9 +299,9 @@ theorem values_eig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     refine hσinj (RingHom.ext fun a => ?_)
     obtain ⟨h1, c1, e1, f1⟩ := hσ u a
     obtain ⟨h2, c2, e2, f2⟩ := hσ v a
-    have e3 : genMap 𝔐.ξ ⟨centre z, h1⟩ c1 = genMap 𝔐.ξ ⟨centre z, h1⟩ c2 := by
+    have e3 : genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ c1 = genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ c2 := by
       refine e1.trans ?_
-      have : genMap 𝔐.ξ ⟨centre z, h1⟩ c2 = 𝔐.emb (id v) a := e2
+      have : genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ c2 = 𝔐.emb (id v) a := e2
       rw [this]
       simp only [id]
       rw [huv]

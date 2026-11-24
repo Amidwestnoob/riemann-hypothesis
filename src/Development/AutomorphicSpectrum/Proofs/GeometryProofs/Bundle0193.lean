@@ -348,8 +348,8 @@ theorem germ_degZero : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     have := GlobalTheory.CompanionTheory.Ar.ValHom.stalkEquiv_coe ξ hξ q (τ q a)
     rw [← this]
     simp [τ]
-  let q0 : Cpt ξ := ⟨centre Γ.η, Γ.η_spec⟩
-  let qi : Γ.C.I → Cpt ξ := fun i => ⟨centre (Γ.z i), FibreCurve.z_spec Γ i⟩
+  let q0 : Cpt ξ := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩
+  let qi : Γ.C.I → Cpt ξ := fun i => ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), FibreCurve.z_spec Γ i⟩
   let v0 : X.presheaf.stalk q0.1 →+* Γ.κ := (Scheme.stalkClosedPointTo Γ.η).hom
   let vi : ∀ i, X.presheaf.stalk (qi i).1 →+* (Γ.C.v i).valuationSubring :=
     fun i => (Scheme.stalkClosedPointTo (Γ.z i)).hom

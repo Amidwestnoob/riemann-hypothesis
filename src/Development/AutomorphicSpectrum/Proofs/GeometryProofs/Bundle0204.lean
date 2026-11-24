@@ -92,8 +92,8 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 theorem exists_value_frame (Y : Model Xo c β) (U : Set (Xo.XF c)) (Z : CptOver Y U)
     (hβ : ∀ x : c.F, ∃ a b : O, β b ≠ 0 ∧ x * β b = β a) (τ : E →+* ℂ) (F : Type) [Field F]
     (βF : c.F →+* F) (y : Sp F ⟶ Xo.XF c) (hy : y ≫ pullback.snd _ _ = spMap βF)
-    (h : genPt (Z.ξ₀ ≫ Y.j) ⤳ centre (y ≫ Y.j)) (n : ℕ) (b : Fin n → Z.V)
-    (hb : (Z.eig τ).IsFrameAt b ⟨centre (y ≫ Y.j), h⟩) (v : Vecs y n)
+    (h : genPt (Z.ξ₀ ≫ Y.j) ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j)) (n : ℕ) (b : Fin n → Z.V)
+    (hb : (Z.eig τ).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j), h⟩) (v : Vecs y n)
     (hv : IsEigFrame Xo.univ.t.act (under y) (βF.comp (tauIn c τ)) v) :
     ∃ (v₀ : Vecs y n) (A : Matrix (Fin n) (Fin n) F),
       IsEigFrame Xo.univ.t.act (under y) (βF.comp (tauIn c τ)) v₀ ∧
@@ -124,7 +124,7 @@ theorem valAt_eq {X : Scheme.{0}} {Ω R : Type} [Field Ω] [CommRing R] [IsLocal
     (h : ValAt ξ z a r) (h' : ValAt ξ z a r') : r = r' := by
   obtain ⟨h1, s, hs, rfl⟩ := h
   obtain ⟨h2, s', hs', rfl⟩ := h'
-  rw [hξ.inj ⟨centre z, h1⟩ (hs.trans hs'.symm)]
+  rw [hξ.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ (hs.trans hs'.symm)]
 
 theorem exists_eq_smul_wedge {X : Scheme.{0}} {Ω V : Type} [Field Ω] [AddCommGroup V] [Module Ω V]
     {ξ : Spec (CommRingCat.of Ω) ⟶ X} {L : Lat ξ V} {x : Cpt ξ} {p : ℕ} {f : Fin p → V}
@@ -157,8 +157,8 @@ theorem exists_const_of_flatOnModel : ∀ (E : Type) [Field E] [NumberField E] [
   refine ⟨x, hx, fun F _ βF y v w hf => ?_⟩
   obtain ⟨hy, hU, hv, hw⟩ := id hf
   have hpt : y (IsLocalRing.closedPoint F) ∈ U := hU ⟨_, rfl⟩
-  have hsp : genPt (Z.ξ₀ ≫ Y.j) ⤳ centre (y ≫ Y.j) := ((Z.closure _).1 hpt).map Y.j.continuous
-  have hmem : (⟨centre (y ≫ Y.j), hsp⟩ : Cpt (Z.ξ₀ ≫ Y.j)) ∈ Z.genFib := ⟨Y.jQ (y (IsLocalRing.closedPoint F)), rfl⟩
+  have hsp : genPt (Z.ξ₀ ≫ Y.j) ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j) := ((Z.closure _).1 hpt).map Y.j.continuous
+  have hmem : (⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j), hsp⟩ : Cpt (Z.ξ₀ ≫ Y.j)) ∈ Z.genFib := ⟨Y.jQ (y (IsLocalRing.closedPoint F)), rfl⟩
   obtain ⟨h1, h2, -, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.isVBOn_eig_genFib E H D l Xo c O β Y U Z τ hβ hτ
   obtain ⟨U₁, hU₁, b₁, -, hb₁⟩ := h1 _ hmem
   obtain ⟨U₂, hU₂, b₂, -, hb₂⟩ := h2 _ hmem

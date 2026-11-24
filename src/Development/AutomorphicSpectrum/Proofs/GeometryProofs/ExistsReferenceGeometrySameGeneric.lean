@@ -203,8 +203,8 @@ theorem exists_refGeo : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatem
     have hne' : ∀ k, ∃ i, w (v ⟨k, i⟩) ≠ 0 := fun k => (hw₁.1 k).imp fun _ h => h.ne_zero
     rw [mem_mcPts_map v bd w hne hne']
     refine (show (fun p => w (v p)) ∈ mcPts bd ↔ _ from hbd (z ≫ g) _ hw₁).trans ?_
-    have hab := abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 (centre z)
-    have hc : f (centre (z ≫ g)) = 𝔐.f (centre z) := by
+    have hab := abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 (_root_.GlobalTheory.CompanionTheory.Ar.centre z)
+    have hc : f (_root_.GlobalTheory.CompanionTheory.Ar.centre (z ≫ g)) = 𝔐.f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) := by
       rw [hf]
       rfl
     rw [hc]

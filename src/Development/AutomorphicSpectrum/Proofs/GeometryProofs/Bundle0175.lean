@@ -210,10 +210,10 @@ theorem valAt_const {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommRing
     (z : Spec (CommRingCat.of R) ⟶ X) (ρ : O →+* R) (hz : z ≫ s = Spec.map (CommRingCat.ofHom ρ)) (o : O) (r : R)
     (h : ValAt ξ z (algebraMap O Ω o) r) : r = ρ o := by
   obtain ⟨hsp, t, ht, rfl⟩ := h
-  have hg' := ConstReg.genMap_germ_const ξ s hs ⟨centre z, hsp⟩ o
-  have ht' := hg.inj ⟨centre z, hsp⟩ (ht.trans hg'.symm)
+  have hg' := ConstReg.genMap_germ_const ξ s hs ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hsp⟩ o
+  have ht' := hg.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hsp⟩ (ht.trans hg'.symm)
   rw [ht']
-  have h1 : X.presheaf.germ ⊤ (centre z) trivial ≫ Scheme.stalkClosedPointTo z =
+  have h1 : X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial ≫ Scheme.stalkClosedPointTo z =
       z.appTop ≫ (Scheme.ΓSpecIso (CommRingCat.of R)).hom := by
     refine (Scheme.germ_stalkClosedPointTo z ⊤ trivial).trans ?_
     simp only [Iso.trans_hom, Functor.mapIso_hom, Iso.op_hom, Scheme.Hom.appTop]
@@ -248,9 +248,9 @@ theorem const_of_root {n : ℕ} (f : (Fin n → ℂ) → ℂ) (hf : Differentiab
   rw [Polynomial.coe_aeval_eq_eval]
   exact h
 
-theorem labVal_const_of_isHolPts : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (R : Type) [CommRing R] (jj : Sp R ⟶ 𝔐.X) (n : ℕ) (ψ : (Fin n → ℂ) → (R →+* ℂ)), Flat.IsHolPts (Metric.ball 0 1) ψ → ∃ σ : CMType H ⊕ CMType H → (𝓞 E →+* ℂ), (∀ b ∈ Metric.ball (0 : Fin n → ℂ) 1, 𝔐.LabVal (spMap (ψ b) ≫ jj) id σ) ∧ IsCMFam (fun τ => σ (.inl τ)) ∧ IsCMFam (fun τ => σ (.inr τ)) := by
+theorem labVal_const_of_isHolPts : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (R : Type) [CommRing R] (jj : Sp R ⟶ 𝔐.X) (n : ℕ) (ψ : (Fin n → ℂ) → (R →+* ℂ)), Flat.IsHolPts (Metric.ball 0 1) ψ → ∃ σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* ℂ), (∀ b ∈ Metric.ball (0 : Fin n → ℂ) 1, 𝔐.LabVal (spMap (ψ b) ≫ jj) id σ) ∧ IsCMFam (fun τ => σ (.inl τ)) ∧ IsCMFam (fun τ => σ (.inr τ)) := by
   intro E _ _ _ H D l Xo c Y S Ω _ K _ J _ y 𝔐 R _ jj n ψ hψ
-  have hB : ∀ b : Fin n → ℂ, ∃ σ : CMType H ⊕ CMType H → (𝓞 E →+* ℂ),
+  have hB : ∀ b : Fin n → ℂ, ∃ σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* ℂ),
       𝔐.LabVal (spMap (ψ b) ≫ jj) id σ ∧ IsCMFam (fun τ => σ (.inl τ)) ∧ IsCMFam (fun τ => σ (.inr τ)) := by
     intro b
     obtain ⟨σ, h1, -, -, -, -, h6⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.LabPt.exists_labVal E H D l Xo c Y S Ω K J y 𝔐 ℂ (spMap (ψ b) ≫ jj)
@@ -260,7 +260,7 @@ theorem labVal_const_of_isHolPts : ∀ (E : Type) [Field E] [NumberField E] [IsC
   obtain ⟨ρ, hρ⟩ : ∃ ρ : 𝓞 c.F →+* R, spMap ρ = jj ≫ 𝔐.f ≫ Y.s :=
     ⟨(Spec.preimage (jj ≫ 𝔐.f ≫ Y.s)).hom, by simp [spMap]⟩
   letI : Algebra (𝓞 c.F) Ω := (𝔐.cst.comp (algebraMap (𝓞 c.F) c.F)).toAlgebra
-  have key : ∀ (s : CMType H ⊕ CMType H) (a : 𝓞 E), ∃ r : R, ∀ b, σ b s a = ψ b r := by
+  have key : ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (a : 𝓞 E), ∃ r : R, ∀ b, σ b s a = ψ b r := by
     intro s a
     have hint : IsIntegral ℤ (labelEmb c s a) :=
       (NumberField.RingOfIntegers.isIntegral a).map (labelEmb c s).toIntAlgHom

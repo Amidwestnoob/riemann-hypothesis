@@ -172,7 +172,7 @@ section FieldPoints
 variable {R : Type} [CommRing R] [IsDomain R]
 
 theorem eq_of_same_point {X : Scheme.{0}} (p : X ⟶ Spec (CommRingCat.of R))
-    (f g : Spec (CommRingCat.of (FractionRing R)) ⟶ X) (hf : f ≫ p = (genPt R).hom) (hg : g ≫ p = (genPt R).hom)
+    (f g : Spec (CommRingCat.of (FractionRing R)) ⟶ X) (hf : f ≫ p = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom) (hg : g ≫ p = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom)
     (u v : Spec (CommRingCat.of (FractionRing R))) (h : f u = g v) : f = g := by
   obtain ⟨⟨z, a⟩, rfl⟩ := (Scheme.SpecToEquivOfField (FractionRing R) X).symm.surjective f
   obtain ⟨⟨z', b⟩, rfl⟩ := (Scheme.SpecToEquivOfField (FractionRing R) X).symm.surjective g
@@ -209,7 +209,7 @@ theorem eq_of_same_point {X : Scheme.{0}} (p : X ⟶ Spec (CommRingCat.of R))
 
 theorem lift_to_frac {Ω : Type} [Field Ω] (q : Spec (CommRingCat.of Ω) ⟶ Spec (CommRingCat.of R))
     (hq : ∀ u, (q u).asIdeal = ⊥) :
-    ∃ a : FractionRing R →+* Ω, q = Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom := by
+    ∃ a : FractionRing R →+* Ω, q = Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom := by
   let ψ : R →+* Ω := (Spec.preimage q).hom
   have hψ : Spec.map (CommRingCat.ofHom ψ) = q := Spec.map_preimage _
   have hinjψ : Function.Injective ψ := by
@@ -232,7 +232,7 @@ theorem lift_to_frac {Ω : Type} [Field Ω] (q : Spec (CommRingCat.of Ω) ⟶ Sp
 
 theorem exists_geom_point {X : Scheme.{0}} (p : X ⟶ Spec (CommRingCat.of R)) (g : X) (hg : (p g).asIdeal = ⊥) :
     ∃ (Ω : Type) (_ : Field Ω) (_ : IsAlgClosed Ω) (a : FractionRing R →+* Ω) (c : Spec (CommRingCat.of Ω) ⟶ X),
-      c ≫ p = Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom ∧ ∀ u, c u = g := by
+      c ≫ p = Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ∧ ∀ u, c u = g := by
   let c : Spec (CommRingCat.of (AlgebraicClosure (X.residueField g))) ⟶ X :=
     Spec.map (CommRingCat.ofHom (algebraMap (X.residueField g) (AlgebraicClosure (X.residueField g)))) ≫
       X.fromSpecResidueField g
@@ -263,10 +263,10 @@ theorem exists_of_kernel [GrpObj G] [IsCommMonObj G]
     {j : A ⟶ (Over.pullback x).obj G} [IsMonHom j]
     (hp : IsPullback j (toUnit A) ((𝟙 ((Over.pullback x).obj G)) ^ N) η[(Over.pullback x).obj G])
     (hflat : Flat A.hom) (hqf : LocallyQuasiFinite A.hom) (hsep : IsSeparated A.hom) (hqc : QuasiCompact A.hom)
-    (hfp : LocallyOfFinitePresentation A.hom) (hred : IsReduced (pullback A.hom (genPt R).hom))
-    (τ : T →* (Over.mk ((genPt R).hom ≫ x) ⟶ G)) (hinj : Function.Injective τ) (hτ : ∀ t, τ t ^ N = 1)
+    (hfp : LocallyOfFinitePresentation A.hom) (hred : IsReduced (pullback A.hom (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom))
+    (τ : T →* (Over.mk ((_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ x) ⟶ G)) (hinj : Function.Injective τ) (hτ : ∀ t, τ t ^ N = 1)
     (hsurj : ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (a : FractionRing R →+* Ω)
-      (g : Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom ≫ x) ⟶ G), g ^ N = 1 →
+      (g : Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ x) ⟶ G), g ^ N = 1 →
       ∃ t, g.left = Spec.map (CommRingCat.ofHom a) ≫ (τ t).left) :
     ∃ (Γ : QFGroup R T) (i : Γ.G.left ⟶ G.left), Γ.IsTorsionAlong G x N i ∧ ∀ t, (Γ.pt t).left ≫ i = (τ t).left := by
   have hm := mono_of_pullback hp
@@ -285,11 +285,11 @@ theorem exists_of_kernel [GrpObj G] [IsCommMonObj G]
   choose p0 hp0 using fun t => lift_of_torsion hp (toPull x G (τ t)) (tors _ (hτ t))
   have hmul : ∀ s t, p0 (s * t) ≫ j = (p0 s * p0 t) ≫ j := fun s t => by
     rw [hp0, MonObj.mul_comp, hp0, hp0, map_mul]
-    exact map_mul (toPullHom x G (genPt R)) _ _
+    exact map_mul (toPullHom x G (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R)) _ _
   have hone : p0 1 ≫ j = 1 ≫ j := by
     rw [hp0, MonObj.one_comp, map_one]
-    exact map_one (toPullHom x G (genPt R))
-  let pt : T →* (genPt R ⟶ A) :=
+    exact map_one (toPullHom x G (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R))
+  let pt : T →* (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R ⟶ A) :=
     { toFun := p0
       map_one' := (cancel_mono j).1 hone
       map_mul' := fun s t => (cancel_mono j).1 (hmul s t) }
@@ -317,13 +317,13 @@ theorem exists_of_kernel [GrpObj G] [IsCommMonObj G]
     exact congrArg (· ≫ j) e'
   · intro g hg
     obtain ⟨Ω, _, _, a, c, hcov, hc⟩ := exists_geom_point A.hom g hg
-    let Y : Over (Spec (CommRingCat.of R)) := Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom)
+    let Y : Over (Spec (CommRingCat.of R)) := Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom)
     let y : Y ⟶ A := Over.homMk c hcov
     let g0 := ofPull x G (y ≫ j)
     have hg0 : toPull x G g0 = y ≫ j := toPull_ofPull x G _
     have htor : g0 ^ N = 1 := tors' g0 (by rw [hg0]; exact torsion_of_comp hp y)
     have key : ∀ (X : Spec (CommRingCat.of Ω) ⟶ S)
-        (_ : X = Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom ≫ x) (g : Over.mk X ⟶ G), g ^ N = 1 →
+        (_ : X = Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ x) (g : Over.mk X ⟶ G), g ^ N = 1 →
         ∃ t, g.left = Spec.map (CommRingCat.ofHom a) ≫ (τ t).left := by
       rintro _ rfl g hgN
       exact hsurj Ω a g hgN
@@ -364,7 +364,7 @@ theorem exists_of_kernel [GrpObj G] [IsCommMonObj G]
 
 end Main
 
-theorem exists_qfGroup_torsion : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [CharZero R] (T : Type) [CommGroup T] (S : Scheme.{0}) (G : Over S) [GrpObj G], IsSemiAbelian G → ∀ (x : Spec (CommRingCat.of R) ⟶ S) (N : ℕ), 1 ≤ N → ∀ τ : T →* (Over.mk ((genPt R).hom ≫ x) ⟶ G), Function.Injective τ → (∀ t, τ t ^ N = 1) → (∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (a : FractionRing R →+* Ω) (g : Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (genPt R).hom ≫ x) ⟶ G), g ^ N = 1 → ∃ t, g.left = Spec.map (CommRingCat.ofHom a) ≫ (τ t).left) → ∃ (Γ : QFGroup R T) (i : Γ.G.left ⟶ G.left), Γ.IsTorsionAlong G x N i ∧ ∀ t, (Γ.pt t).left ≫ i = (τ t).left := by
+theorem exists_qfGroup_torsion : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [CharZero R] (T : Type) [CommGroup T] (S : Scheme.{0}) (G : Over S) [GrpObj G], IsSemiAbelian G → ∀ (x : Spec (CommRingCat.of R) ⟶ S) (N : ℕ), 1 ≤ N → ∀ τ : T →* (Over.mk ((_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ x) ⟶ G), Function.Injective τ → (∀ t, τ t ^ N = 1) → (∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (a : FractionRing R →+* Ω) (g : Over.mk (Spec.map (CommRingCat.ofHom a) ≫ (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ x) ⟶ G), g ^ N = 1 → ∃ t, g.left = Spec.map (CommRingCat.ofHom a) ≫ (τ t).left) → ∃ (Γ : QFGroup R T) (i : Γ.G.left ⟶ G.left), Γ.IsTorsionAlong G x N i ∧ ∀ t, (Γ.pt t).left ≫ i = (τ t).left := by
   intro R _ _ _ _ T _ S G _ hG x N hN τ hinj hτ hsurj
   have hcomm := hG.comm
   have hB : IsSemiAbelian ((Over.pullback x).obj G) := ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsSemiAbelian.pullback x G hG
@@ -380,10 +380,10 @@ theorem exists_qfGroup_torsion : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoe
     rwa [toUnit_unique (pullback.snd _ _) (toUnit _)] at h
   obtain ⟨_, _, _⟩ := exists_kernel_grp hp
   obtain ⟨h1, h2, h3, h4, h5⟩ := kernel_props hp
-  have := kernel_base_etale (genPt R).hom hp (isUnit_natCast_generic hN)
-  haveI : IsReduced (genPt R).left := inferInstanceAs (IsReduced (Spec (CommRingCat.of (FractionRing R))))
+  have := kernel_base_etale (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom hp (isUnit_natCast_generic hN)
+  haveI : IsReduced (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).left := inferInstanceAs (IsReduced (Spec (CommRingCat.of (FractionRing R))))
   have hred := GlobalTheory.isReduced_of_smooth_of_isReduced (pullback.snd
-    (pullback ((𝟙 ((Over.pullback x).obj G)) ^ N) η[(Over.pullback x).obj G]).hom (genPt R).hom)
+    (pullback ((𝟙 ((Over.pullback x).obj G)) ^ N) η[(Over.pullback x).obj G]).hom (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom)
   exact exists_of_kernel hp h1 h2 h3 h4 h5 hred τ hinj hτ hsurj
 
 end GlobalTheory.CompanionTheory.Ar.BT.Tors

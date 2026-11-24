@@ -45,7 +45,7 @@ theorem exists_change {E : Type} [AddCommGroup E] [Module Ω E] (L : Lat ξ E) {
   choose T hT using h
   exact ⟨Matrix.of fun i q => T q i, hT⟩
 
-theorem valAt_prod {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ centre z) {A₀ : Type} (S : Finset A₀)
+theorem valAt_prod {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {A₀ : Type} (S : Finset A₀)
     {a : A₀ → Ω} {r : A₀ → ℂ} (h : ∀ i, ValAt ξ z (a i) (r i)) :
     ValAt ξ z (∏ i ∈ S, a i) (∏ i ∈ S, r i) := by
   classical
@@ -55,9 +55,9 @@ theorem valAt_prod {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ cent
     rw [Finset.prod_insert hi, Finset.prod_insert hi]
     exact CxVal.mul (h i) ih
 
-theorem valAt_det {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ centre z) {r : ℕ}
-    (T : Matrix (Fin r) (Fin r) (X.presheaf.stalk (centre z))) :
-    ValAt ξ z (T.map (genMap ξ ⟨centre z, hz⟩)).det (T.map (Scheme.stalkClosedPointTo z).hom).det :=
+theorem valAt_det {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {r : ℕ}
+    (T : Matrix (Fin r) (Fin r) (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) :
+    ValAt ξ z (T.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hz⟩)).det (T.map (Scheme.stalkClosedPointTo z).hom).det :=
   ⟨hz, T.det, RingHom.map_det _ _, RingHom.map_det _ _⟩
 
 end General
@@ -126,10 +126,10 @@ section Main
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Tor.Level H}
   {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {II : IntersectionSystem}
   {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {Ω : Type} [Field Ω] [Algebra ℚ Ω]
-  {W : CMType H → Type} [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)]
-  {Dc : ComponentData II (CMType H) K J Ω W} {Hd : HodgeData Dc} {S₀ : Finset ℕ}
+  {W : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Type} [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)]
+  {Dc : ComponentData II (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) K J Ω W} {Hd : HodgeData Dc} {S₀ : Finset ℕ}
 
-theorem stalk_le_gen (𝔐 : HodgeCpt Y S₀ Dc.y) (t : CMType H ⊕ CMType H) (p : Cpt 𝔐.ξ) {x : 𝔐.Li}
+theorem stalk_le_gen (𝔐 : HodgeCpt Y S₀ Dc.y) (t : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (p : Cpt 𝔐.ξ) {x : 𝔐.Li}
     (hx : x ∈ 𝔐.V t p) : x ∈ 𝔐.Vgen t := by
   obtain ⟨U, hU, b, hs, hf⟩ := 𝔐.vb t p trivial
   have e : 𝔐.V t p = Submodule.span (regAt 𝔐.ξ p) (Set.range b) := (hf p trivial hU).2
@@ -144,25 +144,25 @@ theorem stalk_le_gen (𝔐 : HodgeCpt Y S₀ Dc.y) (t : CMType H ⊕ CMType H) (
   | add _ _ _ _ h h' => exact add_mem h h'
   | smul a x _ h => exact Submodule.smul_mem _ (a : Ω) h
 
-theorem blocks_disjoint (Or : CptOrigin Y S₀ Dc Hd) (τ : CMType H) :
+theorem blocks_disjoint (Or : CptOrigin Y S₀ Dc Hd) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     Disjoint (Or.𝔐.Vgen (Or.bg τ)) (Or.𝔐.Vgen (Or.sm τ)) := by
   obtain ⟨-, -, -, -, -, -, hind, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c _ _ Y S₀ Ω K J Dc.y Or.𝔐
     (FaithfulSMul.algebraMap_injective _ _)
   exact hind.pairwiseDisjoint (Or.bg_ne_sm τ τ)
 
 theorem small_frame (Or : CptOrigin Y S₀ Dc Hd) {z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X} {w : (Σ k, J k) → ℂ}
-    (hw : CoordsAt Or.𝔐.ξ Dc.y z w) (d : MuFrameAt Hd w) {s : CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li}
-    (hs : Or.IsSmallPart d s) (τ : CMType H) (h : genPt Or.𝔐.ξ ⤳ centre z) :
-    (Or.𝔐.V (Or.sm τ)).IsFrameAt (s τ) ⟨centre z, h⟩ := by
+    (hw : CoordsAt Or.𝔐.ξ Dc.y z w) (d : MuFrameAt Hd w) {s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li}
+    (hs : Or.IsSmallPart d s) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (h : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) :
+    (Or.𝔐.V (Or.sm τ)).IsFrameAt (s τ) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ := by
   have hfr := _root_.GlobalTheory.CompanionTheory.Ar.BlockSumFrame.frame_at E H D l Xo c Y II K J Ω W Dc Hd S₀ Or z w τ d.c d.f (d.b τ) h hw (d.adapted τ).1 d.inDom
   exact (_root_.GlobalTheory.CompanionTheory.Ar.BlockFrame.frame_of_sum_frame Or.𝔐.X Ω Or.𝔐.ξ Or.𝔐.Li (W τ) (Or.i τ) (Or.𝔐.V (Or.bg τ)) (Or.𝔐.V (Or.sm τ))
-    (Or.𝔐.Vgen (Or.bg τ)) (Or.𝔐.Vgen (Or.sm τ)) Dc.N Dc.j Dc.j_le_N (d.b τ) (s τ) ⟨centre z, h⟩ (Or.i_inj τ)
+    (Or.𝔐.Vgen (Or.bg τ)) (Or.𝔐.Vgen (Or.sm τ)) Dc.N Dc.j Dc.j_le_N (d.b τ) (s τ) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ (Or.i_inj τ)
     (Or.i_range τ) (blocks_disjoint Or τ) (fun _ hx => stalk_le_gen _ _ _ hx) (fun _ hx => stalk_le_gen _ _ _ hx) hfr
     (by rw [(d.adapted τ).2.2, Or.F_eq τ]) (hs τ)).1
 
 theorem class_change (Or : CptOrigin Y S₀ Dc Hd) {w : (Σ k, J k) → ℂ} (d d' : MuFrameAt Hd w)
-    {s s' : CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li} (hs : Or.IsSmallPart d s) (hs' : Or.IsSmallPart d' s')
-    (τ : CMType H) (T : Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) Ω)
+    {s s' : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li} (hs : Or.IsSmallPart d s) (hs' : Or.IsSmallPart d' s')
+    (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (T : Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) Ω)
     (hT : ∀ q, s' τ q = ∑ p, T p q • s τ p) (q : Fin (Dc.N - Dc.j)) :
     (Hd.F τ).mkQ (d'.b τ (tailIdx Dc.j_le_N q)) =
       ∑ p, T p q • (Hd.F τ).mkQ (d.b τ (tailIdx Dc.j_le_N p)) := by
@@ -183,18 +183,18 @@ theorem class_change (Or : CptOrigin Y S₀ Dc Hd) {w : (Σ k, J k) → ℂ} (d 
 
 end Main
 
-theorem norm_indep : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ) (d d' : MuFrameAt Hd w) (s s' : CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li) (Γ Γ' : CMType H → Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) ℂ), CoordsAt Or.𝔐.ξ Dc.y z w → Or.𝔐.Interior z → Or.IsSmallPart d s → Or.IsSmallPart d' s' → (∀ τ, Or.𝔐.M.GramAt Or.𝔐.t.PP.L z (s τ) (Γ τ)) → (∀ τ, Or.𝔐.M.GramAt Or.𝔐.t.PP.L z (s' τ) (Γ' τ)) → (∀ τ, (Γ τ).PosDef) → ‖valAt Dc.y d.u w‖ * (∏ k, ‖w ⟨k, d.c k⟩‖ ^ Hd.aMu k) * ∏ τ, Real.sqrt (Γ τ).det.re = ‖valAt Dc.y d'.u w‖ * (∏ k, ‖w ⟨k, d'.c k⟩‖ ^ Hd.aMu k) * ∏ τ, Real.sqrt (Γ' τ).det.re := by
+theorem norm_indep : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ) (d d' : MuFrameAt Hd w) (s s' : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Fin (Dc.N - Dc.j) → Or.𝔐.Li) (Γ Γ' : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) ℂ), CoordsAt Or.𝔐.ξ Dc.y z w → Or.𝔐.Interior z → Or.IsSmallPart d s → Or.IsSmallPart d' s' → (∀ τ, Or.𝔐.M.GramAt Or.𝔐.t.PP.L z (s τ) (Γ τ)) → (∀ τ, Or.𝔐.M.GramAt Or.𝔐.t.PP.L z (s' τ) (Γ' τ)) → (∀ τ, (Γ τ).PosDef) → ‖valAt Dc.y d.u w‖ * (∏ k, ‖w ⟨k, d.c k⟩‖ ^ Hd.aMu k) * ∏ τ, Real.sqrt (Γ τ).det.re = ‖valAt Dc.y d'.u w‖ * (∏ k, ‖w ⟨k, d'.c k⟩‖ ^ Hd.aMu k) * ∏ τ, Real.sqrt (Γ' τ).det.re := by
   intro E _ _ _ H D l Xo c Y II K _ J _ Ω _ _ W _ _ Dc Hd S₀ Or z w d d' s s' Γ Γ' hw hi hs hs' hg hg' hpd
   have : CharZero Ω := algebraRat.charZero Ω
-  have h : genPt Or.𝔐.ξ ⤳ centre z := Or.𝔐.all _
+  have h : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := Or.𝔐.all _
   have htie : CoordTie ℤ Or.𝔐.ξ (segreCoord Dc.y) := Or.𝔐.tie
   have hpol := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.polarisedAt_of_interior E H D l Xo c Y S₀ Ω K J Dc.y Or.𝔐 z hi
 
-  have hch : ∀ τ, ∃ T : Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) (Or.𝔐.X.presheaf.stalk (centre z)),
-      ∀ q, s' τ q = ∑ i, genMap Or.𝔐.ξ ⟨centre z, h⟩ (T i q) • s τ i := fun τ =>
+  have hch : ∀ τ, ∃ T : Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) (Or.𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)),
+      ∀ q, s' τ q = ∑ i, genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ (T i q) • s τ i := fun τ =>
     exists_change (Or.𝔐.V (Or.sm τ)) (small_frame Or hw d hs τ h) (small_frame Or hw d' hs' τ h)
   choose Ts hTs using hch
-  let T : ∀ τ, Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) Ω := fun τ => (Ts τ).map (genMap Or.𝔐.ξ ⟨centre z, h⟩)
+  let T : ∀ τ, Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) Ω := fun τ => (Ts τ).map (genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩)
   let Tz : ∀ τ, Matrix (Fin (Dc.N - Dc.j)) (Fin (Dc.N - Dc.j)) ℂ :=
     fun τ => (Ts τ).map (Scheme.stalkClosedPointTo z).hom
   have hT : ∀ τ q, s' τ q = ∑ p, T τ p q • s τ p := hTs
@@ -206,7 +206,7 @@ theorem norm_indep : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     sqrt_det_change (hpd τ) (hΓ τ)
 
   have hΩ : d.u * chartMono Dc.y d.c Hd.aMu = d'.u * chartMono Dc.y d'.c Hd.aMu * ∏ τ, (T τ).det :=
-    _root_.GlobalTheory.CompanionTheory.Ar.TopWedge.eq_mul_prod_det (CMType H) Ω (fun τ => W τ ⧸ Hd.F τ) (Dc.N - Dc.j)
+    _root_.GlobalTheory.CompanionTheory.Ar.TopWedge.eq_mul_prod_det (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) Ω (fun τ => W τ ⧸ Hd.F τ) (Dc.N - Dc.j)
       (fun τ a => (Hd.F τ).mkQ (d.b τ (tailIdx Dc.j_le_N a)))
       (fun τ a => (Hd.F τ).mkQ (d'.b τ (tailIdx Dc.j_le_N a))) T _ _
       (fun τ => (quot_basis Dc.j_le_N (b := d.b τ) (F := Hd.F τ)

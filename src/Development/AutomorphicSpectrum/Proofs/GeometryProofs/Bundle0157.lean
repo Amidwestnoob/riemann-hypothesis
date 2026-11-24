@@ -117,29 +117,29 @@ theorem trivMod_pull {ϖ l u : Ω} (e : l = ϖ * u) (hϖ : ∀ p, ϖ ∈ regAt �
 end
 
 theorem valAt_zero_down {R : Type} [CommRing R] [IsLocalRing R] (hc : IsCptGen ξ')
-    (z : Spec (CommRingCat.of R) ⟶ X') {ϖ u l : Ω} (e : l = ϖ * u) (h : genPt ξ' ⤳ centre z)
-    (hv : ValAt ξ' z ϖ 0) (hu : u ∈ regAt ξ' ⟨centre z, h⟩)
-    (hl : l ∈ regAt (ξ' ≫ g) (push ξ' g ⟨centre z, h⟩)) : ValAt (ξ' ≫ g) (z ≫ g) l 0 := by
+    (z : Spec (CommRingCat.of R) ⟶ X') {ϖ u l : Ω} (e : l = ϖ * u) (h : genPt ξ' ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z)
+    (hv : ValAt ξ' z ϖ 0) (hu : u ∈ regAt ξ' ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩)
+    (hl : l ∈ regAt (ξ' ≫ g) (push ξ' g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩)) : ValAt (ξ' ≫ g) (z ≫ g) l 0 := by
   obtain ⟨h', s, hs, h0⟩ := hv
-  obtain ⟨t, ht⟩ : ∃ t : X'.presheaf.stalk (centre z), genMap ξ' ⟨centre z, h⟩ t = u := hu
+  obtain ⟨t, ht⟩ : ∃ t : X'.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z), genMap ξ' ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ t = u := hu
   obtain ⟨w, hw⟩ := hl
-  have e1 : (g.stalkMap (centre z)).hom w = s * t := by
-    apply hc.inj ⟨centre z, h⟩
-    rw [genMap_stalkMap₀ ξ' g ⟨centre z, h⟩ (push ξ' g ⟨centre z, h⟩).2 w, map_mul, ht]
+  have e1 : (g.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom w = s * t := by
+    apply hc.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩
+    rw [genMap_stalkMap₀ ξ' g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ (push ξ' g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩).2 w, map_mul, ht]
     refine hw.trans ?_
     rw [e, ← hs]
   have e2 : (Scheme.stalkClosedPointTo (z ≫ g)).hom w =
-      (Scheme.stalkClosedPointTo z).hom ((g.stalkMap (centre z)).hom w) :=
+      (Scheme.stalkClosedPointTo z).hom ((g.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom w) :=
     congrArg (fun t => t.hom w) (Scheme.stalkClosedPointTo_comp z g)
-  refine ⟨(push ξ' g ⟨centre z, h⟩).2, w, hw, e2.trans ?_⟩
+  refine ⟨(push ξ' g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩).2, w, hw, e2.trans ?_⟩
   rw [e1]
   exact (map_mul (Scheme.stalkClosedPointTo z).hom s t).trans
     ((congrArg (fun x : R => x * (Scheme.stalkClosedPointTo z).hom t) h0).trans (zero_mul _))
 
 theorem valAt_up {R : Type} [CommRing R] [IsLocalRing R] (z : Spec (CommRingCat.of R) ⟶ X')
-    (h : genPt ξ' ⤳ centre z) {a : Ω} {r : R} (hv : ValAt (ξ' ≫ g) (z ≫ g) a r) : ValAt ξ' z a r := by
+    (h : genPt ξ' ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {a : Ω} {r : R} (hv : ValAt (ξ' ≫ g) (z ≫ g) a r) : ValAt ξ' z a r := by
   obtain ⟨h', s, hs, rfl⟩ := hv
-  exact ⟨h, (g.stalkMap (centre z)).hom s, (genMap_stalkMap₀ ξ' g ⟨centre z, h⟩ h' s).trans hs,
+  exact ⟨h, (g.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom s, (genMap_stalkMap₀ ξ' g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ h' s).trans hs,
     (congrArg (fun t => t.hom s) (Scheme.stalkClosedPointTo_comp z g)).symm⟩
 
 def curvePush {ϖ l : Ω} (Γ : FibreCurve ξ' ϖ) (hz : ValAt (ξ' ≫ g) (Γ.η ≫ g) l 0) : FibreCurve (ξ' ≫ g) l where
@@ -169,7 +169,7 @@ theorem hasDeg_back (hr : ∀ p, regAt ξ' p = regAt (ξ' ≫ g) (push ξ' g p))
 theorem numTrivMod_pull (hr : ∀ p, regAt ξ' p = regAt (ξ' ≫ g) (push ξ' g p)) (hc : IsCptGen ξ')
     {L : Lat (ξ' ≫ g) Ω} {ϖ l u : Ω} (e : l = ϖ * u) (hϖ : ∀ p, ϖ ∈ regAt ξ' p) (hu : ∀ p, u ∈ regAt ξ' p)
     (hT : NumTrivMod L l) : NumTrivMod (pullL hr L) ϖ := fun Γ => by
-  let p : Cpt ξ' := ⟨centre Γ.η, Γ.η_spec⟩
+  let p : Cpt ξ' := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩
   have hl : l ∈ regAt (ξ' ≫ g) (push ξ' g p) := by
     have h1 := mul_mem (hϖ p) (hu p)
     rwa [← e, hr p] at h1

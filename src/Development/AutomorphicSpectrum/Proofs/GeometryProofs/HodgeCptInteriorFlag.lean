@@ -331,8 +331,8 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {Ω : Type} [Field Ω] {K : Type} [Fintype K] {J : K → Type} {y : (Σ k, J k) → Ω}
 
 theorem not_inFibre {X : Scheme.{0}} {ξ : Spec (CommRingCat.of Ω) ⟶ X} (hξ : IsCptGen ξ)
-    {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ centre z) {p : ℕ} (hp : p.Prime) :
-    ¬ InFibre ξ p ⟨centre z, hz⟩ := by
+    {z : Spec (CommRingCat.of ℂ) ⟶ X} (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {p : ℕ} (hp : p.Prime) :
+    ¬ InFibre ξ p ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hz⟩ := by
   have hp0 : (p : ℂ) ≠ 0 := Nat.cast_ne_zero.2 hp.ne_zero
   have h1 := RootHt.ArchB.val_nat (ξ := ξ) (z := z) hz p
   have h2 := RootHt.ArchB.val_inv₀ hp0 h1
@@ -346,7 +346,7 @@ theorem not_inFibre {X : Scheme.{0}} {ξ : Spec (CommRingCat.of Ω) ⟶ X} (hξ 
     exact ⟨s, e⟩
 
 theorem exists_dual (𝔐 : HodgeCpt Y S y) (hind : iSupIndep 𝔐.Vgen) (q : Cpt 𝔐.ξ)
-    (hlat : 𝔐.M.lat q = ⨆ s, 𝔐.dR s q) (s : CMType H ⊕ CMType H) {r : ℕ} (b : Fin r → 𝔐.Li)
+    (hlat : 𝔐.M.lat q = ⨆ s, 𝔐.dR s q) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {r : ℕ} (b : Fin r → 𝔐.Li)
     (hli : LinearIndependent Ω b) (hfr : 𝔐.dR s q = Submodule.span (regAt 𝔐.ξ q) (Set.range b)) :
     ∃ π : Fin r → Module.Dual Ω 𝔐.Li, (∀ j l, π j (b l) = if j = l then 1 else 0) ∧
       ∀ j, ∀ e ∈ 𝔐.M.lat q, π j e ∈ regAt 𝔐.ξ q := by
@@ -438,7 +438,7 @@ theorem interior_pol (𝔐 : HodgeCpt Y S y) (hβ : Function.Injective β) (z : 
   obtain ⟨n, -⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ 𝔐.m m₁
   have hr : Set.range (z ≫ 𝔐.f) ⊆ Set.range (Y.jQ ≫ pullback.fst Y.s (spMap β)) := by
     rintro _ ⟨p, rfl⟩
-    have hab : 𝔐.f (centre z) ∈ abLocus Y.t.G :=
+    have hab : 𝔐.f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ∈ abLocus Y.t.G :=
       (abLocus_pullback abLocusOne Y.t.semi 𝔐.m.cart.1 _).2 hz
     have hp : p = IsLocalRing.closedPoint ℂ := Subsingleton.elim _ _
     subst hp
@@ -449,9 +449,9 @@ theorem interior_pol (𝔐 : HodgeCpt Y S y) (hβ : Function.Injective β) (z : 
     have hg : Function.Injective g := injective_of_algebraic β hβ g
     have e : Spec.map (CommRingCat.ofHom g) = z ≫ 𝔐.f ≫ Y.s := Spec.map_preimage _
     let pt : Spec (CommRingCat.of c.F) := IsLocalRing.closedPoint c.F
-    have hs : Y.s (𝔐.f (centre z)) = spMap β pt := by
+    have hs : Y.s (𝔐.f (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) = spMap β pt := by
       apply PrimeSpectrum.ext
-      have e1 : Y.s (𝔐.f (centre z)) = Spec.map (CommRingCat.ofHom g) (IsLocalRing.closedPoint ℂ) := by
+      have e1 : Y.s (𝔐.f (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) = Spec.map (CommRingCat.ofHom g) (IsLocalRing.closedPoint ℂ) := by
         rw [e]; simp only [Scheme.Hom.comp_apply]; rfl
       rw [e1]
       exact (spec_injective_point g hg _).trans (spec_injective_point β hβ pt).symm
@@ -480,13 +480,13 @@ theorem tan_of_valAt {X : Scheme.{0}} {Ω' : Type} [Field Ω'] {ξ : Sp Ω' ⟶ 
     {w : epsAt z ⟶ G} (h : M.ValAt z e w) : IsTanAt G z w := by
   obtain ⟨hz, v, ⟨hv, -⟩, hw⟩ := h
   unfold IsTanAt at hv ⊢
-  let t : Over.mk z ⟶ Over.mk (X.fromSpecStalk (centre z)) :=
+  let t : Over.mk z ⟶ Over.mk (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) :=
     Over.homMk (Spec.map (Scheme.stalkClosedPointTo z)) (Scheme.Spec_stalkClosedPointTo_fromSpecStalk z)
-  have h1 : t ≫ (1 : Over.mk (X.fromSpecStalk (centre z)) ⟶ G) = 1 := MonObj.comp_one t
+  have h1 : t ≫ (1 : Over.mk (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) ⟶ G) = 1 := MonObj.comp_one t
   have h2 := congrArg CommaMorphism.left h1
   rw [hw]
   refine Eq.trans ?_ h2
-  change _ = Spec.map (Scheme.stalkClosedPointTo z) ≫ (1 : Over.mk (X.fromSpecStalk (centre z)) ⟶ G).left
+  change _ = Spec.map (Scheme.stalkClosedPointTo z) ≫ (1 : Over.mk (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) ⟶ G).left
   refine Eq.trans ?_ (congrArg (fun k => Spec.map (Scheme.stalkClosedPointTo z) ≫ k) hv)
   have key := spec_dual_fst (Scheme.stalkClosedPointTo z).hom
   exact (Category.assoc _ _ _).symm.trans ((congrArg (fun k => k ≫ v.left) key).trans (Category.assoc _ _ _))
@@ -509,12 +509,12 @@ theorem exists_sub_mem_flagStep {Ω' : Type} [Field Ω'] {E' : Type} [AddCommGro
 
 end Concrete
 
-theorem exists_norm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag), Function.Injective β → ∀ (z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X), 𝔐.Interior z → ∀ s (i : Fin (labelRk D s)) (t : Ω), ((𝔐.V s).gr (Fl.b s) i).IsGenAt ⟨centre z, 𝔐.all _⟩ t → ∃ ν : ℝ, 0 < ν ∧ ∀ (t' : Ω) (ν' : ℝ), 𝔐.M.IsGrNorm 𝔐.t.PP.L (𝔐.V s) (Fl.b s) i z t' ν' ↔ ∃ u : ℂ, u ≠ 0 ∧ ValAt 𝔐.ξ z (t' / t) u ∧ ν' = ‖u‖ * ν := by
+theorem exists_norm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag), Function.Injective β → ∀ (z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X), 𝔐.Interior z → ∀ s (i : Fin (labelRk D s)) (t : Ω), ((𝔐.V s).gr (Fl.b s) i).IsGenAt ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ t → ∃ ν : ℝ, 0 < ν ∧ ∀ (t' : Ω) (ν' : ℝ), 𝔐.M.IsGrNorm 𝔐.t.PP.L (𝔐.V s) (Fl.b s) i z t' ν' ↔ ∃ u : ℂ, u ≠ 0 ∧ ValAt 𝔐.ξ z (t' / t) u ∧ ν' = ‖u‖ * ν := by
   intro E _ _ _ H D l Xo c O _ β Y S Ω _ K _ J _ y 𝔐 Fl hβ z hz s i t ht
   classical
-  have hgen : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hgen : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   have hξ : IsCptGen 𝔐.ξ := 𝔐.tie.gen
-  set q : Cpt 𝔐.ξ := ⟨centre z, hgen⟩ with hq
+  set q : Cpt 𝔐.ξ := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ with hq
   obtain ⟨-, -, -, -, -, -, hind, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c O β Y S Ω K J y 𝔐 hβ
   obtain ⟨hV, -, hlat⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeChar0.lattices_of_char_zero E H D l Xo c O β Y S Ω K J y 𝔐 hβ q fun r hr => not_inFibre hξ hgen hr
   have hsm : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
