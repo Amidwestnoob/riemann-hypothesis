@@ -361,9 +361,9 @@ theorem model_weight_gap_l1_card : ∀ (E : Type) [Field E] [NumberField E] [IsC
   have hrel : ∀ ρ : E →+* ℂ, ρ (H.rt : E) = H.rt0 → relab c σ ρ (H.rt : E) = H.rt0 := fun ρ h =>
     (congrArg σ (Subtype.ext h)).trans hσ0
   let e : Psi H → (U.X k).Ψ := fun ρ => ⟨relab c σ ρ.1, (hΨ _).2 (hrel _ ρ.2)⟩
-  have hsurj : Function.Surjective (relab (E := E) c σ) := Finite.injective_iff_surjective.1 (relab_injective σ)
+  have hsurj : Function.Surjective (relab (E := E) c σ) := Finite.injective_iff_surjective.1 (GlobalTheory.AllWt.relab_injective σ)
   have he : Function.Bijective e := by
-    refine ⟨fun a b h => Subtype.ext (relab_injective σ (congrArg Subtype.val h)), fun τ => ?_⟩
+    refine ⟨fun a b h => Subtype.ext (GlobalTheory.AllWt.relab_injective σ (congrArg Subtype.val h)), fun τ => ?_⟩
     obtain ⟨ρ, hρ⟩ := hsurj τ.1
     have hρΨ : ρ (H.rt : E) = H.rt0 := by
       by_contra hn

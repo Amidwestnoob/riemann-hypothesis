@@ -218,7 +218,7 @@ theorem sum_letters (σ : c.F →+* ℂ) {g : ℕ} (e : Fin g ≃ Σ τ : E →+
   rw [← e.symm.sum_comp, Fintype.sum_sigma, Finset.sum_eq_single τ]
   · simp
   · intro ρ _ hρ
-    simp [(relab_injective σ).eq_iff, hρ]
+    simp [(GlobalTheory.AllWt.relab_injective σ).eq_iff, hρ]
   · simp
 
 theorem rdU_eq_mul_horizGen {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (hσ : GoodEmb c σ) (hU : IsUnf U) (τ : Psi H)
