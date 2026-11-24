@@ -416,7 +416,7 @@ private theorem fam_sums (m : ℕ) [NeZero m] (p f : ℕ) (hp : p.Prime) (h : (p
   intro A a
   have hmU : IsUnit (m : Γ(A.U, ⊤)) := by simpa using hm.map A.u.appTop.hom
   refine ⟨Sec.res (sc A) a, ?_, fun Ω _ _ x => ?_⟩
-  · rw [fam_app, ← map_res]
+  · rw [fam_app, ← UpperTheory.Gal.TranscendenceTraces.map_res]
     refine congrArg (Sec.map (resι _ _)) ?_
     unfold fk
     rw [← res_res]
