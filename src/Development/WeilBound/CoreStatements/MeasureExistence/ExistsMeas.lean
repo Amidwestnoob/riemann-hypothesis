@@ -23,6 +23,7 @@ open scoped Pointwise TensorProduct InnerProductSpace ComplexOrder
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.MatrixIdentityOffBase
 
 variable {D : D7}

@@ -9,6 +9,7 @@ noncomputable section
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.SpectralAccumulation.FD
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {N : ℕ}

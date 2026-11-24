@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle006
 open PositivityTheory.RgJS UpperTheory.V.Z.Tf.GOne UpperTheory.V.Z.Tf.SR
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Formalism.L2.Host GlobalTheory.BCT GlobalTheory.UnitaryBC
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 private theorem val_pow' {F : Type} [Field F] [NumberField F] (ω : HChar F) (w : HeightOneSpectrum (𝓞 F)) (k : ℕ) :
     (ω ^ k).val w = ω.val w ^ k := by
   induction k with

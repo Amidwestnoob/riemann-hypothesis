@@ -16,6 +16,7 @@ open scoped Classical
 
 set_option synthInstance.maxHeartbeats 200000
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.F
 
 abbrev borelA (E : Type) [Field E] [NumberField E] (n : ℕ) : MeasurableSpace (GA E n) := borel _

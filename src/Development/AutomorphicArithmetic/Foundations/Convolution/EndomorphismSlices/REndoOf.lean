@@ -23,6 +23,7 @@ open scoped Classical
 
 set_option synthInstance.maxHeartbeats 200000
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace UpperTheory.Zero.ConvolutionTheory.EB
 
 attribute [local instance] borelG borelF borelA borelH

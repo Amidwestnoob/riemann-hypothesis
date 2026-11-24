@@ -215,6 +215,7 @@ end
 
 -- bundled from Development.DiscreteGroups.PiInvariants.CompactSupportTwists.UncutHalf
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory

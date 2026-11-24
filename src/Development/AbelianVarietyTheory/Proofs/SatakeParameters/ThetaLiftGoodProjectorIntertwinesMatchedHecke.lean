@@ -21,6 +21,7 @@ open scoped TensorProduct InnerProductSpace ComplexOrder
 open GlobalTheory.Hk3
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.DefLiftHecke
 
 theorem integral_comb {G H X M ι κ : Type} [Group G] [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
