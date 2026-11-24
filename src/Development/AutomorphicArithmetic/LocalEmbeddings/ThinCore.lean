@@ -138,7 +138,7 @@ set_option maxHeartbeats 1000000 in
 theorem theta_lower (hLw : Laws D j Xo c U dict) {σ : c.F →+* ℂ} (hσ : GoodEmb c σ) {a : (D.host.E →+* ℂ) × ℕ → ℕ} {n : ℕ}
     (hDom : Dom a n) [StarRing (𝓞 D.host.E)] {nab : NabV Xo c} (hnab : IsNab Xo c nab) (α : 𝓞 D.host.E)
     (hα : α * H.bar α = (l.M : 𝓞 D.host.E)) (hMb : l.Mb = Ideal.span {H.bar α})
-    {P : MvPolynomial (LtN Dw n) c.F} (hP : P ∈ harmA c a n) (hB : IsBlockProd P) (hdeg : P.totalDegree = Formalism.L2.Pj.DF Dw a)
+    {P : MvPolynomial (LtN Dw n) c.F} (hP : P ∈ harmA c a n) (hB : GlobalTheory.BlockTh.IsBlockProd P) (hdeg : P.totalDegree = Formalism.L2.Pj.DF Dw a)
     {g : (Fin n → LevQ Dw l) → Rul Xo c} (hg : ∀ q, IsThRule Xo c nab (fun b => levRep (q b)) P (g q))
     (hs : ∀ q, g q ∈ sec Xo c a n) {R0 : ℝ} {m : ℕ} (hrun : GlobalTheory.EtaAn.RunOK D.host.E D.R.r (Formalism.L2.Pj.DF Dw a) l.M R0 m)
     (hm : Dw.q ≤ m) {tableLineDegreeFive cc : ℝ} (hP14 : p14 D.host.E D.R.r n m ≤ tableLineDegreeFive)
