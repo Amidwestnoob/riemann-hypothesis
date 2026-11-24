@@ -626,7 +626,7 @@ theorem exists_trUnit : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
     have cc : ∀ p : Sm B 0, (cpt fun i => MvPowerSeries.constantCoeff (p.1 i) : Pt T.V 0 (chD C.ch)) = p.1 :=
       fun p => funext fun i => MvPowerSeries.ext fun e => by
         obtain rfl : e = 0 := Subsingleton.elim _ _
-        simp [cpt]
+        simp [GlobalTheory.PlaceInt.cpt]
     have pw : ∀ i : ℕ, FormPt C (a ^ i) fun l => MvPowerSeries.constantCoeff (((Sm.const B α hα : Sm B 0) ^ i).1 l) := by
       intro i
       induction i with
