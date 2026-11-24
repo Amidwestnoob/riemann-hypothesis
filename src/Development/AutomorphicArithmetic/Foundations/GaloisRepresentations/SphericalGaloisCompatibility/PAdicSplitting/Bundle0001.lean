@@ -373,7 +373,7 @@ theorem UpperTheory.Gal.ToralGalois.R2.r2g :
       · obtain ⟨LL₀, Bw₀, hjj₀, -, -⟩ := GlobalTheory.AboveLRes.exists_bridge (L := X.K) Bw hj Bw.LL
         have hj₀ : GlobalTheory.Pst.Induces Bw₀ := fun x => by rw [hjj₀]; exact hj x
         have hp₀ := (hb Q AI hT A h' _ Bw₀ hj₀).1
-        have hpst : IsPstAt Q Bw (r.comp (Dec (F := E) A).subtype) :=
+        have hpst : IsPstAt Q Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
           GlobalTheory.AboveLRes.isPstAt_of_resTo E X.K Ω A l Q AI hT n r hr.1 O _ Bw Bw₀ hj hj₀ hp₀
         obtain ⟨O', _, _, _, Bw', hj', -, hres⟩ :=
           GlobalTheory.AboveLRes.wdAt_resTo E X.K Ω A w u h h' l ι Q AI hT n r O Bw hj hpst

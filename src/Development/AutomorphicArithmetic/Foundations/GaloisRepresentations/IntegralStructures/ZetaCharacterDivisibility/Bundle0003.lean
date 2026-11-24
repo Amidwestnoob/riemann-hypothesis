@@ -76,23 +76,23 @@ theorem UpperTheory.Gal.Int.Div.subLoc_of :
   obtain ⟨had, -, -⟩ := hI _ _ a d r ρ hin
   obtain ⟨b, rfl⟩ := Nat.exists_eq_add_of_le had
   obtain ⟨s, g, hg⟩ := hS _ _ a b r ρ hss hin
-  have e : (sumRep r s).comp (Dec (F := E) A).subtype =
-      sumRep (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype) := by
+  have e : (sumRep r s).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+      sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     ext; rfl
-  have hiso : RepIso (ρ.comp (Dec (F := E) A).subtype)
-      (sumRep (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype)) := by
+  have hiso : RepIso (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+      (sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) := by
     refine ⟨g, fun x => ?_⟩
     rw [← e]
     exact hg x
-  have hconj := (hC l P AI hT E Ω A O Bw (a + b) (ρ.comp (Dec (F := E) A).subtype) _).2 hiso
-  have hsum := hL l P AI hT E Ω A O Bw a b (r.comp (Dec (F := E) A).subtype) (s.comp (Dec (F := E) A).subtype)
+  have hconj := (hC l P AI hT E Ω A O Bw (a + b) (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) _).2 hiso
+  have hsum := hL l P AI hT E Ω A O Bw a b (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
   refine ⟨fun hc => ?_, fun τ J J' h1 h2 => hsum.2 τ J J' (hconj.2.2.1 τ J h1) h2⟩
   have hcS := hconj.1 hc
   obtain ⟨cr, cs⟩ := hsum.1 hcS
   refine ⟨cr, fun x => ?_⟩
-  have pr := ((hC l P AI hT E Ω A O Bw a _ (r.comp (Dec (F := E) A).subtype)).1 cr).2
-  have ps := ((hC l P AI hT E Ω A O Bw b _ (s.comp (Dec (F := E) A).subtype)).1 cs).2
-  have pT := ((hC l P AI hT E Ω A O Bw (a + b) _ (ρ.comp (Dec (F := E) A).subtype)).1 hcS).2
+  have pr := ((hC l P AI hT E Ω A O Bw a _ (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 cr).2
+  have ps := ((hC l P AI hT E Ω A O Bw b _ (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 cs).2
+  have pT := ((hC l P AI hT E Ω A O Bw (a + b) _ (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 hcS).2
   have hw := GlobalTheory.T.weilDeligneParamAboveL_directSum_potSemistable l P AI hT ι E Ω A w O Bw h hj a b _ _ pr ps pT
   rw [← hconj.2.2.2 ι w h hj hc, hw, (UpperTheory.Gal.TP.Sub.wDFacts_holds E Ω A w h _ _).2.1 x]
   exact Dvd.intro _ rfl

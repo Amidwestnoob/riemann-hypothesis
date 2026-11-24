@@ -35,15 +35,15 @@ def HasRoots (ι : Qbar l ≃+* ℂ) (w : HeightOneSpectrum (𝓞 E)) (n : ℕ) 
 
 def PhiK (ι : Qbar l ≃+* ℂ) (ρ : G E Ω →* GL (Fin dd) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (R : Multiset ℂ) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-    IsCrysAt P Bw (ρ.comp (Dec (F := E) A).subtype) ∧ ∃ g : Weil h, deg g = -1 ∧ ∃ m : ℕ,
-      (wdAt P ι Bw h hj (ρ.comp (Dec (F := E) A).subtype)).charPol g ∣ rootPol R ^ m
+    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+    IsCrysAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ ∃ g : Weil h, deg g = -1 ∧ ∃ m : ℕ,
+      (wdAt P ι Bw h hj (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g ∣ rootPol R ^ m
 
 def JOcc (ι : Qbar l ≃+* ℂ) (ρ : G E Ω →* GL (Fin dd) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (Q : (E →+* ℂ) → ℤ → Prop) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O), Induces Bw →
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Induces Bw →
       ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-        ∃ J : Multiset ℤ, IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ J ∧ ∀ j, Q (ι.toRingHom.comp τ) j → j ∈ J
+        ∃ J : Multiset ℤ, IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J ∧ ∀ j, Q (ι.toRingHom.comp τ) j → j ∈ J
 
 
 omit [NumberField E] in

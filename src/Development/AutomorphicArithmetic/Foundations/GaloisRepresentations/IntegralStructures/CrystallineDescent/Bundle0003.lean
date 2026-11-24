@@ -75,11 +75,11 @@ theorem UpperTheory.Gal.Int.Core.downPhi_holds : SphDown .phi := by
     have := hP.sat w' 1 B (by rw [pow_one, hunder, hq]) (by rw [hunder]; exact hB)
     simpa using this
   have D := GlobalTheory.RealGal.dRSstCrysPstJumps_descend E Ω Q.K l Pr A O Bw Bw' e1 e2 e3 a r
-  have hrel : WDRel (RingEquiv.refl Ω) (wdAt Pr ι Bw h hj (r.comp (Dec (F := E) A).subtype))
-      (wdAt Pr ι Bw' h' hj' ((r.comp (UpperTheory.V.Af.Bc.res E Ω Q.K)).comp (Dec (F := Q.K) A).subtype)) := by
-    by_cases hp : IsPstAt Pr Bw (r.comp (Dec (F := E) A).subtype)
+  have hrel : WDRel (RingEquiv.refl Ω) (wdAt Pr ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))
+      (wdAt Pr ι Bw' h' hj' ((r.comp (UpperTheory.V.Af.Bc.res E Ω Q.K)).comp (ReciprocityTheory.Gal.Dec (F := Q.K) A).subtype)) := by
+    by_cases hp : IsPstAt Pr Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
     · exact GlobalTheory.RealGal.wdRelRes_gen E Ω Q.K l Pr A O Bw Bw' e1 e2 e3 a r hp ι w w' h h' hj hj' i hi
-    · have hp' : ¬ IsPstAt Pr Bw' ((r.comp (UpperTheory.V.Af.Bc.res E Ω Q.K)).comp (Dec (F := Q.K) A).subtype) :=
+    · have hp' : ¬ IsPstAt Pr Bw' ((r.comp (UpperTheory.V.Af.Bc.res E Ω Q.K)).comp (ReciprocityTheory.Gal.Dec (F := Q.K) A).subtype) :=
         fun H => hp (D.2.2.2.1 H)
       rw [wdAt_of_not_isPstAt _ _ _ _ hp, wdAt_of_not_isPstAt _ _ _ _ hp']
       exact wdRel_trivWD h h' _ a

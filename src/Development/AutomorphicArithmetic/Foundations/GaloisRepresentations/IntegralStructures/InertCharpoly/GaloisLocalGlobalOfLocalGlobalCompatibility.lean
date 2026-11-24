@@ -38,10 +38,10 @@ def LocalGlobalCompatibilityAtPlaceClass (Q : PlaceClass) : Prop :=
       (((l : ℕ) : 𝓞 E) ∈ w.asIdeal → ClauseAt .dR π ι r w ∧
         ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
         ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-          (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw),
-          IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).mono0 ∧
+          (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw),
+          IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).mono0 ∧
           ∀ t : Ine (F := E) A,
-            (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol (ineIncl h t) = (rc (algNorm σ)).charPol (ineIncl h t))
+            (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol (ineIncl h t) = (rc (algNorm σ)).charPol (ineIncl h t))
 
 theorem localGlobalAtPlaceClass_of_localGlobal (H : LocalGlobalCompatAtIwahoriFixedPlaces) (Q : PlaceClass) : LocalGlobalCompatibilityAtPlaceClass Q := fun E Ω _ _ _ _ _ _ l _ ι n hn π χ hI r hW w σ hσ hf _ q g =>
   H E Ω l ι n hn π χ hI r hW w σ hσ hf (Or.inr ⟨q, g⟩)
@@ -108,11 +108,11 @@ theorem away (H1 : R1) (H2 : LocalGlobalCompatibilityAtPlaceClass Q) (ha : 1 ≤
 
 theorem above (H1 : R1) (H2 : LocalGlobalCompatibilityAtPlaceClass Q) (ha : 1 ≤ a) (hI : InScope .all l π χ) (hW : Weak π ι r)
     {P : LocPrime l} {AI : LocAinf l P} (T : Nonempty (LocTied l P AI))
-    {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw)
+    {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw)
     (hrc : IsRecT h rc) (hσ : π.IsLocComp w σ)
     (g : (Q E w a ∧ IsQp w ∧ TmW (rc (algNorm σ)) ∧ Sqf (rc (algNorm σ))) ∨ Tor (rc (algNorm σ))) (hm : (rc (algNorm σ)).mono0) :
-    ClauseAt .dR π ι r w ∧ IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
-      Away (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)) (rc (algNorm σ)) := by
+    ClauseAt .dR π ι r w ∧ IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+      Away (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) (rc (algNorm σ)) := by
   have hl := mem_of_induces h Bw hj
   by_cases ht : Tor (rc (algNorm σ))
   · obtain ⟨k1, k2⟩ := (H1 E Ω l ι a ha π χ hI r hW w σ hσ (plainTor_of_tor hrc (generic_algNorm hσ) ht hm)).2 hl

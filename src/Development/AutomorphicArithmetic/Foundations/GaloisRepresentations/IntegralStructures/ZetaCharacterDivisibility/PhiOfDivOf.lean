@@ -64,7 +64,7 @@ def DGenMul : Prop :=
 def LocConj : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a : ℕ) (r r' : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)),
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a : ℕ) (r r' : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)),
     (IsCrysAt P Bw r → IsdRAt P Bw r ∧ IsPstAt P Bw r) ∧ (RepIso r r' →
       (IsCrysAt P Bw r → IsCrysAt P Bw r') ∧ (IsdRAt P Bw r → IsdRAt P Bw r') ∧
       (∀ τ J, IsJumpsAt P Bw r τ J → IsJumpsAt P Bw r' τ J) ∧
@@ -74,14 +74,14 @@ def LocConj : Prop :=
 def LocSum : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a b : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)) (s : ↥(Dec (F := E) A) →* GL (Fin b) (Qbar l)),
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a b : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)) (s : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin b) (Qbar l)),
     (IsCrysAt P Bw (sumRep r s) → IsCrysAt P Bw r ∧ IsCrysAt P Bw s) ∧
       ∀ (τ : E →+* Qbar l) (J J' : Multiset ℤ), IsJumpsAt P Bw (sumRep r s) τ J → IsJumpsAt P Bw r τ J' → J' ≤ J
 
 def JumpCard : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)), IsdRAt P Bw r →
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)), IsdRAt P Bw r →
     ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
       ∃ J : Multiset ℤ, IsJumpsAt P Bw r τ J ∧ J.card = a
 
@@ -89,12 +89,12 @@ def SubLoc : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (l : ℕ) [Fact l.Prime] (a d : ℕ)
     (r : G E Ω →* GL (Fin a) (Qbar l)) (ρ : G E Ω →* GL (Fin d) (Qbar l)), IsSSRep ρ → Inside r ρ →
     ∀ (ι : Qbar l ≃+* ℂ) (w : HeightOneSpectrum (𝓞 E)), ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-      (IsCrysAt P Bw (ρ.comp (Dec (F := E) A).subtype) → IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
-        ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g ∣
-          (wdAt P ι Bw h hj (ρ.comp (Dec (F := E) A).subtype)).charPol g) ∧
-      ∀ (τ : E →+* Qbar l) (J J' : Multiset ℤ), IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ J →
-        IsJumpsAt P Bw (r.comp (Dec (F := E) A).subtype) τ J' → J' ≤ J
+    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+      (IsCrysAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) → IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+        ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g ∣
+          (wdAt P ι Bw h hj (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g) ∧
+      ∀ (τ : E →+* Qbar l) (J J' : Multiset ℤ), IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J →
+        IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J' → J' ≤ J
 
 def JumpCondition : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (a dd : ℕ)

@@ -61,7 +61,7 @@ private theorem isdRAt_of_isCrysAt {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI
 theorem UpperTheory.Gal.Int.Div.locConj_of :
     LocConj := by
   intro l _ P AI hT E Ω _ _ _ _ _ A O _ _ _ Bw a r r'
-  have pst : ∀ {s : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)}, IsCrysAt P Bw s → IsPstAt P Bw s := fun {s} h =>
+  have pst : ∀ {s : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)}, IsCrysAt P Bw s → IsPstAt P Bw s := fun {s} h =>
     GlobalTheory.GalCut.IwaTwist.isPstAt_of_isSstAt P AI hT Bw s
       (GlobalTheory.CrysSst.isSstAt_of_isCrysAt l P AI hT E Ω _ O Bw a s h)
   refine ⟨fun h => ⟨isdRAt_of_isCrysAt P AI hT h, pst h⟩, fun hiso => ?_⟩

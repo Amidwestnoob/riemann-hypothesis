@@ -400,7 +400,7 @@ namespace UpperTheory.Gal.TP.Sub
 
 theorem twJumps_holds : TwJumps := by
   intro l _ P AI hT E Ω _ _ _ _ _ A O _ _ _ Bw a r c _ _ τ J m h1 h2
-  exact (GlobalTheory.TwistAbove.twist_above l P AI hT E Ω (Dec (F := E) A) O Bw a r (tw r c) c
+  exact (GlobalTheory.TwistAbove.twist_above l P AI hT E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O Bw a r (tw r c) c
     (fun g => tw_val r c g)).2.2.2 τ J m h1 h2
 
 end UpperTheory.Gal.TP.Sub
@@ -421,7 +421,7 @@ open UpperTheory.Gal.TP.Sub
 theorem UpperTheory.Gal.TP.Sub.twLoc_holds :
     TwLoc := by
   intro l _ P AI hT E Ω _ _ _ _ _ A O _ _ _ Bw a r c
-  have h := GlobalTheory.TwistAbove.twist_above l P AI hT E Ω (Dec (F := E) A) O Bw a r (tw r c) c
+  have h := GlobalTheory.TwistAbove.twist_above l P AI hT E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O Bw a r (tw r c) c
     (fun g => UpperTheory.V.Af.tw_val r c g)
   exact ⟨h.1, h.2.1⟩
 end

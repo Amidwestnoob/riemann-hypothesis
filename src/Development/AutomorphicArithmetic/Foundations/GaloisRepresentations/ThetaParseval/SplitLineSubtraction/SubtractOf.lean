@@ -69,19 +69,19 @@ def DenseId : Prop :=
 def PstOfDR : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)), Continuous r → IsdRAt P Bw r → IsPstAt P Bw r
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)), Continuous r → IsdRAt P Bw r → IsPstAt P Bw r
 
 def SumDR : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a b : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)) (s : ↥(Dec (F := E) A) →* GL (Fin b) (Qbar l)), IsdRAt P Bw (sumRep r s) →
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a b : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)) (s : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin b) (Qbar l)), IsdRAt P Bw (sumRep r s) →
     IsdRAt P Bw r ∧ IsdRAt P Bw s ∧ ∀ (τ : E →+* Qbar l) (J J' : Multiset ℤ),
       IsJumpsAt P Bw (sumRep r s) τ (J + J') → IsJumpsAt P Bw s τ J' → IsJumpsAt P Bw r τ J
 
 def TwJumps : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)) (c : ↥(Dec (F := E) A) →* (Qbar l)ˣ), Continuous r → Continuous c →
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)) (c : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (Qbar l)ˣ), Continuous r → Continuous c →
     ∀ (τ : E →+* Qbar l) (J : Multiset ℤ) (m : ℤ), IsJumpsAt P Bw r τ J → IsJumpsAt P Bw (rk1 c) τ {m} →
       IsJumpsAt P Bw (tw r c) τ (J.map (· + m))
 
@@ -155,7 +155,7 @@ def SatPol : Prop :=
 def TwLoc : Prop :=
   ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω)
-      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (a : ℕ) (r : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)) (c : ↥(Dec (F := E) A) →* (Qbar l)ˣ),
+      (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (a : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)) (c : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (Qbar l)ˣ),
     (IsdRAt P Bw r → IsdRAt P Bw (rk1 c) → IsdRAt P Bw (tw r c)) ∧
     (IsCrysAt P Bw r → IsCrysAt P Bw (rk1 c) → IsCrysAt P Bw (tw r c))
 
