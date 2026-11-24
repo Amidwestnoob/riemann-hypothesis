@@ -1236,7 +1236,7 @@ theorem lattice_surjective_of_orbit (hZ : LatDictZ.ZOrbit) : LatSurj X u := by
   have hz2 : X.zu u ∈ Λ2 := (hmem2 _).2 (by rw [hδz]; exact hLΛ _ hzL)
   have horth : ∀ c : D.host.E, c • X.zu u ∈ toO (VS D) (orth (VS D) (Xsp (lf D (X.Fu u)))) := by
     intro c
-    simp only [toO, Submodule.restrictScalars_mem, orth, Submodule.mem_iInf, LinearMap.mem_ker, Xsp_eq]
+    simp only [Formalism.MainNotions.S.Lat.toO, Submodule.restrictScalars_mem, orth, Submodule.mem_iInf, LinearMap.mem_ker, Xsp_eq]
     intro x hx
     rw [map_smul, ← prV_zu X u, hT_Xs_prV X hx, smul_zero]
   have hprimΛ : ∀ c : D.host.E, c • X.zu u ∈ Λ → ∃ o : 𝓞 D.host.E, (o : D.host.E) = c := by
