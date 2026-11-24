@@ -233,7 +233,7 @@ theorem dense_F (v : HeightOneSpectrum (𝓞 F)) : DenseRange fun q : F => piF v
   have h : (fun q : F => piF v (algebraMap F (AF F) q)) = algebraMap F (v.adicCompletion F) := by
     funext q
     show (algebraMap F (AF F) q).2 v = _
-    rw [algebraMap_AF]
+    rw [_root_.Formalism.IndefR.Fin.U1.algebraMap_AF]
     rfl
   rw [h]
   exact HeightOneSpectrum.denseRange_algebraMap F v
@@ -242,7 +242,7 @@ theorem dense_I (w : InfinitePlace F) : DenseRange fun q : F => piI w (algebraMa
   have h : (fun q : F => piI w (algebraMap F (AF F) q)) = fun x : F => (x : w.Completion) := by
     funext q
     show (algebraMap F (AF F) q).1 w = _
-    rw [algebraMap_AF]
+    rw [_root_.Formalism.IndefR.Fin.U1.algebraMap_AF]
     exact InfiniteAdeleRing.algebraMap_apply F q w
   rw [h]
   have e : Set.range (fun x : F => ((WithAbs.toAbs w.1 x : WithAbs w.1) : w.Completion)) =

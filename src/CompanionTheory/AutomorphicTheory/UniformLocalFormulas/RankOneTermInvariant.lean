@@ -101,7 +101,7 @@ theorem cMr_smap (γ : X.B.I.Ginf) (τ : D.what₂.Tau) (s z : Formalism.REAL.UJ
     C.Qi τ * (uMat (γ (vOf X τ))⁻¹ * (uMat s * uMat z)) * C.Q τ * (C.y τ)⁻¹
   rw [uMat_inv']
   simp only [Matrix.mul_assoc]
-  rw [← Matrix.mul_assoc (C.Q τ) (C.Qi τ), (C.isT τ).2.1, Matrix.one_mul, ← Matrix.mul_assoc (uMat (γ (vOf X τ))) (uMat (γ (vOf X τ)))⁻¹, uMat_mul_inv, Matrix.one_mul]
+  rw [← Matrix.mul_assoc (C.Q τ) (C.Qi τ), (C.isT τ).2.1, Matrix.one_mul, ← Matrix.mul_assoc (uMat (γ (vOf X τ))) (uMat (γ (vOf X τ)))⁻¹, _root_.Formalism.L2.SG.RealConjugatorData.uMat_mul_inv, Matrix.one_mul]
 
 theorem map_smap (τ : D.what₂.Tau) (g : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
     (Formalism.REAL.muG (X.B.I.ε (vOf X τ))).map (Smap C τ g) = muGB X (C.Q τ) (C.Qi τ) τ := by

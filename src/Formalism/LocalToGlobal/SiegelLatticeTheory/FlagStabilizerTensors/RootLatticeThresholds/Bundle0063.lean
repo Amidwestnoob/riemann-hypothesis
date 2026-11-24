@@ -175,12 +175,12 @@ section PartC
 variable {𝒞 : FamClass} (sel : SSel 𝒞)
 
 def RMeasExAll : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF))
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF))
     (C : Formalism.L2.SG.LocWSOf.Choice X 1) (u u' : D.what₂.Word),
     (∀ τ, GoodW D τ u u' 1 (Formalism.L2.SG.LocWSOf.locW C u u' τ)) → LoopTerm.RMeasEx hI C u u'
 
 def JFactNAll : Prop :=
-  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF))
+  ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF))
     (C : Formalism.L2.SG.LocWSOf.Choice X 1) (hB : Formalism.L2.SG.LocWSOf.WuBessel C) (u u' : D.what₂.Word),
     Formalism.L2.SG.ConcreteSettingExists.GapHyp D → LoopTerm.JFactN hI C hB u u'
 

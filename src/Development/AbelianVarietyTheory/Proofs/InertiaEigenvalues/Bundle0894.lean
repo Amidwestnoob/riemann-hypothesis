@@ -381,7 +381,7 @@ theorem phiC_setCE_of_eq {c' : ∀ (j : ℕ) (σ : T.Q.c.F →+* ℂ), (T.U j σ
     (hV : T.V j σ = W) (e : c' j σ = T.cE j σ) (a : (D.host.E →+* ℂ) × ℕ → ℕ) (f : T.R j) :
     phiC (setCE T c') hV a f = phiC T hV a f := by
   funext h
-  rw [phiC_apply, phiC_apply]
+  rw [_root_.GlobalTheory.HeckeSup.phiC_apply, _root_.GlobalTheory.HeckeSup.phiC_apply]
   exact congrArg (fun c => (lieFac (T.Q.Dw j) (xiR D) a : ℂ) * adel W (castDict hV (T.dict j σ))
       (muPin W (castDict hV (T.dict j σ)) (castDict hV (T.mu j σ)) c) (rdU (T.U j σ) f) h) e
 
@@ -436,7 +436,7 @@ theorem exists_framed_half (hP : GlobalTheory.Published.CuspRapidDecay) (hsz : 8
     · subst e
       rw [show w i T.σ₀ = z i from if_pos rfl]
       funext h
-      rw [phiC_apply, phiC_apply]
+      rw [_root_.GlobalTheory.HeckeSup.phiC_apply, _root_.GlobalTheory.HeckeSup.phiC_apply]
       have h2 := hs i f hf h
       rw [← h0 i] at h2
       exact congrArg (_ * ·) h2

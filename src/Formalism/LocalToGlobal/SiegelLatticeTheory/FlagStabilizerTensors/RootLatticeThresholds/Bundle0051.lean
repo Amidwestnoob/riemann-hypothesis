@@ -47,7 +47,7 @@ structure ConcAt0 (D : D7) (T : TermTie D) where
   X : HidaSetting D
   Y : Full X
   hF : FinX Y
-  hI : SIso D.s (sOf hF)
+  hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF)
   jt : JtPin hF hI T
   wr : WRowPin hF hI T
   fc : FibreCount Y
@@ -139,7 +139,7 @@ variable {eps : ℝ} (Fm : FamP eps) (C1 : ℝ)
   (X : ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x, HidaSetting (Fm.D x i))
   (Y : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), Full (X x hx i))
   (hF : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), FinX (Y x hx i))
-  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (sOf (hF x hx i)))
+  (hI : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), SIso (Fm.D x i).s (_root_.Formalism.L2.SG.PackageTie2.sOf (hF x hx i)))
   (hCT : ∀ x (hx : Fm.x1 < x) (i : Fm.Ix x), ConcTie (X x hx i) (Y x hx i))
 
 
