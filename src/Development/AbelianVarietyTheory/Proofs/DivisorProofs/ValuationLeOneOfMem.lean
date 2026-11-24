@@ -262,7 +262,7 @@ theorem badInt_notMem {μ₀ : T} (hL : L.Is μ₀) {G : GridData L sc} {t : T}
   rcases locPl_cases hw with ⟨a, -⟩ | ⟨-, -, b⟩
   · rcases G.pl.mem_S0_of_sum_eq.1 a with a | a
     · refine not_mem_of_coprime w (b := q0 D) ?_ ((natCast_mem_under w _).1 (a ▸ G.pl.basePlace_over_qZero))
-      obtain ⟨h1, h2, h3⟩ := leastSplitAuxiliaryPrimeThetaChain_spec D
+      obtain ⟨h1, h2, h3⟩ := GlobalTheory.ChiGrid.leastSplitAuxiliaryPrimeThetaChain_spec D
       have h4 : Nat.Coprime (q0 D) (Formalism.MainNotions.rPrAv D * LevelStarExponents.condE D) := by
         rw [Nat.Coprime, Nat.gcd_comm, Nat.gcd_rec, h2, Nat.gcd_one_left]
       exact (Nat.Coprime.mul_right (h4.coprime_dvd_right
