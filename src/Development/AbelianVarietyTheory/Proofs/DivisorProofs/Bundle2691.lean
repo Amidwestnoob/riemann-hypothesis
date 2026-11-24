@@ -340,10 +340,10 @@ theorem finite_sharpOver : ∀ (g n : ℕ), 2 ≤ n → ∀ (F : SFam g n (zetaA
     intro y hy
     obtain ⟨c, hc, pr, hpr, huniv, hiso⟩ := hy
     have hc0 := GlobalTheory.ThetaQuasiFinite.sRel_zero_of_siegPB hc
-    have hcP : c.Principal := sRel_principal hc0 F.princ
+    have hcP : c.Principal := GlobalTheory.SiegLevCalc.sRel_principal hc0 F.princ
     have hd : SmoothOfRelativeDimension g c.A.hom := GlobalTheory.SiegSharpCover.smoothDim c hn2 hζ (isUnit_natCast hn)
     obtain ⟨C, hC⟩ := _root_.GlobalTheory.SiegLift.exists_level_of_forget g n N _ _ K _ c b hNodd hN3 hcP hd
-    have hCP : C.Principal := sRel_principal hC hcP
+    have hCP : C.Principal := GlobalTheory.SiegLevCalc.sRel_principal hC hcP
     obtain ⟨t, ht⟩ := GlobalTheory.SiegelPower.exists_tObj_isSharp hL hL2 g (8 * g) W _ a bas hW hbas N K b (Sp K) (𝟙 _) C hNodd hN3 hbζ hCP
     have hCF : SRel C F.univ 0 0 y := by simpa using sRel_comp hc0 hC
     exact ⟨C, t, hCP, hCF, ht, GlobalTheory.T.eighthPower_E8Bundle_iso_of_principalSiegelIso g n N _ _ K _ c b C W _ a bas t Q pr hpr huniv hiso hC ht⟩
