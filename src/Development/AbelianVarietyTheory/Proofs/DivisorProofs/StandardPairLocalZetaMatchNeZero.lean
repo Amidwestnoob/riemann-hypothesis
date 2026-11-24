@@ -15,6 +15,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 namespace GlobalTheory.StdPairMatch
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil Matrix
 
