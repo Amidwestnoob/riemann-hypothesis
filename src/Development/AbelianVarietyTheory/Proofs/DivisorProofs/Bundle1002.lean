@@ -16,6 +16,7 @@ public import Formalism.RealPlaceAnalysis.SmoothOnGVIff
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralEqClassSumOfLe
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open NumberField Matrix Complex MeasureTheory IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr GlobalTheory.Dict GlobalTheory.AdTh GlobalTheory.ClsVal
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level Host

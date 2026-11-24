@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle006
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SumNormEmb
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th MeasureTheory IsDedekindDomain NumberField Matrix
