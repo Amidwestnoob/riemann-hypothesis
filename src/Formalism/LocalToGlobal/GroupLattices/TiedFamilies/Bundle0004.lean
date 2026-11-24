@@ -67,7 +67,7 @@ section Re
 theorem reGL_mulVec {a b : ℕ} (h : a = b) {E : Type} [Field E] (M : GL (Fin a) E) (x : Fin a → E) (i : Fin b) :
     ((reGL h E M).1 *ᵥ fun j : Fin b => x (Fin.cast h.symm j)) i = (M.1 *ᵥ x) (Fin.cast h.symm i) := by
   subst h
-  rw [reGL_rfl]
+  rw [_root_.Formalism.L2.Forms.reGL_rfl]
   rfl
 
 end Re

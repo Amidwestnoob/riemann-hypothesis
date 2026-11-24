@@ -288,7 +288,7 @@ theorem capa_vab_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.k
     have h1 : Q.crd (Q.cmp (Q.vAB P.r Y 0) 1) Φ = 0 := rfl
     have v0 : Vp P Y 0 0 0 = 1 := by simp [Vp_zero]
     have v1 : Vp P Y 0 1 0 = 0 := by simp [Vp_zero]
-    rw [h0, h1, v0, v1, actA_one, actA_zero, trR_zero]
+    rw [h0, h1, v0, v1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.VLem.actA_one, actA_zero, trR_zero]
     refine ⟨⟨hΦ, rfl⟩, ⟨?_, rfl⟩⟩
     have := famR_smul hΦ 0
     rwa [zero_smul] at this
@@ -325,7 +325,7 @@ theorem capa_vab_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.k
         trR_p hpl hk he hA, tc, tA, tB, Vp_succ P Y i h, Ts_mul_0, actA_add, actA_mul, actA_mul,
         actA_neg, actA_add, actA_algebraMap, actA_p, actA_c, sub_eq_add_neg]
     · rw [e1]; exact hciA
-    · rw [e1, tci, tA, Vp_succ P Y i h, Ts_mul_1, actA_mul, actA_ci]
+    · rw [e1, tci, tA, Vp_succ P Y i h, Ts_mul_1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, actA_ci]
 
 theorem capa_vabm_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.k) (he : IsFrameB P Bs e)
     (L : R.LevelData (MA.A P (MA.DQ P)) P.r) (hL : MA.IsModelLevel P (MA.DQ P) L) (Y : ℂ) :
@@ -346,7 +346,7 @@ theorem capa_vabm_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.
     have h1 : Q.crd (Q.cmp (vABm P.r Y 0) 1) Φ = 0 := rfl
     have v0 : capaVpM P L Y 0 0 0 = 1 := by simp [capaVpM_zero]
     have v1 : capaVpM P L Y 0 1 0 = 0 := by simp [capaVpM_zero]
-    rw [h0, h1, v0, v1, actA_one, actA_zero, trR_zero]
+    rw [h0, h1, v0, v1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.VLem.actA_one, actA_zero, trR_zero]
     refine ⟨⟨hΦ, rfl⟩, ⟨?_, rfl⟩⟩
     have := famR_smul hΦ 0
     rwa [zero_smul] at this
@@ -384,7 +384,7 @@ theorem capa_vabm_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.
         actA_mul, actA_neg, sub_eq_add_neg ((algebraMap ℂ (MA.A P (MA.DQ P))) Y), actA_add, actA_algebraMap, actA_neg,
         capa_actA_pb, capa_actA_cb, sub_eq_add_neg, sub_eq_add_neg]
     · rw [e1]; exact hciA
-    · rw [e1, tci, tA, capaVpM_succ P L Y i h, capa_Tvl_mul_1, actA_mul, hcbi, capa_actA_cbi]
+    · rw [e1, tci, tA, capaVpM_succ P L Y i h, capa_Tvl_mul_1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, hcbi, capa_actA_cbi]
 
 end ind
 

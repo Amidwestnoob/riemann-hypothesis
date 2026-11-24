@@ -93,7 +93,7 @@ theorem adjointBr_of (h3 : PI.HwIrred) (h5 : PI.SchurFock) (hN : Numbers) (hX : 
     intro g x hx
     rw [hmemU] at hx ⊢
     refine ⟨sqAct_mem_nabla sg g x hx.1, ?_⟩
-    rw [hioEq g x hx.1, hB4, hx.2, sqAct_smul]
+    rw [hioEq g x hx.1, hB4, hx.2, _root_.PI.WGL.Adj.sqAct_smul]
   have hall : ∀ s ∈ nablaSq ℂ n sg, br (io s) = κ • s := by
     rcases (h3 n sg).2.1 U inf_le_left hUst with hU | hU
     · exfalso

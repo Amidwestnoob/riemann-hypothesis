@@ -273,7 +273,7 @@ theorem integrable_unipotent_rank_one (ph ρ : ℕ) (σ : Equiv.Perm (Fin ph)) (
     have hj : j = 0 := Fin.ext (by have := j.isLt; simp)
     subst hi hj
     simp [G.wMat, G.upper, G.strictUpper, Matrix.mul_apply]
-  simp only [Function.comp_apply, Prod.map, id, Formalism.FourierDecayAlt.P.JCTx6.gInt, hs, hZ]
+  simp only [Function.comp_apply, Prod.map, id, Formalism.FourierDecayAlt.P.JCTx6.gInt, _root_.Formalism.REAL.hs, hZ]
   simp [G.psi]
 
 end Formalism.FourierDecayAlt.P.PBH

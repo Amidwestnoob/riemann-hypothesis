@@ -37,7 +37,7 @@ theorem symplO_left_e₁ {e₁ : AE D} {t y : WO S T} (hy : IsHalf (cA D e₁) y
     symplO S T t y = symplO S T (t.map (fun a => e₁ * a)) y := by
   have hc : ∀ c b, cA D (y c b) = e₁ * cA D (y c b) := fun c b => by
     conv_lhs => rw [← hy c b]
-    rw [map_mul, cA_cA]
+    rw [map_mul, _root_.Formalism.L2.Theta.cA_cA]
   have e1 : hO S T t y = hO S T (t.map (fun a => e₁ * a)) y := by
     unfold hO
     refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun c _ =>
@@ -54,7 +54,7 @@ theorem symplO_right_ce₁ {e₁ : AE D} {x y : WO S T} (hx : IsHalf e₁ x) :
     unfold hO
     refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => Finset.sum_congr rfl fun c _ =>
       Finset.sum_congr rfl fun d _ => ?_
-    rw [Matrix.map_apply, map_mul, cA_cA]
+    rw [Matrix.map_apply, map_mul, _root_.Formalism.L2.Theta.cA_cA]
     conv_lhs => rw [← hx d a]
     ring
   unfold symplO
