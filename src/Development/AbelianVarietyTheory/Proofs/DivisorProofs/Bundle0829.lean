@@ -26,6 +26,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0025
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHeckeOpFullDualLab
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.HeckeDual
 
 section Group

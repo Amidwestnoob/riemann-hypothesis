@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatVecU
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.MinpolyEqOfAevalOfLinearIndependent
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open scoped TensorProduct
 open Polynomial
 
