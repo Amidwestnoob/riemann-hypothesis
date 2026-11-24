@@ -9,7 +9,7 @@ import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsContRep
 
 @[expose] public section
 
-open private kgl_eq tj_eq hop_apply mem_fixL from Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.TsphVec
+open private kgl_eq tj_eq hop_apply mem_fixL from Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.Bundle0004
 
 open MeasureTheory NumberField IsDedekindDomain GlobalTheory.CuspRep
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
