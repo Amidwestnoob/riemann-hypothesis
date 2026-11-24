@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSe
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjMapMemMult
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
@@ -453,6 +454,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.DescentEqualizerDegreeZero
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 open scoped TensorProduct
 set_option maxHeartbeats 1000000 in

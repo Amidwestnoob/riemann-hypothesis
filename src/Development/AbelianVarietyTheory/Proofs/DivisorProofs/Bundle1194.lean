@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1158
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.TermEqOfSimilitudeRel
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount
 open scoped TensorProduct Classical
 

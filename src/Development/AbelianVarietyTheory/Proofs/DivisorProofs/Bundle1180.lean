@@ -30,6 +30,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0038
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFinPartEqOneMulInvMemSplitCongruenceIdeles
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 namespace GlobalTheory.HeckeSplitGen.FinF

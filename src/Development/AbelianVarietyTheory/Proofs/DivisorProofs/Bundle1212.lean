@@ -47,6 +47,7 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Exists
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitTorusElementUnique
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut GlobalTheory.StdPar GlobalTheory.IdTorus
 open GlobalTheory.Doubling (absE conjUnit)
 open scoped TensorProduct
