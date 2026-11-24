@@ -133,10 +133,10 @@ theorem UpperTheory.cuspSubspace_translate_eq_smul_special_translate :
       rw [← gl_mD_mul_dM_sq, inv_mul_cancel_left]
     rw [gl_mul, gl_inv]
     conv_lhs => rw [hg0, ht, dM_mul, e]
-    rw [scalar_comm s (gl g0 * (gl (mD s))⁻¹ * dM t), mul_assoc (gl (mD s))⁻¹, scalar_comm s (dM t)]
+    rw [UpperTheory.ConvolutionTheory.R2.scalar_comm s (gl g0 * (gl (mD s))⁻¹ * dM t), mul_assoc (gl (mD s))⁻¹, UpperTheory.ConvolutionTheory.R2.scalar_comm s (dM t)]
     simp only [mul_assoc]
   have hg : g * x = Matrix.GeneralLinearGroup.scalar (Fin 2) s * (g * gl (g0 * (mD s)⁻¹) * finGL E 2 k) := by
-    rw [hx, hk, ← mul_assoc g, ← scalar_comm s g, mul_assoc, mul_assoc]
+    rw [hx, hk, ← mul_assoc g, ← UpperTheory.ConvolutionTheory.R2.scalar_comm s g, mul_assoc, mul_assoc]
   rw [hg, hω f hf]
   rfl
 end
