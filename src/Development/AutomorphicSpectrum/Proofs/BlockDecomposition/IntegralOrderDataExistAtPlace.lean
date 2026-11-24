@@ -11,6 +11,7 @@ public import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.Spect
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.AvgFree.Ord
 
 open MeasureTheory Filter _root_.Topology

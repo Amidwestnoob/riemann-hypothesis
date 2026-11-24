@@ -9,6 +9,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SgMulSel
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Finset
 open scoped TensorProduct
 

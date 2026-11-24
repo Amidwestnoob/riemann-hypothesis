@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.Divisibility.SlopeExcess.SummableAbsNor
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open GroundTheory.Global PositivityTheory.SiegelWeilFormula.Densx PositivityTheory.Rg.Base1
 open scoped TensorProduct ENNReal NNReal Matrix Classical

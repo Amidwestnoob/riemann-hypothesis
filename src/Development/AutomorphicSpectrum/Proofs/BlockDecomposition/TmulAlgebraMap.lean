@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsSqua
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter
 open PositivityTheory.SiegelWeilFormula.Densx PositivityTheory.Rg.Base1
 open scoped TensorProduct ENNReal NNReal

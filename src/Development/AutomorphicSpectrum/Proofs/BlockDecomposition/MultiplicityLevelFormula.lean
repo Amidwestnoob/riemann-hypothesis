@@ -9,6 +9,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompa
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.SiegLoc.NuIndex
 
 open MeasureTheory

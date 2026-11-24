@@ -15,6 +15,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechTrip
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LiftSemiTmul
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 set_option autoImplicit false
 
 noncomputable section

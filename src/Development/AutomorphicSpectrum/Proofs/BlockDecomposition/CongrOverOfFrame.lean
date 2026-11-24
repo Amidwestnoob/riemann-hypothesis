@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.Exists
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open scoped Matrix TensorProduct
 open Matrix
 
