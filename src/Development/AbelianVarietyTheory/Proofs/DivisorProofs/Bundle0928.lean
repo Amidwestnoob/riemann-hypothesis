@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0863
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormStepIntegrality
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open IsDedekindDomain GlobalTheory.LKTrip GlobalTheory.OrbFinAf
