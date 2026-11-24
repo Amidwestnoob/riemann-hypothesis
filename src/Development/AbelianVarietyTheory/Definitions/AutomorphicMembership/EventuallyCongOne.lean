@@ -94,7 +94,7 @@ omit [StarRing E] [NumberField K] [StarRing K] in
 theorem tr_mul (b : S.β) (g h : S.G b) (F : Fr emb σ n → ℂ) :
     S.tr emb σ b (g * h) F = S.tr emb σ b g (S.tr emb σ b h F) := by
   funext y
-  simp only [GStep.tr, trFr_apply, map_mul, Units.val_mul, _root_.mul_inv_rev, frMul_mul, mul_assoc]
+  simp only [GStep.tr, trFr_apply, map_mul, Units.val_mul, _root_.mul_inv_rev, GlobalTheory.Mem.Col2.frMul_mul, mul_assoc]
 
 variable {S emb σ} {lam : ι → DomWeight n} {φ : S.Cl → Fr emb σ n → ℂ}
 

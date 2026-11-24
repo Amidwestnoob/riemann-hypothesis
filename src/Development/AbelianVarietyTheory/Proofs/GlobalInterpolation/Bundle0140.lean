@@ -350,7 +350,7 @@ theorem inj_act (ζ b d d') (h : R.zeta ζ • R.pt b d = R.pt b d') :
   rw [R.act_hom, R.act_zeta]
   funext x
   refine (trFr_apply B.emb D.what₂.embLL ((B.I.S i).gam b g) ((B.I.S i).chr b g) y.1 x).trans ?_
-  rw [h1, h2, inv_one, frMul_one]
+  rw [h1, h2, inv_one, GlobalTheory.Mem.Col2.frMul_one]
   rfl
 
 theorem inj_act_inv (ζ b) (g : (B.I.S i).G b) (h : M.act (R.hom b g) = M.act (R.zeta ζ)) :
