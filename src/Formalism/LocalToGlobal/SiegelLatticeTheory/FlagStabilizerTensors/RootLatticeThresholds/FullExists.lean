@@ -14,8 +14,8 @@ noncomputable section
 open scoped Classical TensorProduct
 open Matrix
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
-attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
   Formalism.L2.SG.TermOp Formalism.L2.SG.Full
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 
 namespace Formalism.L2.SG.Pf
 

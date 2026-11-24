@@ -13,8 +13,8 @@ noncomputable section
 
 open scoped Classical InnerProductSpace
 open MeasureTheory NumberField Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
-attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
   Formalism.L2.SG.TermOp Formalism.L2.SG.Full Formalism.L2.SG.Pf.UkEmb
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 
 namespace Formalism.L2.SG.FixedDecomposition
 
