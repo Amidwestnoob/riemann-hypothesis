@@ -142,7 +142,7 @@ theorem UpperTheory.V.Loc.spChartP :
       show tconj s _ = _
       rw [h2 g hg, hone]⟩
     refine ⟨f', fun g a b => ?_⟩
-    rw [hf', w4_sub_w4_eq_wt, ← hs]
+    rw [hf', _root_.w4_sub_w4_eq_wt, ← hs]
     rfl
   obtain ⟨x, P, n, u, φ, hx, hφ, hy, hw, hS⟩ := liftChart (l := l) (D.rbarAt q) w4 E R ρ (fun B _ _ r => EqP D q r)
     (fun B B' _ _ _ _ f r => ⟨fun h => ⟨fun g => by
