@@ -99,7 +99,7 @@ theorem _root_.GlobalTheory.T.attached_rep_conjugate_invariant : ∀ (F Ω : Typ
     rw [← hL, ← IsScalarTower.algebraMap_apply]
     exact AlgEquiv.commutes _ _)
   have hconj : ∀ s : G K Ω, c s = conjGal hL s := fun s => AlgEquiv.ext fun x => by
-    rw [conjGal_apply, hsymm, hcx]
+    rw [UpperTheory.V.conjGal_apply, hsymm, hcx]
     rfl
   have hσA : ∀ A : ValuationSubring Ω, ∀ x, σ' x ∈ A ↔ x ∈ g • A := fun A x => by
     rw [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, AlgEquiv.smul_def]
