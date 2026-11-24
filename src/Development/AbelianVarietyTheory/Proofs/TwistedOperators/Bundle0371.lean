@@ -365,21 +365,21 @@ section Gen
 variable {X0 : Scheme.{0}} {S : Type} [CommRing S] (x0 : Sp S ⟶ X0) {G G' : Over X0} [GrpObj G] [GrpObj G']
 
 theorem smT_post' (a : S) (v : overAt x0 (DualNumber S) ⟶ G) (φ : G ⟶ G') :
-    smT x0 a (v ≫ φ) = smT x0 a v ≫ φ := (Category.assoc _ _ _).symm
+    GlobalTheory.IntRebase.smT x0 a (v ≫ φ) = GlobalTheory.IntRebase.smT x0 a v ≫ φ := (Category.assoc _ _ _).symm
 
 theorem smT_comm (a b : S) (v : overAt x0 (DualNumber S) ⟶ G) :
-    smT x0 a (smT x0 b v) = smT x0 b (smT x0 a v) := by
+    GlobalTheory.IntRebase.smT x0 a (GlobalTheory.IntRebase.smT x0 b v) = GlobalTheory.IntRebase.smT x0 b (GlobalTheory.IntRebase.smT x0 a v) := by
   rw [GlobalTheory.IntRebase.smT_smT, GlobalTheory.IntRebase.smT_smT, _root_.mul_comm]
 
-theorem tan_image (q : S) (v : overAt x0 (DualNumber S) ⟶ G) (h0 : smT x0 0 v = 1) (φ : G ⟶ G') [IsMonHom φ] :
-    smT x0 0 (smT x0 q (v ≫ φ)) = 1 := by
+theorem tan_image (q : S) (v : overAt x0 (DualNumber S) ⟶ G) (h0 : GlobalTheory.IntRebase.smT x0 0 v = 1) (φ : G ⟶ G') [IsMonHom φ] :
+    GlobalTheory.IntRebase.smT x0 0 (GlobalTheory.IntRebase.smT x0 q (v ≫ φ)) = 1 := by
   rw [smT_comm, smT_post', h0, MonObj.one_comp, GlobalTheory.IntRebase.smT_one']
 
-theorem smT_natCast (v : overAt x0 (DualNumber S) ⟶ G) (h0 : smT x0 0 v = 1) (n : ℕ) :
-    smT x0 (n : S) v = v ^ n := by
+theorem smT_natCast (v : overAt x0 (DualNumber S) ⟶ G) (h0 : GlobalTheory.IntRebase.smT x0 0 v = 1) (n : ℕ) :
+    GlobalTheory.IntRebase.smT x0 (n : S) v = v ^ n := by
   induction n with
   | zero => simpa using h0
-  | succ n ih => rw [Nat.cast_succ, smT_add x0 v h0, ih, GlobalTheory.IntRebase.smT_unit, pow_succ]
+  | succ n ih => rw [Nat.cast_succ, GlobalTheory.IntRebase.smT_add x0 v h0, ih, GlobalTheory.IntRebase.smT_unit, pow_succ]
 
 theorem comp_id_pow {P : Over X0} (v : P ⟶ G) (n : ℕ) : v ≫ (𝟙 G ^ n) = v ^ n := by
   have h := map_pow (IntRebase.preHom (G := G) v) (𝟙 G) n
@@ -390,32 +390,32 @@ theorem comp_id_pow {P : Over X0} (v : P ⟶ G) (n : ℕ) : v ≫ (𝟙 G ^ n) =
 variable [IsCommMonObj G] [IsCommMonObj G']
 
 theorem combT_image {m : ℕ} (q : S) (v : Fin m → (overAt x0 (DualNumber S) ⟶ G)) (a : Fin m → S) (φ : G ⟶ G')
-    [IsMonHom φ] : smT x0 q (combT x0 v a ≫ φ) = combT x0 (fun j => smT x0 q (v j ≫ φ)) a := by
+    [IsMonHom φ] : GlobalTheory.IntRebase.smT x0 q (GlobalTheory.IntRebase.combT x0 v a ≫ φ) = GlobalTheory.IntRebase.combT x0 (fun j => GlobalTheory.IntRebase.smT x0 q (v j ≫ φ)) a := by
   let ph : (overAt x0 (DualNumber S) ⟶ G) →* (overAt x0 (DualNumber S) ⟶ G') :=
     { toFun := fun v => v ≫ φ
       map_one' := MonObj.one_comp φ
       map_mul' := fun u w => MonObj.mul_comp u w φ }
-  have h : combT x0 v a ≫ φ = ∏ j, smT x0 (a j) (v j) ≫ φ :=
-    map_prod ph (fun j => smT x0 (a j) (v j)) Finset.univ
+  have h : GlobalTheory.IntRebase.combT x0 v a ≫ φ = ∏ j, GlobalTheory.IntRebase.smT x0 (a j) (v j) ≫ φ :=
+    map_prod ph (fun j => GlobalTheory.IntRebase.smT x0 (a j) (v j)) Finset.univ
   rw [h, GlobalTheory.IntRebase.smT_prod]
   refine Finset.prod_congr rfl fun j _ => ?_
   rw [← smT_post', smT_comm]
 
 theorem mul_eq_one_of_pair {m : ℕ} (p : ℕ) (q : S) (hq : q * p = 1) (U : Fin m → (overAt x0 (DualNumber S) ⟶ G))
-    (U' : Fin m → (overAt x0 (DualNumber S) ⟶ G')) (hU' : ∀ j, smT x0 0 (U' j) = 1)
-    (huniq : ∀ i (a b : Fin m → S), U' i = combT x0 U' a → U' i = combT x0 U' b → a = b)
+    (U' : Fin m → (overAt x0 (DualNumber S) ⟶ G')) (hU' : ∀ j, GlobalTheory.IntRebase.smT x0 0 (U' j) = 1)
+    (huniq : ∀ i (a b : Fin m → S), U' i = GlobalTheory.IntRebase.combT x0 U' a → U' i = GlobalTheory.IntRebase.combT x0 U' b → a = b)
     (F : G ⟶ G') (F' : G' ⟶ G) [IsMonHom F] (hF : F' ≫ F = 𝟙 _ ^ (p ^ 2)) (k k' : Matrix (Fin m) (Fin m) S)
-    (hk : ∀ i, smT x0 q (U i ≫ F) = combT x0 U' (fun j => k j i))
-    (hk' : ∀ i, smT x0 q (U' i ≫ F') = combT x0 U (fun j => k' j i)) : k * k' = 1 := by
+    (hk : ∀ i, GlobalTheory.IntRebase.smT x0 q (U i ≫ F) = GlobalTheory.IntRebase.combT x0 U' (fun j => k j i))
+    (hk' : ∀ i, GlobalTheory.IntRebase.smT x0 q (U' i ≫ F') = GlobalTheory.IntRebase.combT x0 U (fun j => k' j i)) : k * k' = 1 := by
   ext j i
-  have h1 : smT x0 q (smT x0 q (U' i ≫ F') ≫ F) = U' i := by
+  have h1 : GlobalTheory.IntRebase.smT x0 q (GlobalTheory.IntRebase.smT x0 q (U' i ≫ F') ≫ F) = U' i := by
     rw [← smT_post', Category.assoc, hF, comp_id_pow, ← smT_natCast x0 _ (hU' i), GlobalTheory.IntRebase.smT_smT, GlobalTheory.IntRebase.smT_smT]
     have e : q * q * ((p ^ 2 : ℕ) : S) = 1 := by
       push_cast
       linear_combination (q * p + 1) * hq
     rw [e, GlobalTheory.IntRebase.smT_unit]
-  rw [hk', combT_image, funext hk, combT_combT x0 U' hU'] at h1
-  have h2 := congrFun (huniq i _ _ h1.symm (combT_single x0 U' hU' i).symm) j
+  rw [hk', combT_image, funext hk, GlobalTheory.IntRebase.combT_combT x0 U' hU'] at h1
+  have h2 := congrFun (huniq i _ _ h1.symm (GlobalTheory.IntRebase.combT_single x0 U' hU' i).symm) j
   rw [Matrix.one_apply, Matrix.mul_apply]
   rw [Pi.single_apply] at h2
   exact h2
@@ -430,10 +430,10 @@ theorem exists_coords {V Fr : Type} [CommRing V] [Field Fr] [Algebra V Fr] (io :
     (ub' : Fin m → (epsOver V V ⟶ G'.G))
     (hb : ∀ w : epsOver V V ⟶ G'.G, IsTan w → IsEigV c io G' τ w → ∃! a : Fin m → V, IsComb ub' a w)
     (w : epsOver V V ⟶ G.G) (ht : IsTan w) (he : IsEigV c io G τ w) :
-    ∃ a : Fin m → V, IsComb ub' a (kapI ≫ smT (𝟙 (Sp V)) q ((IntRebase.kap ≫ w) ≫ F)) := by
-  refine (hb _ (isTan_kapI _ (tan_image _ q _ (smT_zero_kap w ht) F)) ?_).exists
-  refine (isEigV_kapI_iff io G' τ _).2 fun a z hz => ?_
-  have h1 := (isEigV_kapI_iff io G τ (IntRebase.kap ≫ w)).1 (by rw [GlobalTheory.IntRebase.kapI_kap_assoc]; exact he) a z hz
+    ∃ a : Fin m → V, IsComb ub' a (GlobalTheory.IntRebase.kapI ≫ GlobalTheory.IntRebase.smT (𝟙 (Sp V)) q ((IntRebase.kap ≫ w) ≫ F)) := by
+  refine (hb _ (GlobalTheory.IntRebase.isTan_kapI _ (tan_image _ q _ (GlobalTheory.IntRebase.smT_zero_kap w ht) F)) ?_).exists
+  refine (GlobalTheory.IntRebase.isEigV_kapI_iff io G' τ _).2 fun a z hz => ?_
+  have h1 := (GlobalTheory.IntRebase.isEigV_kapI_iff io G τ (IntRebase.kap ≫ w)).1 (by rw [GlobalTheory.IntRebase.kapI_kap_assoc]; exact he) a z hz
   rw [← smT_post', Category.assoc (IntRebase.kap ≫ w), ← hF, ← Category.assoc (IntRebase.kap ≫ w), h1, ← smT_post', smT_comm]
 
 theorem lie_lattice_onto : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (T : CDVR) (io : c.F →+* T.Fr) (y y' : IntFr Xo c T io) (I : IntData Xo c T io y.1) (I' : IntData Xo c T io y'.1) (f : Fib Xo (xOf y) ⟶ Fib Xo (xOf y')) (F : I.G.G ⟶ I'.G.G) (F' : I'.G.G ⟶ I.G.G) (p : ℕ) (v : ∀ τ : E →+* ℂ, Fin (Dw.mult τ) → (Sp (DualNumber T.Fr) ⟶ Xo.univ.t.G.left)), IsUnit (p : T.V) → IsMonHom F → IsMonHom F' → Ext I.m1 I.m2 I'.m1 I'.m2 f F → F ≫ F' = 𝟙 _ ^ (p ^ 2) → F' ≫ F = 𝟙 _ ^ (p ^ 2) → (∀ a, I.G.act.act a ≫ F = F ≫ I'.G.act.act a) → (∀ a, I'.G.act.act a ≫ F' = F' ≫ I.G.act.act a) → letI := io.toAlgebra; (∀ τ j, IsLieImageH p f.left (y.1.u τ j) (v τ j)) → ∃ k : ∀ τ : E →+* ℂ, Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) T.V, (∀ τ, IsUnit (k τ).det) ∧ ∀ τ i, IsCombAt y'.1.x (y'.1.u τ) (fun j => algebraMap T.V T.Fr (k τ j i)) (v τ i) := by
@@ -446,11 +446,11 @@ theorem lie_lattice_onto : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   refine ⟨fun τ => Matrix.of fun j i => k τ i j, fun τ => ?_, fun τ i => ?_⟩
   · refine Matrix.isUnit_det_of_right_inverse (B := Matrix.of fun j i => k' τ i j) ?_
     refine mul_eq_one_of_pair (𝟙 (Sp T.V)) p q hq (fun i => IntRebase.kap ≫ I.ub τ i) (fun i => IntRebase.kap ≫ I'.ub τ i)
-      (fun i => smT_zero_kap _ (I'.tan τ i)) ?_ F F' hFF _ _ (fun i => (isComb_iff _ _ _).1 (hk τ i))
-      (fun i => (isComb_iff _ _ _).1 (hk' τ i))
+      (fun i => GlobalTheory.IntRebase.smT_zero_kap _ (I'.tan τ i)) ?_ F F' hFF _ _ (fun i => (GlobalTheory.IntRebase.isComb_iff _ _ _).1 (hk τ i))
+      (fun i => (GlobalTheory.IntRebase.isComb_iff _ _ _).1 (hk' τ i))
     intro i a b ha hb
-    have ha' := (isComb_iff (I'.ub τ) a _).2 ha
-    have hb' := (isComb_iff (I'.ub τ) b _).2 hb
+    have ha' := (GlobalTheory.IntRebase.isComb_iff (I'.ub τ) a _).2 ha
+    have hb' := (GlobalTheory.IntRebase.isComb_iff (I'.ub τ) b _).2 hb
     rw [GlobalTheory.IntRebase.kapI_kap_assoc] at ha' hb'
     exact (I'.basis τ _ (I'.tan τ i) (I'.eig τ i)).unique ha' hb'
   · obtain ⟨ψ, -, hψ, hg⟩ := hExt
