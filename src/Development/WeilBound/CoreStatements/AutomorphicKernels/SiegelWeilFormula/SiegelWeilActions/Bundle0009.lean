@@ -346,7 +346,7 @@ variable {d : SD σ} (L : LD d)
 
 theorem phz_eq_flat {s₁ z : ℂ} {f : d.G → ℂ} : phz d f s₁ z = flat d.a f s₁ z := by
   funext x
-  simp only [phz, flat, kunf.ht_eq]
+  simp only [phz, GlobalTheory.ThK.Dbl.flat, kunf.ht_eq]
 
 theorem phz_law {s₁ : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.χ s₁ f) (z : ℂ) :
     Law d.χ (z - s₁ + (s₁ + (d.n : ℂ) / 2)) (phz d f s₁ z) := by

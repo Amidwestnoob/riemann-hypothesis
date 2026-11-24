@@ -254,7 +254,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 variable {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} (L : _root_.PositivityTheory.SiegelWeilFormula.LD_k d)
 theorem phz_eq_flat_k {s₁ z : ℂ} {f : d.G → ℂ} : _root_.PositivityTheory.SiegelWeilFormula.Act.phz_k d f s₁ z = flat d.a f s₁ z := by
   funext x
-  simp only [_root_.PositivityTheory.SiegelWeilFormula.Act.phz_k, flat, _root_.PositivityTheory.SiegelWeilFormula.kunf.ht_eq_k]
+  simp only [_root_.PositivityTheory.SiegelWeilFormula.Act.phz_k, GlobalTheory.ThK.Dbl.flat, _root_.PositivityTheory.SiegelWeilFormula.kunf.ht_eq_k]
 theorem phz_law_k {s₁ : ℂ} {f : d.G → ℂ} (hf : IsSec d.K d.χ s₁ f) (z : ℂ) :
     Law d.χ (z - s₁ + (s₁ + (d.n : ℂ) / 2)) (_root_.PositivityTheory.SiegelWeilFormula.Act.phz_k d f s₁ z) := by
   rw [_root_.PositivityTheory.SiegelWeilFormula.Act.C4.phz_eq_flat_k]

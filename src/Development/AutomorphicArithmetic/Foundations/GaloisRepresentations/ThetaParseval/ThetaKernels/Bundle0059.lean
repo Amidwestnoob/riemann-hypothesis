@@ -439,7 +439,7 @@ theorem dictAsmX_k : _root_.PositivityTheory.SiegelWeilFormula.KWhit.DictAsmX_k 
       funext Y
       ring
     have hs : s0 d.m d.n = ((d.m : ℂ) - d.n) / 2 := rfl
-    simp only [flat]
+    simp only [GlobalTheory.ThK.Dbl.flat]
     rw [hcell, hZ, ha, _root_.PositivityTheory.SiegelWeilFormula.KWhit.asm_phase_whit_k hr β, asm_cpow_split hC hνpos]
     simp only [Gen.whI, hs]
     ring
