@@ -285,9 +285,14 @@ theorem tateH2OAt_of_fund (P : LocPrime l) (K Lf : FinExt l) [CompactSpace ↥(G
       simp only [map_add (f := _), map_sub, map_smul, Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul,
         FO, a, LinearEquiv.apply_symm_apply]
       simpa only [mul_comm (X j) (c (g, h))] using hXF j g h
-    have hcalc' := congrArg ι hcalc
-    rw [map_add (f := _), map_sub, map_sub, ← hcyc, hzO' (g, h)] at hcalc'
-    exact (hd1 _ g h).trans (hcalc'.trans (congrArg (fun x : ↥Lf.1 => z.1 (g, h) - x) (haz0 a (g, h)).symm))
+    have hmap (u v w : ↥(OL Lf)) : ι (u - v + w) = ι u - ι v + ι w :=
+      (ι.map_add (u - v) w).trans (congrArg (fun x : ↥Lf.1 => x + ι w) (ι.map_sub u v))
+    have hleft := (hd1 (fun k => ι (FO k)) g h).trans
+      ((congrArg (fun x : ↥Lf.1 => x - ι (FO (g * h)) + ι (FO g)) (hcyc g (FO h))).trans
+        (hmap ((χ g : ℤ_[l]) • FO h) (FO (g * h)) (FO g)).symm)
+    have hright := (ι.map_sub (zO (g, h)) ((c (g, h) : ℤ_[l]) • a)).trans
+      (congrArg₂ (fun x y : ↥Lf.1 => x - y) (hzO' (g, h)) (haz0 a (g, h)).symm)
+    exact hleft.trans ((congrArg ι hcalc).trans hright)
 
 end GlobalTheory.IntTateTop
 
