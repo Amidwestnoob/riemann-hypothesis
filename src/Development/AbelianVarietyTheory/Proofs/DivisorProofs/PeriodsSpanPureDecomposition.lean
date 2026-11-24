@@ -275,7 +275,7 @@ variable {R : Type} [CommRing R]
 open GlobalTheory.UPel.HT.Hecke in
 theorem tate_hecke_back {b : Base D R} (g : D.La →ₗ[D.O] D.La) (c k N : ℕ) (hc : c.Coprime p) (hk : k.Coprime p)
     (Npos : 0 < N) (hN : N.Coprime p) {S : Scheme.{0}} {s : S ⟶ Sp R}
-    (o : Obj b (N * k) s) (o' : Obj b N s) (ψ : o.A ⟶ o'.A) (h : IsHecke g c k N o o' ψ)
+    (o : Obj b (N * k) s) (o' : Obj b N s) (ψ : o.A ⟶ o'.A) (h : GlobalTheory.UPel.HT.Hecke.IsHecke g c k N o o' ψ)
     (κ : Type) [Field κ] [IsAlgClosed κ] (hnκ : ∀ n : ℕ, 0 < n → (n : κ) ≠ 0) (x : Sp κ ⟶ S) (β : R →+* κ)
     (hx : x ≫ s = spMap β) (I' : _root_.GlobalTheory.UPel.HT.Gen.HeckeRestrict.TateAt D.toG o'.A o'.act o'.P x) :
     ∃ J : _root_.GlobalTheory.UPel.HT.Gen.HeckeRestrict.TateAt D.toG o.A o.act o.P x, ∀ y, toUnit _ ≫ o.eta y = J.ev (N * k) y := by
@@ -426,7 +426,7 @@ theorem exists_gHeckeMap_finite_etale_surjective : ∀ (p : ℕ) [Fact p.Prime] 
   obtain ⟨M⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R (baseAt gb) N hN hNp
   obtain ⟨M'⟩ := GlobalTheory.T.harrisTaylorIntegralModel_nonempty p D R (baseAt gb) (N * k) hNk hNkp
   obtain ⟨π, hπ, πf, πe, πs⟩ := GlobalTheory.T.exists_heckeMap_finite_etale_surjective' p D R (baseAt gb) g c k N hcp hkp hN hNp hEF hg hck M M'
-  change π ≫ M.s = M'.s ∧ ∃ (o' : Obj (baseAt gb) N M'.s) (ψ : M'.univ.A ⟶ o'.A), IsHecke g c k N M'.univ o' ψ ∧
+  change π ≫ M.s = M'.s ∧ ∃ (o' : Obj (baseAt gb) N M'.s) (ψ : M'.univ.A ⟶ o'.A), GlobalTheory.UPel.HT.Hecke.IsHecke g c k N M'.univ o' ψ ∧
     Nonempty (ObjMap o' M.univ π) at hπ
   obtain ⟨hπs, o', ψ, hH, ⟨hmap⟩⟩ := hπ
   obtain ⟨i, io, ic, hi, hX⟩ := exists_immersion gb N hN hNp M X
