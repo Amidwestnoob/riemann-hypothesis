@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle000
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GroupAverageFixedPoints
 section
 

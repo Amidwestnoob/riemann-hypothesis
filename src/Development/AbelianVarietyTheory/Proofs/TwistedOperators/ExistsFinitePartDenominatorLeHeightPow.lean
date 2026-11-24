@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR
 open IsDedekindDomain NumberField Matrix
 open scoped TensorProduct

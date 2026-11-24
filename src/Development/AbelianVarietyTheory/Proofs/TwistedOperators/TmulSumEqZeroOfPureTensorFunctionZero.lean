@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle003
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain
 open scoped TensorProduct
 
