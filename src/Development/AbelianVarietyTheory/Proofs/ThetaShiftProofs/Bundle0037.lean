@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.TangentVa
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsRepresents
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj Filter Topology

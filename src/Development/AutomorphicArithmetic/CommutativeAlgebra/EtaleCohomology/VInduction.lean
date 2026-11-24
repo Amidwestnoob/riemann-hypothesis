@@ -4,6 +4,8 @@ public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomolo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 set_option synthInstance.maxHeartbeats 200000
 set_option maxHeartbeats 1000000
 set_option backward.isDefEq.respectTransparency false
