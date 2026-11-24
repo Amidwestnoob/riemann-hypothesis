@@ -5,6 +5,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle05
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Filter Topology

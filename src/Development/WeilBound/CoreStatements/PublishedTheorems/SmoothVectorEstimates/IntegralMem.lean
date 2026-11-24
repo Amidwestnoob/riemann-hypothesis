@@ -4,6 +4,8 @@ public import Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVecto
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open MeasureTheory Matrix GlobalTheory.CuspGeneric Topology

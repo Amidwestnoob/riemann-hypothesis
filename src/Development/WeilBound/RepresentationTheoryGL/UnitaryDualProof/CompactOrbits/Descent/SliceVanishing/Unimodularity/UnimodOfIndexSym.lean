@@ -5,6 +5,8 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Comp
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open MeasureTheory MeasureTheory.Measure GroundTheory.Automorphic

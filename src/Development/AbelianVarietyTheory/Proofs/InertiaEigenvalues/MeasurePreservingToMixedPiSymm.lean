@@ -7,6 +7,8 @@ public import CompanionTheory.AutomorphicTheory.UnitriangularMeasure.AdeleCoordi
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 namespace GlobalTheory.ThetaPoisson

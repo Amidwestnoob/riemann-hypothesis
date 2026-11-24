@@ -4,6 +4,8 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open NumberField GlobalTheory.CuspRep MeasureTheory

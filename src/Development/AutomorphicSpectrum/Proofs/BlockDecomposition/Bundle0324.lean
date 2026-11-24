@@ -18,6 +18,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CrisZero
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocVanishOf
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open Matrix MeasureTheory PositivityTheory.Rg.BcB PositivityTheory.Rg.Tf.Loc
