@@ -374,6 +374,8 @@ theorem hasDerivAt_exp_integral_dsigW (k r : ℕ) (H : Type) [NormedAddCommGroup
       (∫ g, φ g • Formalism.MainNotions.S.dsigW (k := k) (r := r) σ (X :: D) (σ g v) ∂μ) 0 := by
   have hσ : Formalism.MainNotions.S.IsURepOn (Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r)) σ := hσ'
   obtain ⟨hprob, hK0, -, -⟩ := hμ
+  haveI : IsFiniteMeasureOnCompacts μ := ⟨fun K _ =>
+    (measure_mono (Set.subset_univ K)).trans_lt (hprob.measure_univ.symm ▸ ENNReal.one_lt_top)⟩
   have hKc := isCompact_KH k r
   have hae : ∀ᵐ g ∂μ, g ∈ GlobalTheory.ThA.KH k r := mem_ae_iff.2 hK0
   have hres : μ.restrict (GlobalTheory.ThA.KH k r) = μ := Measure.restrict_eq_self_of_ae_mem hae

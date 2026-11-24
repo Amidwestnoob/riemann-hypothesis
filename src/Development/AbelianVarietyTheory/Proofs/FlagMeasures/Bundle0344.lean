@@ -361,7 +361,8 @@ theorem integrable_smul_orbit {k r : ℕ} {H : Type} [NormedAddCommGroup H] [Inn
     (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.QuantumDeterminants.UH (PI.UpqRep.Hpk k r)) σ) (hμ : IsHaarKH k r μ)
     {f : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ → ℂ} (hf : Continuous f) (v : H) :
     Integrable (fun g => f g • σ g v) μ := by
-  haveI := hμ.1
+  haveI : IsFiniteMeasureOnCompacts μ := ⟨fun K _ =>
+    (measure_mono (Set.subset_univ K)).trans_lt (hμ.1.measure_univ.symm ▸ ENNReal.one_lt_top)⟩
   have hK := isCompact_KH k r
   have hsub : GlobalTheory.ThA.KH k r ⊆ Formalism.QuantumDeterminants.UH (PI.UpqRep.Hpk k r) := fun g hg => hg.1
   have hc : ContinuousOn (fun g => f g • σ g v) (GlobalTheory.ThA.KH k r) :=
@@ -417,11 +418,16 @@ theorem isKFinHpk_integral_translates : ∀ (k r : ℕ) (H : Type) [NormedAddCom
       have hcm : Continuous (fun g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ => a * g) :=
         continuous_const.matrix_mul continuous_id
       have h2 : ∫ g, b j g • σ (a * g) v ∂μ = ∫ g, b j (a⁻¹ * g) • σ g v ∂μ := by
-        conv_rhs => rw [← hμ.2.2.1 a ha]
-        rw [integral_map hcm.aemeasurable]
-        · simp only [← Matrix.mul_assoc, haa, Matrix.one_mul]
-        · rw [hμ.2.2.1 a ha]
+        have hmap : μ.map (fun g => a * g) = μ := hμ.2.2.1 a ha
+        have hm : AEStronglyMeasurable (fun g => b j (a⁻¹ * g) • σ g v) (μ.map fun g => a * g) := by
+          rw [hmap]
           exact (integrable_smul_orbit hσ hμ ((hb j).comp (continuous_const.matrix_mul continuous_id)) v).aestronglyMeasurable
+        calc
+          _ = ∫ g, b j (a⁻¹ * (a * g)) • σ (a * g) v ∂μ := by
+            simp only [← Matrix.mul_assoc, haa, Matrix.one_mul]
+          _ = ∫ g, b j (a⁻¹ * g) • σ g v ∂μ.map (fun g => a * g) :=
+            (MeasureTheory.integral_map (μ := μ) hcm.aemeasurable hm).symm
+          _ = _ := by rw [hmap]
       rw [h1, h2]
       simp_rw [hd]
       rw [key]
