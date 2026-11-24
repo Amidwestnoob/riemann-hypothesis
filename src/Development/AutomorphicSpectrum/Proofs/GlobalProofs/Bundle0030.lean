@@ -67,6 +67,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GlobalProofs.DualityForAbsGal
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open CategoryTheory MonoidalCategory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel NumberField IsDedekindDomain Formalism.ConjugateSelfDual
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂

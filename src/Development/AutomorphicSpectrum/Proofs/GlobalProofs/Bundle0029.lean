@@ -64,6 +64,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel Formalism.GaloisCohomology NumberField IsDedekindDomain Formalism.ConjugateSelfDual
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂
