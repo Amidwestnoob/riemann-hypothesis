@@ -126,6 +126,7 @@ end PositivityTheory.Rg.Rs.l2glue
 
 namespace PositivityTheory.Rg.Rs
 
+attribute [local instance 1100] GroundTheory.Global.secondCountableTopology_units in
 theorem l2glue_holds : An.L2DecayOfCountEscape := by
   intro hCount hEsc K _ _ n r hr hrn μ _ φ F hφ hinv hF hfin Q hQ
   obtain ⟨D, hD, hD0⟩ := exists_isCompact_superset_unipFundamentalDomain (K := K) (n := n) (r := r)
