@@ -5,6 +5,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHec
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.Bundle0001
 public import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.Bundle0004
 
+import all Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.Bundle0004
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsContRep
 
 @[expose] public section
