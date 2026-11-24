@@ -174,7 +174,7 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.normEmb :
     intro φ
     have h := norm_Kx x ((starRingEnd ℂ).comp φ) (k : E)
     simp only [RingHom.comp_apply, conj_of_sq hd (hsq φ)] at h
-    rw [emb_conj, h]
+    rw [UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.NormEmbeddings.emb_conj, h]
   have hQ : ((Algebra.norm ℚ (k : E) : ℚ) : ℂ) = ∏ φ' : E →+* ℂ, φ' k := by
     have h := Algebra.norm_eq_prod_embeddings ℚ ℂ (k : E)
     rw [eq_ratCast] at h
@@ -204,7 +204,7 @@ theorem UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.normEmb :
       haveI : FiniteDimensional (Kx x) E := FiniteDimensional.right ℚ (Kx x) E
       rw [Ne, map_eq_zero, map_eq_zero, Algebra.norm_eq_zero_iff]
       exact k.ne_zero
-    rw [emb_conj, Complex.mul_conj] at hmul
+    rw [UpperTheory.Gal.CertificateRingHomMap.ZetaNonvanishing₂.NormEmbeddings.emb_conj, Complex.mul_conj] at hmul
     have h1 : Complex.normSq (φ₀ (algebraMap (Kx x) E (Algebra.norm (Kx x) (k : E)))) =
         ((Algebra.norm ℚ (k : E) : ℚ) : ℝ) := by exact_mod_cast hmul
     have h2 := Complex.normSq_pos.2 ht
