@@ -228,7 +228,7 @@ theorem secCoord_iff_of_secMaps (hA : A.IsLB) (hB : B.IsLB) {w : LB.Iso A B} (hw
 
 theorem projRep_bot (R : Type) [CommRing R] {N : ℕ} (e : σ ≃ Fin (N + 1)) :
     ProjRep (⊥ : Ideal (MvPolynomial σ R)) (PSpace.str R N) ((O1 R N).pull (𝟙 _))
-      (fun c => secPull (coord R N (e c)) (𝟙 _)) := by
+      (fun c => GlobalTheory.Cartier.secPull (coord R N (e c)) (𝟙 _)) := by
   refine ⟨pull_isLB (O1_isLB R N) _, fun R' _ β x v hx h => ?_, fun R' _ β v hv _ => ?_⟩
   · obtain ⟨hv, -⟩ := (ProjCoord.secCoord_iff e (𝟙 _) β x (by simpa using hx) v).1 h
     rw [ProjCoord.range_comp_symm] at hv
@@ -262,7 +262,7 @@ theorem projRep_of_embedsBy {R : Type} [CommRing R] (f : X ⟶ Sp R) (hA : A.IsL
       refine Iff.trans ?_ (h1.trans h2.symm)
       refine (secCoord_iff_of_secMaps (pull_isLB (O1_isLB R N) _) hA (w := toProjIso f _ hs) (fun i => ?_) ?_ ?_).symm
       · simpa only [Equiv.symm_apply_apply] using secMaps_toProjIso f _ hs (e i)
-      · exact (e.iSup_comp (g := fun j => Out.nonzeroLocus (secPull (coord R N j) (toProj f _ hs)))).trans
+      · exact (e.iSup_comp (g := fun j => Out.nonzeroLocus (GlobalTheory.Cartier.secPull (coord R N j) (toProj f _ hs)))).trans
           (iSup_nonzeroLocus_secPull (iSup_nonzeroLocus_coord R N) _)
       · exact (e.symm.iSup_comp (g := fun c => Out.nonzeroLocus (a c))).symm.trans hs
   rwa [toProj_str] at key

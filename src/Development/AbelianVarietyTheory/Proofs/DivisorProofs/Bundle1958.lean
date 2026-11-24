@@ -457,9 +457,9 @@ theorem exists_secCoord_of_subsingleton_pic {X : Scheme.{0}} {M : LB X} (hM : M.
   obtain ⟨t, ht⟩ := GlobalTheory.LB.exists_isGen_of_subsingleton_pic hL
   let a := ReciprocityTheory.ChartRestriction.G.DVR.genSec t ht
   have ha : ⊤ ≤ nonzeroLocus a := (nonzeroLocus_genSec hL t ht).ge
-  choose v hv using fun j => fnOn_top_bijective.2 (resG _ ha (secRatio a (secPull (σ j) x)))
+  choose v hv using fun j => fnOn_top_bijective.2 (resG _ ha (secRatio a (GlobalTheory.Cartier.secPull (σ j) x)))
   refine ⟨v, t, ht, fun i j h => ?_⟩
-  have h1 := secRatio_on a (secPull (σ i) x) j (le_top.trans ha) le_rfl
+  have h1 := secRatio_on a (GlobalTheory.Cartier.secPull (σ i) x) j (le_top.trans ha) le_rfl
   rw [resG_self, resG_self] at h1
   change _ = fnOn _ (v i) * a.f j
   rw [← resG_fnOn (le_top : _ ≤ ⊤), hv, resG_resG]

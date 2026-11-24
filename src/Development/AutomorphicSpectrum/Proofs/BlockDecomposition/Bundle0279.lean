@@ -26,7 +26,7 @@ variable {X X' : Scheme.{0}}
 
 theorem pullLE_ofSec {M : LB X} (π : X' ⟶ X) (V : X.Opens) (V' : X'.Opens) (e : V' ≤ π ⁻¹ᵁ V)
     (s : LB.Sec M) :
-    SecOn.pullLE M π V V' e (GlobalTheory.LB.ofSec s V) = GlobalTheory.LB.ofSec (secPull s π) V' := by
+    SecOn.pullLE M π V V' e (GlobalTheory.LB.ofSec s V) = GlobalTheory.LB.ofSec (GlobalTheory.Cartier.secPull s π) V' := by
   refine GlobalTheory.LB.sec_ext fun j => ?_
   rw [SecOn.coord_pullLE, GlobalTheory.LB.coord_ofSec, GlobalTheory.LB.coord_ofSec, GlobalTheory.LB.appLE_resG]
   change _ = resG X' _ ((π.appLE _ _ (GlobalTheory.LB.pull_U_le π j)).hom (s.f (j PUnit.unit)))
@@ -69,14 +69,14 @@ theorem congr_ofSec_of_redL (e : ℕ) (V : (Y (e + 1)).left.Opens) (V' : (Y e).l
     (hr : redL I Y β hβ L w hL e V V' h (SecOnR.of _ _ _ (GlobalTheory.LB.ofSec τ V)) =
       SecOnR.of _ _ _ (GlobalTheory.LB.ofSec σ V')) :
     SecOn.congr (hL e).1 (LB.isLB_pull (hL (e + 1)).1 (β e)) (w e) (hL e).2 V'
-      (GlobalTheory.LB.ofSec σ V') = GlobalTheory.LB.ofSec (secPull τ (β e)) V' := by
+      (GlobalTheory.LB.ofSec σ V') = GlobalTheory.LB.ofSec (GlobalTheory.Cartier.secPull τ (β e)) V' := by
   have h1 := (LinearEquiv.symm_apply_eq _).1 hr
   rw [SecOnR.pull_of, SecOnR.linEquiv_of] at h1
   exact h1.symm.trans (pullLE_ofSec (β e) V V' h τ)
 
 end Tower
 
-theorem lift_of_cech_pairs : ∀ (R : Type) [CommRing R] (I : Ideal R) (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))) (β : ∀ e, (Y e).left ⟶ (Y (e + 1)).left) (hβ : ∀ e, IsPullback (β e) (Y e).hom (Y (e + 1)).hom (thickTrans R I e)) (N : ∀ e, LB (Y e).left) (v : ∀ e, LB.Iso (N e) ((N (e + 1)).pull (β e))) (hN : ∀ e, (N e).IsLB ∧ (v e).IsGen) (d : ℕ) (m : ℕ) (s : Fin (m + 1) → LB.Sec (pw (N 0) (d : ℤ))) (hs : VeryAmpleBy (Y 0).hom (pw (N 0) (d : ℤ)) s) (D : ∀ e, Finset (Fin (m + 1)) → (Y e).left.Opens) (hD0 : ∀ S, D 0 S = ⨅ i ∈ S, nonzeroLocus (s i)) (hDβ : ∀ e S, β e ⁻¹ᵁ D (e + 1) S = D e S) (hDm : ∀ e (S S' : Finset (Fin (m + 1))), S ⊆ S' → D e S' ≤ D e S) (hDi : ∀ e S j, D e (insert j S) = D e S ⊓ D e {j}) (hDc : ∀ e, ⨆ i, D e {i} = ⊤) (hDa : ∀ e S, S.Nonempty → IsAffineOpen (D e S)) (t : ℤ) (e : ℕ), (∀ (c : ∀ i j : Fin (m + 1), Tm I Y N D (d : ℤ) (e + 1) t {i, j}), (∀ i j, red I Y N D β hβ v hN (fun e S => (hDβ e S).ge) ((d : ℤ) * t) e {i, j} (c i j) = 0) → (∀ i j k, resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_ij i j k) (c i j) + resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_jk i j k) (c j k) = resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_ik i j k) (c i k)) → ∃ b : ∀ i, Tm I Y N D (d : ℤ) (e + 1) t {i}, (∀ i, red I Y N D β hβ v hN (fun e S => (hDβ e S).ge) ((d : ℤ) * t) e {i} (b i) = 0) ∧ ∀ i j, c i j = resT I Y N D (d : ℤ) hDm (e + 1) t (sub_pair_left i j) (b i) - resT I Y N D (d : ℤ) hDm (e + 1) t (sub_pair_right i j) (b j)) → ∀ σ : LB.Sec (pw (N e) ((d : ℤ) * t)), ∃ σ' : LB.Sec (pw (N (e + 1)) ((d : ℤ) * t)), SecMaps (pullPow (v e) ((d : ℤ) * t)) σ (secPull σ' (β e)) := by
+theorem lift_of_cech_pairs : ∀ (R : Type) [CommRing R] (I : Ideal R) (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))) (β : ∀ e, (Y e).left ⟶ (Y (e + 1)).left) (hβ : ∀ e, IsPullback (β e) (Y e).hom (Y (e + 1)).hom (thickTrans R I e)) (N : ∀ e, LB (Y e).left) (v : ∀ e, LB.Iso (N e) ((N (e + 1)).pull (β e))) (hN : ∀ e, (N e).IsLB ∧ (v e).IsGen) (d : ℕ) (m : ℕ) (s : Fin (m + 1) → LB.Sec (pw (N 0) (d : ℤ))) (hs : VeryAmpleBy (Y 0).hom (pw (N 0) (d : ℤ)) s) (D : ∀ e, Finset (Fin (m + 1)) → (Y e).left.Opens) (hD0 : ∀ S, D 0 S = ⨅ i ∈ S, nonzeroLocus (s i)) (hDβ : ∀ e S, β e ⁻¹ᵁ D (e + 1) S = D e S) (hDm : ∀ e (S S' : Finset (Fin (m + 1))), S ⊆ S' → D e S' ≤ D e S) (hDi : ∀ e S j, D e (insert j S) = D e S ⊓ D e {j}) (hDc : ∀ e, ⨆ i, D e {i} = ⊤) (hDa : ∀ e S, S.Nonempty → IsAffineOpen (D e S)) (t : ℤ) (e : ℕ), (∀ (c : ∀ i j : Fin (m + 1), Tm I Y N D (d : ℤ) (e + 1) t {i, j}), (∀ i j, red I Y N D β hβ v hN (fun e S => (hDβ e S).ge) ((d : ℤ) * t) e {i, j} (c i j) = 0) → (∀ i j k, resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_ij i j k) (c i j) + resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_jk i j k) (c j k) = resT I Y N D (d : ℤ) hDm (e + 1) t (sub_triple_ik i j k) (c i k)) → ∃ b : ∀ i, Tm I Y N D (d : ℤ) (e + 1) t {i}, (∀ i, red I Y N D β hβ v hN (fun e S => (hDβ e S).ge) ((d : ℤ) * t) e {i} (b i) = 0) ∧ ∀ i j, c i j = resT I Y N D (d : ℤ) hDm (e + 1) t (sub_pair_left i j) (b i) - resT I Y N D (d : ℤ) hDm (e + 1) t (sub_pair_right i j) (b j)) → ∀ σ : LB.Sec (pw (N e) ((d : ℤ) * t)), ∃ σ' : LB.Sec (pw (N (e + 1)) ((d : ℤ) * t)), SecMaps (pullPow (v e) ((d : ℤ) * t)) σ (GlobalTheory.Cartier.secPull σ' (β e)) := by
   intro R _ I Y β hβ N v hN d m s hs D hD0 hDβ hDm hDi hDc hDa t e hc σ
   have hLp : ∀ e, (pw (N e) ((d : ℤ) * t)).IsLB ∧ (pullPow (v e) ((d : ℤ) * t)).IsGen :=
     fun e => ⟨isLB_pw (hN e).1 _, pullPow_isGen (v e) _ (hN e).2⟩
@@ -136,7 +136,7 @@ theorem lift_of_cech_pairs : ∀ (R : Type) [CommRing R] (I : Ideal R) (Y : ∀ 
   have hτσ : τ = SecOnR.of _ _ _ (GlobalTheory.LB.ofSec σ' ⊤) :=
     ((SecOn.topEquiv (pw (N (e + 1)) ((d : ℤ) * t))).symm_apply_apply τ).symm
   refine ⟨σ', secMaps_of_cover (hLp e).1 (LB.isLB_pull (hLp (e + 1)).1 (β e)) _ (hLp e).2
-    (fun i => D e {i}) (hDc e) σ (secPull σ' (β e)) fun i => ?_⟩
+    (fun i => D e {i}) (hDc e) σ (GlobalTheory.Cartier.secPull σ' (β e)) fun i => ?_⟩
   refine congr_ofSec_of_redL I Y β hβ (fun e => pw (N e) ((d : ℤ) * t))
     (fun e => pullPow (v e) ((d : ℤ) * t)) hLp e (D (e + 1) {i}) (D e {i}) (hDβ e {i}).ge σ' σ ?_
   have h2 : SecOnR.of (toR I Y (e + 1)) _ _ (GlobalTheory.LB.ofSec σ' (D (e + 1) {i})) = b i - b' i := by
