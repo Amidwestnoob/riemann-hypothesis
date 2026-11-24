@@ -322,7 +322,7 @@ theorem isOmegaLeb_frobenius (e : Fin P ⊕ Fin Q ≃ Fin n) :
   have hT := (measurePreserving_unrealify (ι := Fin P ⊕ Fin Q) e).comp
     (hI.comp (WithLp.volume_preserving_toLp (U := lieE (UH (form e))) (V := lieE (UH (form e)))))
   have hG : Measurable (fun ab : lieU P Q × lieU P Q =>
-      Formalism.BasicNotions.entries ((ab.1 : Matrix (Fin P ⊕ Fin Q) (Fin P ⊕ Fin Q) ℂ) +
+      _root_.Formalism.BasicNotions.entries ((ab.1 : Matrix (Fin P ⊕ Fin Q) (Fin P ⊕ Fin Q) ℂ) +
         Complex.I • (ab.2 : Matrix (Fin P ⊕ Fin Q) (Fin P ⊕ Fin Q) ℂ))) := by
     convert hT.measurable.comp (hL.prodMap hL) using 1
     funext ab
