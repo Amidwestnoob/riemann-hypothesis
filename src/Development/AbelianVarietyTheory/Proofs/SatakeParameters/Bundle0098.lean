@@ -29,6 +29,7 @@ public import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.I
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsAdelicUnitarySplitPlaceComponent
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 namespace GlobalTheory.SplitLift
