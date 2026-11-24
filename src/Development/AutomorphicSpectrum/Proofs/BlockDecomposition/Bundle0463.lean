@@ -199,6 +199,8 @@ theorem lintegral_constTerm_le [_root_.NumberField.IsTotallyComplex E] (μ : Mea
   haveI := GlobalTheory.AdelicUnitaryTop.secondCountable_adele E
   haveI : IsFiniteMeasure (ν.restrict 𝓕) := isFiniteMeasure_restrict.2 hν𝓕
   haveI : IsFiniteMeasure (μ.restrict C) := isFiniteMeasure_restrict.2 hC.measure_lt_top.ne
+  have : SigmaFinite (μ.restrict C) := IsFiniteMeasure.toSigmaFinite _
+  have : SFinite (μ.restrict C) := MeasureTheory.instSFiniteOfSigmaFinite
   have hC' : IsCompact ((unip '' K) * C) := (hK.image continuous_unip).mul hC
   have hb : ∀ x, ∫⁻ g in C, ‖u (unip x * g)‖ₑ ∂μ ≤ ∫⁻ g in (unip '' K) * C, ‖u g‖ₑ ∂μ := fun x => by
     obtain ⟨k, hk, e⟩ := exists_mem_apply_unip_eq hl hcov x
