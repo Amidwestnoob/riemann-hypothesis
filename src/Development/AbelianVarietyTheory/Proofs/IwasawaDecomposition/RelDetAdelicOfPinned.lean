@@ -420,6 +420,7 @@ theorem normIdeal_eq_one_iff (a : Neutral.B1.Ideles H.E) : normIdeal H a = 1 ↔
     rw [← valAt_apply, ← valAt_apply] at this
     rw [count_normIdeal, FractionalIdeal.count_one, expo, this, sub_self]
 
+set_option maxSynthPendingDepth 2 in
 def classIdeal : DtT H ⧸ UOT H →* FractionalIdeal (𝓞 H.E)⁰ H.E :=
   QuotientGroup.lift (UOT H)
     (QuotientGroup.lift (KD H) (normIdeal H) fun a ha => (normIdeal_eq_one_iff H a).2 (Subgroup.mem_sup_left ha))
@@ -435,6 +436,7 @@ theorem exists_mk_mk (x : DtT H ⧸ UOT H) : ∃ a : Neutral.B1.Ideles H.E, x = 
   obtain ⟨a, rfl⟩ := QuotientGroup.mk_surjective t
   exact ⟨a, rfl⟩
 
+set_option maxSynthPendingDepth 2 in
 theorem classIdeal_injective : Function.Injective (classIdeal H) := by
   refine (injective_iff_map_eq_one _).2 fun x hx => ?_
   obtain ⟨a, rfl⟩ := exists_mk_mk H x
@@ -443,16 +445,16 @@ theorem classIdeal_injective : Function.Injective (classIdeal H) := by
 
 theorem expo_pos_part {n : HeightOneSpectrum (𝓞 H.E) → ℤ} (hf : {w | n w ≠ 0}.Finite) (hn : ∀ w, n (bar H w) = -n w)
     (w : HeightOneSpectrum (𝓞 H.E)) :
-    expo H (∏ᶠ w : HeightOneSpectrum (𝓞 H.E), localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (n w).toNat) w = n w := by
+    expo H (∏ᶠ w : HeightOneSpectrum (𝓞 H.E), Neutral.B1.localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (n w).toNat) w = n w := by
   classical
-  have e : (∏ᶠ w : HeightOneSpectrum (𝓞 H.E), localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (n w).toNat) =
-      ∏ w ∈ hf.toFinset, localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ ((n w).toNat : ℤ) := by
+  have e : (∏ᶠ w : HeightOneSpectrum (𝓞 H.E), Neutral.B1.localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (n w).toNat) =
+      ∏ w ∈ hf.toFinset, Neutral.B1.localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ ((n w).toNat : ℤ) := by
     simp only [zpow_natCast]
     refine finprod_eq_prod_of_mulSupport_subset _ fun v hv => ?_
     rw [Set.Finite.coe_toFinset]
     intro h0
     exact hv (by simp [h0])
-  have h1 : ∀ v, log (valAt v (∏ w ∈ hf.toFinset, localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ ((n w).toNat : ℤ))) =
+  have h1 : ∀ v, log (valAt v (∏ w ∈ hf.toFinset, Neutral.B1.localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ ((n w).toNat : ℤ))) =
       -((n v).toNat : ℤ) := fun v => by
     rw [valAt_prod, log_exp]
     split_ifs with h
@@ -490,7 +492,7 @@ theorem normOne_iff (𝔞 : Submodule (𝓞 H.E) H.E) :
       rw [val_bar, ey, exp_le_exp] at h3
       omega
     refine ⟨QuotientGroup.mk (QuotientGroup.mk (∏ᶠ w : HeightOneSpectrum (𝓞 H.E),
-      localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (FractionalIdeal.count H.E w I).toNat)), ?_⟩
+      Neutral.B1.localIdele H.E w (Formalism.L2.Host.atFin w (Formalism.L2.Host.unif w)) ^ (FractionalIdeal.count H.E w I).toNat)), ?_⟩
     rw [classIdeal_mk, GlobalTheory.Idele.eq_of_count_eq (normIdeal_ne_zero H _) hI fun w => by
       rw [count_normIdeal, expo_pos_part H (Filter.eventually_cofinite.1 (FractionalIdeal.finite_factors I)) hn]]
     rfl
@@ -515,7 +517,7 @@ theorem classIdeal_e1T : letI := H.cmStar
   have hz : (z : H.E) ≠ 0 := fun h => k.ne_zero (by rw [← hk, h, zero_mul])
   rw [← GlobalTheory.Mem.Col2.isRationalUnitaryDeterminantMap_rationalUnitary H k z hk, classIdeal_mk]
   refine GlobalTheory.Idele.eq_of_count_eq (normIdeal_ne_zero H _) (FractionalIdeal.spanSingleton_ne_zero_iff.2 hz) fun w => ?_
-  have hv : ∀ v : HeightOneSpectrum (𝓞 H.E), valAt v (diagUnits H.E k) = v.valuation H.E (k : H.E) := fun v =>
+  have hv : ∀ v : HeightOneSpectrum (𝓞 H.E), valAt v (Neutral.B1.diagUnits H.E k) = v.valuation H.E (k : H.E) := fun v =>
     GlobalTheory.Idele.valued_algebraMap v (k : H.E)
   have h1 := congrArg (fun x => log (w.valuation H.E x)) hk
   simp only [map_mul, val_conj] at h1
@@ -557,6 +559,7 @@ theorem detId_eq (D : D7) {N : ℕ} (L L' : SDLat D.host.E N) : detId D L.1 L'.1
     ((detFI L'.1 L'.2.1 * (detFI L.1 L.2.1)⁻¹ : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) : IdE D) :=
   span_det_eq L.2.1 L.2.2.1 L'.2.1 L'.2.2.1
 
+set_option maxSynthPendingDepth 2 in
 theorem pinned_of_equiv (D : D7) (e : DtT D.host ⧸ UOT D.host ≃* D.Dt ⧸ D.UO)
     (h1 : ∀ z, QuotientGroup.mk (D.e1Dt z) = e (QuotientGroup.mk (e1T D.host z)))
     (h2 : ∀ N (L L' : SDLat D.host.E N), D.relDet N L L' = e (relDetT D.host N L.1 L'.1)) :
@@ -592,6 +595,7 @@ theorem relDet_eq_of_pinned (D : D7) (idl : D.Dt ⧸ D.UO → IdE D) (hp : RelDe
     (val_eq_pow hc dt hker hUO hk (hrat z) e L.2.1 L.2.2.1 L'.2.1 L'.2.2.1 hg hx)
 
 
+set_option maxSynthPendingDepth 2 in
 open GlobalTheory.Mem.Col2 in
 theorem pinned_of_finer (D : D7) (SQ : Finset (HeightOneSpectrum (𝓞 D.host.E))) (ε : DtQ D.host SQ ≃* D.Dt)
     (hU : D.UO = (UOQ D.host SQ).map ε.toMonoidHom) (h1 : ∀ z, D.e1Dt z = ε (e1Q D.host SQ z))
