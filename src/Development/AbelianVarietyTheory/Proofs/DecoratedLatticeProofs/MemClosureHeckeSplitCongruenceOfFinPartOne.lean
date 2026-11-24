@@ -84,7 +84,7 @@ theorem exists_pair (v₀ : HeightOneSpectrum (𝓞 F)) (N : ℕ) (hN : N ≠ 0)
       · exact one_mem _)
   obtain ⟨β, -, hβw, hβv⟩ := strong_approx v₀ b s (N * Q * P) (mul_ne_zero (mul_ne_zero hN hQ0) hP0) ε hε
   have hn0 := hns α β hα0
-  obtain ⟨B, hB⟩ := exists_finset_norm_one _ hn0
+  obtain ⟨B, hB⟩ := GlobalTheory.HeckeSplitAll.Approx.exists_finset_norm_one _ hn0
   have key : ∀ v, v ≠ v₀ → ¬ GoodAt N (Δ : F) α β v →
       ‖algebraMap F (v.adicCompletion F) (α * α - Δ * (β * β))‖ ≠ 1 ∧
         ∃ s, s * s = algebraMap F (v.adicCompletion F) Δ := by
@@ -94,9 +94,9 @@ theorem exists_pair (v₀ : HeightOneSpectrum (𝓞 F)) (N : ℕ) (hN : N ≠ 0)
       (if ‖algebraMap F (v.adicCompletion F) α‖ = 1 then 0 else 1)‖ ≤ ‖((N * Q * P : ℕ) : v.adicCompletion F)‖ :=
       hβv v hv
     simp only [Nat.cast_mul, norm_mul] at h1 h2
-    have hN1 := norm_nat_le_one v N
-    have hQ1 := norm_nat_le_one v Q
-    have hP1 := norm_nat_le_one v P
+    have hN1 := GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v N
+    have hQ1 := GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v Q
+    have hP1 := GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v P
     have hN0 := norm_nonneg (N : v.adicCompletion F)
     have hQ0' := norm_nonneg (Q : v.adicCompletion F)
     have hP0' := norm_nonneg (P : v.adicCompletion F)
@@ -126,7 +126,7 @@ theorem exists_pair (v₀ : HeightOneSpectrum (𝓞 F)) (N : ℕ) (hN : N ≠ 0)
         rw [hN'] at hlt
         linarith
       rw [map_mul, map_ofNat, norm_mul] at hQ'
-      have h21 : ‖(2 : v.adicCompletion F)‖ ≤ 1 := by exact_mod_cast norm_nat_le_one v 2
+      have h21 : ‖(2 : v.adicCompletion F)‖ ≤ 1 := by exact_mod_cast GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v 2
       have h20 := norm_nonneg (2 : v.adicCompletion F)
       have hΔ0 := norm_nonneg (algebraMap F (v.adicCompletion F) Δ)
       have ha : ‖algebraMap F (v.adicCompletion F) α‖ ≤ 1 := norm_le_one_of_sub_le (h1.trans (hNQ.trans hN1))
@@ -226,15 +226,15 @@ theorem tendsto_pt (δ : D.host.E) {A B : ℕ → AF D.host.F} {a b : AF D.host.
 
 theorem mkE_mem_intAE (δ : 𝓞 D.host.E) (a b : Af D.host.F) (ha : ∀ v, ‖a v‖ ≤ 1) (hb : ∀ v, ‖b v‖ ≤ 1) :
     mkE (F := D.host.F) (δ : D.host.E) (Af D.host.F) a b ∈ intAE D :=
-  add_mem (AddSubgroup.subset_closure ⟨a, fun v => (norm_le_one_iff_int v _).1 (ha v), 1, rfl⟩)
-    (AddSubgroup.subset_closure ⟨b, fun v => (norm_le_one_iff_int v _).1 (hb v), δ, rfl⟩)
+  add_mem (AddSubgroup.subset_closure ⟨a, fun v => (GlobalTheory.HeckeSplitAll.Approx.norm_le_one_iff_int v _).1 (ha v), 1, rfl⟩)
+    (AddSubgroup.subset_closure ⟨b, fun v => (GlobalTheory.HeckeSplitAll.Approx.norm_le_one_iff_int v _).1 (hb v), δ, rfl⟩)
 
 theorem exists_div_nat {F : Type} [Field F] [NumberField F] (y : Af F) (N : ℕ) (hN : N ≠ 0)
     (hy : ∀ v, ‖y v‖ ≤ ‖(N : v.adicCompletion F)‖) :
     ∃ z : Af F, (∀ v, ‖z v‖ ≤ 1) ∧ y = (N : Af F) * z := by
   refine ⟨algebraMap F (Af F) ((N : F)⁻¹) * y, fun v => ?_, ?_⟩
   · show ‖algebraMap F (v.adicCompletion F) ((N : F)⁻¹) * y v‖ ≤ 1
-    have hN0 : 0 < ‖(N : v.adicCompletion F)‖ := norm_pos_iff.2 (nat_ne_zero_fin v hN)
+    have hN0 : 0 < ‖(N : v.adicCompletion F)‖ := norm_pos_iff.2 (GlobalTheory.HeckeSplitAll.Approx.nat_ne_zero_fin v hN)
     rw [map_inv₀, map_natCast, norm_mul, norm_inv, inv_mul_le_iff₀ hN0, mul_one]
     exact hy v
   · rw [← mul_assoc, ← map_natCast (algebraMap F (Af F)) N, ← map_mul,
@@ -361,7 +361,7 @@ theorem exists_mem_grpH (N : ℕ) (hN : N ≠ 0) (δ : 𝓞 D.host.E) (Δ : 𝓞
       ring
     · obtain ⟨g1, g2, g3⟩ := hg v hv
       rw [e3, e4, e3, e4, map_div₀, map_div₀, norm_div, norm_div, g3, div_one, div_one, map_neg, norm_neg]
-      exact ⟨g1, g2, norm_le_one_of_sub_le (g1.trans (norm_nat_le_one v N)), g2.trans (norm_nat_le_one v N)⟩
+      exact ⟨g1, g2, norm_le_one_of_sub_le (g1.trans (GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v N)), g2.trans (GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v N)⟩
   refine ⟨cut (epInf_sq D.host.F) Y, ?_, by rw [cut_val, hY1, cut_pt, e1, e2], by rw [cut_inv, hY2, cut_pt, e1, e2]⟩
   rw [eq_mul_inv_of_mul_eq (cut_mul (epInf_sq D.host.F) Y)]
   exact mul_mem hY (inv_mem hx)
