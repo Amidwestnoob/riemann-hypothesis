@@ -43,6 +43,7 @@ public import GroundTheory.AutomorphicForms.MultiplicityOne.Injective
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdaptedExistence
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 set_option autoImplicit false
 
 noncomputable section

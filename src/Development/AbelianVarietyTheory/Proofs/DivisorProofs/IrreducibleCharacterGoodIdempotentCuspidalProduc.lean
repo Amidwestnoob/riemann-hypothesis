@@ -14,6 +14,8 @@ public import Formalism.PadicSubsetSums.CentralIdempotents.Bundle0002
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
+
 open CategoryTheory Polynomial Formalism.IrreducibleCountingLemmas.TYPES Formalism.BasicNotions Formalism.L2.DIV
 
 noncomputable section

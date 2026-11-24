@@ -6,6 +6,8 @@ public import Lean
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
+
 noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Rows NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal

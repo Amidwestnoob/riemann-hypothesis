@@ -21,6 +21,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.WeightedUniformRotat
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.AllRowsEtAlg
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 open MonoidAlgebra MeasureTheory

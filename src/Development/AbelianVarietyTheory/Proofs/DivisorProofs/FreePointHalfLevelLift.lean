@@ -29,6 +29,8 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0225
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
+
 set_option synthInstance.maxHeartbeats 400000
 
 noncomputable section
