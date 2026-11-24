@@ -110,7 +110,7 @@ section Val
 
 variable {Kb : Type} [Fintype Kb] {ιb : Kb → Type} [∀ k, Fintype (ιb k)] {Ω : Type} [Field Ω]
 
-theorem eval_ne_zero_of_not_mem {z : (Σ k, ιb k) → ℂ} {h : MRing ιb} {d : Kb → ℕ} (hh : IsMultiHomog h d)
+theorem eval_ne_zero_of_not_mem {z : (Σ k, ιb k) → ℂ} {h : MRing ιb} {d : Kb → ℕ} (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d)
     (hq : h ∉ mCoordIdeal z) : eval z (map (Int.castRingHom ℂ) h) ≠ 0 := fun e => hq
   (mem_mCoordIdeal_of_aeval_eq_zero z hh (by
     have : aeval z h = eval z (map (Int.castRingHom ℂ) h) := by
@@ -119,11 +119,11 @@ theorem eval_ne_zero_of_not_mem {z : (Σ k, ιb k) → ℂ} {h : MRing ιb} {d :
     rw [this, e]))
 
 theorem aeval_ne_zero_of_eval {x : (Σ k, ιb k) → Ω} {z : (Σ k, ιb k) → ℂ} (hz : z ∈ mcPts (mCoordIdeal x))
-    {h : MRing ιb} {d : Kb → ℕ} (hh : IsMultiHomog h d) (hne : eval z (map (Int.castRingHom ℂ) h) ≠ 0) :
+    {h : MRing ιb} {d : Kb → ℕ} (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (hne : eval z (map (Int.castRingHom ℂ) h) ≠ 0) :
     aeval x h ≠ 0 := fun e => hne (eval_eq_zero_of_mem_mcPts hz (mem_mCoordIdeal_of_aeval_eq_zero x hh e))
 
-theorem isValueAt_of_orbit {x : (Σ k, ιb k) → Ω} {s : Ω} {d : Kb → ℕ} {g h : MRing ιb} (hg : IsMultiHomog g d)
-    (hh : IsMultiHomog h d) (a : aeval x h ≠ 0) (he : aeval x g = s * aeval x h) {z z' : (Σ k, ιb k) → ℂ}
+theorem isValueAt_of_orbit {x : (Σ k, ιb k) → Ω} {s : Ω} {d : Kb → ℕ} {g h : MRing ιb} (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d)
+    (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (a : aeval x h ≠ 0) (he : aeval x g = s * aeval x h) {z z' : (Σ k, ιb k) → ℂ}
     (ho : SameOrbit z z') (hne : eval z' (map (Int.castRingHom ℂ) h) ≠ 0) :
     IsValueAt x s z (eval z' (map (Int.castRingHom ℂ) g) / eval z' (map (Int.castRingHom ℂ) h)) := by
   obtain ⟨c, hc, rfl⟩ := ho

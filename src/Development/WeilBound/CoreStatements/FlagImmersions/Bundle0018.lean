@@ -97,7 +97,7 @@ variable {K₁ : Type} [Fintype K₁] {ι₁ : K₁ → Type} [∀ k, Fintype (�
 theorem exists_ratio (y : (Σ k, ι k) → Ω) (c : ∀ k, ι k) (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) :
     ∃ (L : Type) (_ : Field L) (_ : CharZero L) (φ : L →+* Ω) (z : (Σ k, ι k) → L), (∀ p, φ (z p) = y p / y ⟨p.1, c p.1⟩) ∧
       (∀ t, t ∈ blockFnField y ↔ ∃ x, φ x = t) ∧ Birational z ∧ mCoordIdeal z = mCoordIdeal y := by
-  refine ⟨ratioField y c, inferInstance, inferInstance, algebraMap (ratioField y c) Ω, ratioPtL y c, fun _ => rfl, fun t => ?_,
+  refine ⟨_root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c, inferInstance, inferInstance, algebraMap (_root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c) Ω, ratioPtL y c, fun _ => rfl, fun t => ?_,
     birational y c hc, mCoordIdeal_ratioPtL y c hc⟩
   rw [← ratioField_eq_blockFnField y c hc]
   exact ⟨fun h => ⟨⟨t, h⟩, rfl⟩, fun ⟨x, hx⟩ => hx ▸ x.2⟩

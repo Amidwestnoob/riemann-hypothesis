@@ -92,12 +92,12 @@ theorem arith_of_trdeg {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype 
     IsArithVar (mCoordIdeal y) (d + 1) := by
   have hhor : IsHorizontal (mCoordIdeal y) := horizontal y
   refine ⟨hK, ⟨RingHom.ker_isPrime _, isMultiHomogIdeal y, relevant y _ hc⟩, hhor, ?_⟩
-  have htr := ConeTrdeg.full _ ι (ratioField y c) (ratioPtL y c) (birational y _ hc)
+  have htr := ConeTrdeg.full _ ι (_root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c) (ratioPtL y c) (birational y _ hc)
     (fun k ↦ ⟨c k, fun h0 ↦ by
       have h1 := congrArg Subtype.val h0
       simp [ratioPtL, ratioPt, hc] at h1⟩)
     (by rw [mCoordIdeal_ratioPtL y _ hc]; exact hhor)
-  have hL : Algebra.trdeg ℤ (ratioField y c) = ((d : ℕ) : Cardinal) := by
+  have hL : Algebra.trdeg ℤ (_root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c) = ((d : ℕ) : Cardinal) := by
     rw [CoordinateConeArithVar.ratioField, trdeg_int_adjoin]
     exact hd
   rw [mCoordIdeal_ratioPtL y _ hc, hL] at htr
@@ -309,7 +309,7 @@ theorem isC2At_of_isPotential {e : ℕ} {X : Type} [TopologicalSpace X] (A : Fin
   exact Q.mem_U x
 
 theorem isNull_zeros {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P J : Ideal (MRing ι)} {D : ℕ}
-    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {s : MRing ι} {a : K → ℕ} (hs : IsMultiHomog s a)
+    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {s : MRing ι} {a : K → ℕ} (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a)
     (hsP : s ∉ P) : IsNull R.A {x | eval (R.lift x x) (map (Int.castRingHom ℂ) s) = 0} := by
   obtain ⟨Ψ, hΨ⟩ := goodProjExists K ι P D hP
   exact fun j => GlobalTheory.CompanionTheory.Ar.Cmp.OneSlot.zeros_null R Ψ hP hΨ hs hsP j

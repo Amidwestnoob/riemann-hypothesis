@@ -44,7 +44,7 @@ theorem analyticAt_eval {σ : Type} [Fintype σ] (P : MvPolynomial σ ℂ) (t : 
     exact (hp.mul hi).congr (Filter.Eventually.of_forall fun t => by simp)
 
 theorem notMem_of_eval_ne_zero {t : (Σ k, ι k) → ℂ} {h : MRing ι} {d : K → ℕ}
-    (hh : IsMultiHomog h d) (h0 : eval t (map (Int.castRingHom ℂ) h) ≠ 0) : h ∉ mCoordIdeal t := by
+    (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (h0 : eval t (map (Int.castRingHom ℂ) h) ≠ 0) : h ∉ mCoordIdeal t := by
   intro hm
   have h' : mConeMap t h = 0 := hm
   rw [_root_.GroundTheory.Heights₂.Heights.LowerBoundFree.mConeMap_of_isMultiHomog t hh] at h'

@@ -111,7 +111,7 @@ theorem ev_map {T B B' : Type} [Fintype T] [CommRing B] [CommRing B'] (h : B →
   exact congrArg (fun g => g f) this
 
 theorem ev_scale {T B : Type} [Fintype T] [CommRing B] (p q : B) (x y : T → B) (d n : ℕ)
-    (f : MRing (stackedBlocks T)) (hf : IsMultiHomog f (bidegree d n)) :
+    (f : MRing (stackedBlocks T)) (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (bidegree d n)) :
     ev (fun t => p * x t) (fun t => q * y t) f = p ^ d * q ^ n * ev x y f := by
   classical
   simp only [ev, coe_eval₂Hom]
@@ -165,7 +165,7 @@ theorem poly : ∀ (K : Type) [Field K] [NumberField K] (i : ℕ) (F F' : HermLa
       ∑ j, algebraMap (𝓞 K) K (D t j) • (if j = j₀ then algebraMap (𝓞 K) K π • e j else e j)) →
     (∀ t, ρ S * α t = ρ (C t j₀) * lam) →
     (∀ t, ρ S • M t = ∑ j, ρ (D t j) • N j) →
-    ∀ (d n : ℕ) (f : MRing (stackedBlocks T)), IsMultiHomog f (bidegree d n) →
+    ∀ (d n : ℕ) (f : MRing (stackedBlocks T)), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (bidegree d n) →
       stackedFormEval b b' f = 0 → linPointMap α M f = 0 := by
   intro K _ _ i F F' T _ _ b b' k _ α M ρ ι _ _ e j₀ π S Cc D lam N he hπ hρπ hS hC hD hα hM d n f hf h0
   classical

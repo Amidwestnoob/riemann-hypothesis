@@ -118,7 +118,7 @@ theorem divCycle_le_of_rel {V W : Ideal (MRing ι)} (hV : V.IsPrime) {a b u : MR
 
 variable {Ω : Type} [Field Ω]
 
-theorem homog_mono (c : ∀ k, ι k) (e : K → ℕ) : IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ e k) e :=
+theorem homog_mono (c : ∀ k, ι k) (e : K → ℕ) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι) ^ e k) e :=
   LowerBoundFree.VertFactorSmooth.isMultiHomog_prod_X_pow c e
 
 theorem mono_not_mem {W : Ideal (MRing ι)} (hW : W.IsPrime) (c : ∀ k, ι k)
@@ -128,11 +128,11 @@ theorem mono_not_mem {W : Ideal (MRing ι)} (hW : W.IsPrime) (c : ∀ k, ι k)
   exact pow_not_memZ hW (hc k) _ hk
 
 theorem chart_form (y : (Σ k, ι k) → Ω) (c : ∀ k, ι k) (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) {x : Ω}
-    (hx : x ∈ chartRingZ y c) : ∃ e₀ : K → ℕ, ∀ e : K → ℕ, e₀ ≤ e → ∃ h : MRing ι, IsMultiHomog h e ∧
+    (hx : x ∈ chartRingZ y c) : ∃ e₀ : K → ℕ, ∀ e : K → ℕ, e₀ ≤ e → ∃ h : MRing ι, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h e ∧
       aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e k := by
   classical
-  have up : ∀ (x : Ω) (e₀ : K → ℕ), (∃ h : MRing ι, IsMultiHomog h e₀ ∧ aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e₀ k) →
-      ∀ e : K → ℕ, e₀ ≤ e → ∃ h : MRing ι, IsMultiHomog h e ∧ aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e k := by
+  have up : ∀ (x : Ω) (e₀ : K → ℕ), (∃ h : MRing ι, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h e₀ ∧ aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e₀ k) →
+      ∀ e : K → ℕ, e₀ ≤ e → ∃ h : MRing ι, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h e ∧ aeval y h = x * ∏ k, y ⟨k, c k⟩ ^ e k := by
     rintro x e₀ ⟨h, hh, he⟩ e hle
     refine ⟨h * ∏ k, (X ⟨k, c k⟩ : MRing ι) ^ (e k - e₀ k), ?_, ?_⟩
     · have := LowerBoundFree.isMultiHomog_mul hh (homog_mono c fun k => e k - e₀ k)
@@ -173,7 +173,7 @@ theorem chart_form (y : (Σ k, ι k) → Ω) (c : ∀ k, ι k) (hc : ∀ k, y �
 
 theorem div_le_of_integral (y : (Σ k, ι k) → Ω) (hP : (mCoordIdeal y).IsPrime) {W : Ideal (MRing ι)}
     (hW : W.IsPrime) (c : ∀ k, ι k) (hcW : ∀ k, (X ⟨k, c k⟩ : MRing ι) ∉ W) (hc : ∀ k, y ⟨k, c k⟩ ≠ 0)
-    {a b : MRing ι} {d : K → ℕ} (ha : IsMultiHomog a d) (hb : IsMultiHomog b d)
+    {a b : MRing ι} {d : K → ℕ} (ha : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog a d) (hb : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog b d)
     (haP : a ∉ mCoordIdeal y) (hbP : b ∉ mCoordIdeal y) {t : Ω} (ht : aeval y a = t * aeval y b)
     (hint : IsIntegral (chartRingZ y c) t) :
     ReciprocityTheory.ChartRestriction.G.Geo.divCycle (mCoordIdeal y) b W ≤ ReciprocityTheory.ChartRestriction.G.Geo.divCycle (mCoordIdeal y) a W := by
@@ -185,7 +185,7 @@ theorem div_le_of_integral (y : (Σ k, ι k) → Ω) (hP : (mCoordIdeal y).IsPri
     Polynomial.eval₂_mul, Polynomial.eval₂_C] at hp
   choose e₀ he₀ using fun j => chart_form y c hc (p.coeff j).2
   let e : K → ℕ := ∑ j ∈ Finset.range n, e₀ j
-  have hex : ∀ j, ∃ h : MRing ι, j ∈ Finset.range n → IsMultiHomog h e ∧
+  have hex : ∀ j, ∃ h : MRing ι, j ∈ Finset.range n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h e ∧
       aeval y h = (p.coeff j : Ω) * ∏ k, y ⟨k, c k⟩ ^ e k := by
     intro j
     by_cases hj : j ∈ Finset.range n
@@ -233,7 +233,7 @@ theorem C_not_mem {P : Ideal (MRing ι)} (hP : IsHorizontal P) {n : ℤ} (hn : n
   exact hn h2
 
 theorem half_bound (y : (Σ k, ι k) → Ω) (hP : (mCoordIdeal y).IsPrime) (hH : IsHorizontal (mCoordIdeal y))
-    {q m : ℕ} (hm : 0 < m) {f g : MRing ι} {df dg : K → ℕ} (hf : IsMultiHomog f df) (hg : IsMultiHomog g dg)
+    {q m : ℕ} (hm : 0 < m) {f g : MRing ι} {df dg : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f df) (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g dg)
     (hfP : f ∉ mCoordIdeal y) (hgP : g ∉ mCoordIdeal y) {u : Ω} (hu : aeval y f = u * aeval y g)
     (hval : ∀ c : ∀ k, ι k, (∀ k, y ⟨k, c k⟩ ≠ 0) → ∀ W : ValuationSubring Ω, (∀ p, y p / y ⟨p.1, c p.1⟩ ∈ W) →
       (m : Ω) * (u * ∏ k, y ⟨k, c k⟩ ^ (-((df k : ℤ) - dg k))) ^ q ∈ W) (W : Ideal (MRing ι)) :

@@ -70,7 +70,7 @@ theorem ringHom_block_ext {R : Type} [CommRing R] {f g : MRing (stackedBlocks T)
     · exact h2 t
 
 theorem blockEval_scale {R : Type} [CommRing R] (P Q : T → R) (l μ : R) {d e : ℕ}
-    {f : MRing (stackedBlocks T)} (hf : IsMultiHomog f (bidegree d e)) :
+    {f : MRing (stackedBlocks T)} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (bidegree d e)) :
     blockEval (fun t => l * P t) (fun t => μ * Q t) f = l ^ d * μ ^ e * blockEval P Q f := by
   classical
   simp only [blockEval, coe_eval₂Hom]
@@ -121,7 +121,7 @@ variable {K : Type} [Field K] [NumberField K] {i : ℕ} {F F' : HermLattice K i}
 theorem lead_of_coords {b : Module.Basis T ℤ (GroundTheory.Heights₂.Heights.dualLattice F)} {b' : Module.Basis T ℤ (GroundTheory.Heights₂.Heights.dualLattice F')}
     {k : Type} [Field k] {ρ : 𝓞 K →+* k} {π : 𝓞 K} {y₀ : Fin i → K} {m : ℕ} {g : Fin m → Fin i → K}
     {α : T → k} {M : T → Fin (m + 1) → k} (hco : IsExcCoords F F' b b' ρ π y₀ g α M) {d e : ℕ}
-    {f : MRing (stackedBlocks T)} (hf : IsMultiHomog f (bidegree d e))
+    {f : MRing (stackedBlocks T)} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f (bidegree d e))
     (h0 : GroundTheory.Heights₂.Heights.stackedFormEval b b' f = 0) : linPointMap α M f = 0 := by
   obtain ⟨-, hπ, -, hg, hα, hM0, hMj, ⟨t₀, ht₀⟩, -, -, -, -⟩ := hco
   choose cα hcα hcαρ using hα

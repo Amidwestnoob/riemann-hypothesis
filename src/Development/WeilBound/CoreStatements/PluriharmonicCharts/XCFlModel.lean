@@ -54,7 +54,7 @@ theorem mem_pts (x : (Σ k, ι k) → Ω) (z : (Σ k, ι k) → ℂ) : z ∈ mcP
 theorem not_mem_top (z : (Σ k, ι k) → ℂ) : z ∉ mcPts (⊤ : Ideal (MRing ι)) := fun h => by
   simpa using h.2 1 trivial
 
-theorem homog (f : MRing ι) (d : K → ℕ) : IsMultiHomog f d := fun _ _ k => isEmptyElim k
+theorem homog (f : MRing ι) (d : K → ℕ) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f d := fun _ _ k => isEmptyElim k
 
 theorem orbit (z z' : (Σ k, ι k) → ℂ) : SameOrbit z z' := ⟨fun _ => 1, fun _ => one_ne_zero, funext fun p => isEmptyElim p⟩
 

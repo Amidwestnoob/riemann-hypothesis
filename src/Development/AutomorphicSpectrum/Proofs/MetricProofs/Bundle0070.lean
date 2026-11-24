@@ -46,7 +46,7 @@ theorem sum_mapDomain_block {κ : K → K'} {v : (Σ k, ι k) → Σ k, ι' k} (
   simp only [hv]
 
 theorem isMultiHomog_rename_block {κ : K → K'} {v : (Σ k, ι k) → Σ k, ι' k} (hb : IsBlockMap κ v) {f : MRing ι}
-    {b : K → ℕ} (hf : IsMultiHomog f b) : IsMultiHomog (rename v f) (Function.extend κ b 0) := by
+    {b : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f b) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (rename v f) (Function.extend κ b 0) := by
   intro m hm k'
   rw [support_rename_of_injective hb.2.1, Finset.mem_image] at hm
   obtain ⟨m0, hm0, rfl⟩ := hm
@@ -134,7 +134,7 @@ theorem comp_mem_mcPts {Ω Ω' : Type} [Field Ω] [Field Ω'] {κ : K → K'} {v
 end Forms
 
 private theorem isHecke_div_and_resEtaPow_div {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
-    (y : (Σ k, ι k) → Ω) {g : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d) :
+    (y : (Σ k, ι k) → Ω) {g : MRing ι} {d : K → ℕ} (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d) :
     mConeMap y g = C (aeval y g) * ∏ k, X k ^ d k := by
   have key : ∀ m ∈ g.support, (m.prod fun p e => (X p.1 : MvPolynomial K Ω) ^ e) = ∏ k, X k ^ d k := by
     intro m hm

@@ -124,7 +124,7 @@ theorem position_integral (hE : ResExistsStatement) {P J : Ideal (MRing ι)} {D 
     (hlog : ∀ x, Real.log (B₁.h (R.lift x x)) - Real.log (B₂.h (R.lift x x)) = v (π x)) :
     ptsIntegral P (pot L) (ratioWt B₁ B₂) = dg * mInt A Φ v := by
   have h1P : (1 : MRing ι) ∉ P := fun h => hP.2.1.1.ne_top ((Ideal.eq_top_iff_one P).mpr h)
-  have hm : IsMultiHomog (1 : MRing ι) (fun _ => 0) := ReciprocityTheory.ChartRestriction.G.Geo.isMultiHomog_one
+  have hm : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (1 : MRing ι) (fun _ => 0) := ReciprocityTheory.ChartRestriction.G.Geo.isMultiHomog_one
   have hrat : IsRatSectionOn P (wtLine hab) 1 1 := by
     refine ⟨fun _ => 0, fun _ => 0, hm, hm, h1P, h1P, fun k => ?_⟩
     change ((0 : ℕ) : ℤ) - ((0 : ℕ) : ℤ) = 0

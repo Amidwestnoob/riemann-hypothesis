@@ -58,7 +58,7 @@ theorem isPrime_mCoordIdeal (z : (Σ k, ι k) → ℂ) : (mCoordIdeal z).IsPrime
   RingHom.ker_isPrime _
 
 theorem eval_ne_zero_of_notMem {z : (Σ k, ι k) → ℂ} {h : MRing ι} {d : K → ℕ}
-    (hh : IsMultiHomog h d) (hn : h ∉ mCoordIdeal z) :
+    (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (hn : h ∉ mCoordIdeal z) :
     eval z (map (Int.castRingHom ℂ) h) ≠ 0 := by
   intro h0
   refine hn (mem_mCoordIdeal_of_aeval_eq_zero z hh ?_)
@@ -67,7 +67,7 @@ theorem eval_ne_zero_of_notMem {z : (Σ k, ι k) → ℂ} {h : MRing ι} {d : K 
 
 theorem aeval_ne_zero_of_notMem {x : (Σ k, ι k) → Ω} {z : (Σ k, ι k) → ℂ}
     (hz : z ∈ mcPts (mCoordIdeal x)) {h : MRing ι} {d : K → ℕ}
-    (hh : IsMultiHomog h d) (hn : h ∉ mCoordIdeal z) : aeval x h ≠ 0 := fun h0 =>
+    (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (hn : h ∉ mCoordIdeal z) : aeval x h ≠ 0 := fun h0 =>
   eval_ne_zero_of_notMem hh hn
     (eval_eq_zero_of_mem_mcPts hz (mem_mCoordIdeal_of_aeval_eq_zero x hh h0))
 
