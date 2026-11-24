@@ -684,7 +684,6 @@ theorem local_orthonormal_basis : LocBasisMM := by
       rw [← FL.sum_tau_trace]
       refine Finset.sum_congr rfl fun σ _ => ?_
       rw [map_mul, CU.emb_conj]
-      rfl
     have hGne : G.det ≠ 0 := by
       intro h0; rw [h0, zero_mul] at hdet; exact zero_ne_one hdet
     have hNne : N.det ≠ 0 := by
