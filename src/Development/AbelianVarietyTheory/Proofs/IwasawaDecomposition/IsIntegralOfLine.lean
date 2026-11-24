@@ -16,6 +16,7 @@ public import Formalism.LocalToGlobal.Columns.RowFormsGood
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.Mem.RowCoord
 
 open NumberField Module Formalism.DivisionValues Formalism.L2.DIV _root_.Formalism.L2.Col

@@ -14,6 +14,7 @@ public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Bundle0006
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.Mem.Col2.ChartLevel
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.UG Formalism.UG.P Formalism.L2.Forms Matrix

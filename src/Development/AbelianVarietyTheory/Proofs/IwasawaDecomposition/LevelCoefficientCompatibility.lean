@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHype
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.LevelActAnyField
 
 section Moduli

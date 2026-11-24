@@ -11,6 +11,7 @@ public import Formalism.SatakeDualWeyl.KpqSubgroupCompact
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain Matrix GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC Formalism.UG Formalism.BasicNotions GlobalTheory.DefU GlobalTheory.LFun
 open scoped TensorProduct NumberField.AdeleRing Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 
