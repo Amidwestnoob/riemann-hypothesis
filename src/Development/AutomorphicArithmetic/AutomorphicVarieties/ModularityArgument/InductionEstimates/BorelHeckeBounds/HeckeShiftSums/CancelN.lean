@@ -56,7 +56,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.secIp :
       ((secCrit μ₂ τ₂ τ₁ D hp.irr₂ hp.irr₁ _ hx).1 hs).2.2.2.2⟩
   have hlaw := (pmLaws μ₂ κ).1
   refine ⟨fun v w => ?_, fun v w => ?_⟩
-  · obtain ⟨β, hβc, hβs, hN⟩ := bumpEx
+  · obtain ⟨β, hβc, hβs, hN⟩ := _root_.bumpEx
     obtain ⟨u, hu⟩ := (denseCc d).2.1 β v hβc hβs
     obtain ⟨u', hu'⟩ := (denseCc d).2.1 β w hβc hβs
     have hP := pairF μ μ₂ κ c hU _ _ β β (hS v).1 (hS w).1 hβc hβs hβc hβs _ _
