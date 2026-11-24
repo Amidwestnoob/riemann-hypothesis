@@ -189,6 +189,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncMemSUAdelic
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
