@@ -370,7 +370,7 @@ theorem exists_move (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.P
     refine Finset.prod_congr rfl fun j _ => ?_
     rw [PerBor.inv_diag _ _ hinj _ hu hs, hdiag]
     have hinv := Function.leftInverse_invFun hbij.1 (e j).1
-    unfold laU
+    unfold Formalism.L2.PjFree.laU
     rcases hi j with ⟨a1, b1, c1⟩ | ⟨a1, b1, c1, d1⟩
     · rw [if_neg (by omega), if_pos a1, b1, hinv,
         show ((idx j).2 : ℕ) - (U.X k).p0 = (e j).2 by omega, inv_inv, ← zpow_natCast]
