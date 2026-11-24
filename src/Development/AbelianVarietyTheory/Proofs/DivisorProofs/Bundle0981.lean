@@ -55,7 +55,7 @@ theorem map_actP (B : I → GL (Fin n) K) (F : Pol K I n) :
     refine Finset.prod_congr rfl fun τ _ => ?_
     rw [map_zpow₀, bc_coe, RingHom.map_det]
     rfl
-  simp only [actP, LinearMap.smul_apply, AlgHom.toLinearMap_apply, smul_eq_C_mul, map_mul, map_C, h2, h3]
+  simp only [Formalism.L2.DIV.actP, LinearMap.smul_apply, AlgHom.toLinearMap_apply, smul_eq_C_mul, map_mul, map_C, h2, h3]
 
 def up (v : VV K lam) : VV K' lam := ⟨MvPolynomial.map φ (v : Pol K I n), GlobalTheory.Proof.TensorMapDescent.map_mem_VV φ lam _ v.2⟩
 
