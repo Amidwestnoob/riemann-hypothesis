@@ -10,6 +10,7 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0051
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.CompanionTheory.SiegelND.DxN
 
 section Gen

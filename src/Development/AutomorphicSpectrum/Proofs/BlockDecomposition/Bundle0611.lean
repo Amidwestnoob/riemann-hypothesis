@@ -38,6 +38,7 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMulLeftFin
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology SchwartzMap
