@@ -234,7 +234,11 @@ theorem nuD_succ (d : ℕ) : nuD E k (d + 1) =
   | simp only [nuD]
 
 theorem sf_nuD : ∀ d, SFinite (nuD E k d)
-  | 0 => by rw [nuD_zero]; infer_instance
+  | 0 => by
+    rw [nuD_zero]
+    have : IsFiniteMeasure (Measure.dirac (1 : GA E k)) := isFiniteMeasure_dirac
+    have : SigmaFinite (Measure.dirac (1 : GA E k)) := IsFiniteMeasure.toSigmaFinite _
+    exact MeasureTheory.instSFiniteOfSigmaFinite
   | d + 1 => by haveI := sf_nuD d; rw [nuD_succ]; infer_instance
 
 attribute [local instance] sf_nuD
