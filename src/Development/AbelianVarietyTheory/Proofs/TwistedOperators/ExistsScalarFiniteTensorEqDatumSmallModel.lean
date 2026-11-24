@@ -264,7 +264,7 @@ def graphMap (t : T) (e : Num G i j) (T₁ : (HomA G t i j → ℂ) →ₗ[ℂ] 
 
 theorem graphMap_box (e : Num G i j) (T₁ : (HomA G t i j → ℂ) →ₗ[ℂ] (HomA G t i j → ℂ))
     (T₂ : (HomB G i j → ℂ) →ₗ[ℂ] (HomB G i j → ℂ)) (φ₁ : HomA G t i j → ℂ) (φ₂ : HomB G i j → ℂ) :
-    GlobalTheory.BigDat.graphMap t e T₁ T₂ (boxS t e φ₁ φ₂) = boxS t e (T₁ φ₁) (T₂ φ₂) := funext fun u => by
+    _root_.GlobalTheory.SmallPlaces.graphMap t e T₁ T₂ (boxS t e φ₁ φ₂) = boxS t e (T₁ φ₁) (T₂ φ₂) := funext fun u => by
   have e2 : ∀ x, (fun y => boxS t e φ₁ φ₂ (ofMaps t e (x, y))) = φ₁ x • φ₂ := fun x => funext fun y => by
     show φ₁ (mapA t e (ofMaps t e (x, y))) * φ₂ (mapB e (ofMaps t e (x, y))) = φ₁ x * φ₂ y
     rw [mapA_ofMaps, mapB_ofMaps]
@@ -311,14 +311,14 @@ theorem boxGraph_graph_heis : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Cons
     isSelfDualC_neg (node_isV G hL (X := .grid ((i : ℕ) + 1) (j : ℕ)) ⟨i.2, j.2.le⟩).sd
   have sdW' : IsSelfDualC (spW₁ G i j) (G.Λ (.grid (i : ℕ) (j : ℕ))) := sdW
   refine ⟨fun f hf => ?_, fun x hx p hp => ?_, fun y hy p hp => ?_⟩
-  · have key : boxGraph t e ε T₁ T₂ ≤ LinearMap.ker (LinearMap.snd ℂ _ _ - GlobalTheory.BigDat.graphMap t e T₁ T₂ ∘ₗ LinearMap.fst ℂ _ _) := by
+  · have key : boxGraph t e ε T₁ T₂ ≤ LinearMap.ker (LinearMap.snd ℂ _ _ - _root_.GlobalTheory.SmallPlaces.graphMap t e T₁ T₂ ∘ₗ LinearMap.fst ℂ _ _) := by
       refine Submodule.span_le.2 fun p hp => ?_
       obtain ⟨φ₁, φ₂, -, -, rfl⟩ := hp
-      show boxS t e (T₁ φ₁) (T₂ φ₂) - GlobalTheory.BigDat.graphMap t e T₁ T₂ (boxS t e φ₁ φ₂) = 0
+      show boxS t e (T₁ φ₁) (T₂ φ₂) - _root_.GlobalTheory.SmallPlaces.graphMap t e T₁ T₂ (boxS t e φ₁ φ₂) = 0
       rw [graphMap_box, sub_self]
     have h0 := key hf
     rw [LinearMap.mem_ker] at h0
-    have h1 : f - GlobalTheory.BigDat.graphMap t e T₁ T₂ 0 = 0 := h0
+    have h1 : f - _root_.GlobalTheory.SmallPlaces.graphMap t e T₁ T₂ 0 = 0 := h0
     rwa [map_zero, sub_zero] at h1
   · have key : boxGraph t e ε T₁ T₂ ≤ (boxGraph t e ε T₁ T₂).comap (transPair Γ W.ψ x) := by
       refine Submodule.span_le.2 fun p hp => ?_
