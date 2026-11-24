@@ -373,7 +373,7 @@ theorem isHC_inv {χ : IdC D} (h : IsHC D χ) : IsHC D χ⁻¹ := by
   obtain ⟨a, ha⟩ := h.2 τ
   exact ⟨-a, GlobalTheory.Mem.HeckeExp.hasInfExp_inv ha⟩
 
-theorem isHC_mu {T : Type} (L : LevCh D T) {μ0 : T} (hL : L.Is μ0) (t : T) (i : Fin D.R.m) :
+theorem isHC_mu {T : Type} (L : Formalism.IndefR.Links.LevCh D T) {μ0 : T} (hL : L.Is μ0) (t : T) (i : Fin D.R.m) :
     IsHC D (L.mu t ((i : ℕ) + 1)) := by
   obtain ⟨θ, hθ⟩ := GlobalTheory.Member.exists_isInfFam_family D
   obtain ⟨n, hn, ho⟩ := hL.xi_fin t
@@ -382,7 +382,7 @@ theorem isHC_mu {T : Type} (L : LevCh D T) {μ0 : T} (hL : L.Is μ0) (t : T) (i 
   have h2 : IsHC D (L.xi t) := ⟨(hL.xi t).1, fun τ => ⟨_, GlobalTheory.Chain.StepVac.hasInfExp_of_order hθ (hL.xi t) hn ho τ⟩⟩
   exact h1.mul h2
 
-theorem isHC_eta {T : Type} (L : LevCh D T) {μ0 : T} (hL : L.Is μ0) : IsHC D L.eta :=
+theorem isHC_eta {T : Type} (L : Formalism.IndefR.Links.LevCh D T) {μ0 : T} (hL : L.Is μ0) : IsHC D L.eta :=
   ⟨hL.eta.1, fun τ => ⟨_, GlobalTheory.HeckeInfExp.hasInfExp_of_chrEq D _ _ _ hL.eta
     (GlobalTheory.Chain.StepVac.hasInfQ_tau (a := fun _ => 1 / 2) ⟨_, fun _ => by norm_num, L.C.isEta.inf⟩) τ⟩⟩
 
@@ -399,7 +399,7 @@ theorem chrStep_eq {C : Type} [CommGroup C] (μ : ℕ → C) (η : C) (j : ℕ) 
     have h3 : ¬ Even j := Nat.not_even_iff_odd.2 h
     simp [h1, h2, h3]
 
-theorem isHC_step {T : Type} (L : LevCh D T) {μ0 : T} (hL : L.Is μ0) (t : T) (j : ℕ) (hj : j < D.R.m) :
+theorem isHC_step {T : Type} (L : Formalism.IndefR.Links.LevCh D T) {μ0 : T} (hL : L.Is μ0) (t : T) (j : ℕ) (hj : j < D.R.m) :
     IsHC D (if Even j then L.mu t (j + 1) * L.eta⁻¹ else L.mu t (j + 1)) ∧
       IsHC D (if Even (j + 1) then L.mu t (j + 1) * L.eta⁻¹ else L.mu t (j + 1)) := by
   have h1 := isHC_mu L hL t ⟨j, hj⟩
