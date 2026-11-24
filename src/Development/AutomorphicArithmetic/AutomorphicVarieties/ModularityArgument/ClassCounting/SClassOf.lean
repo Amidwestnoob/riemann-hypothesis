@@ -13,4 +13,4 @@ open NumberField IsDedekindDomain UpperTheory.V UpperTheory.V.KL UpperTheory.V.Z
 
 theorem UpperTheory.V.ZK.sClassOf :
     UpperTheory.V.ZK.SClassOf :=
-  cJoin cChain cFree cTriv cAct cSplit cSupp cLatLoc cMu cInt cVal cGtNe cGtEq cBetaDiv cBetaVal cRep cUnit
+  cJoin cChain cFree cTriv UpperTheory.V.ZK.Cl.cAct cSplit cSupp cLatLoc cMu cInt cVal cGtNe cGtEq cBetaDiv cBetaVal cRep cUnit
