@@ -38,8 +38,8 @@ theorem ident_generic {r : ℕ} (Lam₁ Lam₂ : Submodule M.L.O V) (f₀ f₁ f
     (hrat : H.Dl f₀ f₁ r * H.Dl f₀ f₂ (r + 1) = H.Dl f₀ f₂ r * H.Dl f₀ f₁ (r + 1))
     (hz : e (f₁ (Fin.last r)) - f₂ (Fin.last r) ∈ H.X f₂) :
     H.Ident (⟨Lam₁, f₀, f₁, T, T'⟩ : Loc.Term V M r) ⟨Lam₂, f₀, f₂, T, T'⟩ (LinearEquiv.refl _ _)
-        (qEquiv H e hiso (H.X f₁) (H.X f₂) h12 h21) ∧
-      H.SendsTo (qEquiv H e hiso (H.X f₁) (H.X f₂) h12 h21).toLinearMap 1 1 (f₁ (Fin.last r)) (f₂ (Fin.last r)) := by
+        (Formalism.L2.SG.Pf.ScalarFramePf.qEquiv H e hiso (H.X f₁) (H.X f₂) h12 h21) ∧
+      H.SendsTo (Formalism.L2.SG.Pf.ScalarFramePf.qEquiv H e hiso (H.X f₁) (H.X f₂) h12 h21).toLinearMap 1 1 (f₁ (Fin.last r)) (f₂ (Fin.last r)) := by
   refine ⟨⟨?_, ?_, ?_, ?_, ?_, hrat⟩, ?_⟩
   · intro x y x₂ y₂ hx hy
     exact h_eq_of_sub_mem H _ hX0 x.2 y.2 ((mk_eq_iff H _ x x₂).1 hx) ((mk_eq_iff H _ y y₂).1 hy)
