@@ -362,7 +362,7 @@ variable {E : Type} [Field E] [NumberField E] {k : ℕ}
 theorem dt_eq (g : GA E k) :
     Dt g = (GroundTheory.Global.IdeleGroup.ideleModule E (AdelicGLn.det E k g) : ℝ) := rfl
 
-theorem dt_maxCompact {κ : GA E k} (hκ : κ ∈ maxCompact) : Dt κ = 1 := by
+theorem dt_maxCompact {κ : GA E k} (hκ : κ ∈ Reduction.maxCompact) : Dt κ = 1 := by
   rw [dt_eq]; exact mem_normOneGL.1 (maxCompact_le_normOneGL hκ)
 
 theorem dt_diag (γ : GL (Fin k) E) : Dt (AdelicGLn.diagonal E k γ) = 1 := by
