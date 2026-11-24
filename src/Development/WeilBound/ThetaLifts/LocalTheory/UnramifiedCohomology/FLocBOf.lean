@@ -124,7 +124,7 @@ theorem fLocB_of (hI : IdeleFub) (hJ : IdealId0) (hS : StabEx) (hIw : IwaEx) (hM
   have op : ∀ (k : kAt K (evFin F v)) (l : (AE F E)ˣ), ∀ φ ∈ SB _,
       opF v (fun Φ => G.M'.co.rho B.ψ (idem F v • shiftB σ H H' l) (om' (k.1, 1) Φ)) φ =
         rv B G.M' v (idem F v • shiftB σ H H' l) (ω (k.1, 1) φ) :=
-    fun k l φ hφ => opF_eq hφ (rv_sb hc.base G.M' v _ (sb _ (kAt_mem k) φ hφ)) (acts_comp ((IsUWeilPair.isUSplitting hP.weil).pres _)
+    fun k l φ hφ => opF_eq hφ (rv_sb hc.base G.M' v _ (sb _ (kAt_mem k) φ hφ)) (PositivityTheory.ThKG.Loc.Cone.Fin.acts_comp ((IsUWeilPair.isUSplitting hP.weil).pres _)
       ((L.acts _ (kAt_mem k) _ o1 φ hφ _).2 rfl) (rv_acts B _ (Fin.at_idem v _) _))
   let A : Fl F v _ _ → Fl F v _ _ := fun φ y => ∫ l : idAt E (evFin F v),
     ev v (rv B G.M' v (idem F v • shiftB σ H H' l.1) φ) y * wt X.ν z l.1 ∂(m.xf v)
