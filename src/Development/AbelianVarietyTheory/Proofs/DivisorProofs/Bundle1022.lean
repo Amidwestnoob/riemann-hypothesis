@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0007
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspidalityPreservedInClosure
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory
 open scoped ENNReal Pointwise
 

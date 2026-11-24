@@ -46,6 +46,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2865
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField MeasureTheory IsDedekindDomain UniqueFactorizationMonoid

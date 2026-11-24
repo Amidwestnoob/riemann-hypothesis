@@ -193,6 +193,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMulRightInvariantOfModular
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open GlobalTheory.WeilM MeasureTheory MeasureTheory.Measure
