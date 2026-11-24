@@ -325,8 +325,8 @@ theorem isRapidInf_mul_adCoef : ∀ (E : Type) [Field E] [NumberField E] [_root_
   have hbd : ∀ y : GL (Fin a) (Cinf E), ‖adCoef y p‖ ≤ C * height y ^ 2 := fun y => by
     have h0 : 0 ≤ height y := zero_le_one.trans (hh1 y)
     have h1 : ‖toL ((y⁻¹).val * M * y.val)‖ ≤ a * (a * ‖toL (y⁻¹).val‖ * ‖toL M‖) * ‖toL y.val‖ :=
-      (norm_toL_mul_le _ _).trans (mul_le_mul_of_nonneg_right
-        (mul_le_mul_of_nonneg_left (norm_toL_mul_le _ _) (Nat.cast_nonneg _)) (norm_nonneg _))
+      (GlobalTheory.JSW.RapidCoef.norm_toL_mul_le _ _).trans (mul_le_mul_of_nonneg_right
+        (mul_le_mul_of_nonneg_left (GlobalTheory.JSW.RapidCoef.norm_toL_mul_le _ _) (Nat.cast_nonneg _)) (norm_nonneg _))
     have h2 : a * (a * ‖toL (y⁻¹).val‖ * ‖toL M‖) * ‖toL y.val‖ ≤ a * (a * height y * ‖toL M‖) * height y :=
       mul_le_mul (mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right
         (mul_le_mul_of_nonneg_left (hI_le y) (Nat.cast_nonneg _)) (norm_nonneg _)) (Nat.cast_nonneg _))
