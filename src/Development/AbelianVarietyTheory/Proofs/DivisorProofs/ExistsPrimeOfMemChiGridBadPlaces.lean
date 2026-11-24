@@ -101,7 +101,7 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     rw [hχ _ (by rw [hx]; exact div_mem (loc_mem h1) (loc_mem h2)), hx, map_div]
   refine ⟨χ, hχu, ⟨fun v k => ?_, fun w k => ?_⟩, ?_, fun v hv x hx => ?_, fun w hwS v hv => ?_⟩
   · rw [← hfix _ (conj_locF h hC v k)]
-    unfold Formalism.L2.Host.HChar.resFin locF
+    unfold Formalism.L2.Host.HChar.resFin GlobalTheory.Mem.Chr.locF
     rw [MonoidHom.finsetProd_apply, map_prod]
     rfl
   · unfold Formalism.L2.Host.HChar.resInf
