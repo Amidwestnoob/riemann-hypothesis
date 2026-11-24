@@ -141,7 +141,7 @@ theorem pS_sS (r : RS S) : pS S (sS S r) = r := by
   exact evalV_finOf r.2 v.1 v.2
 
 theorem sS_mul (r r' : RS S) : sS S (r * r') = sS S r * sS S r' := by
-  refine Prod.ext rfl (GlobalTheory.AdelicU.af_ext fun u => ?_)
+  refine Prod.ext rfl (af_ext fun u => ?_)
   change evalV F u (finOf S (r.2 * r'.2)) = evalV F u (finOf S r.2 * finOf S r'.2)
   rw [map_mul]
   by_cases h : u ∈ S
@@ -149,7 +149,7 @@ theorem sS_mul (r r' : RS S) : sS S (r * r') = sS S r * sS S r' := by
   · rw [evalV_finOf_not _ u h, evalV_finOf_not _ u h, zero_mul]
 
 theorem sS_pS (a : AF F) : sS S (pS S a) = sS S 1 * a := by
-  refine Prod.ext (one_mul _).symm (GlobalTheory.AdelicU.af_ext fun u => ?_)
+  refine Prod.ext (one_mul _).symm (af_ext fun u => ?_)
   change evalV F u (finOf S fun v : S => evalV F v.1 a.2) = evalV F u (finOf S 1 * a.2)
   rw [map_mul]
   by_cases h : u ∈ S
