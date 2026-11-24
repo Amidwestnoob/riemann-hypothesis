@@ -396,9 +396,9 @@ theorem reframe_thPVecOf : ∀ (D : D7) (S T : HSp D) (b : Module.Basis (Fin S.r
       { inf := hvac.inf
         theta := L_theta D ψ S T b hs f₀ hvac.theta
         lat := ⟨fun u hu => by
-            rw [heisO_reF S T b ψ hs, reW_nsmul, hvac.lat.1 _ ((hlat u).1 hu)],
+            rw [_root_.GlobalTheory.AdSpan.ReVec.heisO_reF S T b ψ hs, reW_nsmul, hvac.lat.1 _ ((hlat u).1 hu)],
           fun e' he' u hu hh => by
-            rw [heisO_reF S T b ψ hs, hvac.lat.2 e' he' _ ((hlat u).1 hu) ((isHalf_reW_iff S T b e' u).2 hh)]⟩
+            rw [_root_.GlobalTheory.AdSpan.ReVec.heisO_reF S T b ψ hs, hvac.lat.2 e' he' _ ((hlat u).1 hu) ((isHalf_reW_iff S T b e' u).2 hh)]⟩
         fock := fun τ => L_fock D ψ θ S T b hvac.inf hs τ (sT τ) f₀ (hvac.fock τ)
         norm := L_norm D S T b f₀ hvac.norm }
   · refine (congrArg (fun Φ => IsThetaAt ψ (symplO (reS S b) T) (heisO ψ (reS S b) T) (cA D e)

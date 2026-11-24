@@ -311,14 +311,14 @@ theorem cellMap_contDiffAt : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X Y : 
   · have hS : IsOpen (ptMap σ f hf ⁻¹' c.e.source) :=
       c.e.open_source.preimage (PtsOver.continuous_map f hf _)
     refine contDiffAt_chart_of_eqOn_ev c' hS (f.app c.U (c.x b)) (fun z hz => ?_) hy hsrc ?_
-    · simp only [cellMap, pt, hε, Sum.elim_inl]
+    · simp only [cellMap, _root_.GlobalTheory.FlagCell2.pt, hε, Sum.elim_inl]
       rw [c.apply_eq _ hz b, ev_app f hf]
       rfl
     · rw [mem_ptsIn]
       exact mem_ptsIn.1 (c.source_subset hsrc)
   · obtain ⟨U, hU, w, hw⟩ := (hreg j).exists_fnOf
     refine contDiffAt_chart_of_eqOn_ev c' (isOpen_ptsIn U) w (fun z hz => ?_) hy (mem_ptsIn.2 hU) (mem_ptsIn.2 hU)
-    simp only [cellMap, pt, hε, Sum.elim_inr]
+    simp only [cellMap, _root_.GlobalTheory.FlagCell2.pt, hε, Sum.elim_inr]
     rw [← hw, ratVal_fnOf hz]
 
 end GlobalTheory.FlagCell2

@@ -182,7 +182,7 @@ theorem dGamSize_record {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {m : ℕ
     (C : ℝ) (hC : 0 ≤ C) (hF : FactDGam D C) (s : ℕ) (cs : ℝ)
     (hs : Real.log (s : ℝ) ≤ cs * (ofRecord D L Del h0).unitE Nc) :
     DGamSize A P0 ψ0 (ofRecord D L Del h0) Nc hT s (2 + 9 * C + cs) := by
-  unfold DGamSize
+  unfold _root_.Formalism.L2.DIV.DGamSize
   have hdvd : dgOf A P0 ψ0 hT ∣ Fintype.card G * (D.mem u0).C.DGam := by
     unfold dgOf
     apply Finset.lcm_dvd

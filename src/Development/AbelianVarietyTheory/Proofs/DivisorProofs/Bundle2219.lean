@@ -131,7 +131,7 @@ theorem sympCond_twist : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [
       have := Spec.map_injective e
       exact congrArg CommRingCat.Hom.hom this
     have hζM : β (zetaAway M) ^ M = 1 := by
-      rw [← map_pow, zetaAway_pow_self M hM.ne', map_one]
+      rw [← map_pow, _root_.GlobalTheory.HTSympCover.zetaAway_pow_self M hM.ne', map_one]
     have hne : β (zetaAway M) ≠ 0 := by
       intro h0
       rw [h0, zero_pow hM.ne'] at hζM

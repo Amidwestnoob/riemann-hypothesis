@@ -185,7 +185,7 @@ def uP {k : ℕ} (j : Fin k) : SP B k := ⟨pt V d j, sm_pt j⟩
 
 
 variable (B) in
-def cS {m : ℕ} (α : Fin d → V) (h : Small α) : SP B m := ⟨cpt α, fun i => by simpa [cpt] using h i⟩
+def cS {m : ℕ} (α : Fin d → V) (h : Small α) : SP B m := ⟨cpt α, fun i => by simpa [_root_.GlobalTheory.PlaceInt.cpt] using h i⟩
 
 theorem sL_uP {k m : ℕ} (x : Fin k → SP B m) (j : Fin k) : sL x (uP B j) = x j :=
   SP.ext (funext fun i => (evS_eq x _).symm.trans (evS_X x j i))

@@ -179,7 +179,7 @@ theorem smallDatum_xiCpl2_sharp : ∀ (CY : ℝ) (D : D7) (N : NumDatum) (X : Fi
   have hT : TilOk Pr sel mu u := by
     refine tilOk_of hPr u fun P hP => ?_
     have hmu : mu = mu0 X.F X.E X.K Sg := H.2.2.2.2.1
-    rw [hmu, twistPrimes_trivialTuple_empty sel Sg] at hP
+    rw [hmu, _root_.Formalism.L2.Col.twistPrimes_trivialTuple_empty sel Sg] at hP
     simp at hP
   have key := EntryDatum.smallDatum_prod (K := X.K) (S := Sall sel mu u) p.deco.1 (tilQ sel mu u d).1 (tilQ sel mu u d).2
     (frsF sel mu p) (tilFr hT d) (frsF_mem p) (fun P => (tilFr_isLiftFr hT d P).1)

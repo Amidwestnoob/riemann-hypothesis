@@ -89,7 +89,7 @@ theorem kerM_subset (p q : Matrix (Fin n) (Fin n) O) : kerM B q ⊆ kerM B (p * 
   refine ⟨hsm, ?_⟩
   have hc : ∀ b i, MvPowerSeries.constantCoeff ((fun j => (cpt (α j) : Pt V 0 d)) b i) ∈ maximalIdeal V := by
     intro b i
-    simpa [cpt] using hsm b i
+    simpa [_root_.GlobalTheory.PlaceInt.cpt] using hsm b i
   rw [(GlobalTheory.T.formalModuleMatrixApplyPoints_action_laws V d O B n 0 p q _ _ hc hc).2.1, hk, matV_zero]
 
 theorem sum_twisted (p q : Matrix (Fin n) (Fin n) O) (t : V)

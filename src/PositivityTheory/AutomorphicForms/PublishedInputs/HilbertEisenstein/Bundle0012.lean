@@ -123,7 +123,7 @@ theorem ordAt_eq (v : HeightOneSpectrum (𝓞 F)) (ξ : Fˣ) (yf : (Af F)ˣ) :
 
 theorem valued_le_iff {v : HeightOneSpectrum (𝓞 F)} (u : (v.adicCompletion F)ˣ) (n : ℤ) :
     Valued.v (u : v.adicCompletion F) ≤ WithZero.exp n ↔ -n ≤ ord (u : v.adicCompletion F) := by
-  rw [valued_eq_exp_neg_ord u.ne_zero, WithZero.exp_le_exp]
+  rw [_root_.GroundTheory.Global.valued_eq_exp_neg_ord u.ne_zero, WithZero.exp_le_exp]
   omega
 
 def gI (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (v : HeightOneSpectrum (𝓞 F)) (A B : ℤ)
@@ -274,7 +274,7 @@ theorem local_integral_of_substitution : InvSubst → LocInt := by
         have hπ : ord ((atFin v (unif v) : (v.adicCompletion F)ˣ) : v.adicCompletion F) = 1 := by
           have h1 := unif_spec v
           unfold IsUnifAt at h1
-          rw [valued_eq_exp_neg_ord (atFin v (unif v)).ne_zero, WithZero.exp_inj] at h1
+          rw [_root_.GroundTheory.Global.valued_eq_exp_neg_ord (atFin v (unif v)).ne_zero, WithZero.exp_inj] at h1
           omega
         have hval : ((ω.val v : ℂˣ) : ℂ) = ((ω.loc v (unifUnit (v.adicCompletion F)) : ℂˣ) : ℂ) := by
           have := quasiChar_apply_eq_of_isUnramified hunr hπ

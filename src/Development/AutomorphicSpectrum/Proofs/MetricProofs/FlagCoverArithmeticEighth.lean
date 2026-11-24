@@ -47,7 +47,7 @@ theorem notMem_of_eval_ne_zero {t : (Σ k, ι k) → ℂ} {h : MRing ι} {d : K 
     (hh : IsMultiHomog h d) (h0 : eval t (map (Int.castRingHom ℂ) h) ≠ 0) : h ∉ mCoordIdeal t := by
   intro hm
   have h' : mConeMap t h = 0 := hm
-  rw [mConeMap_of_isMultiHomog t hh] at h'
+  rw [_root_.GroundTheory.Heights₂.Heights.LowerBoundFree.mConeMap_of_isMultiHomog t hh] at h'
   rcases mul_eq_zero.1 h' with h1 | h1
   · refine h0 ?_
     have h2 := MvPolynomial.C_eq_zero.1 h1

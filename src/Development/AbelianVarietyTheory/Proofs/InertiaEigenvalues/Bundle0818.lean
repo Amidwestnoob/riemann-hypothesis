@@ -464,7 +464,7 @@ def locBall : Set (NX.FmK S ((j : ℕ) + 1)) :=
 variable {iC b} in
 theorem valC_cuspOf_smul (z : FrC YS iC b ((j : ℕ) + 1)) (a : S.Ks) (f : NX.FmK S ((j : ℕ) + 1)) :
     valC z (cuspOf YS fw j (a • f) : T0.R ((j : ℕ) + 1)) = embS S iC b a * valC z (cuspOf YS fw j f : T0.R ((j : ℕ) + 1)) := by
-  rw [cuspOf_smul, Submodule.coe_smul, valC_smul, embC_eKs]
+  rw [cuspOf_smul, Submodule.coe_smul, _root_.GlobalTheory.GeoTie.valC_smul, embC_eKs]
 
 end Ball
 

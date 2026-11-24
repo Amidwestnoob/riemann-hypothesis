@@ -156,7 +156,7 @@ theorem nonempty_jacB_detRep (N : ℕ) (ψ : kˣ →* ℂˣ) :
   have hd : ∀ i, Matrix.GeneralLinearGroup.det (leviTorus k (Fin N) t i) = t i :=
     congrFun ((leviTorus k (Fin N)).left_inv t)
   simp only [LinearMap.comp_apply]
-  rw [h, map_smul, ofChar_apply, detLevi_apply, torusChar_apply, smul_eq_mul]
+  rw [h, map_smul, ofChar_apply, detLevi_apply, _root_.GlobalTheory.SmGL.torusChar_apply, smul_eq_mul]
   congr 2
   refine Finset.prod_congr rfl fun i _ => ?_
   rw [hd, modExp_fin _ (fun _ => by simp)]
@@ -168,7 +168,7 @@ theorem nonempty_jacB_detRep (N : ℕ) (ψ : kˣ →* ℂˣ) :
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem torusChar_mulSingle {n : Type} [Fintype n] [DecidableEq n] (χ : n → kˣ →* ℂˣ) (i : n)
     (x : kˣ) : torusChar χ (Pi.mulSingle i x) = χ i x := by
-  rw [torusChar_apply, Finset.prod_eq_single i, Pi.mulSingle_eq_same]
+  rw [_root_.GlobalTheory.SmGL.torusChar_apply, Finset.prod_eq_single i, Pi.mulSingle_eq_same]
   · intro j _ hj
     rw [Pi.mulSingle_eq_of_ne hj, map_one]
   · simp
@@ -394,7 +394,7 @@ theorem exponentsSeparate (hG : Published.GeometricLemma) (hZ : Published.Zelevi
       ((E i).count ((torusChar fun j => unrChar k (z j)) * δ) : ℕ∞) := fun i z => by
     rw [wordMult_congr (σ i).nonempty_equiv_rep.some, wordMult_ofFn,
       _root_.GlobalTheory.SmGL.UnramFixed.jhMult_jacB_eq_expMult k r _ _ (σ i).smooth _ fun t ht => by
-        rw [torusChar_apply]
+        rw [_root_.GlobalTheory.SmGL.torusChar_apply]
         exact Finset.prod_eq_one fun j _ => isUnram_unrChar k _ _ (ht j)]
     exact hE i _
   let U : Set (Segment k) := {Δ | ∃ (z : ℂˣ) (l : ℕ) (hl : 0 < l),
