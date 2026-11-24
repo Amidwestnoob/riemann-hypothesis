@@ -6,6 +6,8 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0005
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Formalism.L2.Host GlobalTheory.CuspRep GlobalTheory.ContraPair GlobalTheory.DiscSpec

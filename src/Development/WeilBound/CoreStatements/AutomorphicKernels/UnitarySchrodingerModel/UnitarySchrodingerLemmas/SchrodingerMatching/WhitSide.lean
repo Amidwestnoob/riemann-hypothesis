@@ -5,6 +5,8 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.UnitarySch
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct

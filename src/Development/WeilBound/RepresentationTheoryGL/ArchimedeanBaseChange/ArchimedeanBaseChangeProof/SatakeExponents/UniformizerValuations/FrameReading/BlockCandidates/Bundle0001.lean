@@ -115,6 +115,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.BlockCandidates.PIdentN
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter

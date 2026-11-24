@@ -17,6 +17,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.Bundle
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.DifferentiableOnAvg
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open scoped Matrix NNReal ComplexConjugate TensorProduct ENNReal Topology
@@ -222,6 +223,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.GaussP
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct ComplexOrder

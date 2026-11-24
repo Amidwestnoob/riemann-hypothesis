@@ -6,6 +6,8 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 open MeasureTheory Set Filter NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.Cusp GlobalTheory.Chamber GlobalTheory.AdelicU GlobalTheory.TruncKer GlobalTheory.Orb
