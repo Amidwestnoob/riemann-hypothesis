@@ -115,7 +115,7 @@ theorem latTiedAt_canon {D : D7} (L : SizeData₂ D) (X : Inst D L) (hb : ∀ h 
     have hmem : (s ∈ (fillsRec D u (D.R.iota (hP D p)) hS (rRec L p) Lc I ψ y e c hcl).TT
         (vOfH D.R.toFrame (hP D p) (Formalism.L2.G.bsH D.R.toFrame (hP D p) x))) ↔
         Formalism.L2.G.bsH D.R.toFrame (hP D p) x + s.val • hP D p ∈ D.host.TT := by
-      rw [← tau_top_places_iff]
+      rw [← Formalism.L2.G.tau_top_places_iff]
       show s ∈ Finset.univ.filter _ ↔ _
       rw [Finset.mem_filter, hpos]
       exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ _, h⟩⟩
@@ -127,9 +127,9 @@ theorem latTiedAt_canon {D : D7} (L : SizeData₂ D) (X : Inst D L) (hb : ∀ h 
       rw [hpos, tau_coe_val]
       unfold aL
       by_cases ht : Formalism.L2.G.bsH D.R.toFrame (hP D p) x + s.val • hP D p ∈ D.host.TT
-      · rw [if_pos ((tau_top_places_iff D _).2 ht), dite_eq_left ht]
+      · rw [if_pos ((Formalism.L2.G.tau_top_places_iff D _).2 ht), dite_eq_left ht]
         exact (lamRec_top L u _ ⟨_, ht⟩ rfl).1
-      · rw [if_neg (fun h => ht ((tau_top_places_iff D _).1 h)), dite_eq_right ht]
+      · rw [if_neg (fun h => ht ((Formalism.L2.G.tau_top_places_iff D _).1 h)), dite_eq_right ht]
     have hb' : (fillsRec D u (D.R.iota (hP D p)) hS (rRec L p) Lc I ψ y e c hcl).b
         (vOfH D.R.toFrame (hP D p) (Formalism.L2.G.bsH D.R.toFrame (hP D p) x)) s =
         bL L (Formalism.L2.G.bsH D.R.toFrame (hP D p) x + s.val • hP D p) := by
@@ -138,8 +138,8 @@ theorem latTiedAt_canon {D : D7} (L : SizeData₂ D) (X : Inst D L) (hb : ∀ h 
       rw [hpos, tau_coe_val]
       unfold bL
       by_cases ht : Formalism.L2.G.bsH D.R.toFrame (hP D p) x + s.val • hP D p ∈ D.host.TT
-      · rw [if_pos ((tau_top_places_iff D _).2 ht), dite_eq_left ht, (lamRec_top L u _ ⟨_, ht⟩ rfl).2, neg_neg]
-      · rw [if_neg (fun h => ht ((tau_top_places_iff D _).1 h)), dite_eq_right ht]
+      · rw [if_pos ((Formalism.L2.G.tau_top_places_iff D _).2 ht), dite_eq_left ht, (lamRec_top L u _ ⟨_, ht⟩ rfl).2, neg_neg]
+      · rw [if_neg (fun h => ht ((Formalism.L2.G.tau_top_places_iff D _).1 h)), dite_eq_right ht]
     refine ⟨?_, hmem, fun _ => ⟨ha, hb'⟩, fun jj hj => ?_⟩
     · show ((D.eTau (D.eTau.symm (posG (zH D.R.toFrame (hP D p)) _)) : D.R.Psi) : D.R.GG) = _
       rw [Equiv.apply_symm_apply, hpos]

@@ -646,10 +646,10 @@ theorem til_L_eq {N n : ℕ} (hN : N = n + 1) {ST SG : Finset (HeightOneSpectrum
     funext j
     rw [hz]
     refine Fin.lastCases ?_ (fun i => ?_) j
-    · simp [z0, eLast]
+    · simp [Formalism.L2.Col.z0, eLast]
     · have h1 : ¬ (i.1 + 1 = n + 1) := by omega
       have h2 : i.1 ≠ n := i.2.ne
-      simp [z0, eLast, h1, h2, (Fin.castSucc_lt_last i).ne]
+      simp [Formalism.L2.Col.z0, eLast, h1, h2, (Fin.castSucc_lt_last i).ne]
   rw [e1, e2]
   show (DecoSet.til (ST := ST) pi d).1.L = _
   rw [DecoSet.til_val d hT hG]
