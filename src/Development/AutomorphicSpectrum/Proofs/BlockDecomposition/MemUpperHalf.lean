@@ -260,7 +260,7 @@ theorem bdet_eq (g : GL (Fin (n + n)) (AE D)) (a : GL (Fin n) (AE D)) (h : Globa
     intro _ _
     rw [← Matrix.det_submatrix_equiv_self e', ← h]
     rfl
-  rw [bdet]
+  rw [PositivityTheory.RgEis.bdet]
   split_ifs with hu
   · exact Units.ext (hu.unit_spec.trans (hd _ _))
   · exact absurd ((hd _ _).symm ▸ (Matrix.GeneralLinearGroup.det a).isUnit) hu

@@ -157,11 +157,11 @@ theorem ctMu_lone {a b : ℕ} (h : a + b = n) {w : Pl E} (hU : UL n w = ⊤) (μ
       rw [mul_assoc, map_mul, hu, map_pow, h1]
       simp
     rw [e, if_pos hm]
-    unfold idem
+    unfold PositivityTheory.Rg.BcB.F.idem
     rw [Set.indicator_of_mem (show m ∈ (K2 a b w : Set _) from hm), Subgroup.relIndex_self]
     simp
   · rw [if_neg hm, mul_zero]
-    unfold idem
+    unfold PositivityTheory.Rg.BcB.F.idem
     rw [Set.indicator_of_notMem (show m ∉ (K2 a b w : Set _) from hm)]
 
 theorem lpow_lone_one {w : Pl E} : lpow (KL n w) (lone (KL n w)) 1 = (KL n w : Set (UL n w)).indicator 1 := by
