@@ -175,7 +175,7 @@ def InducedCharacterSupport : Prop :=
     ∀ (V : Type) [NormedAddCommGroup V] [InnerProductSpace ℂ V] [CompleteSpace V] [Nontrivial V]
       (σ : Matrix (Fin n) (Fin n) ℂ → (V →L[ℂ] V)), IsURepOn (mats (leviOne ε W)) σ → IsIrredOn (mats (leviOne ε W)) σ →
       ∀ (s : Fin a → ℂ) (X : Type) [NormedAddCommGroup X] [InnerProductSpace ℂ X] [CompleteSpace X]
-        (ρ : Matrix (Fin n) (Fin n) ℂ → (X →L[ℂ] X)) (ι : indFun (ε := ε) ⊤ j W σ s →ₗ[ℂ] X),
+        (ρ : Matrix (Fin n) (Fin n) ℂ → (X →L[ℂ] X)) (ι : GlobalTheory.RealInd.indFun (ε := ε) ⊤ j W σ s →ₗ[ℂ] X),
         IsIndModel ⊤ (KG ε) (muK ε) _ ρ ι → ∀ h : IsCRepOn (UJset ε) ρ, ∃ Θ, IsGlobalChar μ (groupRep ε h) Θ ∧
           ∀ g, IsRegSS (ujMat ε g) → (∀ x, x * g * x⁻¹ ∉ flagM ε W) → Θ g = 0
 
@@ -234,7 +234,7 @@ def Classification : Prop :=
 def Limit : Prop :=
   ∀ (n : ℕ) (ε : Fin n → Bool) (D : Datum ε), D.Positive → ∀ ν' : Measure (UJ ε), IsHaarSub D.Nbar ν' →
     ∃ c : ℝ, 0 < c ∧
-      (∀ φ ∈ indFun ⊤ D.j D.W (fun _ => (1 : ℂ →L[ℂ] ℂ)) (rho n D.j),
+      (∀ φ ∈ GlobalTheory.RealInd.indFun ⊤ D.j D.W (fun _ => (1 : ℂ →L[ℂ] ℂ)) (rho n D.j),
         Integrable φ ν' ∧ ∫ k : KG ε, φ k ∂muK ε = c * ∫ u, φ u ∂ν') ∧
       ∀ f ∈ D.fns, IsKFinFun f → ∀ f' ∈ D.dualFns, IsKFinFun f' → ∀ x, InChamber x →
         ∀ t : ℝ → UJ ε, (∀ r, IsSplit ε D.W (r • x) (t r)) →
@@ -270,7 +270,7 @@ def TemperedLevi : Prop :=
     ∃ (U : Type) (_ : NormedAddCommGroup U) (_ : InnerProductSpace ℂ U) (_ : CompleteSpace U)
       (τ : Matrix (Fin n) (Fin n) ℂ → (U →L[ℂ] U)) (y : Fin b → ℝ), IsIrrTempered (leviOne ε W') τ ∧
       ∀ μ : Measure ↥(KG ε ⊓ D.M), μ.IsHaarMeasure → IsProbabilityMeasure μ →
-        ∃ ι : indFun D.M (fun _ => 1) W' τ (fun l => Complex.I * y l) →ₗ[ℂ] D.V,
+        ∃ ι : GlobalTheory.RealInd.indFun D.M (fun _ => 1) W' τ (fun l => Complex.I * y l) →ₗ[ℂ] D.V,
           IsIndModel D.M (KG ε ⊓ D.M) μ _ D.σ ι
 
 end Langlands
