@@ -25,7 +25,7 @@ theorem evR_frBor_univ {p A : TRing c.F} {j : Sp p.R ⟶ Xo.XF c} {y₀ : FrPt X
     {a a' : A.R →ₐ[c.F] S} (ha : FrMap a u y) (ha' : FrMap a' u y') (h : FrBor t y y') :
     evR Xo c f y' = ((∏ i, t i ^ e i : Sˣ) : S) * evR Xo c f y := by
   obtain ⟨B, uB, uB', tB, q, q', hq, hq', hB, hU⟩ :=
-    univFrame_borelPairs GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c p A j y₀ π X s u hj hu
+    GlobalTheory.FrameEval.univFrame_borelPairs GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c p A j y₀ π X s u hj hu
   obtain ⟨b, e1, e2, e3⟩ := hU S a a' y y' t ha ha' h
   have k : FrMap b uB y := GlobalTheory.FlagTan.frMap_of_comp hq ha fun x => DFunLike.congr_fun e1 x
   have k' : FrMap b uB' y' := GlobalTheory.FlagTan.frMap_of_comp hq' ha' fun x => DFunLike.congr_fun e2 x
