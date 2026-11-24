@@ -56,7 +56,7 @@ theorem tate' (hI : IdeleFub) (hJ : IdealId0) (hS : StabEx) {B : Base F E} {M : 
   have hk : ∀ l : (AE F E)ˣ, ev v (rv B M v (idem F v • u l) φ) ≠ 0 → (N : AF F) • idem F v • u l ∈ latAtV X W v := fun l hl => by
     have e2 : idem F v • u l = (idem F v • c l.1) • V₀ := by rw [hu, smul_assoc]
     rw [e2] at hl ⊢
-    exact key hc h hinv (hcomp v) hφ N (fun t ht => hfix _ ht) _ (e2 ▸ at_idem v _) hl
+    exact key hc h hinv (hcomp v) hφ N (fun t ht => hfix _ ht) _ (e2 ▸ _root_.PositivityTheory.ThKG.Loc.Cone.Fin.at_idem v _) hl
   have hN' : (N : Fv F v) ≠ 0 := by
     haveI : CharZero (Fv F v) := algebraRat.charZero _
     exact Nat.cast_ne_zero.2 hN

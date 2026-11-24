@@ -77,7 +77,7 @@ theorem acts_Hv {u} (hu : At (evFin F v) u) (φ : Fl F v n d) : Acts (evFin F v)
     change schr ψ (M.co.e u) (tens (evFin F v) φ r) = tens (evFin F v) (Hv M ψ v u φ) r
     have ha : At (evFin F v) (M.co.e u) := hu.kd_map M.co.e.toLinearMap
     rw [schr_tens ψ _ _ (indep_of hr.1), offP_eq, sub_smul,
-      (at_iff _).1 ha, one_smul, sub_self, schr_zero]
+      (_root_.PositivityTheory.Member.ZakTransform.at_iff _).1 ha, one_smul, sub_self, schr_zero]
     congr 1
     unfold Hv
     congr 1

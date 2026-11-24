@@ -144,7 +144,7 @@ theorem ct_lone {a b : ℕ} (h : a + b = n) {w : Pl E} (hU : UL n w = ⊤) (m : 
 
 theorem ctMu_lone {a b : ℕ} (h : a + b = n) {w : Pl E} (hU : UL n w = ⊤) (μ : (w.adicCompletion E)ˣ →* ℂˣ)
     (hμ : ∀ u : (w.adicCompletion E)ˣ, ordL (u : w.adicCompletion E) = 0 → μ u = 1) :
-    ctMu h w μ (lone (KL n w)) = idem (K2 a b w) := by
+    ctMu h w μ (lone (KL n w)) = _root_.PositivityTheory.Rg.BcB.F.idem (K2 a b w) := by
   funext m
   unfold ctMu
   rw [ct_lone h hU]
@@ -202,10 +202,10 @@ theorem matchLMUnitOf : PositivityTheory.Rg.BcB.F.MLM.MatchLMUnitOf := by
   have hlev : d.lev a w = K2 a (n - a) w := by
     unfold LocData.lev
     rw [if_neg hT, if_neg (by simp [hS₀, hBad])]
-  have htr : (d.eL a).tr d.P d.one w = idem (K2 a (n - a) w) := by
+  have htr : (d.eL a).tr d.P d.one w = _root_.PositivityTheory.Rg.BcB.F.idem (K2 a (n - a) w) := by
     unfold LM.tr
     rw [if_neg hP]
-    show idem (d.lev a w) = _
+    show _root_.PositivityTheory.Rg.BcB.F.idem (d.lev a w) = _
     rw [hlev]
   rw [htr]
   by_cases hw : IsSplitAt w

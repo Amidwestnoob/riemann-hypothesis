@@ -272,8 +272,8 @@ theorem zonalSpherical_one (z : Fin n → ℂˣ) : zonalSpherical μ z 1 = 1 := 
 
 theorem zonalSpherical_torusPow_comp (z : Fin n → ℂˣ) (μ' : Fin n → ℤ) (σ : Equiv.Perm (Fin n)) :
     zonalSpherical μ z (torusPow F n (μ' ∘ σ)) = zonalSpherical μ z (torusPow F n μ') := by
-  rw [← permGL_conj_torusPow, zonalSpherical_mul_right z _ (permGL_mem_integralGL F n σ),
-    zonalSpherical_mul_left z ((integralGL F n).inv_mem (permGL_mem_integralGL F n σ))]
+  rw [← permGL_conj_torusPow, zonalSpherical_mul_right z _ (_root_.GroundTheory.Automorphic.GLnLocal.permGL_mem_integralGL F n σ),
+    zonalSpherical_mul_left z ((integralGL F n).inv_mem (_root_.GroundTheory.Automorphic.GLnLocal.permGL_mem_integralGL F n σ))]
 
 theorem sum_zonalSpherical_gMat (z : Fin n → ℂˣ) (r : ℕ) (g : GL (Fin n) F) :
     ∑ S ∈ (Finset.univ : Finset (Fin n)).powersetCard r, ∑ c : Pairs S → 𝓀[F],

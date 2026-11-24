@@ -71,7 +71,7 @@ theorem UpperTheory.V.UnitaryThreeInertia.countV_of_finiteness_duality_euler_hos
     (hX Ω l c h.N e ψ _ hD _ hXD S A F hF) g₁ hg u hu hfin φ
     (fun r => _root_.UpperTheory.V.Aut.BPrime_s K ι fun s => (r (toGS Ω _ s)).mat) hB
     (fun r h1 h2 h3 => ⟨hRig K hK Ω l c h.N e ψ _ hD S A F hF ι g₁ hg r h1 h3, hne r h1 h2 h3⟩)
-  have hlen := vlen_le Ω c e ψ _ hD S A F hF V hV
+  have hlen := _root_.UpperTheory.V.UnitaryThreeInertia.vlen_le Ω c e ψ _ hD S A F hF V hV
   have hX2 : (2 : ℝ) ≤ (l : ℝ) * h.N * e := by
     have : 2 * 1 * 1 ≤ l * h.N * e := Nat.mul_le_mul (Nat.mul_le_mul hl.out.two_le h.N_pos) he
     exact_mod_cast this
