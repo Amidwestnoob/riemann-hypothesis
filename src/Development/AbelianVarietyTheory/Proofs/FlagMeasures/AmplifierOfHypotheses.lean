@@ -164,6 +164,7 @@ theorem mp_inv_haarLie (S : Set (MatKR k r)) (κ : ℝ≥0∞) :
     refine continuous_pi fun i => continuous_pi fun j => ?_
     simp only [unrealify, Complex.mk_eq_add_mul_I]
     fun_prop
+  -- The matrix exponential must be measurable for the entrywise matrix sigma-algebra.
   have h : AEMeasurable e volume :=
     (show Continuous e from GlobalTheory.Amp.NLie.cont_exp.comp hu).measurable.aemeasurable
   rw [AEMeasurable.map_map_of_aemeasurable hm.aemeasurable h]
