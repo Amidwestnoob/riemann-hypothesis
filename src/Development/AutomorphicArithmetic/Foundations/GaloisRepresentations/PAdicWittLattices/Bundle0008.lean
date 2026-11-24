@@ -230,11 +230,11 @@ theorem UpperTheory.Gal.G3.pHopSpec :
   let g₀ : sp Ω ⟶ sp k := Spec.map (CommRingCat.ofHom (algebraMap k Ω))
   have hT : (et l (sp Ω)).Good := hEt l (sp Ω) (l_unit l hl Ω)
   have hT' : ((et l (sp Ω)).bc g₀).Good := hBc _ g₀ hT
-  have hs : H.sΩ Ω g = bcMap g₀ (H.s g) rfl := rfl
-  have ht : H.tΩ Ω g = bcMap g₀ (H.t g) (H.comm g) := rfl
+  have hs : H.sΩ Ω g = UpperTheory.Gal.G3.bcMap g₀ (H.s g) rfl := rfl
+  have ht : H.tΩ Ω g = UpperTheory.Gal.G3.bcMap g₀ (H.t g) (H.comm g) := rfl
   have hfe := hSpl g₀ H.q (H.s g ≫ H.q) H.q (H.s g) rfl (𝟙 _) (Category.id_comp _) PEmpty (fun j => j.elim) (fun j => j.elim)
   obtain ⟨_, _, -⟩ := hfe
-  have hEq := hOpEt l (pullback.snd H.q g₀) (pullback.snd H.q g₀) (bcMap g₀ (H.s g) rfl) (bcMap g₀ (H.t g) (H.comm g))
+  have hEq := hOpEt l (pullback.snd H.q g₀) (pullback.snd H.q g₀) (UpperTheory.Gal.G3.bcMap g₀ (H.s g) rfl) (UpperTheory.Gal.G3.bcMap g₀ (H.t g) (H.comm g))
     ((bcMap_snd g₀ (H.t g) (H.comm g)).trans (bcMap_snd g₀ (H.s g) rfl).symm)
   have toCorr : ∀ A, ((et l (sp Ω)).bc g₀).IsOp H.q H.q (H.s g) (H.t g) A → IsCorrOp l (H.sΩ Ω g) (H.tΩ Ω g) A := by
     intro A hA
@@ -250,9 +250,9 @@ theorem UpperTheory.Gal.G3.pHopSpec :
   refine ⟨hspec, fun tr htr => ?_⟩
   have hA := ((hTr _ hT' H.q (H.s g ≫ H.q) H.q (H.s g) (H.t g) rfl (H.comm g) tr htr) _).2 gs rfl
   have hcorr := toCorr _ hA
-  obtain ⟨tr', htr'⟩ := hT.tr (pullback.snd H.q g₀) (pullback.snd (H.s g ≫ H.q) g₀) (bcMap g₀ (H.s g) rfl) (bcMap_snd _ _ _)
+  obtain ⟨tr', htr'⟩ := hT.tr (pullback.snd H.q g₀) (pullback.snd (H.s g ≫ H.q) g₀) (UpperTheory.Gal.G3.bcMap g₀ (H.s g) rfl) (bcMap_snd _ _ _)
   have key := fun A => hTr _ hT (pullback.snd H.q g₀) (pullback.snd (H.s g ≫ H.q) g₀) (pullback.snd H.q g₀)
-    (bcMap g₀ (H.s g) rfl) (bcMap g₀ (H.t g) (H.comm g)) (bcMap_snd _ _ _) (bcMap_snd _ _ _) tr' htr' A
+    (UpperTheory.Gal.G3.bcMap g₀ (H.s g) rfl) (UpperTheory.Gal.G3.bcMap g₀ (H.t g) (H.comm g)) (bcMap_snd _ _ _) (bcMap_snd _ _ _) tr' htr' A
   have e1 := (key _).1 ((hEq _).2 hspec)
   have e2 := (key _).1 ((hEq _).2 hcorr)
   exact e1.trans e2.symm
@@ -341,38 +341,38 @@ theorem UpperTheory.Gal.G3.pLiesGen :
   have hq : κ0 ≫ s ≫ C.p = (H.s g ≫ H.q) ≫ gen O k := by
     rw [← Category.assoc, ← h0, Category.assoc, C.ov, Category.assoc]
   let κ : H.Y g ⟶ pullback (s ≫ C.p) (gen O k) := pullback.lift κ0 (H.s g ≫ H.q) hq
-  have hA : H.s g ≫ piK C = κ ≫ bcMap (gen O k) s rfl := by
+  have hA : H.s g ≫ piK C = κ ≫ UpperTheory.Gal.G3.bcMap (gen O k) s rfl := by
     apply pullback.hom_ext
-    · simp only [piK, bcMap, κ, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
+    · simp only [piK, UpperTheory.Gal.G3.bcMap, κ, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
       exact h0
-    · simp only [piK, bcMap, κ, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
+    · simp only [piK, UpperTheory.Gal.G3.bcMap, κ, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
   refine ⟨κ, hA, ?_, ?_⟩
   · apply pullback.hom_ext
-    · simp only [piK, bcMap, κ, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
+    · simp only [piK, UpperTheory.Gal.G3.bcMap, κ, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
       exact h1
-    · simp only [piK, bcMap, κ, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
+    · simp only [piK, UpperTheory.Gal.G3.bcMap, κ, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
       exact (H.comm g).symm
   · have w1 : pullback.snd C.π s ≫ s ≫ C.p = (pullback.fst C.π s ≫ H.q) ≫ gen O k := by
       rw [← Category.assoc, ← pullback.condition, Category.assoc, C.ov, Category.assoc]
     let i0 : pullback C.π s ⟶ pullback (s ≫ C.p) (gen O k) :=
       pullback.lift (pullback.snd C.π s) (pullback.fst C.π s ≫ H.q) w1
-    have w2 : pullback.fst C.π s ≫ piK C = i0 ≫ bcMap (gen O k) s rfl := by
+    have w2 : pullback.fst C.π s ≫ piK C = i0 ≫ UpperTheory.Gal.G3.bcMap (gen O k) s rfl := by
       apply pullback.hom_ext
-      · simp only [piK, bcMap, i0, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
+      · simp only [piK, UpperTheory.Gal.G3.bcMap, i0, Category.assoc, pullback.lift_fst, pullback.lift_fst_assoc]
         exact pullback.condition
-      · simp only [piK, bcMap, i0, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
-    let i : pullback C.π s ⟶ pullback (piK C) (bcMap (gen O k) s rfl) :=
+      · simp only [piK, UpperTheory.Gal.G3.bcMap, i0, Category.assoc, pullback.lift_snd, pullback.lift_snd_assoc]
+    let i : pullback C.π s ⟶ pullback (piK C) (UpperTheory.Gal.G3.bcMap (gen O k) s rfl) :=
       pullback.lift (pullback.fst C.π s) i0 w2
-    have c0 := pullback.condition (f := piK C) (g := bcMap (gen O k) s rfl)
+    have c0 := pullback.condition (f := piK C) (g := UpperTheory.Gal.G3.bcMap (gen O k) s rfl)
     have c1 := congrArg (· ≫ pullback.fst C.p (gen O k)) c0
     have c2 := congrArg (· ≫ pullback.snd C.p (gen O k)) c0
-    simp only [piK, bcMap, Category.assoc, pullback.lift_fst, pullback.lift_snd,
+    simp only [piK, UpperTheory.Gal.G3.bcMap, Category.assoc, pullback.lift_fst, pullback.lift_snd,
       pullback.lift_fst_assoc, pullback.lift_snd_assoc] at c1 c2
-    have w3 : pullback.fst (piK C) (bcMap (gen O k) s rfl) ≫ C.π
-        = (pullback.snd (piK C) (bcMap (gen O k) s rfl) ≫ pullback.fst (s ≫ C.p) (gen O k)) ≫ s := by
+    have w3 : pullback.fst (piK C) (UpperTheory.Gal.G3.bcMap (gen O k) s rfl) ≫ C.π
+        = (pullback.snd (piK C) (UpperTheory.Gal.G3.bcMap (gen O k) s rfl) ≫ pullback.fst (s ≫ C.p) (gen O k)) ≫ s := by
       rw [Category.assoc]
       exact c1
-    let j : pullback (piK C) (bcMap (gen O k) s rfl) ⟶ pullback C.π s :=
+    let j : pullback (piK C) (UpperTheory.Gal.G3.bcMap (gen O k) s rfl) ⟶ pullback C.π s :=
       pullback.lift _ _ w3
     haveI : IsIso i := by
       refine ⟨⟨j, ?_, ?_⟩⟩
