@@ -37,6 +37,7 @@ open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Au
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.CompanionTheory.Conc
 
 variable {K : Type} [Field K] [NumberField K] {n : ℕ}
