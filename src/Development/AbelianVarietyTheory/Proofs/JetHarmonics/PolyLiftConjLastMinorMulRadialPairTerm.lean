@@ -14,6 +14,8 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0143
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 namespace GlobalTheory.CapelliLead
 
 open Matrix Formalism.REAL Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.TL

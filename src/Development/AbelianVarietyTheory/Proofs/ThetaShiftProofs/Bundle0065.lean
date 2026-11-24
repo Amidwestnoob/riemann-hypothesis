@@ -35,6 +35,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.Bundle0031
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ArcDatumFunctionalKillsComplexCombinations
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 

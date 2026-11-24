@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0884
 
 -- bundled from Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSumBaseChangeOfCommuteBaseChange
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 
 noncomputable section
@@ -99,6 +100,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsUnitaryUnitHermitianFormOfCmLattice
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 
 noncomputable section
@@ -286,6 +288,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.CommutativeAlgebra.HermitianCongruentAndPositiveEigenvectorOfSignat
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 
 noncomputable section

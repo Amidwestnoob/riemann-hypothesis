@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Pullback1Mem
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.EvRBaseChangeOfFromTest
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.L2.Pj.QAt GlobalTheory.ArcQ GlobalTheory.Frames
 open Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions
