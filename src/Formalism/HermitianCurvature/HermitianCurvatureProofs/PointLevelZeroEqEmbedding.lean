@@ -17,6 +17,7 @@ open Matrix MeasureTheory
 
 noncomputable section
 
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 namespace Formalism.FourierDecayAlt.P.SliceIntegralLemmas
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants

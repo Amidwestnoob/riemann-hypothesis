@@ -360,6 +360,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceTopZero
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix MeasureTheory
 
 noncomputable section

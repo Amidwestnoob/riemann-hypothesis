@@ -176,6 +176,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharacterLevi
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 set_option maxSynthPendingDepth 1
 
 open GlobalTheory.SmGL

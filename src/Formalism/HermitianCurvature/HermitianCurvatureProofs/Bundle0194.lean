@@ -211,6 +211,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.PBGWaveMain
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix Finset
 open scoped ComplexConjugate
 

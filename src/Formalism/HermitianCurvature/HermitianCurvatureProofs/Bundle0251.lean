@@ -353,6 +353,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutHLMinusZeroOfParts
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix
 open scoped ComplexConjugate
 

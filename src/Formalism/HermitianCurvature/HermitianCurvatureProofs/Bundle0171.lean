@@ -306,6 +306,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJfSDistEigen
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt NumberField MeasureTheory
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JfS

@@ -19,6 +19,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0034
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceContOn
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 
 noncomputable section

@@ -14,6 +14,7 @@ open scoped ContDiff
 
 noncomputable section
 
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 namespace Formalism.FourierDecayAlt.P.LeftFubiniLemmas
 
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants
