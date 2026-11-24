@@ -79,10 +79,10 @@ theorem exists_isHomogeneous_secZ : ∀ (E : Type) [Field E] [NumberField E] [Is
   set M : ℕ := ∑ b, k b with hM
   have hkM : ∀ b, k b ≤ M := fun b =>
     Finset.single_le_sum (f := k) (fun _ _ => Nat.zero_le _) (Finset.mem_univ b)
-  set P' : MvPolynomial (FrVar Dw.mult) K := (∏ b, blockDetPoly K Dw.mult b) ^ M * P with hP'
+  set P' : MvPolynomial (FrVar Dw.mult) K := (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) ^ M * P with hP'
   have hevD : ∀ Y : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) K,
-      evalFr (∏ b, blockDetPoly K Dw.mult b) Y = ∏ b, (Y b).det := fun Y => by
-    simp only [← evalFr_blockDetPoly Dw.mult _ Y]
+      evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) Y = ∏ b, (Y b).det := fun Y => by
+    simp only [← GlobalTheory.LamT.FieldPoly.evalFr_blockDetPoly Dw.mult _ Y]
     simp only [evalFr, map_prod]
 
   have hA : ∀ (z' : FrPt Xo c K) (Y : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) K),
@@ -92,7 +92,7 @@ theorem exists_isHomogeneous_secZ : ∀ (E : Type) [Field E] [NumberField E] [Is
     have h1 := hP K (AlgHom.id c.F K) y₀ z' Y (fun b => (hY b).isUnit) hrefl h
     have h2 : MvPolynomial.map (AlgHom.id c.F K).toRingHom P = P := MvPolynomial.map_id P
     rw [h2] at h1
-    have h3 : evalFr P' Y = evalFr (∏ b, blockDetPoly K Dw.mult b) Y ^ M * evalFr P Y := by
+    have h3 : evalFr P' Y = evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) Y ^ M * evalFr P Y := by
       simp only [hP', evalFr, map_mul, map_pow]
     rw [h3, hevD, ← h1, pow_add, mul_assoc]
 
@@ -208,7 +208,7 @@ theorem exists_isHomogeneous_secZ : ∀ (E : Type) [Field E] [NumberField E] [Is
             ((∏ b', (X b').det) ^ (M + N) * evR Xo c F z₁)) := by
           rw [← hL]; ring
 
-  obtain ⟨G, hG⟩ := exists_eq_prod_blockDetPoly_pow_mul K (E →+* ℂ) Dw.mult a _ (fun b => M + N - k b) rfl P'
+  obtain ⟨G, hG⟩ := GlobalTheory.LamT.FieldPoly.exists_eq_prod_blockDetPoly_pow_mul K (E →+* ℂ) Dw.mult a _ (fun b => M + N - k b) rfl P'
     (fun X b t hX ht htri => hP'tr X b t hX ht htri)
   have hGY : ∀ (z' : FrPt Xo c K) (Y : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) K),
       (∀ b, (Y b).det ≠ 0) → FrChg (fun b => (Y b).transpose) 1 y₀ z' →
@@ -217,7 +217,7 @@ theorem exists_isHomogeneous_secZ : ∀ (E : Type) [Field E] [NumberField E] [Is
     have h1 := hA z' Y hY h
     have h2 : evalFr P' Y = (∏ b, (Y b).det ^ (M + N - k b)) * evalFr G Y := by
       rw [hG]
-      simp only [← evalFr_blockDetPoly Dw.mult _ Y]
+      simp only [← GlobalTheory.LamT.FieldPoly.evalFr_blockDetPoly Dw.mult _ Y]
       simp only [evalFr, map_mul, map_prod, map_pow]
     have hne : (∏ b, (Y b).det ^ (M + N - k b)) ≠ 0 :=
       Finset.prod_ne_zero_iff.2 fun b _ => pow_ne_zero _ (hY b)
@@ -231,7 +231,7 @@ theorem exists_isHomogeneous_secZ : ∀ (E : Type) [Field E] [NumberField E] [Is
     omega
 
   have hGhom : G.IsHomogeneous (∑ b, ∑ i, a b i) := by
-    refine isHomogeneous_of_scaling G (∏ b, blockDetPoly K Dw.mult b) (fun h0 => ?_) _ (fun x hx => ?_)
+    refine isHomogeneous_of_scaling G (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) (fun h0 => ?_) _ (fun x hx => ?_)
     · have h1 := hevD fun _ => 1
       rw [h0] at h1
       simp [evalFr] at h1

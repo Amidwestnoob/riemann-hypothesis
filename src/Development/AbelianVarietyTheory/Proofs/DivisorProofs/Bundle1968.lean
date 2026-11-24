@@ -71,16 +71,16 @@ theorem relation_baseChange_field : ∀ (E : Type) [Field E] [NumberField E] [Is
   obtain ⟨P, N, hP⟩ := GlobalTheory.FrameDenseZ.exists_poly_div_det_secZ E H Dw l Xo c K y₀ e F hF
 
   have hevK : ∀ (n : (E →+* ℂ) → ℕ) (X : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) K),
-      evalFr (∏ b, blockDetPoly K Dw.mult b ^ n b) X = ∏ b, (X b).det ^ n b := fun n X => by
-    simp only [← evalFr_blockDetPoly Dw.mult _ X]
+      evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ n b) X = ∏ b, (X b).det ^ n b := fun n X => by
+    simp only [← GlobalTheory.LamT.FieldPoly.evalFr_blockDetPoly Dw.mult _ X]
     simp only [evalFr, map_prod, map_pow]
   have hevS : ∀ (n : (E →+* ℂ) → ℕ) (X : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) S),
-      evalFr (MvPolynomial.map φ.toRingHom (∏ b, blockDetPoly K Dw.mult b ^ n b)) X = ∏ b, (X b).det ^ n b :=
+      evalFr (MvPolynomial.map φ.toRingHom (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ n b)) X = ∏ b, (X b).det ^ n b :=
     fun n X => by
-    simp only [← evalFr_map_blockDetPoly φ.toRingHom Dw.mult _ X]
+    simp only [← GlobalTheory.LamT.FieldPoly.evalFr_map_blockDetPoly φ.toRingHom Dw.mult _ X]
     simp only [evalFr, map_prod, map_pow]
 
-  have hid : (∏ b, blockDetPoly K Dw.mult b ^ N) * G = (∏ b, blockDetPoly K Dw.mult b ^ k b) * P := by
+  have hid : (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ N) * G = (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ k b) * P := by
     by_contra hne
     obtain ⟨X, hX, hX0⟩ := GlobalTheory.FrameDenseZ.exists_frame_evalFr_ne_zero Dw.mult _ (sub_ne_zero.2 hne)
     obtain ⟨y', hy', -⟩ := GlobalTheory.Frames.existsUnique_frChg E H Dw l Xo c K y₀ (fun b => (X b).transpose) 1
@@ -91,9 +91,9 @@ theorem relation_baseChange_field : ∀ (E : Type) [Field E] [NumberField E] [Is
       (GlobalTheory.Frames.frMap_unique_refl_iff E H Dw l Xo c K K (AlgHom.id c.F K) y₀).2.1 hy'
     rw [show (AlgHom.id c.F K).toRingHom = RingHom.id K from rfl, MvPolynomial.map_id] at h2
     apply hX0
-    have e1 : evalFr ((∏ b, blockDetPoly K Dw.mult b ^ N) * G - (∏ b, blockDetPoly K Dw.mult b ^ k b) * P) X
-        = evalFr (∏ b, blockDetPoly K Dw.mult b ^ N) X * evalFr G X
-          - evalFr (∏ b, blockDetPoly K Dw.mult b ^ k b) X * evalFr P X := by
+    have e1 : evalFr ((∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ N) * G - (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ k b) * P) X
+        = evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ N) X * evalFr G X
+          - evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b ^ k b) X * evalFr P X := by
       simp only [evalFr, map_mul, map_sub]
     rw [e1, hevK, hevK, ← h1, ← h2, Finset.prod_pow]
     ring
