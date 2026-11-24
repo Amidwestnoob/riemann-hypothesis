@@ -20,8 +20,8 @@ def HTLac {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsA
   ∃ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) ∧
     ∃ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), ((l : ℕ) : 𝓞 E) ∈ w.asIdeal ∧ IsPlaceOver A w ∧
     ∃ (O : Type) (_ : CommRing O) (_ : Algebra ℤ_[l] O) (_ : TopologicalSpace O)
-      (Bw : LocBridge l E Ω (Dec (F := E) A) O), GlobalTheory.Pst.Induces Bw ∧
-    ∃ (τ : E →+* Qbar l) (J : Multiset ℤ), IsJumpsAt P Bw (V.comp (Dec (F := E) A).subtype) τ J ∧
+      (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), GlobalTheory.Pst.Induces Bw ∧
+    ∃ (τ : E →+* Qbar l) (J : Multiset ℤ), IsJumpsAt P Bw (V.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J ∧
       ∃ ks : Fin n → ℤ, Function.Injective ks ∧ (∀ i, ks i ∈ J) ∧ IsLac (fun i => ((ks i : ℤ) : ℚ))
 
 def SenWLac : Prop :=

@@ -43,15 +43,15 @@ theorem repE_eq {E Ω : Type} [Field E] [Field Ω] [Algebra E Ω] {l : ℕ} [Fac
 
 theorem lubinTate_at_embedding (HP : LTPeriods) : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied6 l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O),
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O),
       GlobalTheory.Pst.Induces Bw →
     ∀ (art : Ideles E →* Gab E Ω), IsGlobalArtin art →
     ∀ (LL' : FinExt l), Bw.LL.1 ≤ LL'.1 → ∀ (j : {j : w.adicCompletion E →+* Qbar l // Continuous j}),
-    ∃ lam : ↥(Dec (F := E) A) →* (↥LL'.1)ˣ,
+    ∃ lam : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (↥LL'.1)ˣ,
       Continuous (fun g => ((lam g : ↥LL'.1) : Qbar l)) ∧ (∀ g, ‖((lam g : ↥LL'.1) : Qbar l)‖ = 1) ∧
       PositivityTheory.HodgeLocalCharacter.HLC.IsdRJ Bw P LL' lam
         (fun τ' => if IsInduced Bw (j.1.comp (algebraMap E (w.adicCompletion E))) τ' then -1 else 0) ∧
-      ∀ (x : (w.adicCompletion E)ˣ) (σ : ↥(Dec (F := E) A)), IsUnitAt w x → (σ : G E Ω) ∈ Ine (F := E) A →
+      ∀ (x : (w.adicCompletion E)ˣ) (σ : ↥(ReciprocityTheory.Gal.Dec (F := E) A)), IsUnitAt w x → (σ : G E Ω) ∈ Ine (F := E) A →
         art (localIdele E w x) = toAb E Ω σ → ((lam σ : ↥LL'.1) : Qbar l) = j.1 x := by
   intro E Ω _ _ _ _ _ l _ P AI hT w A hA O _ _ _ Bw hI art hart LL' hLL j
   obtain ⟨χ, hχ, hc, hn⟩ := _root_.GlobalTheory.CompanionTheory.LTHodge.exists_lubinTateChar Bw.Kw
@@ -64,7 +64,7 @@ theorem lubinTate_at_embedding (HP : LTPeriods) : ∀ {E Ω : Type} [Field E] [N
   have hnorm : ∀ x : ↥Bw.Kw.1, ‖((τ x : ↥LL'.1) : Om l)‖ = ‖(x : Om l)‖ := fun x =>
     GlobalTheory.CompanionTheory.EmbUniq.norm_coe_algHom τ x
   refine ⟨ψ.comp Bw.e.toMonoidHom, ?_, ?_, ⟨?_, ?_⟩, ?_⟩
-  · have hc' : Continuous (fun g : ↥(Dec (F := E) A) =>
+  · have hc' : Continuous (fun g : ↥(ReciprocityTheory.Gal.Dec (F := E) A) =>
         (((χ (Bw.e g) : (↥Bw.Kw.1)ˣ) : ↥Bw.Kw.1) : Om l)) := hc.comp Bw.e_cont
     have hc'' := Metric.continuous_iff'.1 hc'
     refine Metric.continuous_iff'.2 fun b ε hε => ?_
@@ -115,7 +115,7 @@ section Jumps
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime]
   (P : LocPrime l) (AI : LocAinf l P) (hT : Nonempty (LocTied6 l P AI))
   {w : HeightOneSpectrum (𝓞 E)} {A : ValuationSubring Ω} (hA : IsPlaceOver A w)
-  {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O)
+  {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O)
   (hI : GlobalTheory.Pst.Induces Bw) (LL' : FinExt l) (hLL : Bw.LL.1 ≤ LL'.1)
 
 include hT hA hI hLL
@@ -131,7 +131,7 @@ theorem isdRJ_one_hlc : IsdRJ Bw P LL' 1 0 := by
   · intro σ _ _
     rfl
 
-theorem isdRJ_zpow_hlc {ψ : ↥(Dec (F := E) A) →* (↥LL'.1)ˣ} {J : (↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1) → ℤ}
+theorem isdRJ_zpow_hlc {ψ : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (↥LL'.1)ˣ} {J : (↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1) → ℤ}
     (h : IsdRJ Bw P LL' ψ J) (k : ℤ) : IsdRJ Bw P LL' (ψ ^ k) (k • J) := by
   refine Int.induction_on k ?_ ?_ ?_
   · simpa using isdRJ_one_hlc P AI hT hA Bw hI LL' hLL
@@ -143,7 +143,7 @@ theorem isdRJ_zpow_hlc {ψ : ↥(Dec (F := E) A) →* (↥LL'.1)ˣ} {J : (↥Bw.
     exact GlobalTheory.T.local_character_induced_tied P AI (UpperTheory.Lit.Cmp.locTied_of6 l P AI hT) w A hA O Bw hI LL' hLL _ _ _ _ ih
       (GlobalTheory.T.local_character_induced_tied_six P AI hT w A hA O Bw hI LL' hLL _ _ h)
 
-theorem isdRJ_prod_hlc {ι' : Type} (s : Finset ι') (ψ : ι' → (↥(Dec (F := E) A) →* (↥LL'.1)ˣ))
+theorem isdRJ_prod_hlc {ι' : Type} (s : Finset ι') (ψ : ι' → (↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (↥LL'.1)ˣ))
     (J : ι' → (↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1) → ℤ) (h : ∀ i ∈ s, IsdRJ Bw P LL' (ψ i) (J i)) :
     IsdRJ Bw P LL' (∏ i ∈ s, ψ i) (∑ i ∈ s, J i) := by
   induction s using Finset.induction_on with
@@ -174,7 +174,7 @@ theorem field_of_ltPeriods (HP : LTPeriods) : GlobalTheory.Published.HeckeLAdicC
     fun j => n ((ι.toRingHom.comp j.1).comp (algebraMap E (w.adicCompletion E)))
   let Jj : {j : w.adicCompletion E →+* Qbar l // Continuous j} → (↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1) → ℤ :=
     fun j τ' => if IsInduced Bw (j.1.comp (algebraMap E (w.adicCompletion E))) τ' then -1 else 0
-  let Λ : ↥(Dec (F := E) A) →* (↥LL'.1)ˣ := ∏ j, lam j ^ nj j
+  let Λ : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (↥LL'.1)ˣ := ∏ j, lam j ^ nj j
   have hΛ : IsdRJ Bw P LL' Λ (∑ j, nj j • Jj j) :=
     isdRJ_prod_hlc P AI hT6 hA Bw hI LL' hLL _ _ _ fun j _ =>
       isdRJ_zpow_hlc P AI hT6 hA Bw hI LL' hLL (hlJ j) (nj j)
@@ -188,7 +188,7 @@ theorem field_of_ltPeriods (HP : LTPeriods) : GlobalTheory.Published.HeckeLAdicC
   have hΛne : ∀ g, ((Λ g : ↥LL'.1) : Qbar l) ≠ 0 := fun g => by
     rw [hΛv]
     exact Finset.prod_ne_zero_iff.mpr fun j _ => zpow_ne_zero _ (hne j g)
-  let φ : ↥(Dec (F := E) A) →* (↥LL'.1)ˣ := ψ * Λ⁻¹
+  let φ : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* (↥LL'.1)ˣ := ψ * Λ⁻¹
   have hφv : ∀ g, ((φ g : ↥LL'.1) : Qbar l) = ((ψ g : ↥LL'.1) : Qbar l) * ((Λ g : ↥LL'.1) : Qbar l)⁻¹ := by
     intro g
     simp [φ]
