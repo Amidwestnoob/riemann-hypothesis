@@ -20,6 +20,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 open UpperTheory.V.Z UpperTheory.V.Z.Ord
 open scoped Matrix
 open scoped Pointwise
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.V.Z.Ord.CU
 section Abs
 variable {H H' k : Type} [Group H] [Group H'] [Field k] {n : ℕ}

@@ -12,6 +12,7 @@ set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000
 
 section
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section General
 open UpperTheory.V.Hi Polynomial
 private theorem onto_inf {M : Type} [AddCommGroup M] [Module ℂ M] (T : Module.End ℂ M) (Y S : Submodule ℂ M)

@@ -15,6 +15,7 @@ section
 noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual Polynomial UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd Matrix
 open GlobalTheory.CuspRep (SmIrr Af invT finId pFin locGL finGL GA chiDet)
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section Proj
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {a : ℕ}
 private theorem stable_iSup (S : Set (TR.CuspSub F a)) : TR.IsStable (⨆ π ∈ S, π.V) := fun o φ hφ => by

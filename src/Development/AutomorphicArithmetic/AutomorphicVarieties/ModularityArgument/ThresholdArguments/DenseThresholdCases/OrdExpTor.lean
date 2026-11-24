@@ -16,6 +16,7 @@ open UpperTheory.V.W (Plc Lp HidaSetting Vl Resid LamObj UniversalOrdinaryDeterm
 open UpperTheory.V.HV (Coef)
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open UpperTheory.V.Z UpperTheory.V.Z.Ord
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem unit_norm {Γ K : Type} [Group Γ] [TopologicalSpace Γ] [CompactSpace Γ] [NormedField K]
     (χ : Γ →* Kˣ) (hχ : Continuous fun s => (χ s : K)) (s : Γ) : ‖(χ s : K)‖ = 1 := by
   have key : ∀ t, ‖(χ t : K)‖ ≤ 1 := fun t => by

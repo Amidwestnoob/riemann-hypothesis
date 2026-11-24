@@ -17,6 +17,7 @@ open UpperTheory.V.HV (Coef)
 open scoped TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 set_option synthInstance.maxHeartbeats 200000
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section Ball
 variable {l : ℕ} [Fact l.Prime]
 private theorem du_nrm {x : Qbar l} (h : ‖x - 1‖ < 1) : ‖x‖ = 1 := by

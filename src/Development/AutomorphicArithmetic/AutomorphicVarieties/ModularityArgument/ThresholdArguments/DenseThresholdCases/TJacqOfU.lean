@@ -14,6 +14,7 @@ noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
 open scoped Matrix
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.V.Sd
 private theorem fixed_coinv {A V : Type} [CommGroup A] [AddCommGroup V] [Module ℂ V] (ν : Representation ℂ A V)
     (h : ∀ a y, ∃ n : ℕ, n ≠ 0 ∧ ν (a ^ n) y = y) (x : V)

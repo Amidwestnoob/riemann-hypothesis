@@ -16,6 +16,7 @@ open UpperTheory.V.W (Plc Lp HidaSetting Vl Resid LamObj UniversalOrdinaryDeterm
 open UpperTheory.V.HV (Coef)
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open UpperTheory.V.Z UpperTheory.V.Z.Ord
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 theorem UpperTheory.V.Z.Ord.ordinary_jacquet_of_literal_automorphy_n :
     _root_.GlobalTheory.Mem.LiteralAutomorphy.LiteratureRankNHypothesis → OrdJac := by
   intro H k _ _ _ _ n V _ _ π hπ hirr c φ _ v hv hv0 a ha

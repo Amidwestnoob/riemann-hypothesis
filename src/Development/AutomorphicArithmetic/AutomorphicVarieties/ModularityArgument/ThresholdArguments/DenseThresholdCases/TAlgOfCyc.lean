@@ -14,6 +14,7 @@ set_option synthInstance.maxHeartbeats 200000
 
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.HeckeGal GlobalTheory.GalOfCusp Filter Topology
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section Lem
 variable {E : Type} [Field E] [NumberField E] {l : ℕ} [Fact l.Prime]
 private theorem norm_pow_sub_le {K : Type} [NormedField K] [IsUltrametricDist K] {y : K} (hy : ‖y - 1‖ ≤ 1) (m : ℕ) :
