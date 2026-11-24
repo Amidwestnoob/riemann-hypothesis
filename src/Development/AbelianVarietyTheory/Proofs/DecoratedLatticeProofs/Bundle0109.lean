@@ -137,7 +137,9 @@ theorem isMulRightInvariant_map_coord : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ)
   have := vU.unit.1
   have : vU.ν.IsMulRightInvariant := (GlobalTheory.UnitU.isUnitU_exists_unique_rightInvariant D ρ).2.2 _ vU.unit
   have : SFinite vb.μ := inferInstance
-  have : SFinite vU.ν := inferInstance
+  have : SFinite vU.ν := by
+    haveI : SigmaFinite vU.ν := Measure.IsHaarMeasure.sigmaFinite _
+    exact MeasureTheory.instSFiniteOfSigmaFinite
   have : MeasurableAdd₂ (Mx D ρ ρ) := inferInstance
   have : MeasurableAdd₂ (skewA D ρ) := measurableAdd₂_addSubgroup _
   have : MeasurableAdd₂ (Mx D ρ V₀.rank) := inferInstance
