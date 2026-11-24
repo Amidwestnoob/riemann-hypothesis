@@ -34,10 +34,16 @@ private theorem smul_local (c : E ≃ₐ[ℚ] E) (w : HeightOneSpectrum (𝓞 E)
   have hs : ∀ u, ((c • (Neutral.B1.localIdele E w x : IdeleGroup E) : IdeleGroup E) : AdeleRing (𝓞 E) E).2 u =
       finiteCompletionMap (c : E ≃+* E) u (ev (comapPrime (c : E ≃+* E) u) (Neutral.B1.localIdele E w x : AdeleRing (𝓞 E) E)) :=
     fun u => smul_snd c _ u
+  have hself : ∀ (v : HeightOneSpectrum (𝓞 E)) (y : (v.adicCompletion E)ˣ),
+      ev v (Neutral.B1.localIdele E v y : AdeleRing (𝓞 E) E) = y :=
+    fun v y => Neutral.B1.localIdele_snd_self E v y
+  have hne : ∀ {v u : HeightOneSpectrum (𝓞 E)}, u ≠ v → ∀ (y : (v.adicCompletion E)ˣ),
+      ev u (Neutral.B1.localIdele E v y : AdeleRing (𝓞 E) E) = 1 :=
+    fun hu y => (Neutral.B1.localIdele_isSupportedAt E _ y).2 _ hu
   refine ⟨Units.map (ev (c • w)) (c • (Neutral.B1.localIdele E w x : IdeleGroup E)), ?_,
     Units.ext (Prod.ext ?_ (Subtype.ext (funext fun u => ?_)))⟩
   · change Valued.v (((c • (Neutral.B1.localIdele E w x : IdeleGroup E) : IdeleGroup E) : AdeleRing (𝓞 E) E).2 (c • w)) = _
-    rw [hs, valued_finiteCompletionMap, comapPrime_eq_inv_smul, inv_smul_smul, ev_local_self]
+    rw [hs, valued_finiteCompletionMap, comapPrime_eq_inv_smul, inv_smul_smul, hself]
   · funext u
     change (c • ((Neutral.B1.localIdele E w x : IdeleGroup E) : AdeleRing (𝓞 E) E)).1 u = 1
     rw [smul_fst]
@@ -46,13 +52,13 @@ private theorem smul_local (c : E ≃ₐ[ℚ] E) (w : HeightOneSpectrum (𝓞 E)
       ev u (Neutral.B1.localIdele E (c • w) _ : AdeleRing (𝓞 E) E)
     by_cases hu : u = c • w
     · subst hu
-      rw [ev_local_self]
+      rw [hself]
       rfl
     · have h1 : comapPrime (c : E ≃+* E) u ≠ w := by
         rw [comapPrime_eq_inv_smul]
         rintro rfl
         exact hu (smul_inv_smul c u).symm
-      rw [ev_local_ne hu, hs, ev_local_ne h1]
+      rw [hne hu, hs, hne h1]
       exact map_one _
 
 end UpperTheory.LocalScalarValues
