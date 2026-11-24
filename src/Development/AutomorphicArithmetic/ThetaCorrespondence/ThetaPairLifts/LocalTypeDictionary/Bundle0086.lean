@@ -26,6 +26,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsWe
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaLiftPeterssonNormEqRallisIntegral
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 section
 noncomputable section
 open NumberField MeasureTheory IsDedekindDomain UniqueFactorizationMonoid
