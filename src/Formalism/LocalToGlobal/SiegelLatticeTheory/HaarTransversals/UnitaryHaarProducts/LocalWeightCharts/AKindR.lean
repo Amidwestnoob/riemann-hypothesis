@@ -332,7 +332,7 @@ theorem aReprod_of (hSG : SigmaG) (hS : SGrp) (hAB : ABound) (hRG : ReprodG) :
   have hσ : IsURepOn (Gr k r) σ := hSG k r _ _ H σ hDS
   obtain ⟨_, _, hw1, _⟩ := hLow
   have hGae := ae_gr hμG.2.2.1
-  obtain ⟨K, hK⟩ := hΩ.exists_bound_of_continuousOn (opn_continuous (k := k) (r := r)).continuousOn
+  obtain ⟨K, hK⟩ := hΩ.exists_bound_of_continuousOn (_root_.WlocSk.PtD.opn_continuous (k := k) (r := r)).continuousOn
   have hw : ∫⁻ g, ‖α (Matrix.of g)‖ₑ * ENNReal.ofReal (opn (Matrix.of g) ^ N1H k r) ∂μG < ⊤ := by
     calc ∫⁻ g, ‖α (Matrix.of g)‖ₑ * ENNReal.ofReal (opn (Matrix.of g) ^ N1H k r) ∂μG
         ≤ ∫⁻ g, ENNReal.ofReal (max K 0 ^ N1H k r) * ‖α (Matrix.of g) • σ (Matrix.of g) w‖ₑ ∂μG := by

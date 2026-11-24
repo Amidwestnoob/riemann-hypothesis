@@ -233,7 +233,7 @@ theorem fibOnto_holds : FibOnto := by
     simp [hM]
   have hth : star (theta D) = 1 - theta D := by
     rw [Inh.tie_star]
-    exact eq_sub_of_add_eq' (theta_spec D).2
+    exact eq_sub_of_add_eq' (_root_.Formalism.L2.SG.Pf.NcReal.JX.NOf.Onto.theta_spec D).2
   have hData : DataOK X X0 xs M := by
     refine ⟨hup, hdg, hW, ?_⟩
     ext i j

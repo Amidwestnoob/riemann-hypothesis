@@ -21,10 +21,10 @@ open scoped InnerProductSpace
 
 theorem highest_weight_model_equiv (N : ℕ) (Λ : Fin N → ℝ) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     (σ : Matrix (Fin N) (Fin N) ℂ → (H →L[ℂ] H)) (S : Submodule ℂ H)
-    (hU : IsURepOn (Kset (allPos N)) σ) (hK : IsKTypeOf (allPos N) σ Λ S) :
+    (hU : _root_.PI.UpqRep.IsURepOn (_root_.PI.UpqRep.Kset (allPos N)) σ) (hK : IsKTypeOf (allPos N) σ Λ S) :
     ∃ lam : DomWeight N, (∀ a, Λ a = ((lam.w a : ℤ) : ℝ)) ∧
       ∃ e : S ≃ₗ[ℂ] nablaSq ℂ N lam,
-        ∀ (g : GL (Fin N) ℂ) (hg : (g : Matrix (Fin N) (Fin N) ℂ) ∈ Kset (allPos N)) (x : S),
+        ∀ (g : GL (Fin N) ℂ) (hg : (g : Matrix (Fin N) (Fin N) ℂ) ∈ _root_.PI.UpqRep.Kset (allPos N)) (x : S),
           ((e ⟨σ g x, hK.2.1 _ hg _ x.2⟩ : nablaSq ℂ N lam) : MvPolynomial (Fin N × Fin N) ℂ) =
             sqAct ℂ N lam g (e x) := by
   have hA : PolyExt := polyExt_of polynomial_coefficients unitaryGroupDense_holds
@@ -215,10 +215,10 @@ open Formalism.BasicNotions PI.UpqRep
 
 theorem model_equiv (N : ℕ) (Λ : Fin N → ℝ) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     (σ : Matrix (Fin N) (Fin N) ℂ → (H →L[ℂ] H)) (S : Submodule ℂ H)
-    (hU : IsURepOn (Kset (allPos N)) σ) (hK : IsKTypeOf (allPos N) σ Λ S) :
+    (hU : _root_.PI.UpqRep.IsURepOn (_root_.PI.UpqRep.Kset (allPos N)) σ) (hK : IsKTypeOf (allPos N) σ Λ S) :
     ∃ lam : DomWeight N, (∀ a, Λ a = ((lam.w a : ℤ) : ℝ)) ∧
       ∃ e : S ≃ₗ[ℂ] nablaSq ℂ N lam,
-        ∀ (g : GL (Fin N) ℂ) (hg : (g : Matrix (Fin N) (Fin N) ℂ) ∈ Kset (allPos N)) (x : S),
+        ∀ (g : GL (Fin N) ℂ) (hg : (g : Matrix (Fin N) (Fin N) ℂ) ∈ _root_.PI.UpqRep.Kset (allPos N)) (x : S),
           ((e ⟨σ g x, hK.2.1 _ hg _ x.2⟩ : nablaSq ℂ N lam) : MvPolynomial (Fin N × Fin N) ℂ) =
             sqAct ℂ N lam g (e x) :=
   highest_weight_model_equiv N Λ H σ S hU hK
