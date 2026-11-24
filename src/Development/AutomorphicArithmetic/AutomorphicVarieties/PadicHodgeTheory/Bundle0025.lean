@@ -84,7 +84,7 @@ theorem UpperTheory.V.Loc.dualCr :
     exact ⟨hγ.1.comp continuous_subtype_val, fun g h => hγ.2 g h⟩
   have key := deformCr D.HL.subtype hH.isOpenEmbedding_subtypeVal (glOn D.HL r h1)
     (hr.comp continuous_subtype_val) _ hy (glOn D.HL r' h1') (fun g i j => (hd g).2 i j) ⊤ (by simp)
-  rw [isLCr_iff D r' h1', isLCr_iff D r h1, ← crOn_top, ← crOn_top, key,
+  rw [isLCr_iff D r' h1', isLCr_iff D r h1, ← _root_.crOn_top, ← _root_.crOn_top, key,
     z1fDesc (MonoidHom.id _) (adRep r) D.HL γ hγ, had, MonoidHom.id_comp]
 end
 
