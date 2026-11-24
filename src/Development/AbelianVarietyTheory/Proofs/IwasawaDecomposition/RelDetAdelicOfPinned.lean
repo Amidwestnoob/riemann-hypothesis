@@ -515,7 +515,7 @@ theorem classIdeal_e1T : letI := H.cmStar
   have hz : (z : H.E) ≠ 0 := fun h => k.ne_zero (by rw [← hk, h, zero_mul])
   rw [← GlobalTheory.Mem.Col2.isRationalUnitaryDeterminantMap_rationalUnitary H k z hk, classIdeal_mk]
   refine GlobalTheory.Idele.eq_of_count_eq (normIdeal_ne_zero H _) (FractionalIdeal.spanSingleton_ne_zero_iff.2 hz) fun w => ?_
-  have hv : ∀ v : HeightOneSpectrum (𝓞 H.E), valAt v (diagUnits H.E k) = v.valuation H.E (k : H.E) := fun v =>
+  have hv : ∀ v : HeightOneSpectrum (𝓞 H.E), valAt v (Neutral.B1.diagUnits H.E k) = v.valuation H.E (k : H.E) := fun v =>
     GlobalTheory.Idele.valued_algebraMap v (k : H.E)
   have h1 := congrArg (fun x => log (w.valuation H.E x)) hk
   simp only [map_mul, val_conj] at h1
