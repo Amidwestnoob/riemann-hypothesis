@@ -183,7 +183,7 @@ theorem goodOf_conj' {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Rec
     (c : Coeff l) (σ : c.F →+* ℂ) : goodOf c ((starRingEnd ℂ).comp σ) = goodOf c σ := by
   have e : (starRingEnd ℂ).comp σ = ComplexEmbedding.conjugate σ := by
     ext x; simp [ComplexEmbedding.conjugate_coe_eq]
-  rw [e]; exact goodOf_conj (c := c) σ
+  rw [e]; exact GlobalTheory.CompHt.goodOf_conj (c := c) σ
 
 theorem nrmK_conj (σ : p.T.Q.c.F →+* ℂ) (x : VK p.fw i) :
     nrmK p.fw i ((starRingEnd ℂ).comp σ) x = nrmK p.fw i σ x := by
