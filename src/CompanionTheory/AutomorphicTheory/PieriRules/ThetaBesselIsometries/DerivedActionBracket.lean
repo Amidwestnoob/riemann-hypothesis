@@ -66,8 +66,8 @@ theorem dsig_dsig (hσ : IsDSHpk k r ε mu σ) {X Y : Mx k r} (hX : InLieHpk k r
     (hF.fderiv_of_isOpen hU (by simp)).clm_apply L.contDiff.contDiffOn
   have hGe : ∀ g ∈ U, inUH (Hpk k r) g → σ g (dsig (k := k) (r := r) σ Y v) = fderiv ℝ F g (L g) := by
     intro g hg hgH
-    have h1 := hasDerivAt_local hY hU hg hF hfF hgH
-    have h2 := hasDerivAt_apply hY hv (σ g)
+    have h1 := _root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_local hY hU hg hF hfF hgH
+    have h2 := _root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_apply hY hv (σ g)
     have e : (fun u : ℝ => σ (g * NormedSpace.exp ((u : ℂ) • Y)) v) =
         fun t : ℝ => σ g (σ (NormedSpace.exp ((t : ℂ) • Y)) v) := by
       funext t
@@ -76,7 +76,7 @@ theorem dsig_dsig (hσ : IsDSHpk k r ε mu σ) {X Y : Mx k r} (hX : InLieHpk k r
     rw [e] at h1
     simp only [hL]
     exact h2.unique h1
-  have h := hasDerivAt_local (f := fun g => σ g (dsig (k := k) (r := r) σ Y v)) hX hU h1 hG hGe one_mem
+  have h := _root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_local (f := fun g => σ g (dsig (k := k) (r := r) σ Y v)) hX hU h1 hG hGe _root_.Gp91.GlobalTheory.DerivedAction.one_mem
   simp only [Matrix.one_mul] at h
   exact h.deriv
 
@@ -84,8 +84,8 @@ theorem dsig_bracket (hσ : IsDSHpk k r ε mu σ) {X Y : Mx k r} (hX : InLieHpk 
     (hv : v ∈ smoothVecs (k := k) (r := r) σ) :
     dsig (k := k) (r := r) σ X (dsig (k := k) (r := r) σ Y v) -
       dsig (k := k) (r := r) σ Y (dsig (k := k) (r := r) σ X v) = dsig (k := k) (r := r) σ (X * Y - Y * X) v := by
-  obtain ⟨U, F, hU, h1, hF, hfF⟩ := hv 1 one_mem
-  have h := hasDerivAt_local (lie_bracket hX hY) hU h1 hF hfF one_mem
+  obtain ⟨U, F, hU, h1, hF, hfF⟩ := hv 1 _root_.Gp91.GlobalTheory.DerivedAction.one_mem
+  have h := _root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_local (lie_bracket hX hY) hU h1 hF hfF _root_.Gp91.GlobalTheory.DerivedAction.one_mem
   simp only [Matrix.one_mul] at h
   have e : dsig (k := k) (r := r) σ (X * Y - Y * X) v = fderiv ℝ F 1 (X * Y - Y * X) := h.deriv
   let L : Mx k r →L[ℝ] Mx k r := (LinearMap.mulRight ℝ Y).toContinuousLinearMap

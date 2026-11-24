@@ -253,24 +253,24 @@ noncomputable section
 namespace GlobalTheory.EtC.GmStep.KillColim
 
 theorem laurentMap_coeff_apply {A B : Type} [CommRing A] [CommRing B] (f : A →+* B)
-    (p : LaurentPolynomial A) (m : ℤ) : (laurentMap f p).coeff m = f (p.coeff m) := by
+    (p : LaurentPolynomial A) (m : ℤ) : (_root_.GlobalTheory.EtC.GmStep.laurentMap f p).coeff m = f (p.coeff m) := by
   rw [laurentMap_coeff, Finsupp.mapRange_apply]
 
 theorem laurentMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    (laurentMap g).comp (laurentMap f) = laurentMap (g.comp f) := by
+    (_root_.GlobalTheory.EtC.GmStep.laurentMap g).comp (_root_.GlobalTheory.EtC.GmStep.laurentMap f) = _root_.GlobalTheory.EtC.GmStep.laurentMap (g.comp f) := by
   refine RingHom.ext fun p => ?_
   · apply AddMonoidAlgebra.coeff_injective
     ext m
     simp [laurentMap_coeff_apply]
 
-theorem laurentMap_id (A : Type) [CommRing A] : laurentMap (RingHom.id A) = RingHom.id _ := by
+theorem laurentMap_id (A : Type) [CommRing A] : _root_.GlobalTheory.EtC.GmStep.laurentMap (RingHom.id A) = RingHom.id _ := by
   refine RingHom.ext fun p => ?_
   · apply AddMonoidAlgebra.coeff_injective
     ext m
     simp [laurentMap_coeff_apply]
 
 theorem laurentMap_injective {A B : Type} [CommRing A] [CommRing B] (f : A →+* B)
-    (hf : Function.Injective f) : Function.Injective (laurentMap f) := by
+    (hf : Function.Injective f) : Function.Injective (_root_.GlobalTheory.EtC.GmStep.laurentMap f) := by
   intro p r h
   apply AddMonoidAlgebra.coeff_injective
   ext m
@@ -286,7 +286,7 @@ variable (A S : Type) [CommRing A] [CommRing S] [Algebra A S]
 def diag : Finset S ⥤ CommRingCat.{0} where
   obj t := CommRingCat.of (LaurentPolynomial (Algebra.adjoin A (t : Set S)))
   map {t u} h := CommRingCat.ofHom
-    (laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (Finset.coe_subset.2 h.le))).toRingHom)
+    (_root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (Finset.coe_subset.2 h.le))).toRingHom)
   map_id t := by
     ext1
     refine (Eq.trans ?_ (laurentMap_id _)).trans rfl
@@ -299,7 +299,7 @@ def diag : Finset S ⥤ CommRingCat.{0} where
 
 def cocone : Cocone (diag A S) where
   pt := CommRingCat.of (LaurentPolynomial S)
-  ι := { app := fun t => CommRingCat.ofHom (laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom)
+  ι := { app := fun t => CommRingCat.ofHom (_root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom)
          naturality := fun t u h => by
            ext1
            simp only [diag, Functor.const_obj_map, Category.comp_id, CommRingCat.hom_comp,
@@ -308,22 +308,22 @@ def cocone : Cocone (diag A S) where
            rfl }
 
 theorem val_CT (t : Finset S) (a : Algebra.adjoin A (t : Set S)) (n : ℤ) :
-    laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom (LaurentPolynomial.C a * LaurentPolynomial.T n) =
+    _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom (LaurentPolynomial.C a * LaurentPolynomial.T n) =
       LaurentPolynomial.C (a : S) * LaurentPolynomial.T n := by
   rw [map_mul, laurentMap_C, laurentMap_T]
   rfl
 
 theorem lm_val_incl {t u : Finset S} (h : (t : Set S) ⊆ u) (p : LaurentPolynomial (Algebra.adjoin A (t : Set S))) :
-    laurentMap (Algebra.adjoin A (u : Set S)).val.toRingHom
-        (laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h)).toRingHom p) =
-      laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom p := by
+    _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (u : Set S)).val.toRingHom
+        (_root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h)).toRingHom p) =
+      _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom p := by
   apply AddMonoidAlgebra.coeff_injective
   ext m
   simp only [laurentMap_coeff_apply, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Subalgebra.coe_val,
     Subalgebra.coe_inclusion]
 
 theorem exists_finset_adjoin_laurent_preimage (x : LaurentPolynomial S) : ∃ (t : Finset S) (y : LaurentPolynomial (Algebra.adjoin A (t : Set S))),
-    x = laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom y := by
+    x = _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom y := by
   classical
   induction x using LaurentPolynomial.induction_on' with
   | add p r hp hr =>
@@ -331,8 +331,8 @@ theorem exists_finset_adjoin_laurent_preimage (x : LaurentPolynomial S) : ∃ (t
     obtain ⟨t', y', rfl⟩ := hr
     have h1 : (t : Set S) ⊆ ((t ⊔ t' : Finset S) : Set S) := Finset.coe_subset.2 le_sup_left
     have h2 : (t' : Set S) ⊆ ((t ⊔ t' : Finset S) : Set S) := Finset.coe_subset.2 le_sup_right
-    refine ⟨t ⊔ t', laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h1)).toRingHom y +
-      laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h2)).toRingHom y', ?_⟩
+    refine ⟨t ⊔ t', _root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h1)).toRingHom y +
+      _root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono h2)).toRingHom y', ?_⟩
     rw [map_add (f := _), lm_val_incl A S h1, lm_val_incl A S h2]
   | C_mul_T n a =>
     have hmem : a ∈ Algebra.adjoin A (({a} : Finset S) : Set S) :=
@@ -343,11 +343,11 @@ theorem exists_finset_adjoin_laurent_preimage (x : LaurentPolynomial S) : ∃ (t
 
 theorem laurent_adjoin_eq_of_image_eq [DecidableEq S] {i j : Finset S} (xi : LaurentPolynomial (Algebra.adjoin A (i : Set S)))
     (xj : LaurentPolynomial (Algebra.adjoin A (j : Set S)))
-    (h : laurentMap (Algebra.adjoin A (i : Set S)).val.toRingHom xi =
-      laurentMap (Algebra.adjoin A (j : Set S)).val.toRingHom xj) :
-    laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono
+    (h : _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (i : Set S)).val.toRingHom xi =
+      _root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (j : Set S)).val.toRingHom xj) :
+    _root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono
         (Finset.coe_subset.2 (le_sup_left : i ≤ i ⊔ j)))).toRingHom xi =
-      laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono
+      _root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono
         (Finset.coe_subset.2 (le_sup_right : j ≤ i ⊔ j)))).toRingHom xj := by
   refine laurentMap_injective (Algebra.adjoin A ((i ⊔ j : Finset S) : Set S)).val.toRingHom
     Subtype.val_injective ?_

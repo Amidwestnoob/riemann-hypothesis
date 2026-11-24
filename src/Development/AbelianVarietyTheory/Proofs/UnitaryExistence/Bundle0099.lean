@@ -165,7 +165,7 @@ theorem exists_unf_hasPrinc : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   obtain ⟨M, hM, hX, hG⟩ := _root_.GlobalTheory.ModelsExist.exists_modelsOf hH E H Dw l Xo _ _ _ F r ξ₀ Gm φ hξ hneg hφ
   obtain ⟨un, hun⟩ := _root_.GlobalTheory.FrameUnif.exists_framesOK hB hT E H Dw l Xo c σ _ e F r M hσ hM hX
   have hred : IsReduced (CAt σ) := inferInstanceAs (IsReduced ℂ)
-  refine ⟨unfOf e F M un, _root_.GlobalTheory.FrameUnif.isUnf_built hB E H Dw l Xo c σ _ e F r M un hσ hM hX hun, fun k γ hγ h => ?_,
+  refine ⟨_root_.GlobalTheory.FrameUnif.unfOf e F M un, _root_.GlobalTheory.FrameUnif.isUnf_built hB E H Dw l Xo c σ _ e F r M un hσ hM hX hun, fun k γ hγ h => ?_,
     ⟨⟨0, F.n_pos⟩⟩, hM.chi, hG,
     fun k x => _root_.GlobalTheory.Frames.allTest_of_secBaseChange hB E H Dw l Xo c (CAt σ) _, fun ρ => ⟨_root_.GlobalTheory.CuspCentre.latZ E r ρ _ _, fun hA => ?_⟩⟩
   · exact (hM.gam k γ).2 ⟨hγ, fun a _ => congr_of_dvd_modulus _ (M.φ k) _ (Nat.dvd_lcm_left _ _) h a,
@@ -280,7 +280,7 @@ theorem exists_unf_of_space : N1c → GlobalTheory.Published.HasseNormSt → Out
   obtain ⟨M, hM, hX, hG⟩ := _root_.GlobalTheory.ModelsExist.exists_modelsOf hH E H Dw l Xo _ _ _ F r ξ₀ Gm φ hξ hneg hφ
   obtain ⟨un, hun⟩ := _root_.GlobalTheory.FrameUnif.exists_framesOK hB hT E H Dw l Xo c σ _ e F r M hσ hM hX
   have hred : IsReduced (CAt σ) := inferInstanceAs (IsReduced ℂ)
-  refine ⟨unfOf e F M un, _root_.GlobalTheory.FrameUnif.isUnf_built hB E H Dw l Xo c σ _ e F r M un hσ hM hX hun, ⟨⟨0, F.n_pos⟩⟩, hM.chi, hG,
+  refine ⟨_root_.GlobalTheory.FrameUnif.unfOf e F M un, _root_.GlobalTheory.FrameUnif.isUnf_built hB E H Dw l Xo c σ _ e F r M un hσ hM hX hun, ⟨⟨0, F.n_pos⟩⟩, hM.chi, hG,
     fun k x => _root_.GlobalTheory.Frames.allTest_of_secBaseChange hB E H Dw l Xo c (CAt σ) _, fun ρ => ⟨_root_.GlobalTheory.CuspCentre.latZ E r ρ _ _, fun hA => ?_⟩⟩
   exact _root_.GlobalTheory.ExpoModels.expoMatch_models E H Dw l Xo _ _ _ F r M ρ hM hA
 

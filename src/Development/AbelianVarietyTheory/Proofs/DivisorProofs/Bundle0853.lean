@@ -346,13 +346,13 @@ namespace GlobalTheory.LKRes
 variable (p : ℕ) [Fact p.Prime]
 
 noncomputable def frobQEquiv (r : ℕ) (hr : 0 < r) : Qr p r ≃ₐ[ℚ_[p]] Qr p r :=
-  haveI : FiniteDimensional ℚ_[p] (Qr p r) := finiteDimensional_Kn p (Q0 p) inferInstance hr
+  haveI : FiniteDimensional ℚ_[p] (Qr p r) := finiteDimensional_Kn p (_root_.GlobalTheory.LKRes.Q0 p) inferInstance hr
   AlgEquiv.ofBijective (frobQ p r)
     ((frobQ p r).toLinearMap.injective_iff_surjective.mp (frobQ p r).toRingHom.injective |>
       fun hs => ⟨(frobQ p r).toRingHom.injective, hs⟩)
 
 theorem frobQEquiv_pow_apply (r : ℕ) (hr : 0 < r) (i : ℕ) (b : Qr p r) :
-    (((frobQEquiv p r hr ^ i) b : Qr p r) : PadicAlgCl p) = (frobK p (Q0 p) ^ i) (b : PadicAlgCl p) := by
+    (((frobQEquiv p r hr ^ i) b : Qr p r) : PadicAlgCl p) = (frobK p (_root_.GlobalTheory.LKRes.Q0 p) ^ i) (b : PadicAlgCl p) := by
   induction i generalizing b with
   | zero => rfl
   | succ n ih =>
@@ -360,7 +360,7 @@ theorem frobQEquiv_pow_apply (r : ℕ) (hr : 0 < r) (i : ℕ) (b : Qr p r) :
     rfl
 
 theorem orderOf_frobQEquiv (r : ℕ) (hr : 0 < r) : orderOf (frobQEquiv p r hr) = r := by
-  have hK : FiniteDimensional ℚ_[p] (Q0 p) := inferInstance
+  have hK : FiniteDimensional ℚ_[p] (_root_.GlobalTheory.LKRes.Q0 p) := inferInstance
   have key : ∀ i : ℕ, frobQEquiv p r hr ^ i = 1 ↔ r ∣ i := by
     intro i
     rw [← IsFrobOn.pow_fixes_iff p (Q0 p) hK hr ((isFrob_frobK hK).isFrobOn r) i]

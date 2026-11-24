@@ -106,7 +106,7 @@ variable {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {mu : Fin (2 * r + k + 
 
 theorem dC_smul_left (h1 : (Hpk k r)ᴴ = Hpk k r) (h2 : Hpk k r * Hpk k r = 1) (R : Rep k r) (c : ℂ)
     (Y : Mx k r) {v : R.H} (hv : v ∈ R.sm) : R.dC (c • Y) v = c • R.dC Y v := by
-  obtain ⟨L, hL⟩ := exists_lin hv
+  obtain ⟨L, hL⟩ := _root_.Gp91.GlobalTheory.DerivedAction.exists_lin hv
   have hE : Formalism.QuantumDeterminants.Hpk k r = Hpk k r := rfl
   unfold Rep.dC
   rw [hE, (hL _ (part_one_lie h1 h2 _)).1, (hL _ (part_one_lie h1 h2 _)).1,
@@ -126,7 +126,7 @@ theorem dC_smul_right (h1 : (Hpk k r)ᴴ = Hpk k r) (h2 : Hpk k r * Hpk k r = 1)
     (Y : Mx k r) {v : R.H} (hv : v ∈ R.sm) : R.dC Y (c • v) = c • R.dC Y v := by
   have hE : Formalism.QuantumDeterminants.Hpk k r = Hpk k r := rfl
   unfold Rep.dC
-  rw [hE, dsig_smul (part_one_lie h1 h2 _) c hv, dsig_smul (part_two_lie h1 h2 _) c hv,
+  rw [hE, _root_.Gp91.GlobalTheory.DerivedAction.dsig_smul (part_one_lie h1 h2 _) c hv, _root_.Gp91.GlobalTheory.DerivedAction.dsig_smul (part_two_lie h1 h2 _) c hv,
     smul_comm Complex.I c, ← smul_add]
 
 theorem dC_conj (hK : PI.KFinSmooth) (R : Rep k r) (hR : R.IsDG ε mu)
@@ -137,8 +137,8 @@ theorem dC_conj (hK : PI.KFinSmooth) (R : Rep k r) (hR : R.IsDG ε mu)
   have hU : gᴴ * Hpk k r * g = Hpk k r := hg
   unfold Rep.dC
   rw [hE, map_add (f := _), map_smul,
-    (derived_action hK k r ε mu R hR _ (part_one_lie h1 h2 Y)).2.1 v hv g hg,
-    (derived_action hK k r ε mu R hR _ (part_two_lie h1 h2 Y)).2.1 v hv g hg,
+    (_root_.Gp91.GlobalTheory.DerivedAction.derived_action hK k r ε mu R hR _ (part_one_lie h1 h2 Y)).2.1 v hv g hg,
+    (_root_.Gp91.GlobalTheory.DerivedAction.derived_action hK k r ε mu R hR _ (part_two_lie h1 h2 Y)).2.1 v hv g hg,
     ← theta_conj h2 hu hU]
   simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_add, Matrix.add_mul, Matrix.mul_sub,
     Matrix.sub_mul, Matrix.mul_neg, Matrix.neg_mul]

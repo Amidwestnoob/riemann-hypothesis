@@ -480,7 +480,7 @@ theorem polFn_apply {n : ℕ} (Q : Formalism.L2.DIV.Pol ℂ X.Tau n) (y : Fr X �
     polFn X σ n Q y = MvPolynomial.eval (fun v => y.1 v.1 v.2.1 v.2.2) Q := by
   simp [polFn, fnOf]
 
-theorem polFn_injective (n : ℕ) : Function.Injective (polFn X σ n) := fnOf_injective _ 0 1 (fun _ => by simp) (stdFrC _)
+theorem polFn_injective (n : ℕ) : Function.Injective (polFn X σ n) := _root_.Formalism.L2.Col.fnOf_injective _ 0 1 (fun _ => by simp) (stdFrC _)
 
 def fnPol (X : Fields) (σ : X.K →+* ℂ) (n : ℕ) : (Fr X σ n → ℂ) →ₗ[ℂ] Formalism.L2.DIV.Pol ℂ X.Tau n := polOf _ 0 (stdFrC _)
 

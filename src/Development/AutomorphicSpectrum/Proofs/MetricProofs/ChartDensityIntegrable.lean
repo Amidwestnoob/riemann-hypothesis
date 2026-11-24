@@ -33,7 +33,7 @@ open GroundTheory.Heights₂.Heights (chartLift chartProjMatrix_mulVec chartWeig
   chartLift_segre_apply IsSheetAt sheetSum)
 open GroundTheory.Heights₂.Heights.ComplexSets (zeroSet IsFiniteProjection)
 open GroundTheory.Heights₂.Heights.PtsSegreChartFibreSum (isClosed_zeroSet exists_minimalPrime_of_mem_zeroSet
-  exists_poly_of_not_mem logNorm_ofWeight_one isSectionOn_ofWeight_one)
+  exists_poly_of_not_mem _root_.GroundTheory.Heights₂.Heights.PtsSegreChartFibreSum.logNorm_ofWeight_one isSectionOn_ofWeight_one)
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 

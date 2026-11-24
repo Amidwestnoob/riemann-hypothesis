@@ -124,12 +124,12 @@ theorem lie_br {X Y : Mx k r} (hX : InLieHpk k r X) (hY : InLieHpk k r Y) : InLi
 theorem dsig_add_left (R : Rep k r) {X Y : Mx k r} (hX : InLieHpk k r X) (hY : InLieHpk k r Y) {v : R.H}
     (hv : v ∈ R.sm) : dsig (k := k) (r := r) R.σ (X + Y) v =
       dsig (k := k) (r := r) R.σ X v + dsig (k := k) (r := r) R.σ Y v := by
-  obtain ⟨L, hL⟩ := exists_lin hv
+  obtain ⟨L, hL⟩ := _root_.Gp91.GlobalTheory.DerivedAction.exists_lin hv
   rw [(hL _ hX).1, (hL _ hY).1, (hL _ (lie_add hX hY)).1, map_add (f := _)]
 
 theorem dsig_smul_left (R : Rep k r) (a : ℝ) {X : Mx k r} (hX : InLieHpk k r X) {v : R.H}
     (hv : v ∈ R.sm) : dsig (k := k) (r := r) R.σ (a • X) v = (a : ℂ) • dsig (k := k) (r := r) R.σ X v := by
-  obtain ⟨L, hL⟩ := exists_lin hv
+  obtain ⟨L, hL⟩ := _root_.Gp91.GlobalTheory.DerivedAction.exists_lin hv
   rw [(hL _ hX).1, (hL _ (lie_smul a hX)).1, map_smul, Complex.coe_smul]
 
 theorem dsig_neg_left (R : Rep k r) {X : Mx k r} (hX : InLieHpk k r X) {v : R.H}
@@ -168,12 +168,12 @@ theorem dC_lin_left (R : Rep k r) (Y Z : Mx k r) (a : ℂ) {v : R.H} (hv : v ∈
 theorem complexified_action : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Bool) (mu : Fin (2 * r + k + 1) → ℝ) (R : Rep k r), R.IsDG ε mu → (∀ Y, ∀ v ∈ R.sm, R.dC Y v ∈ R.sm) ∧ (∀ Y (a : ℂ), ∀ v ∈ R.sm, ∀ w ∈ R.sm, R.dC Y (a • v + w) = a • R.dC Y v + R.dC Y w) ∧ (∀ Y Z (a : ℂ), ∀ v ∈ R.sm, R.dC (a • Y + Z) v = a • R.dC Y v + R.dC Z v) ∧ (∀ X, PI.UpqRep.InLieHpk k r X → ∀ v ∈ R.sm, R.dC X v = PI.UpqRep.dsig (k := k) (r := r) R.σ X v) ∧ (∀ Y Z, ∀ v ∈ R.sm, R.dC Y (R.dC Z v) - R.dC Z (R.dC Y v) = R.dC (Y * Z - Z * Y) v) ∧ ∀ Y, ∀ v ∈ R.sm, ∀ w ∈ R.sm, ⟪R.dC Y v, w⟫_ℂ = ⟪v, R.dC ((Formalism.QuantumDeterminants.Hpk k r) * Yᴴ * (Formalism.QuantumDeterminants.Hpk k r)) w⟫_ℂ := by
   intro hK k r ε mu R hR
   have hsm : ∀ {X}, InLieHpk k r X → ∀ {v}, v ∈ R.sm → dsig (k := k) (r := r) R.σ X v ∈ R.sm :=
-    fun hX _ hv => dsig_smooth hR.2 hX hv
+    fun hX _ hv => _root_.Gp91.GlobalTheory.DerivedAction.dsig_smooth hR.2 hX hv
   have hlin : ∀ {X}, InLieHpk k r X → ∀ (a : ℂ) {v w}, v ∈ R.sm → w ∈ R.sm →
       dsig (k := k) (r := r) R.σ X (v + a • w) =
         dsig (k := k) (r := r) R.σ X v + a • dsig (k := k) (r := r) R.σ X w := by
     intro X hX a v w hv hw
-    rw [dsig_add hX hv (R.smSub.smul_mem a hw), dsig_smul hX a hw]
+    rw [_root_.Gp91.GlobalTheory.DerivedAction.dsig_add hX hv (R.smSub.smul_mem a hw), _root_.Gp91.GlobalTheory.DerivedAction.dsig_smul hX a hw]
   refine ⟨fun Y v hv => ?_, fun Y a v hv w hw => ?_, fun Y Z a v hv => dC_lin_left R Y Z a hv,
     fun X hX v hv => dC_lie R hX hv, fun Y Z v hv => ?_, fun Y v hv w hw => ?_⟩
   · exact R.smSub.add_mem (hsm (lie_re Y) hv) (R.smSub.smul_mem _ (hsm (lie_im Y) hv))
@@ -199,8 +199,8 @@ theorem complexified_action : PI.KFinSmooth → ∀ (k r : ℕ) (ε : Fin (2 * r
       dsig (k := k) (r := r) R.σ Z₂ (dsig (k := k) (r := r) R.σ Y₂ v))
   · obtain ⟨Y₁, Y₂, h1, h2, rfl⟩ := exists_decomp Y
     rw [adj_decomp h1 h2, dC_decomp R h1 h2, dC_decomp R (lie_neg h1) h2, dsig_neg_left R h1 hw, inner_add_left,
-      inner_add_right, inner_smul_left, inner_smul_right, inner_neg_right, dsig_skew hR.2 h1 hv hw,
-      dsig_skew hR.2 h2 hv hw, Complex.conj_I]
+      inner_add_right, inner_smul_left, inner_smul_right, inner_neg_right, _root_.Gp91.GlobalTheory.DerivedAction.dsig_skew hR.2 h1 hv hw,
+      _root_.Gp91.GlobalTheory.DerivedAction.dsig_skew hR.2 h2 hv hw, Complex.conj_I]
     ring
 
 end GlobalTheory.ComplexifiedAction

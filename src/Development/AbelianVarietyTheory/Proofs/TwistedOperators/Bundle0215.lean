@@ -88,7 +88,7 @@ def reWEquiv (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V) : WO S T
   invFun := reWi S T b
   left_inv := reWi_reW S T b
   right_inv := reW_reWi S T b
-  map_add' := reW_add S T b
+  map_add' := _root_.GlobalTheory.AdSpan.ReVec.reW_add S T b
 
 theorem continuous_reW (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V) :
     Continuous (reW S T b) := by

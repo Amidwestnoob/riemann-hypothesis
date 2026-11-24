@@ -155,7 +155,7 @@ theorem dsigW_smooth (hR : R.IsDG ε mu) {y : R.H} (hy : y ∈ R.sm) (b : List (
   induction b with
   | nil => exact hy
   | cons Y b ih =>
-    exact dsig_smooth hR.2 (hb Y (by simp)) (ih fun Z hZ => hb Z (by simp [hZ]))
+    exact _root_.Gp91.GlobalTheory.DerivedAction.dsig_smooth hR.2 (hb Y (by simp)) (ih fun Z hZ => hb Z (by simp [hZ]))
 
 theorem right_step (hK : PI.KFinSmooth) (hR : R.IsDG ε mu) (X : V) (F : Mx k r → V) (x : R.H) {y : R.H}
     (hy : y ∈ R.sm) (hF : ∀ g ∈ GG k r, F g = ⟪x, R.σ g y⟫_ℂ • X) {Y : Mx k r} (hY : B.inLie k r Y)
@@ -163,11 +163,11 @@ theorem right_step (hK : PI.KFinSmooth) (hR : R.IsDG ε mu) (X : V) (F : Mx k r 
     deriv (fun t : ℝ => F (g * NormedSpace.exp ((t : ℂ) • Y))) 0 =
       ⟪x, R.σ g (PI.UpqRep.dsig (k := k) (r := r) R.σ Y y)⟫_ℂ • X := by
   obtain ⟨hmul, -⟩ := rep_basic_of_isDS hK k r ε mu R hR
-  have h := (coefL R x X).hasFDerivAt.comp_hasDerivAt (0 : ℝ) (hasDerivAt_apply (σ := R.σ) hY hy (R.σ g))
+  have h := (coefL R x X).hasFDerivAt.comp_hasDerivAt (0 : ℝ) (_root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_apply (σ := R.σ) hY hy (R.σ g))
   rw [← coefL_apply, ← h.deriv]
   congr 1
   funext t
-  have he : NormedSpace.exp ((t : ℂ) • Y) ∈ GG k r := exp_mem hY t
+  have he : NormedSpace.exp ((t : ℂ) • Y) ∈ GG k r := _root_.Gp91.GlobalTheory.DerivedAction.exp_mem hY t
   rw [hF _ (Formalism.FourierDecayAlt.P.TranslationBesselVanishing.uh_mul hg he), hmul g hg _ he]
   rfl
 
@@ -176,16 +176,16 @@ theorem left_step (hK : PI.KFinSmooth) (hR : R.IsDG ε mu) (X : V) (F : Mx k r �
     (g : Mx k r) (hg : g ∈ GG k r) :
     B.LdV Y F g = ⟪PI.UpqRep.dsig (k := k) (r := r) R.σ Y x, R.σ g y⟫_ℂ • X := by
   obtain ⟨hmul, hone, hinner, -⟩ := rep_basic_of_isDS hK k r ε mu R hR
-  have h1 := (hasDerivAt_dsig (σ := R.σ) hY hx).inner ℂ (hasDerivAt_const (0 : ℝ) (R.σ g y))
+  have h1 := (_root_.Gp91.GlobalTheory.DerivedAction.hasDerivAt_dsig (σ := R.σ) hY hx).inner ℂ (hasDerivAt_const (0 : ℝ) (R.σ g y))
   simp only [inner_zero_right, zero_add] at h1
   have h := h1.smul_const X
   unfold B.LdV
   rw [← h.deriv]
   congr 1
   funext t
-  have he : NormedSpace.exp ((t : ℂ) • Y) ∈ GG k r := exp_mem hY t
+  have he : NormedSpace.exp ((t : ℂ) • Y) ∈ GG k r := _root_.Gp91.GlobalTheory.DerivedAction.exp_mem hY t
   have he' : NormedSpace.exp (-((t : ℂ) • Y)) ∈ GG k r := by
-    have := exp_mem hY (-t)
+    have := _root_.Gp91.GlobalTheory.DerivedAction.exp_mem hY (-t)
     rwa [Complex.ofReal_neg, neg_smul] at this
   have hee : NormedSpace.exp ((t : ℂ) • Y) * NormedSpace.exp (-((t : ℂ) • Y)) = 1 := by
     rw [← Matrix.exp_add_of_commute _ _ (Commute.refl ((t : ℂ) • Y)).neg_right, add_neg_cancel, NormedSpace.exp_zero]

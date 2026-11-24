@@ -76,12 +76,12 @@ theorem designS : ∀ (Q : Par → PtProp) (cT : ℝ → ℝ → ℝ) (la : ℝ)
     have := (hall x i).1.2.2
     rwa [Fm.L_x x i (hlt x hx), Fm.L_eps x i] at this
   have hreq := classOf_reqPt Fm fun x hx i => ⟨(hc x hx i).2, (hc x hx i).1.2.2.1, (hc x hx i).1.2.2.2.1⟩
-  have hDG : DGamDvdF Fm := ⟨Fm.x1 + 1, fun x hx i u => (hc x (hlt x hx) i).1.1.2.2.1 _ (hM _) u⟩
+  have hDG : _root_.GlobalTheory.EX.DC.DGamDvdF Fm := ⟨Fm.x1 + 1, fun x hx i u => (hc x (hlt x hx) i).1.1.2.2.1 _ (hM _) u⟩
   have hTame : GlobalTheory.EX.DC.TameDistinctF Fm := ⟨Fm.x1 + 1, fun x hx i => (hc x (hlt x hx) i).1.1.2.1⟩
   have hCFeq : Fm.CF = C.P.CF := by
     have := congrArg (fun f : ℝ → List ℝ => (f 0).getD 9 0) hMid
     simpa [FamP.cMid, FC.cMid] using this
-  have hUp : CodeUpF Fm 3 C.P.CF := by
+  have hUp : _root_.GlobalTheory.EX.DC.CodeUpF Fm 3 C.P.CF := by
     refine ⟨Fm.x1 + 1, fun x hx i => ?_⟩
     have h := (hall x i).2.2
     rw [Fm.L_x x i (hlt x hx)] at h

@@ -273,7 +273,7 @@ theorem polOf_fnOf_one (P : Pol ℂ ι n) : polOf (Gr emb σ n) 0 (fr0 emb σ n)
 
 theorem blockAct_inv (γ : GL (Fin n) E) (P : Pol ℂ ι n) :
     Formalism.GradedWeylDivisibility.blockAct ℂ (matAt emb σ γ) (Formalism.GradedWeylDivisibility.blockAct ℂ (matAt emb σ γ⁻¹) P) = P := by
-  refine fnOf_injective (Gr emb σ n) 0 1 (fun _ => by simp) (fr0 emb σ n) (funext fun y => ?_)
+  refine _root_.Formalism.L2.Col.fnOf_injective (Gr emb σ n) 0 1 (fun _ => by simp) (fr0 emb σ n) (funext fun y => ?_)
   rw [← fnOf_move, ← fnOf_move, ← GlobalTheory.Mem.Col2.frMul_mul, inv_mul_cancel, GlobalTheory.Mem.Col2.frMul_one]
 
 def opOf {a b : ℕ} (s' s : ι → ℤ) (cD : ι → ℂ) (G : VCx ι a b → ℂ) (x : Fr emb σ a → ℂ) (y' : Fr emb σ b) : ℂ :=

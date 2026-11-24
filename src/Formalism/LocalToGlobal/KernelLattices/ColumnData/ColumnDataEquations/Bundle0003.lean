@@ -59,10 +59,10 @@ theorem mulO_phi {N N' : ℕ} (r : D.host.E) (γ : Matrix.unitaryGroup (Fin N) D
     (γ' : Matrix.unitaryGroup (Fin N') D.host.E) (x : TaylorLogMetric.VC D N N') :
     mulO N N' r (phiU γ γ' x) = phiU γ γ' (mulO N N' r x) := by
   funext τ i j
-  show TaylorLogMetric.embT D τ r * (gM (γ' : Matrix (Fin N') (Fin N') D.host.E) τ * Matrix.of (x τ) *
-      (gM (γ : Matrix (Fin N) (Fin N) D.host.E) τ)ᴴ) i j =
-    (gM (γ' : Matrix (Fin N') (Fin N') D.host.E) τ * Matrix.of (fun i j => TaylorLogMetric.embT D τ r * x τ i j) *
-      (gM (γ : Matrix (Fin N) (Fin N) D.host.E) τ)ᴴ) i j
+  show TaylorLogMetric.embT D τ r * (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.gM (γ' : Matrix (Fin N') (Fin N') D.host.E) τ * Matrix.of (x τ) *
+      (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.gM (γ : Matrix (Fin N) (Fin N) D.host.E) τ)ᴴ) i j =
+    (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.gM (γ' : Matrix (Fin N') (Fin N') D.host.E) τ * Matrix.of (fun i j => TaylorLogMetric.embT D τ r * x τ i j) *
+      (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.gM (γ : Matrix (Fin N) (Fin N) D.host.E) τ)ᴴ) i j
   have h1 : Matrix.of (fun i j => TaylorLogMetric.embT D τ r * x τ i j) = TaylorLogMetric.embT D τ r • Matrix.of (x τ) := by
     ext a b
     simp
@@ -73,7 +73,7 @@ theorem mulO_adj (A : ℝ) {N N' : ℕ} (r : D.host.E) (x y : TaylorLogMetric.VC
   simp only [Formalism.L2.Ker.formV, LinearMap.mk₂'ₛₗ_apply, mulO, LinearMap.coe_mk, AddHom.coe_mk]
   congr 1
   refine Finset.sum_congr rfl fun τ _ => Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  rw [map_mul, embT_star', Complex.star_def, Complex.conj_conj]
+  rw [map_mul, _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.embT_star', Complex.star_def, Complex.conj_conj]
   ring
 
 theorem gaussRow_of (hS : B.StdOK) (hL : B.LatAll) (hNeg : NegOneNorm D) : GaussRow B := by
@@ -102,8 +102,8 @@ theorem gaussRow_of (hS : B.StdOK) (hL : B.LatAll) (hNeg : NegOneNorm D) : Gauss
   have hal0 : TaylorLogMetric.al D (TaylorLogMetric.tor0 D cc δ) (0 : TaylorLogMetric.VC D N 1) = 1 := by
     unfold TaylorLogMetric.al TaylorLogMetric.Hf
     simp
-  have hU₁ := c.unitaryData₁ 0 (unitaryData hL hN (by decide) γ 1 Ae hA) (formV_herm' _ _ _ _)
-    (formV_pos (area_pos' B) _ _ _) (phiL_isom _ _ _ _ _ _ _) hA₁ hal0 (al_phi _ _ _ _ _ _)
+  have hU₁ := c.unitaryData₁ 0 (unitaryData hL hN (by decide) γ 1 Ae hA) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.formV_herm' _ _ _ _)
+    (formV_pos (area_pos' B) _ _ _) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.phiL_isom _ _ _ _ _ _ _) hA₁ hal0 (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.al_phi _ _ _ _ _ _)
   have hcard : 0 < S.card := by
     obtain ⟨x, hx, -⟩ := hS₁.2.2 0 (AddSubgroup.zero_mem _)
     exact Finset.card_pos.mpr ⟨x, hx⟩
@@ -148,7 +148,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 variable {D : Car} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} {B : Cd.Base D cc δ}
 
 theorem first_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTL : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0L D B.tor) (hG : GaussRow B)
-    (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : J1 B := by
+    (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.J1 B := by
   intro N N' γ hN hN'
   obtain ⟨γ₁, γ₂, rfl, h1, h2⟩ := split_host D γ
   have h0 := Formalism.L2.Ker.Cd.Base.thZeroMem B hS N N'
@@ -157,7 +157,7 @@ theorem first_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTL : _
     (J1at_of_ne hS hL hG hN hN' (hLat N N' hN hN') (hSp N N' hN hN') γ₂ h2)
 
 theorem second_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTR : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0R D B.tor) (hG : GaussRow B)
-    (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : J2 B := by
+    (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.J2 B := by
   intro N N' γ' hN hN'
   obtain ⟨γ₁, γ₂, rfl, h1, h2⟩ := split_host D γ'
   have h0 := Formalism.L2.Ker.Cd.Base.thZeroMem B hS N N'
@@ -166,7 +166,7 @@ theorem second_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTR : 
     (J2at_of_ne hS hL hG hN hN' (hLat N N' hN hN') (hSp N N' hN hN') γ₂ h2)
   have hhalf : B.thHalf N N' (StandardLatticesGL3.stdL D N) = B.thZero N N' := by
     unfold Formalism.L2.Ker.Cd.Base.thHalf
-    exact iopSelf D B.tor N N' _ _ (Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0)
+    exact _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.iopSelf D B.tor N N' _ _ (Formalism.L2.Ker.Cd.mem_ThSp_of D B.tor _ _ h0)
   unfold J2at at key
   unfold Formalism.L2.Ker.Cd.Base.thMoved
   rw [hhalf]
