@@ -448,7 +448,7 @@ theorem GlobalTheory.VarFlag.rel_specialise : ∀ {E : Type} [Field E] [NumberFi
     ⟨y, ι.comp ψA, φ₁, f, t, 1, by rw [hv, ← Category.assoc, sp_comp_sp], hf0,
       hfLf.tri rfl (by rw [hxL, hxA, ← Category.assoc, sp_comp_sp])⟩
   obtain ⟨t1, ht1⟩ := hCT (FractionRing A) _ _ _ _ fL gL hcF hcL
-  have hfLid : fL.IsMap (RingHom.id _) fL := fun τ i => by rw [spMap_dualMap_id, Category.id_comp]
+  have hfLid : fL.IsMap (RingHom.id _) fL := fun τ i => by rw [GlobalTheory.VarFlagSpec.spMap_dualMap_id, Category.id_comp]
 
   have key : ∀ τ, (fA.co gA τ).BlockTriangular id ∧ ∀ i, IsUnit (fA.co gA τ i i) := by
     intro τ

@@ -402,7 +402,7 @@ theorem GlobalTheory.PtExt.cohom_sumMul_fv_of_abelian : GlobalTheory.Published.A
   have hcl : H1.mk _ f' = H1.mk _ S := by
     have e := congrArg Subtype.val hz
     set_option synthInstance.maxHeartbeats 100000 in
-      simp only [map_sum, liftSemi_tmul] at e
+      simp only [map_sum, GlobalTheory.DeRham.liftSemi_tmul] at e
     rw [← e]
     set_option synthInstance.maxHeartbeats 100000 in
       simp only [S, map_sum, map_smul, Submodule.coe_sum, Submodule.coe_smul, GrpMor.coe_pull]

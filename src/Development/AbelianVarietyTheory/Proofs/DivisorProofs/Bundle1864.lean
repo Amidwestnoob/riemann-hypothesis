@@ -107,11 +107,11 @@ theorem differentiableOn_rdU_of_antitone {σ : c.F →+* ℂ} {r : ℕ} {U : Unf
   refine ((a2.mul ((a1.pow (M + 1)).inv (pow_ne_zero _ hx0))).congr_of_eventuallyEq ?_).differentiableWithinAt
   filter_upwards [a1.continuousAt.eventually_ne hx0] with y hy0
   have e1 : rdU U (g ^ (M + 1) * f) k y = rdU U g k y ^ (M + 1) * rdU U f k y := by
-    rw [rdU_mul]
+    rw [GlobalTheory.AllWt.rdU_mul]
     have : ∀ m : ℕ, rdU U (g ^ (m + 1)) = rdU U g ^ (m + 1) := fun m => by
       induction m with
       | zero => simp
-      | succ m ih => rw [pow_succ g (m + 1), rdU_mul, ih, ← pow_succ]
+      | succ m ih => rw [pow_succ g (m + 1), GlobalTheory.AllWt.rdU_mul, ih, ← pow_succ]
     rw [this]; rfl
   rw [Pi.mul_apply, Pi.inv_apply, e1, Pi.pow_apply, mul_right_comm, mul_inv_cancel₀ (pow_ne_zero _ hy0), one_mul]
 

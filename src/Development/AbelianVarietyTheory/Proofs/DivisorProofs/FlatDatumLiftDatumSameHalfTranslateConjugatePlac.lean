@@ -616,12 +616,12 @@ theorem isSBHalf_actPull {D : D7} {S T : HSp D} {e : AE D} {Λ : AddSubgroup (WO
   refine ⟨fun t ht => (isHalf_actO _ _ t).1 (hsupp _ ht), k * N, Nat.mul_pos hk (Nat.pos_of_ne_zero hN),
     fun u hu hue t => ?_, fun t ht => ?_⟩
   · simp only [actPull, inv_one]
-    rw [actO_add, actO_nsmul, mul_smul]
+    rw [actO_add, Formalism.IndefR.Fin.LevelGroupLemmas.actO_nsmul, mul_smul]
     exact hinv _ (h2 u hu hue) (hns _ _ ((isHalf_actO _ _ u).2 hue)) _
   · have hth : IsHalf e t := (isHalf_actO _ _ t).1 (hsupp _ ht)
     have h3 := hcpt _ ht
     simp only [inv_one] at h3
-    rw [← actO_nsmul] at h3
+    rw [← Formalism.IndefR.Fin.LevelGroupLemmas.actO_nsmul] at h3
     rw [mul_comm, mul_smul]
     exact nsmul_mem (h1 _ (hns _ _ hth) h3) N
 

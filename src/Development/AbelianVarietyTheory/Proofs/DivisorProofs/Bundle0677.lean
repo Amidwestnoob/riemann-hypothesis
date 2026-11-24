@@ -184,7 +184,7 @@ theorem GlobalTheory.EtC.laurent_vanishing_of_noetherian : ∀ (q : ℕ) [NeZero
     rw [← lmap_comp, hfg]; rfl
   rw [← hy, e]
   change pull _ (spMap ((lmap g).comp (lmap f))) _ _ y = 0
-  rw [spMap_comp']
+  rw [GlobalTheory.EtC.LaurentNoeth.spMap_comp']
   refine (pull_comp (ZMod q) (spMap (lmap g)) (spMap (lmap f)) (tw q i) n y).trans ?_
   have : pull _ (spMap (lmap f)) (tw q i) n y = 0 := Subsingleton.elim _ _
   rw [this, map_zero]

@@ -319,7 +319,7 @@ theorem genPoint_mul_self (G : Over (Sp R)) [GrpObj G] (a : Over.mk (jK R) ⟶ G
   · erw [Over.w (genPoint G a * genPoint G a), Over.w (1 : T ⟶ (Over.pullback (jK R)).obj G)]
 
 theorem transl_genPoint_fst (G : Over (Sp R)) [GrpObj G] (a : Over.mk (jK R) ⟶ G) :
-    (transl (genPoint G a)).left ≫ pullback.fst G.hom (jK R) = (genPr G * genPt G a).left := by
+    (GlobalTheory.PolTranslate.transl (genPoint G a)).left ≫ pullback.fst G.hom (jK R) = (genPr G * genPt G a).left := by
   have H := isGrpPullback_pullback G (jK R)
   refine (H.2 _ (𝟙 _) (toUnit _ ≫ genPoint G a) (genPr G) (genPt G a) ?_ ?_).symm
   · exact (Category.id_comp _).symm
@@ -369,19 +369,19 @@ theorem GlobalTheory.Mum.exists_transl_pkg : ∀ (R : Type) [CommRing R] [IsDoma
     haveI hU : Unique (Sp (FractionRing R)) := inferInstanceAs (Unique (PrimeSpectrum (FractionRing R)))
     let p0 : (𝟙_ (Over (Sp (FractionRing R)))).left := hU.default
     obtain ⟨i, hi⟩ := exists_chart A.isLB (b'.left p0)
-    have h1 : LBIso LG (A.L.pull (gen.hom.left ≫ (transl b').left)) :=
+    have h1 : LBIso LG (A.L.pull (gen.hom.left ≫ (GlobalTheory.PolTranslate.transl b').left)) :=
       lbIso_diff_pull A.isLB _ _ _ i fun z => by
         show b'.left ((gen.hom.left ≫ A.A.hom) z) ∈ A.L.U i
         have : (gen.hom.left ≫ A.A.hom) z = p0 := hU.uniq _
         rw [this]
         exact hi
-    have e : gen.hom.left ≫ (transl b').left = (transl b).left ≫ gen.hom.left := by
-      rw [← Over.comp_left, ← Over.comp_left, comp_transl, transl, MonObj.mul_comp, Category.id_comp,
+    have e : gen.hom.left ≫ (GlobalTheory.PolTranslate.transl b').left = (GlobalTheory.PolTranslate.transl b).left ≫ gen.hom.left := by
+      rw [← Over.comp_left, ← Over.comp_left, comp_transl, GlobalTheory.PolTranslate.transl, MonObj.mul_comp, Category.id_comp,
         Category.assoc]
     rw [e] at h1
-    have h2 := GlobalTheory.ZM.SiegClause.lbIso_pull_pull (LBIso.symm hL) (transl b).left
+    have h2 := GlobalTheory.ZM.SiegClause.lbIso_pull_pull (LBIso.symm hL) (GlobalTheory.PolTranslate.transl b).left
     have h3 := GlobalTheory.ZM.SiegClause.lbIso_pull_pull (GlobalTheory.PolBaseChange.lbIso_refl (pull_isLB hPL (pullback.fst G.hom (jK R))))
-      (transl b).left
+      (GlobalTheory.PolTranslate.transl b).left
     rw [transl_genPoint_fst] at h3
     exact LBIso.trans hLG (pull_isLB A.isLB _) (pull_isLB hPL _) h1
       (LBIso.trans (pull_isLB A.isLB _) (pull_isLB (pull_isLB hPL _) _) (pull_isLB hPL _) (LBIso.symm h2) h3)
