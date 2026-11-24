@@ -76,12 +76,12 @@ theorem exists_E {w : Matrix (Fin n) (Fin n) k} (hw : w ∈ B0 Z) : ∃ u, E Z u
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem dot_D (u : Fin (d Z) → k) (x : Matrix (Fin n) (Fin n) k) : u ⬝ᵥ D Z x = trace (E Z u * x) := by
   rw [E_apply, Finset.sum_mul, trace_sum]
-  simp [dotProduct, D, smul_mul_assoc, trace_smul]
+  simp [dotProduct, D, smul_mul_assoc, Matrix.trace_smul]
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem D_E (u : Fin (d Z) → k) : D Z (E Z u) = G Z *ᵥ u := by
   funext i
-  simp [D, G, E_apply, mulVec, dotProduct, Finset.mul_sum, trace_sum, mul_smul_comm, trace_smul, mul_comm]
+  simp [D, G, E_apply, mulVec, dotProduct, Finset.mul_sum, trace_sum, mul_smul_comm, Matrix.trace_smul, mul_comm]
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem D_add (x y : Matrix (Fin n) (Fin n) k) : D Z (x + y) = D Z x + D Z y := by
@@ -114,7 +114,7 @@ theorem orth {z w : Matrix (Fin n) (Fin n) k} (hz : z ∈ Z) (hw : w ∈ B0 Z) :
   intro i _
   have hi : trace (((Module.finBasis k Z) i : Matrix (Fin n) (Fin n) k) * w) = 0 := by
     simpa [qZ] using congrFun hq i
-  rw [smul_mul_assoc, trace_smul, hi, smul_zero]
+  rw [smul_mul_assoc, Matrix.trace_smul, hi, smul_zero]
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem D_Z {z : Matrix (Fin n) (Fin n) k} (hz : z ∈ Z) : D Z z = 0 := by
@@ -156,7 +156,7 @@ theorem G_inj (hZ : CR Z) (h : Hyp Z) {u : Fin (d Z) → k} (hu : G Z *ᵥ u = 0
       rw [← hv, ← dot_D, hD, dotProduct_zero]
     have h2 : trace (piZ Z b * E Z u) = 0 := orth Z (h.pi_mem b) hw
     have h3 : trace (b * E Z u) = trace ((b - piZ Z b) * E Z u) + trace (piZ Z b * E Z u) := by
-      rw [← trace_add, ← add_mul, sub_add_cancel]
+      rw [← Matrix.trace_add, ← add_mul, sub_add_cancel]
     rw [h3, h1, h2, add_zero]
   apply E_injective Z
   rw [h0]

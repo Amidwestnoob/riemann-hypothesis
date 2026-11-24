@@ -23,11 +23,11 @@ variable (Z : Subalgebra k (Matrix (Fin n) (Fin n) k))
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem qZ_add (x x' : Matrix (Fin n) (Fin n) k) : qZ Z (x + x') = qZ Z x + qZ Z x' := by
-  funext i; simp [qZ, mul_add, trace_add]
+  funext i; simp [qZ, mul_add, Matrix.trace_add]
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem qZ_smul (a : k) (x : Matrix (Fin n) (Fin n) k) : qZ Z (a • x) = a • qZ Z x := by
-  funext i; simp [qZ, trace_smul]
+  funext i; simp [qZ, Matrix.trace_smul]
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
 theorem qZ_sub (x x' : Matrix (Fin n) (Fin n) k) : qZ Z (x - x') = qZ Z x - qZ Z x' := by

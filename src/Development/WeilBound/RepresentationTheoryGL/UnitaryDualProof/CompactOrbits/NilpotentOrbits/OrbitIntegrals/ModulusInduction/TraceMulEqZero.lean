@@ -18,7 +18,7 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 theorem qZ_add (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (x y : Matrix (Fin n) (Fin n) k) :
     qZ Z (x + y) = qZ Z x + qZ Z y := by
-  funext i; simp [qZ, mul_add, trace_add]
+  funext i; simp [qZ, mul_add, Matrix.trace_add]
 
 theorem qZ_sub (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (x y : Matrix (Fin n) (Fin n) k) :
     qZ Z (x - y) = qZ Z x - qZ Z y := by
@@ -27,7 +27,7 @@ theorem qZ_sub (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (x y : Matrix (Fin 
 theorem qZ_smul (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) (r : k) (x : Matrix (Fin n) (Fin n) k) :
     qZ Z (r • x) = r • qZ Z x := by
   funext i
-  simp only [qZ, Pi.smul_apply, Matrix.mul_smul, trace_smul]
+  simp only [qZ, Pi.smul_apply, Matrix.mul_smul, Matrix.trace_smul]
 
 theorem piZ_congr (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) {x y : Matrix (Fin n) (Fin n) k}
     (h : qZ Z x = qZ Z y) : piZ Z x = piZ Z y := by
@@ -132,7 +132,7 @@ theorem trace_mul_eq_zero (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) {c : Mat
     exact h1.symm
   rw [hb', Finset.sum_mul, trace_sum]
   refine Finset.sum_eq_zero (fun i _ => ?_)
-  rw [Matrix.smul_mul, trace_smul]
+  rw [Matrix.smul_mul, Matrix.trace_smul]
   have h2 := congrFun hq i
   simp only [qZ, Pi.zero_apply] at h2
   rw [h2, smul_zero]

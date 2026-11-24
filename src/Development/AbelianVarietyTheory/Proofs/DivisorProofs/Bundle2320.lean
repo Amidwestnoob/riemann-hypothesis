@@ -356,11 +356,11 @@ theorem closedImm_of_pullback {k Ω : CommRingCat.{0}} (hk : IsField k) (hΩ : I
   letI := hΩ.toField
   letI := φ.hom.toAlgebra
   have hd := GlobalTheory.ClosedImmFieldDescent.isClosedImmersion_descendsAlong_fpqc
-  have hq : (@Surjective ⊓ @Flat ⊓ @QuasiCompact : MorphismProperty Scheme.{0}) (Spec.map φ) :=
+  have hq : (@Surjective ⊓ @AlgebraicGeometry.Flat ⊓ @QuasiCompact : MorphismProperty Scheme.{0}) (Spec.map φ) :=
     GlobalTheory.ClosedImmFieldDescent.fpqc_specMap_field k Ω
   exact MorphismProperty.of_isPullback_of_descendsAlong (P := @IsClosedImmersion)
-    (Q := @Surjective ⊓ @Flat ⊓ @QuasiCompact) (isPullback_pullback_map _ v)
-    (MorphismProperty.of_isPullback (P := @Surjective ⊓ @Flat ⊓ @QuasiCompact)
+    (Q := @Surjective ⊓ @AlgebraicGeometry.Flat ⊓ @QuasiCompact) (isPullback_pullback_map _ v)
+    (MorphismProperty.of_isPullback (P := @Surjective ⊓ @AlgebraicGeometry.Flat ⊓ @QuasiCompact)
       (IsPullback.of_hasPullback Y.hom (Spec.map φ)).flip hq) h
 
 theorem closedImm_iff_residue {W : Scheme.{0}} {X Y : Over W} (v : X ⟶ Y) (k : Type) [Field k] (w : Sp k ⟶ W) :

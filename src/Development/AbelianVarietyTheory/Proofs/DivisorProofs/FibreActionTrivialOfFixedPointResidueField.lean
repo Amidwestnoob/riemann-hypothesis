@@ -101,8 +101,8 @@ theorem descend {X' G : Scheme.{0}} (h : G ⟶ X') (x : X') (K : Type) [Field K]
         w ≫ u = w)
     (T : Scheme.{0}) (w : T ⟶ G) (v : T ⟶ Spec (X'.residueField x)) (hw : w ≫ h = v ≫ X'.fromSpecResidueField x) :
     w ≫ u = w := by
-  have f₁ : Flat (Spec.map (CommRingCat.ofHom (algebraMap (X'.residueField x) K))) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
+  have f₁ : AlgebraicGeometry.Flat (Spec.map (CommRingCat.ofHom (algebraMap (X'.residueField x) K))) := by
+    rw [HasRingHomProperty.Spec_iff (P := @AlgebraicGeometry.Flat)]
     exact RingHom.Flat.of_isField (Field.toIsField _) _
   have f₂ : Surjective (Spec.map (CommRingCat.ofHom (algebraMap (X'.residueField x) K))) :=
     ⟨fun y => ⟨(default : PrimeSpectrum K), Subsingleton.elim (α := PrimeSpectrum (X'.residueField x)) _ _⟩⟩

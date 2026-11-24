@@ -309,10 +309,10 @@ theorem traceForm_nondegenerate : ∀ (E : Type) [Field E] [NumberField E] [IsCM
         Matrix.mul_one, ← hY']
       abel
     have ht : (Y - c • (1 : Matrix (Fin r) (Fin r) E)).trace = 0 := by
-      rw [trace_sub, trace_smul, trace_one, Fintype.card_fin, smul_eq_mul, hcdef,
+      rw [trace_sub, Matrix.trace_smul, trace_one, Fintype.card_fin, smul_eq_mul, hcdef,
         div_mul_cancel₀ _ hr, sub_self]
     have h := hY (Y - c • (1 : Matrix (Fin r) (Fin r) E)) ht (form_skew_of_matrix G _ hs)
-    rw [Matrix.mul_sub, trace_sub, Matrix.mul_smul, Matrix.mul_one, trace_smul, htr,
+    rw [Matrix.mul_sub, trace_sub, Matrix.mul_smul, Matrix.mul_one, Matrix.trace_smul, htr,
       smul_zero, sub_zero] at h
     exact h
 
@@ -338,8 +338,8 @@ theorem traceForm_nondegenerate : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       simp only [A, B, Matrix.add_apply, Matrix.smul_apply, of_apply, smul_eq_mul]
       field_simp
       ring
-    rw [Matrix.mul_assoc, hK, Matrix.mul_add, Matrix.mul_add, trace_add, Matrix.mul_smul,
-      Matrix.mul_smul, trace_smul, hXY _ (hskew A hA), hXY _ (hskew B hB), smul_zero, add_zero]
+    rw [Matrix.mul_assoc, hK, Matrix.mul_add, Matrix.mul_add, Matrix.trace_add, Matrix.mul_smul,
+      Matrix.mul_smul, Matrix.trace_smul, hXY _ (hskew A hA), hXY _ (hskew B hB), smul_zero, add_zero]
   have hXQ : X * Q = 0 := by
     rw [ext_iff_trace_mul_right]
     intro K

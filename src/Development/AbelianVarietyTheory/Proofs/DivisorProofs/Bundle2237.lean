@@ -426,10 +426,10 @@ theorem exists_cover_dominating_cover (F : Type) [Field F] [NumberField F] (Y : 
   have : GlobalTheory.IsNormalScheme W.G := isNormalScheme_G W
   have : GlobalTheory.IsNormalScheme h.normalization := GlobalTheory.IsNormalScheme.normalization_of_isIntegral h
   have hint : IsIntegral h.normalization := inferInstance
-  have : Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
+  have : AlgebraicGeometry.Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
   have : IsPreimmersion (spMap (algebraMap (𝓞 F) F)) :=
     IsPreimmersion.of_isLocalization (R := 𝓞 F) (S := F) (nonZeroDivisors (𝓞 F))
-  have : Flat W.j := MorphismProperty.of_isPullback W.pb.flip ‹_›
+  have : AlgebraicGeometry.Flat W.j := MorphismProperty.of_isPullback W.pb.flip ‹_›
   have : IsPreimmersion W.j := MorphismProperty.of_isPullback W.pb.flip ‹_›
   have e₁ : h.toNormalization ≫ h.fromNormalization ≫ r = W.j := by
     rw [← Category.assoc, Scheme.Hom.toNormalization_fromNormalization, hr]
@@ -445,9 +445,9 @@ theorem exists_cover_dominating_cover (F : Type) [Field F] [NumberField F] (Y : 
     exact (ModelDom.dim_le_of_birational (h.fromNormalization ≫ r)).antisymm
       (PosBaseChange.dim_le_of_isClosedMap (h.fromNormalization ≫ r).isClosedMap
         (h.fromNormalization ≫ r).surjective)
-  have hfl : Flat (h.fromNormalization ≫ r ≫ W.p) := GlobalTheory.flat_fromNormalization_comp h F (r ≫ W.p) (W.π ≫ Y.str) w
-  have hfZ : Flat (spMap (Int.castRingHom (𝓞 F))) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
+  have hfl : AlgebraicGeometry.Flat (h.fromNormalization ≫ r ≫ W.p) := GlobalTheory.flat_fromNormalization_comp h F (r ≫ W.p) (W.π ≫ Y.str) w
+  have hfZ : AlgebraicGeometry.Flat (spMap (Int.castRingHom (𝓞 F))) := by
+    rw [HasRingHomProperty.Spec_iff (P := @AlgebraicGeometry.Flat)]
     exact RingHom.flat_algebraMap_iff.mpr (inferInstance : Module.Flat ℤ (𝓞 F))
   have hpb' := hpb.paste_vert hb
   rw [pullback.lift_snd] at hpb'
