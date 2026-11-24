@@ -394,6 +394,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.LocUApply
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain
@@ -426,6 +427,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.OfinProd
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain Filter
