@@ -237,7 +237,7 @@ theorem line_pos {K₁ : Type} [Field K₁] [NumberField K₁] [Algebra c.F K₁
     · rw [h]; exact (h1 _).1.2 em
     · rw [h]; exact (h2 _).1.2 em
 
-theorem norm_cfOf_le : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K₁ : Type) [Field K₁] [NumberField K₁] [Algebra c.F K₁] (d : ArcDatum Xo c K₁) (n' : ℕ) (La c₁ : ℝ) (s : CMIn d.a d.e d.th d.jj n' La c₁) (em : K₁ →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c (em.comp (algebraMap c.F K₁)) r) (xi S : ℝ) (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), Std d → 1 ≤ La → Formalism.L2.PjFree.GoodEmb c (em.comp (algebraMap c.F K₁)) → Formalism.L2.PjFree.IsUnf U → (∀ k (τ : E →+* ℂ), ‖τ (U.X k).ξ0‖ = xi) → Dom a' n → (∀ k, TransvIn (U.X k) l.M' (Formalism.L2.PjFree.laU U a' n k)) → ∀ F ∈ sec Xo c a' n, 0 ≤ S → (∀ k, ∀ y ∈ (U.X k).dom, lieFac Dw xi a' * (U.X k).pnorm (Formalism.L2.PjFree.laU U a' n k) (Formalism.L2.PjFree.rdU U F k) y ≤ S) → ‖em (cfOf d.yF d.μ d.jj F)‖ * (s.valLine d.μ n).n em ≤ S * Real.exp (4 * Real.pi + GlobalTheory.ArcCM.archP E r La c₁ * ((absA Dw a' : ℝ) + (fdeg E : ℝ) * n)) := by
+theorem norm_cfOf_le : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K₁ : Type) [Field K₁] [NumberField K₁] [Algebra c.F K₁] (d : ArcDatum Xo c K₁) (n' : ℕ) (La c₁ : ℝ) (s : CMIn d.a d.e d.th d.jj n' La c₁) (em : K₁ →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c (em.comp (algebraMap c.F K₁)) r) (xi S : ℝ) (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), Std d → 1 ≤ La → Formalism.L2.PjFree.GoodEmb c (em.comp (algebraMap c.F K₁)) → Formalism.L2.PjFree.IsUnf U → (∀ k (τ : E →+* ℂ), ‖τ (U.X k).ξ0‖ = xi) → Dom a' n → (∀ k, TransvIn (U.X k) l.M' (Formalism.L2.PjFree.laU U a' n k)) → ∀ F ∈ sec Xo c a' n, 0 ≤ S → (∀ k, ∀ y ∈ (U.X k).dom, _root_.Formalism.L2.PjFree.lieFac Dw xi a' * (U.X k).pnorm (Formalism.L2.PjFree.laU U a' n k) (Formalism.L2.PjFree.rdU U F k) y ≤ S) → ‖em (cfOf d.yF d.μ d.jj F)‖ * (s.valLine d.μ n).n em ≤ S * Real.exp (4 * Real.pi + GlobalTheory.ArcCM.archP E r La c₁ * ((absA Dw a' : ℝ) + (fdeg E : ℝ) * n)) := by
   intro hK E _ _ _ H Dw l Xo c K₁ _ _ _ d n' La c₁ s em r U xi S a' n hstd hLa hgood hunf
     hxi hdom htv F hF hS0 hS
   obtain ⟨hover, ⟨y₀, hy₀, hc⟩, hpush⟩ := hstd
@@ -281,10 +281,10 @@ theorem norm_cfOf_le : Known → ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   have hCT := hCle _ (((GlobalTheory.T.cm_metrised_line_lengths_eq_section_lie_norms hK E H Dw l c K₁ d.a d.e d.th d.jj n' La c₁ s em).2.2.2 _ p).1 th₁ hth₁)
   rw [sqrt_discr (U.X k)] at hCT
   obtain ⟨hT, hl⟩ := line_pos s em
-  have hL := lieFac_pos Dw xi a'
+  have hL := _root_.Formalism.L2.PjFree.lieFac_pos Dw xi a'
   have hM : 0 < max 1 c₁ := lt_max_of_lt_left zero_lt_one
   have hep : 0 < (max 1 c₁)⁻¹ := inv_pos.2 hM
-  have hS' : ∀ y ∈ (U.X k).dom, (U.X k).pnorm (Formalism.L2.PjFree.laU U a' n k) (Formalism.L2.PjFree.rdU U F k) y ≤ S / lieFac Dw xi a' := fun y hy =>
+  have hS' : ∀ y ∈ (U.X k).dom, (U.X k).pnorm (Formalism.L2.PjFree.laU U a' n k) (Formalism.L2.PjFree.rdU U F k) y ≤ S / _root_.Formalism.L2.PjFree.lieFac Dw xi a' := fun y hy =>
     (le_div_iff₀' hL).2 (hS k y hy)
   have hb : (U.X k).IsBddSec (Formalism.L2.PjFree.laU U a' n k) (Formalism.L2.PjFree.rdU U F k) := ⟨hunf.2.2.2.2.1 a' n hdom F hF k, _, hS'⟩
   have htr : (max 1 c₁)⁻¹ * ∑ τ : (U.X k).Ψ, (τ.1 s.ν₀).re ≤ 1 := by
