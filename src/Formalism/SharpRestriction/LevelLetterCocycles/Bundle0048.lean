@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.SecOfPInt
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.CrystallineFiltrationAntitone
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open Classical
@@ -113,6 +114,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.LetterPull
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open Classical TensorProduct
