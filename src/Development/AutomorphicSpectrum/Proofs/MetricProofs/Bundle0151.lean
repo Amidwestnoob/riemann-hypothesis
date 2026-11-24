@@ -76,7 +76,7 @@ theorem GlobalTheory.CompanionTheory.Ar.PB.BMx.exists_gram_logBounds_noGlobal : 
   have hcu : Continuous (HodgeMetric.uncentre w₀ ρ π) := (HodgeMetric.contDiff_uncentre w₀ ρ π).continuous
   have hcu' : Continuous (HodgeMetric.uncentre 0 ρ' π') := (HodgeMetric.contDiff_uncentre 0 ρ' π').continuous
 
-  have pg : ∀ w ∈ Metric.ball w₀ ρ, HodgeMetric.uncentre 0 ρ' π' (HodgeMetric.uncentre w₀ ρ π w) ∈ Flat.punct n a₀ 1 →
+  have pg : ∀ w ∈ Metric.ball w₀ ρ, HodgeMetric.uncentre 0 ρ' π' (HodgeMetric.uncentre w₀ ρ π w) ∈ GlobalTheory.CompanionTheory.Ar.Flat.punct n a₀ 1 →
       baseGram tie F τ Rb ((Bat.chart k).symm w) =
         HodgeMetric.periodGram LP U (HodgeMetric.uncentre 0 ρ' π' (HodgeMetric.uncentre w₀ ρ π w)) := by
     intro w hw hu
@@ -97,7 +97,7 @@ theorem GlobalTheory.CompanionTheory.Ar.PB.BMx.exists_gram_logBounds_noGlobal : 
   have ht := hb₁ w (mem_ball_iff_norm.2 (hw.trans_le (min_le_left _ _)))
   have ht1 := HodgeMetric.uncentre_mem_ball hρ π hwρ
   have hub := HodgeMetric.uncentre_mem_ball hP.1 π' (ht.trans_le hερ)
-  have hu : HodgeMetric.uncentre 0 ρ' π' (HodgeMetric.uncentre w₀ ρ π w) ∈ Flat.punct n a₀ 1 := by
+  have hu : HodgeMetric.uncentre 0 ρ' π' (HodgeMetric.uncentre w₀ ρ π w) ∈ GlobalTheory.CompanionTheory.Ar.Flat.punct n a₀ 1 := by
     have hcl := (hP.2.2.2.2.2 _ hub).2.2.1
     rw [HodgeMetric.recentre_uncentre 0 hP.1, hγ, HodgeMetric.recentre_uncentre w₀ hρ, hZ _ _ (hU w hwB).2] at hcl
     exact hcl.1 hwb
