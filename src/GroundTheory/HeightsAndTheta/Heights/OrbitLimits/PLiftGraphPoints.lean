@@ -166,7 +166,7 @@ theorem LiftGraphPoints.proof : LiftGraphPoints.Statement := by
       rw [← hsub] at hg1
       have h2 := aeval_ratio_eq_zero hw c hyc hwc hg1
       rw [hsub] at h2
-      rw [eval_map_int, aeval_scale ha (fun o => o.elim 1 fun k => w ⟨k, c k⟩)
+      rw [GroundTheory.Heights₂.Heights.Targets.LiftGraphPoints.eval_map_int, aeval_scale ha (fun o => o.elim 1 fun k => w ⟨k, c k⟩)
         (addBlock (fun p => w p / w ⟨p.1, c p.1⟩) σ) _
         (by
           rintro ⟨o, i⟩
