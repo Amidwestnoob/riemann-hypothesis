@@ -77,10 +77,10 @@ open Neutral.B1 Formalism.L2.Host GlobalTheory.Mem.Chr GlobalTheory.Mem.Chr.IdlF
 variable {D : D7}
 
 theorem map_finPartI_locF_eq (χ : Formalism.L2.Host.HChar D.host.E) (v : HeightOneSpectrum (𝓞 D.host.F)) (k : D.host.Fˣ) :
-    χ.1 (finPartI D.host.E (locF (L := D.host.E) D.host.F v k)) = χ.resFin v k := by
+    χ.1 (finPartI D.host.E (GlobalTheory.Mem.Chr.locF (L := D.host.E) D.host.F v k)) = χ.resFin v k := by
   unfold Formalism.L2.Host.HChar.resFin
   rw [MonoidHom.finsetProd_apply]
-  unfold locF
+  unfold GlobalTheory.Mem.Chr.locF
   rw [map_prod, map_prod]
   exact Finset.prod_congr rfl fun Q _ => congrArg χ.1 (GlobalTheory.Mem.KerDet.finPartI_localIdele Q _)
 
@@ -104,13 +104,13 @@ theorem eta_norm {χ : Formalism.L2.Host.HChar D.host.E} (hχ : Formalism.L2.Hos
     (finite_valAt_ne_one a).toFinset.image fun w => w.under (𝓞 D.host.F)
   let m : HeightOneSpectrum (𝓞 D.host.F) → ℤ := fun v =>
     if h : ∃ w : HeightOneSpectrum (𝓞 D.host.E), w.under (𝓞 D.host.F) = v then -WithZero.log (valAt h.choose a) else 0
-  let b : Neutral.B1.Ideles D.host.E := ∏ v ∈ T, locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v
+  let b : Neutral.B1.Ideles D.host.E := ∏ v ∈ T, GlobalTheory.Mem.Chr.locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v
   have hm : ∀ w : HeightOneSpectrum (𝓞 D.host.E), m (w.under (𝓞 D.host.F)) = -WithZero.log (valAt w a) := fun w => by
     have hex : ∃ w' : HeightOneSpectrum (𝓞 D.host.E), w'.under (𝓞 D.host.F) = w.under (𝓞 D.host.F) := ⟨w, rfl⟩
     simp only [m]
     rw [dite_eq_left hex, ha w hex.choose hex.choose_spec]
   have hval : ∀ w, valAt w b = valAt w a := fun w => by
-    have h1 : ∀ v, v ≠ w.under (𝓞 D.host.F) → valAt w (locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v) = 1 :=
+    have h1 : ∀ v, v ≠ w.under (𝓞 D.host.F) → valAt w (GlobalTheory.Mem.Chr.locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v) = 1 :=
       fun v hv => by rw [map_zpow, valAt_locF, if_neg hv.symm, one_zpow]
     simp only [b]
     rw [map_prod]
@@ -125,7 +125,7 @@ theorem eta_norm {χ : Formalism.L2.Host.HChar D.host.E} (hχ : Formalism.L2.Hos
   have hunit : b⁻¹ * a ∈ unitIdl D.host.E := fun w => by
     rw [← valAt_apply, map_mul, map_inv, hval]
     exact inv_mul_cancel₀ (valAt_ne_zero w a)
-  have hfac : ∀ v, χ.1 (finPartI D.host.E (locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v)) = 1 := fun v => by
+  have hfac : ∀ v, χ.1 (finPartI D.host.E (GlobalTheory.Mem.Chr.locF (L := D.host.E) D.host.F v (Formalism.L2.Host.unif v) ^ m v)) = 1 := fun v => by
     rw [map_zpow, map_zpow, map_finPartI_locF_eq, hχ.res.1 v, Formalism.L2.Host.etaFin]
     split_ifs with h1
     · have hev : Even (m v) := by

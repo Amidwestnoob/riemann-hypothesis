@@ -438,7 +438,7 @@ theorem finPartI_localIdele (v : HeightOneSpectrum (𝓞 L)) (x : (v.adicComplet
   finPartI_eq_self fun _ => rfl
 
 theorem map_finPartI_locF {F : Type} [Field F] [NumberField F] [Algebra F L] {χ : HChar L} (h : χ.TrivOn F)
-    (v : HeightOneSpectrum (𝓞 F)) (k : Fˣ) : χ.1 (finPartI L (locF F v k)) = 1 := by
+    (v : HeightOneSpectrum (𝓞 F)) (k : Fˣ) : χ.1 (finPartI L (GlobalTheory.Mem.Chr.locF F v k)) = 1 := by
   have h1 := h.1 v k
   unfold HChar.resFin at h1
   rw [MonoidHom.finsetProd_apply] at h1

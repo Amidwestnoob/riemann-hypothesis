@@ -73,7 +73,7 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
   have hψu : ∀ x, ‖((ψ x : ℂˣ) : ℂ)‖ = 1 := fun x => by
     rw [hψe, Units.val_mul, Units.coe_prod, norm_mul, norm_prod, hψ0u, one_mul]
     exact Finset.prod_eq_one fun v hv => hθu v hv _
-  have hψi : ∀ i (k : Lˣ), ((ψ (infIdele L (InfinitePlace.mk (φ i)) (Formalism.L2.Host.atInf _ k)) : ℂˣ) : ℂ) =
+  have hψi : ∀ i (k : Lˣ), ((ψ (ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L (InfinitePlace.mk (φ i)) (Formalism.L2.Host.atInf _ k)) : ℂˣ) : ℂ) =
       (φ i (k : L) / ((‖φ i (k : L)‖ : ℝ) : ℂ)) ^ e i := fun i k => by
     rw [hψe, Finset.prod_eq_one fun v _ => by rw [finEv_inf, map_one], mul_one, hψ0i]
   have hψS : ∀ v ∈ S, ∀ x, ψ (Neutral.B1.localIdele L v x) = θ v x := fun v hv x => by
@@ -101,12 +101,12 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     rw [hχ _ (by rw [hx]; exact div_mem (loc_mem h1) (loc_mem h2)), hx, map_div]
   refine ⟨χ, hχu, ⟨fun v k => ?_, fun w k => ?_⟩, ?_, fun v hv x hx => ?_, fun w hwS v hv => ?_⟩
   · rw [← hfix _ (conj_locF h hC v k)]
-    unfold Formalism.L2.Host.HChar.resFin locF
+    unfold Formalism.L2.Host.HChar.resFin GlobalTheory.Mem.Chr.locF
     rw [MonoidHom.finsetProd_apply, map_prod]
     rfl
   · unfold Formalism.L2.Host.HChar.resInf
     rw [MonoidHom.finsetProd_apply]
-    refine Finset.prod_eq_one fun w' _ => hfix (infIdele L w' (Formalism.L2.Host.atInf w' (Formalism.L2.Host.upF F k))) ?_
+    refine Finset.prod_eq_one fun w' _ => hfix (ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w' (Formalism.L2.Host.atInf w' (Formalism.L2.Host.upF F k))) ?_
     rw [conj_inf h hC, conj_upF]
   · refine (GlobalTheory.InfTypeLocal.infType_iff_local L I φ h.bij χ.1 χ.2.1 _).2 fun i k => ?_
     rw [hχ _ (by rw [conj_inf h hC]; exact div_mem (inf_mem _ _) (inf_mem _ _)), conj_inf h hC, ← map_div, ← map_div,

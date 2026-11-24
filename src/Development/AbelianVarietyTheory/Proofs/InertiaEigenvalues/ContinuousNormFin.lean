@@ -79,7 +79,7 @@ theorem loc_eq_one_of_prod {ψ : Neutral.B1.Ideles L →* ℂˣ} (hψ : Continuo
     rw [this, map_one, map_one]
 
 theorem infId_pInf [_root_.NumberField.IsTotallyComplex L] (k : Lˣ) :
-    infId L (Units.map (pInf L).toMonoidHom (Neutral.B1.diagUnits L k)) = ∏ w, infIdele L w (Formalism.L2.Host.atInf w k) := by
+    infId L (Units.map (pInf L).toMonoidHom (Neutral.B1.diagUnits L k)) = ∏ w, ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w (Formalism.L2.Host.atInf w k) := by
   classical
   apply Units.ext
   rw [Units.coe_prod]
