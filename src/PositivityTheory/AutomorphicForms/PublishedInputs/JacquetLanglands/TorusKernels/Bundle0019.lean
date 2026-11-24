@@ -117,7 +117,7 @@ theorem closed_oneU : IsClosed (oneU l : Set (Qbar l)ˣ) := by
 theorem dec_cong {art : Ideles F →* Gab F Ω} (ha : IsGlobalArtin art) {ι : Qbar l ≃+* ℂ} {ω : HChar F}
     {ξ : G F Ω →* (Qbar l)ˣ} (hc : Continuous ξ) (hL : IsLAdicOf art ι ω 0 ξ) {w : Pl F} (hu : ω.UnrAt w)
     (hv : ‖ι.symm (ω.val w : ℂˣ) - 1‖ < 1) {A : ValuationSubring Ω} (hA : IsPlaceOver A w) {σ : G F Ω}
-    (hσ : σ ∈ Dec (F := F) A) : Cong (ξ σ) 1 := by
+    (hσ : σ ∈ ReciprocityTheory.Gal.Dec (F := F) A) : Cong (ξ σ) 1 := by
   have hm : toAb F Ω σ ∈ (art.comp (localIdele F w)).range.topologicalClosure := by
     rw [ha.dec w A hA]
     exact ⟨σ, hσ, rfl⟩
