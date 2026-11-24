@@ -288,7 +288,7 @@ theorem speh_quotient_isL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
     ∀ (d n : ℕ) (hdn : ∑ _ : Fin d, a = n) (W : Type) [AddCommGroup W] [Module ℂ W]
       (σ' : Representation ℂ (GL (Fin n) k) W), σ'.IsIrreducible →
       (∃ f : (multiProd (stdBlocks (fun _ : Fin d => a) hdn) fun i : Fin d =>
-        twist σ (detChar (Fin a) (absPow k (((d : ℂ) - 1) / 2 - (i : ℕ))))).IntertwiningMap σ',
+        GlobalTheory.SmGL.twist σ (detChar (Fin a) (absPow k (((d : ℂ) - 1) / 2 - (i : ℕ))))).IntertwiningMap σ',
         Function.Surjective f) →
       IsL ↑((List.range d).flatMap fun i : ℕ =>
         (List.ofFn fun j => (Δ j).nu (s j)).map fun Γ => Γ.nu ((((d : ℝ) - 1) / 2 - i : ℝ) : ℂ)) σ' := by
@@ -303,7 +303,7 @@ theorem speh_quotient_isL : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
     refine Finset.sum_congr rfl fun i _ => ?_
     simp only [Y, Equiv.symm_apply_apply]
     exact hN i
-  let e1 : ∀ i : Fin d, (twist σ (detChar (Fin a) (absPow k (((d : ℂ) - 1) / 2 - (i : ℕ))))).Equiv
+  let e1 : ∀ i : Fin d, (GlobalTheory.SmGL.twist σ (detChar (Fin a) (absPow k (((d : ℂ) - 1) / 2 - (i : ℕ))))).Equiv
       (prodIrr (y i) (hN i)) :=
     fun i => (twistEquiv φ _).trans (prodIrrTwistEquiv _ hd _ (isSmoothChar_absPow _))
   obtain ⟨e2⟩ := hstage d m y (fun _ => a) n hN hdn hM'
