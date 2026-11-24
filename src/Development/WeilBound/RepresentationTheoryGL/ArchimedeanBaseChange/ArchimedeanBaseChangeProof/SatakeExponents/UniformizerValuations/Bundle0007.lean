@@ -255,7 +255,7 @@ def MatchT : Prop :=
         (fun y => cR n a w b ^ k * ∑ s, mpow w (entT n w ϖ a c x s) k y)
 
 def FUMul : Prop :=
-  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ w : Pl E, ¬ IsSplitAt w → ∀ (n : ℕ) (b : GLw n w),
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], _root_.GlobalTheory.BCT.Unr E → ∀ w : Pl E, ¬ IsSplitAt w → ∀ (n : ℕ) (b : GLw n w),
     IsWitt n w b → ∀ ϖ : (w.adicCompletion E)ˣ, IsUnifAt ϖ → ∀ l l' : Fin (n / 2) → ℤ, Cone l → Cone l' →
       lconv (fU n w b ϖ l) (fU n w b ϖ l') = fun γ => (((iwU n w b).relIndex (KL n w) : ℕ) : ℂ)⁻¹ * fU n w b ϖ (l + l') γ
 
