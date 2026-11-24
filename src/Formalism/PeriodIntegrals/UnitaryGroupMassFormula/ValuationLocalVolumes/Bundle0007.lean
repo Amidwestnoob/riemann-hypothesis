@@ -187,7 +187,7 @@ theorem oev_smul {c : v.adicCompletionIntegers F} {w : Fv F v ⊗[F] E} (hw : w 
   Submodule.smul_mem _ c hw
 
 theorem hR_mem_of (Λ : Set (Fin n → E))
-    (hL : ∀ a ∈ Λ, ∀ b ∈ Λ, ∃ o : 𝓞 E, hE σ J a b = (o : E))
+    (hL : ∀ a ∈ Λ, ∀ b ∈ Λ, ∃ o : 𝓞 E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE σ J a b = (o : E))
     {x y : Fin n → Fv F v ⊗[F] E} (hx : x ∈ latLoc (E := E) v Λ) (hy : y ∈ latLoc (E := E) v Λ) :
     hR (Fv F v) σ J x y ∈ OEv (E := E) v := by
   induction hx using Submodule.span_induction with
@@ -198,7 +198,8 @@ theorem hR_mem_of (Λ : Set (Fin n → E))
       obtain ⟨b, hb, rfl⟩ := hy
       obtain ⟨o, ho⟩ := hL a ha b hb
       have h' : hR (Fv F v) σ J (fun i => inclR (Fv F v) (a i)) (fun i => inclR (Fv F v) (b i)) =
-          inclR (Fv F v) (hE σ J a b) := hR_ratTup (Fv F v) σ J ![a, b] 0 1
+          inclR (Fv F v) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE σ J a b) :=
+        hR_ratTup (Fv F v) σ J ![a, b] 0 1
       change hR (Fv F v) σ J (fun i => inclR (Fv F v) (a i)) (fun i => inclR (Fv F v) (b i)) ∈ _
       rw [h', ho]
       exact Submodule.subset_span ⟨o, trivial, rfl⟩
@@ -218,7 +219,7 @@ end Gen
 variable {D : D7} (X : HidaSetting D)
 
 theorem hE_L (a : Fin X.B.I.n → X.B.I.E) (ha : a ∈ abelian₂ X) (b : Fin X.B.I.n → X.B.I.E) (hb : b ∈ abelian₂ X) :
-    ∃ o : 𝓞 X.B.I.E, hE X.B.I.cm.sig X.B.I.J a b = (o : X.B.I.E) := by
+    ∃ o : 𝓞 X.B.I.E, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J a b = (o : X.B.I.E) := by
   obtain ⟨o, ho⟩ := (X.B.I.L_dual b).1 hb a ha
   exact ⟨o, ho.symm⟩
 
@@ -322,7 +323,7 @@ theorem gram_eq : gramE X.B.I.cm.sig X.B.I.J (tupH (frameOf X u')) =
     diagonal (cD X u') * (Function.Involutive.toPerm _ (piv_invol D.R.rS)).permMatrix X.B.I.E := by
   ext a b
   rw [diagonal_mul]
-  show hE _ _ (tupH (frameOf X u') a) (tupH (frameOf X u') b) = _
+  show Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE _ _ (tupH (frameOf X u') a) (tupH (frameOf X u') b) = _
   rw [tupH_eq, tupH_eq, hE_crdOf, hT_hv]
   simp only [Equiv.Perm.permMatrix, PEquiv.toMatrix_apply, Equiv.toPEquiv_apply, Option.mem_def,
     Option.some.injEq, Function.Involutive.coe_toPerm, cD]

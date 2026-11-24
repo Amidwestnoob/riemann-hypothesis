@@ -35,9 +35,11 @@ theorem hform_smul {A : Type} [CommRing A] {M : ℕ} (τ : A →+* A) (J : Matri
   ring
 
 theorem hR_ratTup {M k : ℕ} (J : Matrix (Fin M) (Fin M) E) (Y : Fin k → Fin M → E) (a b : Fin k) :
-    hR R σ J (ratTup R Y a) (ratTup R Y b) = inclR R (hE σ J (Y a) (Y b)) := by
+    hR R σ J (ratTup R Y a) (ratTup R Y b) =
+      inclR R (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE σ J (Y a) (Y b)) := by
   set_option synthInstance.maxHeartbeats 100000 in
-    simp only [hR, hE, Formalism.UG.hform, JR, ratTup, Matrix.map_apply, map_sum, map_mul, sigR_inclR]
+    simp only [hR, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE, Formalism.UG.hform, JR,
+      ratTup, Matrix.map_apply, map_sum, map_mul, sigR_inclR]
   rfl
 
 end Gen
@@ -71,7 +73,8 @@ theorem host_star_conj : Formalism.BasicNotions.bridge_star := by
 theorem sig_apply (a : X.B.I.E) : X.B.I.cm.sig a = star a := rfl
 
 theorem hE_crdOf (x y : (VS D).V) :
-    hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas x) (crdOf X.B.I X.ιE X.bas y) =
+    Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE
+      X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas x) (crdOf X.B.I X.ιE X.bas y) =
       X.ιE.symm ((VS D).hT x y) := by
   have key : (VS D).hT x y = ∑ i, ∑ j, star (X.bas.repr x i) * (VS D).hT (X.bas i) (X.bas j) *
       X.bas.repr y j := by
@@ -85,8 +88,8 @@ theorem hE_crdOf (x y : (VS D).V) :
   apply X.ιE.injective
   rw [RingEquiv.apply_symm_apply, key]
   set_option synthInstance.maxHeartbeats 100000 in
-    simp only [hE, Formalism.UG.hform, crdOf, map_sum, map_mul, RingHom.coe_coe, sig_apply, X.ιE_conj,
-    RingEquiv.apply_symm_apply, X.J_eq]
+    simp only [Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE, Formalism.UG.hform, crdOf,
+      map_sum, map_mul, RingHom.coe_coe, sig_apply, X.ιE_conj, RingEquiv.apply_symm_apply, X.J_eq]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   rw [← host_star_conj D.R D.host]
 
@@ -138,9 +141,11 @@ theorem omVGram_holds : OmVGram X u' := by
       hR (Fv X.B.I.F v) X.B.I.cm.sig X.B.I.J _ _ = _
   rw [hR_ratTup]
   simp only [sc, sigR_tmul_one, Algebra.TensorProduct.tmul_mul_tmul, one_mul]
-  change _ = inclR (Fv X.B.I.F v) (hE X.B.I.cm.sig X.B.I.J (tupH (frameOf X u') a) (tupH (frameOf X u') b))
+  change _ = inclR (Fv X.B.I.F v) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE
+    X.B.I.cm.sig X.B.I.J (tupH (frameOf X u') a) (tupH (frameOf X u') b))
   rcases hT_zero_or X u' v a b with h | h
-  · have h0 : hE X.B.I.cm.sig X.B.I.J (tupH (frameOf X u') a) (tupH (frameOf X u') b) = 0 := by
+  · have h0 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE
+        X.B.I.cm.sig X.B.I.J (tupH (frameOf X u') a) (tupH (frameOf X u') b) = 0 := by
       rw [tupH_eq, tupH_eq, hE_crdOf, h, map_zero]
     rw [h0, map_zero, mul_zero]
   · rw [h, ← Algebra.TensorProduct.one_def, one_mul]
