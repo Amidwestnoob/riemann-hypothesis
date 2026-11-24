@@ -50,6 +50,7 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 @[expose] public section
 
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 namespace GlobalTheory.FinMatch
 section Local

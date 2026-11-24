@@ -11,6 +11,8 @@ public import GroundTheory.AutomorphicForms.HarishChandraRegularity
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 open NumberField MeasureTheory Matrix GlobalTheory.AutomorphicL2Unitary GlobalTheory.UnitaryBC GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.Petersson Formalism.L2.Host
 open Filter Topology GlobalTheory.HCAlpha GlobalTheory.ExpDeriv
 open scoped ComplexConjugate
