@@ -86,6 +86,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0030
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUniqueIsLv
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open NumberField Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet

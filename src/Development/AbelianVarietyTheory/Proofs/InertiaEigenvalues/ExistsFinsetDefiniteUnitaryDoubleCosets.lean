@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.GLintEqKO
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 
 noncomputable section

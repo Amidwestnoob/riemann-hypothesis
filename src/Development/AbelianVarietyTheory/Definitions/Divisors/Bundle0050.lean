@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Statements.PrincipalLattices.DimP
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.ContinuousLvMat
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open NumberField Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet

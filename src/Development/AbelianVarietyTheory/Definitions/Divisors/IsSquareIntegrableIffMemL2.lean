@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsL
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet
 open GlobalTheory.AutomorphicL2Unitary (LeftInv MemL2Quotient stdDom isFundamentalDomain_stdDom)
 open GlobalTheory.Cusp (Cocompact constTermOn)
