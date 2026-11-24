@@ -178,6 +178,8 @@ theorem jac_measure : ∀ (D : D7) (ρ : ℕ) (J : JacLev D ρ) (vU : VolU D ρ)
       (hlv.comp (continuous_snd.comp continuous_fst))).mul (hs.comp (continuous_fst.comp continuous_fst))))
   rw [e1]
   simp only [e2, e3]
+  haveI : SigmaFinite vU.ν := Measure.IsHaarMeasure.sigmaFinite _
+  haveI : SFinite vU.ν := MeasureTheory.instSFiniteOfSigmaFinite
   exact lintegral_lintegral_swap (hm.lintegral_prod_right' (ν := ν₀)).aemeasurable
 
 end GlobalTheory.JacMeas
