@@ -344,7 +344,7 @@ theorem witt_R {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] 
     ∃ g : HA R σ J, g • ratTup (F := F) R X0 = y := by
   set T := gramE σ J X0 with hTdef
   let sE : E →+* E := σ
-  have hTH : IsHerm sE T := by
+  have hTH : _root_.Formalism.UG.IsHerm sE T := by
     ext i j; exact hT i j
   have hh : PI.UnitaryGroupMassFormula.HermConj.IsHermForm sE (Formalism.UG.hform sE T) :=
     { add := fun x y z => by
@@ -384,7 +384,7 @@ theorem witt_R {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] 
   let sS := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   let JS := JR (F := F) R J
   have hsS : ∀ z, sS (sS z) = z := (PIW.AdelicOrbitU.stFix F E σ h2 hfix R).1
-  have hJS : IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1
+  have hJS : _root_.Formalism.UG.IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1
   have hJSd : IsUnit JS.det := PIW.AdelicOrbitU.isUnit_det_JR (F := F) R J hJ.2
   have hcTmap : ∀ {p q : ℕ} (N : Matrix (Fin p) (Fin q) E),
       Formalism.UG.cT sS (N.map (inclR (F := F) R)) = (Formalism.UG.cT sE N).map (inclR (F := F) R) := by

@@ -69,7 +69,7 @@ theorem decBd_of_decInfU {σ : Mx k r → (H →L[ℂ] H)} {a : ℝ} (hI : DecIn
 theorem normId_gen_bd {z : Fin (2 * r + k + 1) → ℂ} {c : ℂ} {π : Mx k r → (Wp →L[ℂ] Wp)}
     {μW μN μG ν : Measure (Mt k r)} [SFinite μW] [SFinite μN] {σ : Mx k r → (H →L[ℂ] H)}
     {ε : Fin (2 * r + k + 1) → Bool} {lam : Fin (2 * r + k + 1) → ℝ} (hds : IsDSHpk k r ε lam σ)
-    (hHaar : IsHaarOn (UH (Hpk k r)) μG) (hq : IsQuotMeas μG (muSof μW μN) ν)
+    (hHaar : _root_.Formalism.MainNotions.S.IsHaarOn (UH (Hpk k r)) μG) (hq : IsQuotMeas μG (muSof μW μN) ν)
     (hGr : Cv.GrpF k r z) (hSg : Cv.SigU σ) (hPi : Cv.PiU z π) (hPs : Cv.PsiF k r z c) (hM : Cv.MeasF z π μW μN)
     (hS : SchurOn μG σ) {u v : H} (hu : u ≠ 0) {b : ℝ} (hb : 0 ≤ b)
     (huv : DecBd σ b v u) (hvv : DecBd σ b v v)
@@ -101,7 +101,7 @@ theorem normIdSm_of (hGS : Formalism.FourierDecayAlt.ThreeDimData.GrowthS) (hGG 
   have : SigmaFinite μW := hμW.1
   have : SigmaFinite μN := hμN.1
   have hds' : IsDSHpk k r ε lam σ := hds
-  have hHaar : IsHaarOn (UH (Hpk k r)) μG := hμG
+  have hHaar : _root_.Formalism.MainNotions.S.IsHaarOn (UH (Hpk k r)) μG := hμG
   have hq' : IsQuotMeas μG (muSof μW μN) νq := hq
   have hGr := Cv.grpAll k r z
   have hSg := Cv.sigAll k r ε lam H σ hds'

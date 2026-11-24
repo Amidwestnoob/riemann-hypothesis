@@ -18,10 +18,10 @@ variable {D : D7} {u : D.what₂.Word}
 def DnLatLoc0 (T : Forms0 D u) : Prop :=
   ∀ w, OverT D u w → (D.fm u).seenP w = true → ∀ v c (g : Module.Dual ((D.mem u).A.Fv v) ((D.fm u).lk 0 v c)),
     g ((D.fm u).te 0 v c) = 1 →
-    ∀ (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
-      (η : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
+    ∀ (γ : _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+      (η : _root_.Formalism.UG.UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
       (∀ v', v' ≠ (T.atT.eV v).1 → Formalism.UG.bc (prV (E := D.host.E) v') η.1 = 1) →
-      Formalism.UG.bc (inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 *
+      Formalism.UG.bc (_root_.Formalism.UG.inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 *
         (T.cls0.y ((D.fm u).dn 0 v c g)).1 = (T.cls0.y c).1 * η.1 * κ.1 →
       Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v) (mulLat γ.1.1 (Ld D u 0 (Nat.zero_le _) ((D.fm u).dn 0 v c g))) =
         Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v) (clsCrd D u 0 (Nat.zero_le _) c) →
@@ -36,7 +36,7 @@ def DnLatLoc0 (T : Forms0 D u) : Prop :=
               else atInf (embT D) (B : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ))
 
 theorem tr_int (w : D.what₂.places.Pl) (T : Forms0 D u) (h : (D.mem u).C.Y 0 → ℂ)
-    (g : GL (Fin (D.R.N 0)) D.host.E) (hg : g ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+    (g : GL (Fin (D.R.N 0)) D.host.E) (hg : g ∈ _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (M : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ)
     (P : MvPolynomial (D.what₂.Tau × Fin (D.R.N 0) × Fin (D.R.N 0)) ℂ) (hP : P ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam 0))
     (hPe : ∀ z, h z = fnOf _ (shiftOf (lamT u 0)) M P (T.val0.eY z))
@@ -78,7 +78,7 @@ theorem dnIncInt0_of (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T) (hL : D
   obtain ⟨⟨B₂, hB₂⟩, -⟩ := bases0 T ((D.fm u).dn 0 v c g)
   obtain ⟨P, hP, hPe⟩ := hh B₂ hB₂
   obtain ⟨Q, hQ, hQe⟩ := tr_int w T h γ.1⁻¹
-    ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) _ P hP hPe
+    ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) _ P hP hPe
     (fun τ => if τ = (D.fm u).tauOf w v then atInf (embT D) (B'⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ
       else atInf (embT D) (B⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1 τ)
     (fun τ => if τ = (D.fm u).tauOf w v then atInf (embT D) (B' : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ
@@ -88,7 +88,7 @@ theorem dnIncInt0_of (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T) (hL : D
   obtain ⟨r, hr, hre⟩ := chi_inv_int T hC w κ
   refine ⟨D.what₂.embLL r • Q, embLL_smul_mem_intSpan_of_mem_intW w _ r hr hQ, fun z => ?_⟩
   rw [htr h z (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-    ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) ?_,
+    ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) ?_,
     hQe, LinearMap.map_smul, Pi.smul_apply, smul_eq_mul, hre]
   intro τ
   rw [Equiv.apply_symm_apply]

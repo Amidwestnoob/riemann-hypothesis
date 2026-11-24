@@ -39,10 +39,10 @@ variable {D : D7} {u : D.what₂.Word}
 
 def AwayLat0 (T : Forms0 D u) : Prop :=
   ∀ (v v' : (D.mem u).A.vT), v' ≠ v → ∀ (c c' : (D.mem u).C.cls 0)
-    (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
-    (η : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
+    (γ : _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+    (η : _root_.Formalism.UG.UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
     (∀ v'', v'' ≠ (T.atT.eV v).1 → Formalism.UG.bc (prV (E := D.host.E) v'') η.1 = 1) →
-    Formalism.UG.bc (inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 * (T.cls0.y c').1 = (T.cls0.y c).1 * η.1 * κ.1 →
+    Formalism.UG.bc (_root_.Formalism.UG.inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 * (T.cls0.y c').1 = (T.cls0.y c).1 * η.1 * κ.1 →
     Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v') (mulLat γ.1.1 (Ld D u 0 (Nat.zero_le _) c')) =
       Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v') (Ld D u 0 (Nat.zero_le _) c)
 

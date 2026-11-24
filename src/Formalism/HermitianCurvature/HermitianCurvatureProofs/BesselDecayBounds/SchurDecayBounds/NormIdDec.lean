@@ -116,7 +116,7 @@ theorem bd_shift {σ : Mx k r → (H →L[ℂ] H)} (hSg : Cv.SigU σ) {w v : H} 
 theorem dInt_of_bd {ε : Fin (2 * r + k + 1) → Bool} {lam : Fin (2 * r + k + 1) → ℝ}
     {σ : Mx k r → (H →L[ℂ] H)} (hds : IsDSHpk k r ε lam σ) {z : Fin (2 * r + k + 1) → ℂ}
     (hGr : Cv.GrpF k r z) {μW μN μG : Measure (Mt k r)} [SFinite μW] [SFinite μN] [SFinite μG]
-    (hHaar : IsHaarOn (UH (Hpk k r)) μG)
+    (hHaar : _root_.Formalism.MainNotions.S.IsHaarOn (UH (Hpk k r)) μG)
     (hM1 : ∀ᵐ p ∂(μW.prod μN), Matrix.of p.1 ∈ UWset k r z ∧ Matrix.of p.2 ∈ Nset k r)
     {u v : H} {b C : ℝ} (hb : 0 ≤ b)
     (hbd : ∀ y ∈ UH (Hpk k r), ‖⟪v, σ y u⟫_ℂ‖ ≤ C * Formalism.FourierDecayAlt.B.gN y ^ (-b))

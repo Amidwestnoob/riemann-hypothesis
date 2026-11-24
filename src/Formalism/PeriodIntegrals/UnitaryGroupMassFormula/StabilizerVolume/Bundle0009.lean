@@ -368,7 +368,7 @@ theorem orbTup_holds : OrbTup := by
   have hfix := cm_fixed σ hCM
   set T := gramE σ J X0 with hTdef
   let sE : E →+* E := σ
-  have hTH : IsHerm sE T := by
+  have hTH : _root_.Formalism.UG.IsHerm sE T := by
     ext i j; exact hT i j
   have hh : PI.UnitaryGroupMassFormula.HermConj.IsHermForm sE (_root_.Formalism.UG.hform sE T) :=
     { add := fun x y z => by
@@ -409,7 +409,7 @@ theorem orbTup_holds : OrbTup := by
   let sS := Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR R σ
   let JS := JR (F := F) R J
   have hsS : ∀ z, sS (sS z) = z := (PIW.AdelicOrbitU.stFix F E σ h2 hfix R).1
-  have hJS : IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1
+  have hJS : _root_.Formalism.UG.IsHerm sS JS := PIW.AdelicOrbitU.isHerm_JR R σ J hJ.1
   have hJSd : IsUnit JS.det := PIW.AdelicOrbitU.isUnit_det_JR (F := F) R J hJ.2
   have hcTmap : ∀ {p q : ℕ} (N : Matrix (Fin p) (Fin q) E),
       _root_.Formalism.UG.cT sS (N.map (inclR (F := F) R)) = (_root_.Formalism.UG.cT sE N).map (inclR (F := F) R) := by

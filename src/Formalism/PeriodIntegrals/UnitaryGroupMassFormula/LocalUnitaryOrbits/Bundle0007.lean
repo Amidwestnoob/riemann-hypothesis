@@ -191,7 +191,7 @@ def PrimPerp : Prop :=
 
 theorem isU_neg {z : Fv F v ⊗[F] E} (h : IsU v (-z)) : IsU v z := by
   obtain ⟨w, hw0, hw⟩ := h
-  exact ⟨-w, oev_neg v hw0, by rw [mul_neg, ← neg_mul]; exact hw⟩
+  exact ⟨-w, _root_.PI.OmLocU.Orb.oev_neg v hw0, by rw [mul_neg, ← neg_mul]; exact hw⟩
 
 theorem isU_of_mul {a z : Fv F v ⊗[F] E} (ha : a ∈ OEv (E := E) v) (h : IsU v (a * z)) : IsU v z := by
   obtain ⟨w, hw0, hw⟩ := h
@@ -231,7 +231,7 @@ theorem unit_of_pair (hF : FixLoc σ v) (hstd : StdHyp σ J ψ)
   have htsβ0 : t * s * β ∈ OEv (E := E) v := (oSub v).2 _ hts0 _ hβ0
   have htsβf : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (t * s * β) = t * s * β := by
     rw [map_mul, map_mul, hss, hβf, hs]; ring
-  have hm0 : -(α + t * s * β) ∈ OEv (E := E) v := oev_neg v (oev_add v hα0 htsβ0)
+  have hm0 : -(α + t * s * β) ∈ OEv (E := E) v := _root_.PI.OmLocU.Orb.oev_neg v (_root_.PI.OmLocU.Orb.oev_add v hα0 htsβ0)
   have hmf : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (-(α + t * s * β)) = -(α + t * s * β) := by
     rw [map_neg, map_add (f := _), hαf, htsβf]
   have hsum : hR (Fv F v) σ J r r + -(α + t * s * β) = t * c + Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (Fv F v) σ (t * c) := by
@@ -239,7 +239,7 @@ theorem unit_of_pair (hF : FixLoc σ v) (hstd : StdHyp σ J ψ)
   rcases hF hcm _ hr0 _ hm0 hrf hmf (by rw [hsum]; exact hu) with h | h
   · exact ⟨r, hrP, h⟩
   · have h' : IsU v (-α + -(t * s * β)) := by rw [← neg_add]; exact h
-    rcases hF hcm _ (oev_neg v hα0) _ (oev_neg v htsβ0) (by rw [map_neg, hαf]) (by rw [map_neg, htsβf]) h'
+    rcases hF hcm _ (_root_.PI.OmLocU.Orb.oev_neg v hα0) _ (_root_.PI.OmLocU.Orb.oev_neg v htsβ0) (by rw [map_neg, hαf]) (by rw [map_neg, htsβf]) h'
       with h2 | h2
     · exact ⟨p, hp, isU_neg v h2⟩
     · exact ⟨q, hq, isU_of_mul v hts0 (isU_neg v h2)⟩

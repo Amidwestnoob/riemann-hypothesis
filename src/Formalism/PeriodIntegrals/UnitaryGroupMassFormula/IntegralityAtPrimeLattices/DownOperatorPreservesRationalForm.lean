@@ -193,7 +193,7 @@ theorem ratC_sum (T : Forms0 D u) {ι : Type} (s : Finset ι) (h : ι → (D.mem
 
 theorem fnOf_trR (s : D.what₂.Tau → ℤ) (M : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ)
     (P : MvPolynomial (D.what₂.Tau × Fin (D.R.N 0) × Fin (D.R.N 0)) ℂ) (g : GL (Fin (D.R.N 0)) D.host.E)
-    (hg : g ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+    (hg : g ∈ _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (y : Frames (gramC (gramN D 0 (Nat.zero_le _)) (embT D))) :
     fnOf _ s M P (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) g hg y) =
       fnOf _ s (fun τ => M τ * atInf (embT D) (g : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ) P y := by
@@ -208,11 +208,11 @@ theorem atInf_ratO (M : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) (τ : D
 
 set_option maxHeartbeats 1000000 in
 theorem ratC_tr (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T)
-    (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))) (κ : T.cls0.lev.U)
+    (γ : _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))) (κ : T.cls0.lev.U)
     (h : (D.mem u).C.Y 0 → ℂ) (hh : RatC T h) :
     RatC T (fun s => ((((T.cls0.lev.chi κ)⁻¹ : ℂˣ)) : ℂ) *
       h (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-        ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s)))) := by
+        ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s)))) := by
   obtain ⟨P, hP, hPe⟩ := hh
   obtain ⟨n, -, hc⟩ := hC
   obtain ⟨-, r, hr⟩ := hc 0 (Nat.zero_le _) rfl κ
@@ -222,7 +222,7 @@ theorem ratC_tr (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T)
       Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ = 1 := fun τ =>
     mul_eq_one_comm.1 (LocalLatticeBases.at_infinity_mul_inv _ γ.1 τ)
   have e1 : ∀ z, h (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-        ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) =
+        ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) =
       fnOf _ (shiftOf (lamT u 0)) (fun τ => N τ * (1 : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ) τ) P
         (T.val0.eY z) := by
     intro z
@@ -237,7 +237,7 @@ theorem ratC_tr (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T)
   have e3 := e1 z
   rw [LocalLatticeBases.fnOf_mul] at e3
   change ((((T.cls0.lev.chi κ)⁻¹ : ℂˣ)) : ℂ) * h (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-        ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) = _
+        ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY z))) = _
   rw [e3, e2, LinearMap.map_smul, Pi.smul_apply, smul_eq_mul]
 
 theorem up_operator_preserves_rational_form (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T) (v : (D.mem u).A.vT) (x : Vl D u 0) :
@@ -252,7 +252,7 @@ theorem up_operator_preserves_rational_form (T : Forms0 D u) (hC : LocalLatticeB
   have e : (D.fm u).upT 0 v c (T.lv0.pr v c z) ((D.fm u).emb 0 x ((D.fm u).up 0 v c (T.lv0.pr v c z))) = fun s =>
       ((((T.cls0.lev.chi κ)⁻¹ : ℂˣ)) : ℂ) * (D.fm u).emb 0 x ((D.fm u).up 0 v c (T.lv0.pr v c z))
         (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-          ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
+          ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
     funext fun s => h6 _ s _ (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.is_translate_inverse T γ s)
   rw [e]
   exact ratC_tr T hC γ κ _ (hx.2 _)
@@ -273,7 +273,7 @@ theorem down_operator_preserves_rational_form (T : Forms0 D u) (hC : LocalLattic
   have e : (D.fm u).dnT 0 v c g ((D.fm u).emb 0 x ((D.fm u).dn 0 v c g)) = fun s =>
       ((((T.cls0.lev.chi κ)⁻¹ : ℂˣ)) : ℂ) * (D.fm u).emb 0 x ((D.fm u).dn 0 v c g)
         (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-          ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
+          ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
     funext fun s => h5 _ s _ (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.is_translate_inverse T γ s)
   rw [e]
   exact ratC_tr T hC γ κ _ (hx.2 _)
