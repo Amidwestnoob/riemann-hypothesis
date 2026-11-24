@@ -389,7 +389,12 @@ theorem metric_base_fixed : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I
     exact exists_nonreal _ (IsTotallyComplex.isComplex _)
   refine majAt_eq_of_diag _ _ _ _ _ Z.eRR0.toLinearMap hcx ?_ x y
   intro x
-  have hR := PrincipalLevelLattice.majorant_at_base_place_eq_inner (R.toCx3 F) F.cr false h2 hn x x
+  have hR : Formalism.HermitianLatticesTheory.majAt (Pi.basisFun D.what₂.LL _)
+      ((R.toCx3 F).XE F.cr false) A3.fam3.base3.v0 x x =
+      (((RealDat.nP F.lv2 false)⁻¹ : ℝ) : ℂ) *
+        ⟪(R.toCx3 F).iC F.cr false A3.A.μ0 (cpt A3.A.v0.embedding x),
+          (R.toCx3 F).iC F.cr false A3.A.μ0 (cpt A3.A.v0.embedding x)⟫_ℂ :=
+    PrincipalLevelLattice.majorant_at_base_place_eq_inner (R.toCx3 F) F.cr false h2 hn x x
 
   set w := (R.toCx3 F).iC F.cr false A3.A.μ0 (cpt A3.A.v0.embedding x) with hw
   set z := X0.s.jEE (Z.eRR0 x) with hz
@@ -425,7 +430,6 @@ theorem metric_base_fixed : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I
     cases s <;> simp [Formalism.IndefR.Links.cj, h]
   change _ = _ * Formalism.IndefR.Links.cj (twAt D.what₂.embLL A3.A.v0) ⟪u, u⟫_ℂ
   rw [hc _ _ (inner_conj_symm u u)]
-  rfl
 
 end GlobalTheory.Mem.R3.MetBase
 end
