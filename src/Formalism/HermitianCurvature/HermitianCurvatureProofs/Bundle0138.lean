@@ -78,7 +78,7 @@ theorem nf_top (z z' : Fin (2 * r + k + 1) → ℂ) (hz' : inWb k r z') (hT' : h
   have hyS : ∀ (a b : Fin (i0 + s'' + 1)), y a (esI k _ b) = star (C3.Zb i0 (s'' + 2) hh t a.val b.val) := by
     intro a b
     simp only [hy]
-    rw [(xi_Y_zhat_identity k _ z z' γ a b hγ).2, hZ]
+    rw [(_root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.xi_Y_zhat_identity k _ z z' γ a b hγ).2, hZ]
     rfl
   have hfz' : fvec k (i0 + s'' + 1) z' (Fin.last _) = z' := by unfold fvec; rw [dite_eq_right (by simp)]
   have hfa : ∀ a : Fin (i0 + s'' + 1), fvec k _ z a.castSucc = bvec (eI k _ a) := by
@@ -94,7 +94,7 @@ theorem nf_top (z z' : Fin (2 * r + k + 1) → ℂ) (hz' : inWb k r z') (hT' : h
     simp only [Zhat, hfz', hfa] at this
     rw [this]
     simp
-  obtain ⟨n0, hn0, y', hy'⟩ := isotropicNormalFormFull_statement k (i0 + s'') z' i y t hz' hT' ht
+  obtain ⟨n0, hn0, y', hy'⟩ := _root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.isotropicNormalFormFull_statement k (i0 + s'') z' i y t hz' hT' ht
     (by
       intro a ha
       rw [hyS]
@@ -111,8 +111,8 @@ theorem nf_top (z z' : Fin (2 * r + k + 1) → ℂ) (hz' : inWb k r z') (hT' : h
         corner_matrix_first_line_zero i0 _ hh t (by omega) _ (by omega)
       simp [hi, this])
     (by
-      have hP := third_polynomial_expansion i0 s'' hh t
-      have hS := (sign_permutation_identity s'').2
+      have hP := _root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.third_polynomial_expansion i0 s'' hh t
+      have hS := (_root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.sign_permutation_identity s'').2
       have hsg : C3.sgnW s'' ≠ 0 := by
         intro h0; rw [h0, zero_mul] at hS; exact (by norm_num : (0 : ℂ) ≠ -1) hS
       have hne : (Matrix.of fun a b : Fin (i0 + s'') => C3.Zb i0 (s'' + 2) hh t

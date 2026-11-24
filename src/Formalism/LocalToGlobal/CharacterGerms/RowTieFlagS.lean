@@ -50,7 +50,7 @@ theorem rkF_sigmaS (hd : ZMod d) (X : RowData C V d (fun _ => Σ a : ZMod d, Fin
 
 def stdFlagS (hd : ZMod d) (X : RowData C V d (fun _ => Σ a : ZMod d, Fin (m a)) J)
     (hty : ∀ (g : Fin 2) (x : Σ a : ZMod d, Fin (m a)), (X.G g).ty (Sum.inl x) = if g = 0 then x.1 else x.1 + hd) :
-    Flag X where
+    _root_.Formalism.L2.FormalSeriesBounds.RF.Flag X where
   en := fun g t q => ⟨idxS hd g t, ⟨q.val, (rkF_sigmaS hd X hty g t) ▸ q.isLt⟩⟩
   en_inj := fun g t q q' h => by
     have h1 := eq_of_heq (Sigma.mk.inj h).2

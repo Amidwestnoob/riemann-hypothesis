@@ -186,7 +186,7 @@ theorem localOrthogonal_holds : PartialIsometryExtension Zd u u' F0 what₂ := b
     have h1 : (locH Zd p).h w₂ (locF' Zd p F'₂ a) = 0 :=
       hw₂ _ (Submodule.mem_sup_right (Submodule.subset_span ⟨a, rfl⟩))
     have h2 : (locH Zd p).h (baseChange₂ D p w₂g) (locF' Zd p F'₂ a) = 0 := by
-      rw [h_eq, locF'_eq, LocFacts.localForm_smul_right, ← h_eq, localForm_baseChange,
+      rw [h_eq, _root_.Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BetaI.locF'_eq, LocFacts.localForm_smul_right, ← h_eq, localForm_baseChange,
         (PI.UnitaryGroupMassFormula.BetaLUniq.mem_orth (VS D)).1 hw₂g _ (OrthogonalLocalComplement.frame_mem_UUE hB.2.2.2.1.1 (lf D F0) F'₂ a),
         map_zero, mul_zero]
     rw [OmL.h_sub_left, h1, h2, sub_zero]
