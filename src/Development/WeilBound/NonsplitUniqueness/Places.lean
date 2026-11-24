@@ -37,7 +37,7 @@ theorem split_infinite [IsGalois F E] :
   exact (inv_ne_zero hpos.ne') h
 
 theorem unr_cofinite : ∀ᶠ v : HeightOneSpectrum (𝓞 F) in cofinite, UpperTheory.ConvolutionTheory.GM.Unr E v := by
-  have hfin := Ideal.finite_factors (differentIdeal_ne_bot (A := 𝓞 F) (B := 𝓞 E))
+  have hfin := Ideal.finite_factors (_root_.differentIdeal_ne_bot (A := 𝓞 F) (B := 𝓞 E))
   refine Filter.eventually_cofinite.2 ((hfin.image fun w => w.under (𝓞 F)).subset ?_)
   intro v hv
   simp only [Set.mem_ofPred_eq, UpperTheory.ConvolutionTheory.GM.Unr, not_forall] at hv

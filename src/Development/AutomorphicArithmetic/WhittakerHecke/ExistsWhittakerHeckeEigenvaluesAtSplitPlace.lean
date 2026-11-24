@@ -49,7 +49,7 @@ theorem UpperTheory.exists_whittaker_heckeEigenvalues_at_split_place :
           CenN P ω → (∀ a, (χ.1 a * ω.1 a) ^ 2 = 1) → ∀ (L N : ℕ) φ, admitted D ω φ → Gd D P L N φ → ∀ a, IsAs P χ N a → ∀ v : H.P ℚ, ¬ Bad N v → ∀ w w' : H.P E, w ≠ w' → w.under (𝓞 ℚ) = v → w'.under (𝓞 ℚ) = v → H.SplitAt v w → H.SplitAt v w' →
           (∀ w'' : H.P E, w''.under (𝓞 ℚ) = v → w'' = w ∨ w'' = w') →
           ∃ m : ℕ → ℂ, m 0 = 1 ∧
-            (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) → Wo D φ (em E (aE (pv v ^ k)) * g) = m k * Wo D φ g) ∧
+            (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) → Wo D φ (em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) * g) = m k * Wo D φ g) ∧
             ((∃ h, Wo D φ h ≠ 0) → (PowerSeries.mk fun k => a (normV v ^ k)) * (1 - PowerSeries.X ^ 2) =
               PowerSeries.mk fun k => ((normV v ^ k : ℕ) : ℂ) * ((χ.val v : ℂˣ) : ℂ) ^ k * m k) := by
   intro E _ _ _ D P ω χ _ hχω L N φ hA hG a hIs v hv w w' hne hw hw' hS hS' hall
@@ -73,8 +73,8 @@ theorem UpperTheory.exists_whittaker_heckeEigenvalues_at_split_place :
     exact hleft ![u, t] h
   obtain ⟨ϖ₁, ϖ₂, hϖ₁, hϖ₂, hz⟩ := UpperTheory.ideleEmbedding_uniformizer_of_split_place_pair E D v w w' hne hw hw' hS hS' hall
     (atFin v (unif v)) (unif_spec v)
-  have hz' : ideleEmbedding ℚ E (pv v) = H.idl w ϖ₁ * H.idl w' ϖ₂ := hz
-  have hem : ∀ k : ℕ, em E (aE (pv v ^ k)) = aE (H.idl w ϖ₁ ^ k) * aE (H.idl w' ϖ₂ ^ k) := fun k => by
+  have hz' : ideleEmbedding ℚ E (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v) = H.idl w ϖ₁ * H.idl w' ϖ₂ := hz
+  have hem : ∀ k : ℕ, em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) = aE (H.idl w ϖ₁ ^ k) * aE (H.idl w' ϖ₂ ^ k) := fun k => by
     rw [← UpperTheory.ConvolutionTheory.R2.aE_mul, ← mul_pow, ← hz']
     refine em_aE _ _ ?_
     rw [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, map_pow]
@@ -120,18 +120,18 @@ theorem UpperTheory.exists_whittaker_heckeEigenvalues_at_split_place :
     have hprod : (α : ℂ) * β * α' * β' * c ^ 2 = 1 := by
       have e1 := UpperTheory.eigenform_central_uniformizer_eq_satake_product E w ϖ₁ hϖ₁ α β φ hEig (Matrix.GeneralLinearGroup.scalar (Fin 2) (H.idl w' ϖ₂) * h₁)
       have e2 := UpperTheory.eigenform_central_uniformizer_eq_satake_product E w' ϖ₂ hϖ₂ α' β' φ hEig' h₁
-      have e3 := hA.cen (ideleEmbedding ℚ E (pv v)) h₁
+      have e3 := hA.cen (ideleEmbedding ℚ E (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v)) h₁
       rw [ideleNorm_ideleEmbedding, Module.finrank_eq_card_basis D.b, Fintype.card_fin, hz', map_mul, mul_assoc, e1, e2] at e3
-      have e4 : ((ω.1 (pv v) : ℂˣ) : ℂ) ^ 2 = (α : ℂ) * β * α' * β' := by
-        have : ((α : ℂ) * β * α' * β' - ((ω.1 (pv v) : ℂˣ) : ℂ) ^ 2) * φ h₁ = 0 := by
+      have e4 : ((ω.1 (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v) : ℂˣ) : ℂ) ^ 2 = (α : ℂ) * β * α' * β' := by
+        have : ((α : ℂ) * β * α' * β' - ((ω.1 (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v) : ℂˣ) : ℂ) ^ 2) * φ h₁ = 0 := by
           rw [map_pow, Units.val_pow_eq_pow_val] at e3
           linear_combination e3
         rcases mul_eq_zero.1 this with h0 | h0
         · linear_combination -h0
         · exact absurd h0 hh₁
-      have e5 := congrArg (fun u : ℂˣ => (u : ℂ)) (hχω (pv v))
+      have e5 := congrArg (fun u : ℂˣ => (u : ℂ)) (hχω (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v))
       simp only [Units.val_pow_eq_pow_val, Units.val_mul, Units.val_one] at e5
-      have e6 : c = ((χ.1 (pv v) : ℂˣ) : ℂ) := rfl
+      have e6 : c = ((χ.1 (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v) : ℂˣ) : ℂ) := rfl
       rw [e6, ← e4]
       linear_combination e5
     have hsp := hIs.split v hv w w' hne hw hw' α β α' β' hsat hsat'

@@ -178,7 +178,7 @@ theorem count_nId {c : HeightOneSpectrum (𝓞 F) → ℕ} (hc : {w | c w ≠ 0}
 
 theorem count_different (w : HeightOneSpectrum (𝓞 F)) :
     FractionalIdeal.count F w ((differentIdeal ℤ (𝓞 F) : Ideal (𝓞 F)) : FractionalIdeal (𝓞 F)⁰ F) = dd w := by
-  rw [FractionalIdeal.count_coe F w differentIdeal_ne_bot]
+  rw [FractionalIdeal.count_coe F w _root_.differentIdeal_ne_bot]
   rfl
 
 theorem mem_nId_iff {c : HeightOneSpectrum (𝓞 F) → ℕ} (hc : {w | c w ≠ 0}.Finite) (a : Af F) :

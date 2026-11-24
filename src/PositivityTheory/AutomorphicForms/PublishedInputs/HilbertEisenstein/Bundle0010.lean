@@ -90,14 +90,14 @@ theorem exists_m {c : HeightOneSpectrum (𝓞 F) → ℕ} (hc : {w | c w ≠ 0}.
   have hπ : ∀ w : HeightOneSpectrum (𝓞 F), ∃ x ∈ w.asIdeal, x ≠ 0 := fun w =>
     Submodule.exists_mem_ne_zero_of_ne_bot w.ne_bot
   choose π hπmem hπ0 using hπ
-  obtain ⟨δ, hδmem, hδ0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))
+  obtain ⟨δ, hδmem, hδ0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot (_root_.differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))
   set S := hc.toFinset
   set p : 𝓞 F := ∏ w ∈ S, π w ^ c w
   have hp0 : p ≠ 0 := Finset.prod_ne_zero_iff.2 fun w _ => pow_ne_zero _ (hπ0 w)
   refine ⟨δ * p, mul_ne_zero hδ0 hp0, fun w => ?_⟩
   have hδv : w.intValuation δ ≤ exp (-dd w) := by
-    have h := intValuation_le_of_mem_ideal w (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F)) hδmem
-    rw [FractionalIdeal.count_coe F w (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))] at h
+    have h := intValuation_le_of_mem_ideal w (_root_.differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F)) hδmem
+    rw [FractionalIdeal.count_coe F w (_root_.differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))] at h
     exact h
   have hpv : w.intValuation p ≤ exp (-(c w : ℤ)) := by
     refine (w.intValuation_le_pow_iff_mem p (c w)).2 ?_

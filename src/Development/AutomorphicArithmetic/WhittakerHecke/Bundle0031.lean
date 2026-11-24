@@ -58,9 +58,9 @@ open UpperTheory.V.Af.Smo (EigAt)
 open scoped ComplexOrder
 
 theorem UpperTheory.ideleOfNat_mul_and_prime_pow :
-    (∀ m n : ℕ, 0 < m → 0 < n → pin (m * n) = pin m * pin n) ∧ (∀ (v : H.P ℚ) (k : ℕ), pin (normV v ^ k) = pv v ^ k) := by
+    (∀ m n : ℕ, 0 < m → 0 < n → pin (m * n) = pin m * pin n) ∧ (∀ (v : H.P ℚ) (k : ℕ), pin (normV v ^ k) = UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k) := by
   obtain ⟨hp, -, hinj, -⟩ := UpperTheory.heightOneSpectrum_rat_correspond_primes
-  have hfin : ∀ n : ℕ, (Function.mulSupport fun v : H.P ℚ => pv v ^ (n.factorization (normV v))).Finite := by
+  have hfin : ∀ n : ℕ, (Function.mulSupport fun v : H.P ℚ => UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ (n.factorization (normV v))).Finite := by
     intro n
     have h1 : ((fun v : H.P ℚ => normV v) ⁻¹' (n.factorization.support : Set ℕ)).Finite :=
       Set.Finite.preimage (fun a _ b _ h => hinj a b h) (Finset.finite_toSet _)
