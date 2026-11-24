@@ -276,7 +276,7 @@ theorem wall_laws (hC : Core R F) (i : Fin D.R.m) (t : T) {P : Pl D.host.E} (hP 
   mult_laws hC.models.inf (R.MW i (sg0 D A)) (hC.lev.βW i) (L := R.datWp i R.triv)
     (fun PP h => hP PP (h.imp_right fun h => absurd h (Finset.notMem_empty _))) R.eG _ c hU
 
-theorem thF_match (hC : Core R F) (hS : SchurAll R) (i : Fin D.R.m) (t : T) {P : Pl D.host.E} (hP : Good R t P)
+theorem thF_match (hC : Core R F) (hS : GlobalTheory.Hk3.SchurAll R) (i : Fin D.R.m) (t : T) {P : Pl D.host.E} (hP : Good R t P)
     (hfix : VacFix R.ψ (R.ωP i t) P) {cV cW : List ℤ →₀ ℂ} (hM : Match R.ψ (R.ωP i t) P (dualC cV) cW)
     {y y' : (R.HV i t).H} (hy : (R.HV i t).e y' = hkF (Vc D i) P cV ((R.HV i t).e y)) :
     R.thF i t y' = postOn (R.MW i (sg0 D A)) (hk (Wc D i) P cW) (R.thF i t y) :=
@@ -284,7 +284,7 @@ theorem thF_match (hC : Core R F) (hS : SchurAll R) (i : Fin D.R.m) (t : T) {P :
     mult_eq_of_unit hC.models.inf (hC.models.νW i).1.1 (hC.models.νW i).2 (hS.2.2 i) (hC.thP.thF_mem i t y')
       (wall_laws hC i t hP cW (hC.thP.thF_mem i t y)).1 (fun ρ => v ρ) hw.1 (thF_low hC i t hP hfix hM hy v)
 
-theorem matchW_of_match : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Core R F → SchurAll R → ∀ i t P, Good R t P → VacFix R.ψ (R.ωP i t) P → ∀ cV cW, Match R.ψ (R.ωP i t) P (dualC cV) cW → MatchW R i t P cV cW := by
+theorem matchW_of_match : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), Core R F → GlobalTheory.Hk3.SchurAll R → ∀ i t P, Good R t P → VacFix R.ψ (R.ωP i t) P → ∀ cV cW, Match R.ψ (R.ωP i t) P (dualC cV) cW → MatchW R i t P cV cW := by
   intro D G _ _ Pl0 T A Ks _ _ _ R F hC hS i t P hP hfix cV cW hM y y' hy
   exact (hC.thP.thG i t y').trans ((congrArg (postOn _ (R.eWf i (sg0 D A))) (thF_match hC hS i t hP hfix hM hy)).trans
     ((wall_laws hC i t hP cW (hC.thP.thF_mem i t y)).2.trans

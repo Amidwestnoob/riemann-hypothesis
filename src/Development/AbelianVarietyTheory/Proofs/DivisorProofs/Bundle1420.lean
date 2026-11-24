@@ -481,7 +481,7 @@ open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab 
 
 namespace GlobalTheory.VmTwo
 
-theorem twoSided_goodInert : HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3), GlobalTheory.Chain.LiftInteg D → R.WeakCharacterisation F → R.toRealDat.ExAt → SchurAll R.toRealDat → (∀ P, Good R.toRealDat A3.A.μ0 P → Formalism.DivisionValues.conjPl P = P → TwoSided R.toRealDat A3.A.μ0 P) := by
+theorem twoSided_goodInert : HoweUnram → ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3), GlobalTheory.Chain.LiftInteg D → R.WeakCharacterisation F → R.toRealDat.ExAt → GlobalTheory.Hk3.SchurAll R.toRealDat → (∀ P, Good R.toRealDat A3.A.μ0 P → Formalism.DivisionValues.conjPl P = P → TwoSided R.toRealDat A3.A.μ0 P) := by
   intro hH D G _ _ Pl0 I0 T A3 Ks _ _ _ R F hL hW hE hS P hG hc
   have hcore := (GlobalTheory.CoreOfWeak.core_of_weak R F hW hE).1
   exact _root_.GlobalTheory.Hk3.TwoSidedInert.twoSided_of_inert hH R.toRealDat F.lv2 hL hcore hS _ P hG hc (_root_.GlobalTheory.FixAllGood.fixAll_of_good R F hW hE _ P hG hc)

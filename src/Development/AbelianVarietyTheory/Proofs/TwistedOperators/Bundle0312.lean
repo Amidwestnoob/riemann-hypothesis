@@ -211,7 +211,7 @@ theorem blockPoly_ne_zero (ν : ℂ) (q t : ℕ) : blockPoly ν q t ≠ 0 := by
 set_option maxHeartbeats 1000000 in
 theorem transfer_good {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type}
     {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks)
-    (F : Face D A) (hL : GlobalTheory.Chain.LiftInteg D) (hC : Core R F) (hS : SchurAll R) (t : T) (P : Pl D.host.E) (hG : Good R t P)
+    (F : Face D A) (hL : GlobalTheory.Chain.LiftInteg D) (hC : Core R F) (hS : GlobalTheory.Hk3.SchurAll R) (t : T) (P : Pl D.host.E) (hG : Good R t P)
     (hP : Formalism.DivisionValues.conjPl P ≠ P) :
     ∃ (z : ℕ → ℕ → ℂ) (c : ℂ) (B : ℂ[X]), c ≠ 0 ∧ B ≠ 0 ∧
       (∀ k, k ≤ D.sp.X'.rank → MatchE R t P (Finsupp.single (splitLab D.sp.X'.rank k) 1) (splitC (Yc D 0).rank (z k))) ∧
@@ -293,7 +293,7 @@ theorem kept : GlobalTheory.Published.CuspRapidDecay → HoweUnram → ∀ {D : 
     {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks)
     (F : Face D A), Core R F → (∀ t P, Good R t P → Formalism.DivisionValues.conjPl P = P → FixAll R t P) → Kept R := by
   intro hCR hHU D G _ _ Pl0 T A Ks _ _ _ R F hC hFix t c x hx
-  have hS : SchurAll R := GlobalTheory.Hk3.schurAll_of_cuspRapidDecay hCR R
+  have hS : GlobalTheory.Hk3.SchurAll R := GlobalTheory.Hk3.schurAll_of_cuspRapidDecay hCR R
   have hLI := GlobalTheory.Chain.LiftConv.liftInteg_of_cuspRapidDecay hCR D
   have H1 := GlobalTheory.Hk3.OpsRowsTuple.exists_ops_tuple R F hC hS t
   cases H1 with
