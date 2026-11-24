@@ -271,7 +271,7 @@ variable {F K L Ω : Type} [Field F] [NumberField F] [Field K] [NumberField K] [
 
 theorem fixes_of_mem_stabilizer [IsAlgClosure F Ω] [IsAlgClosure L Ω]
     {A : ValuationSubring Ω} {P : HeightOneSpectrum (𝓞 L)} (hP : IsPlaceOver A P)
-    (hD : Dec (F := F) A ≤ (res F Ω K).range)
+    (hD : ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω K).range)
     (τ : L ≃ₐ[F] L) (hτ : τ • P.asIdeal = P.asIdeal) (x : K) :
     τ (algebraMap K L x) = algebraMap K L x := by
   haveI : Normal F Ω := IsAlgClosure.normal F Ω
@@ -285,7 +285,7 @@ theorem fixes_of_mem_stabilizer [IsAlgClosure F Ω] [IsAlgClosure L Ω]
     exact hP (τ⁻¹ • y)
   obtain ⟨ρ, hρ⟩ := exists_smul_eq_of_isPlaceOver (F := L) hσA hP
   set g : Ω ≃ₐ[F] Ω := ρ.restrictScalars F * σ with hg
-  have hgA : g ∈ Dec (F := F) A := by
+  have hgA : g ∈ ReciprocityTheory.Gal.Dec (F := F) A := by
     show g • A = A
     rw [hg, mul_smul]
     exact hρ
@@ -313,7 +313,7 @@ variable {F K L Ω : Type} [Field F] [NumberField F] [Field K] [NumberField K] [
 theorem ramificationIdx_eq_one_and_inertiaDeg_eq_one [IsAlgClosure F Ω] [IsAlgClosure L Ω] [IsGalois F L]
     {A : ValuationSubring Ω} {v : HeightOneSpectrum (𝓞 F)} {w : HeightOneSpectrum (𝓞 K)}
     {P : HeightOneSpectrum (𝓞 L)} (hv : IsPlaceOver A v) (hw : IsPlaceOver A w) (hP : IsPlaceOver A P)
-    (hD : Dec (F := F) A ≤ (res F Ω K).range) :
+    (hD : ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω K).range) :
     w.asIdeal.ramificationIdx (𝓞 F) = 1 ∧ w.asIdeal.inertiaDeg (𝓞 F) = 1 := by
   haveI : IsGalois K L := IsGalois.tower_top_of_isGalois F K L
   haveI : w.asIdeal.LiesOver v.asIdeal := liesOver_of_isPlaceOver hv hw
@@ -350,7 +350,7 @@ namespace GlobalTheory.PlaceIsoDec
 
 
 open GroundTheory.Global.SemiLocal in
-theorem exists_placeIso_of_dec_le_range : ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (K : Type) [Field K] [NumberField K] [Algebra F K] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure K Ω] (v : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A v → Dec (F := F) A ≤ (res F Ω K).range → ∃ (w : HeightOneSpectrum (𝓞 K)) (_ : IsPlaceOver A w) (i : v.adicCompletion F ≃+* w.adicCompletion K), PlaceIso A v A w (RingEquiv.refl Ω) (algebraMap F K) i := by
+theorem exists_placeIso_of_dec_le_range : ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (K : Type) [Field K] [NumberField K] [Algebra F K] [Algebra K Ω] [IsScalarTower F K Ω] [IsAlgClosure K Ω] (v : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A v → ReciprocityTheory.Gal.Dec (F := F) A ≤ (res F Ω K).range → ∃ (w : HeightOneSpectrum (𝓞 K)) (_ : IsPlaceOver A w) (i : v.adicCompletion F ≃+* w.adicCompletion K), PlaceIso A v A w (RingEquiv.refl Ω) (algebraMap F K) i := by
   intro F Ω _ _ _ _ _ K _ _ _ _ _ _ v A hv hD
   obtain ⟨w, hw⟩ := GlobalTheory.PlaceIsoDec.exists_isPlaceOver_mid (L := K) hv
   haveI : Module.Finite F K := Module.Finite.of_restrictScalars_finite ℚ F K
