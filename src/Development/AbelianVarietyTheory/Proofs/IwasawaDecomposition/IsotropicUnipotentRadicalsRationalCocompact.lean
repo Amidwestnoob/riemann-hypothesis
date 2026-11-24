@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsCuspFunIffC
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.Mem.UnipCocompact
 
 section Abstract

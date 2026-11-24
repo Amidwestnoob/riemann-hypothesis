@@ -13,6 +13,7 @@ public import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClas
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain IsLocalRing Formalism.UG Formalism.BasicNotions Formalism.FrobeniusOrbits Formalism.L2.G GlobalTheory.GO.PlWitt
 open scoped TensorProduct
 
