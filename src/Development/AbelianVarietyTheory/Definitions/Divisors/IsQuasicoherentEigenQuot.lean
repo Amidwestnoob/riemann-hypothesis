@@ -50,7 +50,7 @@ def eigenLift (φ : G ⟶ F) (h : ∀ a, φ ≫ act ρ a = σ a • φ) : G ⟶ 
   have hmem (V : X.Opens) (s : Γ(G, V)) : φ.app V s ∈ (eigenSub ρ σ).sec V :=
     mem_eigenSub_iff.2 fun a => congr(($(h a)).app V s)
   exact homOfLinear (G := eigen ρ σ)
-    (fun V => (appLinear φ V).codRestrict ((eigenSub ρ σ).sec V) (hmem V))
+    (fun V => (GlobalTheory.QCoh.appLinear φ V).codRestrict ((eigenSub ρ σ).sec V) (hmem V))
     fun hW s => Subtype.ext (app_resM φ hW s)
 
 @[reassoc (attr := simp)] theorem eigenLift_ι (φ : G ⟶ F) (h : ∀ a, φ ≫ act ρ a = σ a • φ) :
