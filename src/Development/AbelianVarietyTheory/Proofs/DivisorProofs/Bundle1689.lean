@@ -247,8 +247,8 @@ theorem hasIndexBound_of_runs : ∀ CK : ℝ, ∀ (D : D7) (G : Type) [Group G] 
   let _ := hostAlg D
   obtain rfl : st = J.toCore.Q.H.starRing := starRing_eq _ _ hd.star_eq
   let _ := J.toCore.Q.H.starRing
-  let _ : ∀ s : RunData J, Algebra s.full.J.Q.c.F D.what₂.LL := fun _ => inst
-  let _ : ∀ (s : RunData J) (h : LawsP s.full.toTop), Algebra (recB h.toLawsCore).KO D.what₂.LL := fun _ _ => inst
+  let _ : ∀ s : GlobalTheory.RealIndexBound.RunData J, Algebra s.full.J.Q.c.F D.what₂.LL := fun _ => inst
+  let _ : ∀ (s : GlobalTheory.RealIndexBound.RunData J) (h : LawsP s.full.toTop), Algebra (recB h.toLawsCore).KO D.what₂.LL := fun _ _ => inst
   have key : ∀ (q : Prop) (i : Fin D.R.m), ∃ ρ : HeightOneSpectrum (𝓞 D.what₂.LL) → ℝ, (∀ v, 0 ≤ ρ v) ∧
       (∀ S' : Finset (HeightOneSpectrum (𝓞 D.what₂.LL)),
         ∑ v ∈ S', Formalism.DivisionValues.lw v * ρ v ≤ (O.nZ i : ℝ) * (D.R.f * D.R.m * L.sc.b * L.de2)) ∧
@@ -270,7 +270,7 @@ theorem hasIndexBound_of_runs : ∀ CK : ℝ, ∀ (D : D7) (G : Type) [Group G] 
       have h4 := (hO.ok.laws v).p
       rw [hd.E_eq v i]
       refine h2 v ?_ _ (nusR_le_eLam Tp hK EX (r.used v₁).full.toTop (hO.ok.laws v₁).p _ (inR_succ i) _) W
-      have h5 : ∀ (s : RunData J) (h' : LawsP s.full.toTop) (p' : ℕ), s = r.used v₁ → p' = ownAt D v₁ →
+      have h5 : ∀ (s : GlobalTheory.RealIndexBound.RunData J) (h' : LawsP s.full.toTop) (p' : ℕ), s = r.used v₁ → p' = ownAt D v₁ →
           letI : Algebra (recB h'.toLawsCore).KO D.what₂.LL := inst
           FormTieK (recPJ h' ((i : ℕ) + 1) (inR_succ i)) hinj EX p' (kaR Tp hK ((i : ℕ) + 1)) (lR Tp hK ((i : ℕ) + 1))
             (fR Tp hK ((i : ℕ) + 1)) Tp.TO O v i (z i) (act i) →
