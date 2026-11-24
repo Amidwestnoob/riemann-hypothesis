@@ -454,7 +454,7 @@ theorem snd_transl (x : 𝟙_ (Over S) ⟶ G) :
 theorem exists_theta (hL : L.IsLB) (x : 𝟙_ (Over S) ⟶ G)
     (φ : LB.Gen (LB.LinComb L (K := Fin 2) ![𝟙 G.left, (transl x).left] ![1, -1])) (hφ : φ.IsGen) :
     ∃ θ : Out.ThetaGrp G L 1 (𝟙_ (Over S)), θ.pt = x ∧ ∀ (Z : Over S) (t : Z ⟶ 𝟙_ (Over S)) (a : Z ⟶ G)
-      (z : Z.left) (J), Good L z J → CommutatorPairing.thetaVal θ t a z J = val φ a.left z J := by
+      (z : Z.left) (J), ReciprocityTheory.ChartRestriction.G.Geo.Tor.Good L z J → CommutatorPairing.thetaVal θ t a z J = val φ a.left z J := by
   obtain ⟨u, hu, hv⟩ := exists_gen hL (K' := Fin 2)
     (φ' := ![(snd (𝟙_ (Over S)) G).left, (Out.translPt G x).left]) (ε' := ![1, -1]) (fun U _ h => by
       simp only [Fin.prod_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, Category.comp_id]
