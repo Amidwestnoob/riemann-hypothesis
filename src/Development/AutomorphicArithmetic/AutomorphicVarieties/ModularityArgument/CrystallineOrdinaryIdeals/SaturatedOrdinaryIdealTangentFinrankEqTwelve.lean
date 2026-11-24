@@ -240,7 +240,7 @@ private theorem tangent (T : Submodule E (U.R →ₗ[O] E))
       ∀ a ∈ GlobalTheory.OrdLoc.IY D U, δ a = 0) (hle : GlobalTheory.OrdLoc.IY D U ≤ RingHom.ker x) :
     finrank E ↥T = finrank E ↥(finiteCocycles (MonoidHom.id _) (adRep (D.rz E))) := by
   have hm : HasMult D.η (D.rz E) := fun _ => rfl
-  have hcr (γ : GQ l → Matrix (Fin 3) (Fin 3) E) (hγ : γ ∈ Z1 (adRep (D.rz E)))
+  have hcr (γ : GQ l → Matrix (Fin 3) (Fin 3) E) (hγ : γ ∈ ReciprocityTheory.Gal.Z1 (adRep (D.rz E)))
       (r' : GQ l →* GG (m := 3) (R := DualNumber E)) (hd : DualDef (D.rz E) γ r') :
       D.IsLCr r' ↔ D.IsLCr (D.rz E) ∧ γ ∈ finiteCocycles (MonoidHom.id _) (adRep (D.rz E)) := by
     have : IsModuleTopology ℚ_[l] (Matrix (Fin 3) (Fin 3) E) :=
@@ -272,7 +272,7 @@ private theorem tangent (T : Submodule E (U.R →ₗ[O] E))
       change (D.rz E g).adFun X = _
       rw [GG.adFun, ite_eq_left (h1 g)]
       rfl
-    have hy : (fun g : D.HL => γ g) ∈ Z1 (adGL (glOn (D.rz E) h1)) := by
+    have hy : (fun g : D.HL => γ g) ∈ ReciprocityTheory.Gal.Z1 (adGL (glOn (D.rz E) h1)) := by
       rw [← had]
       exact ⟨hγ.1.comp continuous_subtype_val, fun g h => hγ.2 g h⟩
     have hdeform := deformCr D.HL.subtype hH.isOpenEmbedding_subtypeVal (glOn (D.rz E) h1)
