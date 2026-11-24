@@ -254,6 +254,9 @@ theorem UpperTheory.ConvolutionTheory.Dp.twCls :
     have h1 : Ψ ∘ T =ᵐ[quotientMeasure (rationalGLOne (K := K) (n := n)) μ] Φ := by
       rw [h] at hU
       exact hU.symm.trans hφa
+    have : (quotientMeasure (rationalGLOne (K := K) (n := n)) μ).IsOpenPosMeasure :=
+      GroundTheory.Automorphic.RightCosetSpace.isOpenPosMeasure
+        (Γ := rationalGLOne (K := K) (n := n)) (μ := μ)
     have h2 : Ψ ∘ T = Φ := (Continuous.ae_eq_iff_eq _ (hΨc.comp hTc) hΦc).1 h1
     have h3 := congrFun h2 (mk _ (θ.e x))
     simp only [Function.comp_apply, hTmk, ContinuousMulEquiv.symm_apply_apply] at h3
