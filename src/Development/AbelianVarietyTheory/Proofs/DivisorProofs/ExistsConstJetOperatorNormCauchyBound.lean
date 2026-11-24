@@ -453,7 +453,7 @@ theorem GlobalTheory.FockJetBound.jetOp_norm_le : ∃ K : ℝ, 0 ≤ K ∧ ∀ (
       have hs : (m.sum fun _ n => n) = dn' := by rw [← hm]; rfl
       rw [hs] at key
       have happ : GL3Theta.applyAt0 D (MvPolynomial.monomial m 1) H =
-          (m.prod fun _ n => (n.factorial : ℂ)) * taylor D H m := by
+          (m.prod fun _ n => (n.factorial : ℂ)) * Formalism.MainNotions.TaylorLogMetric.taylor D H m := by
         rw [Formalism.MainNotions.GL3Theta.applyAt0, MvPolynomial.support_monomial, if_neg one_ne_zero, Finset.sum_singleton,
           MvPolynomial.coeff_monomial, if_pos rfl, one_mul]
       rw [happ]; exact key
