@@ -65,7 +65,7 @@ end Objects
 
 section Joint
 
-variable (Xo c) {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r)
+variable (Xo c) {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Formalism.L2.PjFree.Unf Xo c σ r)
 
 variable {Xo c U}
 
