@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0859
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open MeasureTheory Matrix
 open scoped Classical
 

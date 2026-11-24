@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0648
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCuspidalLieActionOfIsCuspForm
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 open NumberField Topology MeasureTheory Filter Metric
 open scoped Pointwise

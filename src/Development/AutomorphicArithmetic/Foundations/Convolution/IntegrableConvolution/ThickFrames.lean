@@ -6,6 +6,8 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain

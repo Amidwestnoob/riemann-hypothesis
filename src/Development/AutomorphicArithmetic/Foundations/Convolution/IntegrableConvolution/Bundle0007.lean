@@ -60,6 +60,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchSplit
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.Tf.Geo
 open scoped ENNReal
 

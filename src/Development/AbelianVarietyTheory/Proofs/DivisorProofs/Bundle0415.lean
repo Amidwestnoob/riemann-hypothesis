@@ -426,6 +426,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresentationIntertwinesHeisenbergStatement
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory Matrix GlobalTheory.KSp GlobalTheory.SplitUnitary
 open GlobalTheory.WeilM (UG IsQuad IsHerm ResEtaPow)
 open GlobalTheory.SplitWeil (SB nabs)

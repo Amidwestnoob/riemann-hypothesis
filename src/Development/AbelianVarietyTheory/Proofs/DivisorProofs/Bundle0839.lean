@@ -30,6 +30,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0027
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.RealUnitaryCovolumeSum
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField IsDedekindDomain MeasureTheory Matrix GlobalTheory.AdLat GlobalTheory.UCls GlobalTheory.SUVol ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up
 open scoped ENNReal
 

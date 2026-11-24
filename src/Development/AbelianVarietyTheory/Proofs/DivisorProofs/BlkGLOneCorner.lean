@@ -6,6 +6,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0709
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open NumberField MeasureTheory GlobalTheory.CuspRep
 
 noncomputable section
