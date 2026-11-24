@@ -263,7 +263,7 @@ theorem frameConj : FrameConj := by
   have hι : ∀ z, ι (σ z) = cc (ι z) := fun z => rfl
   have hcc : ∀ z, cc (cc z) = z := fun z => by
     change cA σ (cA σ z) = z
-    rw [cA_eq]; exact sigR_invol hσ z
+    rw [GlobalTheory.ThK.Dbl.Frame.cA_eq]; exact sigR_invol hσ z
   have hf : ∀ v z, compFin F E v (cc z) = sigR _ σ (compFin F E v z) := fun v z => by
     induction z using TensorProduct.induction_on with
     | zero => simp only [map_zero]

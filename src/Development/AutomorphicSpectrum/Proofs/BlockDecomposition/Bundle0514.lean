@@ -86,7 +86,7 @@ theorem card_quot (ρ : 𝒪[F] ≃+* ↥(OL K)) {π : 𝒪[F]} (hπ : Irreducib
 
 theorem map_ltPoly (ρ : 𝒪[F] ≃+* ↥(OL K)) {π : 𝒪[F]} (hπ : Irreducible π) :
     PowerSeries.map (ρ : 𝒪[F] →+* ↥(OL K)) (ltPoly π : PowerSeries 𝒪[F]) = ltSeries (ρ π) := by
-  rw [ltSeries, card_quot ρ hπ, ltPoly]
+  rw [ltSeries, card_quot ρ hπ, GroundTheory.LocalField.FormalGroup.ltPoly]
   simp
 
 end Ring
