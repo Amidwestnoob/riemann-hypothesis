@@ -331,22 +331,22 @@ section Comb
 variable {S : Scheme.{0}} {K C : Type} [CommRing K] [CommRing C]
 
 theorem dualMap_comp_algebraMap' (φ : K →+* C) :
-    (GlobalTheory.CompanionTheory.Ar.dualMap φ).comp (algebraMap K (DualNumber K)) = (algebraMap C (DualNumber C)).comp φ := by
+    (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ).comp (algebraMap K (DualNumber K)) = (algebraMap C (DualNumber C)).comp φ := by
   refine RingHom.ext fun z => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+    simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 def bcHom (φ : K →+* C) (x : Sp K ⟶ S) : epsAt (spMap φ ≫ x) ⟶ epsAt x :=
-  Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ)) (by
+  Over.homMk (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ)) (by
     show spMap _ ≫ spMap _ ≫ x = spMap _ ≫ spMap _ ≫ x
     rw [← Category.assoc, ← Category.assoc, spMap_comp_spMap, spMap_comp_spMap, dualMap_comp_algebraMap'])
 
 theorem dual_epsMul (φ : K →+* C) (a : K) :
-    spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (GlobalTheory.CompanionTheory.Ar.epsMul a) =
-      spMap (GlobalTheory.CompanionTheory.Ar.epsMul (φ a)) ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) := by
+    spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (GlobalTheory.CompanionTheory.Ar.epsMul a) =
+      spMap (GlobalTheory.CompanionTheory.Ar.epsMul (φ a)) ≫ spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) := by
   rw [spMap_comp_spMap, spMap_comp_spMap]
   congr 1
   refine RingHom.ext fun z => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, mul_comm]
+    simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, mul_comm]
 
 theorem comp_list_prod {G : Over S} [GrpObj G] {T T' : Over S} (f : T' ⟶ T) (l : List (T ⟶ G)) :
     f ≫ l.prod = (l.map (f ≫ ·)).prod := by
@@ -357,13 +357,13 @@ theorem comp_list_prod {G : Over S} [GrpObj G] {T T' : Over S} (f : T' ⟶ T) (l
 theorem comb_eq_pt {G : Over S} [GrpObj G] (φ : K →+* C) {x : Sp K ⟶ S} {x' : Sp C ⟶ S} (hx : spMap φ ≫ x = x')
     {U : Type} [AddCommGroup U] [Module C U] (M : LieModel G x' U) {n : ℕ} (c : Fin n → K)
     (u : Fin n → (epsAt x ⟶ G)) (w : epsAt x ⟶ G) (hc : IsComb c u w) (e : Fin n → U)
-    (he : ∀ k, spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ (u k).left = (M.pt (e k)).left) :
-    spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ w.left = (M.pt (∑ k, φ (c k) • e k)).left := by
+    (he : ∀ k, spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ (u k).left = (M.pt (e k)).left) :
+    spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ w.left = (M.pt (∑ k, φ (c k) • e k)).left := by
   subst hx
   obtain ⟨u', hu', rfl⟩ := hc
   have key : IsComb (fun k => φ (c k)) (fun k => M.pt (e k)) (bcHom φ x ≫ (List.ofFn u').prod) := by
     refine ⟨fun k => bcHom φ x ≫ u' k, fun k => ?_, ?_⟩
-    · show spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ (u' k).left = _
+    · show spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ (u' k).left = _
       rw [hu' k, ← Category.assoc, dual_epsMul, Category.assoc, he k]
     · rw [comp_list_prod, List.map_ofFn]
       rfl
@@ -394,7 +394,7 @@ theorem isDerivAt0_of_isCMVec : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   intro E _ _ _ H D l Xo c g ty FU i Z P hP X b τ a v hv
   obtain ⟨M, ρ, -, hρ, hder, hpr⟩ := _root_.PositivityTheory.Xgf.lie_model_with_cm_action E H D l Xo c g ty FU i P hP
   obtain ⟨n, e, u, hu, hc⟩ := hv
-  have hk : ∀ k, spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap X.K ℂ)) ≫ (u k).left =
+  have hk : ∀ k, spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap X.K ℂ)) ≫ (u k).left =
       (M.pt ((Z b).z • P (RingOfIntegers.basis E (e k) • (a : (FU.Di i).La)))).left := fun k =>
     ReciprocityTheory.ChartRestriction.G.PullbackSections.ExpRows.isDerivAt0_unique
       ((_root_.PositivityTheory.Xgf.cm_image_unique_lattice E H D l Xo c g ty FU i Z P hP X b _).2 (u k) (hu k)).2 (hder _)

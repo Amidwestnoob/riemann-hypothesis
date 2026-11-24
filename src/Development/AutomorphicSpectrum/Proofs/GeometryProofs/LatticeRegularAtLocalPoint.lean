@@ -57,11 +57,11 @@ def stalkLie (hξ : IsCptGen ξ) (M : LieModel G ξ E) (p : Cpt ξ) :
     rw [e.tan_spec.2, e'.tan_spec.2, show e.tan = e'.tan from h]
   onto v hv := by
     let φ := genMap ξ p
-    let d := GlobalTheory.CompanionTheory.Ar.dualMap φ
+    let d := _root_.GlobalTheory.CompanionTheory.Ar.dualMap φ
     have halg : d.comp (algebraMap (X.presheaf.stalk p.1) (DualNumber (X.presheaf.stalk p.1))) =
         (algebraMap Ω (DualNumber Ω)).comp φ := by
       refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;>
-        simp [d, GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+        simp [d, _root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
     let base : epsAt ξ ⟶ epsAt (R := X.presheaf.stalk p.1) (X.fromSpecStalk p.1) :=
       Over.homMk (Spec.map (CommRingCat.ofHom d)) (by
         change _ ≫ _ ≫ X.fromSpecStalk p.1 = _ ≫ ξ
@@ -71,7 +71,7 @@ def stalkLie (hξ : IsCptGen ξ) (M : LieModel G ξ E) (p : Cpt ξ) :
           φ.comp (TrivSqZeroExt.fstHom (X.presheaf.stalk p.1) (X.presheaf.stalk p.1)
             (X.presheaf.stalk p.1)).toRingHom := by
         refine RingHom.ext fun a => ?_
-        simp [d, GlobalTheory.CompanionTheory.Ar.dualMap]
+        simp [d, _root_.GlobalTheory.CompanionTheory.Ar.dualMap]
       change Spec.map _ ≫ Spec.map (CommRingCat.ofHom d) ≫ v.left = _
       rw [← Category.assoc, spec_comp, hfst, ← spec_comp, Category.assoc, hv]
       exact congrArg (·.left) (comp_one (M := G)

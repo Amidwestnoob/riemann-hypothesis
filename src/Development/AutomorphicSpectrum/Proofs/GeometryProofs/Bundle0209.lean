@@ -56,22 +56,22 @@ namespace GlobalTheory.CompanionTheory.Ar.Flat.FrameDeriv
 
 def rho {R : Type} [CommRing R] (φ : R →+* ℂ) :
     epsAt (spMap φ) ⟶ epsAt (𝟙 (Sp R)) :=
-  Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ)) (by
-    have hsq : spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (algebraMap R (DualNumber R)) =
+  Over.homMk (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ)) (by
+    have hsq : spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (algebraMap R (DualNumber R)) =
         spMap (algebraMap ℂ (DualNumber ℂ)) ≫ spMap φ := by
       simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
       congr 2
       refine RingHom.ext fun r => ?_
-      ext <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-    show spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (algebraMap R (DualNumber R)) ≫ 𝟙 _ =
+      ext <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+    show spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) ≫ spMap (algebraMap R (DualNumber R)) ≫ 𝟙 _ =
       spMap (algebraMap ℂ (DualNumber ℂ)) ≫ spMap φ
     rw [Category.comp_id, hsq])
 
 theorem dualMap_comp_epsMul {R : Type} [CommRing R] (φ : R →+* ℂ) (c : R) :
-    (GlobalTheory.CompanionTheory.Ar.dualMap φ).comp (GlobalTheory.CompanionTheory.Ar.epsMul c) =
-      (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (φ c)).comp (GlobalTheory.CompanionTheory.Ar.dualMap φ) := by
+    (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ).comp (GlobalTheory.CompanionTheory.Ar.epsMul c) =
+      (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (φ c)).comp (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ) := by
   refine RingHom.ext fun r => ?_
-  ext <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul, mul_comm]
+  ext <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul, mul_comm]
 
 theorem lieModel_pt_zero {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] {g : ℕ}
     (M : LieModel G (𝟙 (Sp R)) (Fin g → R)) : M.pt 0 = 1 := by
@@ -83,11 +83,11 @@ theorem isDerivAt0_pt {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] [IsCo
     {M : LieModel G (𝟙 (Sp R)) (Fin g → R)} {B : Set (Fin n → ℂ)} {ψ : (Fin n → ℂ) → (R →+* ℂ)}
     (e : FamExp G M B ψ) {b : Fin n → ℂ} (hb : b ∈ B) (u : Fin g → R) :
     IsDerivAt0 (fun z => (e.ex b z).left) (fun c => ψ b (u c))
-      (spMap (GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt u).left) := by
+      (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt u).left) := by
   have hF0 : (fun z => (e.ex b z).left) 0 = (1 : Over.mk (spMap (ψ b)) ⟶ G).left :=
     congrArg (·.left) (ExpLift.ex_zero e hb)
   let T : (Fin g → R) → (epsPt (spMap (ψ b)) ⟶ G) := fun u => rho (ψ b) ≫ M.pt u
-  have hTl : ∀ u, (T u).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt u).left := fun _ => rfl
+  have hTl : ∀ u, (T u).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt u).left := fun _ => rfl
   have hadd : ∀ u u', T (u + u') = T u * T u' := fun u u' => by
     simp only [T, M.add, MonObj.comp_mul]
   have hone : (T 0).left = spMap (algebraMap ℂ (DualNumber ℂ)) ≫ (fun z => (e.ex b z).left) 0 := by
@@ -221,7 +221,7 @@ theorem isHolTo_slice {n g : ℕ} {B : Set (Fin n → ℂ)} {Y : Scheme.{0}}
 theorem isDerivAt0_pt {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] {g n : ℕ}
     {M : LieModel G (𝟙 (Sp R)) (Fin g → R)} {B : Set (Fin n → ℂ)} {ψ : (Fin n → ℂ) → (R →+* ℂ)}
     (e : Flat.FamExp G M B ψ) {b : Fin n → ℂ} (hb : b ∈ B) (Mz : LieModel G (spMap (ψ b)) (Fin g → ℂ))
-    (hL : ∀ i, ((Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (Pi.single i 1)).left)) (x : Fin g → ℂ) :
+    (hL : ∀ i, ((Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (Pi.single i 1)).left)) (x : Fin g → ℂ) :
     IsDerivAt0 (fun z => (e.ex b z).left) x (Mz.pt x).left := by
   have h1 : e.ex b 0 = 1 := by
     have := e.add b hb 0 0
@@ -278,7 +278,7 @@ theorem isDiff_unique {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
     (GlobalTheory.CompanionTheory.Ar.QuotLoc.DiffL.Pol.pullPolL Q hφ') g' u Hm χ hA
   exact (t1 v hv).unique h h'
 
-theorem isDiff_eq_lift : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R : Type) [CommRing R] (t : SAB H (Sp R)) (g n : ℕ) (M : LieModel t.G (𝟙 (Sp R)) (Fin g → R)) (B : Set (Fin n → ℂ)) (ψ : (Fin n → ℂ) → (R →+* ℂ)) (e : Flat.FamExp t.G M B ψ) (b : Fin n → ℂ) (P : AbPart t (spMap (ψ b))) (A : Over (Sp ℂ)) (_ : GrpObj A) (φ : A.left ⟶ P.tB.G.left) (g' : ℕ) (u : HolUnif A (P.tB.PP.L.pull φ) g') (Hm : Matrix (Fin g') (Fin g') ℂ) (χ : u.Λ → ℂ) (ℓ : (Fin g → ℂ) →ₗ[ℂ] (Fin g' → ℂ)), b ∈ B → IsGrpPullback A P.tB.G (𝟙 _) φ → u.IsAH Hm χ → IsPrincipal P.tB → GlobalTheory.CompanionTheory.Ar.QuotLoc.IsAbLift e b P φ u ℓ → ∀ (Mz : LieModel t.G (spMap (ψ b)) (Fin g → ℂ)), (∀ i, ((Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (Pi.single i 1)).left)) → ∀ (x : Fin g → ℂ) (v : epsAt (𝟙 (Sp ℂ)) ⟶ P.tK.G) (v' : epsR ℂ ⟶ A) (w : Fin g' → ℂ), v.left ≫ P.m.φ = (Mz.pt x).left → v'.left ≫ φ = (v ≫ P.τ.q ≫ P.e.hom).left → u.IsDiff w v' → w = ℓ x := by
+theorem isDiff_eq_lift : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R : Type) [CommRing R] (t : SAB H (Sp R)) (g n : ℕ) (M : LieModel t.G (𝟙 (Sp R)) (Fin g → R)) (B : Set (Fin n → ℂ)) (ψ : (Fin n → ℂ) → (R →+* ℂ)) (e : Flat.FamExp t.G M B ψ) (b : Fin n → ℂ) (P : AbPart t (spMap (ψ b))) (A : Over (Sp ℂ)) (_ : GrpObj A) (φ : A.left ⟶ P.tB.G.left) (g' : ℕ) (u : HolUnif A (P.tB.PP.L.pull φ) g') (Hm : Matrix (Fin g') (Fin g') ℂ) (χ : u.Λ → ℂ) (ℓ : (Fin g → ℂ) →ₗ[ℂ] (Fin g' → ℂ)), b ∈ B → IsGrpPullback A P.tB.G (𝟙 _) φ → u.IsAH Hm χ → IsPrincipal P.tB → GlobalTheory.CompanionTheory.Ar.QuotLoc.IsAbLift e b P φ u ℓ → ∀ (Mz : LieModel t.G (spMap (ψ b)) (Fin g → ℂ)), (∀ i, ((Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (ψ b)) ≫ (M.pt (Pi.single i 1)).left)) → ∀ (x : Fin g → ℂ) (v : epsAt (𝟙 (Sp ℂ)) ⟶ P.tK.G) (v' : epsR ℂ ⟶ A) (w : Fin g' → ℂ), v.left ≫ P.m.φ = (Mz.pt x).left → v'.left ≫ φ = (v ≫ P.τ.q ≫ P.e.hom).left → u.IsDiff w v' → w = ℓ x := by
   intro E _ _ _ H R _ t g n M B ψ e b P A _ φ g' u Hm χ ℓ hb hφ hA hP hl Mz hL x v v' w hv hv' hw
   have Hc := P.m.cart.1
   have hex : ∀ y, ∃ s : 𝟙_ (Over (Sp ℂ)) ⟶ P.tK.G, s.left ≫ P.m.φ = (e.ex b y).left := fun y =>

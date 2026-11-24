@@ -428,16 +428,16 @@ theorem span_range_pullback : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [Smoo
       show (c r * r') • e = c r • (r' • e)
       exact mul_smul _ _ _⟩
   let h : GlobalTheory.CompanionTheory.Ar.epsAt (Spec.map (CommRingCat.ofHom c) ≫ x) ⟶ GlobalTheory.CompanionTheory.Ar.epsAt x :=
-    Over.homMk (Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap c))) (by
-      show Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap c)) ≫
+    Over.homMk (Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c))) (by
+      show Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c)) ≫
           Spec.map (CommRingCat.ofHom (algebraMap R (DualNumber R))) ≫ x =
         Spec.map (CommRingCat.ofHom (algebraMap R' (DualNumber R'))) ≫
           Spec.map (CommRingCat.ofHom c) ≫ x
       rw [← Category.assoc, ← Category.assoc, ← Spec.map_comp, ← Spec.map_comp]
       congr 2
-      ext r <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl, CommRingCat.hom_comp,
+      ext r <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl, CommRingCat.hom_comp,
         CommRingCat.hom_ofHom])
-  have hl : h.left = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap c)) := rfl
+  have hl : h.left = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c)) := rfl
   have hpt : ∀ e, M'.pt (j e) = h ≫ M.pt e := fun e =>
     Over.OverMorphism.ext (by rw [Over.comp_left, hl]; exact hj e)
   have hadd : ∀ a b, j (a + b) = j a + j b := by
@@ -452,7 +452,7 @@ theorem span_range_pullback : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [Smoo
       ← Category.assoc, ← Category.assoc, ← Spec.map_comp, ← Spec.map_comp]
     congr 2
     ext a <;>
-      simp [GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, smul_eq_mul, TrivSqZeroExt.algebraMap_eq_inl, CommRingCat.hom_comp,
+      simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, GlobalTheory.CompanionTheory.Ar.epsMul, smul_eq_mul, TrivSqZeroExt.algebraMap_eq_inl, CommRingCat.hom_comp,
         CommRingCat.hom_ofHom]
   let β : E →ₗ[R] E' :=
     { toFun := j, map_add' := hadd, map_smul' := fun r e => hsmul r e }

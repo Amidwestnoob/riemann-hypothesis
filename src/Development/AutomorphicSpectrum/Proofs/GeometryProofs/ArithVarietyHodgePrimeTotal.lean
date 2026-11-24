@@ -102,7 +102,7 @@ theorem der_compare {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDom
     rw [Category.assoc, hv1, ← Spec.map_comp, ← Spec.map_comp]
     congr 1
     ext r
-    all_goals simp [GlobalTheory.CompanionTheory.Ar.dualMap, HTBaseChange.qmap, Ideal.quotientMap_mk, TrivSqZeroExt.algebraMap_eq_inl]
+    all_goals simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, HTBaseChange.qmap, Ideal.quotientMap_mk, TrivSqZeroExt.algebraMap_eq_inl]
   set v'' := hF.cart.lift _ _ hc with hv''
   have h1 := hF.cart.lift_fst _ _ hc
   have h2 := hF.cart.lift_snd _ _ hc
@@ -113,7 +113,7 @@ theorem der_compare {R R' : Type} [CommRing R] [IsDomain R] [CommRing R'] [IsDom
       ← Spec.map_comp]
     congr 2
     ext a
-    all_goals simp [GlobalTheory.CompanionTheory.Ar.dualMap, HTBaseChange.qmap, Ideal.quotientMap_mk, TrivSqZeroExt.algebraMap_eq_inl]
+    all_goals simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, HTBaseChange.qmap, Ideal.quotientMap_mk, TrivSqZeroExt.algebraMap_eq_inl]
   have huniq := (_root_.GlobalTheory.CompanionTheory.Ar.BT.TanLift.tangent_mod_torsion R' T Γ' S G _ N (F ≫ i) hi' L' M' (β e)).unique ⟨h2, h3⟩ ⟨hv'1, hv'2⟩
   rw [← huniq, hss, ← HTBaseChange.valAt_comp_top, h1, HTBaseChange.valAt_spec_map, hv3] at hv'3
   have h5 := congrArg TrivSqZeroExt.snd hv'3

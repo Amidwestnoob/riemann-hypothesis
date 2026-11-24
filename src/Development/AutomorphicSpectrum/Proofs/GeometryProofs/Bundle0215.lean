@@ -199,16 +199,16 @@ theorem one_left_over {S : Scheme.{0}} {X M : Over S} [GrpObj M] : (1 : X ⟶ M)
 
 theorem isVec_existsUnique : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (L : Type) [Field L] [NumberField L] (D : PPData H L) (σ : L →+* ℂ) (a : D.Frame σ), (∀ v, IsTangent v → ∃! w, a.u.IsDiff w v) → (∀ w, ∃! v, IsTangent v ∧ a.u.IsDiff w v) → ∀ x : D.B.carrier, ∃! c, D.IsVec a x c := by
   intro E _ _ _ H L _ _ D σ a h1 h2 x
-  have hw : (spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left) ≫ D.t.G.hom
+  have hw : (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left) ≫ D.t.G.hom
       = (epsAt (emb σ)).hom := by
     rw [Category.assoc, Over.w]
     simp only [epsAt, Over.mk_hom, Category.comp_id, emb]
     simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
     congr 1
-    ext t <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+    ext t <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
   let v : epsAt (emb σ) ⟶ D.t.G := Over.homMk _ hw
-  have hvl : v.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left := rfl
-  have hlift : (v.left ≫ (𝟙 D.t.G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left) := by
+  have hvl : v.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left := rfl
+  have hlift : (v.left ≫ (𝟙 D.t.G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (D.MB.pt x).left) := by
     show v.left ≫ 𝟙 _ = _
     rw [Category.comp_id]
     exact hvl
@@ -220,11 +220,11 @@ theorem isVec_existsUnique : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     apply a.cart.1.hom_ext
     · have h3 : spMap (TrivSqZeroExt.fstHom ℂ ℂ ℂ).toRingHom ≫ v.left = spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ (1 : Over.mk (𝟙 (Sp (𝓞 L))) ⟶ D.t.G).left := by
         rw [hvl, ← Category.assoc]
-        have key : spMap (TrivSqZeroExt.fstHom ℂ ℂ ℂ).toRingHom ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) =
+        have key : spMap (TrivSqZeroExt.fstHom ℂ ℂ ℂ).toRingHom ≫ spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) =
             spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ spMap (TrivSqZeroExt.fstHom (𝓞 L) (𝓞 L) (𝓞 L)).toRingHom := by
           simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
           congr 1
-          ext t <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+          ext t <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
         rw [key, Category.assoc]
         exact congrArg (fun f => spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ f) (D.MB.tan x)
       rw [Category.assoc, hφ, ReciprocityTheory.ChartRestriction.G.Out.PullGtPf.IsGrpPullback.one_left a.cart, h3, one_left_over]

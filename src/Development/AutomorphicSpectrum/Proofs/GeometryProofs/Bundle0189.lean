@@ -296,20 +296,20 @@ section Rings
 variable {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R')
 
 theorem dualMap_comp_algebraMap :
-    (GlobalTheory.CompanionTheory.Ar.dualMap f).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp f := by
-  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+    (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f).comp (algebraMap R (DualNumber R)) = (algebraMap R' (DualNumber R')).comp f := by
+  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
 
 theorem dualMap_comp_epsMul (c : R) :
-    (GlobalTheory.CompanionTheory.Ar.dualMap f).comp (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul c) =
-      (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (f c)).comp (GlobalTheory.CompanionTheory.Ar.dualMap f) := by
+    (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f).comp (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul c) =
+      (ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul (f c)).comp (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) := by
   refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;>
-    simp [GlobalTheory.CompanionTheory.Ar.dualMap, ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul, mul_comm]
+    simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, ReciprocityTheory.ChartRestriction.G.Geo.Tor.epsMul, mul_comm]
 
 theorem fst_comp_dualMap :
-    (TrivSqZeroExt.fstHom R' R' R').toRingHom.comp (GlobalTheory.CompanionTheory.Ar.dualMap f) =
+    (TrivSqZeroExt.fstHom R' R' R').toRingHom.comp (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) =
       f.comp (TrivSqZeroExt.fstHom R R R).toRingHom := by
   refine RingHom.ext fun a => ?_
-  simp [GlobalTheory.CompanionTheory.Ar.dualMap]
+  simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap]
 
 end Rings
 
@@ -321,7 +321,7 @@ theorem isTanAt_iff {S : Type} [CommRing S] (x : Sp S ⟶ X0) (w : GlobalTheory.
 
 theorem isTanAtG_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') {x : Sp R ⟶ X0}
     {v : Sp (DualNumber R) ⟶ t.G.left} (h : IsTanAtG t x v) :
-    IsTanAtG t (spMap f ≫ x) (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ v) := by
+    IsTanAtG t (spMap f ≫ x) (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ v) := by
   refine ⟨?_, ?_⟩
   · rw [Category.assoc, h.1, ← Category.assoc, ← Category.assoc,
       spMap_comp_eq _ _ _ _ (dualMap_comp_algebraMap f)]
@@ -333,14 +333,14 @@ theorem isTanAtG_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') {
 theorem isCombAtG_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') {x : Sp R ⟶ X0} {m : ℕ}
     {v : Fin m → (Sp (DualNumber R) ⟶ t.G.left)} {cf : Fin m → R} {w : Sp (DualNumber R) ⟶ t.G.left}
     (h : IsCombAtG t x v cf w) :
-    IsCombAtG t (spMap f ≫ x) (fun l => spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ v l) (fun l => f (cf l))
-      (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ w) := by
+    IsCombAtG t (spMap f ≫ x) (fun l => spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ v l) (fun l => f (cf l))
+      (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ w) := by
   obtain ⟨u, hu, hw⟩ := h
-  let k : tEpsG (spMap f ≫ x) ⟶ tEpsG x := Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
+  let k : tEpsG (spMap f ≫ x) ⟶ tEpsG x := Over.homMk (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
     simp only [Over.mk_hom]
     rw [← Category.assoc, ← Category.assoc, spMap_comp_eq _ _ _ _ (dualMap_comp_algebraMap f)])
   refine ⟨fun l => k ≫ u l, fun l => ?_, ?_⟩
-  · show spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (u l).left = _
+  · show spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (u l).left = _
     rw [hu l, ← Category.assoc, ← Category.assoc,
       spMap_comp_eq _ _ _ _ (dualMap_comp_epsMul f (cf l))]
   · rw [← comp_prod_ofFn, Over.comp_left, hw]
@@ -378,12 +378,12 @@ theorem lieLat_conjData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   obtain ⟨gi, hgi⟩ := hfam i
   obtain ⟨hΦΨ, hΨΦ, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Conj.Iso.rho_pairing K d (𝓞 E) F.B (F.BK i) (F.φ i) (F.ψ i) (F.lam i) (F.iso i)
   have hgen : spMap (C.v i).valuationSubring.subtype ≫ Y.x i = z := Y.gen i
-  have htan : ∀ l, IsTanAtG t z (spMap (GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l) :=
+  have htan : ∀ l, IsTanAtG t z (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l) :=
     fun l => by
       have h0 := isTanAtG_map t (C.v i).valuationSubring.subtype (gi.tan l)
       rwa [hgen] at h0
   choose c hc using fun l => M.onto (Over.homMk _ (htan l).1) ((isTanAt_iff t z _).2 (htan l))
-  have hcl : ∀ l, (M.pt (c l)).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l :=
+  have hcl : ∀ l, (M.pt (c l)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l :=
     fun l => by rw [hc l]; rfl
   have hec : ∀ l j, e (c l) j = lin (F.φ i) 1 j l := by
     intro l
@@ -392,13 +392,13 @@ theorem lieLat_conjData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     exact fun j => congrFun this j
   have key : ∀ (a : Fin d → (C.v i).valuationSubring)
       (w : Sp (DualNumber (C.v i).valuationSubring) ⟶ t.G.left), IsCombAtG t (Y.x i) gi.tg a w →
-      spMap (GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ w = (M.pt (∑ l, (a l : K) • c l)).left ∧
+      spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ w = (M.pt (∑ l, (a l : K) • c l)).left ∧
         e (∑ l, (a l : K) • c l) = (lin (F.φ i) 1).mulVec (fun l => (a l : K)) := by
     intro a w hw
     refine ⟨?_, ?_⟩
     · have h1 := isCombAtG_map t (C.v i).valuationSubring.subtype hw
       rw [hgen] at h1
-      have h2 : (fun l => spMap (GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l) =
+      have h2 : (fun l => spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (C.v i).valuationSubring.subtype) ≫ gi.tg l) =
           fun l => (M.pt (c l)).left := funext fun l => (hcl l).symm
       rw [h2] at h1
       exact (isCombAtG_iff_lie t M c _ _).1 h1
