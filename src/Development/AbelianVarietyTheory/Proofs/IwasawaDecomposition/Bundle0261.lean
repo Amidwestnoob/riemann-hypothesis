@@ -450,7 +450,7 @@ theorem congConj : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : �
     intro i j
     rw [hprod]
     have h2 := congrFun (congrFun hdiff i) j
-    simpa [Matrix.sub_apply, Matrix.smul_apply] using h2
+    simpa only [Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul] using h2
   refine ⟨fun i j => ?_, fun i j => ⟨Z i j, hZint i j, hentry i j⟩⟩
   have h3 : (((h⁻¹ * κ * h).1 : GL (Fin n) (AL L)) : Matrix (Fin n) (Fin n) (AL L)) i j =
       (1 : Matrix (Fin n) (Fin n) (AL L)) i j + (N : AL L) * Z i j := by
