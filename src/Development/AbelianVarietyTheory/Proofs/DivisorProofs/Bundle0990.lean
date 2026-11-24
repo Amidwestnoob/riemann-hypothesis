@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0957
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaPForms
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
