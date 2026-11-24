@@ -167,7 +167,7 @@ theorem bigT_k : _root_.PositivityTheory.SiegelWeilFormula.Ald.BigT_k := by
     rw [e1, hl', LinearMap.comp_apply, rhoS' _ φ hφ, LinearMap.comp_apply]
     have e2 : Z * (incM F d.b.1.toCols₁)ᵀ = ((Z * (incM F t.1)ᵀ : Mx F E d.m d.n)) *
         ((diagCols (Fin d.n) : Matrix (Fin d.n ⊕ Fin d.n) (Fin d.n) (AE F E)))ᵀ := by
-      rw [ht, incM_mul', incM_diagCols, Matrix.transpose_mul]
+      rw [ht, incM_mul', _root_.PositivityTheory.SiegelWeilFormula.Ald.Asc.incM_diagCols, Matrix.transpose_mul]
       exact (Matrix.mul_assoc _ _ _).symm
     rw [e2]
     exact d.ok.dbl.kill _ _ (hop.pres' φ hφ)
@@ -178,7 +178,7 @@ theorem bigT_k : _root_.PositivityTheory.SiegelWeilFormula.Ald.BigT_k := by
       GlobalTheory.EvZeroUniq.schr_mem_schA d.B.ψ hψ _ hΦ
     have h0 := had 0 X
     rw [Matrix.zero_mul, zero_add] at h0
-    simp only [Bf_zero_left] at h0
+    simp only [_root_.PositivityTheory.SiegelWeilFormula.Ald.Asc.Bf_zero_left] at h0
     have e1 : d.T Φ X = l' (S0 (d.dd.rho d.B.ψ (X * (incM F d.b.1.toCols₂)ᵀ) Φ)) := by
       rw [hl', LinearMap.comp_apply, hop.left _ hΨ]
       rfl

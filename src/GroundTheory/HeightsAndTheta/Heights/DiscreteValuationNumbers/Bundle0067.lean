@@ -72,7 +72,7 @@ theorem SegreFlagCutDivisor.proof (hSpec : SegreFlagCutSpecialize.Statement)
       ring
     rw [ratDiv_eq_of_sub_mem hsP hhP hlP hμP hdiff]
     unfold ratDiv
-    rw [divCycle_eq_zero_of_not_mem hμW, sub_zero]
+    rw [_root_.GroundTheory.Heights₂.Heights.NumbersDVR.FlagBundleSectionDivProof.divCycle_eq_zero_of_not_mem hμW, sub_zero]
     have hlQ : 0 < k → l ∈ pointIdeal O (flagClosurePt y w e φ φ' t k) := fun _ =>
       mem_of_homog hl (hspec l μ hlv)
     split_ifs with hc

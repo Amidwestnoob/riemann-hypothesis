@@ -211,7 +211,7 @@ theorem fin_int (hLI : LocInt) (hFS : FinSplit) (hOP : OmegaProd) (hCD : CoefDiv
     rw [Units.val_mul]; rfl
   have hcd := hCD F ω c (algebraMap F (Af F) (ξ : F) * (yf : Af F)) m S (fun w => by
       have hne := pLoc_unit_ne_zero (xiF ξ * yf) w
-      rw [hz, valued_eq_exp_neg_ord hne]
+      rw [hz, _root_.GroundTheory.Global.valued_eq_exp_neg_ord hne]
       congr 1
       simp only [hm, ordAt]
       ring)
