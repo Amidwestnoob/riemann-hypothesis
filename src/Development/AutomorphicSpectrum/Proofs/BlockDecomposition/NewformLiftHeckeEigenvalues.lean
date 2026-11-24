@@ -249,7 +249,7 @@ theorem scalar_of_level (hB0 : B0) (N : ℕ) [NeZero N] (ω : HeckeCharacter ℚ
       · intro g
         rw [← mul_assoc, hbad v (hS v (Finset.mem_insert_self _ _)) _ d hd _ hl, a₄, mul_assoc]
   obtain ⟨h, c, a₁, a₂, a₃, a₄⟩ := key hfin.toFinset fun v hv => hfin.mem_toFinset.1 hv
-  have hmem : h⁻¹ * finEmb ℚ 2 u ∈ (maxCompact : Subgroup G2) := by
+  have hmem : h⁻¹ * finEmb ℚ 2 u ∈ (GroundTheory.Automorphic.Reduction.maxCompact : Subgroup G2) := by
     refine Reduction.mem_maxCompact.2 ⟨fun w => ?_, fun v => ?_⟩
     · rw [Reduction.infAt_mul, Reduction.infAt_inv, a₃, infAt_finEmb, inv_one, one_mul]
       exact one_mem _
