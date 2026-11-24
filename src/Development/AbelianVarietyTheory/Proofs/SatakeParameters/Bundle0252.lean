@@ -145,7 +145,7 @@ theorem xiTop_intOff_of_psi (t : KerEntTied ex) (u : D.what₂.Word) (μ : D.wha
     (Yb : Set (Sp t.X.E (D.R.N i))) (p' : ChPt (R := D.R) t.sel (t.tup μ) (t.word u) (i + 1))
     (x : HomE t.X.E (D.R.N i) (D.R.N (i + 1))) :
     IntOff (t.O u μ).S (t.seam.σ₀ (XiTop t.Ch t.sel (t.tup μ) (t.cst μ) i p Yb p' x)) := by
-  unfold XiTop XiTopG
+  unfold Formalism.L2.Col.XiTop XiTopG
   rw [map_mul, map_prod]
   refine IntOff.mul ?_ (GlobalTheory.intOff_finset_prod _ _ fun P _ => ?_)
   · unfold phiT
