@@ -320,7 +320,7 @@ theorem UpperTheory.V.Z.Win.RR.ordAbove_of_alt (hX : ExRS) (hGd : GdOf) :
   obtain ⟨-, wt, HT, -, -, hall⟩ := hX F Ω l ι 2 one_le_two π χ₀ H.reg hpol
   have hG := hall r H.cont H.att
   have hpl := (Birth.ordPlain F Ω l ι ξ s c m a π r H w σ hσ).elim id fun ⟨B, hB⟩ => hG.plain w B hB σ hσ
-  have hdr : Hi.DRat ι h (r.comp (Dec (F := F) A).subtype) (fun _ => Finset.univ.val.map fun j => -m w j)
+  have hdr : Hi.DRat ι h (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) (fun _ => Finset.univ.val.map fun j => -m w j)
       fun s => (rc (algNorm σ)).charPol s := by
     intro O _ _ _ Bw hj
     obtain ⟨k1, k2⟩ := hG.loc w σ hσ hpl
@@ -348,7 +348,7 @@ theorem UpperTheory.V.Z.Win.RR.ordAbove_of_alt (hX : ExRS) (hGd : GdOf) :
   obtain ⟨κ, hκ, hv⟩ := _root_.UpperTheory.deRham_weights_of_localArtin_characters' hP.litN F Ω l hl ι 2 w hw A h ar har _ (H.cont.comp continuous_subtype_val) (m w)
     (fun i j hij => by fin_cases i <;> fin_cases j <;> first | exact hm | exact absurd hij (by decide)) ω hsm
     (Fin.forall_fin_two.2 ⟨hn0, hn1⟩) hdr
-  have k0 : ∀ g : ↥(Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → κ 0 g = cycBar F Ω l g ^ m w 0 := fun g hg => by
+  have k0 : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → κ 0 g = cycBar F Ω l g ^ m w 0 := fun g hg => by
     have h1 := hv 0 (ineIncl h ⟨g, hg⟩)
     rw [hω0, deg_ineIncl, mul_zero, zpow_zero, neg_zero, zpow_zero, map_one, mul_one, one_mul] at h1
     exact Units.ext (h1.trans (Units.val_zpow_eq_zpow_val _ _).symm)

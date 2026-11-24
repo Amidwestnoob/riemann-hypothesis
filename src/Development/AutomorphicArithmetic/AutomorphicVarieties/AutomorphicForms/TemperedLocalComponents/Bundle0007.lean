@@ -89,8 +89,8 @@ private theorem of_model (P : Hypotheses₂) {K Ω : Type} [Field K] [NumberFiel
   intro A h rc hrc
   obtain ⟨h1, h2⟩ := H w σ hσ A h rc hrc
   refine ⟨fun hw => (h1 hw).of_conj hw p fun g => by rw [hp, inv_mul_cancel_right], fun O _ _ _ Bw hj => ?_⟩
-  have h3 := GlobalTheory.PstConj.main K Ω l ι n _ _ (Loc.tiedP l) w A h O Bw hj (R.comp (Dec (F := K) A).subtype)
-    (r.comp (Dec (F := K) A).subtype) p (fun g => hp g.1) (h2 O Bw hj).1
+  have h3 := GlobalTheory.PstConj.main K Ω l ι n _ _ (Loc.tiedP l) w A h O Bw hj (R.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)
+    (r.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype) p (fun g => hp g.1) (h2 O Bw hj).1
   exact ⟨h3.1, by rw [h3.2]; exact (h2 O Bw hj).2⟩
 
 private theorem cls_char {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (χ : HChar E)

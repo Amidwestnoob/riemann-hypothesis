@@ -9,7 +9,7 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 namespace UpperTheory.V.Z.Win
 
 private theorem fix_root {Ω : Type} [Field Ω] [Algebra ℚ Ω] (A : ValuationSubring Ω) {l p c : ℕ} (hc : p + 1 = 4 * l * c)
-    (hl : A.valuation (l : Ω) < 1) {g : G ℚ Ω} (hg : g ∈ Dec (F := ℚ) A) {δ : Ω} (hδ : δ ^ 2 = -(p : Ω)) : g δ = δ := by
+    (hl : A.valuation (l : Ω) < 1) {g : G ℚ Ω} (hg : g ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A) {δ : Ω} (hδ : δ ^ 2 = -(p : Ω)) : g δ = δ := by
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
   have hcast : (p : Ω) + 1 = 4 * (l : Ω) * (c : Ω) := by
     have := congrArg (Nat.cast : ℕ → Ω) hc
@@ -132,7 +132,7 @@ theorem quadFamSplit (l : ℕ) [hl : Fact l.Prime] (N : ℕ) :
     exact ⟨P i, c, δ, (hPp i).pos, hc, hδ⟩
 
 def SplitIn (l : ℕ) (K Ω : Type) [Field K] [Field Ω] [Algebra ℚ Ω] [Algebra K Ω] : Prop :=
-  ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ g ∈ Dec (F := ℚ) A, ∀ x : K, g (algebraMap K Ω x) = algebraMap K Ω x
+  ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ g ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A, ∀ x : K, g (algebraMap K Ω x) = algebraMap K Ω x
 
 theorem thirdSplit (K K' Ω : Type) [Field K] [NumberField K] [IsCMField K] [Field K'] [NumberField K'] [IsCMField K'] [Field Ω]
     [Algebra ℚ Ω] [Algebra K Ω] [Algebra K' Ω] [IsScalarTower ℚ K Ω] [IsScalarTower ℚ K' Ω] [IsAlgClosure ℚ Ω]

@@ -32,7 +32,7 @@ def RowProps (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin n) (Qbar l)) (π :
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w) (rc : IrrGL (k := w.adicCompletion E) → WD h), IsRecT h rc →
       ∀ σ, π.IsLocComp w σ → UpperTheory.GalStar.Tor (rc (algNorm σ)) → (rc (algNorm σ)).mono0 →
         (((l : ℕ) : 𝓞 E) ∉ w.asIdeal → IsWDOf ι r (rc (algNorm σ))) ∧
-        Hi.DRat ι h (r.comp (Dec (F := E) A).subtype) HT fun s => (rc (algNorm σ)).charPol s
+        Hi.DRat ι h (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) HT fun s => (rc (algNorm σ)).charPol s
 
 end Defs
 
@@ -97,7 +97,7 @@ def PsT : Prop :=
 def UnlOf : Prop :=
   ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime] (n : ℕ)
     (r : G F Ω →* GL (Fin n) (Qbar l)) (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ ψ : Fin n → Dec (F := F) A →* (Qbar l)ˣ, V.W.HasFlag (r.comp (Dec (F := F) A).subtype) ψ →
-      (∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype) → Unl1 r w
+    ∀ ψ : Fin n → ReciprocityTheory.Gal.Dec (F := F) A →* (Qbar l)ˣ, V.W.HasFlag (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ψ →
+      (∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) → Unl1 r w
 
 end UpperTheory.V.Z.Desc.W

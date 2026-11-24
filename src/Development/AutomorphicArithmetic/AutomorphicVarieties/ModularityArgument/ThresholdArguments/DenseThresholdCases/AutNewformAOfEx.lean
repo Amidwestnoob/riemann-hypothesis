@@ -60,7 +60,7 @@ private theorem flag_all {e : ℕ} (he : 1 ≤ e) (W : G ℚ Ω →* GL (Fin 2) 
       (fun i => ((cycBar ℚ Ω l) ^ (![(e : ℤ), -(e : ℤ)] i)).comp (H ⊓ Ine (F := ℚ) B).subtype)) :
     ∃ N : Subgroup (G ℚ Ω), IsOpen (N : Set (G ℚ Ω)) ∧ ∀ w : HeightOneSpectrum (𝓞 ℚ), ((l : ℕ) : 𝓞 ℚ) ∈ w.asIdeal →
       ∀ A : ValuationSubring Ω, IsPlaceOver A w → (∃ s ∈ N ⊓ Ine (F := ℚ) A, ∀ k : ℕ, k ≠ 0 → cycBar ℚ Ω l s ^ k ≠ 1) ∧
-        ∃ κ, IsFlagOn W (Dec (F := ℚ) A) κ ∧ ∀ i (s : ↥(Dec (F := ℚ) A)), (s : G ℚ Ω) ∈ N ⊓ Ine (F := ℚ) A →
+        ∃ κ, IsFlagOn W (ReciprocityTheory.Gal.Dec (F := ℚ) A) κ ∧ ∀ i (s : ↥(ReciprocityTheory.Gal.Dec (F := ℚ) A)), (s : G ℚ Ω) ∈ N ⊓ Ine (F := ℚ) A →
           κ i s = cycBar ℚ Ω l s ^ (![(e : ℤ), -(e : ℤ)] i) := by
   have : IsGalois ℚ Ω := {}
   have := Subgroup.quotient_finite_of_isOpen H hH
@@ -119,7 +119,7 @@ private theorem flag_all {e : ℕ} (he : 1 ≤ e) (W : G ℚ Ω →* GL (Fin 2) 
     congr 1
     change ((cycBar ℚ Ω l) ^ (![(e : ℤ), -(e : ℤ)] i)) (g⁻¹ * (t : G ℚ Ω) * g) = ((cycBar ℚ Ω l) ^ (![(e : ℤ), -(e : ℤ)] i)) t
     rw [map_mul, map_mul, map_inv, mul_right_comm, inv_mul_cancel, one_mul]
-  let D := Dec (F := ℚ) (g • B)
+  let D := ReciprocityTheory.Gal.Dec (F := ℚ) (g • B)
   let N := H.normalCore ⊓ Ine (F := ℚ) (g • B)
   let χ : Fin 2 → G ℚ Ω →* (Qbar l)ˣ := fun i => (cycBar ℚ Ω l) ^ (![(e : ℤ), -(e : ℤ)] i)
   have hc : ∀ d ∈ D, ∀ t ∈ N, d⁻¹ * t * d ∈ N := fun d hd t ht =>
@@ -274,8 +274,8 @@ private theorem inf_char (P : _root_.UpperTheory.V.Af.HypothesesH') (hC : Compat
     rw [IsScalarTower.algebraMap_apply ℚ L Ω]
     exact h (algebraMap (𝓞 ℚ) (𝓞 L) x)
   obtain ⟨-, κ, ⟨g, hg⟩, hI⟩ := hall _ hw0 B hB0
-  let ρ : ↥(Dec (F := L) B) →* ↥(Dec (F := ℚ) B) :=
-    ((galEmb ℚ L Ω).comp (Dec (F := L) B).subtype).codRestrict _ fun s => s.2
+  let ρ : ↥(ReciprocityTheory.Gal.Dec (F := L) B) →* ↥(ReciprocityTheory.Gal.Dec (F := ℚ) B) :=
+    ((galEmb ℚ L Ω).comp (ReciprocityTheory.Gal.Dec (F := L) B).subtype).codRestrict _ fun s => s.2
   have hH2 := jumpsOpen ![(e : ℤ), -(e : ℤ)] _ hWL B Bw hInd (fun i => (κ i).comp ρ) (N.comap (galEmb ℚ L Ω))
     (hN.preimage (continuous_restrictScalarsHom ℚ L Ω)) ⟨g, fun s => hg (ρ s)⟩ (fun i s hs => hI i (ρ s) ⟨hs.1, hs.2⟩) _ _ hJ
   obtain ⟨μ, hμ, -⟩ := hreg v

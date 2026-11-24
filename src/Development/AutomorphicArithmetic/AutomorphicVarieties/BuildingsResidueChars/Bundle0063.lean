@@ -125,9 +125,9 @@ theorem UpperTheory.heckeChar_localArtin_eq_cyclotomic_twist :
   haveI : Finite (G F Ω ⧸ ξ.ker) := ξ.ker.quotient_finite_of_isOpen hξ
   have hN : ξ.ker.index ≠ 0 := Subgroup.index_ne_zero_of_finite
   have h1 := UpperTheory.V.Loc.laHecke h art hart ι χ n _ hL ⟨a, ha⟩
-  have h2 := UpperTheory.V.Loc.laArith N.aut.art h hw ((cycBar F Ω l ^ t * ξ).comp (Dec (F := F) A).subtype)
+  have h2 := UpperTheory.V.Loc.laArith N.aut.art h hw ((cycBar F Ω l ^ t * ξ).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
     (hc.comp continuous_subtype_val) t ξ.ker.index (Nat.pos_of_ne_zero hN) fun g _ => by
-      have e : ((cycBar F Ω l ^ t * ξ).comp (Dec (F := F) A).subtype) g * cycBar F Ω l g ^ (-t) = ξ g := by
+      have e : ((cycBar F Ω l ^ t * ξ).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) g * cycBar F Ω l g ^ (-t) = ξ g := by
         show cycBar F Ω l g ^ t * ξ g * cycBar F Ω l g ^ (-t) = ξ g
         rw [mul_right_comm, ← zpow_add, add_neg_cancel, zpow_zero, one_mul]
       rw [e, ← map_pow]

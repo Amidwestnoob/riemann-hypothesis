@@ -71,7 +71,7 @@ theorem UpperTheory.Esk.pf_PropMV_sv_alt : _root_.UpperTheory.V.Af.HypothesesH' 
   have hex : ∃ w, c w ≠ 0 := by
     obtain ⟨u, A, -, hA, hnA⟩ := hram
     exact ⟨u, fun h => hnA ((hine u A hA).2 h)⟩
-  have hnc : ∀ w : Pl F, (((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ Dec (F := F) A, ¬ Cong (ξ σ) 1) →
+  have hnc : ∀ w : Pl F, (((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ∃ A, IsPlaceOver A w ∧ ∃ σ ∈ ReciprocityTheory.Gal.Dec (F := F) A, ¬ Cong (ξ σ) 1) →
       ((l : ℕ) : 𝓞 F) ∈ w.asIdeal ∧ ¬ ‖ι.symm (ω.val w : ℂˣ) - 1‖ < 1 := by
     rintro w ⟨hw, A, hA, σ, hσ, h⟩
     exact ⟨hw, fun h' => h (dec_cong ha hc hL ((hc0 w).1 (hcl w hw)) h' hA hσ)⟩

@@ -16,7 +16,7 @@ namespace UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E
 def SplitOfDec : Prop :=
   ∀ (K M Ω : Type) [Field K] [NumberField K] [Field M] [NumberField M] [Field Ω] [Algebra K M] [Algebra K Ω] [Algebra M Ω]
     [IsScalarTower K M Ω] [IsAlgClosure M Ω] [IsGalois K M] (v : HeightOneSpectrum (𝓞 K)),
-    (∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ s ∈ Dec (F := K) A, ∀ x : M, s (algebraMap M Ω x) = algebraMap M Ω x) →
+    (∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ s ∈ ReciprocityTheory.Gal.Dec (F := K) A, ∀ x : M, s (algebraMap M Ω x) = algebraMap M Ω x) →
       UpperTheory.ConvolutionTheory.GM.Split M v
 
 def UnrOfIne : Prop :=

@@ -29,8 +29,8 @@ private theorem wdAt_of_model {l : ℕ} [Fact l.Prime] (P : LocPrime l) (ι : Om
     {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)}
     {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (B : LocBridge l E Ω (Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : GlobalTheory.Pst.Induces B) {a : ℕ}
-    (r : ↥(Dec (F := E) A) →* GL (Fin a) (Om l)) (L₂ : FinExt l) (r₂ : ↥(Dec (F := E) A) →* GL (Fin a) ↥L₂.1)
+    (B : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : GlobalTheory.Pst.Induces B) {a : ℕ}
+    (r : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Om l)) (L₂ : FinExt l) (r₂ : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) ↥L₂.1)
     (hm₂ : IsModel B r L₂ r₂) (hV₂ : IsPst P (B.repE L₂ r₂)) :
     wdAt P ι B h hj r = wdPst P ι B h hj (B.repE L₂ r₂) := by
   obtain ⟨L₁, r₁, hm₁, hV₁, e₁⟩ := wdAt_of_isPstAt ι B h hj (r := r) ⟨L₂, r₂, hm₂, hV₂⟩
@@ -39,7 +39,7 @@ private theorem wdAt_of_model {l : ℕ} [Fact l.Prime] (P : LocPrime l) (ι : Om
   have e : mapRep (IntermediateField.inclusion h₁).toRingHom r₁ =
       mapRep (IntermediateField.inclusion h₂).toRingHom r₂ := by
     ext g i j
-    exact congrArg (fun f : ↥(Dec (F := E) A) →* GL (Fin a) (Om l) => (f g : Matrix (Fin a) (Fin a) (Om l)) i j)
+    exact congrArg (fun f : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Om l) => (f g : Matrix (Fin a) (Fin a) (Om l)) i j)
       (hm₁.2.trans hm₂.2.symm)
   rw [e₁, BridgeParam.wdPst_enlarge P ι B h hj h₁ r₁ hV₁, BridgeParam.wdPst_enlarge P ι B h hj h₂ r₂ hV₂, e]
 
@@ -78,26 +78,26 @@ private theorem exists_transfer {F K Ω : Type} [Field F] [NumberField F] [Field
     [Algebra F Ω] [Algebra K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] {l : ℕ} [Fact l.Prime] {A : ValuationSubring Ω}
     {v : HeightOneSpectrum (𝓞 F)} {w : HeightOneSpectrum (𝓞 K)} (h : IsPlaceOver A v) (h' : IsPlaceOver A w)
     {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l F Ω (Dec (F := F) A) O) (Bw' : LocBridge l K Ω (Dec (F := K) A) O)
+    (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O)
     (hj : Induces Bw) (hj' : Induces Bw') (hK : Bw'.Kw = Bw.Kw) (hJ : Bw'.j = Bw.j) (hL : Bw'.LL = Bw.LL)
     (hdeg : ∀ (σ : Weil h) (σ' : Weil h'), WeilRel (RingEquiv.refl Ω) σ σ' → deg σ' = deg σ)
     (hq : normV w = normV v) (ι : Qbar l ≃+* ℂ) :
-    ∃ t : ↥(Dec (F := K) A) →* ↥(Dec (F := F) A), Continuous t ∧
-      (∀ (g : ↥(Dec (F := K) A)) (x : Ω), ((t g : ↥(Dec (F := F) A)) : G F Ω) x = (g : G K Ω) x) ∧
-      ∀ (n : ℕ) (r : ↥(Dec (F := F) A) →* GL (Fin n) (Qbar l)), IsPstAt (Loc.PP l) Bw r →
+    ∃ t : ↥(ReciprocityTheory.Gal.Dec (F := K) A) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A), Continuous t ∧
+      (∀ (g : ↥(ReciprocityTheory.Gal.Dec (F := K) A)) (x : Ω), ((t g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)) : G F Ω) x = (g : G K Ω) x) ∧
+      ∀ (n : ℕ) (r : ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* GL (Fin n) (Qbar l)), IsPstAt (Loc.PP l) Bw r →
         IsPstAt (Loc.PP l) Bw' (r.comp t) ∧
           WDRel (RingEquiv.refl Ω) (wdAt (Loc.PP l) ι Bw h hj r) (wdAt (Loc.PP l) ι Bw' h' hj' (r.comp t)) := by
   obtain ⟨Kw, j, j_E, j_dense, e, e_cont, e_symm_cont, e_comm, LL, LL_split, eO, eO_alg, eO_cont, eO_symm_cont⟩ := Bw'
   dsimp only at hK hJ hL
   subst hK hJ hL
-  set Bw' : LocBridge l K Ω (Dec (F := K) A) O :=
+  set Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O :=
     ⟨Bw.Kw, Bw.j, j_E, j_dense, e, e_cont, e_symm_cont, e_comm, Bw.LL, LL_split, eO, eO_alg, eO_cont, eO_symm_cont⟩
     with hB
-  have key : ∀ (g : ↥(Dec (F := K) A)) (x : Ω), ((Bw.e.symm (e g) : ↥(Dec (F := F) A)) : G F Ω) x = (g : G K Ω) x :=
+  have key : ∀ (g : ↥(ReciprocityTheory.Gal.Dec (F := K) A)) (x : Ω), ((Bw.e.symm (e g) : ↥(ReciprocityTheory.Gal.Dec (F := F) A)) : G F Ω) x = (g : G K Ω) x :=
     fun g x => Bw.j.injective (by rw [← Bw.e_comm, MulEquiv.apply_symm_apply, e_comm])
   refine ⟨(e.trans Bw.e.symm).toMonoidHom, Bw.e_symm_cont.comp e_cont, key, fun n r hr => ?_⟩
   obtain ⟨L, r', hm, hV⟩ := hr
-  let r'' : ↥(Dec (F := K) A) →* GL (Fin n) ↥L.1 := r'.comp (e.trans Bw.e.symm).toMonoidHom
+  let r'' : ↥(ReciprocityTheory.Gal.Dec (F := K) A) →* GL (Fin n) ↥L.1 := r'.comp (e.trans Bw.e.symm).toMonoidHom
   have hm' : IsModel Bw' (r.comp (e.trans Bw.e.symm).toMonoidHom) L r'' :=
     ⟨hm.1, MonoidHom.ext fun g => DFunLike.congr_fun hm.2 (Bw.e.symm (e g))⟩
   have hrep : Bw'.repE L r'' = Bw.repE L r' := by
@@ -130,7 +130,7 @@ private theorem hasLT_transfer {F K Ω : Type} [Field F] [NumberField F] [Field 
     [Algebra F Ω] [Algebra K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] {l : ℕ} [Fact l.Prime] {A : ValuationSubring Ω}
     {v : Plc F} {w : Plc K} (h : IsPlaceOver A v) (h' : IsPlaceOver A w)
     {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l F Ω (Dec (F := F) A) O) (Bw' : LocBridge l K Ω (Dec (F := K) A) O)
+    (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O)
     (hj : Induces Bw) (hj' : Induces Bw') (hK : Bw'.Kw = Bw.Kw) (hJ : Bw'.j = Bw.j) (hL : Bw'.LL = Bw.LL)
     (hdeg : ∀ (σ : Weil h) (σ' : Weil h'), WeilRel (RingEquiv.refl Ω) σ σ' → deg σ' = deg σ)
     (hq : normV w = normV v) (ι : Qbar l ≃+* ℂ) (c : Weil h' →* Weil h)
@@ -161,7 +161,7 @@ private theorem cont_symm {F K : Type} [Field F] [NumberField F] [Field K] [Numb
 end SlopeTestRemainingChoices
 
 theorem UpperTheory.hasLocalLanglands_iff_of_placeIso :
-    ∀ {F K Ω : Type} [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F Ω] [Algebra K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] {l : ℕ} [Fact l.Prime] {A : ValuationSubring Ω} {v : Plc F} {w : Plc K} (h : IsPlaceOver A v) (h' : IsPlaceOver A w) {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O) (Bw' : LocBridge l K Ω (Dec (F := K) A) O) (hj : GlobalTheory.Pst.Induces Bw) (hj' : GlobalTheory.Pst.Induces Bw'), Bw'.Kw = Bw.Kw → Bw'.j = Bw.j → Bw'.LL = Bw.LL → ∀ (jF : F →+* K) (i : v.adicCompletion F ≃+* w.adicCompletion K), PlaceIso A v A w (RingEquiv.refl Ω) jF i → ∀ (ι : Qbar l ≃+* ℂ) (wt : Emb l v → ℤ) (wt' : Emb l w → ℤ), (∀ (τ : Emb l v) (τ' : Emb l w), τ.1 = τ'.1.comp i.toRingHom → wt τ = wt' τ') → ∀ (a : Weil h →* (v.adicCompletion F)ˣ) (a' : Weil h' →* (w.adicCompletion K)ˣ), (∀ σ σ', WeilRel (RingEquiv.refl Ω) σ σ' → a' σ' = Units.map i.toRingHom.toMonoidHom (a σ)) → (UpperTheory.V.Loc.HasLT h Bw hj ι wt a ↔ UpperTheory.V.Loc.HasLT h' Bw' hj' ι wt' a') := by
+    ∀ {F K Ω : Type} [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F Ω] [Algebra K Ω] [IsAlgClosure F Ω] [IsAlgClosure K Ω] {l : ℕ} [Fact l.Prime] {A : ValuationSubring Ω} {v : Plc F} {w : Plc K} (h : IsPlaceOver A v) (h' : IsPlaceOver A w) {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (Bw' : LocBridge l K Ω (ReciprocityTheory.Gal.Dec (F := K) A) O) (hj : GlobalTheory.Pst.Induces Bw) (hj' : GlobalTheory.Pst.Induces Bw'), Bw'.Kw = Bw.Kw → Bw'.j = Bw.j → Bw'.LL = Bw.LL → ∀ (jF : F →+* K) (i : v.adicCompletion F ≃+* w.adicCompletion K), PlaceIso A v A w (RingEquiv.refl Ω) jF i → ∀ (ι : Qbar l ≃+* ℂ) (wt : Emb l v → ℤ) (wt' : Emb l w → ℤ), (∀ (τ : Emb l v) (τ' : Emb l w), τ.1 = τ'.1.comp i.toRingHom → wt τ = wt' τ') → ∀ (a : Weil h →* (v.adicCompletion F)ˣ) (a' : Weil h' →* (w.adicCompletion K)ˣ), (∀ σ σ', WeilRel (RingEquiv.refl Ω) σ σ' → a' σ' = Units.map i.toRingHom.toMonoidHom (a σ)) → (UpperTheory.V.Loc.HasLT h Bw hj ι wt a ↔ UpperTheory.V.Loc.HasLT h' Bw' hj' ι wt' a') := by
   intro F K Ω _ _ _ _ _ _ _ _ _ l _ A v w h h' O _ _ _ Bw Bw' hj hj' hK hJ hL jF i hP ι wt wt' hwt a a' ha
   obtain ⟨c, hc, hdeg, hq, hs⟩ := _root_.GlobalTheory.WeilTransport.weil_equiv F Ω A v h K Ω A w h' _ _ i hP
   have hi' : Continuous i.symm := cont_symm i hP.cont

@@ -39,20 +39,20 @@ def FlagPol : Prop :=
     (ι : Qbar l ≃+* ℂ) (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ),
-      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) →
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ),
+      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) →
       ∃ μ : Fin n → ↥(Weil h) →* ℂˣ,
-        (∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)).charPol s = ∏ i, (X - C (μ i s : ℂ))) ∧
+        (∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)).charPol s = ∏ i, (X - C (μ i s : ℂ))) ∧
         (∀ i (s : ↥(Ine (F := F) A)), (∀ ζ : Ω, ζ ^ M = 1 → (s : G F Ω) ζ = ζ) → μ i (ineIncl h s) = 1) ∧
         ∀ i j, (∀ s, (μ i s : ℂ) = ((normV w : ℕ) : ℂ) ^ deg s * μ j s) →
-          κ i = κ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype ∨ κ j = κ i * (cycBar F Ω l).comp (Dec (F := F) A).subtype
+          κ i = κ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype ∨ κ j = κ i * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype
 
 def UnlGap : Prop :=
   ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime]
     (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l))
     (w : HeightOneSpectrum (𝓞 F)), ((l : ℕ) : 𝓞 F) ∈ w.asIdeal → ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ, FlagAt M m r A κ → (∀ i j, m i ≠ m j + 1) →
-      ∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype
+    ∀ κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ, FlagAt M m r A κ → (∀ i j, m i ≠ m j + 1) →
+      ∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype
 
 def LevelFRes : Prop :=
   ∀ (F K Ω : Type) [Field F] [NumberField F] [Field K] [NumberField K] [Field Ω] [Algebra F K] [Algebra F Ω] [Algebra K Ω]

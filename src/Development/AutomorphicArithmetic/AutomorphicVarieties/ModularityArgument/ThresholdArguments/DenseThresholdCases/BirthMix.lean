@@ -201,16 +201,16 @@ theorem UpperTheory.V.Z.Win.Birth.mix_birth_of_prints :
     rw [← PadicInt.mem_nonunits, ← IsLocalRing.mem_maximalIdeal, ← PadicInt.ker_toZMod, RingHom.mem_ker, map_sub, map_pow,
       map_one, ZMod.pow_card_sub_one_eq_one, sub_self]
     exact ((cycZ F Ω l s).isUnit.map _).ne_zero
-  have dec_cong {A : ValuationSubring Ω} {w : Pl F} (hA : IsPlaceOver A w) (χ : ↥(Dec (F := F) A) →* (Qbar l)ˣ)
-      (hc : Continuous fun g => (χ g : Qbar l)) (hI : ∀ g : ↥(Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → χ g ∈ U1)
-      (hF : ∀ σ : ↥(Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) → χ σ ∈ U1) (g : ↥(Dec (F := F) A)) :
+  have dec_cong {A : ValuationSubring Ω} {w : Pl F} (hA : IsPlaceOver A w) (χ : ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ)
+      (hc : Continuous fun g => (χ g : Qbar l)) (hI : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), (g : G F Ω) ∈ Ine (F := F) A → χ g ∈ U1)
+      (hF : ∀ σ : ↥(ReciprocityTheory.Gal.Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) → χ σ ∈ U1) (g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)) :
       χ g ∈ U1 := by
     obtain ⟨σ, hσ⟩ := ReciprocityTheory.Gal.exists_isFrob hA
     have h1 := GlobalTheory.TameQuot.closure_frob_sup_Ine F Ω A w hA ⟨σ, hσ.1⟩ hσ
-    have ho : IsOpen (U1.comap χ : Set ↥(Dec (F := F) A)) :=
+    have ho : IsOpen (U1.comap χ : Set ↥(ReciprocityTheory.Gal.Dec (F := F) A)) :=
       isOpen_lt (hc.sub continuous_const).norm continuous_const
     have h2 := Subgroup.topologicalClosure_minimal _ (sup_le ((Subgroup.zpowers_le).2 (hF ⟨σ, hσ.1⟩ hσ))
-      fun x (hx : x ∈ (Ine (F := F) A).subgroupOf (Dec (F := F) A)) => hI x hx : _ ≤ U1.comap χ)
+      fun x (hx : x ∈ (Ine (F := F) A).subgroupOf (ReciprocityTheory.Gal.Dec (F := F) A)) => hI x hx : _ ≤ U1.comap χ)
       (Subgroup.isClosed_of_isOpen _ ho)
     rw [h1] at h2
     exact h2 (Subgroup.mem_top g)
@@ -218,19 +218,19 @@ theorem UpperTheory.V.Z.Win.Birth.mix_birth_of_prints :
       {ψ₀ ψ₁ : G F Ω →* (Qbar l)ˣ} (hd : Matrix.GeneralLinearGroup.det.comp r = cycBar F Ω l ^ s * (ψ₀ * ψ₁))
       (hc : Continuous ψ₀) (h0 : ∀ g, ‖(ψ₀ g : Qbar l)‖ = 1) (h1 : ∀ g, ‖(ψ₁ g : Qbar l)‖ = 1)
       {A : ValuationSubring Ω} {w : Pl F} (hA : IsPlaceOver A w) (hI : Ine (F := F) A ≤ ψ₀.ker)
-      {m : Fin 2 → ℤ} (hm : (l : ℤ) - 1 ∣ m 0) {κ : Fin 2 → ↥(Dec (F := F) A) →* (Qbar l)ˣ}
-      (hκ : IsFlagOn r (Dec (F := F) A) κ)
-      (hκI : ∀ i (g : ↥(Dec (F := F) A)), (g : G F Ω) ∈ Ine (F := F) A → κ i g = cycBar F Ω l g ^ m i)
-      (hκF : ∀ σ : ↥(Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) →
+      {m : Fin 2 → ℤ} (hm : (l : ℤ) - 1 ∣ m 0) {κ : Fin 2 → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ}
+      (hκ : IsFlagOn r (ReciprocityTheory.Gal.Dec (F := F) A) κ)
+      (hκI : ∀ i (g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)), (g : G F Ω) ∈ Ine (F := F) A → κ i g = cycBar F Ω l g ^ m i)
+      (hκF : ∀ σ : ↥(ReciprocityTheory.Gal.Dec (F := F) A), IsFrob A (normV w) (σ : G F Ω) →
         Cong (κ 0 σ⁻¹ * cycBar F Ω l (σ : G F Ω) ^ m 0) (ψ₀ (σ : G F Ω)⁻¹))
       {k : ℕ} (hk : (l : ℤ) - 1 ∣ k) :
       OrdAt (tw r (cycBar F Ω l ^ k)) (fun i => m i + k) ![ψ₀, ψ₁] A := by
     refine ⟨_, (shapeFacts l _ 2 r (cycBar F Ω l ^ k)).2.2.1 _ κ hκ, fun i g hg => ?_, ?_⟩
     · simp [hκI i g hg, zpow_add]
     obtain ⟨P, hP⟩ := hκ
-    have e0 : ∀ g : ↥(Dec (F := F) A), κ 0 g * (ψ₀ g)⁻¹ ∈ U1 := by
-      refine dec_cong hA (κ 0 * (ψ₀.comp (Dec (F := F) A).subtype)⁻¹) ?_ (fun g hg => ?_) fun σ hσ => ?_
-      · have c1 : Continuous fun g : ↥(Dec (F := F) A) => (P * r g * P⁻¹ : GL (Fin 2) (Qbar l)) 0 0 :=
+    have e0 : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), κ 0 g * (ψ₀ g)⁻¹ ∈ U1 := by
+      refine dec_cong hA (κ 0 * (ψ₀.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)⁻¹) ?_ (fun g hg => ?_) fun σ hσ => ?_
+      · have c1 : Continuous fun g : ↥(ReciprocityTheory.Gal.Dec (F := F) A) => (P * r g * P⁻¹ : GL (Fin 2) (Qbar l)) 0 0 :=
           (Units.continuous_val.comp ((continuous_const.mul (hr.comp continuous_subtype_val)).mul
             continuous_const)).matrix_elem 0 0
         simp only [(hP _).2] at c1
@@ -245,7 +245,7 @@ theorem UpperTheory.V.Z.Win.Birth.mix_birth_of_prints :
         apply Units.ext
         simp only [Units.val_mul, Units.val_inv_eq_inv_val]
         field_simp
-    have ed : ∀ g : ↥(Dec (F := F) A), κ 0 g * κ 1 g = cycBar F Ω l g ^ s * (ψ₀ g * ψ₁ g) := fun g => by
+    have ed : ∀ g : ↥(ReciprocityTheory.Gal.Dec (F := F) A), κ 0 g * κ 1 g = cycBar F Ω l g ^ s * (ψ₀ g * ψ₁ g) := fun g => by
       have h2 : Matrix.GeneralLinearGroup.det (r g) = cycBar F Ω l g ^ s * (ψ₀ g * ψ₁ g) := DFunLike.congr_fun hd (g : G F Ω)
       have h3 : Matrix.GeneralLinearGroup.det (P * r g * P⁻¹) = Matrix.GeneralLinearGroup.det (r g) := by
         rw [map_mul, map_mul, map_inv, mul_inv_cancel_comm]
@@ -314,7 +314,7 @@ theorem UpperTheory.V.Z.Win.Birth.mix_birth_of_prints :
       refine hg₀ ((sIabs l hl _ r ξ hn hi hres _ inferInstance ?_ hI).2 g₀)
       obtain ⟨g, hgH, hg, hne⟩ := exists_ine A hv hO hk
       refine ⟨g, hgH, ?_⟩
-      let s : ↥(Dec (F := F) A) := ⟨g, Ine_le_Dec A hg⟩
+      let s : ↥(ReciprocityTheory.Gal.Dec (F := F) A) := ⟨g, Ine_le_Dec A hg⟩
       have e : ((P * r g * P⁻¹ : GL (Fin 2) (Qbar l)) : Matrix (Fin 2) (Fin 2) (Qbar l)).charpoly =
           (r g : Matrix (Fin 2) (Fin 2) (Qbar l)).charpoly := by
         rw [Units.val_mul, Units.val_mul, Matrix.coe_units_inv]

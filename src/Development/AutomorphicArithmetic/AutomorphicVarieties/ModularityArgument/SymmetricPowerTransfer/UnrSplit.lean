@@ -28,8 +28,8 @@ structure AdIn {L Ω : Type} [Field L] [NumberField L] [IsCMField L] [Field Ω] 
   unr : ∀ A : ValuationSubring Ω, ¬ A.valuation (M : Ω) < 1 → ∀ s ∈ Ine (F := L) A, r s = 1
   away : ∃ τ : Fin 2 → G L Ω →* (Qbar l)ˣ, (∀ i, Continuous (τ i)) ∧ TypeAway r τ
   above : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 →
-    ∃ (b : ℤ) (k : ℕ) (κ : Fin 2 → ↥(Dec (F := L) A) →* (Qbar l)ˣ), 0 < k ∧ IsFlagOn r (Dec (F := L) A) κ ∧
-      ∀ s : ↥(Dec (F := L) A), (s : G L Ω) ∈ Ine (F := L) A →
+    ∃ (b : ℤ) (k : ℕ) (κ : Fin 2 → ↥(ReciprocityTheory.Gal.Dec (F := L) A) →* (Qbar l)ˣ), 0 < k ∧ IsFlagOn r (ReciprocityTheory.Gal.Dec (F := L) A) κ ∧
+      ∀ s : ↥(ReciprocityTheory.Gal.Dec (F := L) A), (s : G L Ω) ∈ Ine (F := L) A →
         κ 0 s ^ k = (cycBar L Ω l s ^ (b + m)) ^ k ∧ κ 1 s ^ k = (cycBar L Ω l s ^ b) ^ k
 
 def TwEx : Prop :=

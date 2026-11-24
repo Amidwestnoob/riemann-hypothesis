@@ -53,14 +53,14 @@ structure IsGalRepOfR (π : TR.CuspSub F a) (ι : Qbar l ≃+* ℂ) (r : G F Ω 
   above : ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : GlobalTheory.Pst.Induces Bw),
-      IsdRAt P Bw (r.comp (Dec (F := F) A).subtype) ∧
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : GlobalTheory.Pst.Induces Bw),
+      IsdRAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧
       (∀ (τ : F →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-        IsJumpsAt P Bw (r.comp (Dec (F := F) A).subtype) τ (HT τ)) ∧
+        IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ (HT τ)) ∧
       (∀ σ, π.IsLocComp w σ → GlobalTheory.PRep.fixed σ.ρ (GlobalTheory.SmGL.iwahori (w.adicCompletion F) (Fin a)) ≠ ⊥ →
-        IsSstAt P Bw (r.comp (Dec (F := F) A).subtype) ∧
-          ∀ rc, IsRec h rc → wdAt P ι Bw h hj (r.comp (Dec (F := F) A).subtype) = rc (algNorm σ)) ∧
-      ∀ σ, π.IsLocComp w σ → GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (Dec (F := F) A).subtype)
+        IsSstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∧
+          ∀ rc, IsRec h rc → wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) = rc (algNorm σ)) ∧
+      ∀ σ, π.IsLocComp w σ → GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
 
 end Real
 

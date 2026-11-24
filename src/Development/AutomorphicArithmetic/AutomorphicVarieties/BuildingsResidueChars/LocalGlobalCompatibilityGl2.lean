@@ -20,7 +20,7 @@ private theorem norm_hom {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l]
 
 private theorem embAt_of_induced {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] {l : ℕ}
     [Fact l.Prime] {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 F)} (h : IsPlaceOver A w) {O : Type} [CommRing O]
-    [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O)
+    [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O)
     (hj : GlobalTheory.Pst.Induces Bw) (τ : F →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1)
     (hτ : GlobalTheory.Pst.IsInduced Bw τ τ') : EmbAt w τ := by
   intro x
@@ -30,7 +30,7 @@ private theorem embAt_of_induced {F Ω : Type} [Field F] [NumberField F] [Field 
   exact iff_of_eq (congrArg (· < 1) h1.symm)
 
 theorem UpperTheory.local_global_compatibility_gl2 :
-    Af.HypothesesH → ∀ (F Ω : Type) [Field F] [NumberField F] [IsTotallyReal F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (ι : Qbar l ≃+* ℂ) (n : ℕ) [Fact (n = 2)], 1 ≤ n → ∀ (r : G F Ω →* GL (Fin n) (Qbar l)) (π : TR.CuspSub F n) (χ : HChar F), Continuous r → π.IsRegAlg → π.Polarized χ → AttR ι r π → ∀ (w : HeightOneSpectrum (𝓞 F)) (m : Fin n → ℤ), (∀ τ : F →+* Qbar l, EmbAt w τ → π.HasInfChar (InfinitePlace.mk (ι.toRingHom.comp τ)) (infOf m)) → ∀ σ, π.IsLocComp w σ → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) rc, IsRec h rc → UpperTheory.V.Lev.AbW (rc (algNorm σ)) → Hi.DRat ι h (r.comp (Dec (F := F) A).subtype) (fun _ => Finset.univ.val.map fun j => -m j) fun s => (rc (algNorm σ)).charPol s := by
+    Af.HypothesesH → ∀ (F Ω : Type) [Field F] [NumberField F] [IsTotallyReal F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime], l ≠ 2 → ∀ (ι : Qbar l ≃+* ℂ) (n : ℕ) [Fact (n = 2)], 1 ≤ n → ∀ (r : G F Ω →* GL (Fin n) (Qbar l)) (π : TR.CuspSub F n) (χ : HChar F), Continuous r → π.IsRegAlg → π.Polarized χ → AttR ι r π → ∀ (w : HeightOneSpectrum (𝓞 F)) (m : Fin n → ℤ), (∀ τ : F →+* Qbar l, EmbAt w τ → π.HasInfChar (InfinitePlace.mk (ι.toRingHom.comp τ)) (infOf m)) → ∀ σ, π.IsLocComp w σ → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) rc, IsRec h rc → UpperTheory.V.Lev.AbW (rc (algNorm σ)) → Hi.DRat ι h (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) (fun _ => Finset.univ.val.map fun j => -m j) fun s => (rc (algNorm σ)).charPol s := by
   intro PH F Ω _ _ _ _ _ _ l _ hl ι n _ hn r π χ hr hreg hpol hatt w m hm σ hσ A h rc hrc hab O _ _ _ Bw hj
   obtain ⟨-, wt, HT, -, -, hG⟩ := Af.exR PH F Ω l ι n hn π χ hreg hpol
   replace hG := hG r hr hatt

@@ -23,19 +23,19 @@ namespace UpperTheory.V.Z.Win.RR
 
 theorem local_condition_of_flag_of_characters_not_cyclotomic_shift {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] {l : ℕ} [Fact l.Prime] {n : ℕ}
     {r : G F Ω →* GL (Fin n) (Qbar l)} {w : HeightOneSpectrum (𝓞 F)} {A : ValuationSubring Ω} (h : IsPlaceOver A w)
-    {ψ : Fin n → Dec (F := F) A →* (Qbar l)ˣ} (hf : W.HasFlag (r.comp (Dec (F := F) A).subtype) ψ)
-    (hg : ∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype) : Unl1 r w := by
+    {ψ : Fin n → ReciprocityTheory.Gal.Dec (F := F) A →* (Qbar l)ˣ} (hf : W.HasFlag (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ψ)
+    (hg : ∀ i j, ψ i ≠ ψ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) : Unl1 r w := by
   intro B hB
   obtain ⟨g, rfl⟩ := exists_smul_eq_of_isPlaceOver (F := F) h hB
-  have m1 : ∀ s : ↥(Dec (F := F) (g • A)), g⁻¹ * (s : G F Ω) * g ∈ Dec (F := F) A := fun s => by
+  have m1 : ∀ s : ↥(ReciprocityTheory.Gal.Dec (F := F) (g • A)), g⁻¹ * (s : G F Ω) * g ∈ ReciprocityTheory.Gal.Dec (F := F) A := fun s => by
     have h1 : (s : G F Ω) • g • A = g • A := s.2
     show (g⁻¹ * (s : G F Ω) * g) • A = A
     rw [mul_smul, mul_smul, h1, inv_smul_smul]
-  have m2 : ∀ s : ↥(Dec (F := F) A), g * (s : G F Ω) * g⁻¹ ∈ Dec (F := F) (g • A) := fun s => by
+  have m2 : ∀ s : ↥(ReciprocityTheory.Gal.Dec (F := F) A), g * (s : G F Ω) * g⁻¹ ∈ ReciprocityTheory.Gal.Dec (F := F) (g • A) := fun s => by
     have h1 : (s : G F Ω) • A = A := s.2
     show (g * (s : G F Ω) * g⁻¹) • g • A = g • A
     rw [mul_smul, mul_smul, inv_smul_smul, h1]
-  let c : ↥(Dec (F := F) (g • A)) →* ↥(Dec (F := F) A) :=
+  let c : ↥(ReciprocityTheory.Gal.Dec (F := F) (g • A)) →* ↥(ReciprocityTheory.Gal.Dec (F := F) A) :=
     MonoidHom.mk' (fun s => ⟨_, m1 s⟩) fun s t => Subtype.ext (by simp only [Subgroup.coe_mul]; group)
   obtain ⟨p, hp⟩ := hf
   refine ⟨fun i => (ψ i).comp c, ⟨p * (r g)⁻¹, fun s => ?_⟩, fun i j e => hg i j (MonoidHom.ext fun s => ?_)⟩

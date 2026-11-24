@@ -185,7 +185,7 @@ theorem UpperTheory.V.Af.compatReal :
     GlobalTheory.LocLanglandsBridge.localLanglandsGL_of_depthZero_zelevinsky_bernstein P.litN.loc.llc P.litN.loc.conv P.litN.loc.dzc P.litN.loc.dzi
       P.litN.loc.brauer P.litN.loc.chev P.litN.aut.art P.litN.loc.exh P.litN.loc.multi P.litN.loc.cos P.litN.loc.zel
       P.litN.loc.geo P.litN.loc.bz
-  have hpst : IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) := by
+  have hpst : IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) := by
     obtain ⟨T⟩ := Loc.tiedP l
     exact P.litN.aut.berger.isPstAt T Bw _ (Units.continuous_val.comp (hr.comp continuous_subtype_val))
       (hG.above _ _ ⟨T⟩ v A h O Bw hj).1

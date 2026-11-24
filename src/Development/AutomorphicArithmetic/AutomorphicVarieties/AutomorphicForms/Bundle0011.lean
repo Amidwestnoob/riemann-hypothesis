@@ -77,12 +77,12 @@ theorem slopesOf (hP : Hypotheses₂) {F : Type} [Field F] [NumberField F] {n : 
         (rc : IrrGL (k := w.adicCompletion F) → WD h), IsRec h rc → IsWDOf ι r (rc (algNorm σ))) ∧
       ∀ (A : ValuationSubring (AlgebraicClosure F)) (h : IsPlaceOver A w)
         (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-        (Bw : LocBridge l F (AlgebraicClosure F) (Dec (F := F) A) O) (hj : Induces Bw),
-        (GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype)) ∧
+        (Bw : LocBridge l F (AlgebraicClosure F) (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw),
+        (GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)) ∧
         (∀ (τ : F →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-          IsJumpsAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) τ (Finset.univ.val.map fun i => -m i)) ∧
+          IsJumpsAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) τ (Finset.univ.val.map fun i => -m i)) ∧
         (GlobalTheory.PRep.fixed σ.ρ (GlobalTheory.SmGL.iwahori (w.adicCompletion F) (Fin n)) ≠ ⊥ → ∀ rc, IsRec h rc →
-          wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype) = rc (algNorm σ))) :
+          wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) = rc (algNorm σ))) :
     SlopesIn (normV w) m (algSat n (normV w) B) := by
   have hK := GlobalTheory.SmGL.SphCompletion.KO_completion w n
   obtain ⟨x, hx0, hx, -⟩ := hB.exists_vec

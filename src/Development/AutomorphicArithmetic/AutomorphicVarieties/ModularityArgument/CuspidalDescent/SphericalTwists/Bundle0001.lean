@@ -41,10 +41,10 @@ def OrdTw : Prop :=
     IsGlobalArtin art → Continuous μ → IsLAdicOf art ι κ 0 μ → ∀ (w : HeightOneSpectrum (𝓞 K)) (A : ValuationSubring Ω)
     (h : IsPlaceOver A w) (a : Weil h →* (w.adicCompletion K)ˣ), IsLocalArtin h a →
     ∀ (τ τ' : SmIrr (GL (Fin n) (w.adicCompletion K))) (ω : Fin n → (w.adicCompletion K)ˣ →* ℂˣ) (hh : Fin n → (K →+* Qbar l) → ℤ)
-      (ψ : Fin n → Dec (F := K) A →* (Qbar l)ˣ), Nonempty (τ.ρ.Equiv (Hi.PS ω)) → (∀ i, Hi.OrdChar ι a (ω i) (hh i) (ψ i)) →
+      (ψ : Fin n → ReciprocityTheory.Gal.Dec (F := K) A →* (Qbar l)ˣ), Nonempty (τ.ρ.Equiv (Hi.PS ω)) → (∀ i, Hi.OrdChar ι a (ω i) (hh i) (ψ i)) →
       Nonempty (τ'.ρ.Equiv (twRep τ.ρ (CuspSub.locDet n κ w))) →
       ∃ ω' : Fin n → (w.adicCompletion K)ˣ →* ℂˣ, Nonempty (τ'.ρ.Equiv (Hi.PS ω')) ∧
-        ∀ i, Hi.OrdChar ι a (ω' i) (hh i) (ψ i * μ.comp (Dec (F := K) A).subtype)
+        ∀ i, Hi.OrdChar ι a (ω' i) (hh i) (ψ i * μ.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)
 
 end UpperTheory.V.Z.Desc.W
 end

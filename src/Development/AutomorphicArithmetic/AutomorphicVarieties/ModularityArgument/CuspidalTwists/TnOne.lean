@@ -81,7 +81,7 @@ structure Mod4 (D : Raw Ω c) (pr : Bool) (θ : G ℚ Ω →* (Qbar l)ˣ) (k : �
   nrm : ρ₁ g0 0 1 = 0 ∧ ρ₁ g0 1 0 = 0
   det : ∀ g, θ g = 1 → (ρ₁ g).det = inc h (Phi D pr k g)
   away : ∀ A : ValuationSubring Ω, ¬ A.valuation (l : Ω) < 1 → ∀ g ∈ Ine (F := ℚ) A, phi D pr g = 1 → θ g = 1 → ρ₁ g = 1
-  flag : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ Dec (F := ℚ) A,
+  flag : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ ReciprocityTheory.Gal.Dec (F := ℚ) A,
     ρ₁ s 1 0 + ρ₁ s 1 1 * x A = (ρ₁ s 0 0 + ρ₁ s 0 1 * x A) * x A
   ine : ∀ A : ValuationSubring Ω, A.valuation (l : Ω) < 1 → ∀ s ∈ Ine (F := ℚ) A,
     ρ₁ s 0 0 + ρ₁ s 0 1 * x A = (chiO ℚ Ω l c₁.O s ^ (k - 1) : c₁.Oˣ) ∧ ρ₁ s 1 1 - x A * ρ₁ s 0 1 = 1

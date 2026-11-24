@@ -75,7 +75,7 @@ theorem UpperTheory.V.Z.J.freeCU :
     simp only [tw_val]
     exact (Units.continuous_val.comp hχ).smul (Units.continuous_val.comp hr)
   obtain ⟨s, hs1, hs2⟩ := UpperTheory.V.Z.J.freeFlagU P F Ω l hl ι n hn _ hc haut A hAl
-    (fun i => κ i * (cycBar F Ω l ^ a).comp (Dec (F := F) A).subtype) (fun i => m i + a) k
+    (fun i => κ i * (cycBar F Ω l ^ a).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) (fun i => m i + a) k
     (flag_tw r _ _ κ g hg)
     (fun i j hij => by have := hm hij; dsimp only; omega) hk0
     (fun i s hs => by
@@ -91,7 +91,7 @@ theorem UpperTheory.V.Z.J.freeCU :
   have hb : cycBar F Ω l s = 1 := by
     simp only [cycBar, MonoidHom.comp_apply, hs1, map_one]
   have hfr : Pr.FreeRatios fun i => κ i s := by
-    have e : (fun i => (κ i * (cycBar F Ω l ^ a).comp (Dec (F := F) A).subtype) s) = fun i => κ i s := by
+    have e : (fun i => (κ i * (cycBar F Ω l ^ a).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) s) = fun i => κ i s := by
       funext i
       show κ i s * cycBar F Ω l s ^ a = κ i s
       rw [hb, one_zpow, mul_one]

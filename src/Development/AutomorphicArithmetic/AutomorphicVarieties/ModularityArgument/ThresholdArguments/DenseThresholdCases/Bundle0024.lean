@@ -250,8 +250,8 @@ theorem UpperTheory.V.Z.Win.Gu.sumTwoG_of_printsH_gdLaws_sumAway_sumHTAt :
       rw [kx (sp g).1, kx' (sp g).2]
     · obtain ⟨p1, e1⟩ := b1 O Bw hj (sp hg).1
       obtain ⟨p2, e2⟩ := b2 O Bw hj (sp hg).2
-      have e : (Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (Dec (F := E) A).subtype =
-          Formalism.MainNotions.SumRepresentations.At.sumRep (r.comp (Dec (F := E) A).subtype) (r'.comp (Dec (F := E) A).subtype) := by
+      have e : (Formalism.MainNotions.SumRepresentations.At.sumRep r r').comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+          Formalism.MainNotions.SumRepresentations.At.sumRep (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
         ext g i j
         rfl
       have p3 := isPstAt_sum Bw T p1 p2
@@ -363,13 +363,13 @@ theorem UpperTheory.V.Z.Kato.WeilSphericalRecords.local_k_of_printed_rec_compat_
   obtain ⟨hfl, hI⟩ := hex
   have hAl : A.valuation (l : Ω) < 1 := by simpa using (hA _).2 hlw
   let m : Fin 2 → ℤ := ![(e : ℤ), -(e : ℤ)]
-  have hκm : ∀ i (s : ↥(Dec (F := K) A)), (s : G K Ω) ∈ Ine (F := K) A →
+  have hκm : ∀ i (s : ↥(ReciprocityTheory.Gal.Dec (F := K) A)), (s : G K Ω) ∈ Ine (F := K) A →
       κ i s = cycBar K Ω l s ^ m i * (1 : G K Ω →* (Qbar l)ˣ) s := by
     intro i s hs
     fin_cases i
     · simpa [m] using (hI s hs).1
     · simpa [m] using (hI s hs).2
-  have hor : ∀ i j, κ i ≠ κ j * (cycBar K Ω l).comp (Dec (F := K) A).subtype := by
+  have hor : ∀ i j, κ i ≠ κ j * (cycBar K Ω l).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype := by
     intro i j hij
     obtain ⟨s, hs, hne⟩ := UpperTheory.V.Ws.Pt.cycIne K Ω l A hAl (m i - m j - 1) (by
       fin_cases i <;> fin_cases j <;> simp [m] <;> omega)

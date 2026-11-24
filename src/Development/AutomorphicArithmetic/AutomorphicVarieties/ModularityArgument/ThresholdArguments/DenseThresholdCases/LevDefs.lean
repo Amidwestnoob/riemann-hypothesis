@@ -35,12 +35,12 @@ def FixedSsAlt : Prop :=
     (ι : Qbar l ≃+* ℂ) (n M : ℕ), 1 ≤ M → ∀ (m : Fin n → ℤ) (r : G F Ω →* GL (Fin n) (Qbar l)), Continuous r →
     ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l F Ω (Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(Dec (F := F) A) →* (Qbar l)ˣ),
-      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype) →
+      (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O) (hj : Induces Bw) (κ : Fin n → ↥(ReciprocityTheory.Gal.Dec (F := F) A) →* (Qbar l)ˣ),
+      FlagAt M m r A κ → IsPstAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) →
       ∀ (rc : IrrGL (k := w.adicCompletion F) → WD h), _root_.UpperTheory.Zero.LLC.IsRecT h rc → ∀ σ : SmIrr (GL (Fin n) (w.adicCompletion F)),
-      (IsAbPol n (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)) →
-        ∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (Dec (F := F) A).subtype)).charPol s = (rc (algNorm σ)).charPol s) →
-      (l ∣ M ∨ (∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (Dec (F := F) A).subtype) ∨
+      (IsAbPol n (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)) →
+        ∀ s, (wdAt (Loc.PP l) ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)).charPol s = (rc (algNorm σ)).charPol s) →
+      (l ∣ M ∨ (∀ i j, κ i ≠ κ j * (cycBar F Ω l).comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) ∨
         (GlobalTheory.PRep.fixed σ.ρ (GlobalTheory.SmGL.iwahori (w.adicCompletion F) (Fin n)) ≠ ⊥ → GlobalTheory.SmGL.IsSpherical σ.ρ)) →
       HasFixed σ.ρ (KLoc F w n M)
 end UpperTheory.V.Lev

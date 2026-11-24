@@ -297,8 +297,8 @@ theorem UpperTheory.galois_character_of_algebraic_hecke :
     obtain ⟨d1, j1⟩ := hHT w A h O Bw hj
     obtain ⟨d2, -, -, j2⟩ :=
       GlobalTheory.Published.heckeLAdicCharacterAbove_iff.1 P.aut.chA K Ω l _ _ ⟨T⟩ ι art hart κ m μ hκ hμ hL w A h O Bw hj
-    have t := GlobalTheory.TwistAbove.twist_above l _ _ ⟨T⟩ K Ω _ O Bw n (R.comp (Dec (F := K) A).subtype)
-      ((Af.tw R μ).comp (Dec (F := K) A).subtype) (μ.comp (Dec (F := K) A).subtype) fun g => Af.tw_val R μ g.1
+    have t := GlobalTheory.TwistAbove.twist_above l _ _ ⟨T⟩ K Ω _ O Bw n (R.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)
+      ((Af.tw R μ).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype) fun g => Af.tw_val R μ g.1
     exact ⟨t.1 d1 d2, fun τ L' τ' hτ => t.2.2.2 τ _ _ (j1 τ L' τ' hτ) (j2 τ L' τ' hτ)⟩
   refine ⟨⟨_, H1⟩, fun w τ τ' hτ he A h rc hrc => ?_⟩
   obtain ⟨h1, h2⟩ := hτ A h rc hrc
@@ -329,13 +329,13 @@ theorem UpperTheory.galois_character_of_algebraic_hecke :
     exact h3
   · obtain ⟨p1, w1⟩ := h2 O Bw hj
     have p3 := P.aut.berger.isPstAt T Bw _ (hct.comp continuous_subtype_val) (H1 w A h O Bw hj).1
-    have c2 := (continuous_rank_one_rep hμ).comp (continuous_subtype_val (p := fun x => x ∈ Dec (F := K) A))
-    have p2 := P.aut.berger.isPstAt T Bw ((GlobalTheory.TripleGal.rk1 μ).comp (Dec (F := K) A).subtype) c2
+    have c2 := (continuous_rank_one_rep hμ).comp (continuous_subtype_val (p := fun x => x ∈ ReciprocityTheory.Gal.Dec (F := K) A))
+    have p2 := P.aut.berger.isPstAt T Bw ((GlobalTheory.TripleGal.rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype) c2
       (GlobalTheory.Published.heckeLAdicCharacterAbove_iff.1 P.aut.chA K Ω l _ _ ⟨T⟩ ι art hart κ m μ hκ hμ hL w A h O Bw hj).1
     refine ⟨p3, ?_⟩
-    have htw : (Af.tw R μ).comp (Dec (F := K) A).subtype =
-        Formalism.MainNotions.SumRepresentations.At.twGL (R.comp (Dec (F := K) A).subtype)
-          (Matrix.GeneralLinearGroup.det.comp ((GlobalTheory.TripleGal.rk1 μ).comp (Dec (F := K) A).subtype)) := by
+    have htw : (Af.tw R μ).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype =
+        Formalism.MainNotions.SumRepresentations.At.twGL (R.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)
+          (Matrix.GeneralLinearGroup.det.comp ((GlobalTheory.TripleGal.rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)) := by
       exact tw_comp R μ _
     rw [htw] at p3 ⊢
     rw [GlobalTheory.T.fontaineParameter_twist_potentiallySemistable l _ _ ⟨T⟩ ι K Ω A w h O Bw hj n _ _ (hcR.comp continuous_subtype_val) c2 p1 p2 p3,
