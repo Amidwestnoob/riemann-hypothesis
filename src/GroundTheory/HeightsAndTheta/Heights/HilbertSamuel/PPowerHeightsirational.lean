@@ -218,7 +218,7 @@ open PowerHeightsirational in
 theorem PowerHeightsirational.proof (hN : GeneratedNefGeneric.Statement) (hK : KodairaGeneric.Statement)
     (hC : ChartDenominator.Statement) : PowerHeightsirational.Statement := by
   intro K _ _ ι _ Ω _ _ y D a q w hD hV hB hw hgen hdeg
-  obtain ⟨c0, hc0⟩ := exists_chart hV
+  obtain ⟨c0, hc0⟩ := GroundTheory.Heights₂.Heights.HilbertSamuel.PowerHeightsirational.exists_chart hV
   obtain ⟨k, e, hk, he0, heQ⟩ := hK K ι Ω y D a hD hV hB (hN K ι Ω y D a q w hV hw hgen) hdeg
   obtain ⟨n, hn, hne⟩ := hC K ι Ω y _ 1 e heQ
   obtain ⟨j, hj⟩ : ∃ j, w j ≠ 0 := by
