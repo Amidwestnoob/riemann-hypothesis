@@ -116,12 +116,12 @@ theorem stalk_sq (Γ : FibreCurve ξ ϖ) (i : Γ.C.I) :
         (Scheme.Spec_stalkClosedPointTo_fromSpecStalk (Γ.z i))).symm))
   exact (congrArg CommRingCat.Hom.hom key).symm
 
-theorem val_le_one (hξ : IsCptGen ξ) (Γ : FibreCurve ξ ϖ) (i : Γ.C.I) (a : X.presheaf.stalk (centre Γ.η))
-    (ha : genMap ξ ⟨centre Γ.η, Γ.η_spec⟩ a ∈ regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩) :
+theorem val_le_one (hξ : IsCptGen ξ) (Γ : FibreCurve ξ ϖ) (i : Γ.C.I) (a : X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η))
+    (ha : genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩ a ∈ regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) :
     Γ.C.v i ((Scheme.stalkClosedPointTo Γ.η).hom a) ≤ 1 := by
   obtain ⟨c, hc⟩ := ha
   have h1 : (X.presheaf.stalkSpecializes (Γ.generic_centre_specializes i)).hom c = a :=
-    hξ.inj ⟨centre Γ.η, Γ.η_spec⟩
+    hξ.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩
       ((ProjectiveLinePlaces.genMap_specializes (Γ.generic_centre_specializes i) Γ.η_spec (Γ.z_spec i) c).trans hc)
   have h2 : ((Scheme.stalkClosedPointTo (Γ.z i)).hom c : Γ.κ) = (Scheme.stalkClosedPointTo Γ.η).hom
       ((X.presheaf.stalkSpecializes (Γ.generic_centre_specializes i)).hom c) := DFunLike.congr_fun (stalk_sq Γ i) c
@@ -136,10 +136,10 @@ section Point
 variable {X : Scheme.{0}} {R : Type} [CommRing R] [IsLocalRing R]
 
 theorem natCast_residueField (z : Sp R ⟶ X) (p : ℕ) (hp : (p : R) = 0) :
-    (p : X.residueField (centre z)) = 0 := by
-  have hnu : ¬ IsUnit ((p : ℕ) : X.presheaf.stalk (centre z)) := fun h => by
+    (p : X.residueField (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) = 0 := by
+  have hnu : ¬ IsUnit ((p : ℕ) : X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) := fun h => by
     have h1 := h.map (Scheme.stalkClosedPointTo z).hom
-    have e : (Scheme.stalkClosedPointTo z).hom (p : X.presheaf.stalk (centre z)) = (0 : R) :=
+    have e : (Scheme.stalkClosedPointTo z).hom (p : X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) = (0 : R) :=
       (map_natCast (Scheme.stalkClosedPointTo z).hom p).trans hp
     exact not_isUnit_zero (M₀ := R) ((congrArg IsUnit e).mp h1)
   have h2 := (IsLocalRing.residue_eq_zero_iff _).2 hnu
@@ -147,7 +147,7 @@ theorem natCast_residueField (z : Sp R ⟶ X) (p : ℕ) (hp : (p : R) = 0) :
   exact h2
 
 theorem centre_spMap {S : Type} [CommRing S] [IsLocalRing S] (f : R →+* S) [IsLocalHom f] (z : Sp R ⟶ X) :
-    centre (Spec.map (CommRingCat.ofHom f) ≫ z) = centre z := by
+    _root_.GlobalTheory.CompanionTheory.Ar.centre (Spec.map (CommRingCat.ofHom f) ≫ z) = _root_.GlobalTheory.CompanionTheory.Ar.centre z := by
   change z ((Spec.map (CommRingCat.ofHom f)) (IsLocalRing.closedPoint S)) = z (IsLocalRing.closedPoint R)
   congr 1
   exact IsLocalRing.comap_closedPoint f
@@ -159,14 +159,14 @@ section Main
 theorem exists_residue_germ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)]
     (hbar : ∀ a : 𝓞 E, star a = H.bar a) (X : Scheme.{0}) (t : SAB H X) (hpow : PowFns t)
     {R : Type} [CommRing R] [IsLocalRing R] (x : Sp R ⟶ X) (d : ℕ) (g : GermAt t x d) (p : ℕ) [Fact p.Prime]
-    (hp : (p : R) = 0) (hf : FibPF t (centre x)) :
+    (hp : (p : R) = 0) (hf : FibPF t (_root_.GlobalTheory.CompanionTheory.Ar.centre x)) :
     ∃ Bk : Germ.FB (IsLocalRing.ResidueField R) d (𝓞 E), IsMapOf (IsLocalRing.residue R) g.B Bk ∧ ConjInj Bk p := by
   obtain ⟨g₂, hm, -⟩ := _root_.PositivityTheory.HtPt.Ce.germ_bc E H hbar X t R (IsLocalRing.ResidueField R) (IsLocalRing.residue R) x d g
   haveI : CharP (IsLocalRing.ResidueField R) p :=
     (CharP.charP_iff_prime_eq_zero Fact.out).2 (by rw [← map_natCast (IsLocalRing.residue R), hp, map_zero])
   refine ⟨g₂.B, hm, _root_.PositivityTheory.HtPt.Cf.fib_inj E H hbar X t hpow _ p _ d g₂ ?_⟩
   have e := centre_spMap (IsLocalRing.residue R) x
-  change FibPF t (centre (Spec.map (CommRingCat.ofHom (IsLocalRing.residue R)) ≫ x))
+  change FibPF t (_root_.GlobalTheory.CompanionTheory.Ar.centre (Spec.map (CommRingCat.ofHom (IsLocalRing.residue R)) ≫ x))
   rw [e]
   exact hf
 
@@ -178,33 +178,33 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} [StarRi
   {t : SAB H X} {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶ X} {d : ℕ} {M : LieModel t.G ξ (Fin d → Ω)}
 
 theorem integral_at (S : GermSys t ξ M) {ϖ : Ω} (Γ : FibreCurve ξ ϖ) (hξ : IsCptGen ξ) (i : Γ.C.I)
-    {B' : Germ.FB (X.presheaf.stalk (centre Γ.η)) d (𝓞 E)} {φ' ψ' : Germ.Pt (X.presheaf.stalk (centre Γ.η)) 1 d}
-    {lam' : Germ.PS (X.presheaf.stalk (centre Γ.η)) 2 d}
-    (hiso : IsIso (S.g ⟨centre Γ.η, Γ.η_spec⟩).B B' φ' ψ' lam')
-    (he : transH (S.φ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-        (S.lam ⟨centre (Γ.z i), Γ.z_spec i⟩) =
-      transH (S.φ ⟨centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨centre Γ.η, Γ.η_spec⟩) (S.lam ⟨centre Γ.η, Γ.η_spec⟩) ∘ₗ
-        transH (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (φ' l))
-          (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (ψ' l))
-          (MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) lam'))
-    (hl : stdLat (regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-        (transH (S.φ ⟨centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨centre Γ.η, Γ.η_spec⟩) (S.lam ⟨centre Γ.η, Γ.η_spec⟩)) =
-      stdLat (regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-        (transH (S.φ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-          (S.lam ⟨centre (Γ.z i), Γ.z_spec i⟩)))
+    {B' : Germ.FB (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) d (𝓞 E)} {φ' ψ' : Germ.Pt (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 1 d}
+    {lam' : Germ.PS (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 2 d}
+    (hiso : IsIso (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩).B B' φ' ψ' lam')
+    (he : transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+        (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) =
+      transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) ∘ₗ
+        transH (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (φ' l))
+          (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (ψ' l))
+          (MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) lam'))
+    (hl : stdLat (regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+        (transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩)) =
+      stdLat (regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+        (transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+          (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)))
     (a b : Fin d) :
     Γ.C.v i (lin (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (φ' l)) 1 a b) ≤ 1 ∧
       Γ.C.v i (lin (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (ψ' l)) 1 a b) ≤ 1 ∧
       Γ.C.v i (bil (MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom lam') 1 1 a b) ≤ 1 := by
-  have h0 := (_root_.GlobalTheory.CompanionTheory.Ar.Conj.Iso.rho_pairing Ω d (𝓞 E) S.g₀.B (S.BK ⟨centre Γ.η, Γ.η_spec⟩) _ _ _
-    (S.iso ⟨centre Γ.η, Γ.η_spec⟩)).2.2.1.1
+  have h0 := (_root_.GlobalTheory.CompanionTheory.Ar.Conj.Iso.rho_pairing Ω d (𝓞 E) S.g₀.B (S.BK ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) _ _ _
+    (S.iso ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩)).2.2.1.1
   have h1 := (_root_.GlobalTheory.CompanionTheory.Ar.Conj.Iso.rho_pairing _ d (𝓞 E) _ _ _ _ _ hiso).2.1
-  have h2 : lin (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (ψ' l)) 1 *
-      lin (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (φ' l)) 1 = 1 := by
+  have h2 : lin (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (ψ' l)) 1 *
+      lin (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (φ' l)) 1 = 1 := by
     rw [lin_map, lin_map, ← Matrix.map_mul]
-    exact (congrArg (fun m => Matrix.map m (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩)) h1).trans
+    exact (congrArg (fun m => Matrix.map m (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩)) h1).trans
       (Matrix.map_one _ (map_zero _) (map_one _))
-  obtain ⟨e1, e2, e3⟩ := entries_mem (A := regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩) _ _ _ h2
+  obtain ⟨e1, e2, e3⟩ := entries_mem (A := regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) _ _ _ h2
     (fun y hy => trans_integral he h0 hl y hy) a b
   rw [lin_map, Matrix.map_apply] at e1 e2
   rw [bil_map, Matrix.map_apply] at e3
@@ -227,45 +227,45 @@ theorem integral_at (S : GermSys t ξ M) {ϖ : Ω} (Γ : FibreCurve ξ ϖ) (hξ 
 
 end Integral
 
-theorem germ_family : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (d : ℕ) (M : LieModel t.G ξ (Fin d → Ω)) (S : GermSys t ξ M) (O : Type) [CommRing O] (s : X ⟶ Sp O) [IsSeparated s] [LocallyOfFiniteType s] (ϖ : Ω) (p : ℕ) [Fact p.Prime] (Γ : FibreCurve ξ ϖ) [CharP Γ.κ p], IsCptGen ξ → PowFns t → (∀ q : Cpt ξ, (p : X.residueField q.1) = 0 → FibPF t q.1) → ∃ F : Family Γ.C p d (𝓞 E), IsMapOf (Scheme.stalkClosedPointTo Γ.η).hom (S.g ⟨centre Γ.η, Γ.η_spec⟩).B F.B ∧ ∀ i, IsMapOf (Scheme.stalkClosedPointTo (Γ.z i)).hom (S.g ⟨centre (Γ.z i), Γ.z_spec i⟩).B (F.Bi i) ∧ ∃ (φ' ψ' : Germ.Pt (X.presheaf.stalk (centre Γ.η)) 1 d) (lam' : Germ.PS (X.presheaf.stalk (centre Γ.η)) 2 d), transH (S.φ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.lam ⟨centre (Γ.z i), Γ.z_spec i⟩) = transH (S.φ ⟨centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨centre Γ.η, Γ.η_spec⟩) (S.lam ⟨centre Γ.η, Γ.η_spec⟩) ∘ₗ transH (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (φ' l)) (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (ψ' l)) (MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) lam') ∧ F.φ i = (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (φ' l)) ∧ F.ψ i = (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (ψ' l)) ∧ F.lam i = MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom lam' := by
+theorem germ_family : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X : Scheme.{0}) (t : SAB H X) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (d : ℕ) (M : LieModel t.G ξ (Fin d → Ω)) (S : GermSys t ξ M) (O : Type) [CommRing O] (s : X ⟶ Sp O) [IsSeparated s] [LocallyOfFiniteType s] (ϖ : Ω) (p : ℕ) [Fact p.Prime] (Γ : FibreCurve ξ ϖ) [CharP Γ.κ p], IsCptGen ξ → PowFns t → (∀ q : Cpt ξ, (p : X.residueField q.1) = 0 → FibPF t q.1) → ∃ F : Family Γ.C p d (𝓞 E), IsMapOf (Scheme.stalkClosedPointTo Γ.η).hom (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩).B F.B ∧ ∀ i, IsMapOf (Scheme.stalkClosedPointTo (Γ.z i)).hom (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩).B (F.Bi i) ∧ ∃ (φ' ψ' : Germ.Pt (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 1 d) (lam' : Germ.PS (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 2 d), transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) = transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) ∘ₗ transH (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (φ' l)) (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (ψ' l)) (MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) lam') ∧ F.φ i = (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (φ' l)) ∧ F.ψ i = (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (ψ' l)) ∧ F.lam i = MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom lam' := by
   intro E _ _ _ H _ hbar X t Ω _ ξ d M S O _ s _ _ ϖ p _ Γ _ hξ hpow hfib
   have hκ : ((p : ℕ) : Γ.κ) = 0 := CharP.cast_eq_zero Γ.κ p
   obtain ⟨g0, m0, -⟩ := _root_.PositivityTheory.HtPt.Ce.germ_bc E H hbar X t _ _ (Scheme.stalkClosedPointTo Γ.η).hom
-    (X.fromSpecStalk (centre Γ.η)) d (S.g ⟨centre Γ.η, Γ.η_spec⟩)
+    (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) d (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩)
   have place : ∀ i : Γ.C.I, ∃ (Bi : Germ.FB (Γ.C.v i).valuationSubring d (𝓞 E)) (BK : Germ.FB Γ.κ d (𝓞 E))
       (Bk : Germ.FB (IsLocalRing.ResidueField (Γ.C.v i).valuationSubring) d (𝓞 E))
-      (φ' ψ' : Germ.Pt (X.presheaf.stalk (centre Γ.η)) 1 d) (lam' : Germ.PS (X.presheaf.stalk (centre Γ.η)) 2 d),
-      IsMapOf (Scheme.stalkClosedPointTo (Γ.z i)).hom (S.g ⟨centre (Γ.z i), Γ.z_spec i⟩).B Bi ∧
+      (φ' ψ' : Germ.Pt (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 1 d) (lam' : Germ.PS (X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η)) 2 d),
+      IsMapOf (Scheme.stalkClosedPointTo (Γ.z i)).hom (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩).B Bi ∧
       IsMapOf (Γ.C.v i).valuationSubring.subtype Bi BK ∧ IsMapOf (IsLocalRing.residue _) Bi Bk ∧ ConjInj Bk p ∧
       IsIso g0.B BK (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (φ' l))
         (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (ψ' l))
         (MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom lam') ∧
-      transH (S.φ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-          (S.lam ⟨centre (Γ.z i), Γ.z_spec i⟩) =
-        transH (S.φ ⟨centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨centre Γ.η, Γ.η_spec⟩) (S.lam ⟨centre Γ.η, Γ.η_spec⟩) ∘ₗ
-          transH (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (φ' l))
-            (fun l => MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) (ψ' l))
-            (MvPowerSeries.map (genMap ξ ⟨centre Γ.η, Γ.η_spec⟩) lam') ∧
-      (stdLat (regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-          (transH (S.φ ⟨centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨centre Γ.η, Γ.η_spec⟩) (S.lam ⟨centre Γ.η, Γ.η_spec⟩)) =
-        stdLat (regAt ξ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-          (transH (S.φ ⟨centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨centre (Γ.z i), Γ.z_spec i⟩)
-            (S.lam ⟨centre (Γ.z i), Γ.z_spec i⟩)) → ∀ a b,
+      transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+          (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) =
+        transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) ∘ₗ
+          transH (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (φ' l))
+            (fun l => MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (ψ' l))
+            (MvPowerSeries.map (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) lam') ∧
+      (stdLat (regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+          (transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩) (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩)) =
+        stdLat (regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+          (transH (S.φ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩) (S.ψ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
+            (S.lam ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)) → ∀ a b,
         Γ.C.v i (lin (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (φ' l)) 1 a b) ≤ 1 ∧
         Γ.C.v i (lin (fun l => MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom (ψ' l)) 1 a b) ≤ 1 ∧
         Γ.C.v i (bil (MvPowerSeries.map (Scheme.stalkClosedPointTo Γ.η).hom lam') 1 1 a b) ≤ 1) := by
     intro i
     obtain ⟨gi, mi, -⟩ := _root_.PositivityTheory.HtPt.Ce.germ_bc E H hbar X t _ (Γ.C.v i).valuationSubring
-      (Scheme.stalkClosedPointTo (Γ.z i)).hom (X.fromSpecStalk (centre (Γ.z i))) d
-      (S.g ⟨centre (Γ.z i), Γ.z_spec i⟩)
+      (Scheme.stalkClosedPointTo (Γ.z i)).hom (X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i))) d
+      (S.g ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩)
     obtain ⟨gK, mK, -⟩ := _root_.PositivityTheory.HtPt.Ce.germ_bc E H hbar X t _ Γ.κ (Γ.C.v i).valuationSubring.subtype _ d gi
     have hp : ((p : ℕ) : (Γ.C.v i).valuationSubring) = 0 := Subtype.ext (by simpa using hκ)
-    have ex : spMap (Scheme.stalkClosedPointTo (Γ.z i)).hom ≫ X.fromSpecStalk (centre (Γ.z i)) = Γ.z i :=
+    have ex : spMap (Scheme.stalkClosedPointTo (Γ.z i)).hom ≫ X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i)) = Γ.z i :=
       Scheme.Spec_stalkClosedPointTo_fromSpecStalk (Γ.z i)
-    have hf : FibPF t (centre (Γ.z i)) :=
+    have hf : FibPF t (_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i)) :=
       hfib ⟨_, Γ.z_spec i⟩ (natCast_residueField (Γ.z i) p hp)
     obtain ⟨Bk, mk, hk⟩ := exists_residue_germ E H hbar X t hpow _ d gi p hp (by rw [ex]; exact hf)
-    obtain ⟨B', φ', ψ', lam', hm', hiso, he⟩ := S.gen ⟨centre (Γ.z i), Γ.z_spec i⟩ ⟨centre Γ.η, Γ.η_spec⟩
+    obtain ⟨B', φ', ψ', lam', hm', hiso, he⟩ := S.gen ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Γ.z i), Γ.z_spec i⟩ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩
       (Γ.generic_centre_specializes i)
     have hK : IsMapOf (Scheme.stalkClosedPointTo Γ.η).hom B' gK.B :=
       isMapOf_cancel hm' (by rw [← stalk_sq Γ i]; exact mi.trans mK)
@@ -273,7 +273,7 @@ theorem germ_family : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
       _root_.GlobalTheory.CompanionTheory.Ar.Flat.DegZ.isIso_map _ _ _ d _ _ _ _ _ _ _ _ m0 hK hiso, he, fun hl a b => integral_at S Γ hξ i hiso he hl a b⟩
   choose Bi BK Bk φ' ψ' lam' mi mK mk hk hiso he hint using place
   obtain ⟨Y, hY, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.fibreCurve_curveIn_degree X Ω ξ O s ϖ Γ hξ
-  obtain ⟨U, hU, hloc⟩ := S.loc ⟨centre Γ.η, Γ.η_spec⟩
+  obtain ⟨U, hU, hloc⟩ := S.loc ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre Γ.η, Γ.η_spec⟩
   have hfin := Y.ae U hU
   rw [hY] at hfin
   exact ⟨{ B := g0.B, Bi := Bi, BK := BK, Bk := Bk, mapK := mK, mapk := mk, inj := hk

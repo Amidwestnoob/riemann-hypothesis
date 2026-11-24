@@ -468,7 +468,7 @@ theorem valAt_congr_point {B : Type} [CommRing B] {X : Scheme.{0}}
 
 theorem QFGroup.regularAt_translate :
     ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T)
-      (σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G) (t : T), toUnit (genPt R) ≫ σ = Γ.pt t →
+      (σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G) (t : T), toUnit (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R) ≫ σ = Γ.pt t →
       ∀ (f : T → FractionRing R) (g : Γ.G.left),
         Γ.RegularAt f (((toUnit Γ.G ≫ σ) * 𝟙 Γ.G).left g) → Γ.RegularAt (fun h => f (t * h)) g := by
   intro R _ _ T _ _ Γ σ t ht f g ⟨U, hgU, s, hs⟩

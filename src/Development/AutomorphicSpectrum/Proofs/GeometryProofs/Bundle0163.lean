@@ -73,7 +73,7 @@ theorem exists_model_of_res (hRes : ResK.ResKStatement)
       (∀ q : X, genPt ξ ⤳ q) ∧ CoordTie ℤ ξ x ∧ ξ ≫ f = ξ₀ ∧
       Cmp.IsSncModel (fun p : (Σ _ : Unit, Fin (N + 1)) => x p.2) e bd ∧
       ∀ (z : Spec (CommRingCat.of ℂ) ⟶ X) w, CoordsAt ξ (fun p : (Σ _ : Unit, Fin (N + 1)) => x p.2) z w →
-        (w ∈ mcPts bd ↔ f (centre z) ∉ Ab) := by
+        (w ∈ mcPts bd ↔ f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ∉ Ab) := by
   obtain ⟨hred, hln, M, i, hi, his⟩ := _root_.GlobalTheory.CompanionTheory.Ar.SncBase.genericFibre_reduced_noetherian_closed F P s hp hn
   obtain ⟨b, ξF, hF1, hF2, hFg⟩ := _root_.GlobalTheory.CompanionTheory.Ar.GenFibre.exists_point F P s Ω ξ₀ hξ₀
   have hmem := _root_.GlobalTheory.CompanionTheory.Ar.SncBase.genPt_mem_of_dense_open _ Ω ξF U hFg hd
@@ -175,7 +175,7 @@ theorem exists_model_of_res (hRes : ResK.ResKStatement)
   · intro h
     exact ⟨hirr _, _root_.GlobalTheory.CompanionTheory.Ar.SncBase.char_zero_centre_complex_point Ω X ξ z _ htX.gen, h⟩
 
-theorem exists_sncBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatement → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Ω : Type) [Field Ω] [CharZero Ω] (ξ₀ : Spec (CommRingCat.of Ω) ⟶ Y.X), IsCptGen ξ₀ → ∃ (K : Type) (_ : Fintype K) (J : K → Type) (_ : ∀ k, Fintype (J k)) (y : (Σ k, J k) → Ω) (X : Scheme.{0}) (ξ : Spec (CommRingCat.of Ω) ⟶ X) (f : X ⟶ Y.X) (bd : Ideal (MRing J)), Nonempty K ∧ (∀ q : X, genPt ξ ⤳ q) ∧ CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) ∧ ξ ≫ f = ξ₀ ∧ Cmp.IsSncModel y D.dim bd ∧ ∀ (z : Spec (CommRingCat.of ℂ) ⟶ X) w, CoordsAt ξ y z w → (w ∈ mcPts bd ↔ f (centre z) ∉ abLocus Y.t.G) := by
+theorem exists_sncBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatement → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Ω : Type) [Field Ω] [CharZero Ω] (ξ₀ : Spec (CommRingCat.of Ω) ⟶ Y.X), IsCptGen ξ₀ → ∃ (K : Type) (_ : Fintype K) (J : K → Type) (_ : ∀ k, Fintype (J k)) (y : (Σ k, J k) → Ω) (X : Scheme.{0}) (ξ : Spec (CommRingCat.of Ω) ⟶ X) (f : X ⟶ Y.X) (bd : Ideal (MRing J)), Nonempty K ∧ (∀ q : X, genPt ξ ⤳ q) ∧ CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) ∧ ξ ≫ f = ξ₀ ∧ Cmp.IsSncModel y D.dim bd ∧ ∀ (z : Spec (CommRingCat.of ℂ) ⟶ X) w, CoordsAt ξ y z w → (w ∈ mcPts bd ↔ f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ∉ abLocus Y.t.G) := by
   intro hRes E _ _ _ H D l Xo c Y Ω _ _ ξ₀ hξ₀
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := {}
@@ -274,32 +274,32 @@ theorem exists_value_up {t : SAB H X₀} {t' : SAB H X} {f : X ⟶ X₀} (m : SA
     (z : Spec (CommRingCat.of ℂ) ⟶ X) {e : V} {v₀ : epsAt (z ≫ f) ⟶ t.G} (hv : M.ValAt (z ≫ f) e v₀) :
     ∃ v : epsAt z ⟶ t'.G, M'.ValAt z (j e) v ∧ v₀.left = v.left ≫ m.φ := by
   obtain ⟨h₀, w, hw, hwz⟩ := hv
-  have hp : genPt ξ₀ ⤳ f (centre z) := h₀
-  have hρ : Spec.map (CommRingCat.ofHom (f.stalkMap (centre z)).hom) ≫ X₀.fromSpecStalk (f (centre z)) =
-      X.fromSpecStalk (centre z) ≫ f := Scheme.SpecMap_stalkMap_fromSpecStalk f
-  have hρ' : (genMap ξ ⟨centre z, hall _⟩).comp (f.stalkMap (centre z)).hom = i.comp (genMap ξ₀ ⟨f (centre z), hp⟩) :=
+  have hp : genPt ξ₀ ⤳ f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) := h₀
+  have hρ : Spec.map (CommRingCat.ofHom (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom) ≫ X₀.fromSpecStalk (f (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) =
+      X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ≫ f := Scheme.SpecMap_stalkMap_fromSpecStalk f
+  have hρ' : (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hall _⟩).comp (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom = i.comp (genMap ξ₀ ⟨f (_root_.GlobalTheory.CompanionTheory.Ar.centre z), hp⟩) :=
     RingHom.ext (RegAtDom.genMap_stalkMap hd _ (hall _) hp)
-  have hx' := LieCarrier.genMap_fromSpecStalk (ξ := ξ) ⟨centre z, hall _⟩
-  obtain ⟨u, hu, huφ⟩ := LiePull.ext_up (A := X₀.presheaf.stalk (f (centre z))) (A' := X.presheaf.stalk (centre z))
-    (g := genMap ξ₀ ⟨f (centre z), hp⟩) (g' := genMap ξ ⟨centre z, hall _⟩) (ρ := (f.stalkMap (centre z)).hom)
-    (x := X₀.fromSpecStalk (f (centre z))) (x' := X.fromSpecStalk (centre z)) (M := M) (M' := M') (j := j) m.cart hj hρ
+  have hx' := LieCarrier.genMap_fromSpecStalk (ξ := ξ) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hall _⟩
+  obtain ⟨u, hu, huφ⟩ := LiePull.ext_up (A := X₀.presheaf.stalk (f (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) (A' := X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))
+    (g := genMap ξ₀ ⟨f (_root_.GlobalTheory.CompanionTheory.Ar.centre z), hp⟩) (g' := genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hall _⟩) (ρ := (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom)
+    (x := X₀.fromSpecStalk (f (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) (x' := X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) (M := M) (M' := M') (j := j) m.cart hj hρ
     hρ' hx' hw
-  have hc : Spec.map (CommRingCat.ofHom (Scheme.stalkClosedPointTo z).hom) ≫ X.fromSpecStalk (centre z) = z :=
+  have hc : Spec.map (CommRingCat.ofHom (Scheme.stalkClosedPointTo z).hom) ≫ X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) = z :=
     Scheme.Spec_stalkClosedPointTo_fromSpecStalk z
   refine ⟨LieCarrier.epsHom _ _ z hc ≫ u, ⟨hall _, u, hu, rfl⟩, ?_⟩
   have e1 : (LieCarrier.epsHom _ _ z hc ≫ u).left =
       Spec.map (CommRingCat.ofHom (dualMap (Scheme.stalkClosedPointTo z).hom)) ≫ u.left := rfl
   have e2 : (Scheme.stalkClosedPointTo (z ≫ f)).hom =
-      (Scheme.stalkClosedPointTo z).hom.comp (f.stalkMap (centre z)).hom := by
+      (Scheme.stalkClosedPointTo z).hom.comp (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom := by
     rw [Scheme.stalkClosedPointTo_comp]
     rfl
   have e4 : spMap (dualMap (Scheme.stalkClosedPointTo (z ≫ f)).hom) =
-      spMap (dualMap (Scheme.stalkClosedPointTo z).hom) ≫ spMap (dualMap (f.stalkMap (centre z)).hom) := by
+      spMap (dualMap (Scheme.stalkClosedPointTo z).hom) ≫ spMap (dualMap (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom) := by
     rw [e2]
-    exact (congrArg spMap (LiePull.dualMap_comp (f.stalkMap (centre z)).hom (Scheme.stalkClosedPointTo z).hom).symm).trans
+    exact (congrArg spMap (LiePull.dualMap_comp (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom (Scheme.stalkClosedPointTo z).hom).symm).trans
       (spMap_comp' _ _)
   have e3 : (LieCarrier.epsHom _ _ z hc ≫ u).left ≫ m.φ = spMap (dualMap (Scheme.stalkClosedPointTo z).hom) ≫
-      spMap (dualMap (f.stalkMap (centre z)).hom) ≫ w.left :=
+      spMap (dualMap (f.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom) ≫ w.left :=
     (congrArg (· ≫ m.φ) e1).trans ((Category.assoc _ _ _).trans
       (congrArg (spMap (dualMap (Scheme.stalkClosedPointTo z).hom) ≫ ·) huφ))
   exact hwz.trans (((congrArg (· ≫ w.left) e4).trans (Category.assoc _ _ _)).trans e3.symm)
@@ -344,7 +344,7 @@ theorem lie_of_cover : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     obtain ⟨hV₀, -, hlat₀⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeChar0.lattices_of_char_zero E H D l Xo c O β Y S₀ Ω₀ K₀ J₀ y₀ 𝔐₀ hβ (pushCpt hd q) hq₀
     obtain ⟨-, -, -, -, -, -, hindep, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c O β Y S Ω K J y 𝔐 hβ
     rw [hV s, hV₀ s]
-    let N : (CMType H ⊕ CMType H) → Submodule (regAt 𝔐.ξ q) 𝔐.Li := fun s' =>
+    let N : (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) → Submodule (regAt 𝔐.ξ q) 𝔐.Li := fun s' =>
       Submodule.span (regAt 𝔐.ξ q) (j '' (𝔐₀.dR s' (pushCpt hd q) : Set 𝔐₀.Li))
     have hle : ∀ s', N s' ≤ 𝔐.dR s' q := fun s' => by
       refine Submodule.span_le.2 ?_

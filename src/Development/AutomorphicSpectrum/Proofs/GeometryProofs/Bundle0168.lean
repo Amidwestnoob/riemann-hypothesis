@@ -220,11 +220,11 @@ theorem valAt_of_const {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommR
     {O : Type} [CommRing O] [Algebra O Ω] (s : X ⟶ Spec (CommRingCat.of O))
     (hs : ξ ≫ s = Spec.map (CommRingCat.ofHom (algebraMap O Ω))) {R : Type} [CommRing R] [IsLocalRing R]
     (z : Spec (CommRingCat.of R) ⟶ X) (ρ : O →+* R) (hz : z ≫ s = Spec.map (CommRingCat.ofHom ρ))
-    (h : genPt ξ ⤳ centre z) (o : O) : ValAt ξ z (algebraMap O Ω o) (ρ o) := by
-  refine ⟨h, (X.presheaf.germ ⊤ (centre z) trivial).hom
+    (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (o : O) : ValAt ξ z (algebraMap O Ω o) (ρ o) := by
+  refine ⟨h, (X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial).hom
     (s.appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of O)).inv.hom o)),
-    Flat.ConstReg.genMap_germ_const ξ s hs ⟨centre z, h⟩ o, ?_⟩
-  have h1 : X.presheaf.germ ⊤ (centre z) trivial ≫ Scheme.stalkClosedPointTo z =
+    Flat.ConstReg.genMap_germ_const ξ s hs ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ o, ?_⟩
+  have h1 : X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial ≫ Scheme.stalkClosedPointTo z =
       z.appTop ≫ (Scheme.ΓSpecIso (CommRingCat.of R)).hom := by
     refine (Scheme.germ_stalkClosedPointTo z ⊤ trivial).trans ?_
     simp only [Iso.trans_hom, Functor.mapIso_hom, Iso.op_hom, Scheme.Hom.appTop]
@@ -243,7 +243,7 @@ theorem valAt_of_const {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommR
 
 theorem valAt_unique {X : Scheme.{0}} {Ω : Type} [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (hξ : IsCptGen ξ)
     {R : Type} [CommRing R] [IsLocalRing R] (z : Spec (CommRingCat.of R) ⟶ X)
-    (h : genPt ξ ⤳ centre z) {a : Ω} {r r' : R} (h₁ : ValAt ξ z a r) (h₂ : ValAt ξ z a r') : r = r' := by
+    (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {a : Ω} {r r' : R} (h₁ : ValAt ξ z a r) (h₂ : ValAt ξ z a r') : r = r' := by
   obtain ⟨φ, hφ, -⟩ := ValHom.exists_valAt_hom X Ω ξ R z h hξ
   obtain ⟨_, e₁⟩ := (hφ a r).1 h₁
   obtain ⟨_, e₂⟩ := (hφ a r').1 h₂
@@ -275,7 +275,7 @@ theorem card_hom_le (E : Type) [Field E] [NumberField E] (L : Type) [Field L] [C
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem bijective_of_injective (H : Host E) {L : Type} [Field L] [CharZero L]
-    (f : CMType H ⊕ CMType H → (𝓞 E →+* L)) (hf : Function.Injective f) : Function.Bijective f := by
+    (f : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* L)) (hf : Function.Injective f) : Function.Bijective f := by
   obtain ⟨hfin, hle⟩ := card_hom_le E L
   refine hf.bijective_of_nat_card_le (hle.trans ?_)
   rw [Nat.card_eq_of_bijective _ (LabelCount.labelCx_bijective H), Nat.card_eq_fintype_card,
@@ -310,7 +310,7 @@ theorem isCMFam_of_bijective {A : Type} [Fintype A] (f g : A → (𝓞 E →+* �
       exact absurd ⟨τ, by rw [← hx', hc]⟩ hn
     · exact ⟨τ, hx⟩
 
-theorem exists_labVal : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (L : Type) [Field L] [CharZero L] (z : Sp L ⟶ 𝔐.X), ∃ σ : CMType H ⊕ CMType H → (𝓞 E →+* L), 𝔐.LabVal z id σ ∧ (∀ σ', 𝔐.LabVal z id σ' → σ' = σ) ∧ Function.Bijective σ ∧ (∀ s, Function.Injective (σ s)) ∧ 2 * Fintype.card (CMType H) = Module.finrank ℚ E ∧ ∀ e : L →+* ℂ, IsCMFam (fun τ => e.comp (σ (.inl τ))) ∧ IsCMFam (fun τ => e.comp (σ (.inr τ))) ∧ ∀ τ, e.comp (σ (.inr τ)) = (starRingEnd ℂ).comp (e.comp (σ (.inl τ))) := by
+theorem exists_labVal : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (L : Type) [Field L] [CharZero L] (z : Sp L ⟶ 𝔐.X), ∃ σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* L), 𝔐.LabVal z id σ ∧ (∀ σ', 𝔐.LabVal z id σ' → σ' = σ) ∧ Function.Bijective σ ∧ (∀ s, Function.Injective (σ s)) ∧ 2 * Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E ∧ ∀ e : L →+* ℂ, IsCMFam (fun τ => e.comp (σ (.inl τ))) ∧ IsCMFam (fun τ => e.comp (σ (.inr τ))) ∧ ∀ τ, e.comp (σ (.inr τ)) = (starRingEnd ℂ).comp (e.comp (σ (.inl τ))) := by
   intro E _ _ _ H D l Xo c Y S Ω _ K _ J _ y 𝔐 L _ _ z
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := { }
@@ -319,8 +319,8 @@ theorem exists_labVal : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   let κ : c.F →+* L := IsFractionRing.lift (injective_of_charZero ρ)
   have hκ : ∀ o, κ (algebraMap (𝓞 c.F) c.F o) = ρ o := fun o => IsFractionRing.lift_algebraMap _ o
   letI : Algebra (𝓞 c.F) Ω := (𝔐.cst.comp (algebraMap (𝓞 c.F) c.F)).toAlgebra
-  have hsp : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
-  have hval : ∀ (s : CMType H ⊕ CMType H) (a : 𝓞 E), ValAt 𝔐.ξ z (𝔐.emb s a) (κ (labelEmb c s a)) := by
+  have hsp : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
+  have hval : ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (a : 𝓞 E), ValAt 𝔐.ξ z (𝔐.emb s a) (κ (labelEmb c s a)) := by
     intro s a
     have hint : IsIntegral ℤ (labelEmb c s a) :=
       (NumberField.RingOfIntegers.isIntegral a).map (labelEmb c s).toIntAlgHom
@@ -332,9 +332,9 @@ theorem exists_labVal : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
       rw [hm]
     rw [he, ← hκ, hm] at h
     exact h
-  let σ : CMType H ⊕ CMType H → (𝓞 E →+* L) := fun s => κ.comp (labelEmb c s)
+  let σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* L) := fun s => κ.comp (labelEmb c s)
   have hinj : ∀ {L' : Type} [Field L'] (κ' : c.F →+* L'),
-      Function.Injective fun s : CMType H ⊕ CMType H => κ'.comp (labelEmb c s) := fun κ' s t h =>
+      Function.Injective fun s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H => κ'.comp (labelEmb c s) := fun κ' s t h =>
     LabelCount.labelEmb_injective c (RingHom.ext fun a => κ'.injective (RingHom.congr_fun h a))
   have hconj : ∀ (e : L →+* ℂ) (τ : CMType H),
       e.comp (σ (.inr τ)) = (starRingEnd ℂ).comp (e.comp (σ (.inl τ))) := by

@@ -172,7 +172,7 @@ theorem val_unique {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingC
     (h' : ValAt ξ z a r') : r = r' := by
   obtain ⟨h1, s, hs, rfl⟩ := h
   obtain ⟨h2, s', hs', rfl⟩ := h'
-  have : s = s' := hg.inj ⟨centre z, h1⟩ (hs.trans hs'.symm)
+  have : s = s' := hg.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ (hs.trans hs'.symm)
   rw [this]
 
 theorem exists_fibreLat_rank : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H)

@@ -147,8 +147,8 @@ theorem stalk_spec_normal [IsIntegrallyClosed R] (y : Spec (CommRingCat.of R)) :
 
 theorem genPt_asIdeal (Γ : QFGroup R T) (t : T) (x : Spec (CommRingCat.of (FractionRing R))) :
     (Γ.G.hom ((Γ.pt t).left x)).asIdeal = ⊥ := by
-  have hw : (Γ.pt t).left ≫ Γ.G.hom = (genPt R).hom := Over.w (Γ.pt t)
-  have : Γ.G.hom ((Γ.pt t).left x) = (genPt R).hom x := by
+  have hw : (Γ.pt t).left ≫ Γ.G.hom = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom := Over.w (Γ.pt t)
+  have : Γ.G.hom ((Γ.pt t).left x) = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom x := by
     rw [← hw]; rfl
   rw [this]
   show Ideal.comap (algebraMap R (FractionRing R)) x.asIdeal = ⊥
@@ -190,12 +190,12 @@ theorem eq_of_specializes_pt [IsIntegrallyClosed R] (Γ : QFGroup R T) (hE : Eta
   exact Γ.pt_inj s t x x ((key s hs).symm.trans (key t ht))
 
 theorem genPt_appLE (f : Spec (CommRingCat.of (FractionRing R)) ⟶ Spec (CommRingCat.of R))
-    (hf : f = (genPt R).hom) (e) :
+    (hf : f = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom) (e) :
     (Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ f.appLE ⊤ ⊤ e ≫
         (Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).hom =
       CommRingCat.ofHom (algebraMap R (FractionRing R)) := by
   subst hf
-  have : (genPt R).hom.appLE ⊤ ⊤ e = (genPt R).hom.appTop := rfl
+  have : (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom.appLE ⊤ ⊤ e = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom.appTop := rfl
   rw [this]
   change (Scheme.ΓSpecIso _).inv ≫
     (Spec.map (CommRingCat.ofHom (algebraMap R (FractionRing R)))).appTop ≫ _ = _
@@ -228,7 +228,7 @@ theorem regularAt_const [Finite T] [IsIntegrallyClosed R] (Γ : QFGroup R T) (hE
     have htU : P t ∈ U := h (show x₀ ∈ (⊤ : (Spec (CommRingCat.of (FractionRing R))).Opens) from trivial)
     have := eq_of_specializes_pt Γ hE x₀ g t t₀ (hPU t htU) ht₀
     subst this
-    have hw : (Γ.pt t).left ≫ Γ.G.hom = (genPt R).hom := Over.w (Γ.pt t)
+    have hw : (Γ.pt t).left ≫ Γ.G.hom = (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom := Over.w (Γ.pt t)
     have key : (Scheme.ΓSpecIso (CommRingCat.of R)).inv ≫ Γ.G.hom.appLE ⊤ U le_top ≫
         (Γ.pt t).left.appLE U ⊤ h ≫ (Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).hom =
           CommRingCat.ofHom (algebraMap R (FractionRing R)) := by

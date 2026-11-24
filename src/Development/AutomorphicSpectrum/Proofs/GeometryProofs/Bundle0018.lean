@@ -89,7 +89,7 @@ theorem exists_section_of_generic_point (R : Type) [CommRing R] [IsDomain R] [Is
     (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U : Γ.G.left.Opens)
     (hU : IsFinite (U.ι ≫ Γ.G.hom)) (t : T) (ht : ⊤ ≤ (Γ.pt t).left ⁻¹ᵁ U) :
     ∃ σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G, (∀ z, σ.left z ∈ U) ∧
-      toUnit (genPt R) ≫ σ = Γ.pt t := by
+      toUnit (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R) ≫ σ = Γ.pt t := by
   have hr : Set.range (Γ.pt t).left ⊆ Set.range U.ι := by
     rintro _ ⟨x, rfl⟩
     rw [Scheme.Opens.range_ι]
@@ -105,7 +105,7 @@ theorem exists_section_of_generic_point (R : Type) [CommRing R] [IsDomain R] [Is
     rw [Scheme.Opens.range_ι] at h8
     simpa using h8
   · apply Over.OverMorphism.ext
-    change (genPt R).hom ≫ s ≫ U.ι = (Γ.pt t).left
+    change (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R).hom ≫ s ≫ U.ι = (Γ.pt t).left
     rw [← hpι, ← hsp]
     simp
 

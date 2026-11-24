@@ -81,19 +81,19 @@ theorem gramAt_iff_of_tied : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   intro E _ _ _ H D l Xo c O O' _ _ β β' Y Y' g Φ n S Ω _ K _ J _ y A A' e x x' hβ hβ' hΦ hξ hx hx' h1 h2 _ _ _
     t tΩ k m mA' u u' M₁ φ hu hu' hn _ htie _ _ z hz r b Γ
   classical
-  have hzq : A'.ξ (IsLocalRing.closedPoint (CommRingCat.of Ω)) ⤳ centre z := A'.all _
-  let p : Cpt A'.ξ := ⟨centre z, hzq⟩
+  have hzq : A'.ξ (IsLocalRing.closedPoint (CommRingCat.of Ω)) ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := A'.all _
+  let p : Cpt A'.ξ := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hzq⟩
   obtain ⟨hjm', hint'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.IntOpen.interior_iff_factor E H D l Xo c O' β' Y' S Ω K J y A' z hβ'
   obtain ⟨hjm, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.IntOpen.interior_iff_factor E H D l Xo c O β Y S Ω K J y A (z ≫ e.hom) hβ
   obtain ⟨u'p, hu'p⟩ := hint'.1 hz
   obtain ⟨ΦF, ν, hΦ1, hΦ2, hν⟩ := PositivityTheory.UnitarySelfGeneration.tw_phiF E H D l Xo c Y.oF Y.m0 g Φ n hΦ
   have hxx : x' = x ≫ ΦF.hom :=
     pullback.hom_ext (by rw [Category.assoc, hΦ1, h1]) (by rw [Category.assoc, hΦ2, h2])
-  have : IsDomain (A'.X.presheaf.stalk (centre z)) :=
+  have : IsDomain (A'.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) :=
     Function.Injective.isDomain (genMap A'.ξ p) (A'.tie.gen.inj p)
-  let ξp : Sp Ω ⟶ Spec (A'.X.presheaf.stalk (centre z)) :=
+  let ξp : Sp Ω ⟶ Spec (A'.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) :=
     Spec.map (A'.X.presheaf.stalkSpecializes hzq ≫ Scheme.stalkClosedPointTo A'.ξ)
-  have hξp : ξp ≫ A'.X.fromSpecStalk (centre z) = A'.ξ := specMap_fromSpecStalk A'.ξ _ hzq
+  have hξp : ξp ≫ A'.X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) = A'.ξ := specMap_fromSpecStalk A'.ξ _ hzq
   have hgen : ∀ q, genPt ξp ⤳ q := genPt_specializes _ (A'.tie.gen.inj p)
   have hξu' : ξp ≫ u'p = x' := by
     have := hjm'
@@ -101,17 +101,17 @@ theorem gramAt_iff_of_tied : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   obtain ⟨up, hup_def⟩ : ∃ up, up = u'p ≫ ΦF.inv := ⟨_, rfl⟩
   have hξup : ξp ≫ up = x := by
     rw [hup_def, ← Category.assoc, hξu', hxx, Category.assoc, Iso.hom_inv_id, Category.comp_id]
-  have hup : up ≫ Y.j = A'.X.fromSpecStalk (centre z) ≫ e.hom ≫ A.f := by
-    refine _root_.GlobalTheory.CompanionTheory.Ar.maps_eq_of_eq_at_generic O (Spec (A'.X.presheaf.stalk (centre z))) Y.X Y.s Ω ξp _ _ Y.proj hgen ?_
+  have hup : up ≫ Y.j = A'.X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ≫ e.hom ≫ A.f := by
+    refine _root_.GlobalTheory.CompanionTheory.Ar.maps_eq_of_eq_at_generic O (Spec (A'.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) Y.X Y.s Ω ξp _ _ Y.proj hgen ?_
     rw [← Category.assoc, hξup, ← hx, reassoc_of% hξp, ← hξ, Category.assoc]
-  obtain ⟨tp, π⟩ : ∃ tp : SAB H (Spec (A'.X.presheaf.stalk (centre z))), Nonempty (SABMap tp Y.oF.t up) := by
+  obtain ⟨tp, π⟩ : ∃ tp : SAB H (Spec (A'.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))), Nonempty (SABMap tp Y.oF.t up) := by
     obtain ⟨_, _, _, _, _, π, -⟩ := sabPull ReciprocityTheory.ChartRestriction.G.Out.proved_CubePullSt up Y.oF.t
     exact ⟨_, ⟨π⟩⟩
   obtain ⟨π⟩ := π
   obtain ⟨a, ha⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ A.m k
   obtain ⟨πY, hπY⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ Y.m π
   obtain ⟨πY', hπY'⟩ := exists_cast πY (show up ≫ (Y.jQ ≫ pullback.fst _ _) =
-    A'.X.fromSpecStalk (centre z) ≫ (e.hom ≫ A.f) from hup)
+    A'.X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ≫ (e.hom ≫ A.f) from hup)
   obtain ⟨mp, hmp⟩ := sabCancel pullCubCancel E H _ _ _ _ _ _ _ _ a πY'
   obtain ⟨m0c, hm0c⟩ := exists_cast Y.m0.toSABMap (Category.id_comp (pullback.fst _ _)).symm
   obtain ⟨w0, hw0⟩ := sabCancel pullCubCancel E H _ _ _ _ _ _ _ _ Y'.m0.toSABMap m0c
@@ -119,7 +119,7 @@ theorem gramAt_iff_of_tied : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   obtain ⟨c2, hc2⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ w0 c1
   obtain ⟨c3, hc3⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ Y'.m c2
   obtain ⟨c3', hc3'⟩ := exists_cast c3 (show ((up ≫ ΦF.hom) ≫ 𝟙 _) ≫ (Y'.jQ ≫ pullback.fst _ _) =
-      A'.X.fromSpecStalk (centre z) ≫ A'.f by
+      A'.X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ≫ A'.f by
     rw [Category.comp_id, hup_def]
     simp only [Category.assoc, Iso.inv_hom_id_assoc]
     exact hu'p)
@@ -144,7 +144,7 @@ theorem gramAt_iff_of_tied : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have WorkedExample : c3φ = c2φ ≫ Y'.m.φ := by subst hc3φ hc2φ; exact hc3
   have LargeParameterEstimates : c3'φ = c3φ := by subst hc3'φ hc3φ; exact hc3'
   have F12 : c3'φ = mp'φ ≫ A'.m.φ := by subst hc3'φ hmp'φ; exact hmp'
-  have InertPlaceConditions : mp'φ ≫ A'.t.G.hom = tp.G.hom ≫ A'.X.fromSpecStalk (centre z) := by subst hmp'φ; exact phi_w mp'
+  have InertPlaceConditions : mp'φ ≫ A'.t.G.hom = tp.G.hom ≫ A'.X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) := by subst hmp'φ; exact phi_w mp'
   have key : u.φ ≫ νφ ≫ w0.φ = u'φ := by
     refine hom_ext' Y'.m0.toSABMap ?_ ?_
     · simp only [Category.assoc]

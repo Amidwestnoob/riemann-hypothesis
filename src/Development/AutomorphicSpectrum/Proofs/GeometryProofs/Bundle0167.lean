@@ -177,7 +177,7 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 namespace GlobalTheory.CompanionTheory.Ar
 
-theorem codim_one_gram_twist_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (g : HostAut H) (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (p : Cpt ξ) (t t' : SAB H X) (tp : SAB H (Spec (X.presheaf.stalk p.1))) (m : SABMap tp t (X.fromSpecStalk p.1)) (m' : SABMap (twistSAB tp g) t' (X.fromSpecStalk p.1)) (V : Type) [AddCommGroup V] [Module Ω V] (M : LieModel t.G ξ V) (M' : LieModel t'.G ξ V), (∀ e, ∃ v : Sp (DualNumber Ω) ⟶ tp.G.left, v ≫ m.φ = (M.pt e).left ∧ v ≫ m'.φ = (M'.pt e).left) → ∀ (z : Sp ℂ ⟶ X), centre z = p.1 → ∀ (r : ℕ) (b : Fin r → V) (Γ : Matrix (Fin r) (Fin r) ℂ), M.GramAt t.PP.L z b Γ ↔ M'.GramAt t'.PP.L z b Γ :=
+theorem codim_one_gram_twist_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (g : HostAut H) (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (p : Cpt ξ) (t t' : SAB H X) (tp : SAB H (Spec (X.presheaf.stalk p.1))) (m : SABMap tp t (X.fromSpecStalk p.1)) (m' : SABMap (twistSAB tp g) t' (X.fromSpecStalk p.1)) (V : Type) [AddCommGroup V] [Module Ω V] (M : LieModel t.G ξ V) (M' : LieModel t'.G ξ V), (∀ e, ∃ v : Sp (DualNumber Ω) ⟶ tp.G.left, v ≫ m.φ = (M.pt e).left ∧ v ≫ m'.φ = (M'.pt e).left) → ∀ (z : Sp ℂ ⟶ X), _root_.GlobalTheory.CompanionTheory.Ar.centre z = p.1 → ∀ (r : ℕ) (b : Fin r → V) (Γ : Matrix (Fin r) (Fin r) ℂ), M.GramAt t.PP.L z b Γ ↔ M'.GramAt t'.PP.L z b Γ :=
   PositivityTheory.UnitarySelfGeneration.gram_matrix_twisted_lie_models
 
 end GlobalTheory.CompanionTheory.Ar
@@ -306,7 +306,7 @@ private theorem isValueAt_aeval_segreCoord_div {K : Type} [Fintype K] {Jt : K �
     · simpa using hw
     · simp [MvPolynomial.aeval_X]
 
-theorem nonempty_muFrameAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ), CoordsAt Or.𝔐.ξ Dc.y z w → Nonempty (MuFrameAt Hd w) := by
+theorem nonempty_muFrameAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ), CoordsAt Or.𝔐.ξ Dc.y z w → Nonempty (MuFrameAt Hd w) := by
   classical
   intro E _ _ _ H D l Xo c Y II K _ J _ Ω _ _ W _ _ Dc Hd S₀ Or z w hco
   unfold CoordsAt at hco
@@ -325,10 +325,10 @@ theorem nonempty_muFrameAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     exact ⟨P, hP⟩
   choose P hP using fun l => hmem (f l) (hf l)
   choose Q hQ using fun l => hmem (cc l) (hcc l)
-  have hginj : Function.Injective (genMap Or.𝔐.ξ ⟨centre z, Or.𝔐.all _⟩) :=
+  have hginj : Function.Injective (genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, Or.𝔐.all _⟩) :=
     (CoordTie.gen Or.𝔐.tie).inj _
-  have hlift : ∀ q : (k : K) × J k, ∃ t : Or.𝔐.X.presheaf.stalk (centre z),
-      genMap Or.𝔐.ξ ⟨centre z, Or.𝔐.all _⟩ t = Dc.y q / Dc.y ⟨q.1, ch q.1⟩ ∧
+  have hlift : ∀ q : (k : K) × J k, ∃ t : Or.𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z),
+      genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, Or.𝔐.all _⟩ t = Dc.y q / Dc.y ⟨q.1, ch q.1⟩ ∧
       (Scheme.stalkClosedPointTo z).hom t = w q / w ⟨q.1, ch q.1⟩ := by
     rintro ⟨k, i⟩
     obtain ⟨r0, hv, hr0⟩ := (hco.2 k (ch k) (hch k)).2 i
@@ -337,19 +337,19 @@ theorem nonempty_muFrameAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     refine ⟨t, ht1, ?_⟩
     rw [ht2, hr0, mul_div_assoc, div_self (hwc k), _root_.mul_one]
   choose t ht1 ht2 using hlift
-  obtain ⟨ψ, hψ⟩ : ∃ ψ : Or.𝔐.X.presheaf.stalk (centre z) →+* ℂ,
+  obtain ⟨ψ, hψ⟩ : ∃ ψ : Or.𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) →+* ℂ,
       ψ = (Scheme.stalkClosedPointTo z).hom := ⟨_, rfl⟩
   have ht2' : ∀ q, ψ (t q) = w q / w ⟨q.1, ch q.1⟩ := by
     intro q; rw [hψ]; exact ht2 q
-  have hval : ∀ R : MvPolynomial ((k : K) → J k) ℤ, ∃ s : Or.𝔐.X.presheaf.stalk (centre z),
-      genMap Or.𝔐.ξ ⟨centre z, Or.𝔐.all _⟩ s =
+  have hval : ∀ R : MvPolynomial ((k : K) → J k) ℤ, ∃ s : Or.𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z),
+      genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, Or.𝔐.all _⟩ s =
         MvPolynomial.aeval (fun c' => segreCoord Dc.y c' / segreCoord Dc.y ch) R ∧
       ψ s =
         MvPolynomial.aeval (fun c' => (∏ k, w ⟨k, c' k⟩) / ∏ k, w ⟨k, ch k⟩) R := by
     intro R
     induction R using MvPolynomial.induction_on with
     | C a =>
-      refine ⟨((a : ℤ) : Or.𝔐.X.presheaf.stalk (centre z)), ?_, ?_⟩
+      refine ⟨((a : ℤ) : Or.𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)), ?_, ?_⟩
       · rw [map_intCast, MvPolynomial.aeval_C]; exact (eq_intCast _ a).symm
       · rw [map_intCast, MvPolynomial.aeval_C]; exact (eq_intCast _ a).symm
     | add p q hp hq =>
@@ -369,7 +369,7 @@ theorem nonempty_muFrameAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
         simp only [ht2']
         rw [Finset.prod_div_distrib]
   obtain ⟨s, hs1, hs2⟩ := hval (∑ l, Q l * P l - 1)
-  have hz : genMap Or.𝔐.ξ ⟨centre z, Or.𝔐.all _⟩ s = 0 := by
+  have hz : genMap Or.𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, Or.𝔐.all _⟩ s = 0 := by
     set_option synthInstance.maxHeartbeats 100000 in
       rw [hs1, map_sub, map_sum, map_one]
     simp only [map_mul, hP, hQ]
@@ -447,7 +447,7 @@ theorem isVB_comap_of_range {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (
     · intro hx
       exact ⟨x, hx, rfl⟩
 
-theorem frame_at : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ) (τ : CMType H) (cc : (k : K) → J k) (f : Ω) (b : Fin Dc.N → W τ) (h : genPt Or.𝔐.ξ ⤳ centre z), CoordsAt Or.𝔐.ξ Dc.y z w → IsFrameOver Dc.y (Dc.W τ) cc f b → InFrameDomain Dc.y cc f w → (Lat.comap (fun p => Or.𝔐.V (Or.bg τ) p ⊔ Or.𝔐.V (Or.sm τ) p) (Or.i τ)).IsFrameAt b ⟨centre z, h⟩ := by
+theorem frame_at : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (z : Spec (CommRingCat.of ℂ) ⟶ Or.𝔐.X) (w : (Σ k, J k) → ℂ) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (cc : (k : K) → J k) (f : Ω) (b : Fin Dc.N → W τ) (h : genPt Or.𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z), CoordsAt Or.𝔐.ξ Dc.y z w → IsFrameOver Dc.y (Dc.W τ) cc f b → InFrameDomain Dc.y cc f w → (Lat.comap (fun p => Or.𝔐.V (Or.bg τ) p ⊔ Or.𝔐.V (Or.sm τ) p) (Or.i τ)).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ := by
   intro E _ _ _ H D l Xo c Y II K _ J _ Ω _ _ W _ _ Dc Hd S₀ Or z w τ cc f b h hw hfr hd
   have hT : CoordTie ℤ Or.𝔐.ξ (segreCoord Dc.y) := Or.𝔐.tie
   have hrk : labelRk D (Or.bg τ) + labelRk D (Or.sm τ) = Dc.N := by

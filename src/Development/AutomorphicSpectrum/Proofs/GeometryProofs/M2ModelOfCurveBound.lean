@@ -129,8 +129,8 @@ theorem flag_at (E : Type) [Field E] [NumberField E] [CharZero Ω] (hg : IsCptGe
     (r : 𝓞 E →+* Module.End Ω V) (rz : 𝓞 E →+* Module.End K Vz) (hr : M.IsActOf act.act r)
     (hrz : Mz.IsActOf act.act rz) (I : Type) [Fintype I] (σ : I → (𝓞 E →+* Ω)) (χ : I → (𝓞 E →+* k))
     (hσ : Function.Injective σ) (hcard : Fintype.card I = finrank ℚ E) (hχ : IsSplit χ)
-    (h₀ : genPt ξ ⤳ centre z) (h : ∀ i, genPt ξ ⤳ centre (Y.x i)) (S : Set (Cpt ξ))
-    (hz : (⟨centre z, h₀⟩ : Cpt ξ) ∈ S) (hS : ∀ i, (⟨centre (Y.x i), h i⟩ : Cpt ξ) ∈ S)
+    (h₀ : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (h : ∀ i, genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (Y.x i)) (S : Set (Cpt ξ))
+    (hz : (⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h₀⟩ : Cpt ξ) ∈ S) (hS : ∀ i, (⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (Y.x i), h i⟩ : Cpt ξ) ∈ S)
     (hreg : ∀ q ∈ S, ∀ s a, σ s a ∈ regAt ξ q) (hdisc : ∀ q ∈ S, unitAt ξ q ((discr E : ℤ) : Ω))
     (hval : ∀ s a, ValAt ξ z (σ s a) (algebraMap k K (χ s a)))
     (s₀ : I) {n : ℕ} (b : Fin n → V) (hb : LinearIndependent Ω b)
@@ -184,12 +184,12 @@ theorem m2Model_of_m2Curve : CurveSemiAbelianConjecture → RootLineDeRhamModel 
   obtain ⟨hz, hi⟩ := hfib p (CharP.cast_eq_zero K p)
   have hg : IsCptGen D.ξ := D.tie.gen
   obtain ⟨φ, hφ, -⟩ := ValHom.exists_valAt_hom D.X M.Ω D.ξ K z h₀ hg
-  let σ' : Ψ ⊕ Ψ → (𝓞 E →+* regAt D.ξ ⟨centre z, h₀⟩) := fun s => (D.σ s).codRestrict _ (D.reg _ hz s)
+  let σ' : Ψ ⊕ Ψ → (𝓞 E →+* regAt D.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h₀⟩) := fun s => (D.σ s).codRestrict _ (D.reg _ hz s)
   have hσ' : Function.Injective σ' := fun s s' e => D.σ_inj (RingHom.ext fun a =>
     congrArg Subtype.val (RingHom.congr_fun e a))
   have hcard : Fintype.card (Ψ ⊕ Ψ) = Module.finrank ℚ E := by
     rw [Fintype.card_sum, ← D.card]; ring
-  obtain ⟨χ, hχ, hχv⟩ := GlobalTheory.T.split_characters_unramified E (regAt D.ξ ⟨centre z, h₀⟩) K (Ψ ⊕ Ψ) p σ' φ hσ' hcard D.unram
+  obtain ⟨χ, hχ, hχv⟩ := GlobalTheory.T.split_characters_unramified E (regAt D.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h₀⟩) K (Ψ ⊕ Ψ) p σ' φ hσ' hcard D.unram
   have hval : ∀ s a, ValAt D.ξ z (D.σ s a) (algebraMap (algebraicClosure (ZMod p) K) K (χ s a)) := fun s a =>
     (hφ _ _).2 ⟨D.reg _ hz s a, (hχv s a).symm⟩
   have hconj : ∀ τ a, χ (Sum.inr τ) a = χ (Sum.inl τ) (H.bar a) := fun τ a => Subtype.ext (by

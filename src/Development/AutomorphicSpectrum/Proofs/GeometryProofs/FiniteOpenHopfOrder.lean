@@ -182,8 +182,8 @@ theorem exists_tensor (hF : Γ.IsFinOpenSub U) (s : Γ(Γ.G.left, U)) :
   intro a b ha hb hab
   let φ : B ⊗[R] B →+* FractionRing R :=
     (Algebra.TensorProduct.productMap (valAlg hρ a ha) (valAlg hρ b hb)).toRingHom
-  let w : genPt R ⟶ Q := Over.homMk (Spec.map (CommRingCat.ofHom φ)) (by
-    simp only [Q, Over.mk_hom, genPt]
+  let w : _root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R ⟶ Q := Over.homMk (Spec.map (CommRingCat.ofHom φ)) (by
+    simp only [Q, Over.mk_hom, _root_.GlobalTheory.CompanionTheory.Ar.BT.genPt]
     rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
     congr 2
     ext r
@@ -228,8 +228,8 @@ theorem exists_inv (hF : Γ.IsFinOpenSub U) (s : Γ(Γ.G.left, U)) :
   refine ⟨valHom (x⁻¹).left U ((top_le_iff_mem _ _).2 hm) s, ?_⟩
   intro a ha ha'
   let φ : B →+* FractionRing R := (valAlg hρ a ha).toRingHom
-  let w : genPt R ⟶ Q := Over.homMk (Spec.map (CommRingCat.ofHom φ)) (by
-    simp only [Q, Over.mk_hom, genPt]
+  let w : _root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R ⟶ Q := Over.homMk (Spec.map (CommRingCat.ofHom φ)) (by
+    simp only [Q, Over.mk_hom, _root_.GlobalTheory.CompanionTheory.Ar.BT.genPt]
     rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
     congr 2
     ext r

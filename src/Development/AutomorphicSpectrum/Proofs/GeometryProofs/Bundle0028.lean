@@ -431,7 +431,7 @@ open GlobalTheory.CompanionTheory.Ar.BT
 
 namespace GlobalTheory.CompanionTheory.Ar.BT.Transl
 
-theorem translates_cover : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U U' : Γ.G.left.Opens), Γ.IsFinOpenSub U → Γ.IsFinOpenSub U' → U' ≤ U → ∀ g ∈ U, ∃ (σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G) (t : T), toUnit (genPt R) ≫ σ = Γ.pt t ∧ ((toUnit Γ.G ≫ σ) * 𝟙 Γ.G).left g ∈ U' := by
+theorem translates_cover : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U U' : Γ.G.left.Opens), Γ.IsFinOpenSub U → Γ.IsFinOpenSub U' → U' ≤ U → ∀ g ∈ U, ∃ (σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G) (t : T), toUnit (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R) ≫ σ = Γ.pt t ∧ ((toUnit Γ.G ≫ σ) * 𝟙 Γ.G).left g ∈ U' := by
   intro R _ _ _ T _ _ Γ U U' hU hU' _ g hg
   haveI := Γ.flat
   haveI := Γ.separated
@@ -456,8 +456,8 @@ theorem translates_cover : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrall
   have hτpt : Γ.pt s ≫ τ = 1 := by
     rw [hτ, Hom.mul_def, ← Category.assoc, comp_lift, ← Category.assoc, comp_toUnit, hσ,
       Category.comp_id, ← Hom.mul_def, ← map_mul, inv_mul_cancel, map_one]
-  have hτx : τ.left ((Γ.pt s).left x) = (η[Γ.G]).left ((toUnit (genPt R)).left x) := by
-    have h1 : (Γ.pt s ≫ τ).left = (toUnit (genPt R) ≫ η[Γ.G]).left := by
+  have hτx : τ.left ((Γ.pt s).left x) = (η[Γ.G]).left ((toUnit (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R)).left x) := by
+    have h1 : (Γ.pt s ≫ τ).left = (toUnit (_root_.GlobalTheory.CompanionTheory.Ar.BT.genPt R) ≫ η[Γ.G]).left := by
       rw [hτpt, Hom.one_def]
     rw [Over.comp_left, Over.comp_left] at h1
     have h2 := congrArg (fun h => h x) h1

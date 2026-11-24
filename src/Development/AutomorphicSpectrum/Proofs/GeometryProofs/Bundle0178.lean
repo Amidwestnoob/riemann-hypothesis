@@ -212,9 +212,9 @@ def cst (g : X ⟶ Sp K) (x : X) : K →+* X.presheaf.stalk x :=
   ((X.presheaf.germ ⊤ x trivial).hom.comp g.appTop.hom).comp (Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom
 
 theorem stalkClosedPointTo_germ_top (z : Sp R ⟶ X) (t : Γ(X, ⊤)) :
-    (Scheme.stalkClosedPointTo z).hom ((X.presheaf.germ ⊤ (centre z) trivial).hom t) =
+    (Scheme.stalkClosedPointTo z).hom ((X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial).hom t) =
       (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom (z.appTop.hom t) := by
-  have h : X.presheaf.germ ⊤ (centre z) trivial ≫ Scheme.stalkClosedPointTo z =
+  have h : X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial ≫ Scheme.stalkClosedPointTo z =
       z.appTop ≫ (Scheme.ΓSpecIso (CommRingCat.of R)).hom := by
     refine (Scheme.germ_stalkClosedPointTo z ⊤ trivial).trans ?_
     simp only [Iso.trans_hom, Functor.mapIso_hom, Iso.op_hom, Scheme.Hom.appTop]
@@ -222,8 +222,8 @@ theorem stalkClosedPointTo_germ_top (z : Sp R ⟶ X) (t : Γ(X, ⊤)) :
   exact congrArg (fun q => q.hom t) h
 
 theorem val_cst (z : Sp R ⟶ X) (g : X ⟶ Sp K) (φ : K →+* R) (h : z ≫ g = spMap φ) (k : K) :
-    (Scheme.stalkClosedPointTo z).hom (cst g (centre z) k) = φ k := by
-  show (Scheme.stalkClosedPointTo z).hom ((X.presheaf.germ ⊤ (centre z) trivial).hom
+    (Scheme.stalkClosedPointTo z).hom (cst g (_root_.GlobalTheory.CompanionTheory.Ar.centre z) k) = φ k := by
+  show (Scheme.stalkClosedPointTo z).hom ((X.presheaf.germ ⊤ (_root_.GlobalTheory.CompanionTheory.Ar.centre z) trivial).hom
     (g.appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom k))) = φ k
   rw [stalkClosedPointTo_germ_top]
   have h2 : z.appTop.hom (g.appTop.hom ((Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom k)) =
@@ -241,7 +241,7 @@ variable {Ω : Type} [Field Ω]
 
 theorem genMap_cst (ξ : Sp Ω ⟶ X) (g : X ⟶ Sp K) (φ : K →+* Ω) (h : ξ ≫ g = spMap φ) (p : Cpt ξ) (k : K) :
     genMap ξ p (cst g p.1 k) = φ k := by
-  have h1 : genMap ξ p (cst g p.1 k) = (Scheme.stalkClosedPointTo ξ).hom (cst g (centre ξ) k) :=
+  have h1 : genMap ξ p (cst g p.1 k) = (Scheme.stalkClosedPointTo ξ).hom (cst g (_root_.GlobalTheory.CompanionTheory.Ar.centre ξ) k) :=
     congrArg (Scheme.stalkClosedPointTo ξ).hom
       (X.presheaf.germ_stalkSpecializes_apply (show p.1 ∈ (⊤ : X.Opens) from trivial) p.2 _)
   rw [h1, val_cst ξ g φ h]
@@ -281,36 +281,36 @@ theorem exists_lift {ξ : Sp Ω ⟶ X} {F : Type} [Field F] [NumberField F] (hξ
 
 end General
 
-theorem exists_coef : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (T : Type) [CommRing T] [IsLocalRing T] (y : Sp T ⟶ Xo.XF c) (c₀ : c.F →+* T), y ≫ pullback.snd _ _ = spMap c₀ → centre y ∈ U → ∃ (h : genPt (Z.ξ₀ ≫ Y.j) ⤳ centre (y ≫ Y.j)) (κ : c.F →+* Y.X.presheaf.stalk (centre (y ≫ Y.j))), (genMap (Z.ξ₀ ≫ Y.j) ⟨_, h⟩).comp κ = Z.inc ∧ (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom.comp κ = c₀ := by
+theorem exists_coef : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (T : Type) [CommRing T] [IsLocalRing T] (y : Sp T ⟶ Xo.XF c) (c₀ : c.F →+* T), y ≫ pullback.snd _ _ = spMap c₀ → _root_.GlobalTheory.CompanionTheory.Ar.centre y ∈ U → ∃ (h : genPt (Z.ξ₀ ≫ Y.j) ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j)) (κ : c.F →+* Y.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j))), (genMap (Z.ξ₀ ≫ Y.j) ⟨_, h⟩).comp κ = Z.inc ∧ (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom.comp κ = c₀ := by
   intro E _ _ _ H D l Xo c U O _ β Y Z T _ _ y c₀ hy hU
   haveI : FiniteDimensional ℚ c.F := c.fin
   haveI : NumberField c.F := { to_charZero := inferInstance, to_finiteDimensional := c.fin }
-  have h0 : genPt Z.ξ₀ ⤳ centre y := (Z.closure _).1 hU
-  have h : genPt (Z.ξ₀ ≫ Y.j) ⤳ centre (y ≫ Y.j) := h0.map Y.j.continuous
+  have h0 : genPt Z.ξ₀ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre y := (Z.closure _).1 hU
+  have h : genPt (Z.ξ₀ ≫ Y.j) ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j) := h0.map Y.j.continuous
   refine ⟨h, ?_⟩
   have hN : NormalCpt (Z.ξ₀ ≫ Y.j) := XR.normalCpt_of_isCptGen Z.gen Y.normal
-  have hq : ∀ n : ℕ, 0 < n → IsUnit (n : Y.X.presheaf.stalk (centre (y ≫ Y.j))) := by
+  have hq : ∀ n : ℕ, 0 < n → IsUnit (n : Y.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j))) := by
     intro n hn
     haveI : IsLocalHom (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom := Scheme.isLocalHom_stalkClosedPointTo _
-    have e : (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom (n : Y.X.presheaf.stalk (centre (y ≫ Y.j))) =
+    have e : (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom (n : Y.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j))) =
         c₀ (n : c.F) := (map_natCast _ n).trans (map_natCast c₀ n).symm
     exact isUnit_of_map_unit (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom _
       ((congrArg IsUnit e).mpr ((IsUnit.mk0 _ (Nat.cast_ne_zero.2 hn.ne')).map c₀))
-  obtain ⟨κ, hκ⟩ := exists_lift Z.gen hN ⟨centre (y ≫ Y.j), h⟩ Z.inc hq
+  obtain ⟨κ, hκ⟩ := exists_lift Z.gen hN ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j), h⟩ Z.inc hq
   refine ⟨κ, hκ, ?_⟩
-  let π := genMap Z.ξ₀ ⟨centre y, h0⟩
-  let s : c.F →+* (Xo.XF c).presheaf.stalk (centre y) := (Y.j.stalkMap (centre y)).hom.comp κ
-  let t : c.F →+* (Xo.XF c).presheaf.stalk (centre y) := cst (pullback.snd _ _) (centre y)
+  let π := genMap Z.ξ₀ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre y, h0⟩
+  let s : c.F →+* (Xo.XF c).presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre y) := (Y.j.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre y)).hom.comp κ
+  let t : c.F →+* (Xo.XF c).presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre y) := cst (pullback.snd _ _) (_root_.GlobalTheory.CompanionTheory.Ar.centre y)
   have hD : GlobalTheory.CompanionTheory.Ar.Dominates Z.ξ₀ (Z.ξ₀ ≫ Y.j) Y.j (RingHom.id Z.Ω) := by
     show Z.ξ₀ ≫ Y.j = Spec.map (CommRingCat.ofHom (RingHom.id Z.Ω)) ≫ Z.ξ₀ ≫ Y.j
     have e : CommRingCat.ofHom (RingHom.id Z.Ω) = 𝟙 _ := rfl
     rw [e, Spec.map_id, Category.id_comp]
   have hs : π.comp s = Z.inc := by
     ext a
-    exact (PullReg.stalkMap_comp_genMap hD ⟨centre y, h0⟩ h (κ a)).trans (congrArg (fun f => f a) hκ)
+    exact (PullReg.stalkMap_comp_genMap hD ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre y, h0⟩ h (κ a)).trans (congrArg (fun f => f a) hκ)
   have ht : π.comp t = Z.inc := by
     ext a
-    exact genMap_cst Z.ξ₀ (pullback.snd _ _) Z.inc Z.over_inc ⟨centre y, h0⟩ a
+    exact genMap_cst Z.ξ₀ (pullback.snd _ _) Z.inc Z.over_inc ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre y, h0⟩ a
   have est : s = t := GlobalTheory.T.number_field_maps_local_ring_unique c.F _ Z.Ω π s t (hs.trans ht.symm)
   have e1 : (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom.comp κ = (Scheme.stalkClosedPointTo y).hom.comp s := by
     rw [Scheme.stalkClosedPointTo_comp]

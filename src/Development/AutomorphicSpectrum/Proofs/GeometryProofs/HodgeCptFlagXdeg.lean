@@ -30,7 +30,7 @@ theorem valAt_unique (hg : IsCptGen ξ) {a : Ω} {r r' : R} (h : ValAt ξ z a r)
     r = r' := by
   obtain ⟨h1, s, hs, rfl⟩ := h
   obtain ⟨h2, s', hs', rfl⟩ := h'
-  have : s = s' := hg.inj ⟨centre z, h1⟩ (hs.trans hs'.symm)
+  have : s = s' := hg.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ (hs.trans hs'.symm)
   rw [this]
 
 theorem valAt_mul {a b : Ω} {r r' : R} (h : ValAt ξ z a r) (h' : ValAt ξ z b r') :
@@ -39,16 +39,16 @@ theorem valAt_mul {a b : Ω} {r r' : R} (h : ValAt ξ z a r) (h' : ValAt ξ z b 
   obtain ⟨h2, s', rfl, rfl⟩ := h'
   exact ⟨h1, s * s', map_mul _ _ _, map_mul _ _ _⟩
 
-theorem valAt_one (h : genPt ξ ⤳ centre z) : ValAt ξ z (1 : Ω) (1 : R) :=
+theorem valAt_one (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) : ValAt ξ z (1 : Ω) (1 : R) :=
   ⟨h, 1, map_one _, map_one _⟩
 
-theorem valAt_of_mem {a : Ω} (h : genPt ξ ⤳ centre z) (ha : a ∈ regAt ξ ⟨centre z, h⟩) :
+theorem valAt_of_mem {a : Ω} (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (ha : a ∈ regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩) :
     ∃ r : R, ValAt ξ z a r := by
   obtain ⟨s, rfl⟩ := ha
   exact ⟨_, h, s, rfl, rfl⟩
 
-theorem mem_of_valAt {a : Ω} {r : R} (h : ValAt ξ z a r) (h' : genPt ξ ⤳ centre z) :
-    a ∈ regAt ξ ⟨centre z, h'⟩ := by
+theorem mem_of_valAt {a : Ω} {r : R} (h : ValAt ξ z a r) (h' : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) :
+    a ∈ regAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h'⟩ := by
   obtain ⟨h1, s, rfl, rfl⟩ := h
   exact ⟨s, rfl⟩
 
@@ -62,13 +62,13 @@ theorem valAt_inv {a : Ω} {r : ℂ} (h : ValAt ξ z a r) (hr : r ≠ 0) : ValAt
   obtain ⟨h1, s, rfl, rfl⟩ := h
   have hu : IsUnit s := (Scheme.isLocalHom_stalkClosedPointTo' z).map_nonunit s (IsUnit.mk0 _ hr)
   obtain ⟨s', hs'⟩ := hu.exists_right_inv
-  have e1 : genMap ξ ⟨centre z, h1⟩ s * genMap ξ ⟨centre z, h1⟩ s' = 1 :=
-    (map_mul (genMap ξ ⟨centre z, h1⟩) s s').symm.trans (by rw [hs', map_one])
+  have e1 : genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ s * genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ s' = 1 :=
+    (map_mul (genMap ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩) s s').symm.trans (by rw [hs', map_one])
   have e2 : (Scheme.stalkClosedPointTo z).hom s * (Scheme.stalkClosedPointTo z).hom s' = 1 :=
     (map_mul (Scheme.stalkClosedPointTo z).hom s s').symm.trans ((congrArg _ hs').trans (map_one _))
   exact ⟨h1, s', (eq_inv_of_mul_eq_one_right e1), (eq_inv_of_mul_eq_one_right e2)⟩
 
-theorem valAt_zpow {a : Ω} {r : ℂ} (h : ValAt ξ z a r) (hr : r ≠ 0) (hz : genPt ξ ⤳ centre z) (n : ℤ) :
+theorem valAt_zpow {a : Ω} {r : ℂ} (h : ValAt ξ z a r) (hr : r ≠ 0) (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (n : ℤ) :
     ValAt ξ z (a ^ n) (r ^ n) := by
   have hn : ∀ {b : Ω} {q : ℂ}, ValAt ξ z b q → ∀ m : ℕ, ValAt ξ z (b ^ m) (q ^ m) := by
     intro b q hb m
@@ -79,7 +79,7 @@ theorem valAt_zpow {a : Ω} {r : ℂ} (h : ValAt ξ z a r) (hr : r ≠ 0) (hz : 
   | ofNat m => simpa using hn h m
   | negSucc m => simpa [zpow_negSucc] using valAt_inv (hn h (m + 1)) (pow_ne_zero _ hr)
 
-theorem exists_valAt_of_unit {a : Ω} (h : genPt ξ ⤳ centre z) (ha : unitAt ξ ⟨centre z, h⟩ a)
+theorem exists_valAt_of_unit {a : Ω} (h : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (ha : unitAt ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩ a)
     (hg : IsCptGen ξ) : ∃ r : ℂ, r ≠ 0 ∧ ValAt ξ z a r := by
   obtain ⟨h0, h1, h2⟩ := ha
   obtain ⟨r, hr⟩ := valAt_of_mem (R := ℂ) (z := z) h h1
@@ -94,25 +94,25 @@ abbrev cj (z : Spec (CommRingCat.of ℂ) ⟶ X) : Spec (CommRingCat.of ℂ) ⟶ 
 
 theorem conj_transport (z : Spec (CommRingCat.of ℂ) ⟶ X)
     (P : ∀ q : X, (X.presheaf.stalk q ⟶ CommRingCat.of ℂ) → Prop)
-    (h : P (centre z) (Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ))) :
-    P (centre (cj z)) (Scheme.stalkClosedPointTo (cj z)) := by
+    (h : P (_root_.GlobalTheory.CompanionTheory.Ar.centre z) (Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ))) :
+    P (_root_.GlobalTheory.CompanionTheory.Ar.centre (cj z)) (Scheme.stalkClosedPointTo (cj z)) := by
   have hl : IsLocalHom (Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ)).hom := by
     refine ⟨fun a ha => (Scheme.isLocalHom_stalkClosedPointTo' z).map_nonunit a ?_⟩
     have h0 : (starRingEnd ℂ) ((Scheme.stalkClosedPointTo z).hom a) ≠ 0 := ha.ne_zero
     exact IsUnit.mk0 _ fun h1 => h0 (by rw [h1, map_zero])
-  have hz : Spec.map (Scheme.stalkClosedPointTo z) ≫ X.fromSpecStalk (centre z) = z :=
+  have hz : Spec.map (Scheme.stalkClosedPointTo z) ≫ X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) = z :=
     Scheme.Spec_stalkClosedPointTo_fromSpecStalk z
   have key : SpecToEquivOfLocalRing X (.of ℂ) (cj z) =
-      ⟨centre z, Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ), hl⟩ := by
+      ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ), hl⟩ := by
     rw [Equiv.apply_eq_iff_eq_symm_apply]
-    show _ = Spec.map (Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ)) ≫ X.fromSpecStalk (centre z)
+    show _ = Spec.map (Scheme.stalkClosedPointTo z ≫ CommRingCat.ofHom (starRingEnd ℂ)) ≫ X.fromSpecStalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)
     rw [Spec.map_comp]
     exact (congrArg (fun t => spMap (starRingEnd ℂ) ≫ t) hz).symm.trans (Category.assoc _ _ _).symm
   exact (congrArg (fun s : (Σ q : X, {f : X.presheaf.stalk q ⟶ CommRingCat.of ℂ // IsLocalHom f.hom}) =>
     P s.1 s.2.1) key).mpr h
 
-theorem centre_cj (z : Spec (CommRingCat.of ℂ) ⟶ X) : centre (cj z) = centre z :=
-  conj_transport z (fun q _ => q = centre z) rfl
+theorem centre_cj (z : Spec (CommRingCat.of ℂ) ⟶ X) : _root_.GlobalTheory.CompanionTheory.Ar.centre (cj z) = _root_.GlobalTheory.CompanionTheory.Ar.centre z :=
+  conj_transport z (fun q _ => q = _root_.GlobalTheory.CompanionTheory.Ar.centre z) rfl
 
 theorem valAt_conj {a : Ω} {u : ℂ} (h : ValAt ξ z a u) : ValAt ξ (cj z) a (conj u) := by
   obtain ⟨h1, s, hs, rfl⟩ := h
@@ -200,11 +200,11 @@ theorem isGrNorm_conj {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
     (h : M.IsGrNorm T.PP.L V b₀ i z t ν) : M.IsGrNorm T.PP.L V b₀ i (cj z) t ν := by
   obtain ⟨h1, b, Γ, hs, hf, hb, ⟨v, hv, hΓ⟩, hpd, rfl⟩ := h
   have hc := centre_cj z
-  have h1' : genPt ξ ⤳ centre (cj z) := hc ▸ h1
+  have h1' : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre (cj z) := hc ▸ h1
   refine ⟨h1', b, Γ.map (starRingEnd ℂ), hs, ?_, hb, ⟨fun i => cjTan (v i), fun i => lieVal_conj M (hv i),
     fun p q => _root_.GlobalTheory.CompanionTheory.Ar.HodgeConj.hodgeInnerProduct_conj_abelianScheme E H X T z (v p) (v q) _ _ _ rfl rfl (hΓ p q)⟩,
     (show Γ.transpose = Γ.map (starRingEnd ℂ) from Matrix.ext fun i j => (hpd.1.apply j i).symm) ▸ hpd.transpose, ?_⟩
-  · have : (⟨centre (cj z), h1'⟩ : Cpt ξ) = ⟨centre z, h1⟩ := Subtype.ext hc
+  · have : (⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (cj z), h1'⟩ : Cpt ξ) = ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h1⟩ := Subtype.ext hc
     rw [this]
     exact hf
   · rw [leadMinor_conj, leadMinor_conj]
@@ -238,9 +238,9 @@ theorem ChartNorm.smul (H : ChartNorm ξ y a e₀ z w t ν h) {κ : K → ℂ} (
   rw [e2, mul_left_comm, e]
   ring
 
-theorem inChart_of_coords (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) (c : (k : K) → J k)
+theorem inChart_of_coords (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (hw : CoordsAt ξ y z w) (c : (k : K) → J k)
     (hc : ∀ k, w ⟨k, c k⟩ ≠ 0) :
-    InChart ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) c ⟨centre z, hz⟩ := by
+    InChart ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) c ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hz⟩ := by
   have hy : ∀ k, y ⟨k, c k⟩ ≠ 0 := fun k => (hw.2 k (c k) (IsUnit.mk0 _ (hc k))).1
   refine ⟨Finset.prod_ne_zero_iff.2 fun k _ => hy k, fun c' => ?_⟩
   show (∏ k, y ⟨k, c' k⟩) / ∏ k, y ⟨k, c k⟩ ∈ _
@@ -249,7 +249,7 @@ theorem inChart_of_coords (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) 
   obtain ⟨r, hr, -⟩ := (hw.2 k (c k) (IsUnit.mk0 _ (hc k))).2 (c' k)
   exact mem_of_valAt hr hz
 
-theorem valAt_prod (hz : genPt ξ ⤳ centre z) {f : K → Ω} {r : K → ℂ} (h : ∀ k, ValAt ξ z (f k) (r k)) :
+theorem valAt_prod (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) {f : K → Ω} {r : K → ℂ} (h : ∀ k, ValAt ξ z (f k) (r k)) :
     ValAt ξ z (∏ k, f k) (∏ k, r k) := by
   classical
   have : ∀ s : Finset K, ValAt ξ z (∏ k ∈ s, f k) (∏ k ∈ s, r k) := by
@@ -261,7 +261,7 @@ theorem valAt_prod (hz : genPt ξ ⤳ centre z) {f : K → Ω} {r : K → ℂ} (
       exact valAt_mul (h k) ih
   exact this _
 
-theorem valAt_ratio (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) (c c₀ : (k : K) → J k)
+theorem valAt_ratio (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (hw : CoordsAt ξ y z w) (c c₀ : (k : K) → J k)
     (hc : ∀ k, w ⟨k, c k⟩ ≠ 0) (hc₀ : ∀ k, w ⟨k, c₀ k⟩ ≠ 0) :
     ∃ m : ℂ, m ≠ 0 ∧ ValAt ξ z ((∏ k, y ⟨k, c k⟩ ^ a k) / ∏ k, y ⟨k, c₀ k⟩ ^ a k) m ∧
       ‖m‖ * ∏ k, ‖w ⟨k, c₀ k⟩‖ ^ a k = ∏ k, ‖w ⟨k, c k⟩‖ ^ a k := by
@@ -354,23 +354,23 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {Xo : Moduli D l} {cf : Coeff l} {O : Type} [CommRing O] {β : O →+* cf.F} {Y : Model Xo cf β} {S : Finset ℕ}
   {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {y : (Σ k, J k) → Ω} {𝔐 : HodgeCpt Y S y}
 
-def Good (Fl : 𝔐.Flag) (r : CMType H × Fin (D.p + D.q)) (a : K → ℤ) (e₀ : Ω)
+def Good (Fl : 𝔐.Flag) (r : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q)) (a : K → ℤ) (e₀ : Ω)
     (z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X) (w : (Σ k, J k) → ℂ) (h : ℝ) : Prop :=
   CoordsAt 𝔐.ξ y z w ∧ 𝔐.Interior z ∧ 0 < h ∧ ∀ t ν,
     𝔐.M.IsGrNorm 𝔐.t.PP.L (𝔐.V (rootIdx D r).1) (Fl.b (rootIdx D r).1) (rootIdx D r).2 z t ν →
       ChartNorm 𝔐.ξ y a e₀ z w (t ^ rootSgn D r) (ν ^ rootSgn D r) h
 
-theorem exists_metric (hβ : Function.Injective β) (Fl : 𝔐.Flag) {xdeg : CMType H × Fin (D.p + D.q) → K → ℤ}
-    {e : CMType H × Fin (D.p + D.q) → Ω} (hR : Fl.RootLines xdeg e) (r : CMType H × Fin (D.p + D.q))
+theorem exists_metric (hβ : Function.Injective β) (Fl : 𝔐.Flag) {xdeg : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → K → ℤ}
+    {e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → Ω} (hR : Fl.RootLines xdeg e) (r : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q))
     {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} {w : (Σ k, J k) → ℂ} (hw : CoordsAt 𝔐.ξ y z w) (hi : 𝔐.Interior z) :
     ∃ h, Good Fl r (xdeg r) (e r) z w h ∧ ∃ (t : Ω) (ν : ℝ), 0 < ν ∧
       𝔐.M.IsGrNorm 𝔐.t.PP.L (𝔐.V (rootIdx D r).1) (Fl.b (rootIdx D r).1) (rootIdx D r).2 z t ν := by
-  have hall : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hall : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   have hgen := 𝔐.tie.gen
   choose c₀ hc₀ using hw.1
   have hn₀ : ∀ k, w ⟨k, c₀ k⟩ ≠ 0 := fun k => (hc₀ k).ne_zero
   obtain ⟨he, hL⟩ := hR r
-  have hspan := hL ⟨centre z, hall⟩ (Set.mem_univ _) c₀ (inChart_of_coords hall hw c₀ hn₀)
+  have hspan := hL ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hall⟩ (Set.mem_univ _) c₀ (inChart_of_coords hall hw c₀ hn₀)
   have hy₀ : ∀ k, y ⟨k, c₀ k⟩ ≠ 0 := fun k => (hw.2 k (c₀ k) (hc₀ k)).1
   have hG₀ : (∏ k, y ⟨k, c₀ k⟩ ^ xdeg r k) ≠ 0 :=
     Finset.prod_ne_zero_iff.2 fun k _ => zpow_ne_zero _ (hy₀ k)
@@ -410,7 +410,7 @@ theorem Good.conj {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} {w : (Σ k, J k) �
     (hG : Good Fl r a e₀ z w h) : Good Fl r a e₀ (cj z) (fun p => conj (w p)) h := by
   obtain ⟨hw, hi, hp, hn⟩ := hG
   refine ⟨coordsAt_conj hw, ?_, hp, fun t ν hgr => ?_⟩
-  · show centre (cj z) ∈ _
+  · show _root_.GlobalTheory.CompanionTheory.Ar.centre (cj z) ∈ _
     rw [centre_cj]
     exact hi
   · have := isGrNorm_conj 𝔐.t 𝔐.M _ hgr
@@ -426,7 +426,7 @@ theorem Good.smul {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} {w : (Σ k, J k) �
     mul_pos (Finset.prod_pos fun k _ => zpow_pos (norm_pos_iff.2 (hκ k)) _) hp,
     fun t ν hgr => (hn t ν hgr).smul hκ⟩
 
-def metricF (Fl : 𝔐.Flag) (r : CMType H × Fin (D.p + D.q)) (a : K → ℤ) (e₀ : Ω) (w : (Σ k, J k) → ℂ) : ℝ :=
+def metricF (Fl : 𝔐.Flag) (r : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q)) (a : K → ℤ) (e₀ : Ω) (w : (Σ k, J k) → ℂ) : ℝ :=
   open Classical in
   if hx : ∃ z h, Good Fl r a e₀ z w h then hx.choose_spec.choose else refNorm a w
 
@@ -446,8 +446,8 @@ theorem metricF_of_not {w : (Σ k, J k) → ℂ} (hx : ¬ ∃ z h, Good Fl r a e
 theorem exists_hodgeLine : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H)
     (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β)
     (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)]
-    (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : CMType H × Fin (D.p + D.q) → K → ℤ)
-    (e : CMType H × Fin (D.p + D.q) → Ω), Function.Injective β → Fl.RootLines xdeg e →
+    (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → K → ℤ)
+    (e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → Ω), Function.Injective β → Fl.RootLines xdeg e →
     ∀ r, ∃ A : HermLine J, A.a = xdeg r ∧ Fl.IsHodgeLine r (e r) A ∧ IsConjInvariantH A := by
   intro E _ _ _ H D l Xo c O _ β Y S Ω _ K _ J _ y 𝔐 Fl xdeg e hβ hR r
   have hu : ∀ z z' w h h', Good Fl r (xdeg r) (e r) z w h → Good Fl r (xdeg r) (e r) z' w h' → h = h' := by
