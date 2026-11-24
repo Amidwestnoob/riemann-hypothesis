@@ -25,7 +25,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.KX.bloAt :
     have hs : (⟨Real.exp (Real.log s.1), Real.exp_pos _⟩ : {t : ℝ // 0 < t}) = s :=
       Subtype.ext (Real.exp_log s.2)
     have h := b.cen (Real.log s.1) x
-    unfold zt at h
+    unfold UpperTheory.ConvolutionTheory.BW.zt at h
     rw [hs] at h
     exact h
   have hm : b.f ∈ π.V := by
