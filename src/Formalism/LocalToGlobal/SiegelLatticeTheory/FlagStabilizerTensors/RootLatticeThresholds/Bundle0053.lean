@@ -55,7 +55,7 @@ end ThrS
 
 section Point
 
-variable {D : D7} (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF)) (hCT : ConcTie X Y)
+variable {D : D7} (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF)) (hCT : ConcTie X Y)
 
 def wOf : WittDat X := Classical.choice (Formalism.L2.SG.Pf.WittFlags.WittExists_holds D X)
 
@@ -75,7 +75,7 @@ end Point
 
 section PointW
 
-variable {D : D7} (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (sOf hF))
+variable {D : D7} (X : HidaSetting D) (Y : Full X) (hF : FinX Y) (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF))
   (hWD : Formalism.L2.SG.WuDecay.WuDecay X)
 
 def aOfW : AmpDat X := Classical.choose (Formalism.L2.SG.Pf.KernelOfEmbedding.pvalForm_holds (wOf X) hI hWD)
