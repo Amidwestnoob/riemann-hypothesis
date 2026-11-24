@@ -210,7 +210,7 @@ theorem De_eq_zero_of_semiPos_off (hAdd : DeSlotAdd.Statement) (hTw : SemiPosTwi
       · simpa using hX
       · rw [Function.update_of_ne hij]
         exact hLp i (by simp [Finset.mem_insert, hij, hi])
-    rw [ih _ (hsm _ (isSmoothHerm_tensor (hL j) hT)) (hpos _ hLTp),
+    rw [ih _ (hsm _ (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor (hL j) hT)) (hpos _ hLTp),
       ih _ (hsm _ hT) (hpos _ hTp)] at hadd
     linarith
 

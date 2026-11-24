@@ -311,7 +311,7 @@ theorem eq_of_lower {I J : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLin
   let e : K → ℕ := fun k => (A.a k + (b k : ℤ)).toNat
   let B : HermLine ι := HermLine.sqMetric b
   have hB : IsSmoothHerm B := isSmoothHerm_sqMetric b
-  have hC : IsSmoothHerm (A.tensor B) := isSmoothHerm_tensor hA hB
+  have hC : IsSmoothHerm (A.tensor B) := _root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hB
   have hBa : ∀ k, B.a k = (b k : ℤ) := fun k => rfl
   have hCa : ∀ k, (A.tensor B).a k = (e k : ℤ) := by
     intro k

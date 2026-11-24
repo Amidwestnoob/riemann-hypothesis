@@ -22,7 +22,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MeasureTheory Filter
 open ReciprocityTheory.ChartRestriction.G.Geo (MRing HermLine IsSmoothHerm IsArithVar IsGoodProj IsSheet ptsIntegralAt sheetDensity
-  fibre pot mcPts fibreFinite isOpen_blockNonzero)
+  _root_.ReciprocityTheory.ChartRestriction.G.Geo.fibre pot mcPts fibreFinite isOpen_blockNonzero)
 
 section
 

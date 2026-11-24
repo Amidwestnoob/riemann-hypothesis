@@ -271,7 +271,7 @@ theorem ptsIntegral_update_tensor (hE : ResExistsStatement) {P : Ideal (MRing ι
         rw [Equiv.swap_apply_eq_iff, Equiv.swap_apply_right] at h
         exact Fin.succ_ne_zero _ h
       simp only [Function.comp_apply, Fin.cons_succ, hT, Function.update_of_ne hne]
-  rw [key _ (isSmoothHerm_tensor hM hN), key M hM, key N hN]
+  rw [key _ (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hM hN), key M hM, key N hN]
   have hΦ : ∀ i, IsPotential R.A (potOf R (T i)) := fun i => isPotential_potOf R (hT' i)
   have hPM := isPotential_potOf R hM
   have hPN := isPotential_potOf R hN

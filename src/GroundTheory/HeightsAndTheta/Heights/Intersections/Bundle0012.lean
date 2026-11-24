@@ -272,7 +272,7 @@ theorem WellDefined.proof (h₁ : Swap.Statement) (h₂ : RPositionAdd.Statement
   set H : HermLine ι := HermLine.sqMetric (fun _ => k) with hH
   have hHs : IsSmoothHerm H := isSmoothHerm_sqMetric _
   have hMs : IsSmoothHerm M := hL _
-  have hA1s : IsSmoothHerm (M.tensor H) := isSmoothHerm_tensor hMs hHs
+  have hA1s : IsSmoothHerm (M.tensor H) := _root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hMs hHs
   have hL' : ∀ j, IsSmoothHerm (Fin.init L j) := fun j => hL _
   have hPS : P ∈ S := Or.inr rfl
   have hsec1 : IsSectionOn P (M.tensor H) a1 :=
