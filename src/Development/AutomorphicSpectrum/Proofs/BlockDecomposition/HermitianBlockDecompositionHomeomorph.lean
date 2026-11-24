@@ -31,7 +31,6 @@ def utEquiv (n : ℕ) : Fin n ⊕ UT n ≃ UT (n + 1) :=
       · rintro (j | ⟨⟨a, b⟩, h⟩) (j' | ⟨⟨a', b'⟩, h'⟩) hh
         · simpa using hh
         · simp at hh
-          exact absurd hh.1.symm (Fin.succ_ne_zero _)
         · simp at hh
         · simp at hh
           simp [hh.1, hh.2]
