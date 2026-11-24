@@ -242,6 +242,8 @@ theorem alt_quot {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G
   have hdim : Module.finrank ℂ (Module.End ℂ (fixed ρQ K)) < d := by
     rw [Module.finrank_linearMap, ← sq]
     exact lt_of_le_of_lt (Nat.pow_le_pow_left hfr 2) hd
+  have : Module.Finite ℂ (Module.End ℂ (fixed ρQ K)) :=
+    Module.Finite.linearMap ℂ ℂ _ _
   have h0 := alt_std_eq_zero hdim fun i => t (g i)
   have key : ∀ (l : List G) (w : fixed ρQ K), (((l.map t).prod w : fixed ρQ K) : Y ⧸ Y'') = (l.map T).prod w := by
     intro l w
