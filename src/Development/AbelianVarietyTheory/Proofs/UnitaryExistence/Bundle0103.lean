@@ -69,7 +69,7 @@ theorem exists_xi {E : Type} [Field E] [NumberField E] [IsCMField E]
       rw [map_neg, hcc]
     · rw [map_neg, hτ, Complex.neg_im]; linarith
 
-theorem exists_isUnf : N1c → GlobalTheory.Published.HasseNormSt → Out.SecBaseChangeSt → Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ), 1 ≤ Dw.p + Dw.q → Formalism.L2.PjFree.GoodEmb c σ → ∃ U : Formalism.L2.PjFree.Unf Xo c σ (Dw.p + Dw.q), IsUnf U := by
+theorem exists_isUnf : N1c → GlobalTheory.Published.HasseNormSt → Out.SecBaseChangeSt → Out.SecTwistSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ), 1 ≤ Dw.p + Dw.q → Formalism.L2.PjFree.GoodEmb c σ → ∃ U : Formalism.L2.PjFree.Unf Xo c σ (Dw.p + Dw.q), Formalism.L2.PjFree.IsUnf U := by
   intro h1 h2 h3 h4 E _ _ _ H Dw l Xo c σ hpq hσ
   obtain ⟨ξ₀, hcc, hne, him⟩ := exists_xi H
   have hcc' : cc (-ξ₀) = -(-ξ₀) := by
