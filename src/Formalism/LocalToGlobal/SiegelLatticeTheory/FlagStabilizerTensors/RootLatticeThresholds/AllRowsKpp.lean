@@ -190,9 +190,8 @@ theorem idx2 : (KgSub X).relIndex (concreteLevelAdelicSubset X) = Nat.card (rho2
 theorem natCard_codeWordStages_finiteGroup_eq : Fintype.card (G0g D.nd) =
     Nat.card (GL (Fin D.R.r) (ZMod (D.host.g 0))) ^ D.R.f * Nat.card (GL (Fin D.R.r) (ZMod (D.host.g 1))) ^ D.R.f := by
   classical
-  rw [← prod_sigma_const (fun k => Nat.card (GL (Fin D.R.r) (ZMod (D.host.g k)))), Fintype.card_pi]
-  refine Finset.prod_congr rfl fun kv _ => ?_
-  rw [Nat.card_eq_fintype_card]
+  rw [← prod_sigma_const (fun k => Nat.card (GL (Fin D.R.r) (ZMod (D.host.g k)))),
+    ← Nat.card_eq_fintype_card, Nat.card_pi]
 
 theorem levelSubgroup_relIndex_eq (hS : Function.Surjective (rhoX X)) :
     (KgSub X).relIndex (concreteLevelAdelicSubset X) = cJ D (D.host.g 0) ^ D.R.f * cJ D (D.host.g 1) ^ D.R.f := by
