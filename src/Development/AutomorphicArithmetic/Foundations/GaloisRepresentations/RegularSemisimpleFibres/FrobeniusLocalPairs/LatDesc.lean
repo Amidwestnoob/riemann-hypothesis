@@ -13,6 +13,7 @@ noncomputable section
 
 open ValuativeRel Matrix GlobalTheory.DZA
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
 section Alg

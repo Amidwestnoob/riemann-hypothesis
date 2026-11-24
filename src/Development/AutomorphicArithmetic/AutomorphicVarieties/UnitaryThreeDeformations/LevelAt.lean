@@ -15,6 +15,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem conj_left {R : Type} [CommRing R] (x y : GG (m := 3) (R := R)) (hy : y.right = 1) :
     (x * y * x⁻¹).left = x.left * sgnAct 3 R x.right y.left * x.left⁻¹ := by
   simp only [SemidirectProduct.mul_left, SemidirectProduct.mul_right, SemidirectProduct.inv_left, hy, mul_one]

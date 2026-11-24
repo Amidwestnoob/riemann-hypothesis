@@ -18,6 +18,7 @@ open UpperTheory.GalN.V
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem mapRep_comp {H R R' R'' : Type} [Group H] [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (g : R' →+* R'')
     (r : H →* M4 R) : mapRep (g.comp f) r = mapRep g (mapRep f r) := rfl
 
