@@ -162,7 +162,7 @@ theorem map_op (e : ℕ) (hν : ν * e = 1) (i : h.J) (O : G.left.Opens) (hO : O
         ← map_natCast (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom, ← map_mul, ← map_mul, hν, map_one, map_one]
     simpa using congrArg π this
   set_option synthInstance.maxHeartbeats 100000 in
-    simp only [op, dE, pE, GlobalTheory.KS.GlueDer.rsT_eq hO, map_add (f := _), map_sub, map_mul, map_sum, hΘ, zero_mul,
+    simp only [GlobalTheory.Heat.op, dE, pE, GlobalTheory.KS.GlueDer.rsT_eq hO, map_add (f := _), map_sub, map_mul, map_sum, hΘ, zero_mul,
     Finset.sum_const_zero, sub_zero, map_ofNat, map_natCast, map_pow, GlobalTheory.KS.GlueDer.res_const]
   linear_combination (-2 * ∑ a, π (constFn G.hom O (h.u a)) * π (dd a O f) -
     2 * (e : A) * π (resG G.left hO (h.p' i)) * π f) * h1
