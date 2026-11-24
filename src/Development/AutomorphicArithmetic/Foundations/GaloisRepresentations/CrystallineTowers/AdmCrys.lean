@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Finit
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open TensorProduct in
 private theorem isCrys_qRep {l : ℕ} [Fact l.Prime] (P : LocPrime l) (K : FinExt l) {d : ℕ}
     (r : ↥(GK K) →* GL (Fin d) ℚ_[l]) (Q : GL (Fin d) P.R.B)
