@@ -43,7 +43,7 @@ def relIndEquiv {α β : Type} [Fintype α] [Fintype β] [LinearOrder β] {m : �
     {σ : Representation ℂ (∀ i, Levi k (c i)) W} (φ : ρ.Equiv σ) : (relInd f ρ).Equiv (relInd f σ) :=
   GlobalTheory.LocGL.equivOfBijective (smIndMap (compMap (twistMap φ.toIntertwiningMap _) _))
     (Function.bijective_iff_has_inverse.2
-      ⟨smIndMap (compMap (twistMap φ.symm.toIntertwiningMap _) _),
+      ⟨smIndMap (compMap (twistMap φ.symm.toIntertwiningMap (relDeltaHalf k c)) (relProj k f)),
         fun F => Subtype.ext (Subtype.ext (funext fun x => φ.symm_apply_apply (F.1.1 x))),
         fun F => Subtype.ext (Subtype.ext (funext fun x => φ.apply_symm_apply (F.1.1 x)))⟩)
 
