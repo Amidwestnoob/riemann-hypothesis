@@ -82,7 +82,7 @@ theorem UpperTheory.ConvolutionTheory.R2.C.gaussOp :
     rw [idxFt F δ b c hc φ y]
   conv_lhs => rw [ft4]
   simp only [e1]
-  rw [← integral_neg_eq_self _ (adeleMeasurePi F)]
+  rw [← integral_neg_eq_self _ (adeleMeasurePi F (ι := Fin 4))]
   simp only [neg_neg, quadraticForm_neg, quaternaryForm_neg_right]
   rw [ft4, ← integral_const_mul]
   congr 1
