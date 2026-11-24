@@ -475,7 +475,8 @@ theorem phiQ_ip : ∀ (D : D7) (PP : Pl D.host.E) (v : FinPl D) (φ : SplitProj 
   rw [← e1, ← e2, (GlobalTheory.PlaceProjAt.under_resCard D v φ PP hP).2] at h4
   unfold GlobalTheory.SplitWeil.ip
   simp_rw [h1]
-  rw [integral_indicator_const _ h3, Measure.real, h4, zinv]
+  rw [integral_indicator_const (μ := GlobalTheory.SplitWeil.volM ν (Fin b) (Fin a)) (1 : ℂ) h3,
+    Measure.real, h4, zinv]
   simp
 
 end GlobalTheory.NrmVol
