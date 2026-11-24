@@ -23,7 +23,7 @@ theorem UpperTheory.Gal.TranscendenceTraces.redZero_of :
   apply (_root_.GlobalTheory.EtC.sec_ext_glue (ZMod q) _ U).1
   refine GlobalTheory.T.etaleLocal_property_calculus_rules.2.1 U _ _ ((GlobalTheory.T.tateTwist_sections_locally_generated Q i).1 U a) ?_
   intro V g h
-  rw [SemiMap.nat, ← map_res, ← map_res, hf_nat]
+  rw [SemiMap.nat, ← UpperTheory.Gal.TranscendenceTraces.map_res, ← UpperTheory.Gal.TranscendenceTraces.map_res, hf_nat]
   rcases h with h | ⟨ζ, c, h⟩
   · rw [h]
     simp only [Sec.map, map_zero]

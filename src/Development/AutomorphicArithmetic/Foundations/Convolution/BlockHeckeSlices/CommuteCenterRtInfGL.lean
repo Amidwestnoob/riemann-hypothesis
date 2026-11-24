@@ -254,7 +254,7 @@ theorem exists_sys (d : Dat S n) {C : ℝ} (hC : 0 ≤ C) :
     refine Finset.sum_congr rfl fun a _ => ?_
     have e : ∀ (v : Fin d.len → ℝ) (c : ℂ), lift I t (AddMonoidAlgebra.single v (MvPolynomial.C c)) =
         algebraMap ℂ A c * T v := fun v c => by
-      simp [lift, AddMonoidAlgebra.liftNCRingHom, t]
+      simp [PositivityTheory.Rg.Fx.lift, AddMonoidAlgebra.liftNCRingHom, t]
     rw [e, mul_smul, algebraMap_smul, map_smul, Pi.smul_apply, smul_eq_mul, hc, hT,
       (compShift E S n d φ x φ.2.1.toUmg).1, sub_eq_add_neg]
   · obtain ⟨u, hu⟩ : ∃ u, ∀ v : bsp S n hC, (((β.prod fun j e => I j ^ e) • v : bsp S n hC) : Sm E n) = uC E n u v := by

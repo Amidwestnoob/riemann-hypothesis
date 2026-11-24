@@ -58,7 +58,7 @@ private theorem powMap_id' {S : Scheme.{0}} (A : Over S) (h : 𝟙 A.left ≫ A.
   apply pow_left_hom_ext
   · rw [powMap_w, Category.comp_id, Category.id_comp]
   · intro i
-    rw [powMap_pr, Category.comp_id, Category.id_comp]
+    rw [GlobalTheory.KS.PowPB.powMap_pr, Category.comp_id, Category.id_comp]
 
 private theorem powMap_comp' {S S' S'' : Scheme.{0}} {A : Over S} {A' : Over S'} {A'' : Over S''}
     (f : S' ⟶ S) (g : S'' ⟶ S') (φ : A'.left ⟶ A.left) (χ : A''.left ⟶ A'.left)
@@ -68,7 +68,7 @@ private theorem powMap_comp' {S S' S'' : Scheme.{0}} {A : Over S} {A' : Over S'}
   apply pow_left_hom_ext
   · rw [Category.assoc, powMap_w, ← Category.assoc, powMap_w, powMap_w, Category.assoc]
   · intro i
-    rw [Category.assoc, powMap_pr, ← Category.assoc, powMap_pr, powMap_pr, Category.assoc]
+    rw [Category.assoc, GlobalTheory.KS.PowPB.powMap_pr, ← Category.assoc, GlobalTheory.KS.PowPB.powMap_pr, GlobalTheory.KS.PowPB.powMap_pr, Category.assoc]
 
 private theorem powMap_ext' {S S' : Scheme.{0}} {A : Over S} {A' : Over S'} (π : S' ⟶ S) (Φ : A'.left ⟶ A.left)
     (w : Φ ≫ A.hom = A'.hom ≫ π) (π' : S' ⟶ S') (Φ' : A'.left ⟶ A'.left) (w' : Φ' ≫ A'.hom = A'.hom ≫ π') (m : ℕ)
@@ -87,7 +87,7 @@ private theorem powMap_ext' {S S' : Scheme.{0}} {A : Over S} {A' : Over S'} (π 
     · simp only [Category.assoc, powMap_w, reassoc_of% (powMap_w π' Φ' w' m)]
       exact e1.symm
     · intro i
-      simp only [Category.assoc, powMap_pr, reassoc_of% (powMap_pr π' Φ' w' m i)]
+      simp only [Category.assoc, GlobalTheory.KS.PowPB.powMap_pr, reassoc_of% (GlobalTheory.KS.PowPB.powMap_pr π' Φ' w' m i)]
       have := h2 (x ≫ (pr A' i).left) (by rw [Category.assoc, Over.w])
       simpa only [Category.assoc] using this.symm
   · rw [Category.assoc, powMap_w, ← Category.assoc, h1]
