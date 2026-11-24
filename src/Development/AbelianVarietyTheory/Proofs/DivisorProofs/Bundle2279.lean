@@ -136,7 +136,7 @@ theorem main : ∀ (P R₁ R₂ R₀ : CommRingCat.{0}) (f₁ : P ⟶ R₁) (f�
     choose g hg using EO
     have hc : ∀ a b : Idx, pullback.fst (𝒰.f a) (𝒰.f b) ≫ g a = pullback.snd (𝒰.f a) (𝒰.f b) ≫ g b := by
       intro a b
-      have hPb := isPullback_opens_inf a.1.1 b.1.1
+      have hPb := AlgebraicGeometry.isPullback_opens_inf a.1.1 b.1.1
       change pullback.fst a.1.1.ι b.1.1.ι ≫ g a = pullback.snd a.1.1.ι b.1.1.ι ≫ g b
       rw [← cancel_epi hPb.isoPullback.hom, IsPullback.isoPullback_hom_fst_assoc,
         IsPullback.isoPullback_hom_snd_assoc]
