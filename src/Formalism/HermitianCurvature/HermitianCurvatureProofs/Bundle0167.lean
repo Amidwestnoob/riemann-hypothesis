@@ -322,7 +322,7 @@ theorem capa_vab_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.k
     · rw [e0]; exact famR_sub hsum hcB
     · rw [e0, trR_sub _ _ _ _ (fun ρ => smR hpl hk he hsum ρ) (fun ρ => smR hpl hk he hcB ρ),
         trR_add _ _ _ _ (fun ρ => smR hpl hk he (famR_smul hA _) ρ) (fun ρ => smR hpl hk he hpA ρ), trR_smul,
-        trR_p hpl hk he hA, tc, tA, tB, Vp_succ P Y i h, Ts_mul_0, actA_add, actA_mul, actA_mul,
+        trR_p hpl hk he hA, tc, tA, tB, Vp_succ P Y i h, Ts_mul_0, actA_add, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul,
         actA_neg, actA_add, actA_algebraMap, actA_p, actA_c, sub_eq_add_neg]
     · rw [e1]; exact hciA
     · rw [e1, tci, tA, Vp_succ P Y i h, Ts_mul_1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, actA_ci]
@@ -380,8 +380,8 @@ theorem capa_vabm_ind (hpl : Q.IsPlace P Bs.z Bs.z' Bs.π Bs.π') (hk : 2 ≤ P.
     · rw [e0]; exact famR_sub hdif hcB
     · rw [e0, trR_sub _ _ _ _ (fun ρ => smR hpl hk he hdif ρ) (fun ρ => smR hpl hk he hcB ρ),
         trR_sub _ _ _ _ (fun ρ => smR hpl hk he (famR_smul hA _) ρ) (fun ρ => smR hpl hk he hpA ρ), trR_smul,
-        trR_pb hpl hk he hA, tc, tA, tB, capaVpM_succ P L Y i h, capa_Tvl_mul_0, hpb, hcb, actA_add, actA_mul,
-        actA_mul, actA_neg, sub_eq_add_neg ((algebraMap ℂ (MA.A P (MA.DQ P))) Y), actA_add, actA_algebraMap, actA_neg,
+        trR_pb hpl hk he hA, tc, tA, tB, capaVpM_succ P L Y i h, capa_Tvl_mul_0, hpb, hcb, actA_add, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul,
+        _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, actA_neg, sub_eq_add_neg ((algebraMap ℂ (MA.A P (MA.DQ P))) Y), actA_add, actA_algebraMap, actA_neg,
         capa_actA_pb, capa_actA_cb, sub_eq_add_neg, sub_eq_add_neg]
     · rw [e1]; exact hciA
     · rw [e1, tci, tA, capaVpM_succ P L Y i h, capa_Tvl_mul_1, _root_.Formalism.FourierDecayAlt.P.CutMP.Gauge.actA_mul, hcbi, capa_actA_cbi]

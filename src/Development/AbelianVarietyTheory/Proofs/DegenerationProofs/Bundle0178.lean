@@ -103,13 +103,13 @@ theorem exists_lineBundle_of_thickenings : ∀ (R : Type) [CommRing R] [IsLocalR
       (lbIso_tw_congr (hL e) t ⟨v e, (hN e).2⟩)
       (LBIso.chartPull (chartPullTw (Geo.Tor.chartPullPull _ _ _ rfl)
         (chartPullSame H _ _ _ (β e) fun _ => (hc e).symm) t) (Geo.Tor.chartPullPull _ _ _ rfl)
-        (lbIso_self (hT (e + 1))))
+        (_root_.GlobalTheory.LBAlg.lbIso_self (hT (e + 1))))
   choose v' hv' using hv'
   have hflY : ∀ e, Flat (Y e).hom := fun e => MorphismProperty.of_isPullback (P := @Flat) (hb e) hfl
   have hP : ∀ e, IsProjBy (Y e).hom := fun e => ⟨_, hL e, m, σ' e, hva e⟩
   obtain ⟨w₀, hw₀⟩ : LBIso (tw ((N 0).pull π) ((H.pull (b 0)).pull π) t) ((tw (N 0) (H.pull (b 0)) t).pull π) :=
     LBIso.chartPull (chartPullTw (Geo.Tor.chartPullPull _ _ _ rfl) (Geo.Tor.chartPullPull _ _ _ rfl) t)
-      (Geo.Tor.chartPullPull _ _ _ rfl) (lbIso_self (hT 0))
+      (Geo.Tor.chartPullPull _ _ _ rfl) (_root_.GlobalTheory.LBAlg.lbIso_self (hT 0))
   choose s hs0 hs using fun j => GlobalTheory.SecLifts.exists_compatible_sections_local R I hI Y β hβ hflY hP
     (fun e => tw (N e) (H.pull (b e)) t) v' (fun e => ⟨hT e, hv' e⟩) _ (Ideal.Quotient.mk 𝔪)
     Ideal.Quotient.mk_surjective _ π f₀ hπ _ w₀ (isLB_tw (pull_isLB (hN 0).1 π) (pull_isLB (hL 0) π) t) hw₀
@@ -124,7 +124,7 @@ theorem exists_lineBundle_of_thickenings : ∀ (R : Type) [CommRing R] [IsLocalR
     (LBIso.trans (hN e).1 (isLB_tw (hT e) (hL e) _) hO' (lbIso_tw_tw (hN e).1 (hL e) t)
       (lbIso_tw_congr (hL e) (-t) (hNM e)))
     (LBIso.chartPull (chartPullTw (Geo.Tor.chartPullPull _ _ _ rfl) (Geo.Tor.chartPullPull _ _ _ rfl) (-t))
-      (Geo.Tor.chartPullPull _ _ _ rfl) (lbIso_self hM'))
+      (Geo.Tor.chartPullPull _ _ _ rfl) (_root_.GlobalTheory.LBAlg.lbIso_self hM'))
 
 end GlobalTheory.LBAlgLocal
 end

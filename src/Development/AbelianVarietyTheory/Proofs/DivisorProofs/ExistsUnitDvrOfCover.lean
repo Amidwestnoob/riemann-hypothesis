@@ -46,8 +46,8 @@ theorem exists_unit_dvr_of_cover {V K : Type} [CommRing V] [IsDomain V] [IsDiscr
   have hu : res le_rfl (pullU n _ (pullU l _ (ρ a₀))) =
       res hA' (pullU eK _ (res (hW _) (pullU ψ _ (τ a₀)))) := by
     refine unit_ext fun z hz ↦ ?_
-    rw [gm_res_pullU (𝟙 _) n z le_rfl hz, gm_res_pullU (𝟙 _) eK z hA' hz, Category.id_comp,
-      Category.id_comp, gm_pull n l z _ hz, gm_res_pullU eK ψ z (hW _) (hA' hz), hρ z a₀ hz]
+    rw [_root_.GlobalTheory.GenericExtend.gm_res_pullU (𝟙 _) n z le_rfl hz, _root_.GlobalTheory.GenericExtend.gm_res_pullU (𝟙 _) eK z hA' hz, Category.id_comp,
+      Category.id_comp, gm_pull n l z _ hz, _root_.GlobalTheory.GenericExtend.gm_res_pullU eK ψ z (hW _) (hA' hz), hρ z a₀ hz]
   obtain ⟨s, ⟨hsu, -, hsr⟩, -⟩ := DvrModel.existsUnique_isUnit_appLE_eq hK hs
     (U := fun a ↦ φ ⁻¹ᵁ N.U a) (g := fun a b ↦ (pullU φ _ (N.g a b)).val)
     (W := fun a ↦ k ⁻¹ᵁ φ ⁻¹ᵁ N.U a) (fun _ ↦ rfl) hN
@@ -270,7 +270,7 @@ theorem exists_cmp_ext {X P : Scheme.{0}} [IsLocallyNoetherian X] [GlobalTheory.
   refine (gm_res (𝟙 P) (J q) (inf_le_right : W ⊓ (L.U a ⊓ M.U b) ≤ L.U a ⊓ M.U b) ⟨hW, ha, hb⟩ (σ (a, b))).trans ?_
   refine gm_eq_of_pull J q (O := L.U a ⊓ M.U b) (O' := p ⁻¹ᵁ U ⊓ (L.U a ⊓ M.U b)) ⟨ha, hb⟩ ⟨hx, ha, hb⟩ ?_
   have h₁ := gm_pull (𝟙 _) J q (L.U a ⊓ M.U b) ⟨ha, hb⟩ (σ (a, b))
-  have h₂ := gm_res_pullU (𝟙 _) J q (hle (a, b)) ⟨ha, hb⟩ (u a b)
+  have h₂ := _root_.GlobalTheory.GenericExtend.gm_res_pullU (𝟙 _) J q (hle (a, b)) ⟨ha, hb⟩ (u a b)
   rw [Category.id_comp] at h₁ h₂
   exact h₁.symm.trans ((congrArg (gm (𝟙 _) q _) (hσ (a, b))).trans h₂)
 

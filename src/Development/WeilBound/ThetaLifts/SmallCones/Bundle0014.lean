@@ -95,7 +95,7 @@ open Line
 theorem lineInt_of (hS : Slice) (hI : SchInt) (hT : TateAbs) : LineInt := by
   intro F E _ _ _ _ _ σ B n d n₁ d₁ X W X₁ W₁ M M₁ hB hM hM₁ ι ι' I e he v₀ z₀ hz₀ hu τ hτ μ hμ z ν hz hν Ψ hΨ
   obtain ⟨κ, _, φ, g, h1, h2, h3, h4⟩ := nice hS hT hB hM hM₁ he hz₀ hu τ
-    (by rcases hτ with rfl | rfl; exacts [fun _ => rfl, cA_cA hB.cm]) μ hμ hz hΨ
+    (by rcases hτ with rfl | rfl; exacts [fun _ => rfl, _root_.PositivityTheory.ThKCT.Line.cA_cA hB.cm]) μ hμ hz hΨ
   beta_reduce at h3
   refine ⟨fun om₁ hom hD h₁ => ?_, ?_⟩
   · rcases hD with hD | ⟨hD, hso⟩

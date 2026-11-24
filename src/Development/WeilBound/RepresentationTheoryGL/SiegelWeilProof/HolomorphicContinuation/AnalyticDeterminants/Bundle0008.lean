@@ -327,19 +327,19 @@ theorem fderiv_eq_zero_of_vanish {V : Type*} [NormedAddCommGroup V] [NormedSpace
       fderiv ℂ H g (g * fromBlocks 0 0 c 0) = 0 := by
     intro g hg c hc
     refine fderiv_line (hdiff g hg) (fun t => ?_)
-    rw [lower_line, h0 _ (inG_mul hg (inG_lower (herm_real_smul hc t))), h0 g hg]
+    rw [lower_line, h0 _ (_root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hg (inG_lower (herm_real_smul hc t))), h0 g hg]
   have hup : ∀ g, InG g → ∀ b : Matrix (Fin n) (Fin n) ℂ, bᴴ = b →
       fderiv ℂ H g (g * fromBlocks 0 b 0 0) = 0 := by
     intro g hg b hb
     refine fderiv_line (hdiff g hg) (fun t => ?_)
-    rw [upper_line, h0 _ (inG_mul hg (inG_upper (herm_real_smul hb t))), h0 g hg]
+    rw [upper_line, h0 _ (_root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hg (inG_upper (herm_real_smul hb t))), h0 g hg]
   have hone : fderiv ℂ H y (y * 1) = 0 := by
     rw [mul_one]
     refine HolD.scalar_dir (hdiff y hy) (fun t => h0 _ ?_)
     have e : Complex.exp (↑t * Complex.I) • y = y * (Complex.exp (↑t * Complex.I) • (1 : M2 n)) := by
       rw [mul_smul_comm, mul_one]
     rw [e]
-    refine inG_mul hy (inG_scalar ?_)
+    refine _root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hy (inG_scalar ?_)
     rw [Complex.star_def, Complex.conj_mul', Complex.norm_exp_ofReal_mul_I]
     simp
   have hCy : ContDiffAt ℂ ∞ H y := hH.contDiffAt (hΩ.mem_nhds (hG hy))
@@ -355,12 +355,12 @@ theorem fderiv_eq_zero_of_vanish {V : Type*} [NormedAddCommGroup V] [NormedSpace
     let mL : M2 n →L[ℂ] M2 n := LinearMap.toContinuousLinearMap (LinearMap.mulRight ℂ L)
     let mU : M2 n →L[ℂ] M2 n := LinearMap.toContinuousLinearMap (LinearMap.mulRight ℂ U)
     have e1 := HolD.line2 (H := H) (y := y) (w := y * U) (m := mL) hD (fun t => by
-      have hg := inG_mul hy (inG_upper (herm_real_smul hb t))
+      have hg := _root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hy (inG_upper (herm_real_smul hb t))
       show fderiv ℂ H _ ((y + (t : ℂ) • (y * U)) * L) = 0
       rw [upper_line]
       exact hlow _ hg c hc)
     have e2 := HolD.line2 (H := H) (y := y) (w := y * L) (m := mU) hD (fun t => by
-      have hg := inG_mul hy (inG_lower (herm_real_smul hc t))
+      have hg := _root_.PositivityTheory.Rg.Sw.LVs.HolB.inG_mul hy (inG_lower (herm_real_smul hc t))
       show fderiv ℂ H _ ((y + (t : ℂ) • (y * L)) * U) = 0
       rw [lower_line]
       exact hup _ hg b hb)

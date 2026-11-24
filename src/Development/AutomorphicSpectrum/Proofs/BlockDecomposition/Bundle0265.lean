@@ -146,7 +146,7 @@ variable {X : Scheme.{0}}
 
 theorem res_res_units {U V W : X.Opens} (h₁ : V ≤ U) (h₂ : W ≤ V) (u : Γ(X, U)ˣ) :
     res h₂ (res h₁ u) = res (h₂.trans h₁) u :=
-  Units.ext (resG_resG h₁ h₂ _)
+  Units.ext (_root_.GlobalTheory.Cartier.resG_resG h₁ h₂ _)
 
 theorem mul_chart_cancel {S : Type} [CommRing S] (u G k' k u' a : S) (h : u = G * k' * u') (h' : k' * k = 1) :
     u * (k * a) = G * (u' * a) := by

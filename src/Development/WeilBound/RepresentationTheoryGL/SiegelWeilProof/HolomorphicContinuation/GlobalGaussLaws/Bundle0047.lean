@@ -269,13 +269,13 @@ theorem lawM_of : TensInj → LawM := by
   have hy0 : (mR (LocLawH.mOf A)).toBlocks₂₁ = 0 := by simp [LocLawH.mR_mOf]
   have haOf : LocLawH.aOf (LocLawH.mOf A) hy0 = A := Units.ext (by rw [LocLawH.aOf_val, LocLawH.mR_mOf]; simp)
   have hsc := LocLawH.scal hC.hθ hσ k j hk hj (cnt (epsT (tLoc l τ) ε) true) (cnt (epsT (tLoc l τ) ε) false)
-    (cnt_add _) (LocLawH.mOf A) hy0
+    (_root_.PositivityTheory.Rg.Sw.Glob.GaussH.cnt_add _) (LocLawH.mOf A) hy0
   rw [haOf] at hsc
   refine hTI D n V ψ χ θ μ ω H l s ν τ ε fr ι hC _ _ fun Ψ hΨ => ?_
   rw [← hL.2 y Ψ hΨ f hf]
   funext x
   rw [hyA, hC.hω.levi _ (LocLawH.unitAt hσ τ A) (LocLawH.mat_mOf hσ hC.hι A), hsc, weight_factor_eq_automorphy,
-    siegelP_jF _ hy0, cnt_add]
+    siegelP_jF _ hy0, _root_.PositivityTheory.Rg.Sw.Glob.GaussH.cnt_add]
   have hbl : (mR (LocLawH.mOf A)).toBlocks₁₁ = a := by rw [LocLawH.mR_mOf]; simp [hAv]
   rw [hbl]
   have hΨx : Ψ (HMul.hMul x (LocLawH.unitAt hσ τ A).1 : Mx D V.rank n) = Ψ x := by

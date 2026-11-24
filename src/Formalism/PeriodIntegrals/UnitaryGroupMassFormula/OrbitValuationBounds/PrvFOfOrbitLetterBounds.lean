@@ -42,7 +42,7 @@ theorem prvF_of_orbitLetterBounds : ∀ (D : D7) (L : SizeData₂ D) (X : Inst D
     rw [mul_assoc]; exact mul_le_mul_of_nonneg_left hw hgpos
   have hi1 : i + 1 - 1 = i := by omega
   rw [hi1] at hl
-  have hF : FOrb D (i + 1) p r = lpF p (nP D p) (fun s => ((D.R.k : ℝ) - 1) * wOrb D p i r s) := rfl
+  have hF : FOrb D (i + 1) p r = _root_.Formalism.BasicNotions.lpF p (nP D p) (fun s => ((D.R.k : ℝ) - 1) * wOrb D p i r s) := rfl
   have hE : errF L K ce (i + 1) p r = Formalism.MainNotions.G.gam p * (topsOrb D p r : ℝ) * (L.sc.b + L.etaSz + 1 + 3 * L.Sc) +
       ce.c6 * (∑ s, wOrb D p i r s) / (p : ℝ) +
       ((nP D p : ℝ) * (D.R.N (i + 1 - 1) : ℝ) * (D.R.N (i + 1) : ℝ) *
@@ -53,7 +53,7 @@ theorem prvF_of_orbitLetterBounds : ∀ (D : D7) (L : SizeData₂ D) (X : Inst D
   rw [hi1] at hE
   show g0Pl X K p (i + 1) r + FOrb D (i + 1) p r - errF L K ce (i + 1) p r ≤
     (∑ s ∈ (orbLoc E p h u i r Th).TT, (orbLoc E p h u i r Th).baseTerm s +
-      lpF p (nP D p) (fun s => ((D.R.k : ℝ) - 1) * wOrb D p i r s)) - C6 * (∑ s, wOrb D p i r s) / (p : ℝ) -
+      _root_.Formalism.BasicNotions.lpF p (nP D p) (fun s => ((D.R.k : ℝ) - 1) * wOrb D p i r s)) - C6 * (∑ s, wOrb D p i r s) / (p : ℝ) -
       Formalism.MainNotions.product_zeroth_first_parts.gam p * ∑ s ∈ (orbLoc E p h u i r Th).TT, ((orbLoc E p h u i r Th).Wc s : ℝ) -
       C * ((nP D p : ℝ) * (D.R.N i : ℝ) * (D.R.N (i + 1) : ℝ) * (Real.logb p (L.sc.a ^ 2) + 1))
   rw [hF, hE, hgam]

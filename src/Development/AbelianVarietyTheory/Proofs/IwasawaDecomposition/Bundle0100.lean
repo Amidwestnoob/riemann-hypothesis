@@ -226,7 +226,7 @@ open Classical in
 theorem valAt_locF (w : HeightOneSpectrum (𝓞 L)) (v : HeightOneSpectrum (𝓞 F)) (k : Fˣ) :
     valAt w (locF (L := L) F v k) =
       if w.under (𝓞 F) = v then WithZero.exp (-ordF w (upF F k)) else 1 := by
-  unfold locF
+  unfold _root_.GlobalTheory.Mem.Chr.locF
   rw [map_prod]
   have hm : ∀ Q : HeightOneSpectrum (𝓞 L), Q ∈ aboveF (L := L) F v ↔ Q.under (𝓞 F) = v := fun Q => by
     simp [aboveF]

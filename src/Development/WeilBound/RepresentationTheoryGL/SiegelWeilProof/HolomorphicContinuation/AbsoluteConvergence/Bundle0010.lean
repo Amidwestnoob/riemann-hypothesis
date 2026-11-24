@@ -410,7 +410,7 @@ theorem locOp : LV → Iwa → Mult → HolParam → LocOp := by
   refine ⟨ψ, mkG a ha, mkG b hb, nbEl, czLoc p q e (mkG a ha) (mkG b hb) ψ μ, hψ, fun x => rfl, continuous_nbEl,
     cz_diff hHol p q e _ _ hψ μ, ?_, fun w y => eigen hIwa hMult p q e _ _ ψ μ w y⟩
   rw [cz_zero]
-  refine mul_ne_zero (zpow_ne_zero _ (mul_ne_zero (det_mR_ne (mkG a ha)) (det_mR_ne (mkG b hb)))) ?_
+  refine mul_ne_zero (zpow_ne_zero _ (mul_ne_zero (_root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.det_mR_ne (mkG a ha)) (_root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.det_mR_ne (mkG b hb)))) ?_
   exact hne
 
 end PositivityTheory.Rg.Sw.AbsSt

@@ -98,7 +98,7 @@ private theorem card_support_le_of_isHomogeneous {σ : Type} [Fintype σ] {P : M
   rw [add_comm (1 : ℝ) (d : ℝ)]
   exact this
 
-private theorem one_le_multiFactorial {σ : Type} (α : σ →₀ ℕ) : (1 : ℝ) ≤ multiFactorial α := by
+private theorem one_le_multiFactorial {σ : Type} (α : σ →₀ ℕ) : (1 : ℝ) ≤ _root_.GlobalTheory.MvPoly.multiFactorial α := by
   unfold _root_.GlobalTheory.MvPoly.multiFactorial Finsupp.prod
   exact_mod_cast Nat.one_le_iff_ne_zero.mpr (Finset.prod_ne_zero_iff.mpr fun i _ => Nat.factorial_ne_zero _)
 
