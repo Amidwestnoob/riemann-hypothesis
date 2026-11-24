@@ -313,6 +313,7 @@ theorem card_points (A : Over (Sp L)) [GrpObj A] (hA : IsAbelianScheme A) {g : �
     (Category.id_comp t).symm
   rw [← GlobalTheory.abMulN_holds Ω _ g n hB hg' hn]
   refine (Nat.card_congr (e.toEquiv.subtypeEquiv fun x => ?_)).symm
+  let : OfNat (Over.mk (𝟙 (Sp Ω)) ⟶ (Over.pullback t).obj A) 1 := ⟨toUnit _ ≫ η⟩
   show x ^ n = 1 ↔ e x ^ n = 1
   rw [← map_pow, MulEquiv.map_eq_one_iff]
 
