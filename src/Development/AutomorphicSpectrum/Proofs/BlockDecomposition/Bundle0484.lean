@@ -127,7 +127,7 @@ theorem prod_ofReal_zpow {ι : Type} (s : Finset ι) {q : ℝ} (hq : 0 < q) (e :
 
 theorem sFinite_nuD (d : ℕ) : SFinite (nuD E k d) := by
   induction d with
-  | zero => change SFinite (Measure.dirac _); infer_instance
+  | zero => change SFinite (Measure.dirac _); exact MeasureTheory.instSFiniteOfSigmaFinite
   | succ d ih => change SFinite (Measure.map _ _); infer_instance
 
 theorem measurable_blkMul (j : ℕ) : Measurable (fun p : (UnipotentBlockColumnIndex k j j → Ad E) × GA E k => blkU p.1 * p.2) :=
