@@ -384,16 +384,17 @@ theorem cx_galD_scal (Y : CxData A) (cr : Crd A fc) (κ : InfinitePlace K → �
       Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K _) ((lv (fc Y.zs) false).XT j Bs.μ0) v x x ≠ 0) → lam j Bs.μ0 p v = Y.lam j Bs.μ0 p v)
     (h : Y.GalD cr false) : (reScal Y κ lam).GalD cr false := by
   intro j v hv p x hx y
-  have h0 := h j v hv p x hx y
-  refine h0.trans ?_
-  show _ = ((lam j Bs.μ0 p v : ℝ) : ℂ) * Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K _) ((lv (fc Y.zs) false).XT j Bs.μ0) v x y
+  let m : ℂ := Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K _) ((lv (fc Y.zs) false).XT j Bs.μ0) v x y
+  refine (h j v hv p x hx y).trans ?_
+  change ((Y.lam j Bs.μ0 p v : ℝ) : ℂ) * m = ((lam j Bs.μ0 p v : ℝ) : ℂ) * m
   by_cases hp : ∃ x, Y.tC cr false j Bs.μ0 (cpt Bs.v0.embedding x) ∈ Y.Wp j p ∧
       Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K _) ((lv (fc Y.zs) false).XT j Bs.μ0) v x x ≠ 0
-  · rw [hlam j p v hv hp]
+  · exact congrArg (fun a : ℝ => (a : ℂ) * m) (hlam j p v hv hp).symm
   · have hxx : Formalism.HermitianLatticesTheory.majAt (Pi.basisFun K _) ((lv (fc Y.zs) false).XT j Bs.μ0) v x x = 0 := by
       by_contra hne
       exact hp ⟨x, hx, hne⟩
-    rw [majAt_eq_zero_of_self _ _ v hxx y, mul_zero, mul_zero]
+    have hm : m = 0 := majAt_eq_zero_of_self _ _ v hxx y
+    simp only [hm, mul_zero]
 
 end GenCx2
 
