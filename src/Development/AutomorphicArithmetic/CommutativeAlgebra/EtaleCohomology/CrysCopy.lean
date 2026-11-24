@@ -12,6 +12,7 @@ open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain Formal
 open GlobalTheory.Pst TensorProduct Module Matrix CrystallineSemistableComparison
 open GlobalTheory.GalV (HTower)
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace UpperTheory.Ru.crystallineComparison
 
 open UpperTheory.Gal.crystallineComparison UpperTheory.Gal.Int.Geo UpperTheory.Gal.Seam

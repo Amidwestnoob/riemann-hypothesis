@@ -41,6 +41,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle018
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormEqOfSamePlace
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.HeightCounting GlobalTheory.Pst
   GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp Neutral.B1 Formalism.L2.Host GlobalTheory.HeckeGal
