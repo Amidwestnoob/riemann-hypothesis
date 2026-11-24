@@ -227,7 +227,7 @@ theorem shift_inj (B : FB V d O) {n : ℕ} {α β : Fin n → Fin d → V} (hα 
     rw [← ea, ← eb, e b]
   funext b i
   have := congrArg MvPowerSeries.constantCoeff (congrFun (h1 b) i)
-  simpa [cpt] using this
+  simpa [_root_.GlobalTheory.PlaceInt.cpt] using this
 
 theorem shift_equiv (B : FB V d O) {n : ℕ} {α : Fin n → Fin d → V} (hα : ∀ b, Small (α b)) :
     ∃ ψ : PS V n d ≃ₐ[V] PS V n d, ∀ f, shift B.G.F α f = ψ f := by

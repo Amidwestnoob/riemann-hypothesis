@@ -183,7 +183,7 @@ theorem map_mul_cc (A B : Matrix (Fin r) (Fin r) E) : (A * B).map cc = A.map cc 
   Matrix.map_mul (f := (IsCMField.complexConj E : E →+* E))
 
 theorem map_map_cc (A : Matrix (Fin r) (Fin r) E) : (A.map cc).map cc = A := by
-  ext i j; simp [cc_cc]
+  ext i j; simp [_root_.GlobalTheory.LieDisc.cc_cc]
 
 theorem herm_eq_dot (G : Matrix (Fin r) (Fin r) E) (x y : Fin r → E) :
     herm G x y = x ⬝ᵥ (G *ᵥ fun b => cc (y b)) := by

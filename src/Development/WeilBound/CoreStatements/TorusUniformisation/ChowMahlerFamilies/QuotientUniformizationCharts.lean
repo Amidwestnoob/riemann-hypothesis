@@ -198,7 +198,7 @@ theorem exists_form_off {X : Scheme.{0}} (ξ : Spec (CommRingCat.of Ω) ⟶ X) (
     exact Subring.prod_mem _ fun k _ => ⟨t ⟨k, c' k⟩, ht _⟩
   have hgerm : X.presheaf.germ U q.1 hq s = aeval t g₀ := by
     apply hT.gen.inj q
-    rw [genMap_germ hη q hq s, ← hy₀]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.Flat.CptIn.Intr.genMap_germ hη q hq s, ← hy₀]
     have h' := comp_aeval_apply (R := ℤ) t (genMap ξ q).toIntAlgHom g₀
     refine Eq.trans ?_ h'.symm
     congr 2

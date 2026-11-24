@@ -23,7 +23,7 @@ section Abstract
 variable {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω]
 
 theorem mem_std {R : Subalgebra o Ω} {T : Type} {x : T → Ω} : x ∈ stdLat R T ↔ ∀ k, x k ∈ R := by
-  simp [stdLat, AddSubgroup.mem_pi]
+  simp [_root_.GlobalTheory.CompanionTheory.Ar.Num.stdLat, AddSubgroup.mem_pi]
 
 theorem mem_mulLat {V : Type} [AddCommGroup V] [Module Ω V] {c : Ω} {L : AddSubgroup V} {x : V} :
     x ∈ mulLat c L ↔ ∃ y ∈ L, c • y = x := by

@@ -160,7 +160,7 @@ theorem kills_iff_mem_kerM : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     intro δ h
     funext k
     have := congrArg MvPowerSeries.constantCoeff (congrFun h k)
-    simpa [cpt] using this
+    simpa [_root_.GlobalTheory.PlaceInt.cpt] using this
   simp only [Kills, kerM, Set.mem_ofPred_eq]
   constructor
   · intro hk

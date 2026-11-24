@@ -419,10 +419,10 @@ theorem locBall_basis_exists : ∀ (D : D7) (Γ : Type) [Group Γ] [Fintype Γ] 
   have h0 : (0 : NX.FmK S ((j : ℕ) + 1)) ∈ locBall YS fw iC b j := by
     intro z
     rw [map_zero]
-    simp [valC_zero]
+    simp [_root_.GlobalTheory.GeoTie.valC_zero]
   have hadd : ∀ f ∈ locBall YS fw iC b j, ∀ g ∈ locBall YS fw iC b j, f + g ∈ locBall YS fw iC b j := by
     intro f hf g hg z
-    rw [map_add (f := _), Submodule.coe_add, valC_add]
+    rw [map_add (f := _), Submodule.coe_add, _root_.GlobalTheory.GeoTie.valC_add]
     exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (hf z) (hg z))
   have hsm : ∀ (x t : 𝓞 S.Ks), t ∉ P.asIdeal → ∀ f ∈ locBall YS fw iC b j,
       (((x : S.Ks) / (t : S.Ks)) • f) ∈ locBall YS fw iC b j := by

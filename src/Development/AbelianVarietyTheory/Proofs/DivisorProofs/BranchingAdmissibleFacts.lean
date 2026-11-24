@@ -176,7 +176,7 @@ theorem xi_raise (lam sg : Fin n → ℕ) (l j : Fin n) (h : l < j) : rE K n n l
       refine ⟨⟨l.val, by omega⟩, fun e' => ?_, rfl⟩
       have := congrArg Fin.val e'
       simp at this; omega
-  rw [rE, (rowE_eq_rowDiv K _ _ _ _ _).1, rowDiv, key, Polynomial.coeff_C, if_neg one_ne_zero]
+  rw [_root_.GlobalTheory.BrCompare.rE, (rowE_eq_rowDiv K _ _ _ _ _).1, rowDiv, key, Polynomial.coeff_C, if_neg one_ne_zero]
 
 theorem zcomp_lift {lam b : Fin n → ℕ} {f : MvPolynomial (Fin n × Fin n) K} {G : BP K n} (h : bmLift K n lam b f G) :
     zcomp K n (fun s => (b s : ℤ)) G = zmon K n b * emb K n f := by
@@ -228,7 +228,7 @@ theorem psi_eq_zero {lam sg : Fin n → ℕ} (hI : Interlace (lamZ lam) (fun i =
   have hρ : ∀ s : Fin n, bmRho lam sg s.castSucc = sg s := fun s => by simp [bmRho]
   have hC : ∀ u x, ψ (rCap K n n u x) = ((bmChi lam (fun s => ((lam s - sg s : ℕ) : ℤ)) u : ℤ) : K) * ψ x := fun u x => by
     rw [chi_eq hIL]
-    exact capDet_dual _ u ψ (fun s => (sg s : ℤ)) hr (fun s x => by rw [rE, hwt, hρ]; simp) x
+    exact capDet_dual _ u ψ (fun s => (sg s : ℤ)) hr (fun s x => by rw [_root_.GlobalTheory.BrCompare.rE, hwt, hρ]; simp) x
   have hAdm : bmAdm lam (∑ s, (lam s - sg s)) fun s => ((lam s - sg s : ℕ) : ℤ) := by
     refine ⟨fun s => Int.natCast_nonneg _, by simp, ?_⟩
     simpa only [Nat.cast_sub (hIL _).1, sub_sub_cancel] using hI
@@ -288,7 +288,7 @@ theorem psi_eq_zero {lam sg : Fin n → ℕ} (hI : Interlace (lamZ lam) (fun i =
   have hm := dualWeylRowGraded K (n + 1) n lam ρ x hx
   by_cases hρ' : ρ = bmRho lam sg
   · subst hρ'
-    refine key _ _ (bmK_mem_alt.2 ⟨hm, fun μ hμ => ?_⟩) (fun s => by rw [rE, hy, hρ])
+    refine key _ _ (bmK_mem_alt.2 ⟨hm, fun μ hμ => ?_⟩) (fun s => by rw [_root_.GlobalTheory.BrCompare.rE, hy, hρ])
       ((weightedHomogeneousComponent (rowW (n + 1) n) (bmRho lam sg) x).support.image (Finsupp.weight (zW n))) le_rfl
       fun β h => ?_
     · rw [bm_weight_lastW, ← bm_weight_rowW,
@@ -324,8 +324,8 @@ theorem fock_xi {lam sg : Fin n → ℕ} (hI : Interlace (lamZ lam) (fun i => (s
       have h1 := xi_raise (K := K) lam sg l j hlj
       have h2 := rE_lead n l j (fun s => lam s - sg s) (hw K le_rfl sg)
       rw [hw_raise sg l j hlj, map_zero, mul_zero] at h2
-      simp only [rE] at h1 h2
-      simp only [LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.flip_apply, fockBL_apply, rE, fockB_rowE, h1, h2]
+      simp only [_root_.GlobalTheory.BrCompare.rE] at h1 h2
+      simp only [LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.flip_apply, fockBL_apply, _root_.GlobalTheory.BrCompare.rE, fockB_rowE, h1, h2]
       simp [← fockBL_apply])
     (fun a x => by
       simp only [LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.flip_apply, fockBL_apply, fockB_rowE,

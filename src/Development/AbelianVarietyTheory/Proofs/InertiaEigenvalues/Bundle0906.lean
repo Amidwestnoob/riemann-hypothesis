@@ -47,8 +47,8 @@ theorem valC_cuspOf_sum (z : FrC YS iC b ((j : ℕ) + 1)) {ι : Type} (s : Finse
       ∑ t ∈ s, valC z (cuspOf YS fw j (g t) : T0.R ((j : ℕ) + 1)) := by
   classical
   induction s using Finset.induction_on with
-  | empty => rw [Finset.sum_empty, Finset.sum_empty, map_zero, ZeroMemClass.coe_zero, valC_zero]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, map_add (f := _), Submodule.coe_add, valC_add, ih]
+  | empty => rw [Finset.sum_empty, Finset.sum_empty, map_zero, ZeroMemClass.coe_zero, _root_.GlobalTheory.GeoTie.valC_zero]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, map_add (f := _), Submodule.coe_add, _root_.GlobalTheory.GeoTie.valC_add, ih]
 
 end Sum
 
