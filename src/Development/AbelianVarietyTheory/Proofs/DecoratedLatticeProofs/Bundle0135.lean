@@ -411,7 +411,7 @@ theorem norm_muInvDet_zero_or_one : ∀ (CY : ℝ) (D : D7) (N : NumDatum) (X : 
     subst hmu
     rcases Finset.mem_union.1 P.2 with h | h
     · exact h
-    · have h0 := twistPrimes_trivialTuple_empty sel Sg
+    · have h0 := Formalism.L2.Col.twistPrimes_trivialTuple_empty sel Sg
       exact absurd (h0 ▸ h) (Finset.notMem_empty _)
   have hnorm : ‖σ (muInvDet sel (rowSG Pr sel mu) (mUof Ch mu i) (muAt Ch sel mu cst i) L fr)‖ = 1 := by
     have hU := fun P x y hy => GlobalTheory.ScalarModulus.norm_eq_one_of_locK hX.ok hPr

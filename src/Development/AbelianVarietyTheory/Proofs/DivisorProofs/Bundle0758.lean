@@ -272,7 +272,7 @@ theorem finite_ncard_ybSet {X : Fields} {Pr : Primes X} (hPr : Pr.Ok)
     · exact h
     · have h0 : QE sel (mu : Chr X.F X.E X.K) = ∅ := by
         rw [hmu]
-        exact twistPrimes_trivialTuple_empty sel Sg
+        exact Formalism.L2.Col.twistPrimes_trivialTuple_empty sel Sg
       rw [h0] at h
       simp at h
   refine finite_ncard_cosets _ _ _ (Nat.mul_pos (hPr.g_prime 0).pos (hPr.g_prime 1).pos) ?_

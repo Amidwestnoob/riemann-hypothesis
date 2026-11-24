@@ -428,7 +428,7 @@ theorem GlobalTheory.Mem.Col2.TC.typeRead_core : ∀ {B : Base} {X : PreX B.toPr
 
   have hQ : QE I.sel (I.tup I.mu0 : Chr B.fields.F B.fields.E B.fields.K) = ∅ := by
     rw [I.trueColumn_tuple_trivial_eq_one]
-    exact twistPrimes_trivialTuple_empty I.sel I.S
+    exact Formalism.L2.Col.twistPrimes_trivialTuple_empty I.sel I.S
   have hvG : ∀ P : rowSG (B.primes X) I.sel (I.tup I.mu0), P.1 ∈ (B.primes X).vGs := fun P =>
     (Finset.mem_union.1 P.2).resolve_right fun h => by simp [hQ] at h
   have hdeg : ∀ P : rowSG (B.primes X) I.sel (I.tup I.mu0), GlobalTheory.IndefiniteRowSideFullHecke.SourceLatticeInvariance.DegOneUnram P.1 := fun P =>
