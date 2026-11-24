@@ -8,7 +8,9 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTool
 
 @[expose] public section
 
-open Matrix Filter ReciprocityTheory.Gal UpperTheory.V.W UpperTheory.V.Pa UpperTheory.V.Pa.B2
+open Matrix Filter ReciprocityTheory.Gal UpperTheory.V.W
+open UpperTheory.V.Pa hiding coc_ker
+open UpperTheory.V.Pa.B2
 
 private theorem quasi_inv {A M : Type} [CommRing A] [IsDomain A] [AddCommGroup M] [Module A M] [Module.Free A M]
     [Module.Finite A M] (Φ : M →ₗ[A] M) (h : Function.Injective Φ) :
