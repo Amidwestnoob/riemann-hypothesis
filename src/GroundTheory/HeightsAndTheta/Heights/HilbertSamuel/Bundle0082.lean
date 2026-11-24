@@ -366,7 +366,7 @@ theorem PullGradedAlgebraic.proof : PullGradedAlgebraic.Statement := by
   set μ := diagMono c (fun k' => n * e k' - if k' = p.1 then 1 else 0)
   have hdeg : ∀ s : Σ k, ι k, s.1 = p.1 → ∀ k', blockDeg (Finsupp.single s 1 + μ) k' = n * e k' := by
     intro s hs k'
-    rw [blockDeg_add, blockDeg_diagMono, blockDeg_single, hs]
+    rw [blockDeg_add, blockDeg_diagMono, GroundTheory.Heights₂.Heights.HilbertSamuel.PullGradedAlgebraic.blockDeg_single, hs]
     have h1 := Nat.mul_le_mul (show 1 ≤ n by omega) (he k')
     generalize n * e k' = t at *
     split_ifs <;> omega
