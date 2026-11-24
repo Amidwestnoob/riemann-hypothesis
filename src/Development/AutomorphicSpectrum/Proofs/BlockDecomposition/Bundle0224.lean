@@ -13,6 +13,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle02
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableField
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open MeasureTheory Matrix GroundTheory.Automorphic GroundTheory.Automorphic.GLnLocal GroundTheory.Automorphic.Iwasawa

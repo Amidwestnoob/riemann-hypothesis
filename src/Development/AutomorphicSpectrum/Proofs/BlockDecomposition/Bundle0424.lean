@@ -169,6 +169,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionBallIndicatorSpan
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 open Matrix GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.SplitWeil GlobalTheory.CompanionTheory.MirFourier GlobalTheory.CompanionTheory.MirLevi

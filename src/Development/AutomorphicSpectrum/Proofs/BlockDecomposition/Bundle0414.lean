@@ -14,6 +14,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle03
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCompactCosetSet
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.Rodier GlobalTheory.CompanionTheory.BZPsiPG ValuativeRel

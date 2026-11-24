@@ -12,6 +12,8 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal Matrix
 

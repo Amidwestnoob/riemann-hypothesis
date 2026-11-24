@@ -125,6 +125,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AvgVanish
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib

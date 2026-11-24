@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundl
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CoeffRational
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
@@ -333,6 +334,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteThetaIntegralIntegrableContinuous
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory GlobalTheory.DefLift GlobalTheory.Chain
 open scoped ComplexOrder
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -391,6 +393,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteThetaIntegralInvariantRealTranslate
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory GlobalTheory.DefLift GlobalTheory.Chain
 open scoped ComplexOrder NNReal ENNReal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

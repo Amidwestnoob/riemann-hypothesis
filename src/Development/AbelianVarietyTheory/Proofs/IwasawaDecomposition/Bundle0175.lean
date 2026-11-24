@@ -31,6 +31,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundl
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FiniteVolumeAdelicUnitaryQuotient
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix GlobalTheory.Mem.Vol
 open scoped TensorProduct Pointwise
 
@@ -402,6 +403,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeterssonNormSqPosAutomorphicFunctionUnitary
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct Pointwise
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

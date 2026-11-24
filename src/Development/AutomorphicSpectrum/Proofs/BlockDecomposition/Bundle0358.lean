@@ -19,6 +19,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle03
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContractingDoubleCosetMeasurableStatement
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult
 namespace ContractingCosetsPort
 open ValuativeRel Matrix GroundTheory.Automorphic.GLnLocal
@@ -97,6 +98,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContractingDoubleCosetVolumeBound
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult
 
 namespace GlobalTheory.CompanionTheory.ContractVolume

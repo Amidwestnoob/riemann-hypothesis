@@ -91,6 +91,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DoubleCosetVolumeFormula
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open Filter Topology MeasureTheory GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult ValuativeRel
 
 namespace GlobalTheory.CompanionTheory.KmVolume

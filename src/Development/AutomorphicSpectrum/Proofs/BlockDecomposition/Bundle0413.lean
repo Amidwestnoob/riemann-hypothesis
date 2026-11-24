@@ -199,6 +199,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsClosedParabolicMulEmbeddedMirabolic
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibPhi Topology
 open scoped TensorProduct
 

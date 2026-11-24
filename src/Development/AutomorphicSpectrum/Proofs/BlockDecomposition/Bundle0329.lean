@@ -409,6 +409,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeasureImagePrincipalPosLtTop
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open GlobalTheory.LocGL
 
 namespace GlobalTheory.CompanionTheory.PrincipalCongruence

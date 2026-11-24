@@ -128,6 +128,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableT2LocalField
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory
 open scoped ENNReal
 

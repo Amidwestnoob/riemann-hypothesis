@@ -51,6 +51,8 @@ public import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.Admiss
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 open MeasureTheory Matrix
 
 noncomputable section

@@ -176,6 +176,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusCharacterLevi
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 set_option maxSynthPendingDepth 1
 
