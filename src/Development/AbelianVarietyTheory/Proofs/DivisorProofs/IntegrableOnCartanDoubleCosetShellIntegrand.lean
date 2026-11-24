@@ -43,6 +43,7 @@ theorem integrableOn_shell : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologi
     have h := (hφ.1.continuous.comp Units.continuous_val).mul hχc
     refine h.congr fun g => ?_
     simp [χ, mul_assoc]
+  have : BorelSpace (GL (Fin a) k) := GlobalTheory.SplitFlip.borel_GL
   exact hcont.continuousOn.integrableOn_compact hcomp
 
 end GlobalTheory.ShellInt
