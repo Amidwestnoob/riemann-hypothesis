@@ -225,6 +225,7 @@ theorem fundDomain_coords : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDec
   haveI := vb.covol.1
   haveI : SigmaFinite vb.μ := inferInstance
   haveI : SigmaFinite vU.ν := inferInstance
+  haveI : SFinite vU.ν := MeasureTheory.instSFiniteOfSigmaFinite
   have hκ : ∀ b' : Mx D ρ V₀.rank, Measurable (cComm V₀ b') := by
     intro b'
     have : ContinuousSub (Mx D ρ ρ) := IsTopologicalAddGroup.to_continuousSub
