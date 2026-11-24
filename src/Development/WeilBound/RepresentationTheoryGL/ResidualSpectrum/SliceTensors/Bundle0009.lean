@@ -231,7 +231,7 @@ theorem ltS_act (h : GA E N) (o : Op E N) (F : Sm E N) : ltS h (act o F) = act o
 theorem D_ct_smooth (r : ℕ) (φ : Sm E N) (hl : ∀ γ g, φ.1 (ratGL E N γ * g) = φ.1 g)
     (hlev : IsOpen {k | finRep E N k φ = φ}) :
     ∃ F : Sm E N, F.1 = An.ctn r φ.1 ∧ ∀ X, (lie E N X F).1 = An.ctn r (lie E N X φ).1 := by
-  letI : MeasurableSpace (BlockIx N r → Ad E) := borel _
+  letI : MeasurableSpace (BlockIx N r → Ad E) := _root_.borel _
   have : BorelSpace (BlockIx N r → Ad E) := ⟨rfl⟩
   obtain ⟨μ, hμ, hD, hint⟩ := JDict.exists_normed E N r
   obtain ⟨F, h1, h2⟩ := GlobalTheory.CompanionTheory.CTSmooth.ct_smooth E N r φ hl hlev μ _ hμ hD

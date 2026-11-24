@@ -441,7 +441,7 @@ theorem exists_alpha : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberFi
   obtain ⟨p, hp0, hp⟩ := GlobalTheory.T.exists_laplacianPolynomial_kills_harishChandraFinite E a L W hW X hX N
   obtain ⟨d, b, P, hPm, -, hP⟩ := GlobalTheory.T.laplacianPolynomialKernel_of_polynomial_laplacian E a p hp0
   let e := topE E a
-  letI : MeasurableSpace (glG E a) := borel _
+  letI : MeasurableSpace (glG E a) := _root_.borel _
   haveI : BorelSpace (glG E a) := ⟨rfl⟩
   let μ' : Measure (glG E a) := μ.map e.symm
   have hH : μ'.IsHaarMeasure := e.symm.isHaarMeasure_map μ

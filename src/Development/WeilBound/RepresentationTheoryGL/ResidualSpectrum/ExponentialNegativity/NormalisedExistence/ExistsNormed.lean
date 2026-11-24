@@ -56,7 +56,7 @@ section CT
 variable (E) (N r : ℕ)
 omit [_root_.NumberField.IsTotallyComplex E]
 
-theorem pi_eq_borel : (MeasurableSpace.pi : MeasurableSpace (BlockIx N r → Ad E)) = borel _ := by
+theorem pi_eq_borel : (MeasurableSpace.pi : MeasurableSpace (BlockIx N r → Ad E)) = _root_.borel _ := by
   have := GlobalTheory.AdelicUnitaryTop.secondCountable_adele E
   exact BorelSpace.measurable_eq
 
@@ -119,7 +119,7 @@ theorem dict_holds : Dict := by
   refine ⟨fun r t => aT_eq N r t, fun t => (tor_const N t).symm, lat_eq N, ?_⟩
   intro φ hφ r _ _
   have hL := GlobalTheory.CompanionTheory.LeftInv.isLeftInvariant_of_isAutForm E N φ hφ
-  letI : MeasurableSpace (BlockIx N r → Ad E) := borel _
+  letI : MeasurableSpace (BlockIx N r → Ad E) := _root_.borel _
   have : BorelSpace (BlockIx N r → Ad E) := ⟨rfl⟩
   refine ⟨?_, ?_⟩
   · obtain ⟨μ, hμ, hD, hint⟩ := exists_normed E N r

@@ -220,7 +220,7 @@ theorem exists_ct (r s : ℕ) (hr : 0 < r) (hs : 0 < s) (φ : Sm E (r + s)) (hφ
     (hc : ∀ τ u, cap (a := r + s) τ u φ = c τ u • φ) :
     ∃ G : Sm E (r + s), (∀ (v : BlockIx (r + s) r → Ad E) (g : GA E (r + s)), G.1 (unip v * g) = G.1 g) ∧
       (∀ τ u, cap (a := r + s) τ u G = c τ u • G) ∧ ∀ g, G.1 g = An.ctn r φ.1 g := by
-  letI : MeasurableSpace (BlockIx (r + s) r → Ad E) := borel _
+  letI : MeasurableSpace (BlockIx (r + s) r → Ad E) := _root_.borel _
   haveI : BorelSpace (BlockIx (r + s) r → Ad E) := ⟨rfl⟩
   obtain ⟨μ, 𝓕, hμ, h𝓕, e⟩ := ((dict_holds E (r + s)).2.2.2 φ hφ r hr (by omega)).1
   haveI : FiniteDimensional ℂ (orbSpan φ) := hφ.kfin

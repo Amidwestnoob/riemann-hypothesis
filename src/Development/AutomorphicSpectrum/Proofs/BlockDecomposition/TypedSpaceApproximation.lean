@@ -483,7 +483,7 @@ theorem conc : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (N : ℕ) 
     (∃ s : ℂ, δ ≤ ‖s‖ ∧ ∀ x, ∫ y, α y * ψ.1 (x * y) ∂μ = s * ψ.1 x) →
     (∫⁻ x in F, ‖ψ.1 x‖ₑ ^ 2 ∂μ) = 1 → 1 ≤ 2 * ∫⁻ x in Ω, ‖ψ.1 x‖ₑ ^ 2 ∂μ := by
   intro E _ _ _ N _ _ μ _ K W R ε δ α F hK hW hε hα hαc hδ hF
-  letI : MeasurableSpace (archGroup E N) := borel _
+  letI : MeasurableSpace (archGroup E N) := _root_.borel _
   haveI : BorelSpace (archGroup E N) := ⟨rfl⟩
   haveI : Countable (latticeGL E N) := GlobalTheory.DiscreteUnit.countable_latticeGL
   let ν : Measure (archGroup E N) := Measure.haar

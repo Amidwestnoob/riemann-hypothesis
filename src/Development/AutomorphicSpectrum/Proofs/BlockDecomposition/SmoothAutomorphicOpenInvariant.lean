@@ -185,7 +185,7 @@ theorem smooth_automorphic_open_invariant : ∀ (K : Type) [Field K] [NumberFiel
   have hφc : Continuous φ := continuous_of_rightInvariant hs hU hinv
   obtain ⟨N, hN⟩ := hbox ω hω
   refine ⟨N, fun k => ?_⟩
-  letI : MeasurableSpace (archGroup K n) := borel _
+  letI : MeasurableSpace (archGroup K n) := _root_.borel _
   haveI : BorelSpace (archGroup K n) := ⟨rfl⟩
   obtain ⟨μ, hμ⟩ : ∃ μ : Measure (archGroup K n), μ.IsHaarMeasure :=
     ⟨Measure.haar, inferInstance⟩

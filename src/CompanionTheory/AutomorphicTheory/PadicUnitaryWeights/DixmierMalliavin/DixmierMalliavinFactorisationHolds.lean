@@ -77,7 +77,7 @@ theorem factor_abs {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup
   have c2 : Continuous e.symm := hι.isEmbedding.continuous_iff.2 (continuous_subtype_val.congr fun x =>
     (congrArg Subtype.val (e.apply_symm_apply x)).symm)
   let E : G ≃ₜ H := ⟨e.toEquiv, c1, c2⟩
-  letI : MeasurableSpace H := borel H
+  letI : MeasurableSpace H := _root_.borel H
   haveI : BorelSpace H := ⟨rfl⟩
   haveI := e.isHaarMeasure_map μ c1 c2
   have hf' : f ∘ E.symm ∈ CcSmooth (fun x : H => ((x : 𝔸ˣ) : 𝔸)) := by

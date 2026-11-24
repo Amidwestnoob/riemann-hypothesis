@@ -147,7 +147,7 @@ theorem count_lattice (E : Type) [Field E] [NumberField E] [_root_.NumberField.I
 theorem moderate_growth : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (μ : Measure (GA E a)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant] (φ : Sm E a), (∀ γ g, φ.1 (ratGL E a γ * g) = φ.1 g) → (∀ t g, φ.1 (splitCentre E a t * g) = φ.1 g) → IsOpen {k | finRep E a k φ = φ} → FiniteDimensional ℂ (Submodule.span ℂ (Set.range fun k => cptRep E a k φ)) → FiniteDimensional ℂ (Submodule.span ℂ ((fun z : Module.End ℂ (Sm E a) => z φ) '' Zalg E a)) → MemL2Quotient (latticeGL E a) μ φ.1 → ∀ g, ∃ (C : ℝ) (N : ℕ), ∀ y, ‖φ.1 (g * infGL E a y)‖ ≤ C * height y ^ N := by
   intro E _ _ _ a μ _ _ φ hl hc hlev hK hZ hL g
   classical
-  letI : MeasurableSpace (AutomorphicForm.archGroup E a) := borel _
+  letI : MeasurableSpace (AutomorphicForm.archGroup E a) := _root_.borel _
   haveI : BorelSpace (AutomorphicForm.archGroup E a) := ⟨rfl⟩
   have hφc : Continuous φ.1 := ContAut.continuous_of_isOpen_stab E a φ hlev
   have h1O : (1 : AdelicGLn.FiniteAdelicGL E a) ∈ {k | finRep E a k φ = φ} := by
