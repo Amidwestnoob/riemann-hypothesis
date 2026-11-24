@@ -93,8 +93,8 @@ theorem IsHalf.prod_univ {Φ : Finset (E →+* ℂ)} (h : IsHalf Φ) {G : Type} 
   rw [Finset.prod_mul_distrib, ← Finset.prod_mul_prod_compl Φ]
   congr 1
   refine Finset.prod_bij' (fun σ _ => conjEmb σ) (fun σ _ => conjEmb σ) (fun σ hσ => ?_) (fun σ hσ => ?_)
-    (fun σ _ => conjEmb_conjEmb σ) (fun σ _ => conjEmb_conjEmb σ) fun σ _ => by rw [conjEmb_conjEmb]
-  · rw [h, conjEmb_conjEmb]; exact Finset.mem_compl.1 hσ
+    (fun σ _ => GlobalTheory.AllWt.conjEmb_conjEmb σ) (fun σ _ => GlobalTheory.AllWt.conjEmb_conjEmb σ) fun σ _ => by rw [GlobalTheory.AllWt.conjEmb_conjEmb]
+  · rw [h, GlobalTheory.AllWt.conjEmb_conjEmb]; exact Finset.mem_compl.1 hσ
   · exact Finset.mem_compl.2 ((h σ).1 hσ)
 
 theorem prod_char_eq {Φ : Finset (E →+* ℂ)} (h : IsHalf Φ) {G : Type} [CommGroup G] (t : Ix Dw → G) :
@@ -104,7 +104,7 @@ theorem prod_char_eq {Φ : Finset (E →+* ℂ)} (h : IsHalf Φ) {G : Type} [Com
       ∏ σ, ∏ i, t (some ⟨σ, i⟩) ^ Dw.mult (conjEmb σ) := by
     rw [h.prod_univ, Fintype.prod_sigma, ← Finset.prod_coe_sort Φ]
     refine Finset.prod_congr rfl fun τ _ => ?_
-    rw [Fintype.prod_prod_type, conjEmb_conjEmb]
+    rw [Fintype.prod_prod_type, GlobalTheory.AllWt.conjEmb_conjEmb]
     simp only [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin, Finset.prod_pow]
     exact mul_comm _ _
   rw [e1, Fintype.prod_sigma, Fintype.prod_option, Fintype.prod_sigma, ← Finset.prod_mul_distrib]

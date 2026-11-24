@@ -60,7 +60,7 @@ def sec (a0 V : Mn n) : M2 n := (fromBlocks 1 (reP V) 0 1 : M2 n) * fromBlocks (
 theorem sec_props (a0 V : Mn n) (hb : (bO a0 V).det ≠ 0) :
     InG (sec a0 V) ∧ (sec a0 V).det ≠ 0 ∧ zOfE (sec a0 V) = fM a0 V := by
   have hbH : IsUnit (bO a0 V)ᴴ.det := by rw [det_conjTranspose]; exact (isUnit_iff_ne_zero.mpr hb).star
-  refine ⟨inG_mul (inG_upper (reP_herm V)) (inG_diag hb), ?_, ?_⟩
+  refine ⟨PositivityTheory.Rg.Sw.LVs.HolB.inG_mul (inG_upper (reP_herm V)) (inG_diag hb), ?_, ?_⟩
   · unfold sec
     rw [det_mul, det_fromBlocks_zero₂₁, det_fromBlocks_zero₂₁, det_one, one_mul, one_mul, det_nonsing_inv]
     refine mul_ne_zero hb ?_

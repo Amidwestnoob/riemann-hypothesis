@@ -34,20 +34,20 @@ theorem fst_comp_eq_unit (ht : Γ.IsTorsionAlong G x N i) {y : Spec (CommRingCat
   have := ht.inj (Over.mk (𝟙 _)) (Over.homMk (a ≫ y) (by
       change (a ≫ y) ≫ Γ.G.hom = 𝟙 _
       rw [Category.assoc, y1, ha])) 1 (by
-    rw [one_left_eq]
+    rw [PositivityTheory.HtPt.Ge.Tan.one_left_eq]
     simp only [Over.homMk_left, Over.mk_hom, Category.id_comp, Category.assoc]
-    rw [unit_i' Γ ht, y3]
+    rw [PositivityTheory.HtPt.Ge.Tan.unit_i' Γ ht, y3]
     have := congrArg Over.Hom.left h1
-    rw [one_left_eq, Over.comp_left] at this
+    rw [PositivityTheory.HtPt.Ge.Tan.one_left_eq, Over.comp_left] at this
     exact this)
   have h := congrArg Over.Hom.left this
-  rw [one_left_eq] at h
+  rw [PositivityTheory.HtPt.Ge.Tan.one_left_eq] at h
   simpa [a] using h
 
 theorem mem_of_fst_comp {y : Spec (CommRingCat.of (TrivSqZeroExt R V)) ⟶ Γ.G.left}
     (e : Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) ≫ y = η[Γ.G].left)
     (hU : ∀ z, η[Γ.G].left z ∈ U) (z) : y z ∈ U := by
-  obtain ⟨z', rfl⟩ := zsec_surj (R := R) (V := V) z
+  obtain ⟨z', rfl⟩ := PositivityTheory.HtPt.Ge.Tan.zsec_surj (R := R) (V := V) z
   have e2 : y (Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) z') = η[Γ.G].left z' :=
     congrArg (fun k : Spec (CommRingCat.of R) ⟶ _ => k z') e
   rw [e2]
@@ -60,9 +60,9 @@ theorem rel_exists_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.btOr
   set f₀ := Spec.map (CommRingCat.ofHom (derRing (ev1 Γ) ψ).toRingHom) with hf₀
   have hr : Set.range f₀ ⊆ Set.range (U.ι ≫ j) := by
     rintro _ ⟨z, rfl⟩
-    obtain ⟨z', rfl⟩ := zsec_surj (R := R) (V := V) z
-    have e := spec_fst_comp Γ ψ
-    rw [← unit_j Γ hj] at e
+    obtain ⟨z', rfl⟩ := PositivityTheory.HtPt.Ge.Tan.zsec_surj (R := R) (V := V) z
+    have e := PositivityTheory.HtPt.Ge.Tan.spec_fst_comp Γ ψ
+    rw [← PositivityTheory.HtPt.Ge.Tan.unit_j Γ hj] at e
     have e2 : f₀ (Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) z') = j (η[Γ.G].left z') := by
       exact congrArg (fun k : Spec (CommRingCat.of R) ⟶ _ => k z') e
     refine ⟨⟨_, hU z'⟩, ?_⟩
@@ -73,7 +73,7 @@ theorem rel_exists_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.btOr
   have yj : y ≫ j = f₀ := by simpa [y] using y'j
   have y1 : y ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom (algebraMap R (TrivSqZeroExt R V))) := by
     rw [← hj.isOver, ← Category.assoc, yj]
-    exact spec_alg_comp Γ ψ
+    exact PositivityTheory.HtPt.Ge.Tan.spec_alg_comp Γ ψ
   let v : ob x V ⟶ G := Over.homMk (y ≫ i) (by
     change (y ≫ i) ≫ G.hom = _ ≫ x
     rw [Category.assoc, ht.isOver, ← Category.assoc, y1])
@@ -86,15 +86,15 @@ theorem rel_exists_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.btOr
     have e0 : Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) ≫ y' =
         IsOpenImmersion.lift U.ι η[Γ.G].left rη := by
       rw [← cancel_mono (U.ι ≫ j), Category.assoc, y'j, ← Category.assoc (IsOpenImmersion.lift U.ι η[Γ.G].left rη), hl,
-        unit_j Γ hj]
-      exact spec_fst_comp Γ ψ
+        PositivityTheory.HtPt.Ge.Tan.unit_j Γ hj]
+      exact PositivityTheory.HtPt.Ge.Tan.spec_fst_comp Γ ψ
     have e1 : (zsec x : Over.mk x ⟶ ob x V).left ≫ y = η[Γ.G].left := by
       change Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) ≫ y' ≫ U.ι = _
       rw [← Category.assoc, e0, hl]
     apply Over.OverMorphism.ext
-    rw [one_left_eq, Over.comp_left]
+    rw [PositivityTheory.HtPt.Ge.Tan.one_left_eq, Over.comp_left]
     change (zsec x : Over.mk x ⟶ ob x V).left ≫ y ≫ i = x ≫ _
-    rw [← Category.assoc, e1, unit_i' Γ ht]
+    rw [← Category.assoc, e1, PositivityTheory.HtPt.Ge.Tan.unit_i' Γ ht]
   · exact (ht.kernel (Over.mk (Spec.map (CommRingCat.ofHom (algebraMap R (TrivSqZeroExt R V))))) v).2
       ⟨Over.homMk y y1, rfl⟩
 
@@ -143,7 +143,7 @@ theorem exists_theta_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.bt
   have nat : ∀ (V : Type) [AddCommGroup V] [Module R V] [Module Rᵐᵒᵖ V] [IsCentralScalar R V]
       (ψ : omega (Γ.btOrder ⊤) →ₗ[R] V), TanRel Γ i j ψ (hom x (ψ ∘ₗ θ) ≫ u) := by
     intro V _ _ _ _ ψ
-    have := rel_map Γ hrel ψ
+    have := PositivityTheory.HtPt.Ge.Tan.rel_map Γ hrel ψ
     rwa [LinearMap.comp_id, ← hθ, ← Category.assoc, LieEx.hom_comp] at this
   have zero : ∀ (V : Type) [AddCommGroup V] [Module R V] [Module Rᵐᵒᵖ V] [IsCentralScalar R V]
       (ψ : omega (Γ.btOrder ⊤) →ₗ[R] V), ψ ∘ₗ θ = 0 → ψ = 0 := by
@@ -152,10 +152,10 @@ theorem exists_theta_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.bt
     have h2 := nat V 0
     rw [h] at h1
     rw [LinearMap.zero_comp] at h2
-    exact rel_unique Γ ht h1 h2
+    exact PositivityTheory.HtPt.Ge.Tan.rel_unique Γ ht h1 h2
   have hN : N • θ = 0 := by
-    have h1 : hom x (N • θ) ≫ u = 1 := by rw [hom_nsmul u hu, hθ, hvN]
-    have h2 : hom x (0 : P →ₗ[R] omega (Γ.btOrder ⊤)) ≫ u = 1 := hom_zero_comp u hu
+    have h1 : hom x (N • θ) ≫ u = 1 := by rw [PositivityTheory.HtPt.Ge.Tan.hom_nsmul u hu, hθ, hvN]
+    have h2 : hom x (0 : P →ₗ[R] omega (Γ.btOrder ⊤)) ≫ u = 1 := PositivityTheory.HtPt.Ge.Tan.hom_zero_comp u hu
     have hz : zsec x ≫ (1 : ob x (omega (Γ.btOrder ⊤)) ⟶ G) = 1 := MonObj.comp_one _
     exact (huniv _ 1 hz).unique h1 h2
   refine ⟨θ, ?_, hN, ?_⟩
@@ -167,8 +167,8 @@ theorem exists_theta_open (ht : Γ.IsTorsionAlong G x N i) (hj : Γ.IsEmb (Γ.bt
     rw [← LinearMap.range_eq_top, ← Submodule.ker_mkQ (LinearMap.range θ), this, LinearMap.ker_zero]
   · intro V _ _ _ _ φ hφ
     have h1 : zsec x ≫ hom x φ ≫ u = 1 := by rw [← Category.assoc, zsec_hom, hu]
-    have h2 : (hom x φ ≫ u) ^ N = 1 := by rw [← hom_nsmul u hu, hφ, hom_zero_comp u hu]
-    obtain ⟨ψ, hψ⟩ := rel_of_torsion Γ ht hj _ h1 h2
+    have h2 : (hom x φ ≫ u) ^ N = 1 := by rw [← PositivityTheory.HtPt.Ge.Tan.hom_nsmul u hu, hφ, PositivityTheory.HtPt.Ge.Tan.hom_zero_comp u hu]
+    obtain ⟨ψ, hψ⟩ := PositivityTheory.HtPt.Ge.Tan.rel_of_torsion Γ ht hj _ h1 h2
     have h3 := rel_eq_open Γ U ht hU hψ (nat V ψ) h1 (by rw [← Category.assoc, zsec_hom, hu])
     refine ⟨ψ, (huniv V _ h1).unique h3.symm rfl, hψ⟩
 
@@ -259,7 +259,7 @@ theorem omega_open {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T]
           ((kap (Ideal.span {(N : R)})).toRingHom.comp (derRing (ev1 Γ) ψ).toRingHom)) →
       valAt v ⊤ le_top s = TrivSqZeroExt.inr (ψ ((augIdeal (Γ.btOrder ⊤)).toCotangent f)) := by
     intro ψ v hv
-    rw [val_of_emb Γ hj f.1 s hs v _ hv]
+    rw [PositivityTheory.HtPt.Ge.Tan.val_of_emb Γ hj f.1 s hs v _ hv]
     change kap _ (derRing (ev1 Γ) ψ f.1) = _
     rw [derRing_of_mem (ev1 Γ) ψ f, kap_inr]
     rfl
@@ -276,7 +276,7 @@ theorem omega_open {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T]
       rw [hval ψ v' h3', ← hw₀, hψ] at a1
       have a2 := TrivSqZeroExt.inr_injective a1
       rw [LinearMap.sub_apply, map_sub, a2, sub_self]
-    obtain ⟨u', hu'⟩ := dual_eq_smul N (w - w₀) hd
+    obtain ⟨u', hu'⟩ := PositivityTheory.HtPt.Ge.Tan.dual_eq_smul N (w - w₀) hd
     have : θ (w - w₀) = 0 := (hker _).2 ⟨u', hu'⟩
     rw [map_sub, sub_eq_zero] at this
     rw [this, hw₀]
@@ -386,7 +386,7 @@ theorem der_unique [Finite T] [Module.Projective R L]
           Ideal.Quotient.mk (Ideal.span {(N : R)}) (w e) := by
         simpa using congrArg TrivSqZeroExt.snd h3
       rw [LinearMap.sub_apply, map_sub, h4, sub_self]
-    obtain ⟨u, hu'⟩ := dual_eq_smul N (w' - w) hd
+    obtain ⟨u, hu'⟩ := PositivityTheory.HtPt.Ge.Tan.dual_eq_smul N (w' - w) hd
     exact ⟨u, by rw [← hu']; abel⟩
   · rintro ⟨u, rfl⟩
     refine ⟨s, hs, fun e => ?_⟩

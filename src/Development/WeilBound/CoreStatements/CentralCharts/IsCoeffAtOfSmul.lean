@@ -101,8 +101,8 @@ theorem exists_cptOver (𝔐 : HodgeCpt Y S y) :
   obtain ⟨Z⟩ := nonempty_cptOver_of_fraction hβ.1 hβ.2.2 Y (irreducibleComponent u)
     (irreducibleComponent_mem_irreducibleComponents u)
   have hz : genPt (Z.ξ₀ ≫ Y.j) ⤳ Y.j u := ((Z.closure u).1 mem_irreducibleComponent).map Y.j.continuous
-  exact ⟨_, Z, ((genPt_specializes_of_specializes _ 𝔐.gen₀ hu' hz).antisymm
-      (genPt_specializes_of_specializes _ Z.gen hz hu')).eq⟩
+  exact ⟨_, Z, ((GlobalTheory.CompanionTheory.Ar.Flat.genPt_specializes_of_specializes _ 𝔐.gen₀ hu' hz).antisymm
+      (GlobalTheory.CompanionTheory.Ar.Flat.genPt_specializes_of_specializes _ Z.gen hz hu')).eq⟩
 
 theorem isGeom_of_split (hS : SplitComps Y) {U : Set (Xo.XF c)} (Z : CptOver Y U) : Z.IsGeom := by
   rintro x ⟨f, hf, hx⟩

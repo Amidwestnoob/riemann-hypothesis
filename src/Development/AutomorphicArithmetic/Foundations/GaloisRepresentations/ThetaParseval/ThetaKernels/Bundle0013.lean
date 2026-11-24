@@ -280,7 +280,7 @@ theorem exists_beta_k {B : Base F E} (hB : _root_.UpperTheory.TP.W.GoodK σ B) {
     (h1 : a₁ ∈ Pres v X) (h2 : a₂ ∈ Pres v X) (h : a₁ * x + a₂ * y = 1) (ax : At (evFin F v) (x - 1)) (ay : At (evFin F v) (y - 1)) :
     ∃ b b' t', Adj (cA σ) (incM F X.J) b b' ∧ b + b' = -1 ∧ b ∈ Pres v X ∧ t' ∈ Pres v X ∧ (y + b * (y - x)) * t' = 1 := by
   have hσ := cm_conj_conj hB.cm
-  have cc := cA_cA (F := F) hσ
+  have cc := _root_.PositivityTheory.ThK.Vac.cA_cA (F := F) hσ
   have hL := hX.lat
   obtain ⟨K, _, ρ, r1, r2, r3⟩ := _root_.GlobalTheory.ThK.Dbl.Vf2.exists_res_k hB v
   obtain ⟨P, p1, p2⟩ := Frames.exists_rational_frame X.L v

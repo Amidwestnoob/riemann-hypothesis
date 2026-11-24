@@ -66,10 +66,10 @@ def holSub (B : Set V) (k : V → (A →ₐ[K] CAt σ)) : Subalgebra K A where
     exact differentiableOn_const _
 
 theorem mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {t : A} :
-    t ∈ holSub B k ↔ DifferentiableOn ℂ (fun b => Formalism.L2.PjFree.toC (k b t)) B := Iff.rfl
+    t ∈ Formalism.L2.PjFree.holSub B k ↔ DifferentiableOn ℂ (fun b => Formalism.L2.PjFree.toC (k b t)) B := Iff.rfl
 
-theorem inv_mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {d x : A} (hx : x ∈ holSub B k)
-    (h : d * x = 1) : d ∈ holSub B k := by
+theorem inv_mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {d x : A} (hx : x ∈ Formalism.L2.PjFree.holSub B k)
+    (h : d * x = 1) : d ∈ Formalism.L2.PjFree.holSub B k := by
   rw [mem_holSub] at hx ⊢
   have key : ∀ b, Formalism.L2.PjFree.toC (k b d) * Formalism.L2.PjFree.toC (k b x) = 1 := fun b => by
     rw [← toC_mul, ← map_mul, h, map_one, toC_one]
@@ -122,19 +122,19 @@ theorem differentiableOn_evR : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] 
     exact differentiableOn_empty
   have : Nonempty (A.R →ₐ[c.F] CAt σ) := ⟨(hk b₀ hb₀).choose⟩
   choose! kk hkk using hk
-  have hX : ∀ τ i j, X τ i j ∈ holSub B kk := by
+  have hX : ∀ τ i j, X τ i j ∈ Formalism.L2.PjFree.holSub B kk := by
     intro τ i j
     rw [mem_holSub]
     refine (hG τ i j).congr fun b hb => ?_
     show Formalism.L2.PjFree.toC (kk b (X τ i j)) = Formalism.L2.PjFree.toC (G b τ i j)
     rw [← (hkk b hb).2.1 τ]
     rfl
-  have hs : (s : A.R) ∈ holSub B kk := by
+  have hs : (s : A.R) ∈ Formalism.L2.PjFree.holSub B kk := by
     rw [mem_holSub]
     refine ha.congr fun b hb => ?_
     show Formalism.L2.PjFree.toC (kk b (s : A.R)) = Formalism.L2.PjFree.toC (a b)
     rw [(hkk b hb).2.2]
-  have hA' := _root_.GlobalTheory.frameRing_subalgebra_eq_top c.F (E →+* ℂ) (fun τ => Dw.mult τ) p.R A.R π X s hFR (holSub B kk)
+  have hA' := _root_.GlobalTheory.frameRing_subalgebra_eq_top c.F (E →+* ℂ) (fun τ => Dw.mult τ) p.R A.R π X s hFR (Formalism.L2.PjFree.holSub B kk)
     (fun t => by
       rw [mem_holSub]
       refine (hψ t).congr fun b hb => ?_
@@ -147,7 +147,7 @@ theorem differentiableOn_evR : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] 
       refine ⟨((v⁻¹ : (A.R)ˣ) : A.R), inv_mem_holSub (det_mem _ (X τ) (hX τ)) ?_, ?_⟩ <;>
         · rw [← hv]
           exact Units.inv_mul v)
-  have he : f A u ∈ holSub B kk := by
+  have he : f A u ∈ Formalism.L2.PjFree.holSub B kk := by
     rw [hA']
     exact Algebra.mem_top
   rw [mem_holSub] at he
@@ -241,7 +241,7 @@ theorem readSec_unfOf {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult
     (hW : ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), ∀ f ∈ sec Xo c a n, ∀ (t : Ix Dw → (CAt σ)ˣ)
       (y y' : FrPt Xo c (CAt σ)), FrBor t y y' → evR Xo c f y' = wchar (ex Dw a n) t * evR Xo c f y) :
     ∀ a n, Dom a n → ∀ f ∈ sec Xo c a n, ∀ k,
-      ((unfOf e F M un).X k).IsSec (laU (unfOf e F M un) a n k) (Formalism.L2.PjFree.rdU (unfOf e F M un) f k) := by
+      ((unfOf e F M un).X k).IsSec (Formalism.L2.PjFree.laU (unfOf e F M un) a n k) (Formalism.L2.PjFree.rdU (unfOf e F M un) f k) := by
   intro a n hd f hf k
   refine ⟨hun.2.2.2 a n hd f hf k, fun x hx b hb => ?_, fun γ hγ x hx => ?_⟩
   · have hxb : rmul x b ∈ ((unfOf e F M un).X k).dom := (hM.domStab k x hx).1 b hb
@@ -252,13 +252,13 @@ theorem readSec_unfOf {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult
   · have hxg : lact γ x ∈ ((unfOf e F M un).X k).dom := (hM.domStab k x hx).2 γ hγ
     obtain ⟨t, ht, hw⟩ := hun.2.2.1 k γ hγ ⟨x, hx⟩ hxg
     refine (rdU_of_mem _ f k hxg).trans ?_
-    rw [rdU_of_mem _ f k hx, show ((unfOf e F M un).X k).χ (laU (unfOf e F M un) a n k) γ = 1 from hM.chi k _ γ,
+    rw [rdU_of_mem _ f k hx, show ((unfOf e F M un).X k).χ (Formalism.L2.PjFree.laU (unfOf e F M un) a n k) γ = 1 from hM.chi k _ γ,
       ← hw a n hd]
     exact congrArg Formalism.L2.PjFree.toC (hW a n f hf t _ _ ht)
 
 end
 
-theorem isUnf_built : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.Pj.relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)), Formalism.L2.PjFree.GoodEmb c σ → ModelBase M → NegXi M → FramesOK e F M un → IsUnf (unfOf e F M un) := by
+theorem isUnf_built : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.Pj.relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)), Formalism.L2.PjFree.GoodEmb c σ → ModelBase M → NegXi M → FramesOK e F M un → Formalism.L2.PjFree.IsUnf (unfOf e F M un) := by
   intro hS E _ _ _ H Dw l Xo c σ g e F r M un hσ hM hN hun
   have hred : _root_.IsReduced (CAt σ) := inferInstanceAs (_root_.IsReduced ℂ)
   exact ⟨hM.rank, hM.type,
@@ -395,7 +395,7 @@ open scoped Matrix nonZeroDivisors
 
 namespace GlobalTheory.FrameUnif
 
-theorem test_value_eq_const_mul_reading : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ r), IsUnf U → ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (p : TRing c.F) (y : FrPt Xo c p.R) (ψ : p.R →ₐ[c.F] CAt σ), ∃ (k : U.Comp) (x : (U.X k).dom) (u : ℂ), ∀ f ∈ sec Xo c a n, Formalism.L2.PjFree.toC (ψ (f p y)) = u * Formalism.L2.PjFree.rdU U f k x.1 := by
+theorem test_value_eq_const_mul_reading : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ r), Formalism.L2.PjFree.IsUnf U → ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ) (p : TRing c.F) (y : FrPt Xo c p.R) (ψ : p.R →ₐ[c.F] CAt σ), ∃ (k : U.Comp) (x : (U.X k).dom) (u : ℂ), ∀ f ∈ sec Xo c a n, Formalism.L2.PjFree.toC (ψ (f p y)) = u * Formalism.L2.PjFree.rdU U f k x.1 := by
   intro hSB E _ _ _ H Dw l Xo c σ r U hU a n p y ψ
   obtain ⟨-, -, hWD, -, -, -, hBor⟩ := GlobalTheory.T.framedModuli_algebraicLaws_chart_weight_integrality hSB E H Dw l Xo c
   obtain ⟨z, hz⟩ := GlobalTheory.Frames.FramedBaseChange.exists_frMap hSB E H Dw l Xo c p.R (CAt σ) ψ y

@@ -93,7 +93,7 @@ variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H
 
 theorem fib_single {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ))
     (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1))
-    (hσ : GoodEmb c σ) (hr : r = Dw.p + Dw.q) (k : Fin F.n) (Y : Data E r) (φ : (F.Di k).La ≃ₗ[𝓞 E] Y.Λ)
+    (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hr : r = Dw.p + Dw.q) (k : Fin F.n) (Y : Data E r) (φ : (F.Di k).La ≃ₗ[𝓞 E] Y.Λ)
     (hty : Y.p0 = Dw.q ∧ ∀ τ : E →+* ℂ, τ ∈ Y.Ψ ↔ τ (H.rt : E) = H.rt0)
     (hchi : ∀ la γ, Y.χ la γ = 1)
     (hef : ∀ a b, (((F.Di k).EF a b : ℤ) : ℚ) =
@@ -107,8 +107,8 @@ theorem fib_single {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ
     (hneg : ∀ τ ∈ Y.Ψ, (τ Y.ξ0).im < 0) :
     ∀ (x x' : Y.dom) (Pm Pm' : (F.Di k).La →+ (Fin g → ℂ))
       (v v' : ∀ τ, Fin (Dw.mult τ) → (Sp (DualNumber (CAt σ)) ⟶ Xo.univ.t.G.left)),
-      (∀ a j, Pm a j = perFr Y x.1 (φ a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
-      (∀ a j, Pm' a j = perFr Y x'.1 (φ a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
+      (∀ a j, Pm a j = Formalism.L2.PjFree.perFr Y x.1 (φ a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
+      (∀ a j, Pm' a j = Formalism.L2.PjFree.perFr Y x'.1 (φ a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
       F.u k Pm = F.u k Pm' →
       (∀ τ (i : Fin (Dw.mult τ)), IsDerivAt0 (fun z => (F.ex k Pm z).left) (Pi.single (e.symm ⟨τ, i⟩) 1) (v τ i)) →
       (∀ τ (i : Fin (Dw.mult τ)), IsDerivAt0 (fun z => (F.ex k Pm' z).left) (Pi.single (e.symm ⟨τ, i⟩) 1)
@@ -140,8 +140,8 @@ theorem fib_single {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ
     refine ⟨Function.update (fun i => ⟨M0.X i, M0.φ i⟩) k ⟨Y, φ⟩, ?_, Function.update_self ..⟩
     rw [Function.forall_update_iff _ Good]
     exact ⟨⟨hty, hchi, hef, hgam, hneg⟩, fun i _ => ⟨hM0.type i, hM0.chi i, hM0.ef i, hM0.gam i, hN0 i⟩⟩
-  let M : ModelsOf F r := ⟨fun i => (f i).1, fun i => (f i).2⟩
-  have hM : ModelBase M :=
+  let M : GlobalTheory.FrameUnif.ModelsOf F r := ⟨fun i => (f i).1, fun i => (f i).2⟩
+  have hM : GlobalTheory.FrameUnif.ModelBase M :=
     { rank := hr
       type := fun i => (hf i).1
       chi := fun i => (hf i).2.1
@@ -152,8 +152,8 @@ theorem fib_single {g : ℕ} (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ
   have hT := GlobalTheory.FibreFlag.fibTri E H Dw l Xo c σ g e F r M hσ hM fun i => (hf i).2.2.2.2
   have key : ∀ (x x' : (f k).1.dom) (Pm Pm' : (F.Di k).La →+ (Fin g → ℂ))
       (v v' : ∀ τ, Fin (Dw.mult τ) → (Sp (DualNumber (CAt σ)) ⟶ Xo.univ.t.G.left)),
-      (∀ a j, Pm a j = perFr (f k).1 x.1 ((f k).2 a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
-      (∀ a j, Pm' a j = perFr (f k).1 x'.1 ((f k).2 a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
+      (∀ a j, Pm a j = Formalism.L2.PjFree.perFr (f k).1 x.1 ((f k).2 a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
+      (∀ a j, Pm' a j = Formalism.L2.PjFree.perFr (f k).1 x'.1 ((f k).2 a : Fin r → E) (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) →
       F.u k Pm = F.u k Pm' →
       (∀ τ (i : Fin (Dw.mult τ)), IsDerivAt0 (fun z => (F.ex k Pm z).left) (Pi.single (e.symm ⟨τ, i⟩) 1) (v τ i)) →
       (∀ τ (i : Fin (Dw.mult τ)), IsDerivAt0 (fun z => (F.ex k Pm' z).left) (Pi.single (e.symm ⟨τ, i⟩) 1)

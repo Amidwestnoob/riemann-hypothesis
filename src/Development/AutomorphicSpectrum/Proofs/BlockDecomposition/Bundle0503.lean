@@ -288,7 +288,7 @@ theorem exists_evVal : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpa
   have hsub : ∀ x ∈ box (n + 1) (c * r⁻¹), ((1 : GL (Fin (n + 1)) k) : Matrix (Fin (n + 1)) (Fin (n + 1)) k) *ᵥ x ∈ box (n + 1) t := by
     intro x hx
     rw [Units.val_one, one_mulVec]
-    rw [mem_box] at hx ⊢
+    rw [GlobalTheory.CompanionTheory.BZOnto.PerpSmall.mem_box] at hx ⊢
     exact fun i => show valuation k (x i) ≤ valuation k (t : k) from
       le_trans (show valuation k (x i) ≤ valuation k ((c * r⁻¹ : kˣ) : k) from hx i) ht
   have h := hr (c * r⁻¹) hc' t hsub

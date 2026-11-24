@@ -270,7 +270,7 @@ theorem absA_le {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Reciproc
       have := h ⟨conjEmb b, conj_mem hb⟩ ⟨Dw.p + (Dw.q - 1 - i), by omega⟩
       have e1 : ¬ (Dw.p + (Dw.q - 1 - i) < Dw.p) := by omega
       have e2 : Dw.q - 1 - (Dw.p + (Dw.q - 1 - i) - Dw.p) = i := by omega
-      simp only [laOf, weightOf, ite_eq_right e1, e2, conjEmb_conjEmb, Int.cast_sub, Int.cast_neg, Int.cast_natCast] at this
+      simp only [laOf, weightOf, ite_eq_right e1, e2, GlobalTheory.AllWt.conjEmb_conjEmb, Int.cast_sub, Int.cast_neg, Int.cast_natCast] at this
       linarith [neg_abs_le (-(a (b, i) : ℝ) - ((n / 2 : ℕ) : ℝ))]
   unfold GlobalTheory.LevGeo.absA
   rw [Nat.cast_sum, ← NumberField.Embeddings.card E ℂ, ← nsmul_eq_mul, ← Finset.card_univ]

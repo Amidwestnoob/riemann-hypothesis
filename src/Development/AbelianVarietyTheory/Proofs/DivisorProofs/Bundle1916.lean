@@ -242,7 +242,7 @@ theorem wtOf_parWt_anti (w : Psi H → ℤ) (τ : E →+* ℂ) (i j : ℕ) (hij 
   · have hq : j < Dw.q := by simpa [Datum.mult, h] using hj
     have e1 := wtOf_small (parWt Dw w) 0 ⟨conjEmb τ, conj_mem h⟩ j hq
     have e2 := wtOf_small (parWt Dw w) 0 ⟨conjEmb τ, conj_mem h⟩ i (by omega)
-    simp only [conjEmb_conjEmb] at e1 e2
+    simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at e1 e2
     exact (e1.trans e2.symm).le
 
 theorem wtOf_parWt_neg (w : Psi H → ℤ) : wtOf Dw (parWt Dw (-w)) 0 = -wtOf Dw (parWt Dw w) 0 := by

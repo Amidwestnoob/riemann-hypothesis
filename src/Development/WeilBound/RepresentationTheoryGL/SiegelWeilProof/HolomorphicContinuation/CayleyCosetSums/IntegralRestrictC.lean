@@ -62,11 +62,11 @@ theorem continuous_twR [IsFiniteMeasure μK] (hβc : Continuous β) : Continuous
   have hc : Continuous (Function.uncurry fun (X : M2 n) (k : KR n) =>
       (F0 m 0 e (k : GR n))⁻¹ * (β ((mR (k : GR n))ᴴ * X) : ℂ)) := by
     refine (hF.comp continuous_snd).mul (Complex.continuous_ofReal.comp (hβc.comp ?_))
-    exact ((continuous_mR.comp (continuous_subtype_val.comp continuous_snd)).matrix_conjTranspose).matrix_mul
+    exact ((PositivityTheory.Rg.Sw.HSt.GRH.continuous_mR.comp (continuous_subtype_val.comp continuous_snd)).matrix_conjTranspose).matrix_mul
       continuous_fst
   have h := continuous_parametric_integral_of_continuous (μ := μK) hc isCompact_univ
   simp only [Measure.restrict_univ] at h
-  exact h.comp continuous_mR
+  exact h.comp PositivityTheory.Rg.Sw.HSt.GRH.continuous_mR
 
 theorem integral_restrict_C (F : GR n → ℂ) (hF : ∀ u, u ∉ (mR : GR n → M2 n) ⁻¹' tsupport (tw m e μK β) → F u = 0) :
     ∫ u, F u ∂ν = ∫ u, F u ∂(ν.restrict ((mR : GR n → M2 n) ⁻¹' tsupport (tw m e μK β))) :=
