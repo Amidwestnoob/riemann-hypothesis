@@ -69,6 +69,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1748
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowAtOfRatStep
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 set_option synthInstance.maxHeartbeats 200000
 
 section

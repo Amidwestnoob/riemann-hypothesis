@@ -9,6 +9,8 @@ public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0027
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
+
 set_option autoImplicit false
 
 noncomputable section

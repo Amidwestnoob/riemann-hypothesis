@@ -342,6 +342,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EvKEqSum
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 open scoped TensorProduct
 
 namespace GlobalTheory.EvaluationSum

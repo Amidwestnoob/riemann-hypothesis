@@ -53,6 +53,8 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
+
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain
