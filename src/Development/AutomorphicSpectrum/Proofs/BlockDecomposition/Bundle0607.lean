@@ -456,6 +456,7 @@ theorem hasCompactSupport_ker {U : Subgroup (GL (Fin a) (Af E))}
     (hUc : IsCompact (U : Set (GL (Fin a) (Af E)))) {β : Lie E a → ℂ} (hβ : IsTest β) :
     HasCompactSupport (ker U β) := by
   have hT := isCompact_setOf_toL_mem (E := E) (a := a) hβ.compact hβ.support
+  haveI : T2Space (GA E a) := GlobalTheory.CuspRep.CuspidalL2GL.t2Space_GA E a
   refine HasCompactSupport.intro (K := (fun p : GL (Fin a) (Cinf E) × GL (Fin a) (Af E) =>
       infGL E a p.1 * finGL E a p.2) '' ({y : GL (Fin a) (Cinf E) | toL y.val ∈ tsupport β} ×ˢ
         (U : Set (GL (Fin a) (Af E)))))
