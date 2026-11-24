@@ -227,6 +227,8 @@ theorem exists_common_field {K : Type} [Field K] [Countable K] (σ : K →+* ℂ
     refine (IntermediateField.cardinalMk_adjoin_le K s).trans ?_
     simp
   letI : Algebra K ℂ := σ.toAlgebra
+  have : FaithfulSMul K L :=
+    (faithfulSMul_iff_algebraMap_injective K L).mpr (algebraMap K L).injective
   obtain ⟨j⟩ := GlobalTheory.nonempty_algHom_complex_of_countable K L
   refine ⟨L, inferInstance, inferInstance, L.val, j,
     φ.codRestrict L.toSubalgebra fun a => IntermediateField.subset_adjoin K s (Or.inl ⟨a, rfl⟩),
