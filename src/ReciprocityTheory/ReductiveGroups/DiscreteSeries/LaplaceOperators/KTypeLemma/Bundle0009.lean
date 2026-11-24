@@ -79,7 +79,7 @@ theorem contraction_compactWordAction (ε : Fin n → Bool) (E : Fin n → Fin n
 
 theorem sT_sA (ε : Fin n → Bool) (E : Fin n → Fin n → Module.End ℂ M) (V : Submodule ℂ M)
     (hV : IsKStableSub ε E V) (hE : IsGlRep E) (a b : Fin n) (hab : ε a = ε b) (x : KS (n := n) V) :
-    sT E V (sA ε E V hV a b x) = tensV E a b (sT E V x) := by
+    sT E V (sA ε E V hV a b x) = _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.tensV E a b (sT E V x) := by
   have e : sA ε E V hV a b x = Cone.compactWordAction ε E V hV a b x + Cone.sC V a b x := by
     simp [Cone.compactWordAction]
   funext d
@@ -132,7 +132,7 @@ theorem lift_highestWeightVector {M : Type*} [NormedAddCommGroup M] [InnerProduc
     (E : Fin n → Fin n → Module.End ℂ M) (V : Submodule ℂ M) (hV : IsKStableSub ε E V)
     [FiniteDimensional ℂ V] (hE : IsGlRep E)
     (hU : ∀ a b, ε a = ε b → ∀ x y : M, ⟪E a b x, y⟫_ℂ = ⟪x, E b a y⟫_ℂ)
-    (μ : Fin n → ℝ) (f : Fin n → M) (hf : ∀ c, f c ∈ genSub E V) (hμ : IsKHWVec ε (tensV E) μ f) :
+    (μ : Fin n → ℝ) (f : Fin n → M) (hf : ∀ c, f c ∈ genSub E V) (hμ : IsKHWVec ε (_root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.tensV E) μ f) :
     ∃ u, IsKHWVec ε (sA ε E V hV) μ u ∧ sT E V u = f := by
   have hU' : IsKUnitary ε E := hU
   obtain ⟨x, rfl⟩ := sT_surj E V f hf
@@ -181,7 +181,7 @@ theorem lift_highestWeightVector {M : Type*} [NormedAddCommGroup M] [InnerProduc
   let _ : NormedAddCommGroup (KS (n := n) V) := @InnerProductSpace.Core.toNormedAddCommGroup ℂ _ _ _ _ cr
   let _ : InnerProductSpace ℂ (KS (n := n) V) := InnerProductSpace.ofCore cr.toCore
   obtain ⟨u, -, -, h1, h2⟩ := lift_khw (ε := ε) (A := sA ε E V hV) (μ := μ)
-    (B := tensV E) (fun a b hab x y => ipK_sA ε E V hV hU' hab x y) (sT E V)
+    (B := _root_.ReciprocityTheory.ChartRestriction.DS.Lap.LemK.tensV E) (fun a b hab x y => ipK_sA ε E V hV hU' hab x y) (sT E V)
     (fun a b hab x => sT_sA ε E V hV hE a b hab x) hfd hS (x₀ := x)
     (fun p hp => Finset.le_sup (f := fun p : List (Fin n × Fin n) × Fin n => p.1.length) hp) hμ
   exact ⟨u, h1, h2⟩

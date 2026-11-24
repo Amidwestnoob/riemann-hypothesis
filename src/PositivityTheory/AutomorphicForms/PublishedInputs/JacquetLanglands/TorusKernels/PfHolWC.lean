@@ -108,7 +108,7 @@ theorem eig_iff [IsTotallyReal F] (hRel : HRel) {k : InfinitePlace F → ℕ} {c
     rw [h] at r1
     exact h3 _ _ _ r1 r2
 
-theorem lift [IsTotallyReal F] (hH0 : H0) (hRel : HRel) (hH2a : H2a) (hH2d : H2d) (hH2e : H2e)
+theorem lift [IsTotallyReal F] (hH0 : _root_.ReciprocityTheory.Gal.H0) (hRel : HRel) (hH2a : H2a) (hH2d : H2d) (hH2e : H2e)
     {k : InfinitePlace F → ℕ} {c : Pl F → ℕ} (hc : {w | c w ≠ 0}.Finite) {ω : HChar F} (hω : IsOfFinOrder ω)
     {χ : Hc c →* ℂˣ} (hχ : IsChi c ω χ) (hS : Sgn k ω) (h1 : ∀ v, 1 ≤ k v)
     {f : X (InfinitePlace F) × GF F → ℂ} (hf : (mkDat c χ).IsForm k f) (hf0 : f ≠ 0)

@@ -50,7 +50,7 @@ theorem framedPoint_bcGenR (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   subst hx
   have hpm : pm = ReciprocityTheory.ChartRestriction.G.PullbackSections.bcPm ψ.toRingHom y.x := by
     apply pullback.hom_ext
-    · exact h2.trans (bcPm_fst _ _).symm
+    · exact h2.trans (_root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.bcPm_fst _ _).symm
     · exact h1.trans (ReciprocityTheory.ChartRestriction.G.PullbackSections.bcPm_snd _ _).symm
   subst hpm
   exact ⟨s, h3, gen⟩

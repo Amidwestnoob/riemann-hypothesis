@@ -47,7 +47,7 @@ theorem exists_n_one {N : ℕ} {L L₁ : Submodule (𝓞 D.host.E) (Fin N → D.
     rw [osmul c x, smul_comm, ← osmul]
     exact L₁.smul_mem c hx
 
-theorem exists_n {N : ℕ} {L L₁ : Submodule (𝓞 D.host.E) (Fin N → D.host.E)} (hL : SD D L) (hL1 : SD D L₁) :
+theorem exists_n {N : ℕ} {L L₁ : Submodule (𝓞 D.host.E) (Fin N → D.host.E)} (hL : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SD D L) (hL1 : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SD D L₁) :
     ∃ n : 𝓞 D.host.E, n ≠ 0 ∧ (∀ u ∈ L, (n : D.host.E) • u ∈ L₁) ∧ ∀ u ∈ L₁, (n : D.host.E) • u ∈ L := by
   obtain ⟨hfg, hsp, -⟩ := hL
   obtain ⟨hfg1, hsp1, -⟩ := hL1
