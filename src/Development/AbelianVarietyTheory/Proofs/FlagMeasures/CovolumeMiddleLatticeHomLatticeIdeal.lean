@@ -662,10 +662,10 @@ theorem hasDom_homLat (hE : IsTotallyComplex E) (σ : E →+* E) (hσ : ∀ x, �
     by_cases h : d = c
     · simp [h]
     · simp [h, Ne.symm h]
-  have hle : ∀ c, ∀ x ∈ dInv E (r - c.val), x • e c ∈ Λ := fun c x hx =>
+  have hle : ∀ c, ∀ x ∈ GlobalTheory.SgGlob.dInv E (r - c.val), x • e c ∈ Λ := fun c x hx =>
     hLat (Submodule.subset_span ⟨Fin.castAdd r c.castSucc, x, by rwa [FrameDual.frameDualTupleIdeals_castAdd], by
       ext i; simp [sideM, he]⟩)
-  have hlg : ∀ c, ∀ x ∈ (dInv E (r - c.val))⁻¹, x • g c ∈ Λ := fun c x hx =>
+  have hlg : ∀ c, ∀ x ∈ (GlobalTheory.SgGlob.dInv E (r - c.val))⁻¹, x • g c ∈ Λ := fun c x hx =>
     hLat (Submodule.subset_span ⟨Fin.natAdd (r + 1) c, x, by rwa [FrameDual.frameDualTupleIdeals_natAdd], by
       ext i; simp [sideM, hg]⟩)
   obtain ⟨Y, Ly, hY, hW⟩ := exists_basis (n := 2 * r + k + 1) (m := k + 1) σ J (by ring) e g hge heg hee hgg
@@ -708,7 +708,7 @@ theorem hasDom_homLat (hE : IsTotallyComplex E) (σ : E →+* E) (hσ : ∀ x, �
         ∀ w l, z w l = (c : ℂ) * (T.map w.embedding * (C w)⁻¹) 0 l := by
     intro I hI hIs c z
     have hsm := fun (t : Fin (2 * r + k + 1) → E) (ht : ∀ b, form σ J t (e b) = 0 ∧ form σ J t (g b) = 0) =>
-      smul_mem_iff σ J hσ hJ hSD e g hee hgg hge heg (fun c => dInv E (r - c.val))
+      smul_mem_iff σ J hσ hJ hSD e g hee hgg hge heg (fun c => GlobalTheory.SgGlob.dInv E (r - c.val))
         (fun c => FrameDual.dInv_ne_zero _) (fun c => FrameDual.stab_dInv hσ _) hle hlg hI hIs ht
     have hTy : ∀ (t : Fin (2 * r + k + 1) → E) (y : Fin (k + 1) → E),
         ((Matrix.of fun _ j => form σ J (fun i => Y i j) t : Matrix (Fin 1) (Fin (k + 1)) E) *ᵥ y) 0 =
@@ -805,7 +805,7 @@ theorem hasDom_homLat (hE : IsTotallyComplex E) (σ : E →+* E) (hσ : ∀ x, �
 
 end Main
 
-theorem covolume_homLat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ a : Fin r, HasDom volume (homLat (σ : E →+* E) J Λ P f A (dInv E (r - a.val)) (s a)) (ENNReal.ofReal (((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * ((r - a.val : ℕ) : ℝ)) * s a ^ (2 * Fintype.card (InfinitePlace E))) ^ (k + 1))) := by
+theorem covolume_homLat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (k r : ℕ) (J : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) E) (Λ : Submodule (𝓞 E) (Fin (2 * r + k + 1) → E)) (P : Matrix (Fin (2 * r + k + 1)) (Fin (r + 1)) E) (f : Matrix (Fin (2 * r + k + 1)) (Fin r) E) (T : F) (A : InfinitePlace E → Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (s : Fin r → ℝ), IsVolData σ J Λ P f T A s → ∀ a : Fin r, HasDom volume (homLat (σ : E →+* E) J Λ P f A (GlobalTheory.SgGlob.dInv E (r - a.val)) (s a)) (ENNReal.ofReal (((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * ((r - a.val : ℕ) : ℝ)) * s a ^ (2 * Fintype.card (InfinitePlace E))) ^ (k + 1))) := by
   intro F E _ _ _ _ _ σ k r J Λ P f T A s hV a
   obtain ⟨hCM, hU, hND, hSD, hFr, hDu, hLat, hMod, hs, hAd⟩ := hV
   haveI := hU
@@ -817,7 +817,7 @@ theorem covolume_homLat : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
   have h := hasDom_homLat hCM.2.1 (σ : E →+* E) hσ hτ hND.1 hND.2 hSD hFr.2 hDu hLat hMod hs hAd
     (FrameDual.dInv_ne_zero (r - a.val)) (FrameDual.stab_dInv hσ _) (hs a)
   have hv := CovMul.value_eq (F := F) (E := E) hCM.2.1 hCM.2.2.1 (r - a.val) 0
-  have h0 : dInv E 0 = 1 := pow_zero _
+  have h0 : GlobalTheory.SgGlob.dInv E 0 = 1 := pow_zero _
   rw [h0, mul_one] at hv
   simp only [Nat.cast_zero, mul_zero, sub_zero] at hv
   rw [hv] at h

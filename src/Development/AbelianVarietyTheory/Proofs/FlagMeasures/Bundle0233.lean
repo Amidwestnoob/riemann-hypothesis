@@ -294,7 +294,7 @@ theorem diff_ne_zero : ((differentIdeal ℤ (𝓞 E) : Ideal (𝓞 E)) : Fractio
 
 theorem dInv_ne_zero (j : ℕ) : dInv E j ≠ 0 := pow_ne_zero _ (inv_ne_zero diff_ne_zero)
 
-theorem stab_dInv {σ : E →+* E} (hσ : ∀ x, σ (σ x) = x) (j : ℕ) : Stab σ (dInv E j) := by
+theorem stab_dInv {σ : E →+* E} (hσ : ∀ x, σ (σ x) = x) (j : ℕ) : Stab σ (GlobalTheory.SgGlob.dInv E j) := by
   refine Stab.pow ?_ j
   rw [coeIdeal_differentIdeal ℤ ℚ E (𝓞 E), inv_inv]
   intro x hx
@@ -316,10 +316,10 @@ section Frame
 
 variable {E : Type} [Field E] [NumberField E]
 
-theorem frameDualTupleIdeals_castAdd (r : ℕ) (b : Fin r) : id1 E r (Fin.castAdd r b.castSucc) = dInv E (r - b) := by
+theorem frameDualTupleIdeals_castAdd (r : ℕ) (b : Fin r) : id1 E r (Fin.castAdd r b.castSucc) = GlobalTheory.SgGlob.dInv E (r - b) := by
   simp [id1]
 
-theorem frameDualTupleIdeals_natAdd (r : ℕ) (b : Fin r) : id1 E r (Fin.natAdd (r + 1) b) = (dInv E (r - b))⁻¹ := by
+theorem frameDualTupleIdeals_natAdd (r : ℕ) (b : Fin r) : id1 E r (Fin.natAdd (r + 1) b) = (GlobalTheory.SgGlob.dInv E (r - b))⁻¹ := by
   simp [id1]
 
 variable {F : Type} [Field F] [NumberField F] [Algebra F E]
@@ -335,7 +335,7 @@ theorem natAbs_discr_sq (h2 : Module.finrank F E = 2) [Algebra.FormallyUnramifie
   rwa [h0, Ideal.absNorm_top, one_mul, h2] at h1
 
 theorem absNorm_dInv (j : ℕ) :
-    ((FractionalIdeal.absNorm (dInv E j) : ℚ) : ℝ) = |(discr E : ℝ)|⁻¹ ^ j := by
+    ((FractionalIdeal.absNorm (GlobalTheory.SgGlob.dInv E j) : ℚ) : ℝ) = |(discr E : ℝ)|⁻¹ ^ j := by
   rw [GlobalTheory.SgGlob.dInv, map_pow, map_inv₀, FractionalIdeal.coeIdeal_absNorm, absNorm_differentIdeal E (𝓞 E)]
   simp
 

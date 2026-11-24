@@ -189,7 +189,7 @@ noncomputable section
 
 namespace GlobalTheory.SnMass.VolN
 
-theorem hasDom_ideLat_dInv_div : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → Algebra.FormallyUnramified (𝓞 F) (𝓞 E) → ∀ (t t' : ℕ) (c : ℝ), 0 < c → HasDom volume (ideLat (dInv E t * (dInv E t')⁻¹) c : Set (InfinitePlace E → ℂ)) (ENNReal.ofReal ((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * (t : ℝ) + 2 * (t' : ℝ)) * c ^ (2 * Fintype.card (InfinitePlace E)))) := by
+theorem hasDom_ideLat_dInv_div : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → Algebra.FormallyUnramified (𝓞 F) (𝓞 E) → ∀ (t t' : ℕ) (c : ℝ), 0 < c → HasDom volume (ideLat (GlobalTheory.SgGlob.dInv E t * (GlobalTheory.SgGlob.dInv E t')⁻¹) c : Set (InfinitePlace E → ℂ)) (ENNReal.ofReal ((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * (t : ℝ) + 2 * (t' : ℝ)) * c ^ (2 * Fintype.card (InfinitePlace E)))) := by
   intro F E _ _ _ _ _ σ hσ hu t t' c hc
   have hE : IsTotallyComplex E := hσ.2.1
   have hdE : (discr E : ℝ) ≠ 0 := by exact_mod_cast discr_ne_zero E
@@ -201,7 +201,7 @@ theorem hasDom_ideLat_dInv_div : ∀ (F E : Type) [Field F] [NumberField F] [Fie
     have h2 : ((|discr E| : ℤ) : ℝ) = ((|discr F| ^ 2 : ℤ) : ℝ) := by rw [h1]
     push_cast at h2
     rw [h2, sq_abs]
-  set I := dInv E t * (dInv E t')⁻¹ with hIdef
+  set I := GlobalTheory.SgGlob.dInv E t * (GlobalTheory.SgGlob.dInv E t')⁻¹ with hIdef
   have hNI : ((FractionalIdeal.absNorm I : ℚ) : ℝ) = (|(discr E : ℝ)|⁻¹ ^ t) * (|(discr E : ℝ)|⁻¹ ^ t')⁻¹ := by
     rw [hIdef, map_mul, map_inv₀, Rat.cast_mul, Rat.cast_inv, FrameDual.absNorm_dInv, FrameDual.absNorm_dInv]
   have hI : I ≠ 0 := by
@@ -314,7 +314,7 @@ theorem hasDom_ideLat {E : Type} [Field E] [NumberField E] (hE : IsTotallyComple
 theorem value_eq {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (hE : IsTotallyComplex E) (h2 : Module.finrank F E = 2)
     [Algebra.FormallyUnramified (𝓞 F) (𝓞 E)] (t t' : ℕ) :
-    ((FractionalIdeal.absNorm (dInv E t * dInv E t') : ℚ) : ℝ) * Formalism.HermitianLatticesTheory.vInv E ^ Formalism.HermitianLatticesTheory.fDeg E =
+    ((FractionalIdeal.absNorm (GlobalTheory.SgGlob.dInv E t * GlobalTheory.SgGlob.dInv E t') : ℚ) : ℝ) * Formalism.HermitianLatticesTheory.vInv E ^ Formalism.HermitianLatticesTheory.fDeg E =
       (2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) *
         |(NumberField.discr F : ℝ)| ^ (1 - 2 * (t : ℝ) - 2 * (t' : ℝ)) := by
   have hD : 0 < |(NumberField.discr F : ℝ)| :=
@@ -337,9 +337,9 @@ theorem value_eq {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E
     Real.sqrt_sq hD.le, hcard, hexp]
   ring
 
-theorem hasDom_ideLat_dInv_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → Algebra.FormallyUnramified (𝓞 F) (𝓞 E) → ∀ (t t' : ℕ) (c : ℝ), 0 < c → HasDom volume (ideLat (dInv E t * dInv E t') c : Set (InfinitePlace E → ℂ)) (ENNReal.ofReal ((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * (t : ℝ) - 2 * (t' : ℝ)) * c ^ (2 * Fintype.card (InfinitePlace E)))) := by
+theorem hasDom_ideLat_dInv_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → Algebra.FormallyUnramified (𝓞 F) (𝓞 E) → ∀ (t t' : ℕ) (c : ℝ), 0 < c → HasDom volume (ideLat (GlobalTheory.SgGlob.dInv E t * GlobalTheory.SgGlob.dInv E t') c : Set (InfinitePlace E → ℂ)) (ENNReal.ofReal ((2⁻¹ : ℝ) ^ Fintype.card (InfinitePlace E) * |(NumberField.discr F : ℝ)| ^ (1 - 2 * (t : ℝ) - 2 * (t' : ℝ)) * c ^ (2 * Fintype.card (InfinitePlace E)))) := by
   intro F E _ _ _ _ _ σ hσ hU t t' c hc
-  have h := hasDom_ideLat hσ.2.1 (dInv E t * dInv E t')
+  have h := hasDom_ideLat hσ.2.1 (GlobalTheory.SgGlob.dInv E t * GlobalTheory.SgGlob.dInv E t')
     (mul_ne_zero (dInv_ne_zero t) (dInv_ne_zero t')) hc
   rwa [value_eq hσ.2.1 hσ.2.2.1 t t'] at h
 
