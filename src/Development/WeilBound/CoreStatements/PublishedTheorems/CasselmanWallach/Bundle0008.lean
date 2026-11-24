@@ -407,6 +407,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.CasimirNonnegative
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open Matrix Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 
 namespace PositivityTheory.CW.DerivativeRepresentation
