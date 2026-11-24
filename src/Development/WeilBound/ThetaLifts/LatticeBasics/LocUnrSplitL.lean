@@ -8,6 +8,8 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.Bundle0006
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 open MeasureTheory Matrix GlobalTheory.CompanionTheory.QL
 
 namespace GlobalTheory.ThK.Dbl.Split

@@ -8,6 +8,8 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Comp
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open Matrix

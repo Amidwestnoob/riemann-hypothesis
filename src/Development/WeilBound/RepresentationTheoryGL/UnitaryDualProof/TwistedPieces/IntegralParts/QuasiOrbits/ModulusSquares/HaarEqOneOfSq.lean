@@ -5,6 +5,8 @@ public import GroundTheory.AutomorphicForms.GLnLocal
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 set_option linter.unusedSectionVars false

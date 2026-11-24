@@ -97,6 +97,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TwistedPieces.FiniteDimensionalDescent.RestrictedCharpolys.FibVanPull
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 open Matrix GroundTheory.Automorphic GroundTheory.Automorphic.Whittaker Set Topology
