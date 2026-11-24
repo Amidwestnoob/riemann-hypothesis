@@ -282,7 +282,7 @@ theorem sys_mem_eig_set_of_built {cf : CharFrame D} {jE : D.host.E →+* Qb} {A 
   have key : ∃ y : D.what₂.Mt (L.X.nd.mu i) (L.X.nd.j i), y ≠ 0 ∧
       ∀ (v : PlE D.host) (k : ℕ) (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
         GenAt D (D.what₂.places.resChar (L.X.nd.w i)) (C.Q (L.X.nd.w i)) v k → IsConjPl D.host v s.w →
-        IsUnif D.host.E s.v ϖ →
+        Formalism.AUTREP.IsUnif D.host.E s.v ϖ →
         NG.tN (M (L.X.nd.mu i) (L.X.nd.j i) h1 h2).J s ϖ k ((M (L.X.nd.mu i) (L.X.nd.j i) h1 h2).real y) =
           sys L i x v k • (M (L.X.nd.mu i) (L.X.nd.j i) h1 h2).real y := by
     obtain ⟨y, hy, hy0⟩ := (Submodule.ne_bot_iff _).1 (L.Y.naut.typeV_ne i P)

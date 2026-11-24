@@ -149,7 +149,7 @@ theorem twisted_reciprocity_unramified_and_frobenius_eigenvalues_eq (hL : _root_
   simp [twEig]
 theorem heckeSide_alt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) {L : Type} [Field L] [NumberField L] [IsCMField L] {Ω : Type}
     [Field Ω] [Algebra L Ω] [IsAlgClosure L Ω] {A : ValuationSubring Ω} {n : ℕ} (π : NG.AutRep L n) (s : SplitPlace L)
-    (ϖ : s.v.adicCompletion (maximalRealSubfield L)) (hu : IsUnif L s.v ϖ) (J : Subgroup (GAf L n))
+    (ϖ : s.v.adicCompletion (maximalRealSubfield L)) (hu : Formalism.AUTREP.IsUnif L s.v ϖ) (J : Subgroup (GAf L n))
     (hJ : ∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax L n)) (f : GAf L n → π.W) (hf : f ∈ π.S) (hf0 : f ≠ 0)
     (hfix : ∀ κ ∈ Umax L n, TrivOutside {s.v} κ → NG.rt L n κ f = f) (c : ℕ → ℂ)
     (hc : ∀ k, 1 ≤ k → k ≤ n → NG.tN J s ϖ k f = c k • f) (hp : IsPlaceOver A (conjSplit s).w)
@@ -182,7 +182,7 @@ theorem heckeSide_alt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) {L : Type} [
   exact smul_left_injective ℂ hf0 key
 theorem locPol_eq_alt : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7) (π : NG.AutRep D.host.E D.R.nV) (s : SplitPlace D.host.E)
     (w : PlE D.host) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
-    IsConjPl D.host w s.w → IsUnif D.host.E s.v ϖ → ∀ J : Subgroup (GAf D.host.E D.R.nV),
+    IsConjPl D.host w s.w → Formalism.AUTREP.IsUnif D.host.E s.v ϖ → ∀ J : Subgroup (GAf D.host.E D.R.nV),
     (∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax D.host.E D.R.nV)) → ∀ f ∈ π.S, f ≠ 0 →
     (∀ κ ∈ Umax D.host.E D.R.nV, TrivOutside {s.v} κ → NG.rt D.host.E D.R.nV κ f = f) → ∀ c : ℕ → ℂ,
     (∀ k, 1 ≤ k → k ≤ D.R.nV → NG.tN J s ϖ k f = c k • f) → ∀ x, GlobalTheory.AutQuot.LocAt π w x →

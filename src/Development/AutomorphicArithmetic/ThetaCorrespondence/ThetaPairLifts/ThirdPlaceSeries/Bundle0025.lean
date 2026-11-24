@@ -43,7 +43,7 @@ namespace GlobalTheory.PtLocalPin
 theorem eig_at_alt {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {D : D7} (P : _root_.GlobalTheory.NPin.CharacterChoiceData hL D) (i : D.nd.Loc) (Q : D.naut.AV i)
     (w : PlE D.host) (hw : SplitOut D.nd i w) (s : SplitPlace D.host.E)
     (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)) (hcw : IsConjPl D.host w s.w)
-    (hu : IsUnif D.host.E s.v ϖ) :
+    (hu : Formalism.AUTREP.IsUnif D.host.E s.v ϖ) :
     ∃ c : ℕ → ℂ, X ^ D.R.nV + ∑ k ∈ Finset.Icc 1 D.R.nV,
         C ((-1 : ℂ) ^ k * ((normV w : ℕ) : ℂ) ^ (k * (k - 1) / 2) * c k) * X ^ (D.R.nV - k) =
       galPol D.naut (D.naut.lpTw (D.naut.locV i Q w) ((1 - (D.R.nV : ℝ)) / 2)) ∧

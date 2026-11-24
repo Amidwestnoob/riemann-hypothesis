@@ -92,7 +92,7 @@ namespace GlobalTheory.HeckeEigConj
 open GlobalTheory.HeckeEigConj
 
 theorem tN_eig : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (s : SplitPlace L)
-    (ϖ : s.v.adicCompletion (maximalRealSubfield L)), IsUnif L s.v ϖ → ∀ J : Subgroup (GAf L n),
+    (ϖ : s.v.adicCompletion (maximalRealSubfield L)), Formalism.AUTREP.IsUnif L s.v ϖ → ∀ J : Subgroup (GAf L n),
     (∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax L n)) →
     ∀ (σ : GlobalTheory.SmGL.IrrRep (GL (Fin n) ((GlobalTheory.HeckeFrob.conjSplit s).w.adicCompletion L))) (α : Fin n → ℂˣ),
     GlobalTheory.SmGL.HasSatake σ.ρ α →

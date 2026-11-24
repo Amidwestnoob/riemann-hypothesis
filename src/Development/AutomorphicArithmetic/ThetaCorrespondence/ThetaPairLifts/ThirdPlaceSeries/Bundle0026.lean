@@ -174,7 +174,7 @@ theorem main_alt_alt : HeckeStdPlain → ∀ (D : D7) (cf : CharFrame D) (jE : D
   have hQk : Hk.cover.B.Qc j w = C.Q w :=
     (Hk.cover.Q_eq j w i0 hi0).symm.trans ((Sp.Q_eq j w i0 hi0).trans (Sp.Qc_eq j w))
   have lin : ∀ v k (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
-      GenAt D (D.what₂.places.resChar w) (C.Q w) v k → IsConjPl D.host v s.w → IsUnif D.host.E s.v ϖ →
+      GenAt D (D.what₂.places.resChar w) (C.Q w) v k → IsConjPl D.host v s.w → Formalism.AUTREP.IsUnif D.host.E s.v ϖ →
       ∀ (z : ℂ) (f f' : GAf D.host.E D.R.nV → (M (D.what₂.muTw w) j h1 h2).wt.W),
         NG.tN (M (D.what₂.muTw w) j h1 h2).J s ϖ k (z • f + f') =
           z • NG.tN (M (D.what₂.muTw w) j h1 h2).J s ϖ k f + NG.tN (M (D.what₂.muTw w) j h1 h2).J s ϖ k f' := by

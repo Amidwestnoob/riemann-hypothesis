@@ -37,14 +37,14 @@ namespace GlobalTheory.HeckeLiftN
 variable {L : Type} [Field L] [NumberField L] [IsCMField L]
 
 theorem unif_ne_zero {s : SplitPlace L} {ϖ : s.v.adicCompletion (maximalRealSubfield L)}
-    (hϖ : IsUnif L s.v ϖ) : ϖ ≠ 0 := by
+    (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ) : ϖ ≠ 0 := by
   rintro rfl
   have : Valued.v (0 : s.v.adicCompletion (maximalRealSubfield L)) = WithZero.exp (-1 : ℤ) := hϖ
   rw [map_zero] at this
   exact WithZero.exp_ne_zero this.symm
 
 theorem tSet_subset_of_unif (n : ℕ) (s : SplitPlace L) (ϖ ϖ' : s.v.adicCompletion (maximalRealSubfield L)) (k : ℕ)
-    (hϖ : IsUnif L s.v ϖ) (hϖ' : IsUnif L s.v ϖ') : tSet L n s ϖ k ⊆ tSet L n s ϖ' k := by
+    (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ) (hϖ' : Formalism.AUTREP.IsUnif L s.v ϖ') : tSet L n s ϖ k ⊆ tSet L n s ϖ' k := by
   rintro x ⟨hx, a, ha, b, hb, e⟩
   have h0 := unif_ne_zero hϖ'
   have h0' := unif_ne_zero hϖ
@@ -99,13 +99,13 @@ theorem tSet_subset_of_unif (n : ℕ) (s : SplitPlace L) (ϖ ϖ' : s.v.adicCompl
   simp only [Matrix.mul_assoc]
 
 theorem tSet_eq_of_unif (n : ℕ) (s : SplitPlace L) (ϖ ϖ' : s.v.adicCompletion (maximalRealSubfield L)) (k : ℕ)
-    (hϖ : IsUnif L s.v ϖ) (hϖ' : IsUnif L s.v ϖ') : tSet L n s ϖ k = tSet L n s ϖ' k :=
+    (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ) (hϖ' : Formalism.AUTREP.IsUnif L s.v ϖ') : tSet L n s ϖ k = tSet L n s ϖ' k :=
   Set.Subset.antisymm (tSet_subset_of_unif n s ϖ ϖ' k hϖ hϖ') (tSet_subset_of_unif n s ϖ' ϖ k hϖ' hϖ)
 
 theorem tN_eq_of_conj (D : D7) {n : ℕ} {W : Type} [AddCommGroup W] [Module ℂ W] (J : Subgroup (GAf D.host.E n))
     (v : PlE D.host) (s s' : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E))
     (ϖ' : s'.v.adicCompletion (maximalRealSubfield D.host.E)) (k : ℕ) (hc : IsConjPl D.host v s.w)
-    (hc' : IsConjPl D.host v s'.w) (hu : IsUnif D.host.E s.v ϖ) (hu' : IsUnif D.host.E s'.v ϖ') (f : GAf D.host.E n → W) :
+    (hc' : IsConjPl D.host v s'.w) (hu : Formalism.AUTREP.IsUnif D.host.E s.v ϖ) (hu' : Formalism.AUTREP.IsUnif D.host.E s'.v ϖ') (f : GAf D.host.E n → W) :
     NG.tN J s ϖ k f = NG.tN J s' ϖ' k f := by
   have hw : s.w = s'.w := GlobalTheory.TwSys.ResidualCompare.isConjPl_unique hc hc'
   obtain rfl := GlobalTheory.SplitUniq.splitPlace_eq_of_w_eq _ s s' hw
@@ -121,7 +121,7 @@ theorem heckeLift (D : D7) (M : MtFam D) (C : NChoice D) (tup : D.what₂.Tup �
   intro hP hG hI j w v k h1 h2 hg
   classical
   by_cases hex : ∃ (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
-      IsConjPl D.host v s.w ∧ IsUnif D.host.E s.v ϖ
+      IsConjPl D.host v s.w ∧ Formalism.AUTREP.IsUnif D.host.E s.v ϖ
   swap
   · exact ⟨0, fun s ϖ hc hu _ => absurd ⟨s, ϖ, hc, hu⟩ hex⟩
   obtain ⟨s0, ϖ0, hc0, hu0⟩ := hex
