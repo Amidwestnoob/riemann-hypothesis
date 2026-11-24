@@ -129,7 +129,7 @@ theorem exists_isometry_of_move_deriv {g : ℕ} {σ' : KA l →+* ℂ} {ty : Fin
 set_option maxHeartbeats 1600000 in
 theorem evR_normUn_move {g : ℕ} {e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)}
     {F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1)}
-    {M : ModelsOf F r} {k : Fin F.n} (T : ThetaData e F M k) {un : (M.X k).dom → FrPt Xo c (CAt σ)}
+    {M : GlobalTheory.FrameUnif.ModelsOf F r} {k : Fin F.n} (T : ThetaData e F M k) {un : (M.X k).dom → FrPt Xo c (CAt σ)}
     (hun : IsNormUn T un) (x x' : (M.X k).dom) (A : Matrix (Fin r) (Fin r) E)
     (hA : A.det = 1 ∨ ((∃ m : ℕ, 0 < m ∧ A.det ^ m = 1) ∧ 4 ∣ Module.finrank ℚ E))
     (hper : ∀ a, ∃ a', (M.φ k a' : Fin r → E) = A *ᵥ (M.φ k a : Fin r → E) ∧ T.Pf x'.1 a' = T.Pf x.1 a)
@@ -230,7 +230,7 @@ theorem rdU_move_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
     (U.X k).ξ0 (U.X k).Gm φD (U.X k).ξ0_im hneg ⟨hinj, hsp, (U.X k).Gm_herm, (U.X k).Gm_det, hEF⟩
   have T : ∀ k, ThetaData e F M k := fun k => (_root_.GlobalTheory.FrameUnif.nonempty_thetaData E H Dw l Xo c σ g e F r M hσ hM hξ k).some
   choose un hun using fun k => _root_.GlobalTheory.FrameUnif.exists_isNormUn hT E H Dw l Xo c σ g e F r M k (T k)
-  have hok : FramesOK e F M un :=
+  have hok : GlobalTheory.FrameUnif.FramesOK e F M un :=
     ⟨fun k => _root_.GlobalTheory.NormFrame.frameOK_of_isNormUn hT E H Dw l Xo c σ g e F r M k (T k) (un k) hσ hM hξ (hun k),
       fun k => _root_.GlobalTheory.NormUnBor.normUn_bor hT E H Dw l Xo c σ g e F r M un k (T k) hσ hM hξ (hun k),
       fun k => _root_.GlobalTheory.FrameUnif.normUn_gamma hT E H Dw l Xo c σ g e F r M un k (T k) hσ hM hξ (hun k),
@@ -256,10 +256,10 @@ theorem rdU_move_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
       ((GlobalTheory.isDerivAt0_ex_isTanAt E H Dw l Xo _ g _ F _ _ a2).2.1 _).unique (b4 τ i) (a4 τ i), fun hy =>
       ⟨P', a2, a3, hnorm k y P' a1 hy, b5 fun τ i => (congrArg norm (h₀.dmin_eq y.1 τ i)).trans (hy _ i)⟩⟩
   obtain ⟨ν₁, hν₁, hid⟩ := (GlobalTheory.MoveCalc.frMove_calculus E H Dw l Xo c).1
-  have hmm₀ : MoveMatch U (unfOf e F M un) k (ik k) h₀ (𝟙 _) ν₁ := fun y y' hy =>
+  have hmm₀ : MoveMatch U (GlobalTheory.FrameUnif.unfOf e F M un) k (ik k) h₀ (𝟙 _) ν₁ := fun y y' hy =>
     ⟨hy.1.trans ((Category.comp_id _).trans (key y).1.symm), (funext fun τ => funext fun i =>
       (hy.2.1 τ i).trans ((congrArg _ hν₁).trans (Category.comp_id _))).trans (key y).2.1.symm⟩
-  obtain ⟨ε, -, hε⟩ := _root_.GlobalTheory.GeoLevel.exists_const_rdU_of_moveMatch E H Dw l Xo c σ r U (unfOf e F M un) hσ hU hU₀ k (ik k) δ₀ h₀ (𝟙 _) ν₁
+  obtain ⟨ε, -, hε⟩ := _root_.GlobalTheory.GeoLevel.exists_const_rdU_of_moveMatch E H Dw l Xo c σ r U (GlobalTheory.FrameUnif.unfOf e F M un) hσ hU hU₀ k (ik k) δ₀ h₀ (𝟙 _) ν₁
     (Category.id_comp _) hmm₀ (fun y y' t hy hmv hb => by
       obtain ⟨P, p, a1, a2, a3⟩ := (key y).2.2 hy
       exact cabs_gen_eq_one_of_normPin E H Dw l Xo c σ _ g _ F _ _ P P _ ν₁ _ _ y' t p p a1
@@ -270,8 +270,8 @@ theorem rdU_move_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   have hx' := h.mem_dom hx
   rw [hε w hw f' hf' f' hf' (hself f') x hx, hε w hw f hf f hf (hself f) _ hx']
   refine congrArg (ε * ·) ?_
-  refine (rdU_of_mem (unfOf e F M un) f' (ik k) (h₀.mem_dom hx)).trans
-    (Eq.trans (congrArg Formalism.L2.PjFree.toC ?_) (rdU_of_mem (unfOf e F M un) f (ik k) (h₀.mem_dom hx')).symm)
+  refine (rdU_of_mem (GlobalTheory.FrameUnif.unfOf e F M un) f' (ik k) (h₀.mem_dom hx)).trans
+    (Eq.trans (congrArg Formalism.L2.PjFree.toC ?_) (rdU_of_mem (GlobalTheory.FrameUnif.unfOf e F M un) f (ik k) (h₀.mem_dom hx')).symm)
   obtain ⟨y', hmv⟩ := (GlobalTheory.exists_unique_frMove E H Dw l Xo c ρ ν hρ (CAt σ) (U.un k ⟨x, hx⟩)).1
   obtain ⟨m1, m2⟩ := hmm ⟨x, hx⟩ y' hmv
   obtain ⟨k1, k2, -⟩ := key ⟨x, hx⟩
