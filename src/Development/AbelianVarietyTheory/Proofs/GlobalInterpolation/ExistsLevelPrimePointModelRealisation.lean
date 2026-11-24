@@ -51,11 +51,11 @@ def actV : GG E K n →* Module.End ℂ (ValC (Gr emb σ n) lam) where
   map_one' := by
     ext y x
     show trFr emb σ 1 1 y.1 x = y.1 x
-    simp [trFr_apply, frMul_one]
+    simp [trFr_apply, GlobalTheory.Mem.Col2.frMul_one]
   map_mul' a b := by
     ext y x
     show trFr emb σ (a.1.1 * b.1.1) (a.2.1 * b.2.1) y.1 x = trFr emb σ a.1.1 a.2.1 (trFr emb σ b.1.1 b.2.1 y.1) x
-    simp only [trFr_apply, map_mul, _root_.mul_inv_rev, frMul_mul, Units.val_mul, mul_assoc]
+    simp only [trFr_apply, map_mul, _root_.mul_inv_rev, GlobalTheory.Mem.Col2.frMul_mul, Units.val_mul, mul_assoc]
 
 theorem ipVal_trFr (hF : FOk emb σ) (h : GG E K n) {f f' : Fr emb σ n → ℂ} (hf : f ∈ ValC (Gr emb σ n) lam)
     (hf' : f' ∈ ValC (Gr emb σ n) lam) :
@@ -67,7 +67,7 @@ theorem ipVal_trFr (hF : FOk emb σ) (h : GG E K n) {f f' : Fr emb σ n → ℂ}
   have e0 : (1 : ι → Matrix (Fin n) (Fin n) ℂ) = fun τ => ((fr0 emb σ n).1 τ)⁻¹ := funext fun τ => inv_one.symm
   have h0 : ∀ τ, ((fr0 emb σ n).1 τ)ᴴ * Gr emb σ n τ * (fr0 emb σ n).1 τ = 1 := fun τ => by
     rw [hG]; show (1 : Matrix (Fin n) (Fin n) ℂ)ᴴ * 1 * 1 = 1; simp
-  let o := frMul emb σ γ (fr0 emb σ n)
+  let o := GlobalTheory.Mem.Col2.frMul emb σ γ (fr0 emb σ n)
   have ho : ∀ τ, o.1 τ = (γ : Matrix (Fin n) (Fin n) E).map (embAt σ emb τ) := fun τ => Matrix.mul_one _
   have h1 : ∀ τ, (o.1 τ)ᴴ * Gr emb σ n τ * o.1 τ = 1 := fun τ => by
     rw [hG, ho, Matrix.mul_one, ← Matrix.conjTranspose_map _ (fun x => hF.conjE _ x), ← Matrix.map_mul,
@@ -83,7 +83,7 @@ theorem ipVal_trFr (hF : FOk emb σ) (h : GG E K n) {f f' : Fr emb σ n → ℂ}
     funext y
     rw [trFr_apply, Pi.smul_apply, smul_eq_mul]
     congr 1
-    simp only [hi, fnOf, LinearMap.coe_mk, AddHom.coe_mk, frMul, Pi.one_apply, Matrix.one_mul]
+    simp only [hi, fnOf, LinearMap.coe_mk, AddHom.coe_mk, GlobalTheory.Mem.Col2.frMul, Pi.one_apply, Matrix.one_mul]
   have hn : starRingEnd ℂ (σ c) * σ c = 1 := by
     obtain ⟨m, hm, e⟩ := isOfFinOrder_iff_pow_eq_one.1 hc
     have e1 : (σ c) ^ m = 1 := by rw [← map_pow, ← Units.val_pow_eq_pow_val, e]; simp
@@ -523,7 +523,7 @@ def real : B.Real i sp (model B i sp) where
     refine Subtype.ext (funext fun x => ?_)
     refine (trFr_apply B.emb D.what₂.embLL 1 ζ.1 y.1 x).trans ?_
     exact congrArg (fun z => D.what₂.embLL _ * y.1 z)
-      ((congrArg (fun g => frMul B.emb D.what₂.embLL g x) inv_one).trans (frMul_one B.emb D.what₂.embLL x))
+      ((congrArg (fun g => GlobalTheory.Mem.Col2.frMul B.emb D.what₂.embLL g x) inv_one).trans (GlobalTheory.Mem.Col2.frMul_one B.emb D.what₂.embLL x))
 
 end Model
 
