@@ -14,6 +14,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriPr
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 open MeasureTheory Set Filter GlobalTheory.AdelicU GlobalTheory.OpTrace GlobalTheory.SplitWeil NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.AutomorphicL2Unitary (conv starFn IsTopIrreducible)
 open scoped TensorProduct Topology Pointwise ComplexConjugate ContDiff Matrix

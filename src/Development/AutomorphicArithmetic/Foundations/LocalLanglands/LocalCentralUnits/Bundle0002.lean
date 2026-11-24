@@ -12,6 +12,7 @@ public import Development.WeilBound.RepresentationTheoryGL.GaloisPermutationReps
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.NameCentral
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open CategoryTheory Polynomial Matrix GlobalTheory.GLq
 
 namespace UpperTheory.Zero.LLC
@@ -120,6 +121,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.TameUniq
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq

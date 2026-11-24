@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.DvdOfAdd
 
 -- bundled from Formalism.SharpRestriction.GrowthBounds.ScaleEdges.ColSpanMap
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace Formalism.MainNotions.Pf14
