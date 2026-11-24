@@ -245,6 +245,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PowDvdFactorialMul
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false
 

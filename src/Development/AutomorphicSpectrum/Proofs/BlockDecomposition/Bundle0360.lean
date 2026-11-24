@@ -18,6 +18,7 @@ public import GroundTheory.AutomorphicForms.SupercuspidalCoefficients
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedProductDropZeroFactors
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.JHMult Zc Zc.Cos

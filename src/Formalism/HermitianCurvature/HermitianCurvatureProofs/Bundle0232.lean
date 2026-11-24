@@ -220,6 +220,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJDHatJDACapToda
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix
 
 noncomputable section

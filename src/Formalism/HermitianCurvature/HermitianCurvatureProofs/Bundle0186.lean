@@ -157,6 +157,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntegralCutoff
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix MeasureTheory Filter Topology
 open scoped ContDiff
 

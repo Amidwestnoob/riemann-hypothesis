@@ -253,6 +253,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkCpt
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 noncomputable section
 
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt

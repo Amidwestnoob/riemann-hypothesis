@@ -232,6 +232,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.LowVLift
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 open Matrix MeasureTheory
 open scoped ComplexConjugate
 
