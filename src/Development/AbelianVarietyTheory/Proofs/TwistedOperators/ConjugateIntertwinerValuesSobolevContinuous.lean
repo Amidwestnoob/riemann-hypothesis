@@ -29,6 +29,7 @@ noncomputable section
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.L2.Pj Formalism.IndefR.Datum GlobalTheory.HolDict
 open scoped TensorProduct
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.ConjRowCont
 
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) {S : D.what₂.Tau → SPar} (M : DSModel (D.sp.Y 0) S)

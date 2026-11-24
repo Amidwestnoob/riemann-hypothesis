@@ -26,6 +26,7 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.BesMean
 
 theorem continuous_integral_of_le {P X : Type} [TopologicalSpace P] [FirstCountableTopology P] [TopologicalSpace X]

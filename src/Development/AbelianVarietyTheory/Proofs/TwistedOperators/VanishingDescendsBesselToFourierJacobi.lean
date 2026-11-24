@@ -46,6 +46,7 @@ open GlobalTheory.Asc
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.Asc.VanBessel
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {ρ : ℕ} {B : BesL D ρ} {J : JacL D ρ} (s : StBF ψ B J)
