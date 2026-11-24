@@ -23,6 +23,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ModelsAre
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.KStableSubspaceHasWeightVector
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open MeasureTheory Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.FlagMeas GlobalTheory.GKModule GlobalTheory.RealInd GlobalTheory.OpTrace
 open GlobalTheory.SmoothGlob (lieSet)
 open GlobalTheory.Dec (IsHaarSub HasInfChar UEquiv gelfVal)
