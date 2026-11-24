@@ -38,7 +38,7 @@ theorem UpperTheory.exists_whittaker_hecke_eigenvalues_and_coeff_eq_convolution 
     have := pmul 1 1 one_pos one_pos
     rw [one_mul] at this
     exact mul_eq_left.1 this.symm
-  have pack : ∀ v : H.P ℚ, ¬ Bad N v → ∃ m : ℕ → ℂ, m 0 = 1 ∧ (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) → Wo D φ (em E (aE (pv v ^ k)) * g) = m k * Wo D φ g) ∧ ((∃ h, Wo D φ h ≠ 0) → (PowerSeries.mk fun k => a (normV v ^ k)) * (1 - PowerSeries.X ^ 2) = PowerSeries.mk fun k => ((normV v ^ k : ℕ) : ℂ) * ((χ.val v : ℂˣ) : ℂ) ^ k * m k) := fun v hv => by
+  have pack : ∀ v : H.P ℚ, ¬ Bad N v → ∃ m : ℕ → ℂ, m 0 = 1 ∧ (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) → Wo D φ (em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) * g) = m k * Wo D φ g) ∧ ((∃ h, Wo D φ h ≠ 0) → (PowerSeries.mk fun k => a (normV v ^ k)) * (1 - PowerSeries.X ^ 2) = PowerSeries.mk fun k => ((normV v ^ k : ℕ) : ℂ) * ((χ.val v : ℂˣ) : ℂ) ^ k * m k) := fun v hv => by
     rcases UpperTheory.inert_or_split_of_good_delta_rat E D v (hG.pl v hv) with ⟨w, hw, hI⟩ | ⟨w, w', hne, hw, hw', hs, hs', hall⟩
     · exact UpperTheory.exists_whittaker_heckeEigenvalues_at_inert_place E D P ω χ hCen hχω L N φ hA hG a hIs v hv w hw hI
     · exact UpperTheory.exists_whittaker_heckeEigenvalues_at_split_place E D P ω χ hCen hχω L N φ hA hG a hIs v hv w w' hne hw hw' hs hs' hall
@@ -81,9 +81,9 @@ theorem UpperTheory.exists_whittaker_hecke_eigenvalues_and_coeff_eq_convolution 
         Nat.not_coprime_of_dvd_of_dvd hp.one_lt (Nat.minFac_dvd n) (hv ▸ h) hc
       have hcop : (normV v ^ k).Coprime m :=
         Nat.Coprime.pow_left k (by rw [hv]; exact (Nat.Prime.coprime_iff_not_dvd hp).2 hnd)
-      have hpin : pin n = pv v ^ k * pin m := by
+      have hpin : pin n = UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k * pin m := by
         rw [hnm, ← hv, pmul _ _ (pow_pos (hpr v).pos k) hm0, ppow]
-      have hg : em E (aE (iy r * pin n) * rot t) = em E (aE (pv v ^ k)) * em E (aE (iy r * pin m) * rot t) := by
+      have hg : em E (aE (iy r * pin n) * rot t) = em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) * em E (aE (iy r * pin m) * rot t) := by
         rw [hpin, mul_left_comm, aE_mul', map_mul, map_mul, map_mul, mul_assoc]
       have hnv : n = normV v ^ k * m := by rw [hv]; exact hnm
       rw [hg, hM1 v hvb k _ (fun w hw => UpperTheory.kAt_diag_ideleOfNat_mul_rotation_of_not_dvd E v m r t hm0 (by rw [hv]; exact hnd) w hw), ih m hmlt hm0 hmc r t hr,

@@ -391,7 +391,7 @@ theorem exists_elem_col (c : HeightOneSpectrum (𝓞 F) → ℕ) (hc : {w | c w 
     rw [Filter.eventually_cofinite]
     refine hc.subset fun w hw => ?_
     simpa using hw
-  have hD0 : differentIdeal ℤ (𝓞 F) ≠ 0 := differentIdeal_ne_bot
+  have hD0 : differentIdeal ℤ (𝓞 F) ≠ 0 := _root_.differentIdeal_ne_bot
   have hDfr0 : Dfr ≠ 0 := FractionalIdeal.coeIdeal_ne_zero.mpr hD0
   have hCfr0 : Cfr ≠ 0 := by
     apply finprod_induction (p := fun I : FractionalIdeal (𝓞 F)⁰ F => I ≠ 0)

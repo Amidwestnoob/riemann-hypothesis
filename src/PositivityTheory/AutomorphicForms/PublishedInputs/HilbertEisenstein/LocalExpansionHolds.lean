@@ -167,13 +167,13 @@ theorem fin_int (hLI : LocInt) (hFS : FinSplit) (hOP : OmegaProd) (hCD : CoefDiv
   classical
   have hfin0 : {w : HeightOneSpectrum (𝓞 F) | c w ≠ 0 ∨ dd w ≠ 0}.Finite := by
     change ({w | c w ≠ 0} ∪ {w | dd w ≠ 0}).Finite
-    refine (L2.finite_support H).union ((Ideal.finite_factors (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))).subset ?_)
+    refine (L2.finite_support H).union ((Ideal.finite_factors (_root_.differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F))).subset ?_)
     intro w hw
     have hw' : ordI w (differentIdeal ℤ (𝓞 F)) ≠ 0 := by
       intro h0
       apply hw
       simp [dd, h0]
-    exact (Associates.count_ne_zero_iff_dvd (differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F)) w.irreducible).1 hw'
+    exact (Associates.count_ne_zero_iff_dvd (_root_.differentIdeal_ne_bot (A := ℤ) (B := 𝓞 F)) w.irreducible).1 hw'
   set S0 := hfin0.toFinset with hS0
   refine ⟨∏ v ∈ S0, cst ω c v, ?_, ?_⟩
   · rw [Finset.prod_ne_zero_iff]

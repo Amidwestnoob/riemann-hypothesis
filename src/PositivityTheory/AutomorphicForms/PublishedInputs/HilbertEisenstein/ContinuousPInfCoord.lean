@@ -30,7 +30,7 @@ theorem finite_c {ω : HChar F} {c : HeightOneSpectrum (𝓞 F) → ℕ} (H : Hy
   exact Nat.le_zero.1 ((H.cond w).2 (show (0 : ℕ) ∈ _ from fun x hu _ => key w x hu fun h => absurd h hwS))
 
 theorem finite_dd : {w : HeightOneSpectrum (𝓞 F) | dd w ≠ 0}.Finite := by
-  have h0 : differentIdeal ℤ (𝓞 F) ≠ ⊥ := differentIdeal_ne_bot
+  have h0 : differentIdeal ℤ (𝓞 F) ≠ ⊥ := _root_.differentIdeal_ne_bot
   refine (Ideal.finite_factors h0).subset fun w hw => ?_
   simp only [Set.mem_ofPred_eq, dd, ordI, Nat.cast_ne_zero] at hw ⊢
   exact (Associates.count_ne_zero_iff_dvd h0 w.irreducible).1 hw

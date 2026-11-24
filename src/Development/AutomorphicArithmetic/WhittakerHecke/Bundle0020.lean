@@ -305,7 +305,7 @@ private theorem cp_pin (v : H.P ℚ) (n : ℕ) (h : ¬ normV v ∣ n) :
     · subst hv
       rw [Nat.factorization_eq_zero_of_not_dvd h]
       simp
-    · have : H.cp v ((pv v' : (A ℚ)ˣ) : A ℚ) = 1 := by
+    · have : H.cp v ((UpperTheory.ConvolutionTheory.RankTwoDescent.pv v' : (A ℚ)ˣ) : A ℚ) = 1 := by
         classical
         exact Pi.mulSingle_eq_of_ne hv _
       rw [Units.val_pow_eq_pow_val, map_pow, this, one_pow]
