@@ -140,7 +140,8 @@ theorem lintegral_tl_inv_mul : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ
   haveI : LocallyCompactSpace (GA E n) := locallyCompact_GA_chv
   haveI : SecondCountableTopology (GA E n) := secondCountable_GA_chv
   haveI : SigmaCompactSpace (GA E n) := sigmaCompactSpace_of_locallyCompact_secondCountable
-  haveI : SFinite μ := inferInstance
+  haveI : SFinite μ :=
+    @MeasureTheory.instSFiniteOfSigmaFinite _ _ μ (Measure.IsHaarMeasure.sigmaFinite μ)
   haveI : MeasurableMul₂ (GA E n) := inferInstance
   haveI : MeasurableInv (GA E n) := inferInstance
   haveI : LocallyCompactSpace (NA E n) := isClosed_NA.isClosedEmbedding_subtypeVal.locallyCompactSpace
