@@ -372,6 +372,12 @@ theorem sliceTerm_of (hM : Mahler) : SliceTerm := by
     have hφ0 : φ (t₁ x, t₂ y) ≠ 0 := fun h0 => hne (by simp [hFdef, h0])
     have hmem := subset_tsupport _ hφ0
     exact ⟨hS₁ x hx ⟨_, hmem, rfl⟩, hS₂ y hy ⟨_, hmem, rfl⟩⟩
+  haveI : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (GA E b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaFinite μ₁ := Measure.IsHaarMeasure.sigmaFinite μ₁
+  haveI : SigmaFinite μ₂ := Measure.IsHaarMeasure.sigmaFinite μ₂
+  haveI : SFinite μ₁ := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
   have key := quotIntegral_prod (μ₁ := μ₁) (μ₂ := μ₂) (ratCent d₁) (ratCent d₂) hFm i₁ i₂ hbd
     s₁.isClosed.measurableSet s₂.isClosed.measurableSet s₁.measure_lt_top.ne s₂.measure_lt_top.ne hS
   refine ⟨key.1.trans ?_, key.2.trans ?_⟩
