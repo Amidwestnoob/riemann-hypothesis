@@ -82,7 +82,7 @@ theorem constMor_surjective (P : AbelianDeRham) {A : Over (Sp R)} [GrpObj A] {g 
   have eid : epsRed R ≫ spMap (algebraMap R (DualNumber R)) = 𝟙 _ := by
     have e0 : (TrivSqZeroExt.fstHom R R R).toRingHom.comp (algebraMap R (DualNumber R)) = RingHom.id R := by
       ext r; simp [TrivSqZeroExt.algebraMap_eq_inl]
-    rw [epsRed, spMap_comp_spMap, e0]
+    rw [epsRed, _root_.ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap, e0]
     exact Spec.map_id _
   have w : 𝟙 A.left ≫ A.hom = (A.hom ≫ epsRed R) ≫ spMap (algebraMap R (DualNumber R)) := by
     rw [Category.assoc, eid, Category.comp_id, Category.id_comp]

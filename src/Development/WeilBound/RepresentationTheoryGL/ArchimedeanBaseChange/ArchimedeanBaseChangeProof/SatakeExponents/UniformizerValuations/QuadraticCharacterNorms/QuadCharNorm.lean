@@ -25,7 +25,7 @@ theorem quadChar_norm (E : Type) [Field E] [NumberField E] [IsCMField E] (b : Ne
   change ‖((Units.map (Int.castRingHom ℂ).toMonoidHom (GlobalTheory.IdeleNormChar.normSign E b) : ℂˣ) : ℂ)‖ = 1
   rcases Int.units_eq_one_or (GlobalTheory.IdeleNormChar.normSign E b) with h | h <;> rw [h] <;> simp
 
-theorem muExists : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
+theorem muExists : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], _root_.GlobalTheory.BCT.Unr E →
     ∃ (μ : HChar E) (e : InfinitePlace E → ℤ), IsMu μ e := by
   intro E _ _ _ hU
   obtain ⟨U, ψ, hUo, hψc, hψu, hc⟩ := PositivityTheory.Rg.BcB.F.Fok.Mu2.quadratic_character_square E hU

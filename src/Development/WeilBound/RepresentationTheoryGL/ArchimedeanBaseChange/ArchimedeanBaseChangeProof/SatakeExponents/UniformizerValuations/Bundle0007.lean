@@ -193,7 +193,7 @@ def SplitPlaceConstantTermPowers : Prop :=
       ct h w (gpow f N) m = ((X.card : ℂ))⁻¹ * ∑ x ∈ X, mpow X (phi3 h w f) N x x m
 
 def MatchSplitPlace : Prop :=
-  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (n a : ℕ) (w : Pl E), IsSplitAt w →
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], _root_.GlobalTheory.BCT.Unr E → ∀ (n a : ℕ) (w : Pl E), IsSplitAt w →
     (∀ g : GLw n w, g ∈ UL n w) → ∀ (μ : (w.adicCompletion E)ˣ →* ℂˣ) (K' : Subgroup (GLw n w)),
     IsOpen (K' : Set (GLw n w)) → K' ≤ GlobalTheory.LFun.KGL w (n := n) → (∀ k ∈ GlobalTheory.LFun.KGL w (n := n), ∀ k' ∈ K', k * k' * k⁻¹ ∈ K') →
     IsLevel (MonoidHom.id _) (KL n w) (K'.subgroupOf (UL n w)) →
@@ -247,7 +247,7 @@ def cR (n a : ℕ) (w : Pl E) (b : GLw n w) : ℂ :=
     ((iwGL (n - a) w).relIndex (GlobalTheory.LFun.KGL w (n := (n - a))) : ℕ)
 
 def MatchT : Prop :=
-  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], _root_.GlobalTheory.BCT.Unr E →
     ∀ w : Pl E, ¬ IsSplitAt w → ∀ (n a : ℕ), a ≤ n → ∀ (b : GLw n w), IsWitt n w b →
     ∀ ϖ : (w.adicCompletion E)ˣ, IsUnifAt ϖ → ∀ (J : Type) [Fintype J] (c : J → ℂ) (x : J → Fin n → ℤ),
       (∀ j, StrictAnti (x j) ∧ Cone (lOf (x j))) → ∀ k : ℕ, 1 ≤ k →

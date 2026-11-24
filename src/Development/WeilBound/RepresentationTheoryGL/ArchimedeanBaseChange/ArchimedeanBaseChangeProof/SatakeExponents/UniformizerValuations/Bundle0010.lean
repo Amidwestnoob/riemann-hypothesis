@@ -192,7 +192,7 @@ open scoped Classical
 namespace PositivityTheory.Rg.BcB.F.TorusMatching
 
 def MatchLin2 : Prop :=
-  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (n a b : ℕ) (w : Pl E)
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], _root_.GlobalTheory.BCT.Unr E → ∀ (n a b : ℕ) (w : Pl E)
     (μ : (w.adicCompletion E)ˣ →* ℂˣ) (J : Type) [Fintype J] (c : J → ℂ) (f : J → UL n w → ℂ)
     (φ : J → GLw a w × GLw b w → ℂ),
     (∀ j, IsLocallyConstant (f j) ∧ HasCompactSupport (f j) ∧ IsLocallyConstant (φ j) ∧ HasCompactSupport (φ j)) →

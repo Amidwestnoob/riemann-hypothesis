@@ -446,12 +446,12 @@ theorem denseRange_atFin (v : HeightOneSpectrum (𝓞 L)) : DenseRange (atFin v)
   exact ⟨x, hx, Units.mk0 k hk0, Units.ext hk.symm⟩
 
 theorem exists_prod_inf_mul_finPart (a : Neutral.B1.Ideles L) :
-    ∃ y : ∀ w : InfinitePlace L, (w.Completion)ˣ, (∏ w, infIdele L w (y w)) * finPartI L a = a := by
+    ∃ y : ∀ w : InfinitePlace L, (w.Completion)ˣ, (∏ w, _root_.ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w (y w)) * finPartI L a = a := by
   classical
   let p : ∀ w : InfinitePlace L, AdeleRing (𝓞 L) L →* w.Completion := fun w =>
     { toFun := fun x => x.1 w, map_one' := rfl, map_mul' := fun _ _ => rfl }
   refine ⟨fun w => Units.map (p w) a, ?_⟩
-  have h : ((∏ w, infIdele L w (Units.map (p w) a) : Neutral.B1.Ideles L) : AdeleRing (𝓞 L) L) = ((a : AdeleRing (𝓞 L) L).1, 1) := by
+  have h : ((∏ w, _root_.ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w (Units.map (p w) a) : Neutral.B1.Ideles L) : AdeleRing (𝓞 L) L) = ((a : AdeleRing (𝓞 L) L).1, 1) := by
     rw [Units.coe_prod]
     let ι : (∀ w : InfinitePlace L, w.Completion) →* AdeleRing (𝓞 L) L :=
       MonoidHom.inl (InfiniteAdeleRing L) (FiniteAdeleRing (𝓞 L) L)
@@ -468,9 +468,9 @@ theorem loc_eq_one {ψ : Neutral.B1.Ideles L →* ℂˣ} (hψ : Continuous ψ) (
     (hψ.comp (continuous_localIdele v)) continuous_const (funext h)) x
 
 theorem inf_eq_one {ψ : Neutral.B1.Ideles L →* ℂˣ} (hψ : Continuous ψ) (h : ∀ k, ψ (infDiag k) = 1)
-    (y : ∀ w : InfinitePlace L, (w.Completion)ˣ) : ψ (∏ w, infIdele L w (y w)) = 1 := by
+    (y : ∀ w : InfinitePlace L, (w.Completion)ˣ) : ψ (∏ w, _root_.ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w (y w)) = 1 := by
   refine congrFun ((GlobalTheory.InfTypeLocal.denseRange_atInf L).equalizer
-    (g := fun y : ∀ w : InfinitePlace L, (w.Completion)ˣ => ψ (∏ w, infIdele L w (y w))) (h := fun _ => 1)
+    (g := fun y : ∀ w : InfinitePlace L, (w.Completion)ˣ => ψ (∏ w, _root_.ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w (y w))) (h := fun _ => 1)
     (hψ.comp (continuous_finsetProd _ fun w _ =>
       (GlobalTheory.InfTypeLocal.continuous_infIdele L w).comp (continuous_apply w))) continuous_const (funext fun k => ?_)) y
   have h1 := h k
