@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0303
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec GlobalTheory.Deep GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalPlaceBasis
 open scoped InnerProductSpace ContDiff
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.SobolevBound
 
 theorem prod_ofFn_single {M : Type*} [Monoid M] : ∀ {m : ℕ} (g : Fin m → M) (a : Fin m),
