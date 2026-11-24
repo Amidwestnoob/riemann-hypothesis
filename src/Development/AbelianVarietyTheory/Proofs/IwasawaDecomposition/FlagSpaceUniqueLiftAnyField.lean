@@ -100,11 +100,11 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 section Lifts
 
 variable (e : F ≃+* c.F) (C : FlagCpt Z e) (B : GlobalTheory.ProjVar.Var F) (j : B.X ⟶ gen Z)
-  (f₀ : EigFrame Z (constF e B) (genericPt B ≫ j ≫ genι Z)) (S : Fr (ratOf B) Dw.mult 0) (A₀ : Mat Dw.mult B.Fn)
-  (S' : Fr (ratOf C.Y) Dw.mult Dw.mult) (A₁ : Mat Dw.mult C.Y.Fn) (φ : B.Fn →ₐ[F] C.Y.Fn) (f : C.Y.X ⟶ B.X)
+  (f₀ : EigFrame Z (constF e B) (genericPt B ≫ j ≫ genι Z)) (S : Fr (GlobalTheory.FlagBundle.ratOf B) Dw.mult 0) (A₀ : Mat Dw.mult B.Fn)
+  (S' : Fr (GlobalTheory.FlagBundle.ratOf C.Y) Dw.mult Dw.mult) (A₁ : Mat Dw.mult C.Y.Fn) (φ : B.Fn →ₐ[F] C.Y.Fn) (f : C.Y.X ⟶ B.X)
 
 theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (hT' : Tied e C.Y C.π C.f0 S' A₁)
-    (hC : f₀.Coord (φ : B.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹)) (hφ : (ratOf B).IsHom (ratOf C.Y) φ f)
+    (hC : f₀.Coord (φ : B.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹)) (hφ : (GlobalTheory.FlagBundle.ratOf B).IsHom (GlobalTheory.FlagBundle.ratOf C.Y) φ f)
     {K : Type} [Field K] {χ : c.F →+* K} {x : Sp K ⟶ Z.X} (p : Sp K ⟶ C.Y.X) (hx : (p ≫ f) ≫ j ≫ genι Z = x)
     (g : EigFrame Z χ x)
     {A : Mat Dw.mult B.Fn} (_hA : A ∈ S.S (f (p (IsLocalRing.closedPoint K))))
@@ -116,9 +116,9 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
     {φ₁ : c.F →+* C.Y.X.presheaf.stalk (p (IsLocalRing.closedPoint K))}
     {f₁ : EigFrame Z φ₁ (stalkPt C.Y (p (IsLocalRing.closedPoint K)) ≫ C.π ≫ genι Z)}
     (hf₁ : f₁.Coord (algebraMap _ C.Y.X.functionField) C.f0 (A₁ * A'⁻¹)) :
-    (∀ τ, (((A' * (A.map φ)⁻¹).map ((ratOf C.Y).val p)) τ).det ≠ 0) ∧
+    (∀ τ, (((A' * (A.map φ)⁻¹).map ((GlobalTheory.FlagBundle.ratOf C.Y).val p)) τ).det ≠ 0) ∧
     ∀ h' : Mat Dw.mult K, f₁.Coord (Scheme.stalkClosedPointTo (R := .of K) p).hom g h' ↔
-      h = h' * (A' * (A.map φ)⁻¹).map ((ratOf C.Y).val p) := by
+      h = h' * (A' * (A.map φ)⁻¹).map ((GlobalTheory.FlagBundle.ratOf C.Y).val p) := by
   rw [← AlgHom.coe_toRingHom φ] at hC ⊢
   have hA₀ : A₀ ∈ S.S (genericPoint B.X) := hT.1
   have hA₁ : A₁ ∈ S'.S (genericPoint C.Y.X) := hT'.1
@@ -181,7 +181,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
 
   have hpt : spMap (Scheme.stalkClosedPointTo (R := .of K) p).hom ≫ stalkPt C.Y (p (IsLocalRing.closedPoint K)) = p :=
     spMap_stalkClosedPointTo p
-  have e7 : (A' * (A.map (φ : B.Fn →+* C.Y.Fn))⁻¹).map ((ratOf C.Y).val p) =
+  have e7 : (A' * (A.map (φ : B.Fn →+* C.Y.Fn))⁻¹).map ((GlobalTheory.FlagBundle.ratOf C.Y).val p) =
       G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom := by
     rw [← e5]
     funext τ
@@ -189,8 +189,8 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
     rw [Matrix.map_map]
     congr 1
     funext a
-    show (ratOf C.Y).val p (algebraMap _ C.Y.X.functionField a) = _
-    exact ((congrArg (fun q => (ratOf C.Y).val q (algebraMap _ C.Y.X.functionField a)) hpt).symm.trans
+    show (GlobalTheory.FlagBundle.ratOf C.Y).val p (algebraMap _ C.Y.X.functionField a) = _
+    exact ((congrArg (fun q => (GlobalTheory.FlagBundle.ratOf C.Y).val q (algebraMap _ C.Y.X.functionField a)) hpt).symm.trans
       (val_ratOf (Scheme.stalkClosedPointTo (R := .of K) p).hom a))
   have hGK : ∀ τ, ((G.map (Scheme.stalkClosedPointTo (R := .of K) p).hom) τ).det ≠ 0 := fun τ => by
     show ((G τ).map (Scheme.stalkClosedPointTo (R := .of K) p).hom).det ≠ 0
@@ -223,7 +223,7 @@ theorem coord_iff_of_hom (hπ : C.π = f ≫ j) (hT : Tied e B j f₀ S A₀) (h
 
 theorem lifts_closed (hj : j ≫ genStr Z ≫ spMap e.toRingHom = B.str) (hπ : C.π = f ≫ j)
     (hT : Tied e B j f₀ S A₀) (hT' : Tied e C.Y C.π C.f0 S' A₁)
-    (hC : f₀.Coord (φ : B.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹)) (hφ : (ratOf B).IsHom (ratOf C.Y) φ f)
+    (hC : f₀.Coord (φ : B.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹)) (hφ : (GlobalTheory.FlagBundle.ratOf B).IsHom (GlobalTheory.FlagBundle.ratOf C.Y) φ f)
     (hL : ∀ (K : Type) [Field K] [IsAlgClosed K] (χ : c.F →+* K) (x : Sp K ⟶ B.X), x ≫ j ≫ genStr Z = spMap χ →
       ∀ g : EigFrame Z χ (x ≫ j ≫ genι Z), ∃! p : Sp K ⟶ C.Y.X, p ≫ f = x ∧ C.Carries p g)
     (K : Type) [Field K] [IsAlgClosed K] (x : Sp K ⟶ B.X) (A : Mat Dw.mult B.Fn)
@@ -255,7 +255,7 @@ theorem lifts_closed (hj : j ≫ genStr Z ≫ spMap e.toRingHom = B.str) (hπ : 
   · rintro ⟨A', hA', hP⟩
     obtain ⟨φ₁, f₁, hf₁⟩ := hT'.2 _ A' hA'
     obtain ⟨hM, key⟩ := coord_iff_of_hom e C B j f₀ S A₀ S' A₁ φ f hπ hT hT' hC hφ p rfl g hA hfA hg hA' hf₁
-    refine ⟨A', hA', φ₁, f₁, h * ((A' * (A.map φ)⁻¹).map ((ratOf C.Y).val p))⁻¹, hf₁, (key _).2 ?_, hP⟩
+    refine ⟨A', hA', φ₁, f₁, h * ((A' * (A.map φ)⁻¹).map ((GlobalTheory.FlagBundle.ratOf C.Y).val p))⁻¹, hf₁, (key _).2 ?_, hP⟩
     rw [mul_assoc, Mat.inv_mul hM, mul_one]
   · rintro ⟨A', hA', φ₁, f₁, h', hf₁, hh', hP⟩
     obtain ⟨hM, key⟩ := coord_iff_of_hom e C B j f₀ S A₀ S' A₁ φ f hπ hT hT' hC hφ p rfl g hA hfA hg hA' hf₁
@@ -272,7 +272,7 @@ namespace GlobalTheory.ShFam.FieldLift
 open MvPolynomial GlobalTheory.ProjVar GlobalTheory.GoodMetric GlobalTheory.LieBase
 open Classical
 
-theorem lifts_of_closed : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (F : Type) [Field F] (e : F ≃+* c.F) (C : FlagCpt Z e) (X : Var F) (j : X.X ⟶ gen Z), IsOpenImmersion j → j ≫ genStr Z ≫ spMap e.toRingHom = X.str → ∀ (f : C.Y.X ⟶ X.X), f ≫ j = C.π → ∀ (f₀ : EigFrame Z (constF e X) (genericPt X ≫ j ≫ genι Z)) (Eb : Fr (ratOf X) Dw.mult 0) (A₀ : Mat Dw.mult X.Fn), Tied e X j f₀ Eb A₀ → (∀ (K : Type) [Field K] [IsAlgClosed K] (χ : c.F →+* K) (x : Sp K ⟶ X.X), x ≫ j ≫ genStr Z = spMap χ → ∀ g : EigFrame Z χ (x ≫ j ≫ genι Z), ∃! p : Sp K ⟶ C.Y.X, p ≫ f = x ∧ C.Carries p g) → ∀ (φ : X.Fn →ₐ[F] C.Y.Fn), (ratOf X).IsHom (ratOf C.Y) φ f → ∀ (E' : Fr (ratOf C.Y) Dw.mult Dw.mult) (A₁ : Mat Dw.mult C.Y.Fn), Tied e C.Y C.π C.f0 E' A₁ → f₀.Coord (φ : X.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹) → (∀ z', ∀ A' ∈ E'.S z', ∀ A ∈ Eb.S (f z'), Par 0 ((ratOf C.Y).O z').toSubring (A' * (A.map φ)⁻¹)) → ∀ (K : Type) [Field K] (x : Sp K ⟶ X.X), ∀ A ∈ Eb.S (x (IsLocalRing.closedPoint K)), ∀ h : Mat Dw.mult K, Par 0 ⊤ h → ∃! p : Sp K ⟶ C.Y.X, p ≫ f = x ∧ Bears E' φ A h p := by
+theorem lifts_of_closed : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (F : Type) [Field F] (e : F ≃+* c.F) (C : FlagCpt Z e) (X : Var F) (j : X.X ⟶ gen Z), IsOpenImmersion j → j ≫ genStr Z ≫ spMap e.toRingHom = X.str → ∀ (f : C.Y.X ⟶ X.X), f ≫ j = C.π → ∀ (f₀ : EigFrame Z (constF e X) (genericPt X ≫ j ≫ genι Z)) (Eb : Fr (GlobalTheory.FlagBundle.ratOf X) Dw.mult 0) (A₀ : Mat Dw.mult X.Fn), Tied e X j f₀ Eb A₀ → (∀ (K : Type) [Field K] [IsAlgClosed K] (χ : c.F →+* K) (x : Sp K ⟶ X.X), x ≫ j ≫ genStr Z = spMap χ → ∀ g : EigFrame Z χ (x ≫ j ≫ genι Z), ∃! p : Sp K ⟶ C.Y.X, p ≫ f = x ∧ C.Carries p g) → ∀ (φ : X.Fn →ₐ[F] C.Y.Fn), (GlobalTheory.FlagBundle.ratOf X).IsHom (GlobalTheory.FlagBundle.ratOf C.Y) φ f → ∀ (E' : Fr (GlobalTheory.FlagBundle.ratOf C.Y) Dw.mult Dw.mult) (A₁ : Mat Dw.mult C.Y.Fn), Tied e C.Y C.π C.f0 E' A₁ → f₀.Coord (φ : X.Fn →+* C.Y.Fn) C.f0 (A₁ * (A₀.map φ)⁻¹) → (∀ z', ∀ A' ∈ E'.S z', ∀ A ∈ Eb.S (f z'), Par 0 ((GlobalTheory.FlagBundle.ratOf C.Y).O z').toSubring (A' * (A.map φ)⁻¹)) → ∀ (K : Type) [Field K] (x : Sp K ⟶ X.X), ∀ A ∈ Eb.S (x (IsLocalRing.closedPoint K)), ∀ h : Mat Dw.mult K, Par 0 ⊤ h → ∃! p : Sp K ⟶ C.Y.X, p ≫ f = x ∧ Bears E' φ A h p := by
   intro E _ _ _ H Dw l Xo c O _ β Z F _ e C X j _ hj f hπ f₀ Eb A₀ hT hL φ hφ E' A₁ hT' hC _ K _ x A hA h hh
   haveI : CharZero F := (RingHom.charZero_iff e.toRingHom.injective).2 inferInstance
   obtain ⟨ρ, -⟩ : ∃ ρ : F →+* K, x ≫ X.str = spMap ρ := ⟨_, (Spec.map_preimage _).symm⟩

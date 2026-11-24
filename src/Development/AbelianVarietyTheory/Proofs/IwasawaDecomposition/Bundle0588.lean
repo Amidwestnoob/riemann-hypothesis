@@ -330,22 +330,22 @@ section Nhds
 
 variable {F : Type} [Field F] {ι : Type} [Finite ι] {m : ι → ℕ}
 
-theorem mem_O_generic (Y : Var F) (x : Y.Fn) : x ∈ ((ratOf Y).O (genericPoint Y.X)).toSubring :=
+theorem mem_O_generic (Y : Var F) (x : Y.Fn) : x ∈ ((GlobalTheory.FlagBundle.ratOf Y).O (genericPoint Y.X)).toSubring :=
   (mem_O_ratOf (Y := Y) (y := genericPoint Y.X) (g := x)).2 ⟨x, by
     show (Y.X.presheaf.stalkSpecializes _).hom x = x
     rw [TopCat.Presheaf.stalkSpecializes_refl]; rfl⟩
 
-theorem eventually_mem_O {Y : Var F} {z : Y.X} {g : Y.Fn} (h : g ∈ ((ratOf Y).O z).toSubring) :
-    ∀ᶠ z' in nhds z, g ∈ ((ratOf Y).O z').toSubring := by
+theorem eventually_mem_O {Y : Var F} {z : Y.X} {g : Y.Fn} (h : g ∈ ((GlobalTheory.FlagBundle.ratOf Y).O z).toSubring) :
+    ∀ᶠ z' in nhds z, g ∈ ((GlobalTheory.FlagBundle.ratOf Y).O z').toSubring := by
   obtain ⟨U, hz, a, rfl⟩ := (mem_O_ratOf.1 h).exists_fnOf
   exact Filter.eventually_of_mem (U.isOpen.mem_nhds hz) fun z' hz' => mem_O_ratOf.2 (regAt_fnOf hz' _ a)
 
-theorem eventually_par {Y : Var F} {z : Y.X} {g : Mat m Y.Fn} (h : Par 0 ((ratOf Y).O z).toSubring g) :
-    ∀ᶠ z' in nhds z, Par 0 ((ratOf Y).O z').toSubring g := by
-  have h1 : ∀ᶠ z' in nhds z, ∀ τ i j, g τ i j ∈ ((ratOf Y).O z').toSubring :=
+theorem eventually_par {Y : Var F} {z : Y.X} {g : Mat m Y.Fn} (h : Par 0 ((GlobalTheory.FlagBundle.ratOf Y).O z).toSubring g) :
+    ∀ᶠ z' in nhds z, Par 0 ((GlobalTheory.FlagBundle.ratOf Y).O z').toSubring g := by
+  have h1 : ∀ᶠ z' in nhds z, ∀ τ i j, g τ i j ∈ ((GlobalTheory.FlagBundle.ratOf Y).O z').toSubring :=
     Filter.eventually_all.2 fun τ => Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j =>
       eventually_mem_O ((h τ).1 i j)
-  have h2 : ∀ᶠ z' in nhds z, ∀ τ, (g τ).det⁻¹ ∈ ((ratOf Y).O z').toSubring :=
+  have h2 : ∀ᶠ z' in nhds z, ∀ τ, (g τ).det⁻¹ ∈ ((GlobalTheory.FlagBundle.ratOf Y).O z').toSubring :=
     Filter.eventually_all.2 fun τ => eventually_mem_O (h τ).2.2.1
   filter_upwards [h1, h2] with z' h1 h2 τ
   exact ⟨h1 τ, (h τ).2.1, h2 τ, fun i j hi => absurd hi (Nat.not_lt_zero _)⟩
@@ -358,7 +358,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : D
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Z : Model Xo c β}
   {F : Type} [Field F] {e : F ≃+* c.F}
 
-abbrev base (C : FlagCpt Z e) : Fr (ratOf C.Y) Dw.mult 0 := TieBase.fam e C.Y C.π C.π_str C.f0
+abbrev base (C : FlagCpt Z e) : Fr (GlobalTheory.FlagBundle.ratOf C.Y) Dw.mult 0 := TieBase.fam e C.Y C.π C.π_str C.f0
 
 theorem exists_lower (C : FlagCpt Z e) (y : C.Y.X) :
     ∃ (L : Mat Dw.mult C.Y.Fn) (t : ∀ τ : E →+* ℂ, Fin (Dw.mult τ) → C.Y.Fnˣ),
@@ -382,7 +382,7 @@ theorem one_mem_base (C : FlagCpt Z e) : (1 : Mat Dw.mult C.Y.Fn) ∈ (base C).S
   rw [one_mul]
   exact (Matrix.isUnit_det_of_right_inverse (congrFun (Mat.inv_mul (Fr.det_ne hA)) τ)).ne_zero
 
-def flagFam (C : FlagCpt Z e) (A₁ : Mat Dw.mult C.Y.Fn) (hA₁ : ∀ τ, (A₁ τ).det ≠ 0) : Fr (ratOf C.Y) Dw.mult Dw.mult where
+def flagFam (C : FlagCpt Z e) (A₁ : Mat Dw.mult C.Y.Fn) (hA₁ : ∀ τ, (A₁ τ).det ≠ 0) : Fr (GlobalTheory.FlagBundle.ratOf C.Y) Dw.mult Dw.mult where
   S y := {A' | A' * A₁⁻¹ ∈ (base C).S y ∧ Lower (A' * A₁⁻¹)}
   loc z := by
     obtain ⟨L, -, hLS, hL, hl, -, -⟩ := exists_lower C z
@@ -401,7 +401,7 @@ def flagFam (C : FlagCpt Z e) (A₁ : Mat Dw.mult C.Y.Fn) (hA₁ : ∀ τ, (A₁
 theorem exists_tied_isGraded : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H)
     (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (F : Type)
     [Field F] (e : F ≃+* c.F) (C : FlagCpt Z e) (A₁ : Mat Dw.mult C.Y.Fn), (∀ τ, (A₁ τ).det ≠ 0) →
-    ∃ E' : Fr (ratOf C.Y) Dw.mult Dw.mult, Tied e C.Y C.π C.f0 E' A₁ ∧ IsGraded E' (fun x : Root Dw.mult => C.gr x.1 x.2) := by
+    ∃ E' : Fr (GlobalTheory.FlagBundle.ratOf C.Y) Dw.mult Dw.mult, Tied e C.Y C.π C.f0 E' A₁ ∧ IsGraded E' (fun x : Root Dw.mult => C.gr x.1 x.2) := by
   intro E _ _ _ H Dw l Xo c O _ β Z F _ e C A₁ hA₁
   have hA : A₁ ∈ (flagFam C A₁ hA₁).S (genericPoint C.Y.X) := by
     show A₁ * A₁⁻¹ ∈ (base C).S _ ∧ Lower (A₁ * A₁⁻¹)
