@@ -125,14 +125,14 @@ theorem exists_reads {K : Type} [Field K] (σ : K →+* ℂ) (μ : Formalism.L2.
 theorem map_finPartI [_root_.NumberField.IsTotallyComplex E] {ξ : Formalism.L2.Host.HChar E} {n : ℕ} (hn : 0 < n) (h : ξ.OrderDvd n) (a : Neutral.B1.Ideles E) :
     ξ.1 (finPartI E a) = ξ.1 a := by
   obtain ⟨y, hy⟩ := Determ.exists_prod_inf_mul_finPart a
-  have key : ∀ (w : InfinitePlace E) (x : (w.Completion)ˣ), ξ.1 (infIdele E w x) = 1 := fun w x => by
+  have key : ∀ (w : InfinitePlace E) (x : (w.Completion)ˣ), ξ.1 (ReciprocityTheory.Neutral.Bridge.HCFR.infIdele E w x) = 1 := fun w x => by
     let e := InfinitePlace.Completion.ringEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)
     obtain ⟨z, hz⟩ := IsAlgClosed.exists_pow_nat_eq (e x) hn
     have hz' : (e.symm z) ^ n = x := by rw [← map_pow, hz, e.symm_apply_apply]
     have h0 : e.symm z ≠ 0 := fun h0 => x.ne_zero (by rw [← hz', h0, zero_pow hn.ne'])
     have hx : x = Units.mk0 _ h0 ^ n := Units.ext hz'.symm
     rw [hx, map_pow, map_pow]
-    exact congrArg (fun χ : Formalism.L2.Host.HChar E => χ.1 (infIdele E w (Units.mk0 _ h0))) h
+    exact congrArg (fun χ : Formalism.L2.Host.HChar E => χ.1 (ReciprocityTheory.Neutral.Bridge.HCFR.infIdele E w (Units.mk0 _ h0))) h
   conv_rhs => rw [← hy, map_mul, map_prod, Finset.prod_eq_one fun w _ => key w _, one_mul]
 
 theorem exists_read {K : Type} [Field K] (σ : K →+* ℂ) (ξ : Formalism.L2.Host.HChar E) (h1 : ∀ a, ξ.1 (finPartI E a) = ξ.1 a)
@@ -277,7 +277,7 @@ theorem finF_mem_congN {N : ℕ} (hN : 0 < N) {a : Neutral.B1.Ideles F} (ha : a 
     TensorProduct.tmul_sub, Algebra.TensorProduct.one_def]
 
 theorem toIdl_finF_local (v : HeightOneSpectrum (𝓞 F)) (k : Fˣ) :
-    toIdl F E (finF F E (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k))) = locF F v k := by
+    toIdl F E (finF F E (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k))) = GlobalTheory.Mem.Chr.locF F v k := by
   have hm : ∀ Q, Q ∈ Formalism.L2.Host.aboveF (L := E) F v ↔ Q.under (𝓞 F) = v := fun Q => (Formalism.L2.Host.finite_aboveF F v).mem_toFinset
   have h1 : toIdl F E (finF F E (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k))) =
       LocTriv.part (toIdl F E (finF F E (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k)))) (Formalism.L2.Host.aboveF F v) := by
@@ -304,12 +304,12 @@ theorem map_idF {ξ : Formalism.L2.Host.HChar E} (ht : ∀ P, ξ.TameAt P) (hF :
   · have h1 := hF.1 v k
     rw [Formalism.L2.Host.HChar.resFin, MonoidHom.finsetProd_apply] at h1
     show ξ.1 (toIdl F E (finF F E (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k)))) = 1
-    rw [toIdl_finF_local, locF, map_prod]
+    rw [toIdl_finF_local, GlobalTheory.Mem.Chr.locF, map_prod]
     exact h1
   · rw [Formalism.L2.Host.infDiag, MonoidHom.finsetProd_apply, map_prod]
     refine Finset.prod_eq_one fun w _ => ?_
-    have h1 : finF F E (((infIdele F w).comp (Formalism.L2.Host.atInf w)) k) = 1 := Units.ext rfl
-    show ξ.1 (toIdl F E (finF F E (((infIdele F w).comp (Formalism.L2.Host.atInf w)) k))) = 1
+    have h1 : finF F E (((ReciprocityTheory.Neutral.Bridge.HCFR.infIdele F w).comp (Formalism.L2.Host.atInf w)) k) = 1 := Units.ext rfl
+    show ξ.1 (toIdl F E (finF F E (((ReciprocityTheory.Neutral.Bridge.HCFR.infIdele F w).comp (Formalism.L2.Host.atInf w)) k))) = 1
     rw [h1, map_one, map_one]
 
 theorem exists_reads_tup : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (K : Type) [Field K] (σ : K →+* ℂ) (S : Set ℕ), (∀ μ : Formalism.L2.DIV.Tup H.F H.E K S, ∃ ξ : Formalism.L2.Host.HChar H.E, Reads σ (μ.1 : Formalism.L2.DIV.Chr H.F H.E K) ξ) ∧ ∀ ξ : Formalism.L2.Host.HChar H.E, IsTwist H S ξ → (∀ a, ((ξ.1 a : ℂˣ) : ℂ) ∈ σ.range) → ∃ μ : Formalism.L2.DIV.Tup H.F H.E K S, Reads σ (μ.1 : Formalism.L2.DIV.Chr H.F H.E K) ξ := by

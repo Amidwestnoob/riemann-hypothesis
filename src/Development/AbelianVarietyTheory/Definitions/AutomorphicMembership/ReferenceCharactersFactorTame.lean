@@ -463,7 +463,7 @@ theorem mem_KDq_of_local (a : Neutral.B1.Ideles H.E) (h : ∀ v : HeightOneSpect
   choose κ hκ using h
   have hfin := (finite_level H SQ).union (IdlFact.finite_valAt_ne_one a)
   set S := hfin.toFinset.image fun w => w.under (𝓞 H.F) with hS
-  set b := a / ∏ v ∈ S, locF (L := H.E) H.F v (κ v) with hb
+  set b := a / ∏ v ∈ S, GlobalTheory.Mem.Chr.locF (L := H.E) H.F v (κ v) with hb
   have hc : ∀ w, compAt w b = if w.under (𝓞 H.F) ∈ S then
       compAt w a / algebraMap H.E _ (algebraMap H.F H.E (κ (w.under (𝓞 H.F)))) else compAt w a := fun w => by
     rw [hb, map_div, map_prod, Finset.prod_congr rfl fun v _ => compAt_locF H.F w v (κ v), Finset.prod_ite_eq]
@@ -483,7 +483,7 @@ theorem mem_KDq_of_local (a : Neutral.B1.Ideles H.E) (h : ∀ v : HeightOneSpect
     · exact (hκ _ w rfl).1
     · by_contra hne
       exact h1 (hmem w (Or.inr hne))
-  rw [← div_mul_cancel a (∏ v ∈ S, locF (L := H.E) H.F v (κ v))]
+  rw [← div_mul_cancel a (∏ v ∈ S, GlobalTheory.Mem.Chr.locF (L := H.E) H.F v (κ v))]
   exact mul_mem hbK (prod_mem fun v _ => locF_mem_KDq H SQ v _)
 
 variable {H SG SQ}
