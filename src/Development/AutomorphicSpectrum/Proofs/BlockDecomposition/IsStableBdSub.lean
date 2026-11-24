@@ -10,6 +10,8 @@ public import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.Expo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 noncomputable section
 open NumberField IsDedekindDomain MeasureTheory Polynomial Formalism.L2.Host
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin GlobalTheory.CompanionTheory.CTSmooth
