@@ -4,6 +4,8 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Twis
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open Matrix Polynomial GroundTheory.Automorphic GroundTheory.Automorphic.Whittaker MeasureTheory

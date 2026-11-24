@@ -6,6 +6,8 @@ public import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.Sieg
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open NumberField Matrix MeasureTheory Filter Topology
 open scoped NumberField.AdeleRing
 open PositivityTheory.He2M1 GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.GJMatrix IdeleGroup PositivityTheory.RgEis

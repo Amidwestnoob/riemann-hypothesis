@@ -6,6 +6,8 @@ public import GroundTheory.AutomorphicForms.Bundle0024
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 set_option maxSynthPendingDepth 1
 
 noncomputable section

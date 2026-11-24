@@ -6,6 +6,8 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle006
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory

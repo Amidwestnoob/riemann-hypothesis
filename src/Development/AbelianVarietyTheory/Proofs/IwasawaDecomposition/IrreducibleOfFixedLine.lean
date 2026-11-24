@@ -6,6 +6,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle011
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open MeasureTheory Topology
 open scoped ComplexConjugate
 

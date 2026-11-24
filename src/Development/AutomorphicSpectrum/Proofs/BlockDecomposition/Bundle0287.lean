@@ -12,6 +12,7 @@ public import Development.WeilBound.RepresentationTheoryGL.DiscreteSeries.Discre
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousConjNilSymm
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Matrix MeasureTheory PositivityTheory.Rg.BcB PositivityTheory.Rg.Tf.Loc

@@ -23,6 +23,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle05
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralCharacterIntegralProperties
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Filter Topology

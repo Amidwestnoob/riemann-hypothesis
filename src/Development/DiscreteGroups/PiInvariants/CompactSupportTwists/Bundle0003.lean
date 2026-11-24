@@ -80,6 +80,7 @@ end
 
 -- bundled from Development.DiscreteGroups.PiInvariants.CompactSupportTwists.DomOneMeasure
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory

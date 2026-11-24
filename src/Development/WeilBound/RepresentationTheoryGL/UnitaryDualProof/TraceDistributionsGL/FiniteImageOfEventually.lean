@@ -6,6 +6,7 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Trac
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 
 noncomputable section

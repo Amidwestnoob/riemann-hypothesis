@@ -9,6 +9,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.BernsteinU
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.TraceDistributionsGL.FormTraceDistrGL
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
