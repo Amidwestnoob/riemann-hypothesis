@@ -339,8 +339,8 @@ theorem hasSum_mixT {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1))
     show (_root_.I195MixedCoordinates_1f38ee5ffec15f714787e016.source d) S ψ μ' 𝓕' _ (rat (D.host.xi0⁻¹ • y)) 0 = _
     rw [rat_smul]
     have hh := congrFun (hsw f (rat y)) 0
-    simpa only [I195MixedCoordinates_79cab7195843a34bfe21655d.source,
-      I195MixedCoordinates_79cab7195843a34bfe21655d.target,
+    simpa only [I195MixedCoordinates_8df3303fbb03152b340aba95.source,
+      I195MixedCoordinates_8df3303fbb03152b340aba95.target,
       I195MixedCoordinates_1f38ee5ffec15f714787e016.source,
       I195MixedCoordinates_1f38ee5ffec15f714787e016.target,
       GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger.cj,
