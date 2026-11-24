@@ -164,9 +164,9 @@ theorem eq_zero_of_pull_laurent_fst_snd (q : ℕ) (B C : Type) [CommRing B] [Com
     RingHom.ext fun x => E.symm_apply_apply x
   have hw : pull _ (spMap e) _ n z = 0 := by
     apply (GlobalTheory.EtC.ProdCoh.ht_prod_bijective q (LaurentPolynomial B) (LaurentPolynomial C) n i).1
-    simp only [← pull_spMap_comp, map_zero, e, RingHom.fst_comp_prod, RingHom.snd_comp_prod]
+    simp only [← GlobalTheory.EtC.GmPhiNat.pull_spMap_comp, map_zero, e, RingHom.fst_comp_prod, RingHom.snd_comp_prod]
     exact Prod.ext h1 h2
-  have := pull_spMap_comp q e E.symm.toRingHom n i z
+  have := GlobalTheory.EtC.GmPhiNat.pull_spMap_comp q e E.symm.toRingHom n i z
   rw [hinv, spMap_id, pull_id, hw, map_zero] at this
   exact this
 
