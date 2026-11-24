@@ -314,7 +314,7 @@ namespace GlobalTheory.EvenOnto.LiftUp
 theorem liftUp_stage_span : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.CasselmanWallach → ∀ (D : D7) (c : Com D) (k : ℕ) (s s' : PiLocalization₂ D) ω f, c.Is → k < c.m → s.Is c k → s'.Is c (k + 1) → PreStep c k s s' ω f → ∃ T : PolF D s'.V.rank s.V.rank → SmT s.M → SmT s'.M, (∀ P v, T P v ∈ s'.KF) ∧ s'.KF ≤ Submodule.span ℂ {w | ∃ P v, w = T P v} ∧ GlobalTheory.PairLift.LiftsM c.θ s.M s'.M s.ν s.fd (fun P h g => conj (thetaKO ω g h (GlobalTheory.Chain.ptOf c.ψ c.θ s.M s'.M f P))) T := by
   intro hDS hHC hCD hCW D c k s s' ω f hc hk hs _hs' hp
   obtain ⟨X, hX, _h1, _h2, h3, h4, h5⟩ := _root_.GlobalTheory.RealPlaceTheta.exists_record_theta_all hDS hHC
-  have hIn : Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries hDS hHC hCD hCW D X hX
+  have hIn : _root_.GlobalTheory.PairLift.Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries hDS hHC hCD hCW D X hX
   have hPL : PairLifts D X :=
     GlobalTheory.T.pairThetaLift_factors_through_intertwiner D X hIn (_root_.GlobalTheory.PairLift.cuspAll_of_lowAll D X hIn (_root_.GlobalTheory.PairLift.lowAll_of_lowFock D X hIn (_root_.GlobalTheory.LowerMembersRule.lowFock D X hIn)))
   have hW := hp.weil

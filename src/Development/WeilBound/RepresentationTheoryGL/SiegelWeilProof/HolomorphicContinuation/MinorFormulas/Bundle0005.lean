@@ -387,7 +387,7 @@ theorem sPrime_of' (hB : ClsBound) (hGain : ClsGain) (hIBP : IBP) (hI : Integr) 
   have hpt : ∀ (y : E n) (z : ℂ), ‖z‖ ≤ 1 → ‖(Delta^[Ns] (cls s z m 0 1)) y‖ ≤ ‖z‖ ^ (n - m) * M y := by
     intro y z hz
     obtain ⟨q, hqd, hq⟩ := factor hE hCh hBr hs m Ns (n - m) hdiv y
-    have hp := dP_pos hI y
+    have hp := _root_.PositivityTheory.Rg.Sw.WR.T.dP_pos hI y
     have hcircle : ∀ w : ℂ, ‖w‖ = 1 → ‖w ^ (n - m) * q w‖ ≤ M y := by
       intro w hw
       rw [← hq w, hGeq Ns w y, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hp, Complex.neg_re]

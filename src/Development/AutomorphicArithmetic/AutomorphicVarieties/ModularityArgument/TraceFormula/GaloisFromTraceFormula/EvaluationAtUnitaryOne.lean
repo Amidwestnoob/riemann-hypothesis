@@ -52,7 +52,7 @@ def EndoBlockG : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E],
       (∀ j, (D₁ j).Inf (mW l₁) ∧ (D₂ j).Inf (mW l₂)) ∧
       ∀ T : Finset (Pl E), (∀ w ∈ T, w ∈ S) → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (ρ : ℝ),
         (∀ w ∈ T, ¬ IsSplitAt w → e₂ w = .one) → 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def StableBlockG : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ π : CuspSub E n,
   (CG.mk π).IsRegAlg → GlobalTheory.ContraPair.DualIsConj π → ∃ l₁ : InfinitePlace E → DomWeight n,
@@ -64,7 +64,7 @@ def StableBlockG : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧ (∀ j, (D j).Inf (mW l₁)) ∧
       ∀ T : Finset (Pl E), (∀ w ∈ T, w ∈ S) → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ),
         (∀ w ∈ T, ¬ IsSplitAt w → e₂ w = .one) → 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 def EndoBlockS : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ (a b : ℕ), 1 ≤ a + b → ∀ S : Set (Pl E), IsSection S →
@@ -75,7 +75,7 @@ def EndoBlockS : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E],
       (∀ j, (D₁ j).Inf (mW l₁) ∧ (D₂ j).Inf (mW l₂)) ∧
       (∀ j w, ¬ IsSplitAt w → inv (B₁ j w) = B₁ j w ∧ inv (B₂ j w) = B₂ j w) ∧
       ∀ T : Finset (Pl E), SplitIn S T → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (ρ : ℝ), 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def StableBlockS : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ π : CuspSub E n,
   (CG.mk π).IsRegAlg → GlobalTheory.ContraPair.DualIsConj π → ∃ l₁ : InfinitePlace E → DomWeight n,
@@ -87,7 +87,7 @@ def StableBlockS : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧ (∀ j, (D j).Inf (mW l₁)) ∧
       (∀ j w, ¬ IsSplitAt w → inv (B w) = B w → inv (B₁ j w) = B₁ j w) ∧
       ∀ T : Finset (Pl E), SplitIn S T → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ), 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 def CuspReadI : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (N : ℕ) (K : Subgroup (GL (Fin N) (Af E))) (W : Submodule ℂ (Kinf E N → ℂ))
@@ -124,7 +124,7 @@ def Enlarge : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Gl
         (∀ i, (B₁ (u i)).card = a ∧ (B₂ (u i)).card = b ∧ inv (B₁ (u i)) = B₁ (u i) ∧ inv (B₂ (u i)) = B₂ (u i)) →
         val T' e₁' e₂' B₁ B₂ = val T e₁ e₂ B₁ B₂) ∧
       ∀ (l₁ : InfinitePlace E → DomWeight a) (l₂ : InfinitePlace E → DomWeight b) (φ : ∀ w : Pl E, GLw a w × GLw b w → ℂ) (k : ℕ),
-        geomSt2 S l₁ l₂ (fam Z T' φ e₁' e₂' k) = geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+        _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T' φ e₁' e₂' k) = _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def MWAt : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (l : InfinitePlace E → DomWeight n) (v : InfinitePlace E),
   mW l v.embedding = infOfWeight (l v) ∧ mW l (ComplexEmbedding.conjugate v.embedding) = (infOfWeight (l v)).map Neg.neg

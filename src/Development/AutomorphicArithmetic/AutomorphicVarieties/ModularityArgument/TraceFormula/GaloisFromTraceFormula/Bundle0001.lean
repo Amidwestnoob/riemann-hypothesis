@@ -93,7 +93,7 @@ theorem UpperTheory.V.Z.Tf.GaloisFromTraceFormula.asmTh_of :
   set P : ℂ := c * ∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => ct0 μ (Nat.add_zero n) f w (g, 1) with hPdef
   have hP0 : P ≠ 0 := mul_ne_zero hc (Finset.prod_ne_zero_iff.2 fun w hw => by
     rw [hTr E n w (hZ w hw).2 μ (τ w) f (hf w hw).2.1]; exact (hf w hw).2.2)
-  have hSt : Tendsto (fun k => geomSt2 S lam l₀ (Φ n 0 (Nat.add_zero n) k)) atTop (𝓝 P) := by
+  have hSt : Tendsto (fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S lam l₀ (Φ n 0 (Nat.add_zero n) k)) atTop (𝓝 P) := by
     have h1 := small_tendsto (hst T hT hTZ _ _ (1 / 2) (by norm_num) fun j => by
       rw [(ht n 0 (Nat.add_zero n) T hT hTZ e₁ e₂).1 _ _ fun w ho => ⟨sat_card ((hDs j).2 w ho), rfl⟩, un0]
       have := hv0 (.inr (.inl j))
@@ -102,7 +102,7 @@ theorem UpperTheory.V.Z.Tf.GaloisFromTraceFormula.asmTh_of :
     rw [(ht n 0 (Nat.add_zero n) T hT hTZ e₁ e₂).1 _ _ fun w ho => ⟨(hB w ho).1.card, rfl⟩, un0, hv1] at h1
     have h2 := h1.add_const P
     simpa [hPdef, Φ] using h2
-  have hterm : ∀ i, Tendsto (fun k => ((sg i : ℤ) : ℂ) * geomSt2 S (l₁ i) (l₂ i) (Φ _ _ (hab i) k)) atTop
+  have hterm : ∀ i, Tendsto (fun k => ((sg i : ℤ) : ℂ) * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S (l₁ i) (l₂ i) (Φ _ _ (hab i) k)) atTop
       (𝓝 (if 1 ≤ a i ∧ 1 ≤ n - a i then 0 else P)) := fun i => by
     split_ifs with hm
     · have h1 := small_tendsto (hEb i T hT hTZ _ _ (1 / 2) (by norm_num) fun j => by
@@ -122,7 +122,7 @@ theorem UpperTheory.V.Z.Tf.GaloisFromTraceFormula.asmTh_of :
         (fun w hw => (((ht _ _ (Nat.add_zero n) T hT hTZ e₁ e₂).2 k).2 w hw).2)]
       simp [Φ]
   have hsum := tendsto_finsetSum Finset.univ fun i _ => hterm i
-  have hzero : ∀ k, 1 ≤ k → ∑ i, ((sg i : ℤ) : ℂ) * geomSt2 S (l₁ i) (l₂ i) (Φ _ _ (hab i) k) = 0 := fun k hk => by
+  have hzero : ∀ k, 1 ≤ k → ∑ i, ((sg i : ℤ) : ℂ) * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S (l₁ i) (l₂ i) (Φ _ _ (hab i) k) = 0 := fun k hk => by
     have h1 := hid S hS' K' (famU Z T f e₁ e₂ k) (fun a' => if h : a' + (n - a') = n then Φ a' (n - a') h k else 0) hK
       (hUv T hT hTZ e₁ e₂ k).1 fun a' ha' => by
         have h := Nat.add_sub_cancel' ha'

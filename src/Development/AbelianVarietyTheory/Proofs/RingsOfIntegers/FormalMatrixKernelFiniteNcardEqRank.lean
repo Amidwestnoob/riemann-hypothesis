@@ -154,14 +154,14 @@ theorem finite_ncard_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscrete
   have hpt : ∀ α : Fin n → Fin d → V, (∀ b i, α b i ∈ maximalIdeal V) →
       ∃ ψ : PS V n d →ₐ[V] Ω, (∀ s, ψ (MvPowerSeries.X s) = algebraMap V Ω (α s.1 s.2)) ∧
         ∀ b i, ψ (matV B p (fun j => pt V (n := n) d j) b i) = algebraMap V Ω
-          (MvPowerSeries.constantCoeff (matV B (m := 0) p (fun j => cpt (α j)) b i)) := by
+          (MvPowerSeries.constantCoeff (matV B (m := 0) p (fun j => _root_.GlobalTheory.PlaceInt.cpt (α j)) b i)) := by
     intro α hα
-    have hx : ∀ b i, MvPowerSeries.constantCoeff ((fun j => cpt (n := 0) (α j)) b i) ∈
+    have hx : ∀ b i, MvPowerSeries.constantCoeff ((fun j => _root_.GlobalTheory.PlaceInt.cpt (n := 0) (α j)) b i) ∈
         maximalIdeal V := fun b i => by
           unfold _root_.GlobalTheory.PlaceInt.cpt
           simpa using hα b i
     obtain ⟨ψ, hψ, hψ'⟩ := (_root_.GlobalTheory.PlaceInt.evC_spec V (Fin n × Fin d) (Fin 0 × Fin d) (Fin 0 × Fin d)
-      (fun s => cpt (n := 0) (α s.1) s.2) (fun s => hx s.1 s.2)).1
+      (fun s => _root_.GlobalTheory.PlaceInt.cpt (n := 0) (α s.1) s.2) (fun s => hx s.1 s.2)).1
     refine ⟨(Algebra.ofId V Ω).comp ((constAlgHom V _).comp ψ), fun s => ?_, fun b i => ?_⟩
     · rw [AlgHom.comp_apply, AlgHom.comp_apply, hψ]
       exact congrArg (algebraMap V Ω) (MvPowerSeries.constantCoeff_C _)

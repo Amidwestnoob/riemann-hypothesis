@@ -623,7 +623,7 @@ theorem exists_trUnit : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   have hh := ((integralBiext_gauge_eig_bound E H Dw l Xo c hstar T io y C).choose_spec.2 B hB).1
   have hα := hFP.1
   have hαk : ∀ n, (Sm.const B α hα : Sm B n) ^ k = 1 := by
-    have cc : ∀ p : Sm B 0, (cpt fun i => MvPowerSeries.constantCoeff (p.1 i) : Pt T.V 0 (chD C.ch)) = p.1 :=
+    have cc : ∀ p : Sm B 0, (_root_.GlobalTheory.PlaceInt.cpt fun i => MvPowerSeries.constantCoeff (p.1 i) : Pt T.V 0 (chD C.ch)) = p.1 :=
       fun p => funext fun i => MvPowerSeries.ext fun e => by
         obtain rfl : e = 0 := Subsingleton.elim _ _
         simp [GlobalTheory.PlaceInt.cpt]

@@ -201,8 +201,8 @@ theorem psi_value (V : HSp D) {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {n 
       rw [(hW k).1, (hU.2.1 k).1]
       exact hx₀ τ (((hU.2.1 k).2 τ).1 hτ)) d.cδ hsec c0 xi N hN hc0 hxN hval hrat s ρ hρ u
     (by unfold latGHat; rw [hu, GlobalTheory.TwistTie.gLat_one]) (fun b _ => hlift b) z z' hz'.1
-  have h2 : toC (evR d.Xo₂ d.c₂ d.cδ z') = (((ψ k : c.Fˣ) : c.F) : ℂ) * toC (evR d.Xo₂ d.c₂ d.cδ z) ∧
-      toC (evR d.Xo₂ d.c₂ d.cδ z) ≠ 0 := by
+  have h2 : _root_.Formalism.L2.Pj.toC (evR d.Xo₂ d.c₂ d.cδ z') = (((ψ k : c.Fˣ) : c.F) : ℂ) * _root_.Formalism.L2.Pj.toC (evR d.Xo₂ d.c₂ d.cδ z) ∧
+      _root_.Formalism.L2.Pj.toC (evR d.Xo₂ d.c₂ d.cδ z) ≠ 0 := by
     letI : Field (CAt (c.F.val.toRingHom.comp (d.eF.symm : d.c₂.F →+* c.F))) := inferInstanceAs (Field ℂ)
     haveI : IsAlgClosed (CAt (c.F.val.toRingHom.comp (d.eF.symm : d.c₂.F →+* c.F))) := inferInstanceAs (IsAlgClosed ℂ)
     exact ⟨hψ k s ρ hs (fun a => ⟨s.f d.l₂.A a - a, by rw [hA₂, one_smul]⟩) hρ hk _ z z' hz'.1, hne _ z⟩

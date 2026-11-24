@@ -229,7 +229,7 @@ structure Core {X : ThetaX D} (T : ThetaTied D X) where
 
   ψ : AddChar (AF D.host.F) ℂ
 
-  ψ_std : IsStdChar D (-1) ψ
+  ψ_std : _root_.GlobalTheory.IndefiniteRowSideFullHecke.HeisenbergWeilMatrices.IsStdChar D (-1) ψ
 
   eUp : ∀ A B : HSp D, A.rank ≤ B.rank → X.Sch A B ≃ₗ[ℂ] Theta ψ A B
 

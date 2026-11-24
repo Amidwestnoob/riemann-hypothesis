@@ -171,7 +171,7 @@ open scoped TensorProduct
 
 theorem exists_isInduced : ∀ (l : ℕ) [Fact l.Prime] (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (τ : E →+* Om l), ∃ w ∈ placesOver E l, ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-      ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O),
+      ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (_root_.ReciprocityTheory.Gal.Dec (F := E) A) O),
         Induces Bw → ∃ τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥Bw.LL.1, IsInduced Bw τ τ' := by
   intro l _ E Ω _ _ _ _ _ τ
   refine ⟨PI.CompDegEF.plOf τ, PI.CompDegEF.natCast_mem_plIdeal τ, ?_⟩
@@ -227,7 +227,7 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc NumberField IsDedekindDom
 
 theorem existsIsInduced : ∀ (l : ℕ) [Fact l.Prime] (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (τ : E →+* Om l), ∃ w ∈ placesOver E l, ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-      ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O),
+      ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (_root_.ReciprocityTheory.Gal.Dec (F := E) A) O),
         Induces Bw → ∃ τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥Bw.LL.1, IsInduced Bw τ τ' :=
   Emb.exists_isInduced
 

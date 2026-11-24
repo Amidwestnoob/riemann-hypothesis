@@ -275,7 +275,7 @@ def CmbEll : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Glo
   ∀ (u₁ : GL (Fin a) E) (u₂ : GL (Fin b) E), IsTransl u₁ → IsTransl u₂ →
   ∀ φ T (e₁ e₂ : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (k : ℕ) (C : Cmb A.blk) (R : ℝ), L.Fix φ → (∃ w ∈ Z, RegAt2 a b w (φ w)) → TIn S T e₂ → 0 ≤ R →
     C.Ok (rt u₁ u₂ (A.fx S L T φ (fun w => (e₁ w).pow k) fun w => (e₂ w).pow k)) R →
-    ellSum2 μ₁ μ₂ (trM C.Φ A.tw) = κ * C.val (chi l₁) (chi l₂) * geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+    ellSum2 μ₁ μ₂ (trM C.Φ A.tw) = κ * C.val (chi l₁) (chi l₂) * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def CmbPi : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ π : CuspSub E n,
   (CG.mk π).IsRegAlg → GlobalTheory.ContraPair.DualIsConj π → ∃ l₁ : InfinitePlace E → DomWeight n,
