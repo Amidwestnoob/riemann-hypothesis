@@ -154,7 +154,7 @@ theorem finite_ncard_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscrete
           (MvPowerSeries.constantCoeff (matV B (m := 0) p (fun j => cpt (α j)) b i)) := by
     intro α hα
     have hx : ∀ b i, MvPowerSeries.constantCoeff ((fun j => cpt (n := 0) (α j)) b i) ∈
-        maximalIdeal V := fun b i => by simpa [cpt] using hα b i
+        maximalIdeal V := fun b i => by simpa [GlobalTheory.PlaceInt.cpt] using hα b i
     obtain ⟨ψ, hψ, hψ'⟩ := (_root_.GlobalTheory.PlaceInt.evC_spec V (Fin n × Fin d) (Fin 0 × Fin d) (Fin 0 × Fin d)
       (fun s => cpt (n := 0) (α s.1) s.2) (fun s => hx s.1 s.2)).1
     refine ⟨(Algebra.ofId V Ω).comp ((constAlgHom V _).comp ψ), fun s => ?_, fun b i => ?_⟩

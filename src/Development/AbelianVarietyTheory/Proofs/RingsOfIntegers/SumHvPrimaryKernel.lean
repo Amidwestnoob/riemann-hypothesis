@@ -215,7 +215,7 @@ theorem exists_cpt {V : Type} [CommRing V] {d : ℕ} (v : Pt V 0 d) : ∃ δ : F
   refine ⟨fun i => MvPowerSeries.constantCoeff (v i), funext fun i => ?_⟩
   ext m
   obtain rfl : m = 0 := Subsingleton.elim _ _
-  simp [cpt]
+  simp [GlobalTheory.PlaceInt.cpt]
 
 end GlobalTheory.CoreTrace
 
