@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1125
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContDiffConstantTermCocompactSmoothParameterFami
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut
 open scoped TensorProduct ContDiff Topology
 
