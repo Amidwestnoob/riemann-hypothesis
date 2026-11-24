@@ -31,13 +31,13 @@ private theorem adj_map (j : R →+* R') (X : M4 R) : adj (X.map j) = (adj X).ma
   simp only [adj_apply, Matrix.map_apply, map_zsmul]
 private theorem conj_map (j : R →+* R') (n X : M4 R) :
     adj (n.map j) * X.map j * n.map j = (adj n * X * n).map j := by
-  rw [Matrix.map_mul, Matrix.map_mul, adj_map]
+  rw [Matrix.map_mul, Matrix.map_mul, _root_.adj_map]
 private theorem isGSp_map (j : R →+* R') {ν : R} {X : M4 R} (hX : IsGSp ν X) : IsGSp (j ν) (X.map j) := by
   have h : (j ν) • (1 : M4 R') = (ν • (1 : M4 R)).map j := by
     ext i i'
     by_cases h : i = i' <;> simp [Matrix.one_apply, h]
   unfold IsGSp at hX ⊢
-  rw [adj_map, ← Matrix.map_mul, h, hX]
+  rw [_root_.adj_map, ← Matrix.map_mul, h, hX]
 private theorem isPair_map {O Γ : Type} [CommRing O] [Group Γ] (Φ : Fr O Γ) (a : O →+* R) (f : R →+* R')
     (P : PD Φ.ι Γ R) (h : Φ.IsPair a P) : Φ.IsPair (f.comp a) (P.map f) := by
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := h
