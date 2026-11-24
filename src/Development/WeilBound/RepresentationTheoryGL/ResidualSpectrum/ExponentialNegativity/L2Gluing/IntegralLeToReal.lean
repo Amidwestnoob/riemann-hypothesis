@@ -58,6 +58,11 @@ theorem swap (μ : Measure (AdelicGLn.AdelicGL K n)) [μ.IsHaarMeasure] (φ : Ad
     simp [h0]
   have hν0 : unipMeasure K n r (unipFundamentalDomain K n r) ≠ 0 := fun h => hc (by simp [Measure.real, h])
   have hνt : unipMeasure K n r (unipFundamentalDomain K n r) ≠ ⊤ := fun h => hc (by simp [Measure.real, h])
+  haveI : SFinite (μ.restrict Q) :=
+    @instSFiniteOfSigmaFinite _ _ _ (@IsFiniteMeasure.toSigmaFinite _ _ _
+      (isFiniteMeasure_restrict.2 (hQ.measure_lt_top (μ := μ)).ne))
+  haveI : SFinite ((unipMeasure K n r).restrict (unipFundamentalDomain K n r)) :=
+    @instSFiniteOfSigmaFinite _ _ _ (@IsFiniteMeasure.toSigmaFinite _ _ _ (isFiniteMeasure_restrict.2 hνt))
   have hpt : ∀ g, ‖An.ctn r φ g‖ₑ ^ 2 * unipMeasure K n r (unipFundamentalDomain K n r) ≤
       ∫⁻ X in unipFundamentalDomain K n r, ‖φ (unipGL X * g)‖ₑ ^ 2 ∂unipMeasure K n r := fun g =>
     cs_mean (unipMeasure K n r) (unipFundamentalDomain K n r) (fun X => φ (unipGL X * g))
