@@ -290,7 +290,7 @@ theorem mu_equivariant (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] (n : �
   apply Units.ext
   change (((Additive.toMul (muEquiv ζ hζ (charRep c g m)) : rootsOfUnity n Ω) : Ωˣ) : Ω) =
     g (((Additive.toMul (muEquiv ζ hζ m) : rootsOfUnity n Ω) : Ωˣ) : Ω)
-  rw [muEquiv_apply, muEquiv_apply, charRep_apply, Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val,
+  rw [muEquiv_apply, muEquiv_apply, ReciprocityTheory.Gal.charRep_apply, Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val,
     map_pow, hc, ← pow_mul, ZMod.val_mul]
   have h1 : (ζ : Ω) ^ n = 1 := by
     rw [← Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one]
