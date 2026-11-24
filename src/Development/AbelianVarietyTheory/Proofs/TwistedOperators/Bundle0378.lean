@@ -203,7 +203,7 @@ theorem hkF_evC (V : HSp D) {W : Type} [AddCommGroup W] [Module ℂ W] (P : Pl D
       rw [Finsupp.sum_single_index (by simp), one_smul] at this
       rw [if_pos hd, this]; rfl
     · rw [if_neg hd, rep_of_not hd, Finset.sum_empty, zero_smul]
-  simp only [hkF, evC, Finsupp.sum, Pi.smul_apply, Finset.sum_smul, e, smul_smul]
+  simp only [hkF, GlobalTheory.Hk3.evC, Finsupp.sum, Pi.smul_apply, Finset.sum_smul, e, smul_smul]
   refine Finset.sum_congr rfl fun d _ => ?_
   split_ifs <;> simp
 

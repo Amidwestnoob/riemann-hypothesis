@@ -248,7 +248,7 @@ theorem pair_defined_over_finite : ∀ (E : Type) [Field E] [NumberField E] [IsC
     RingHom.finite_algebraMap.2 hfin, ?_⟩
   rintro v v' rfl rfl
   have e : ∀ y : Sp K ⟶ Xo.X, spMap φ ≫ y = spMap M.val.toRingHom ≫ spMap (algebraMap K M) ≫ y := fun y => by
-    rw [← Category.assoc, spMap_algHom_comp]
+    rw [← Category.assoc, GlobalTheory.Spread.spMap_algHom_comp]
   exact ⟨Over.homMk f hf, Over.homMk r hr, ⟨e x, e x', hf'⟩, ⟨e x', e x, hr'⟩⟩
 
 end GlobalTheory.HkIntegral
