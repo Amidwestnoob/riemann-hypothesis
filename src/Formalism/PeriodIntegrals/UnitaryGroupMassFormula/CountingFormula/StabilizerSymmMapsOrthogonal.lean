@@ -87,7 +87,8 @@ theorem Xa_le_X (j : ℕ) : F0.Xa j ≤ F0.X :=
 
 theorem gF_X (hu : ∀ a v, hWb D F0 a (u v) = (VS D).hT (sE a : (VS D).V) v)
     (σ : WbQ D F0 ≃ₗ[D.host.E] WbQ D F0) {x : (VS D).V} (hx : x ∈ F0.X) : gF D F0 sE u σ x = x := by
-  rw [gF_apply, u_X hu hx, map_zero, sub_self, map_zero, Submodule.coe_zero, add_zero]
+  rw [gF_apply, u_X hu hx, LinearEquiv.map_zero σ, sub_self, LinearMap.map_zero sE,
+    Submodule.coe_zero, add_zero]
 
 theorem gF_perp_mk (hsE : ∀ a, (Submodule.Quotient.mk (sE a) : WbQ D F0) = a)
     (hu : ∀ a v, hWb D F0 a (u v) = (VS D).hT (sE a : (VS D).V) v)
