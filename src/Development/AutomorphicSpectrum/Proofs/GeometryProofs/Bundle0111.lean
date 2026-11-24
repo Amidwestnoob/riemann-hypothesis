@@ -23,6 +23,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeVe
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Bundle0004
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Bundle0014
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0052
 
 @[expose] public section
