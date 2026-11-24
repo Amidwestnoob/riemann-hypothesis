@@ -56,7 +56,7 @@ variable {σ}
 theorem Reads.unique {μ : Chr F E K} {ξ ξ' : Formalism.L2.Host.HChar E} (h : Reads σ μ ξ) (h' : Reads σ μ ξ') : ξ = ξ' :=
   Subtype.ext (MonoidHom.ext fun a => Units.ext ((h a).trans (h' a).symm))
 
-theorem Reads.inj {μ μ' : Chr F E K} {ξ : Formalism.L2.Host.HChar E} (h : Reads σ μ ξ) (h' : Reads σ μ ξ') : μ = μ' := by
+theorem Reads.inj {μ μ' : Chr F E K} {ξ : Formalism.L2.Host.HChar E} (h : Reads σ μ ξ) (h' : Reads σ μ' ξ) : μ = μ' := by
   refine MonoidHom.ext fun y => ?_
   obtain ⟨a, rfl⟩ := finAf_surjective F E y
   exact Units.ext (σ.injective ((h a).symm.trans (h' a)))
