@@ -31,7 +31,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 
 open Classical in
 def ExpBd (k : ℕ) (cx : Lt1 Dw → ℕ) (Mb Sm : ℝ) (M : ℕ) : Prop :=
-  0 ≤ Mb ∧ (∀ τ : E →+* ℂ, ((∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ), cx f : ℕ) : ℝ) ≤ Mb) ∧
+  0 ≤ Mb ∧ (∀ τ : E →+* ℂ, ((∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ f.1 = τ), cx f : ℕ) : ℝ) ≤ Mb) ∧
     (sumSmallSpread k cx : ℝ) ≤ Sm ∧ ∀ f, cx f ≤ M
 
 def Shape (F k m : ℕ) : Prop :=

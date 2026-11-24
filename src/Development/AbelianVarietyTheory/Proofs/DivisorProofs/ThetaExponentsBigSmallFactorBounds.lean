@@ -153,16 +153,16 @@ theorem card_psi (F : ℕ) (hF : Module.finrank ℚ E = 2 * F) :
 open Classical in
 theorem big_le (u : GlobalTheory.AllWt.Weight Dw) (k n B : ℕ) (hk : 2 ≤ k) (hkp : k ≤ Dw.p + 1) (hanti : ∀ τ, Antitone (u τ))
     (hz : ∀ τ (i : Fin (Dw.p + Dw.q)), (i : ℕ) + 2 = k → u τ i = 0) (hB : ∀ τ i, |u τ i| ≤ B) (τ : E →+* ℂ) :
-    ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ), gap Dw (thA Dw u n) f ≤ B + 1 := by
+    ∑ f ∈ Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ f.1 = τ), gap Dw (thA Dw u n) f ≤ B + 1 := by
   have hp : 0 < Dw.p := by omega
   by_cases h : InPsi H τ
   · obtain ⟨τ', rfl⟩ : ∃ τ' : Psi H, τ = τ'.1 := ⟨⟨τ, h⟩, rfl⟩
     have hlt : k - 2 < Dw.mult τ'.1 := by rw [mult_psi]; omega
     have e := sum_gap_row (Dw := Dw) (thA_anti u n hanti hp) τ'.1 ⟨k - 2, hlt⟩
-    have e2 : Finset.univ.filter (fun f : Lt1 Dw => IsBig k f ∧ f.1 = τ'.1) =
+    have e2 : Finset.univ.filter (fun f : Lt1 Dw => GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig k f ∧ f.1 = τ'.1) =
         Finset.univ.filter (fun f : Lt1 Dw => f.1 = τ'.1 ∧ k - 2 < rk f) := by
       refine Finset.filter_congr fun f _ => ?_
-      unfold IsBig
+      unfold GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification.IsBig
       constructor
       · rintro ⟨⟨_, h2⟩, h3⟩
         exact ⟨h3, by omega⟩
