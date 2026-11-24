@@ -310,7 +310,7 @@ section Moduli
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.L2.PjFree
 
 variable {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ}
-  (U : Unf Xo c σ r) (hU : IsUnf U) (e : Dw.p = j)
+  (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : Formalism.L2.PjFree.IsUnf U) (e : Dw.p = j)
 
 include hU e in
 theorem le_of_isUnf : j ≤ r := by have := hU.1; omega
@@ -322,7 +322,7 @@ theorem first_index_eq_of_unfolded (k : U.Comp) : (U.X k).p0 = r - j := by
 def cmEquiv (T : Tau ≃ {τ : E →+* ℂ // τ (H.rt : E) = H.rt0}) (k : U.Comp) : Tau ≃ (U.X k).Ψ :=
   T.trans (Equiv.subtypeEquivRight fun τ => ((hU.2.1 k).2 τ).symm)
 
-def letterAt (hσ : GoodEmb c σ) :
+def letterAt (hσ : Formalism.L2.PjFree.GoodEmb c σ) :
     {τ : E →+* ℂ // τ (H.rt : E) = H.rt0} ≃ {τ : E →+* ℂ // τ (H.rt : E) = H.rt0} :=
   (Equiv.ofBijective _ (GlobalTheory.Relab.relab_good E H l c σ hσ).1).subtypeEquiv
     fun τ => ((GlobalTheory.Relab.relab_good E H l c σ hσ).2.1 τ).symm

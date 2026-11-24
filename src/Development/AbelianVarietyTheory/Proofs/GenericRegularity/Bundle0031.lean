@@ -100,13 +100,13 @@ theorem exists_factor (hT : Out.SecTwistSt) {Z : Type} (x u : Sp ℂ ⟶ Xo.X) (
       p ≫ pullback.snd _ _ = 𝟙 _ → ⊤ ≤ (e z).left ⁻¹ᵁ Xo.univ.t.PP.L.U j →
       valAt' p ((Xo.univ.t.PP.L.pull (pullback.fst Xo.univ.t.G.hom u)).U (fun _ => j)) (t.f (fun _ => j)) =
         θ z * fr j z) :
-    ∃ κ : ℂ, κ ≠ 0 ∧ ∀ j z (pt : Sp ℂ ⟶ Gx x), pt ≫ gxFst x = (e z).left → pt ≫ Formalism.L2.PjFree.gxSnd x = 𝟙 (Sp ℂ) →
+    ∃ κ : ℂ, κ ≠ 0 ∧ ∀ j z (pt : Sp ℂ ⟶ Gx x), pt ≫ Formalism.L2.PjFree.gxFst x = (e z).left → pt ≫ Formalism.L2.PjFree.gxSnd x = 𝟙 (Sp ℂ) →
       ⊤ ≤ (e z).left ⁻¹ᵁ Xo.univ.t.PP.L.U j →
       valAt' pt ((PPx x).U (fun _ => j)) (s.f (fun _ => j)) = κ * θ z * fr j z := by
   subst hxu
   obtain ⟨s', hs'⟩ := GlobalTheory.FibreSection.exists_sec_same_values E H Dw l Xo x t
   obtain ⟨a, ha, -⟩ := hs s'
-  have key : ∀ j z (pt : Sp ℂ ⟶ Gx x), pt ≫ gxFst x = (e z).left → pt ≫ Formalism.L2.PjFree.gxSnd x = 𝟙 (Sp ℂ) →
+  have key : ∀ j z (pt : Sp ℂ ⟶ Gx x), pt ≫ Formalism.L2.PjFree.gxFst x = (e z).left → pt ≫ Formalism.L2.PjFree.gxSnd x = 𝟙 (Sp ℂ) →
       ⊤ ≤ (e z).left ⁻¹ᵁ Xo.univ.t.PP.L.U j →
       a * valAt' pt ((PPx x).U (fun _ => j)) (s.f (fun _ => j)) = θ z * fr j z := by
     intro j z pt e₁ e₂ hj
@@ -149,10 +149,10 @@ theorem exists_holomorphic_factor : ∀ (E : Type) [Field E] [NumberField E] [Is
   obtain ⟨pm₀, p₁, p₂, p₃⟩ := (hb b₀ hb₀).2.2
   obtain ⟨e₀, j, hne⟩ := exists_val_ne hT (φ b₀) yA.x (y b₀).x _ (hux b₀ hb₀) yA.s (y b₀).s pm₀ p₁ p₂ p₃ (y b₀).gen
   obtain ⟨w₀, rfl⟩ := F.ex_onto k _ (hP.1 b₀ hb₀) e₀
-  have hq₁ : ∀ b ∈ B, ∃ q : Sp ℂ ⟶ Gx yA.x, q ≫ gxFst yA.x = (F.ex k (P b) w₀).left ∧
+  have hq₁ : ∀ b ∈ B, ∃ q : Sp ℂ ⟶ Gx yA.x, q ≫ Formalism.L2.PjFree.gxFst yA.x = (F.ex k (P b) w₀).left ∧
       q ≫ Formalism.L2.PjFree.gxSnd yA.x = spMap (φ b) := fun b h =>
     exists_pt _ _ _ (((hb b h).1.symm.trans (hux b h).symm).trans (Over.w (F.ex k (P b) w₀)).symm)
-  have hq₂ : ∀ b, ∃ q : Sp ℂ ⟶ Gx yA.x, b ∈ B → q ≫ gxFst yA.x = (F.ex k (P b) w₀).left ∧
+  have hq₂ : ∀ b, ∃ q : Sp ℂ ⟶ Gx yA.x, b ∈ B → q ≫ Formalism.L2.PjFree.gxFst yA.x = (F.ex k (P b) w₀).left ∧
       q ≫ Formalism.L2.PjFree.gxSnd yA.x = spMap (φ b) := fun b => by
     by_cases h : b ∈ B
     · exact (hq₁ b h).imp fun _ h' _ => h'
@@ -160,7 +160,7 @@ theorem exists_holomorphic_factor : ∀ (E : Type) [Field E] [NumberField E] [Is
   choose q hq using hq₂
   have hι : Differentiable ℂ (fun b : Fin m → ℂ => ((b, w₀) : (Fin m → ℂ) × (Fin g → ℂ))) := by fun_prop
   have hol : IsHolTo B q := by
-    refine HolPullback.isHolTo_of_components _ B _ _ _ _ (Formalism.L2.PjFree.gxSnd yA.x) (gxFst yA.x) yA.x Xo.univ.t.G.hom q
+    refine HolPullback.isHolTo_of_components _ B _ _ _ _ (Formalism.L2.PjFree.gxSnd yA.x) (Formalism.L2.PjFree.gxFst yA.x) yA.x Xo.univ.t.G.hom q
       (IsPullback.of_hasPullback yA.x Xo.univ.t.G.hom) hB ?_ ?_
     · exact LocLift.isHolTo_congr (ThetaValueCont.isHolTo_spMap hB φ hψ) fun b h => (hq b h).2
     · exact LocLift.isHolTo_congr (LocLift.isHolTo_comp (F.hol k _ B _ hB hP).2 hB hι.differentiableOn
