@@ -102,7 +102,7 @@ theorem finrank_le_of_lieMult_valued {R : Type} [CommRing R] [IsDomain R] [IsDis
   obtain ⟨ρ, hρ⟩ := exists_action hv aG
   obtain ⟨v', ρ', hv', hρ', hM⟩ := exists_action_pullback hv hρ ((intO F).subtype.comp f)
   have hk := isLinearPullback_pullback aG (spMap ((intO F).subtype.comp f))
-  rw [← finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
+  rw [← GlobalTheory.LieEigen.finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
   let V := intO F
   have : IsFractionRing V F := isFractionRing_intO
   let : Algebra R V := f.toAlgebra

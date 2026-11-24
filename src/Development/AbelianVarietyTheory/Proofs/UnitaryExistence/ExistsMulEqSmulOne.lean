@@ -323,7 +323,7 @@ theorem finrank_le_of_lieMult {R : Type} [CommRing R] [IsDomain R] [IsDiscreteVa
   obtain ⟨ρ, hρ⟩ := exists_action hv aG
   obtain ⟨v', ρ', hv', hρ', hM⟩ := exists_action_pullback hv hρ (algebraMap R F)
   have hk := isLinearPullback_pullback aG (spMap (algebraMap R F))
-  rw [← finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
+  rw [← GlobalTheory.LieEigen.finrank_of_lieMult hk.1 hv' hk.2 hρ' hN]
   let V := integralClosure R F
   have : IsFractionRing V F := integralClosure.isFractionRing_of_algebraic fun x hx =>
     (FaithfulSMul.algebraMap_eq_zero_iff R F).1 hx
