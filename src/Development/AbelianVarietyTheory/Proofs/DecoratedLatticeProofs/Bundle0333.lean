@@ -135,7 +135,7 @@ theorem chr_moves_eq_rho_base : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), 
   have h0 := chr_root_mul_base hI hA ⟨i, hi⟩ i (Nat.le_of_succ_le hi) α c x hx
   have h1 := chr_root_mul_base hI hA ⟨i, hi⟩ (i + 1) hi γ c' y hy
   rw [rho_eq I hI u a i hi, rho'_eq I hI u a i hi]
-  simp only [ColIn.A, AmbIn.amb, Th.chiFac, ColIn.chi]
+  simp only [ColIn.A, GlobalTheory.Mem.Col2.AmbIn.amb, Th.chiFac, ColIn.chi]
   rw [← h0, ← h1]
   exact moves_alg _ _ _ _ _ _ _ _ (Circle.coe_ne_zero _) (Circle.coe_ne_zero _) (Circle.coe_ne_zero _)
     (Circle.coe_ne_zero _) (chiId_ne_zero _ _) (chiId_ne_zero _ _)
