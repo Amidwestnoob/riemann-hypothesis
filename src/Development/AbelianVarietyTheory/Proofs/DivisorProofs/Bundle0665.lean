@@ -91,6 +91,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorHolomorphicExtOfValues
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Filter Topology TopologicalSpace GlobalTheory.AnPer TensorProduct
 
 namespace GlobalTheory

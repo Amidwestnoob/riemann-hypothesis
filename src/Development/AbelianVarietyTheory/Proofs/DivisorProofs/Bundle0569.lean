@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0540
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.NablaSchur
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open MvPolynomial Formalism.GradedWeylDivisibility TensorProduct
 
 noncomputable section

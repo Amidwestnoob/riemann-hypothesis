@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0016
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerTensor
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open TensorProduct
 

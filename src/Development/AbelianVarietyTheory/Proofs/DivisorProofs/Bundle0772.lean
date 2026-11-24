@@ -292,6 +292,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEqSqSubMulSq
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open scoped TensorProduct
 open IsLocalRing IsDedekindDomain IsDedekindDomain.HeightOneSpectrum
 

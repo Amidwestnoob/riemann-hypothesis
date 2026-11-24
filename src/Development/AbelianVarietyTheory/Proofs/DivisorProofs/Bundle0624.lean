@@ -253,6 +253,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemilinearHomConnectedFactorThroughPart
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 open TensorProduct Coalgebra Bialgebra WithConv
@@ -317,6 +318,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemilinearHomEtaleFactorThroughPart
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 open TensorProduct Coalgebra Bialgebra WithConv

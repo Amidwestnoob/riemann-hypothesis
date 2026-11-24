@@ -32,6 +32,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ToricPeriodB
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaIntegrandIntegrable
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice MeasureTheory IsDedekindDomain NumberField

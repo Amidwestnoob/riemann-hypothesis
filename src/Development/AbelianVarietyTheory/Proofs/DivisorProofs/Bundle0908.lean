@@ -111,6 +111,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAsAlgebraHomEq
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 open scoped TensorProduct
 
