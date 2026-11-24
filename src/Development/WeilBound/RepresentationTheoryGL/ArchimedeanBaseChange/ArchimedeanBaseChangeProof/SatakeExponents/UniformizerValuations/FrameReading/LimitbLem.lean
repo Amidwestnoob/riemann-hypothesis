@@ -17,6 +17,7 @@ open scoped Classical
 
 attribute [local instance] PositivityTheory.Rg.BcB.F.borelG PositivityTheory.Rg.BcB.F.borelF borelH
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.F.Rd.B
 
 open PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.F.Rd

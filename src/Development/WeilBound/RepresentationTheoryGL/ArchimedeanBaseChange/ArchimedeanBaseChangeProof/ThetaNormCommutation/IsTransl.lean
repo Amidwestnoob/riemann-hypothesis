@@ -14,6 +14,7 @@ open scoped Classical TensorProduct
 open GlobalTheory.BCT
 open scoped Classical
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.G8
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n a b : ℕ}

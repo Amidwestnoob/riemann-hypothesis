@@ -11,6 +11,7 @@ open PositivityTheory.Rg.BcB.G8
 open UpperTheory.V.Af.Bc (cPl)
 open UpperTheory.V.Z.Tf.GlobalTraceComparison UpperTheory.V.Z.Tf.GlobalTraceComparison.Cusp UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm UpperTheory.V.Z.Tf.GaloisFromTraceFormula UpperTheory.V.Z.Mult
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 theorem UpperTheory.V.Z.Mult.rIdent :
     RIdent := by
   intro hND hCA hGT hG hM1 hM3 hE hS E _ _ _ hunr n hn hn4 lam

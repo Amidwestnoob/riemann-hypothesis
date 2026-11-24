@@ -8,6 +8,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.T2SpaceA
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.CV.AdelicTopology
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}

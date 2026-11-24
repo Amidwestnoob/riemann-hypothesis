@@ -179,6 +179,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.SliceTensors.PSatHerm
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.L2.Host MeasureTheory

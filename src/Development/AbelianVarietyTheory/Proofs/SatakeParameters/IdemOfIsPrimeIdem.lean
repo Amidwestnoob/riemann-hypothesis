@@ -27,6 +27,7 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.SphericalOps
 
 section Generic

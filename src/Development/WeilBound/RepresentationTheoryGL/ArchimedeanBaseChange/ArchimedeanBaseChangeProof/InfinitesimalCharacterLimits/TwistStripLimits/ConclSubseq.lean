@@ -21,6 +21,7 @@ noncomputable section
 open NumberField MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.SpectralAccumulation.Lim5
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]

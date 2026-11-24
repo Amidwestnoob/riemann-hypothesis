@@ -19,6 +19,7 @@ open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions 
 
 open PositivityTheory.Rg.BcB.SpectralAccumulation PositivityTheory.Rg.Rs MeasureTheory
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 private theorem expV_cusp {E : Type} [Field E] [NumberField E] [IsCMField E] {N : ℕ} (π : CuspSub E N)
     {r : ℕ} (hr : 0 < r) (hrN : r < N) : ExpV r π.V = ∅ := by
   letI : MeasurableSpace (BlockIx N r → Ad E) := _root_.borel _

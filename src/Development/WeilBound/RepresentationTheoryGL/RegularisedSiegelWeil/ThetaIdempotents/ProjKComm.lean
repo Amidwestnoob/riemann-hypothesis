@@ -31,6 +31,7 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RegSch (ikS projS Lvl)
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.Rsw.L.LIkEq2
 
 theorem projK_comm {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {S T : HSp D} {χS χT : (AE D)ˣ →* Circle} {om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)}

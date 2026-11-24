@@ -10,6 +10,7 @@ noncomputable section
 open NumberField IsDedekindDomain MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.E.E3
 
 open PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E

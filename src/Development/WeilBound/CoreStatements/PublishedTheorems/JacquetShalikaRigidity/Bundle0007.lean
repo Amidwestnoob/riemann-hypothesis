@@ -365,6 +365,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.PsiDeterminantFlag
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter

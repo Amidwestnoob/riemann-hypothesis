@@ -74,6 +74,7 @@ open GlobalTheory.ConstRatio (NegIdx Factor)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.ThetaKFactor
 open MeasureTheory GlobalTheory.SquareComm
 variable {D : D7}

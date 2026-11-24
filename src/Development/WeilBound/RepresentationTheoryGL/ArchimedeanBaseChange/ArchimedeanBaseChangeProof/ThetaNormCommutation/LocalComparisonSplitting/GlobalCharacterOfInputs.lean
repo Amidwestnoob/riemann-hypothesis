@@ -12,6 +12,7 @@ open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions 
 open GlobalTheory.BCT
 open scoped Classical
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.Rg.BcB.G8
 
 open PositivityTheory.Rg.Tf.Loc (quotIntegral IsQuotNormaliser twConj)

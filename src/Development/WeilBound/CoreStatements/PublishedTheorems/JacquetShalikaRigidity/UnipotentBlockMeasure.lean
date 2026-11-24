@@ -13,6 +13,7 @@ open scoped ENNReal ComplexConjugate
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace PositivityTheory.AdelicQuotientData
 
 namespace HermitianFormNormLemmas
