@@ -23,6 +23,7 @@ open GlobalTheory.CompanionTheory.ColumnSplitting
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.CompanionTheory.ColumnSplitting.LawPf
 
 variable {D : D7} {n t : ℕ} {B W : HSp D}

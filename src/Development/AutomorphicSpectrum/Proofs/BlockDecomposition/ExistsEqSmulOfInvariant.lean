@@ -16,6 +16,7 @@ open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.CompanionTheory.OrbUniq
 
 theorem exists_eq_smul_of_invariant {Γ Y : Type*} [MeasurableSpace Γ] [MeasurableSpace Y]

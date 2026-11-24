@@ -28,6 +28,7 @@ public import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiscreteTopologyProdMap
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Function
