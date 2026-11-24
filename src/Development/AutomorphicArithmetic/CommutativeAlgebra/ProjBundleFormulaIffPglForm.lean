@@ -164,7 +164,7 @@ theorem UpperTheory.projBundleFormula_iff_pglForm :
         (cpow q (c1 q (Sp.line S (chiX M))) j) =
         cpow q (c1 q (pullback.snd (triv S M) (PGL.pr M) ≫ PGL.line M)) j := fun j => by
       rw [UpperTheory.pull_cupPow_eq_cupPow_pull q _ _ j hX, (GlobalTheory.T.firstChernClassTateTwist_cocycle_unique_natural_additive q).2.1 _ _ hX, ← u_line, IsIso.inv_hom_id_assoc]
-    unfold PBF
+    unfold UpperTheory.Pbf.PBF
     simpa only [e] using h1
 
 end
