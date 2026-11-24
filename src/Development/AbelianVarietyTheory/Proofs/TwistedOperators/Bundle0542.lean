@@ -138,7 +138,7 @@ theorem orthogonalSumAuxiliaryVectors_middleCoefficient_eq {A B : HSp D} {c : �
 
 variable {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 
-theorem besselCoreVertexLattice_eq_orthDecSumLattice (F : Frames G) (hF : Std F) (ρ : ℕ) (h : 2 * ρ + 2 ≤ D.R.m) :
+theorem besselCoreVertexLattice_eq_orthDecSumLattice (F : GlobalTheory.Asc.Frames G) (hF : Std F) (ρ : ℕ) (h : 2 * ρ + 2 ≤ D.R.m) :
     lat0 F ρ h = GlobalTheory.Core.Rk.SumBox.sumLatO (F.oB ρ h) (G.Λ (.core (2 * ρ + 2)))
       (idLat (G.pl.stA sc ^ (ρ + 1) * (G.pl.stAbar sc ^ (ρ + 1))⁻¹) (Submodule.span (𝓞 D.host.E) {F.ζ 0})) := by
   have lat2 : G.Λ (.grid (2 * ρ + 2) 0) = (G.colDec (2 * ρ + 2) (by omega) h).lat (G.Λ (.core (2 * ρ + 2)))
@@ -222,7 +222,7 @@ theorem besselCoreVertexLattice_eq_orthDecSumLattice (F : Frames G) (hF : Std F)
       rw [← algebraMap_smul D.host.E r z, Matrix.mulVec_smul, algebraMap_smul]
       exact Submodule.smul_mem _ r hz
 
-theorem besselCoreVertexLattice_splitsAlongOrthDecomposition : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (F : Frames G), Std F →
+theorem besselCoreVertexLattice_splitsAlongOrthDecomposition : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (F : GlobalTheory.Asc.Frames G), Std F →
     ∀ (ρ : ℕ) (h : 2 * ρ + 2 ≤ D.R.m) (v : GlobalTheory.FinPl.Pl D), OrthAt (F.oB ρ h) (lat0 F ρ h) (G.Λ (.core (2 * ρ + 2)))
       (idLat (G.pl.stA sc ^ (ρ + 1) * (G.pl.stAbar sc ^ (ρ + 1))⁻¹) (Submodule.span (𝓞 D.host.E) {F.ζ 0})) v := by
   intro D T L sc G F hF ρ h v

@@ -103,7 +103,7 @@ def jacobiWittDecomposition (ρ : ℕ) (h : 2 * ρ + 2 ≤ D.R.m) : HypDec (G.V 
   rescale (GlobalTheory.RowUnf.jacDec (G.colDec (2 * ρ + 1) (by omega) (by omega)) (by omega)) (fun p => (-D.host.xi0) ^ (p.1 + 1))
     fun _ => xiPow_ne D _
 
-def auxiliaryFrames : Frames G where
+def auxiliaryFrames : GlobalTheory.Asc.Frames G where
   Lz := pLine D
   rk := rfl
   oz := lineDec G.sp.dec0
