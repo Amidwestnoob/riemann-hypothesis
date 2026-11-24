@@ -50,7 +50,7 @@ theorem sFinite_vol : ∀ (D : D7) (ρ m : ℕ) (vb : VolM D ρ m) (vU : VolU D 
     haveI : SecondCountableTopology (UX D ρ) := i2
     haveI : vU.ν.IsHaarMeasure := vU.unit.1
     haveI : SigmaFinite vU.ν := Measure.IsHaarMeasure.sigmaFinite _
-    infer_instance
+    exact MeasureTheory.instSFiniteOfSigmaFinite (μ := vU.ν)
 
 end GlobalTheory.Unf
 end
