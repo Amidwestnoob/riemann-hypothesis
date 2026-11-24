@@ -158,6 +158,9 @@ theorem sm_sq_mass_le : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberF
   haveI : SecondCountableTopology (GA E N) := GlobalTheory.CuspRep.CuspidalL2GL.secondCountableTopology_GA E N
   haveI : LocallyCompactSpace (GA E N) := GlobalTheory.CuspRep.CuspidalL2GL.locallyCompactSpace_GA E N
   haveI : μ.IsMulRightInvariant := _root_.GlobalTheory.CompanionTheory.GAUnimod.isMulRightInvariant_haar_GA E N μ
+  haveI : SigmaCompactSpace (GA E N) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaFinite μ := Measure.IsHaarMeasure.sigmaFinite μ
+  haveI : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
   refine lintegral_sq_le_of_average μ (latticeGL E N) F hF ν (fun y => ENNReal.ofReal (β y))
     hβ.cont.measurable.ennreal_ofReal ?_ (infEmb E N) continuous_infEmb f hf hinv (sm ν β f) ?_
   · rw [← ofReal_integral_eq_lintegral_ofReal
