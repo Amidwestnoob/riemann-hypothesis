@@ -315,7 +315,7 @@ private theorem ne_zero_of_mem_fibre_pts {n e : ℕ} (S : Set (EuclideanSpace �
 
 theorem GlobalTheory.CompanionTheory.Ar.Short.Crofton.fsSum_crofton : ∀ (n e δ : ℕ) (h : HermNorm n) (W : Ideal (MvPolynomial (Fin n) ℂ))
   (f : MvPolynomial (Fin (e + 1) × Fin n) ℂ) (u : Fin n → ℂ),
-  IsProjPrime W → IsChowForm W (e + 1) f → IsMultiHomog δ f → linForm u ∉ W →
+  IsProjPrime W → IsChowForm W (e + 1) f → IsMultiHomog δ f → GroundTheory.Heights₂.Heights.linForm u ∉ W →
     Integrable (fsSum h u (coneSet h W)) (gaussM (e + 1) n) ∧
       ∫ π, fsSum h u (coneSet h W) π ∂(gaussM (e + 1) n) =
         (gaussM (e + 1) n Set.univ).toReal * coneIntegral h W e (fsLog h u) := by
