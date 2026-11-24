@@ -87,7 +87,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {S : Finset ℕ} {Ω : Type} [Field Ω]
   {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {y : (Σ k, J k) → Ω}
 
-theorem flag_mem_eig (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (s : CMType H ⊕ CMType H) :
+theorem flag_mem_eig (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     flagStep Ω (Fl.b s) (labelRk D s) ≤ eigSp 𝔐.ρ (𝔐.emb s) := by
   have := Sandwich.charZero_of_hodgeCpt 𝔐
   have hgen : IsCptGen 𝔐.ξ := 𝔐.tie.gen
@@ -135,9 +135,9 @@ theorem dualMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (a :
 set_option maxHeartbeats 1000000 in
 theorem core (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l)
     (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F))
-    (Sys : PB.AnSys (Top.dimFl (CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys)
-    (R : Top.RootModel (CMType H) (D.p + D.q)) (o₀ : RootOrigin Y ∅ R Fx) :
-    ∃ m₀ : ℕ, 0 < m₀ ∧ ∀ (S : Finset ℕ) (M : Top.RootModel (CMType H) (D.p + D.q)) (o : RootOrigin Y S M Fx)
+    (Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys)
+    (R : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o₀ : RootOrigin Y ∅ R Fx) :
+    ∃ m₀ : ℕ, 0 < m₀ ∧ ∀ (S : Finset ℕ) (M : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o : RootOrigin Y S M Fx)
       (i : R.Ω →+* M.Ω), i.comp o₀.g = o.g → (∀ p ∈ S, ∃ κ, HT.IsCp p κ ∧ HT.Sandwich o.𝔐 p κ) →
       ∀ (r : RootIx D) (cM : (k : M.K) → M.ι k) (cR : (k : R.K) → R.ι k) (W : ValuationSubring M.Ω),
         (∀ k, M.y ⟨k, cM k⟩ ≠ 0) → (∀ k, R.y ⟨k, cR k⟩ ≠ 0) → (∀ k j, M.y ⟨k, j⟩ / M.y ⟨k, cM k⟩ ∈ W) →
@@ -173,7 +173,7 @@ theorem core (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D 
       obtain ⟨T, -, hT⟩ := hloc H D l Xo c Y S M.Ω M.K M.ι M.y o.𝔐 s
       rw [mul_one]
       exact (hT q).2.1 (fun p hp hin => hfib ⟨p, hp, hin⟩) e he
-  have key : ∀ (s : CMType H ⊕ CMType H) (k : Fin (labelRk D s)), ∃ (b : Fin (labelRk D s) → o.𝔐.Li)
+  have key : ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (k : Fin (labelRk D s)), ∃ (b : Fin (labelRk D s) → o.𝔐.Li)
       (b₀ : Fin (labelRk D s) → o₀.𝔐.Li) (t : M.Ω) (t₀ : R.Ω),
       (∀ j, flagStep M.Ω b j = flagStep M.Ω (o.Fl.b s) j) ∧ (o.𝔐.V s).IsFrameAt b q ∧
       (∀ j, flagStep R.Ω b₀ j = flagStep R.Ω (o₀.Fl.b s) j) ∧ (o₀.𝔐.V s).IsFrameAt b₀ q₀ ∧
@@ -278,7 +278,7 @@ end GlobalTheory.CompanionTheory.Ar.OrVert
 namespace GlobalTheory.CompanionTheory.Ar.OrVert
 open _root_.GlobalTheory.CompanionTheory.Ar.Top HodgeCpt
 
-theorem or_vert : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Sys : PB.AnSys (Top.dimFl (CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys) (R : Top.RootModel (CMType H) (D.p + D.q)) (o₀ : RootOrigin Y ∅ R Fx), ∃ C₀ : ℝ, ∀ (S : Finset ℕ) (M : Top.RootModel (CMType H) (D.p + D.q)) (o : RootOrigin Y S M Fx) (i : R.Ω →+* M.Ω), i.comp o₀.g = o.g → (∀ p : ℕ, p.Prime → (p : ℤ) ∣ discr E → p ∈ S) → (∀ p ∈ S, ∃ κ, HT.IsCp p κ ∧ HT.Sandwich o.𝔐 p κ) → ∀ r, Ht.VertBound (Ht.joinOf M R i) (Ht.joinDeg M R (some r)) (i (o₀.e r) / o.e r) (C₀ + ∑ p ∈ S, ((if p = 2 then 2 else 1 / ((p : ℝ) - 1)) + 2 * padicValInt p (discr E)) * Real.log p) := by
+theorem or_vert : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys) (R : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o₀ : RootOrigin Y ∅ R Fx), ∃ C₀ : ℝ, ∀ (S : Finset ℕ) (M : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o : RootOrigin Y S M Fx) (i : R.Ω →+* M.Ω), i.comp o₀.g = o.g → (∀ p : ℕ, p.Prime → (p : ℤ) ∣ discr E → p ∈ S) → (∀ p ∈ S, ∃ κ, HT.IsCp p κ ∧ HT.Sandwich o.𝔐 p κ) → ∀ r, Ht.VertBound (Ht.joinOf M R i) (Ht.joinDeg M R (some r)) (i (o₀.e r) / o.e r) (C₀ + ∑ p ∈ S, ((if p = 2 then 2 else 1 / ((p : ℝ) - 1)) + 2 * padicValInt p (discr E)) * Real.log p) := by
   intro E _ _ _ H D l Xo c Y Sys Fx R o₀
   obtain ⟨m₀, hm₀, hcore⟩ := core E H D l Xo c Y Sys Fx R o₀
   refine ⟨Real.log m₀, ?_⟩

@@ -282,7 +282,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Rec
 
 namespace SharpLaws
 
-theorem card_psi (D : D7) (Q : Par D) : Fintype.card (CMType Q.H) = D.R.f := by
+theorem card_psi (D : D7) (Q : Par D) : Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType Q.H) = D.R.f := by
   have h := GlobalTheory.PeriodCoord.card_cmType Q.H
   rw [Nat.card_eq_fintype_card, D.host.finrank_cmField] at h
   rw [h]

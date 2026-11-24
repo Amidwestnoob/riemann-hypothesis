@@ -366,7 +366,7 @@ theorem cst_eq (A : HodgeCpt Y S y) (hm : Mono (spMap β)) (x₀ : Sp A.Ω₀ �
   rw [e₁]
 
 theorem flag_eig (A : HodgeCpt Y S y) (Fl : A.Flag) (c₀ : c.F →+* A.Ω₀) (hc : A.cst = A.fn.comp c₀)
-    (s : CMType H ⊕ CMType H) (e : Fl.Li₀) : e ∈ Fl.V₀ s ↔
+    (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (e : Fl.Li₀) : e ∈ Fl.V₀ s ↔
       ∀ a, (Fl.M₀.pt e).left ≫ (Y.t.act.act a).left =
         spMap (epsMul (c₀ (labelEmb c s a))) ≫ (Fl.M₀.pt e).left := by
   rw [Fl.V₀_mem]

@@ -142,13 +142,13 @@ theorem inter_isVBOn_char0 {E : Type} [Field E] [NumberField E] [IsCMField E] {H
     (hg : IsCptGen ξ) (cst : c.F →+* Ω) {Li : Type} [AddCommGroup Li] [Module Ω Li] (M : LieModel t.G ξ Li)
     (ρ : 𝓞 E →+* Module.End Ω Li) (hact : M.IsActOf t.act.act ρ)
     (hint : ∀ q : Cpt ξ, (∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) → IsIntegrallyClosed (regAt ξ q))
-    (s : CMType H ⊕ CMType H) :
+    (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     (M.lat.inter (eigSp ρ (cst.comp (labelEmb c s)))).IsVBOn {q | ∀ r : ℕ, r.Prime → ¬ InFibre ξ r q}
       (Module.finrank Ω (eigSp ρ (cst.comp (labelEmb c s)))) (eigSp ρ (cst.comp (labelEmb c s))) := by
   classical
-  haveI : Fintype (CMType H ⊕ CMType H) := Fintype.ofFinite _
+  haveI : Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) := Fintype.ofFinite _
   have hl := GlobalTheory.T.label_embedding_injective E H l c
-  have hinj : Function.Injective fun s : CMType H ⊕ CMType H => cst.comp (labelEmb c s) := by
+  have hinj : Function.Injective fun s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H => cst.comp (labelEmb c s) := by
     intro s s' h
     exact hl.1 (RingHom.ext fun a => cst.injective (congrArg (fun φ : 𝓞 E →+* Ω => φ a) h))
   have hcard : Fintype.card (CMType H ⊕ CMType H) = Module.finrank ℚ E := by
@@ -291,7 +291,7 @@ namespace GlobalTheory.CompanionTheory.Ar
 
 
 open EigBase in
-theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatement → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Ω₀ : Type) [Field Ω₀] [CharZero Ω₀] (ξ₀ : Spec (CommRingCat.of Ω₀) ⟶ Y.X), IsCptGen ξ₀ → ∃ (K : Type) (_ : Fintype K) (J : K → Type) (_ : ∀ k, Fintype (J k)) (y : (Σ k, J k) → Ω₀) (X : Scheme.{0}) (ξ : Spec (CommRingCat.of Ω₀) ⟶ X) (f : X ⟶ Y.X) (cst : c.F →+* Ω₀) (t : SAB H X) (m : SABMap t Y.t f) (Li : Type) (_ : AddCommGroup Li) (_ : Module Ω₀ Li) (M : LieModel t.G ξ Li) (ρ : 𝓞 E →+* Module.End Ω₀ Li) (L : CMType H ⊕ CMType H → Lat ξ Li) (bd : Ideal (MRing J)), (∀ q : X, genPt ξ ⤳ q) ∧ CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) ∧ ξ ≫ f = ξ₀ ∧ ξ ≫ f ≫ Y.s = spMap (cst.comp (algebraMap (𝓞 c.F) c.F)) ∧ M.IsActOf t.act.act ρ ∧ (∀ s, (L s).IsVB (labelRk D s) (eigSp ρ (cst.comp (labelEmb c s)))) ∧ (∀ s (q : Cpt ξ), (∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) → L s q = M.eigLat ρ (cst.comp (labelEmb c s)) q) ∧ Cmp.IsSncModel y D.dim bd ∧ ∀ (z : Spec (CommRingCat.of ℂ) ⟶ X) w, CoordsAt ξ y z w → (w ∈ mcPts bd ↔ f (centre z) ∉ abLocus Y.t.G) := by
+theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKStatement → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Ω₀ : Type) [Field Ω₀] [CharZero Ω₀] (ξ₀ : Spec (CommRingCat.of Ω₀) ⟶ Y.X), IsCptGen ξ₀ → ∃ (K : Type) (_ : Fintype K) (J : K → Type) (_ : ∀ k, Fintype (J k)) (y : (Σ k, J k) → Ω₀) (X : Scheme.{0}) (ξ : Spec (CommRingCat.of Ω₀) ⟶ X) (f : X ⟶ Y.X) (cst : c.F →+* Ω₀) (t : SAB H X) (m : SABMap t Y.t f) (Li : Type) (_ : AddCommGroup Li) (_ : Module Ω₀ Li) (M : LieModel t.G ξ Li) (ρ : 𝓞 E →+* Module.End Ω₀ Li) (L : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Lat ξ Li) (bd : Ideal (MRing J)), (∀ q : X, genPt ξ ⤳ q) ∧ CoordTie ℤ ξ (fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) ∧ ξ ≫ f = ξ₀ ∧ ξ ≫ f ≫ Y.s = spMap (cst.comp (algebraMap (𝓞 c.F) c.F)) ∧ M.IsActOf t.act.act ρ ∧ (∀ s, (L s).IsVB (labelRk D s) (eigSp ρ (cst.comp (labelEmb c s)))) ∧ (∀ s (q : Cpt ξ), (∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) → L s q = M.eigLat ρ (cst.comp (labelEmb c s)) q) ∧ Cmp.IsSncModel y D.dim bd ∧ ∀ (z : Spec (CommRingCat.of ℂ) ⟶ X) w, CoordsAt ξ y z w → (w ∈ mcPts bd ↔ f (_root_.GlobalTheory.CompanionTheory.Ar.centre z) ∉ abLocus Y.t.G) := by
   classical
   intro hRes E _ _ _ H D l Xo c Y Ω₀ _ _ ξ₀ hgen
   obtain ⟨K₀, _, J₀, _, y₀, X₀, ξ, f₀, bd₀, -, hall, htie, hξ, hsnc, hbd⟩ :=
@@ -311,7 +311,7 @@ theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKState
   have hint : ∀ q : Cpt ξ, (∀ r : ℕ, r.Prime → ¬ InFibre ξ r q) → IsIntegrallyClosed (regAt ξ q) :=
     fun q hq => isIntegrallyClosed_of_snc htie hsnc q hq
   have hvb := (_root_.GlobalTheory.CompanionTheory.Ar.lieLat_isVB_of_smooth X₀ Ω₀ ξ t.G Li M hg t.semi.smooth).1
-  let V : CMType H ⊕ CMType H → Submodule Ω₀ Li := fun s => eigSp ρ (cst.comp (labelEmb c s))
+  let V : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Submodule Ω₀ Li := fun s => eigSp ρ (cst.comp (labelEmb c s))
   obtain ⟨hind, hsum⟩ := SatModel.lat_eq_iSup_of_char0 c t ξ hg cst M ρ hact hint
   have hspanTop : ∀ p, Submodule.span Ω₀ (M.lat p : Set Li) = ⊤ := by
     intro p
@@ -330,7 +330,7 @@ theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKState
       iSup_le fun s v hv => (le_iSup V s) hv.2
     exact hle he'
   obtain ⟨π, hπ₁, hπ₂, hπ₃⟩ := exists_proj V hind htop
-  let L : CMType H ⊕ CMType H → Lat ξ Li := fun s => M.lat.map (π s)
+  let L : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → Lat ξ Li := fun s => M.lat.map (π s)
   have hcoh : ∀ s, (L s).IsCohOn Set.univ := fun s =>
     (_root_.GlobalTheory.CompanionTheory.Ar.coh_vb_images_sums_multiples X₀ Ω₀ ξ Li Li M.lat M.lat Set.univ).2.1 (π s)
       ((_root_.GlobalTheory.CompanionTheory.Ar.coh_vb_images_sums_multiples X₀ Ω₀ ξ Li Li M.lat M.lat Set.univ).1 _ _ hvb)
@@ -347,7 +347,7 @@ theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKState
     exact ⟨l, hl.1⟩
   obtain ⟨κ', _, y0, M', g, hd, hN, hch, hflat, hnorm⟩ := _root_.PositivityTheory.HtPt.Mb.top_common ℤ Ω₀ ((k : K₀) → J₀ k) x
     (PModel.mk X₀ ξ (specZIsTerminal.from X₀) hover hall htie) Unit (fun _ => (k : K₀) → J₀ k) (fun _ => x)
-    (CMType H ⊕ CMType H) (fun _ => Li) L V (fun _ => hw) hcoh hspan
+    (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (fun _ => Li) L V (fun _ => hw) hcoh hspan
   have hd' : GlobalTheory.CompanionTheory.Ar.Dominates M'.ξ ξ g (RingHom.id Ω₀) := hd
   have hξ' : M'.ξ ≫ g = ξ := by
     have : M'.ξ ≫ g = Spec.map (CommRingCat.ofHom (RingHom.id Ω₀)) ≫ ξ := hd'
@@ -407,7 +407,7 @@ theorem exists_eigBase : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKState
     have hne' : ∀ k, ∃ i, w (v ⟨k, i⟩) ≠ 0 := fun k => (hw₁.1 k).imp fun _ h => h.ne_zero
     rw [mem_mcPts_rename v bd₀ w hne hne']
     refine (show (fun p => w (v p)) ∈ mcPts bd₀ ↔ _ from hbd (z ≫ g) _ hw₁).trans ?_
-    have hc : f₀ (centre (z ≫ g)) = (g ≫ f₀) (centre z) := rfl
+    have hc : f₀ (_root_.GlobalTheory.CompanionTheory.Ar.centre (z ≫ g)) = (g ≫ f₀) (_root_.GlobalTheory.CompanionTheory.Ar.centre z) := rfl
     rw [hc]
 
 end GlobalTheory.CompanionTheory.Ar

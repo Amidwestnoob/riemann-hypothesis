@@ -183,7 +183,7 @@ theorem model_on_hodge_of_family_pos : FamilyExistsPos → HodgeLatticeFlagBound
     intro τ k _ Q _
     have h1 : ((T.map (Int.castRingHom O)).comp fun i : Fin (D.p + D.q) => (τ, i)).ck (pointIdeal O y) k Q = 0 := by
       simp [LocPair.ck, GroundTheory.Heights₂.Heights.NumbersDVR.pairNum]
-    have h3 : ∀ τ', liePs (Ψ := CMType H) (N := D.p + D.q) D.p (k - 1) τ' = 0 := by
+    have h3 : ∀ τ', liePs (Ψ := _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (N := D.p + D.q) D.p (k - 1) τ' = 0 := by
       rintro (τ' | τ') <;> simp [liePs]
     have h2 : bracket (N := D.p + D.q) D.p φ p k τ = 0 := by
       simp [bracket, h3]
@@ -235,7 +235,7 @@ theorem model_on_hodge_of_family_pos : FamilyExistsPos → HodgeLatticeFlagBound
   have hB := fun s => _root_.GlobalTheory.CompanionTheory.Ar.CoordRead.flagPair_coord 𝔐.X Ω 𝔐.ξ K J y 𝔐.tie d hV A hAinj hAcst p hpP m hm O ϖ hϖ 𝔐.Li
     (labelRk D s) (Fl.b s) (hb s).1 (𝔐.dR s) (𝔐.HT p s) (labelPair D T s) (hLat s) (hag2 s)
   choose B B' v v' hBlat hBfp using hB
-  have hC := fun s : CMType H ⊕ CMType H => _root_.GlobalTheory.CompanionTheory.Ar.Num.HodgeModel.DualPair.dualPair O Ω K J y ϖ _ (B s.swap) (B' s.swap) (v s.swap) (v' s.swap) _ _ _ _
+  have hC := fun s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H => _root_.GlobalTheory.CompanionTheory.Ar.Num.HodgeModel.DualPair.dualPair O Ω K J y ϖ _ (B s.swap) (B' s.swap) (v s.swap) (v' s.swap) _ _ _ _
     (hBfp s.swap)
   choose C C' u u' hClat hCfp using hC
   have hmm : ∀ {σ' : Type} (Q : LocPair J ℤ σ'),

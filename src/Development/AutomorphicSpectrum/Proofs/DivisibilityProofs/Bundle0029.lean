@@ -194,7 +194,7 @@ def conjEquiv (H : Host E) :
   left_inv τ := Subtype.ext (by simp)
   right_inv τ := Subtype.ext (by simp)
 
-theorem two_mul_card_CMType (H : Host E) : 2 * Fintype.card (CMType H) = Module.finrank ℚ E := by
+theorem two_mul_card_CMType (H : Host E) : 2 * Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E := by
   classical
   have h1 : Nat.card (E →+* ℂ) = Nat.card {τ : E →+* ℂ // τ (H.rt : E) = H.rt0} +
       Nat.card {τ : E →+* ℂ // ¬ τ (H.rt : E) = H.rt0} := by
@@ -206,11 +206,11 @@ theorem two_mul_card_CMType (H : Host E) : 2 * Fintype.card (CMType H) = Module.
   have h3 : Nat.card (E →+* ℂ) = Module.finrank ℚ E := by
     rw [Nat.card_eq_fintype_card]
     exact NumberField.Embeddings.card E ℂ
-  have h4 : Fintype.card (CMType H) = Nat.card {τ : E →+* ℂ // τ (H.rt : E) = H.rt0} := by
+  have h4 : Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Nat.card {τ : E →+* ℂ // τ (H.rt : E) = H.rt0} := by
     rw [← Nat.card_eq_fintype_card]
   omega
 
-theorem host_numbers : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E), 2 ≤ hostRd E ∧ Nonempty (CMType H) ∧ 2 * Fintype.card (CMType H) = Module.finrank ℚ E := by
+theorem host_numbers : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E), 2 ≤ hostRd E ∧ Nonempty (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) ∧ 2 * Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E := by
   intro E _ _ _ H
   refine ⟨two_le_hostRd H, ?_, two_mul_card_CMType H⟩
   rw [← Fintype.card_pos_iff]

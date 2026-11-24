@@ -242,7 +242,7 @@ theorem rt0_ne_neg (H : Host E) : H.rt0 ≠ -H.rt0 := by
   exact rt0_ne_zero H ((mul_eq_zero.mp h2).resolve_left two_ne_zero)
 
 theorem labelEmb_injective (c : Coeff l) : Function.Injective (labelEmb (H := H) c) := by
-  have val : ∀ {s t : CMType H ⊕ CMType H}, labelEmb c s = labelEmb c t → ∀ a : 𝓞 E,
+  have val : ∀ {s t : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H}, labelEmb c s = labelEmb c t → ∀ a : 𝓞 E,
       ((labelEmb c s a : c.F) : ℂ) = ((labelEmb c t a : c.F) : ℂ) := fun h a => by rw [h]
   rintro (τ | τ) (τ' | τ') h
   · refine congrArg Sum.inl (Subtype.ext (emb_ext fun a => val h a))
@@ -254,7 +254,7 @@ theorem labelEmb_injective (c : Coeff l) : Function.Injective (labelEmb (H := H)
     have := val h (H.bar.symm a)
     simpa [labelEmb] using this
 
-def labelCx (H : Host E) : CMType H ⊕ CMType H → (E →+* ℂ) :=
+def labelCx (H : Host E) : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (E →+* ℂ) :=
   Sum.elim (fun τ => τ.1) (fun τ => (starRingEnd ℂ).comp τ.1)
 
 theorem labelCx_bijective (H : Host E) : Function.Bijective (labelCx H) := by
@@ -286,8 +286,8 @@ theorem labelCx_bijective (H : Host E) : Function.Bijective (labelCx H) := by
       simp [labelCx]
 
 theorem labels_injective_card : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (l : Level H)
-    (c : Coeff l) [Fintype (CMType H)] (Ω : Type) [Field Ω] (cst : c.F →+* Ω),
-    Function.Injective (fun s : CMType H ⊕ CMType H => cst.comp (labelEmb c s)) ∧
+    (c : Coeff l) [Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H)] (Ω : Type) [Field Ω] (cst : c.F →+* Ω),
+    Function.Injective (fun s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H => cst.comp (labelEmb c s)) ∧
       Fintype.card (CMType H ⊕ CMType H) = Module.finrank ℚ E := by
   intro E _ _ _ H l c _ Ω _ cst
   refine ⟨fun s t h => labelEmb_injective c (RingHom.ext fun a => cst.injective (RingHom.congr_fun h a)), ?_⟩

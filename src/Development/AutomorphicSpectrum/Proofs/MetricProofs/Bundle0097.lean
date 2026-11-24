@@ -106,7 +106,7 @@ end Units
 theorem rootLat_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Datum H} {l : Level H}
     {Xo : Moduli D l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β} {S : Finset ℕ}
     {Ω : Type} [Field Ω] {K : Type} [Fintype K] {J : K → Type} {y : (Σ k, J k) → Ω} {𝔐 : HodgeCpt Y S y}
-    (Fl : 𝔐.Flag) (r : CMType H × Fin (D.p + D.q)) (p : Cpt 𝔐.ξ) {q : Σ s, Fin (labelRk D s)}
+    (Fl : 𝔐.Flag) (r : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q)) (p : Cpt 𝔐.ξ) {q : Σ s, Fin (labelRk D s)}
     (hq : HodgeCpt.rootIdx D r = q) {t : Ω} (ht : ((𝔐.V q.1).gr (Fl.b q.1) q.2).IsGenAt p t) :
     Fl.rootLat r p = Submodule.span (regAt 𝔐.ξ p) {t ^ HodgeCpt.rootSgn D r} := by
   subst hq
@@ -118,26 +118,26 @@ theorem point_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
     {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {S : Finset ℕ}
     {Ω : Type} [Field Ω] [CharZero Ω] {K₀ : Type} [Fintype K₀] {J₀ : K₀ → Type} [∀ k, Fintype (J₀ k)]
     {x₀ : (Σ k, J₀ k) → Ω} {𝔐 : HodgeCpt Y S x₀} {bW : WBases 𝔐} {bO : OmBases 𝔐}
-    {n m : CMType H ⊕ CMType H → ℕ} {φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)}
+    {n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ} {φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)}
     (hF : FormsOK 𝔐 bW bO m φ) (h : ModelOK (aOf 𝔐 bW bO φ) x₀ m)
     {𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)} {pr : 𝔐'.X ⟶ 𝔐.X} {j : 𝔐.Li →+ 𝔐'.Li}
-    {Fl : 𝔐'.Flag} (hO : HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) j)
+    {Fl : 𝔐'.Flag} (hO : HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) j)
     (hV : ∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) (hC : ColFlags 𝔐 bW bO j Fl)
-    (τ : CMType H) (i : Fin (D.p + D.q)) (p' : Cpt 𝔐'.ξ) (cc : ∀ k, idx (p := D.p) (q := D.q) J₀ n k)
+    (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (i : Fin (D.p + D.q)) (p' : Cpt 𝔐'.ξ) (cc : ∀ k, idx (p := D.p) (q := D.q) J₀ n k)
     (hc : InChart 𝔐'.ξ (seg (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) cc p') :
     Fl.rootLat (τ, i) p' = Submodule.span (regAt 𝔐'.ξ p')
       {(∏ k, yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨k, cc k⟩ ^
         (if h0 : (i : ℕ) = 0 then -(model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i)
           else (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, ⟨(i : ℕ) - 1, by have := i.2; omega⟩) -
             (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i)) k)} := by
-  let yc : K₀ ⊕ StepIx (CMType H) D.p D.q → (GenField Ω (rk (CMType H) D.p D.q)) := fun k => yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨k, cc k⟩
+  let yc : K₀ ⊕ StepIx (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q → (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun k => yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨k, cc k⟩
   obtain ⟨hY, hR⟩ := chart_block hc
   have hp : genPt 𝔐.ξ ⤳ pr p'.1 := LatModel.dominates_spec hO.1 p'
   obtain ⟨c₁, hc₁⟩ := 𝔐.tie.cover ⟨pr p'.1, hp⟩
   have hc₁' : InChart 𝔐.ξ (seg x₀) c₁ ⟨pr p'.1, hp⟩ := hc₁
-  let Xb : (GenField Ω (rk (CMType H) D.p D.q)) := ∏ k, yc (.inl k)
-  let Xc : (GenField Ω (rk (CMType H) D.p D.q)) := algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (seg x₀ c₁)
-  have hXb : Xb = algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (seg x₀ fun k => cc (.inl k)) := by
+  let Xb : (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := ∏ k, yc (.inl k)
+  let Xc : (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (seg x₀ c₁)
+  have hXb : Xb = algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (seg x₀ fun k => cc (.inl k)) := by
     simp only [Xb, map_prod]; rfl
   have hXc : Xc = ∏ k, yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨.inl k, c₁ k⟩ := by
     simp only [Xc, map_prod]; rfl
@@ -145,14 +145,14 @@ theorem point_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
   have hXb0 : Xb ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => hY _
   have hX : unitAt 𝔐'.ξ p' (Xb / Xc) := by
     refine ⟨div_ne_zero hXb0 hXc0, ?_, ?_⟩
-    · rw [hXb, show Xc = algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (seg x₀ c₁) from rfl, ← map_div₀]
+    · rw [hXb, show Xc = algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (seg x₀ c₁) from rfl, ← map_div₀]
       exact LatModel.dominates_regAt hO.1 p' hp (hc₁'.2 _)
     · rw [inv_div, hXc, show Xb = ∏ k, yc (.inl k) from rfl, ← Finset.prod_div_distrib]
       exact prod_mem fun k _ => hR (.inl k) (c₁ k)
   obtain ⟨UW, CW, hUW, hBW, hCW, hLW, hGW⟩ := GlobalTheory.T.hodgeCpt_frame_twist_compat E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 bW bO n m φ hF 𝔐' pr j Fl hO hV hC τ p' hp c₁ hc₁'
   obtain ⟨UO, CO, hUO, hBO, hCO, hLO, hGO⟩ := GlobalTheory.T.hodgeCpt_frame_twist_degree E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 bW bO n m φ hF 𝔐' pr j Fl hO hV hC τ p' hp c₁ hc₁'
-  let tW : Fin D.p → (GenField Ω (rk (CMType H) D.p D.q)) := fun l => UW l l
-  let tO : Fin D.q → (GenField Ω (rk (CMType H) D.p D.q)) := fun l => UO l l
+  let tW : Fin D.p → (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun l => UW l l
+  let tO : Fin D.q → (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun l => UO l l
   have unitW : ∀ t : Fin D.p, unitAt 𝔐'.ξ p' ((∏ l : Fin ((t : ℕ) + 1), tW (Fin.castLE t.2 l)) *
       yc (.inr ⟨.inl τ, t⟩) / Xb ^ (((t : ℕ) + 1) * m (.inl τ))) := fun t =>
     step_unit (map_pow _ _ _) hUW hBW hCW hLW hX t (cc (.inr ⟨.inl τ, t⟩)) (hY (.inr ⟨.inl τ, t⟩))
@@ -161,17 +161,17 @@ theorem point_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
       yc (.inr ⟨.inr τ, t⟩) / Xb ^ (((t : ℕ) + 1) * m (.inr τ))) := fun t =>
     step_unit (map_pow _ _ _) hUO hBO hCO hLO hX t (cc (.inr ⟨.inr τ, t⟩)) (hY (.inr ⟨.inr τ, t⟩))
       (hR (.inr ⟨.inr τ, t⟩))
-  let G : Fin (D.p + D.q) → (GenField Ω (rk (CMType H) D.p D.q)) := fun i =>
+  let G : Fin (D.p + D.q) → (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun i =>
     if h : (i : ℕ) < D.p then tW ⟨i, h⟩ else tO ⟨(i : ℕ) - D.p, by have := i.2; omega⟩
   have hG1 : ∀ (i : Fin (D.p + D.q)) (h : (i : ℕ) < D.p), G i = tW ⟨i, h⟩ := fun i h => dif_pos h
   have hG2 : ∀ (i : Fin (D.p + D.q)) (h : D.p ≤ (i : ℕ)), G i = tO ⟨(i : ℕ) - D.p, by have := i.2; omega⟩ :=
     fun i h => dif_neg (not_lt.2 h)
-  let Ee : Fin (D.p + D.q) → (GenField Ω (rk (CMType H) D.p D.q)) := fun i => ∏ k, yc k ^ (-((model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i) k))
+  let Ee : Fin (D.p + D.q) → (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun i => ∏ k, yc k ^ (-((model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i) k))
   have hEe : ∀ i, Ee i ≠ 0 := fun i => Finset.prod_ne_zero_iff.2 fun k _ => zpow_ne_zero _ (hY _)
   have hDE : ∀ i, unitAt 𝔐'.ξ p' ((∏ k ∈ Finset.Iic i, G k) / Ee i) := by
     intro i
-    obtain ⟨e1, e2⟩ := GlobalTheory.T.model_monomial_weight_product (CMType H) D.p D.q Ω n (aOf 𝔐 bW bO φ) K₀ J₀ x₀ m h (GenField Ω (rk (CMType H) D.p D.q)) yc hY τ i
-    obtain ⟨g1, g2⟩ := GlobalTheory.T.prod_Iic_blockDiag_det_factors (GenField Ω (rk (CMType H) D.p D.q)) D.p D.q tW tO G hG1 hG2 i
+    obtain ⟨e1, e2⟩ := GlobalTheory.T.model_monomial_weight_product (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q Ω n (aOf 𝔐 bW bO φ) K₀ J₀ x₀ m h (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) yc hY τ i
+    obtain ⟨g1, g2⟩ := GlobalTheory.T.prod_Iic_blockDiag_det_factors (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) D.p D.q tW tO G hG1 hG2 i
     by_cases hi : (i : ℕ) < D.p
     · have e : Ee i = _ := e1 hi
       rw [e, g1 hi]
@@ -199,7 +199,7 @@ theorem point_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
         haveI : IsEmpty (Fin D.p) := by rw [hp0]; infer_instance
         rw [eX, pow_zero, Finset.univ_eq_empty, Finset.prod_empty, mul_one, div_one]
         exact ⟨one_ne_zero, one_mem _, by simp⟩
-  have hT := GlobalTheory.T.ratio_successive_nonzero_regular (GenField Ω (rk (CMType H) D.p D.q)) (regAt 𝔐'.ξ p') _ G Ee hEe hDE i
+  have hT := GlobalTheory.T.ratio_successive_nonzero_regular (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (regAt 𝔐'.ξ p') _ G Ee hEe hDE i
   have hW : (∏ k, yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨k, cc k⟩ ^
         (if h0 : (i : ℕ) = 0 then -(model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i)
           else (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, ⟨(i : ℕ) - 1, by have := i.2; omega⟩) - (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i)) k) =
@@ -233,7 +233,7 @@ theorem point_gen {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E
   rw [hroot, hW]
   exact span_eq_of_unit hT
 
-theorem rootLines : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : CMType H ⊕ CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) → ∀ (h : ModelOK (aOf 𝔐 bW bO φ) x₀ m) (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li) (Fl : 𝔐'.Flag), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) j → Submodule.span (GenField Ω (rk (CMType H) D.p D.q)) (Set.range j) = ⊤ → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ColFlags 𝔐 bW bO j Fl → ∃ xdeg : CMType H × Fin (D.p + D.q) → (K₀ ⊕ StepIx (CMType H) D.p D.q) → ℤ, Fl.RootLines xdeg (fun _ => 1) ∧ ∀ τ i, (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i) = -∑ k ∈ Finset.Iic i, xdeg (τ, k) := by
+theorem rootLines : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) → ∀ (h : ModelOK (aOf 𝔐 bW bO φ) x₀ m) (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li) (Fl : 𝔐'.Flag), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) j → Submodule.span (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (Set.range j) = ⊤ → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ColFlags 𝔐 bW bO j Fl → ∃ xdeg : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → (K₀ ⊕ StepIx (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) → ℤ, Fl.RootLines xdeg (fun _ => 1) ∧ ∀ τ i, (model (aOf 𝔐 bW bO φ) x₀ m h).dy (τ, i) = -∑ k ∈ Finset.Iic i, xdeg (τ, k) := by
   intro E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 bW bO n m φ hF _ h 𝔐' pr j Fl hO _ hV hC
   refine ⟨fun r => if h0 : (r.2 : ℕ) = 0 then -(model (aOf 𝔐 bW bO φ) x₀ m h).dy r
       else (model (aOf 𝔐 bW bO φ) x₀ m h).dy (r.1, ⟨(r.2 : ℕ) - 1, by have := r.2.2; omega⟩) -

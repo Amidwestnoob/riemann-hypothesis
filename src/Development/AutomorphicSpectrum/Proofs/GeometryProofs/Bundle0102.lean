@@ -167,7 +167,7 @@ end Geo
 
 
 open HodgeCpt in
-theorem exists_frames : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) [Fintype (CMType H)] (Fl : 𝔐.Flag) (p : Cpt 𝔐.ξ), (∀ n : ℕ, n ≠ 0 → IsUnit ((n : 𝔐.X.presheaf.stalk p.1))) → ∃ b : ∀ s, Fin (labelRk D s) → 𝔐.Li, (∀ s (i : ℕ), flagStep Ω (b s) i = flagStep Ω (Fl.b s) i) ∧ (∀ s (i : ℕ), ∀ e ∈ flagStep Ω (b s) i, e ∈ 𝔐.M.lat p → e ∈ Submodule.span (regAt 𝔐.ξ p) (b s '' {k | (k : ℕ) < i})) ∧ LinearIndependent Ω (fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) ∧ Submodule.span Ω (Set.range fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) = ⊤ ∧ 𝔐.M.lat p = Submodule.span (regAt 𝔐.ξ p) (Set.range fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) ∧ ∀ s, Submodule.span Ω (Set.range (b s)) = 𝔐.Vgen s := by
+theorem exists_frames : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) [Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H)] (Fl : 𝔐.Flag) (p : Cpt 𝔐.ξ), (∀ n : ℕ, n ≠ 0 → IsUnit ((n : 𝔐.X.presheaf.stalk p.1))) → ∃ b : ∀ s, Fin (labelRk D s) → 𝔐.Li, (∀ s (i : ℕ), flagStep Ω (b s) i = flagStep Ω (Fl.b s) i) ∧ (∀ s (i : ℕ), ∀ e ∈ flagStep Ω (b s) i, e ∈ 𝔐.M.lat p → e ∈ Submodule.span (regAt 𝔐.ξ p) (b s '' {k | (k : ℕ) < i})) ∧ LinearIndependent Ω (fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) ∧ Submodule.span Ω (Set.range fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) = ⊤ ∧ 𝔐.M.lat p = Submodule.span (regAt 𝔐.ξ p) (Set.range fun q : Σ s, Fin (labelRk D s) => b q.1 q.2) ∧ ∀ s, Submodule.span Ω (Set.range (b s)) = 𝔐.Vgen s := by
   intro E _ _ _ H D l Xo c Y S Ω _ K _ J y 𝔐 _ Fl p hu
   classical
   haveI : CharZero c.F := charZero_of_injective_algebraMap (algebraMap ℚ c.F).injective
@@ -193,7 +193,7 @@ theorem exists_frames : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   have hlab := GlobalTheory.CompanionTheory.Ar.LabelCount.labels_injective_card E H l c Ω 𝔐.cst
   have hinj : Function.Injective 𝔐.emb := hlab.1
   have hint : DirectSum.IsInternal fun s => eigSp 𝔐.ρ (𝔐.emb s) :=
-    _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (CMType H ⊕ CMType H) 𝔐.emb hinj hlab.2
+    _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) 𝔐.emb hinj hlab.2
   let v : ∀ s, Module.Basis (Fin (labelRk D s)) Ω (eigSp 𝔐.ρ (𝔐.emb s)) := fun s =>
     (Module.Basis.span (hli s)).map (LinearEquiv.ofEq _ _ (hΩ s))
   have hB : ⇑(hint.collectedBasis v) = fun q : Σ s, Fin (labelRk D s) => b q.1 q.2 := by
@@ -321,7 +321,7 @@ section Labels
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-def labelEquiv (H : Host E) : (CMType H ⊕ CMType H) ≃ (E →+* ℂ) :=
+def labelEquiv (H : Host E) : (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) ≃ (E →+* ℂ) :=
   Equiv.ofBijective _ (LabelCount.labelCx_bijective H)
 
 def embPrecomp (g : E ≃ₐ[ℚ] E) : (E →+* ℂ) ≃ (E →+* ℂ) where
@@ -330,16 +330,16 @@ def embPrecomp (g : E ≃ₐ[ℚ] E) : (E →+* ℂ) ≃ (E →+* ℂ) where
   left_inv σ := RingHom.ext fun x => by simp
   right_inv σ := RingHom.ext fun x => by simp
 
-def labelPerm (H : Host E) (g : E ≃ₐ[ℚ] E) : Equiv.Perm (CMType H ⊕ CMType H) :=
+def labelPerm (H : Host E) (g : E ≃ₐ[ℚ] E) : Equiv.Perm (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :=
   (labelEquiv H).trans ((embPrecomp g).trans (labelEquiv H).symm)
 
-theorem labelCx_labelPerm (H : Host E) (g : E ≃ₐ[ℚ] E) (s : CMType H ⊕ CMType H) (x : E) :
+theorem labelCx_labelPerm (H : Host E) (g : E ≃ₐ[ℚ] E) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (x : E) :
     LabelCount.labelCx H (labelPerm H g s) x = LabelCount.labelCx H s (g x) := by
   have h : labelEquiv H (labelPerm H g s) = embPrecomp g (labelEquiv H s) := by
     simp [labelPerm]
   exact RingHom.congr_fun h x
 
-theorem labelCx_rt (H : Host E) (s : CMType H ⊕ CMType H) :
+theorem labelCx_rt (H : Host E) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     LabelCount.labelCx H s (H.rt : E) = if s.isLeft then H.rt0 else -H.rt0 := by
   rcases s with τ | τ
   · simp [LabelCount.labelCx, τ.2]
@@ -374,18 +374,18 @@ theorem labelPerm_side (H : Host E) (g : E ≃ₐ[ℚ] E) :
 
 variable {H : Host E} {l : Level H}
 
-theorem coe_labelEmb_eq (c : Coeff l) (s : CMType H ⊕ CMType H) (a : 𝓞 E) :
+theorem coe_labelEmb_eq (c : Coeff l) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (a : 𝓞 E) :
     ((labelEmb c s a : c.F) : ℂ) = LabelCount.labelCx H s (a : E) := by
   rcases s with τ | τ
   · rfl
   · show τ.1 ((H.bar a : 𝓞 E) : E) = (starRingEnd ℂ) (τ.1 (a : E))
     rw [H.bar_eq, IsCMField.complexEmbedding_complexConj]
 
-def labelInt (c : Coeff l) (s : CMType H ⊕ CMType H) : 𝓞 E →+* 𝓞 c.F :=
+def labelInt (c : Coeff l) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) : 𝓞 E →+* 𝓞 c.F :=
   (labelEmb c s).codRestrict (integralClosure ℤ c.F).toSubring fun a =>
     IsIntegral.map (labelEmb c s).toIntAlgHom (RingOfIntegers.isIntegral a)
 
-theorem coe_labelInt (c : Coeff l) (s : CMType H ⊕ CMType H) (a : 𝓞 E) :
+theorem coe_labelInt (c : Coeff l) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (a : 𝓞 E) :
     ((labelInt c s a : 𝓞 c.F) : c.F) = labelEmb c s a := rfl
 
 theorem labelPerm_isFrobLabels (c : Coeff l) (p : ℕ) (g : E ≃ₐ[ℚ] E)
@@ -410,11 +410,11 @@ theorem labelPerm_isFrobLabels (c : Coeff l) (p : ℕ) (g : E ≃ₐ[ℚ] E)
 
 end Labels
 
-theorem exists_frob_labels : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E], (∀ a b : E ≃ₐ[ℚ] E, a * b = b * a) → ∀ (H : Host E) (l : Level H) (c : Coeff l) [Fintype (CMType H)] [DecidableEq (CMType H)], ∃ φ : ℕ → Equiv.Perm (CMType H ⊕ CMType H), (∀ p : ℕ, p.Prime → IsFrobLabels c p (φ p)) ∧ FrobShape fun p τ n => (φ p ^ (n + 1)) (Sum.inl τ) := by
+theorem exists_frob_labels : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsGalois ℚ E], (∀ a b : E ≃ₐ[ℚ] E, a * b = b * a) → ∀ (H : Host E) (l : Level H) (c : Coeff l) [Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H)] [DecidableEq (_root_.GlobalTheory.CompanionTheory.Ar.CMType H)], ∃ φ : ℕ → Equiv.Perm (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H), (∀ p : ℕ, p.Prime → IsFrobLabels c p (φ p)) ∧ FrobShape fun p τ n => (φ p ^ (n + 1)) (Sum.inl τ) := by
   intro E _ _ _ _ hab H l c _ _
   classical
   have h := _root_.GlobalTheory.CompanionTheory.Ar.Num.exists_frobenius_all_primes E hab
-  let φ : ℕ → Equiv.Perm (CMType H ⊕ CMType H) := fun p =>
+  let φ : ℕ → Equiv.Perm (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) := fun p =>
     if hp : p.Prime then labelPerm H (h p hp).choose else 1
   refine ⟨φ, fun p hp => ?_, _root_.GlobalTheory.CompanionTheory.Ar.Num.frobShape_of_side _ φ fun p => ?_⟩
   · simp only [φ, dif_pos hp]
@@ -457,7 +457,7 @@ open GroundTheory.Heights₂.Heights.LowerBoundFree GlobalTheory.CompanionTheory
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.FamEx
 
 theorem labelEmb_comp_injective : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (l : Tor.Level H)
-    (c : Coeff l) (κ : c.F →+* ℂ), Function.Injective fun lab : CMType H ⊕ CMType H => κ.comp (labelEmb c lab) := by
+    (c : Coeff l) (κ : c.F →+* ℂ), Function.Injective fun lab : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H => κ.comp (labelEmb c lab) := by
   intro E _ _ _ H l c κ a b h
   exact LabelCount.labelEmb_injective c (RingHom.ext fun x => κ.injective (RingHom.congr_fun h x))
 

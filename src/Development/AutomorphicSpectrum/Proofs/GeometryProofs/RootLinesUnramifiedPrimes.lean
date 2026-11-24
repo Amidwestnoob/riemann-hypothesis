@@ -146,7 +146,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
   {Xo : Moduli D l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β} {S : Finset ℕ}
   {Ω : Type} [Field Ω] {K : Type} [Fintype K] {J : K → Type} {y : (Σ k, J k) → Ω} {𝔐 : HodgeCpt Y S y}
 
-theorem flag_basis (Fl : 𝔐.Flag) (s : CMType H ⊕ CMType H) :
+theorem flag_basis (Fl : 𝔐.Flag) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     LinearIndependent Ω (Fl.b s) ∧ Submodule.span Ω (Set.range (Fl.b s)) = eigSp 𝔐.ρ (𝔐.emb s) := by
   have hli : LinearIndependent Ω (Fl.b s) := by
     letI := 𝔐.fn.toAlgebra
@@ -165,7 +165,7 @@ theorem flag_basis (Fl : 𝔐.Flag) (s : CMType H ⊕ CMType H) :
     _ = Submodule.span Ω (Set.range b) := FlagGr.step_top _
     _ = eigSp 𝔐.ρ (𝔐.emb s) := e4.trans hs'
 
-theorem eigLat_eq_V (s : CMType H ⊕ CMType H) {p : ℕ} (hp : p.Prime) (hS : p ∉ S) {q : Cpt 𝔐.ξ}
+theorem eigLat_eq_V (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {p : ℕ} (hp : p.Prime) (hS : p ∉ S) {q : Cpt 𝔐.ξ}
     (hq : InFibre 𝔐.ξ p q) : 𝔐.M.eigLat 𝔐.ρ (𝔐.emb s) q = 𝔐.V s q := by
   refine (Lat.patch_of_not S _ _ fun p' hp' h' => ?_).symm
   have hne : p ≠ p' := fun e => hS (e ▸ hp')
@@ -173,7 +173,7 @@ theorem eigLat_eq_V (s : CMType H ⊕ CMType H) {p : ℕ} (hp : p.Prime) (hS : p
 
 end Main
 
-theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) [Fintype (CMType H)] (M : GlobalTheory.CompanionTheory.Ar.Top.RootModel (CMType H) (D.p + D.q)) (𝔐 : HodgeCpt Y S M.y) (Fl : 𝔐.Flag) (e : CMType H × Fin (D.p + D.q) → M.Ω), Fl.RootLines M.xdeg e → ∀ p : ℕ, p.Prime → p ∉ S → ¬ (p : ℤ) ∣ NumberField.discr E → (∀ z : Y.X, (p : Y.X.residueField z) = 0 → FibPF Y.t z) → Nonempty (DRTie M D.p p H) := by
+theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) [Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H)] (M : GlobalTheory.CompanionTheory.Ar.Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (𝔐 : HodgeCpt Y S M.y) (Fl : 𝔐.Flag) (e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → M.Ω), Fl.RootLines M.xdeg e → ∀ p : ℕ, p.Prime → p ∉ S → ¬ (p : ℤ) ∣ NumberField.discr E → (∀ z : Y.X, (p : Y.X.residueField z) = 0 → FibPF Y.t z) → Nonempty (DRTie M D.p p H) := by
   intro E _ _ _ H D l Xo c Y S _ M 𝔐 Fl e hR p hp hS hd hfib
   obtain ⟨hint, -, -, hinj, -, -, -, hreg⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c (𝓞 c.F) (algebraMap (𝓞 c.F) c.F) Y S M.Ω M.K M.ι
     M.y 𝔐 Subtype.val_injective
@@ -185,14 +185,14 @@ theorem drTie_of_hodgeCpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     have h1 : genPt 𝔐.ξ = z := hz _ (𝔐.all z)
     rw [← h1]
     exact hint
-  have hc : ∀ τ : CMType H, D.p + D.q - D.p = labelRk D (.inr τ) := fun _ => Nat.add_sub_cancel_left _ _
+  have hc : ∀ τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H, D.p + D.q - D.p = labelRk D (.inr τ) := fun _ => Nat.add_sub_cancel_left _ _
   let G : (Σ s, Fin (labelRk D s)) → Lat 𝔐.ξ M.Ω := fun x => (𝔐.V x.1).gr (Fl.b x.1) x.2
   have hG : ∀ x, (G x).IsVBOn Set.univ 1 ⊤ := fun x =>
     (Lat.IsFlagVBOn.isVBOn_gr_inter 𝔐.X M.Ω 𝔐.ξ 𝔐.Li (𝔐.V x.1) Set.univ _ (Fl.b x.1) (flag_basis Fl x.1).1
       (Fl.sub x.1)).2.1 x.2
   have hroot : ∀ r, (Lat.tens (fun _ : Unit => G (HodgeCpt.rootIdx D r)) fun _ => HodgeCpt.rootSgn D r).IsDegOn Set.univ
       M.y (M.xdeg r) (e r) := hR
-  have hV := fun (s : CMType H ⊕ CMType H) (q : Cpt 𝔐.ξ) (hq : InFibre 𝔐.ξ p q) =>
+  have hV := fun (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (q : Cpt 𝔐.ξ) (hq : InFibre 𝔐.ξ p q) =>
     eigLat_eq_V (𝔐 := 𝔐) s hp hS hq
   refine ⟨{
     X := 𝔐.X

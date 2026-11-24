@@ -155,7 +155,7 @@ private theorem isFrameAt_of_dual_basis {X : Scheme.{0}} {Ω W : Type} [Field Ω
 
 
 set_option maxHeartbeats 4000000 in
-theorem adapted_frame_om : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : CMType H ⊕ CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → ∀ (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li) (Fl : 𝔐'.Flag), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) j → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ColFlags 𝔐 bW bO j Fl → ∀ (τ : CMType H) (p' : Cpt 𝔐'.ξ) (hp : genPt 𝔐.ξ ⤳ pr p'.1) (c₁ : ∀ k, J₀ k), InChart 𝔐.ξ (seg x₀) c₁ ⟨pr p'.1, hp⟩ → ∃ (U : Matrix (Fin (rk (CMType H) D.p D.q (.inr τ))) (Fin (rk (CMType H) D.p D.q (.inr τ))) (GenField Ω (rk (CMType H) D.p D.q))) (C : Matrix (Fin (rk (CMType H) D.p D.q (.inr τ))) (Fin (n (.inr τ))) (GenField Ω (rk (CMType H) D.p D.q))), U.BlockTriangular id ∧ (∀ a b, (fMat (aOf 𝔐 bW bO φ) (.inr τ) * U) a b / algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (seg x₀ c₁ ^ m (.inr τ)) ∈ regAt 𝔐'.ξ p') ∧ (∀ a b, C a b ∈ regAt 𝔐'.ξ p') ∧ (∀ a b, ∑ k, C a k * ((fMat (aOf 𝔐 bW bO φ) (.inr τ) * U) k b / algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (seg x₀ c₁ ^ m (.inr τ))) = if a = b then 1 else 0) ∧ ∀ l : Fin D.q, ((𝔐'.V (.inr τ)).gr (Fl.b (.inr τ)) l.rev).IsGenAt p' (U l l)⁻¹ := by
+theorem adapted_frame_om : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → ∀ (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li) (Fl : 𝔐'.Flag), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) j → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ColFlags 𝔐 bW bO j Fl → ∀ (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (p' : Cpt 𝔐'.ξ) (hp : genPt 𝔐.ξ ⤳ pr p'.1) (c₁ : ∀ k, J₀ k), InChart 𝔐.ξ (seg x₀) c₁ ⟨pr p'.1, hp⟩ → ∃ (U : Matrix (Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ))) (Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ))) (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) (C : Matrix (Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ))) (Fin (n (.inr τ))) (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))), U.BlockTriangular id ∧ (∀ a b, (fMat (aOf 𝔐 bW bO φ) (.inr τ) * U) a b / algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (seg x₀ c₁ ^ m (.inr τ)) ∈ regAt 𝔐'.ξ p') ∧ (∀ a b, C a b ∈ regAt 𝔐'.ξ p') ∧ (∀ a b, ∑ k, C a k * ((fMat (aOf 𝔐 bW bO φ) (.inr τ) * U) k b / algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (seg x₀ c₁ ^ m (.inr τ))) = if a = b then 1 else 0) ∧ ∀ l : Fin D.q, ((𝔐'.V (.inr τ)).gr (Fl.b (.inr τ)) l.rev).IsGenAt p' (U l l)⁻¹ := by
   intro E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 bW bO n m φ hF 𝔐' pr j Fl hO hV hC τ p' hp c₁ hI
   unfold FormsOK at hF
   unfold HodgeOver at hO
@@ -180,12 +180,12 @@ theorem adapted_frame_om : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have : FiniteDimensional Ω (𝔐.Vgen (.inr τ)) := Module.Finite.of_basis (Module.Basis.mk hb₀ hb₀span.ge)
   have hrank : Module.finrank Ω (𝔐.Vgen (.inr τ)) = D.q := by
     rw [← Subspace.dual_finrank_eq, Module.finrank_eq_card_basis (bO τ), Fintype.card_fin]
-  obtain ⟨v, hv⟩ : ∃ v : Fin (rk (CMType H) D.p D.q (.inr τ)) → 𝔐.Vgen (.inr τ), ∀ a b : Fin (rk (CMType H) D.p D.q (.inr τ)), bO τ a (v b) = if a = b then 1 else 0 := by
+  obtain ⟨v, hv⟩ : ∃ v : Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ)) → 𝔐.Vgen (.inr τ), ∀ a b : Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ)), bO τ a (v b) = if a = b then 1 else 0 := by
     refine ⟨fun b => (Module.evalEquiv Ω _).symm ((bO τ).dualBasis b), fun a b => ?_⟩
     simp only [Module.apply_evalEquiv_symm_apply]
     exact (bO τ).dualBasis_apply_self b a
   have hTt : IsUnit Tᵀ.det := by rwa [Matrix.det_transpose]
-  have hBv : ∀ a b : Fin (rk (CMType H) D.p D.q (.inr τ)), colFrame (r := rk (CMType H) D.p D.q (.inr τ)) (bO τ) T a (colFrame v Tᵀ⁻¹ b) = if a = b then 1 else 0 := by
+  have hBv : ∀ a b : Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ)), colFrame (r := rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q (.inr τ)) (bO τ) T a (colFrame v Tᵀ⁻¹ b) = if a = b then 1 else 0 := by
     intro a b
     have hm := congrFun (congrFun (Matrix.mul_nonsing_inv _ hTt) a) b
     rw [Matrix.mul_apply, Matrix.one_apply] at hm
@@ -212,37 +212,37 @@ theorem adapted_frame_om : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have hpull := FlagPull.pull_isFrameAt hd hj p' hp hVfr
   rw [← hV (.inr τ)] at hpull
   have hcol : (fun k => j ((colFrame v Tᵀ⁻¹ k : 𝔐.Vgen (.inr τ)) : 𝔐.Li)) =
-      colFrame (fun a => j (v a : 𝔐.Li)) ((Tᵀ⁻¹).map (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)))) := by
+      colFrame (fun a => j (v a : 𝔐.Li)) ((Tᵀ⁻¹).map (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)))) := by
     funext k
     set_option synthInstance.maxHeartbeats 100000 in
       simp only [colFrame, Submodule.coe_sum, Submodule.coe_smul, map_sum, hj.1, Matrix.map_apply]
   rw [hcol, map_transpose_inv _ T hT] at hpull
-  have hgdet : IsUnit (Matrix.of fun a b => (genU Ω (rk (CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b)).det := by
+  have hgdet : IsUnit (Matrix.of fun a b => (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b)).det := by
     apply isUnit_det_rev
     apply Matrix.isUnit_nonsing_inv_det
     rw [Matrix.det_transpose, DetG.det_genU]
     exact isUnit_one
   have hFl : Fl.b (.inr τ) = colFrame (fun a => j (v a : 𝔐.Li))
-      (Matrix.of fun a b => (genU Ω (rk (CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b)) := by
+      (Matrix.of fun a b => (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b)) := by
     funext k
     rw [hC.2 τ v hv k, DetG.omBlock_gMat]
     rfl
-  have hw : LinearIndependent (GenField Ω (rk (CMType H) D.p D.q)) (fun a => j (v a : 𝔐.Li)) :=
+  have hw : LinearIndependent (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (fun a => j (v a : 𝔐.Li)) :=
     hj.2 _ (fun a => (v a : 𝔐.Li)) ((linearIndependent_of_dual_pairing _ v hv).map' _ (Submodule.ker_subtype _))
   have hsub : (𝔐'.V (.inr τ)).IsFlagVBOn Set.univ (colFrame (fun a => j (v a : 𝔐.Li))
-      (Matrix.of fun a b => (genU Ω (rk (CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b))) := by
+      (Matrix.of fun a b => (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ))ᵀ⁻¹ a (Fin.rev b))) := by
     rw [← hFl]
     exact Fl.sub (.inr τ)
   obtain ⟨U₀, Rm, Rm', hU₀, hRm, hRm', hRR, hgU, hgr⟩ :=
     _root_.GlobalTheory.CompanionTheory.Ar.PB.FrameTrans.exists_adapted 𝔐'.X _ 𝔐'.ξ 𝔐'.Li (𝔐'.V (.inr τ)) _ (fun a => j (v a : 𝔐.Li)) _ _ p' hw hgdet hpull hsub
-  have hTi : IsUnit (T.map (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)))).det := by
-    have h := hT.map (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)))
+  have hTi : IsUnit (T.map (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)))).det := by
+    have h := hT.map (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)))
     rw [RingHom.map_det] at h
     exact h
   obtain ⟨U₂, R₂, R₂', hU₂, hU₂d, hR₂, hR₂', hRR₂, hu⟩ :=
-    _root_.GlobalTheory.CompanionTheory.AdaptedFrame.reversed_dual_frame _ (regAt 𝔐'.ξ p') _ (genU Ω (rk (CMType H) D.p D.q) (.inr τ)) _ U₀ Rm Rm'
+    _root_.GlobalTheory.CompanionTheory.AdaptedFrame.reversed_dual_frame _ (regAt 𝔐'.ξ p') _ (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ)) _ U₀ Rm Rm'
       (by rw [DetG.det_genU]; exact isUnit_one) hTi hU₀ (fun l => (hgr l).1) hRm hRm' hRR hgU
-  obtain ⟨C, hC1, hC2, hC3⟩ := forms_quotient (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)))
+  obtain ⟨C, hC1, hC2, hC3⟩ := forms_quotient (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)))
     (regAt 𝔐.ξ ⟨pr p'.1, hp⟩) (regAt 𝔐'.ξ p') (fun a ha => LatModel.dominates_regAt hd p' hp ha)
     (aOf 𝔐 bW bO φ (.inr τ)) T C₀ (seg x₀ c₁ ^ m (.inr τ)) _ U₂ R₂ R₂' hreg hC₀ hinv hR₂ hR₂' hRR₂ hu
   refine ⟨U₂, C, hU₂, hC1, hC2, hC3, fun l => ?_⟩

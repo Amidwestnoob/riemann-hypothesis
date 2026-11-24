@@ -79,8 +79,8 @@ section Roots
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-theorem prod_roots (D : Datum H) (τ : CMType H) {M : Type} [CommMonoid M]
-    (F : (Σ s : CMType H ⊕ CMType H, Fin (labelRk D s)) → ℤ → M) :
+theorem prod_roots (D : Datum H) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {M : Type} [CommMonoid M]
+    (F : (Σ s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H, Fin (labelRk D s)) → ℤ → M) :
     ∏ i : Fin (D.p + D.q), F (HodgeCpt.rootIdx D (τ, i)) (HodgeCpt.rootSgn D (τ, i)) =
       (∏ k : Fin D.p, F ⟨.inl τ, k⟩ 1) * ∏ j : Fin D.q, F ⟨.inr τ, j⟩ (-1) := by
   rw [Fin.prod_univ_add]
@@ -114,7 +114,7 @@ theorem zpow_sum_eq {G ι : Type} [CommGroupWithZero G] {a : G} (ha : a ≠ 0) (
 
 theorem exists_val_of_secNorm {ι : Type} [Fintype ι] (hx : ι → HermLine J) (e T : ι → Ω) (N : ι → ℝ) (A : HermLine J)
     (hN : ∀ i, 0 < N i) (hS : ∀ i, SecNorm ξ y (hx i) (e i) z w (T i) (N i)) (hA : A.a = ∑ i, (hx i).a)
-    (hh : A.h w = ∏ i, (hx i).h w) (hw : CoordsAt ξ y z w) (hz : genPt ξ ⤳ centre z) (c₁ : Ω) (cc : (k : K) → J k)
+    (hh : A.h w = ∏ i, (hx i).h w) (hw : CoordsAt ξ y z w) (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (c₁ : Ω) (cc : (k : K) → J k)
     (hcc : ∀ k, w ⟨k, cc k⟩ ≠ 0) (u : ℂ)
     (hu : ValAt ξ z (c₁ / ((∏ k, y ⟨k, cc k⟩ ^ A.a k) * ∏ i, e i)) u) :
     ∃ u' : ℂ, ValAt ξ z (c₁ / ∏ i, T i) u' ∧
@@ -200,12 +200,12 @@ theorem val_ne_zero_of_rank_zero {O : Type} [CommRing O] {β : O →+* c.F} {Y :
   obtain ⟨-, ⟨x, hx⟩, hchar, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c O β Y S Ω K J y 𝔐 hβ
   have hA := _root_.GlobalTheory.CompanionTheory.Ar.CptTrdeg.trdeg_eq_dim E H D l Xo c O β Y 𝔐.Ω₀ 𝔐.ξ₀ Ω x 𝔐.fn hβ 𝔐.gen₀ (hx ▸ 𝔐.fn_over)
   letI : Algebra 𝔐.Ω₀ Ω := 𝔐.fn.toAlgebra
-  have hB := GlobalTheory.T.generic_flag_trdeg_formula 𝔐.Ω₀ Ω Fl.Li₀ 𝔐.Li Fl.j (CMType H ⊕ CMType H) (labelRk D) Fl.V₀ Fl.b Fl.deg Fl.generic
+  have hB := GlobalTheory.T.generic_flag_trdeg_formula 𝔐.Ω₀ Ω Fl.Li₀ 𝔐.Li Fl.j (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (labelRk D) Fl.V₀ Fl.b Fl.deg Fl.generic
   haveI : CharZero 𝔐.Ω₀ := (RingHom.charZero_iff 𝔐.fn.injective).mpr hchar
   haveI : FaithfulSMul ℤ 𝔐.Ω₀ := (faithfulSMul_iff_algebraMap_injective ℤ 𝔐.Ω₀).mpr Int.cast_injective
   haveI : FaithfulSMul 𝔐.Ω₀ Ω := (faithfulSMul_iff_algebraMap_injective 𝔐.Ω₀ Ω).mpr 𝔐.fn.injective
   have htow := trdeg_add_eq ℤ 𝔐.Ω₀ (A := Ω)
-  have hz0 : (∑ σ : CMType H ⊕ CMType H, labelRk D σ * (labelRk D σ - 1) / 2) = 0 := by
+  have hz0 : (∑ σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H, labelRk D σ * (labelRk D σ - 1) / 2) = 0 := by
     refine Finset.sum_eq_zero fun σ _ => ?_
     rcases σ with σ | σ <;> simp [labelRk, hp, hq]
   rw [hA, hB, hz0] at htow
@@ -223,67 +223,67 @@ theorem val_ne_zero_of_rank_zero {O : Type} [CommRing O] {β : O →+* c.F} {Y :
     rwa [show algebraMap ℤ Ω = Int.castRingHom Ω from Subsingleton.elim _ _] at h1
   intro h0
   obtain ⟨h, s, hs, hs'⟩ := hu
-  have e : Polynomial.eval₂ (Int.castRingHom (𝔐.X.presheaf.stalk (centre z))) s g = 0 := by
-    apply 𝔐.tie.gen.inj ⟨centre z, h⟩
-    rw [map_zero, Polynomial.hom_eval₂, hs, Subsingleton.elim ((genMap 𝔐.ξ ⟨centre z, h⟩).comp _) (Int.castRingHom Ω)]
+  have e : Polynomial.eval₂ (Int.castRingHom (𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) s g = 0 := by
+    apply 𝔐.tie.gen.inj ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩
+    rw [map_zero, Polynomial.hom_eval₂, hs, Subsingleton.elim ((genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, h⟩).comp _) (Int.castRingHom Ω)]
     exact hgf
-  obtain ⟨φ, hφ⟩ : ∃ φ : 𝔐.X.presheaf.stalk (centre z) →+* ℂ, φ = (Scheme.stalkClosedPointTo z).hom := ⟨_, rfl⟩
+  obtain ⟨φ, hφ⟩ : ∃ φ : 𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) →+* ℂ, φ = (Scheme.stalkClosedPointTo z).hom := ⟨_, rfl⟩
   have hs2 : φ s = 0 := by rw [hφ]; exact hs'.trans h0
-  have e2 : φ (Polynomial.eval₂ (Int.castRingHom (𝔐.X.presheaf.stalk (centre z))) s g) = 0 := by
+  have e2 : φ (Polynomial.eval₂ (Int.castRingHom (𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) s g) = 0 := by
     rw [e, map_zero]
   rw [Polynomial.hom_eval₂, hs2, Polynomial.eval₂_at_zero] at e2
   have e3 : ((g.coeff 0 : ℤ) : ℂ) = 0 := by simpa using e2
   exact hg0 (by exact_mod_cast e3)
 
 theorem exists_gram [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} (𝔐 : HodgeCpt Y S y)
-    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : CMType H ⊕ CMType H) {b : Fin (labelRk D s) → 𝔐.Li}
-    (hb : (𝔐.V s).IsFrameAt b ⟨centre z, 𝔐.all _⟩) :
+    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {b : Fin (labelRk D s) → 𝔐.Li}
+    (hb : (𝔐.V s).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩) :
     ∃ Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ, 𝔐.M.GramAt 𝔐.t.PP.L z b Γ ∧ Γ.PosDef := by
   have hβ : Function.Injective (algebraMap (𝓞 c.F) c.F) := RingOfIntegers.coe_injective
   obtain ⟨-, -, hchar, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ
-  have hgen : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hgen : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   have hpol := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.polarisedAt_of_interior E H D l Xo c Y S Ω K J y 𝔐 z hz
-  obtain ⟨hV, -, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeChar0.lattices_of_char_zero E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ ⟨centre z, hgen⟩
+  obtain ⟨hV, -, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeChar0.lattices_of_char_zero E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩
     fun r hr => GrNorm.not_inFibre 𝔐.tie.gen hgen hr
   have hmem : ∀ k, b k ∈ 𝔐.Vgen s ⊔ 𝔐.Vgen s := fun k => by
-    have h1 : b k ∈ 𝔐.V s ⟨centre z, hgen⟩ := by
+    have h1 : b k ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := by
       rw [hb.2]
       exact Submodule.subset_span ⟨k, rfl⟩
     rw [hV s] at h1
     exact Submodule.mem_sup_left h1.2
   let bb : Fin (labelRk D s) → ↥(𝔐.Vgen s ⊔ 𝔐.Vgen s) := fun k => ⟨b k, hmem k⟩
-  have hspan : (Submodule.span (regAt 𝔐.ξ ⟨centre z, hgen⟩) (Set.range bb)).map
-      ((𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype.restrictScalars (regAt 𝔐.ξ ⟨centre z, hgen⟩)) =
-      Submodule.span (regAt 𝔐.ξ ⟨centre z, hgen⟩) (Set.range b) := by
+  have hspan : (Submodule.span (regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩) (Set.range bb)).map
+      ((𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype.restrictScalars (regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩)) =
+      Submodule.span (regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩) (Set.range b) := by
     rw [Submodule.map_span, ← Set.range_comp]
     rfl
   have hfr : (Lat.comap (fun p => 𝔐.V s p ⊔ 𝔐.V s p) (𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype).IsFrameAt bb
-      ⟨centre z, hgen⟩ := by
+      ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := by
     refine ⟨LinearIndependent.of_comp (𝔐.Vgen s ⊔ 𝔐.Vgen s).subtype hb.1, ?_⟩
     ext x
     constructor
     · intro hx
-      have h1 : (x : 𝔐.Li) ∈ 𝔐.V s ⟨centre z, hgen⟩ ⊔ 𝔐.V s ⟨centre z, hgen⟩ := hx
+      have h1 : (x : 𝔐.Li) ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ ⊔ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := hx
       rw [sup_idem, hb.2, ← hspan] at h1
       obtain ⟨x', hx', e⟩ := h1
       have e' : x' = x := Subtype.ext e
       exact e' ▸ hx'
     · intro hx
-      show (x : 𝔐.Li) ∈ 𝔐.V s ⟨centre z, hgen⟩ ⊔ 𝔐.V s ⟨centre z, hgen⟩
+      show (x : 𝔐.Li) ∈ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ ⊔ 𝔐.V s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩
       rw [sup_idem, hb.2, ← hspan]
       exact ⟨x, hx, rfl⟩
   obtain ⟨Γ, h1, h2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.GramEx.exists_gramAt_posDef E H D l Xo c Y S Ω K J y 𝔐 s s _ bb z hgen hpol hfr
   exact ⟨Γ, h1, h2⟩
 
 theorem exists_flag_frame [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {𝔐 : HodgeCpt Y S y} (Fl : 𝔐.Flag)
-    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : CMType H ⊕ CMType H) :
+    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) :
     ∃ (b : Fin (labelRk D s) → 𝔐.Li) (Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ)
-      (t : Fin (labelRk D s) → Ω), (𝔐.V s).IsFrameAt b ⟨centre z, 𝔐.all _⟩ ∧ 𝔐.M.GramAt 𝔐.t.PP.L z b Γ ∧ Γ.PosDef ∧
+      (t : Fin (labelRk D s) → Ω), (𝔐.V s).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ ∧ 𝔐.M.GramAt 𝔐.t.PP.L z b Γ ∧ Γ.PosDef ∧
       (∀ k, t k ≠ 0) ∧ exteriorPower.ιMulti Ω _ b = (∏ k, t k) • exteriorPower.ιMulti Ω _ (Fl.b s) ∧
       ∀ k, 𝔐.M.IsGrNorm 𝔐.t.PP.L (𝔐.V s) (Fl.b s) k z (t k)
         (Real.sqrt (leadMinor Γ ((k : ℕ) + 1) / leadMinor Γ k)) := by
-  obtain ⟨U, hU, b, hflag, hb⟩ := Fl.sub s ⟨centre z, 𝔐.all _⟩ trivial
-  have hfr := hb ⟨centre z, 𝔐.all _⟩ trivial hU
+  obtain ⟨U, hU, b, hflag, hb⟩ := Fl.sub s ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ trivial
+  have hfr := hb ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ trivial hU
   obtain ⟨Γ, hΓ, hP⟩ := exists_gram 𝔐 hz s hfr
   have ht : ∀ k : Fin (labelRk D s), ∃ a : Ω, b k - a • Fl.b s k ∈ flagStep Ω (Fl.b s) k := fun k =>
     GrNorm.exists_sub_mem_flagStep k (hflag _ ▸ Submodule.subset_span ⟨k, Nat.lt_succ_self _, rfl⟩)
@@ -292,28 +292,28 @@ theorem exists_flag_frame [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞 c.
     fun k => ⟨𝔐.all _, b, Γ, hflag, hfr, ht k, hΓ, hP, rfl⟩⟩
 
 theorem exists_doubled [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} (𝔐 : HodgeCpt Y S y)
-    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : CMType H ⊕ CMType H) {b : Fin (labelRk D s) → 𝔐.Li}
-    {Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ} (hb : (𝔐.V s).IsFrameAt b ⟨centre z, 𝔐.all _⟩)
+    {z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X} (hz : 𝔐.Interior z) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {b : Fin (labelRk D s) → 𝔐.Li}
+    {Γ : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ} (hb : (𝔐.V s).IsFrameAt b ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩)
     (hG : 𝔐.M.GramAt 𝔐.t.PP.L z b Γ) (hP : Γ.PosDef) :
     ∃ Γ' : Matrix (Fin (labelRk D s)) (Fin (labelRk D s)) ℂ,
-      (𝔐.V s).IsFrameAt (fun k => (2 : Ω) • b k) ⟨centre z, 𝔐.all _⟩ ∧
+      (𝔐.V s).IsFrameAt (fun k => (2 : Ω) • b k) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ ∧
       𝔐.M.GramAt 𝔐.t.PP.L z (fun k => (2 : Ω) • b k) Γ' ∧ Γ'.PosDef ∧
       Real.log ‖Γ'.det‖ = Real.log ‖Γ.det‖ + labelRk D s * Real.log 4 := by
   have hβ : Function.Injective (algebraMap (𝓞 c.F) c.F) := RingOfIntegers.coe_injective
   obtain ⟨-, -, hchar, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ
-  have hgen : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hgen : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   have hpol := _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.polarisedAt_of_interior E H D l Xo c Y S Ω K J y 𝔐 z hz
-  have hu2 : IsUnit (2 : 𝔐.X.presheaf.stalk (centre z)) :=
+  have hu2 : IsUnit (2 : 𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) :=
     CxVal.isUnit (z := z) 2 fun h =>
       (two_ne_zero : (2 : ℂ) ≠ 0) ((map_ofNat (Scheme.stalkClosedPointTo z).hom 2).symm.trans h)
-  let ρ : 𝔐.X.presheaf.stalk (centre z) →+* regAt 𝔐.ξ ⟨centre z, hgen⟩ := (genMap 𝔐.ξ ⟨centre z, hgen⟩).rangeRestrict
-  let u2 : (regAt 𝔐.ξ ⟨centre z, hgen⟩)ˣ := Units.map (ρ : _ →* _) hu2.unit
-  have hu2c : ((u2 : regAt 𝔐.ξ ⟨centre z, hgen⟩) : Ω) = 2 := by
-    show genMap 𝔐.ξ ⟨centre z, hgen⟩ 2 = 2
+  let ρ : 𝔐.X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z) →+* regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ := (genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩).rangeRestrict
+  let u2 : (regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩)ˣ := Units.map (ρ : _ →* _) hu2.unit
+  have hu2c : ((u2 : regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩) : Ω) = 2 := by
+    show genMap 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩ 2 = 2
     exact map_ofNat _ 2
-  obtain ⟨h1, h2, -⟩ := GrNorm.scale_frame (regAt 𝔐.ξ ⟨centre z, hgen⟩) hb.1 (fun _ => u2)
+  obtain ⟨h1, h2, -⟩ := GrNorm.scale_frame (regAt 𝔐.ξ ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hgen⟩) hb.1 (fun _ => u2)
   simp only [hu2c] at h1 h2
-  have hfr : (𝔐.V s).IsFrameAt (fun k => (2 : Ω) • b k) ⟨centre z, 𝔐.all _⟩ := ⟨h1, hb.2.trans h2.symm⟩
+  have hfr : (𝔐.V s).IsFrameAt (fun k => (2 : Ω) • b k) ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, 𝔐.all _⟩ := ⟨h1, hb.2.trans h2.symm⟩
   obtain ⟨Γ', hG', hP'⟩ := exists_gram 𝔐 hz s hfr
   have v2 : ValAt 𝔐.ξ z (2 : Ω) (2 : ℂ) := ⟨hgen, 2, map_ofNat _ 2, map_ofNat _ 2⟩
   have v0 : ValAt 𝔐.ξ z (0 : Ω) (0 : ℂ) := ⟨hgen, 0, map_zero _, map_zero _⟩
@@ -346,11 +346,11 @@ theorem wedge_doubled {Ω : Type} [Field Ω] [CharZero Ω] {V : Type} [AddCommGr
   simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, zpow_neg, zpow_natCast]
   field_simp
 
-theorem norm_against_root_metrics : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) [NumberField c.F] (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : CMType H × Fin (D.p + D.q) → K → ℤ) (e : CMType H × Fin (D.p + D.q) → Ω) (hx : CMType H × Fin (D.p + D.q) → HermLine J) (A : HermLine J) (τ : CMType H) (t₀ : ℝ) (c₁ : Ω) (z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X) (w : (Σ k, J k) → ℂ), Fl.RootLines xdeg e → (∀ r, Fl.IsHodgeLine r (e r) (hx r)) → A.a = ∑ i, xdeg (τ, i) → (∀ w' : (Σ k, J k) → ℂ, CoordsAt 𝔐.ξ y z w' → A.h w' = ∏ i, (hx (τ, i)).h w') → CoordsAt 𝔐.ξ y z w → 𝔐.Interior z → c₁ ≠ 0 → (∀ (hc : genPt 𝔐.ξ ⤳ centre z) (bp : Fin D.p → 𝔐.Li) (bq : Fin D.q → 𝔐.Li) (Γ : Matrix (Fin D.p) (Fin D.p) ℂ) (Δ : Matrix (Fin D.q) (Fin D.q) ℂ) (α κ : Ω) (u : ℂ), (𝔐.V (.inl τ)).IsFrameAt bp ⟨centre z, hc⟩ → (𝔐.V (.inr τ)).IsFrameAt bq ⟨centre z, hc⟩ → 𝔐.M.GramAt 𝔐.t.PP.L z bp Γ → 𝔐.M.GramAt 𝔐.t.PP.L z bq Δ → Γ.PosDef → Δ.PosDef → (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) = α • exteriorPower.ιMulti Ω _ bp → (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ))) = κ • exteriorPower.ιMulti Ω _ bq → ValAt 𝔐.ξ z (c₁ * α / κ) u → Real.log ‖u‖ + (Real.log ‖Γ.det‖ - Real.log ‖Δ.det‖) / 2 = t₀) → ∀ (cc : (k : K) → J k) (u : ℂ), (∀ k, w ⟨k, cc k⟩ ≠ 0) → ValAt 𝔐.ξ z (c₁ / ((∏ k, y ⟨k, cc k⟩ ^ A.a k) * ∏ i, e (τ, i))) u → ‖u‖ * ∏ k, ‖w ⟨k, cc k⟩‖ ^ A.a k = Real.exp t₀ * A.h w := by
+theorem norm_against_root_metrics : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) [NumberField c.F] (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → K → ℤ) (e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → Ω) (hx : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → HermLine J) (A : HermLine J) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (t₀ : ℝ) (c₁ : Ω) (z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X) (w : (Σ k, J k) → ℂ), Fl.RootLines xdeg e → (∀ r, Fl.IsHodgeLine r (e r) (hx r)) → A.a = ∑ i, xdeg (τ, i) → (∀ w' : (Σ k, J k) → ℂ, CoordsAt 𝔐.ξ y z w' → A.h w' = ∏ i, (hx (τ, i)).h w') → CoordsAt 𝔐.ξ y z w → 𝔐.Interior z → c₁ ≠ 0 → (∀ (hc : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (bp : Fin D.p → 𝔐.Li) (bq : Fin D.q → 𝔐.Li) (Γ : Matrix (Fin D.p) (Fin D.p) ℂ) (Δ : Matrix (Fin D.q) (Fin D.q) ℂ) (α κ : Ω) (u : ℂ), (𝔐.V (.inl τ)).IsFrameAt bp ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hc⟩ → (𝔐.V (.inr τ)).IsFrameAt bq ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre z, hc⟩ → 𝔐.M.GramAt 𝔐.t.PP.L z bp Γ → 𝔐.M.GramAt 𝔐.t.PP.L z bq Δ → Γ.PosDef → Δ.PosDef → (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) = α • exteriorPower.ιMulti Ω _ bp → (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ))) = κ • exteriorPower.ιMulti Ω _ bq → ValAt 𝔐.ξ z (c₁ * α / κ) u → Real.log ‖u‖ + (Real.log ‖Γ.det‖ - Real.log ‖Δ.det‖) / 2 = t₀) → ∀ (cc : (k : K) → J k) (u : ℂ), (∀ k, w ⟨k, cc k⟩ ≠ 0) → ValAt 𝔐.ξ z (c₁ / ((∏ k, y ⟨k, cc k⟩ ^ A.a k) * ∏ i, e (τ, i))) u → ‖u‖ * ∏ k, ‖w ⟨k, cc k⟩‖ ^ A.a k = Real.exp t₀ * A.h w := by
   intro E _ _ _ H D l Xo c _ Y S Ω _ K _ J _ y 𝔐 Fl xdeg e hx A τ t₀ c₁ z w hroot hhod hAa hAh hw hint hc₁ hfr cc u hcc hu
   have hβ : Function.Injective (algebraMap (𝓞 c.F) c.F) := RingOfIntegers.coe_injective
   obtain ⟨-, -, hchar, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HodgeCpt.basic E H D l Xo c _ _ Y S Ω K J y 𝔐 hβ
-  have hgen : genPt 𝔐.ξ ⤳ centre z := 𝔐.all _
+  have hgen : genPt 𝔐.ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z := 𝔐.all _
   choose b Γ t hbf hbG hbP ht hbw hbn using fun s => exists_flag_frame Fl hint s
   let ν : ∀ s, Fin (labelRk D s) → ℝ := fun s k => Real.sqrt (leadMinor (Γ s) ((k : ℕ) + 1) / leadMinor (Γ s) k)
   let T : Fin (D.p + D.q) → Ω := fun i =>

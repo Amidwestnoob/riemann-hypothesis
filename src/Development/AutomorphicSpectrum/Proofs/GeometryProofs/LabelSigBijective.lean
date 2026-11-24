@@ -59,8 +59,8 @@ namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β}
-  {SS : Finset ℕ} {RM : Top.RootModel (CMType H) (Dw.p + Dw.q)}
-  {Sys : PB.AnSys (Top.dimFl (CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))} {Fx : FixedData Y Sys}
+  {SS : Finset ℕ} {RM : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)}
+  {Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))} {Fx : FixedData Y Sys}
   {Or : RootOrigin Y SS RM Fx}
 
 def GoodRing (Fr : Small.GenFrame Or) (A : Subring RM.Ω) : Prop :=
@@ -69,7 +69,7 @@ def GoodRing (Fr : Small.GenFrame Or) (A : Subring RM.Ω) : Prop :=
     ∃ (q : TRing c.F) (φ : q.R →ₐ[c.F] RM.Ω) (yq : FrPt Xo c q.R), FrMap φ yq Fr.y₀ ∧ ∀ r, φ r ∈ A) ∧
   (∀ (ρ : RootIx Dw) (s : (k : RM.K) → RM.ι k), (∀ k, RM.y ⟨k, s k⟩ ≠ 0) →
     (∏ k, RM.y ⟨k, s k⟩ ^ RM.xdeg ρ k) * Or.e ρ ∈ A ∧ ((∏ k, RM.y ⟨k, s k⟩ ^ RM.xdeg ρ k) * Or.e ρ)⁻¹ ∈ A) ∧
-  ∀ (s : CMType H ⊕ CMType H) (q : Cpt Or.𝔐.ξ),
+  ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (q : Cpt Or.𝔐.ξ),
     ∃ (b : Fin (labelRk Dw s) → Or.𝔐.Li) (T : Matrix (Fin (labelRk Dw s)) (Fin (labelRk Dw s)) RM.Ω),
       (∀ i, flagStep RM.Ω b i = flagStep RM.Ω (Or.Fl.b s) i) ∧ (Or.𝔐.V s).IsFrameAt b q ∧
       (∀ i, b i = ∑ j, T i j • Or.Fl.b s j) ∧ (∀ i j, T i j ∈ A) ∧ ∀ i, T i i ≠ 0 ∧ (T i i)⁻¹ ∈ A
@@ -200,17 +200,17 @@ theorem labelSig_bijective : Function.Bijective (labelSig Dw) := by
     obtain ⟨s, k, hk⟩ := Small.exists_labelFin Dw σ i
     exact ⟨⟨s, k⟩, hk⟩
 
-theorem rootIdx_lt {τ : CMType H} {n : Fin (Dw.p + Dw.q)} (h : (n : ℕ) < Dw.p) :
+theorem rootIdx_lt {τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H} {n : Fin (Dw.p + Dw.q)} (h : (n : ℕ) < Dw.p) :
     HodgeCpt.rootIdx Dw (τ, n) = ⟨.inl τ, ⟨n, h⟩⟩ := dif_pos h
 
-theorem rootIdx_ge {τ : CMType H} {n : Fin (Dw.p + Dw.q)} (h : ¬ (n : ℕ) < Dw.p) :
+theorem rootIdx_ge {τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H} {n : Fin (Dw.p + Dw.q)} (h : ¬ (n : ℕ) < Dw.p) :
     HodgeCpt.rootIdx Dw (τ, n) = ⟨.inr τ, ⟨Dw.p + Dw.q - 1 - n, by have := n.2; show _ < Dw.q; omega⟩⟩ := dif_neg h
 
-theorem rootVal_lt {τ : CMType H} {n : Fin (Dw.p + Dw.q)} (h : (n : ℕ) < Dw.p) :
+theorem rootVal_lt {τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H} {n : Fin (Dw.p + Dw.q)} (h : (n : ℕ) < Dw.p) :
     ((HodgeCpt.rootIdx Dw (τ, n)).2 : ℕ) = n :=
   congrArg (fun x : Σ s, Fin (labelRk Dw s) => (x.2 : ℕ)) (rootIdx_lt Dw (τ := τ) h)
 
-theorem rootVal_ge {τ : CMType H} {n : Fin (Dw.p + Dw.q)} (h : ¬ (n : ℕ) < Dw.p) :
+theorem rootVal_ge {τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H} {n : Fin (Dw.p + Dw.q)} (h : ¬ (n : ℕ) < Dw.p) :
     ((HodgeCpt.rootIdx Dw (τ, n)).2 : ℕ) = Dw.p + Dw.q - 1 - n :=
   congrArg (fun x : Σ s, Fin (labelRk Dw s) => (x.2 : ℕ)) (rootIdx_ge Dw (τ := τ) h)
 
@@ -284,8 +284,8 @@ open GlobalTheory.CompanionTheory.Ar.Small.ReadFinTest (hasVal_unique)
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β}
-  {SS : Finset ℕ} {RM : Top.RootModel (CMType H) (Dw.p + Dw.q)}
-  {Sys : PB.AnSys (Top.dimFl (CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))} {Fx : FixedData Y Sys}
+  {SS : Finset ℕ} {RM : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)}
+  {Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (Dw.p + Dw.q)) (Option (RootIx Dw))} {Fx : FixedData Y Sys}
   {Or : RootOrigin Y SS RM Fx}
 
 theorem ram_pos {p : ℕ} [hp : Fact p.Prime] {la : HeightOneSpectrum (𝓞 c.F)} (hla : (p : 𝓞 c.F) ∈ la.asIdeal) :
