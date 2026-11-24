@@ -159,6 +159,17 @@ theorem orbInvOf : OrbInvOf := by
   have : Countable ((ratCent d₁).prod (ratCent d₂) : Subgroup (GA E a × GA E b)) := hcnt.to_subtype
   set F : GA E a × GA E b → ℂ := fun x =>
     φ (twConj (thetaA E a) x.1 (ratGL E a d₁), twConj (thetaA E b) x.2 (ratGL E b d₂)) with hF
+  have : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite μ₁ := Measure.IsHaarMeasure.sigmaFinite μ₁
+  have : SigmaCompactSpace (GA E b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite μ₂ := Measure.IsHaarMeasure.sigmaFinite μ₂
+  have : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
+  have : (μ₁.prod μ₂).IsMulLeftInvariant := Measure.prod.instIsMulLeftInvariant
+  have : SigmaFinite (μ₁.prod μ₂) := Measure.prod.instSigmaFinite
+  have : SFinite (μ₁.prod μ₂) := MeasureTheory.instSFiniteOfSigmaFinite
+  have : T2Space (GA E a × GA E b) := Prod.t2Space
+  have : T1Space (GA E a × GA E b) := T2Space.t1Space
+  have : MeasurableSingletonClass (GA E a × GA E b) := OpensMeasurableSpace.toMeasurableSingletonClass
   have key := hQ (GA E a × GA E b) (μ₁.prod μ₂) ((ratCent d₁).prod (ratCent d₂))
     ((ratCent (twConj (thetaE E a) g₁ d₁)).prod (ratCent (twConj (thetaE E b) g₂ d₂))) F
     (ratGL E a g₁, ratGL E b g₂) hc.measurable
