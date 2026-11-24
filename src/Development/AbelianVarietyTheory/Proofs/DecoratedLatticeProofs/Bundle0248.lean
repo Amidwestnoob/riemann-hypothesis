@@ -99,7 +99,7 @@ theorem levi_origin_scalar : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S S�
   · obtain ⟨hz, -, hl⟩ := _root_.GlobalTheory.Unf.mixRankZero D ψ
     obtain ⟨-, -, -, hiso⟩ := _root_.GlobalTheory.WeilSrc.om0_ext0_eq_om_emb0_of_isWeilDatumO D ψ S S₀ T d hom.std
     refine ⟨1, 1, continuous_const, fun _ => rfl, continuous_const, fun _ _ => rfl, fun a g f hf => ?_⟩
-    change I195MixedCoordinates_00549d7c7323d43c39912169.source d T ψ μ 𝓕 _ 0 = _ • om₀ (g, 1) (I195MixedCoordinates_00549d7c7323d43c39912169.source d T ψ μ 𝓕 f 0)
+    change I195MixedCoordinates_7149a82cc25e6f9e668c8c61.source d T ψ μ 𝓕 _ 0 = _ • om₀ (g, 1) (I195MixedCoordinates_7149a82cc25e6f9e668c8c61.source d T ψ μ 𝓕 f 0)
     rw [hz S S₀ T d μ 𝓕 hμ, hz S S₀ T d μ 𝓕 hμ, (hl S S₀ d).1, one_mul, hiso χS χT om om₀ hom hom₀ g 1 f hf,
       halfMod_rank_zero]
     simp
@@ -107,7 +107,7 @@ theorem levi_origin_scalar : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S S�
     obtain ⟨α, ξ, hα, hξ, h⟩ := _root_.GlobalTheory.LeviChar.levi_scalars_autChar D S S₀ T ρ d.e d.i₀ (hsp hρ) ψ χS χT om hom χS χT om₀ hom₀
     refine ⟨α, ξ, hα.1, hα.2, hξ.1, hξ.2, fun a g f hf => ?_⟩
     have hμ' : IsCovolOne (GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition.ratMx D T.rank ρ) μ 𝓕 := by rw [hr]; exact hμ
-    change I195MixedCoordinates_61fbc522a99e851221ffe16d.source d T ψ μ 𝓕 _ 0 = _ • om₀ (g, 1) (I195MixedCoordinates_61fbc522a99e851221ffe16d.source d T ψ μ 𝓕 f 0)
+    change I195MixedCoordinates_16b53debd46a2c18720dfcab.source d T ψ μ 𝓕 _ 0 = _ • om₀ (g, 1) (I195MixedCoordinates_16b53debd46a2c18720dfcab.source d T ψ μ 𝓕 f 0)
     rw [hm, hm, heisO_extX_zero, heisO_extX_zero, halfMod_eq_detPow]
     exact h μ 𝓕 hμ' a g (d.levi a * d.emb0 g) (wittDecomposition_levi_emb_acts_isotropic d a g) (wittDecomposition_levi_emb_acts_anisotropicCore d a g) f hf
 
