@@ -109,6 +109,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.TraceFibreRingEqFinsumFibrePoints
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 open scoped TensorProduct
 

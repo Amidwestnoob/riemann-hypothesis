@@ -23,6 +23,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitaryMe
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.InertDoubleCoset
 
 open Formalism.UG
