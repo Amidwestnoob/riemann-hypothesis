@@ -31,6 +31,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1655
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumSqNormWCuspPhLe
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.L2.Theta
 open GlobalTheory.AllWt (cuspW latW GoodW rankW)
 open GlobalTheory.LevDesc (levDet secRing pull KeepsCusp)
