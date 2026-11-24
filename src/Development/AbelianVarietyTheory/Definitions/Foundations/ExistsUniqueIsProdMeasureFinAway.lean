@@ -133,7 +133,7 @@ theorem isRestrProd_empty_iff {G κ : Type} {P : κ → Type} [Group G] [∀ k, 
       (∀ k, (μf k).IsHaarMeasure) ∧ (∀ᶠ k in cofinite, μf k (K k) = 1) ∧ μ.IsHaarMeasure ∧
       ∀ S : Finset κ, (∀ k ∉ S, μf k (K k) = 1) → ∀ B : ∀ k, Set (P k), (∀ k ∈ S, MeasurableSet (B k)) →
         μ {g | (∀ k ∈ S, q k g ∈ B k) ∧ ∀ k ∉ S, q k g ∈ K k} = ∏ k ∈ S, μf k (B k) := by
-  let _ : IsEmpty Empty := Empty.instIsEmpty
+  haveI : IsEmpty Empty := ⟨fun e => nomatch e⟩
   exact ⟨fun h => ⟨h.2, h.3, h.4, fun S hS B hB => by
       simpa [cyl] using h.5 S hS (fun _ => Set.univ) B (fun e => e.elim) hB⟩,
     fun h => ⟨fun e => e.elim, h.1, h.2.1, h.2.2.1, fun S hS A B _ hB => by simpa [cyl] using h.2.2.2 S hS B hB⟩⟩
