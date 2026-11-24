@@ -335,8 +335,7 @@ theorem step {n : ℕ} (G : Matrix (Fin (n + 1)) (Fin (n + 1)) R) (hG : Gᴴ = -
   have hr0 : (L * P) 0 = x := by
     ext k
     rw [Matrix.mul_apply, Fin.sum_univ_succ]
-    simp [L, P, Fin.succ_ne_zero]
-    exact Finset.sum_eq_zero fun m _ => by simp [(Fin.succ_ne_zero m).symm]
+    simp [L, P, Fin.succ_ne_zero, fun m : Fin n => (Fin.succ_ne_zero m).symm]
   have hrs : ∀ j : Fin n, (L * P) j.succ =
       Pi.single j.succ 1 - (hf G (Pi.single j.succ 1) x * ainv) • x := by
     intro j
