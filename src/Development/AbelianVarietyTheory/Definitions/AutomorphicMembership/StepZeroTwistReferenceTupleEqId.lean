@@ -66,7 +66,7 @@ theorem valL_near (hp : PtLaw S b pt c) (hφ : φ ∈ S.Fi emb σ lam) {x : GL (
   obtain ⟨g, g1, g2, g3⟩ := hp.lev k hk
   rw [g3, valL_smul hφ]
   funext y
-  simp [GStep.tr, trFr_apply, g1, g2, frMul_one]
+  simp [GStep.tr, trFr_apply, g1, g2, GlobalTheory.Mem.Col2.frMul_one]
 
 variable {V x₀}
 

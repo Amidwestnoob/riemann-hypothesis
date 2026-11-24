@@ -61,13 +61,13 @@ theorem extends_of_tr {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶ X} {E : Type} [AddC
   · change Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom _ _ _).toRingHom) ≫ v.left = _
     rw [hv, ← Category.assoc]
     have h : Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom (X.presheaf.stalk q.1) (X.presheaf.stalk q.1) (X.presheaf.stalk q.1)).toRingHom) ≫
-        spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) =
+        spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) =
         spMap ψ ≫ Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R R).toRingHom) := by
       rw [← spMap_comp', ← spMap_comp']
       congr 1
       apply RingHom.ext
       intro a
-      simp [GlobalTheory.CompanionTheory.Ar.dualMap]
+      simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap]
     rw [h, Category.assoc, MR.tan e]
     exact congrArg (·.left) (comp_one (M := G)
       (Over.homMk (spMap ψ) hψ : Over.mk (X.fromSpecStalk q.1) ⟶ Over.mk x))

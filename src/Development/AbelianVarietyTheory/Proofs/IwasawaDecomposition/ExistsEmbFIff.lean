@@ -88,7 +88,7 @@ theorem mem_Fi_iff {σ' : E →ₐ[F] E} {J : Matrix (Fin n) (Fin n) E} {T f : �
     intro (zz : Fr emb σ n) (zz' : Fr emb σ n) hz
     have h4 : zz = frMul emb σ γ zz' := Subtype.ext (funext hz)
     have h3 : σ ((S.chr c.1 s.1 : Kˣ) : K) * z c (frMul emb σ (S.gam c.1 s.1)⁻¹ zz) = z c zz := congrFun (h s) zz
-    have h5 : frMul emb σ γ⁻¹ zz = zz' := by rw [h4, ← frMul_mul, inv_mul_cancel, frMul_one]
+    have h5 : frMul emb σ γ⁻¹ zz = zz' := by rw [h4, ← GlobalTheory.Mem.Col2.frMul_mul, inv_mul_cancel, GlobalTheory.Mem.Col2.frMul_one]
     rw [h1, ← h2, h5] at h3
     exact h3.symm
   · obtain ⟨k, hk, e⟩ := (hr c (st c g)).1 ⟨g, rfl⟩
@@ -99,7 +99,7 @@ theorem mem_Fi_iff {σ' : E →ₐ[F] E} {J : Matrix (Fin n) (Fin n) E} {T f : �
     funext yy
     have h3 := H _ (st c g).2 _ e' yy (frMul emb σ (st c g).1⁻¹ yy) fun τ => by
       have h2 : yy = frMul emb σ (st c g).1 (frMul emb σ (st c g).1⁻¹ yy) := by
-        rw [← frMul_mul, mul_inv_cancel, frMul_one]
+        rw [← GlobalTheory.Mem.Col2.frMul_mul, mul_inv_cancel, GlobalTheory.Mem.Col2.frMul_one]
       exact congrFun (congrArg Subtype.val h2) τ
     rw [hc c g _ e', hst] at h3
     exact h3.symm

@@ -134,14 +134,14 @@ theorem tangent_span : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
       · rw [Category.assoc, Small.ptF_snd, Small.ptF_snd, ← Spec.map_comp, ← CommRingCat.ofHom_comp,
           ← IsScalarTower.algebraMap_eq]
     rw [Small.tanY, Small.tanY, ← Category.assoc,
-      Small.eq_tanF Y yΩ τ i (spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap A Ω)) ≫ Small.tanF Y y τ i)]
+      Small.eq_tanF Y yΩ τ i (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap A Ω)) ≫ Small.tanF Y y τ i)]
     · rfl
     · rw [Category.assoc, Small.tanF_φ, hu]
       rfl
     · rw [Category.assoc, Small.tanF_hom, hF, ← Category.assoc, ← Category.assoc, ← Spec.map_comp, ← Spec.map_comp,
         ← CommRingCat.ofHom_comp, ← CommRingCat.ofHom_comp]
       congr 3
-      ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+      ext a <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
   · rw [ModelDimension.lie_lattice_local_ring X tX.G Ω ξ Li M A hξ tX.semi.smooth zq hz hc e]
     exact hw2 e
 
