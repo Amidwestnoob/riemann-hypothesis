@@ -229,7 +229,7 @@ end SmoothExt
 theorem exists_hermLine_log_eq_of_smooth :
     ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (D : ℕ)
       (R : AnLogRes P ⊤ D) (u : R.X → ℝ), R.A.Smooth u →
-      ∃ B : HermLine ι, B.a = 0 ∧ IsSmoothHerm B ∧ ∀ x, Real.log (B.h (R.lift x x)) = u x := by
+      ∃ B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, B.a = 0 ∧ IsSmoothHerm B ∧ ∀ x, Real.log (B.h (R.lift x x)) = u x := by
   intro K _ ι _ P D R u hu
   obtain ⟨v, hv, hvu⟩ := SmoothExt.exists_ext_of_local (SmoothExt.continuous_diag R)
     (SmoothExt.injective_diag R) (SmoothExt.local_ext R hu)

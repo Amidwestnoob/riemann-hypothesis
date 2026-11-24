@@ -212,7 +212,7 @@ theorem geoNum_polar {σ : Type} [Fintype σ] (n : ℕ) (V : Ideal (MRing ι)) (
     simp only [Fintype.sum_unique, Finset.univ_eq_empty, Finset.prod_empty, one_mul]
     exact h _ _
   | succ n ih =>
-    by_cases hV : IsRelevant V
+    by_cases hV : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsRelevant V
     · rw [← (Fin.snocEquiv (fun _ => σ)).sum_comp, Fintype.sum_prod_type]
       simp only [geoNum, dif_pos hV]
       have hin : ∀ (a : σ) (w' : Fin n → σ),
@@ -347,7 +347,7 @@ theorem flLines_polys : Inputs → ∀ (II : IntersectionSystem), IsFullIntersec
     have hS : S.Finite := divSupp_finite _ _
     set m : Ideal (MRing (FlIdx Ψ N)) → ℝ :=
       fun V => (multAt (PFl Ψ N ⊔ Ideal.span {C (((2 : ℕ) : ℤ))}) V : ℝ) with hm
-    have hD : ∀ L : Fin (antisymDegree Ψ N) → HermLine (FlIdx Ψ N), (∀ j, IsSmoothHerm (L j)) →
+    have hD : ∀ L : Fin (antisymDegree Ψ N) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine (FlIdx Ψ N), (∀ j, IsSmoothHerm (L j)) →
         ptsIntegral (PFl Ψ N) (pot L) (fun _ => 1) = ∑ᶠ V ∈ S, m V * (geoNum _ V (fun j => (L j).a) : ℝ) :=
       fun L hL => hIn.degree _ _ _ _ L 2 hP hL Nat.prime_two
     have hsm : ∀ a : FlBlock Ψ N → ℤ, IsSmoothHerm (fsHerm (FlIdx Ψ N) a) :=

@@ -19,7 +19,7 @@ section
 variable {k : Type} [Field k] {Ω : Type} [Field Ω] [Algebra k Ω] {K : Type} {ι : K → Type} {K' : Type} {ι' : K' → Type}
 
 theorem aeval_scale [Fintype K] [DecidableEq K] {L : Type} [CommRing L] [Algebra k L] (s : K → L) (w : (Σ b, ι b) → L)
-    {f : MRing ι k} {b : K → ℕ} (hf : IsMultiHomog f b) :
+    {f : MRing ι k} {b : K → ℕ} (hf : _root_.GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog f b) :
     aeval (fun p => s p.1 * w p) f = (∏ x, s x ^ b x) * aeval w f := by
   have key : ∀ m ∈ f.support, (m.prod fun p e => s p.1 ^ e) = ∏ x, s x ^ b x := by
     intro m hm
@@ -69,7 +69,7 @@ theorem pointIdeal_comp (y : (Σ b, ι' b) → Ω) (κ : K → K') (hκ : Functi
 
 private theorem aeval_div_mem_fnField_of_multiHomog {k : Type} [Field k] {Ω : Type} [Field Ω] [Algebra k Ω] {K : Type} {ι : K → Type}
     [Fintype K] [DecidableEq K] (z : (Σ b, ι b) → Ω) (hz : ∀ b, ∃ i, z ⟨b, i⟩ ≠ 0) {f g : MRing ι k} {b : K → ℕ}
-    (hf : IsMultiHomog f b) (hg : IsMultiHomog g b) : aeval z f / aeval z g ∈ fnField k z := by
+    (hf : _root_.GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog f b) (hg : _root_.GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog g b) : aeval z f / aeval z g ∈ fnField k z := by
   choose i hi using hz
   let s : K → Ω := fun x => z ⟨x, i x⟩
   let w : (Σ b, ι b) → Ω := fun p => z p / s p.1
@@ -92,7 +92,7 @@ private theorem aeval_div_mem_fnField_of_multiHomog {k : Type} [Field k] {Ω : T
     have := hi p.1
     simp only [s, w]
     field_simp
-  have e : ∀ h : MRing ι k, IsMultiHomog h b → aeval z h = (∏ x, s x ^ b x) * aeval w h := by
+  have e : ∀ h : MRing ι k, _root_.GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog h b → aeval z h = (∏ x, s x ^ b x) * aeval w h := by
     intro h hh
     rw [← aeval_scale s w hh, hzw]
   have hP : (∏ x, s x ^ b x) ≠ 0 := Finset.prod_ne_zero_iff.mpr fun x _ => pow_ne_zero _ (hi x)
@@ -110,7 +110,7 @@ theorem map_homFrac [Fintype K] [DecidableEq K] {L : Type} [Field L] [Algebra k 
     intro p
     rw [mul_comm]
     exact hφ p
-  have hΨ : ∀ {f : MRing ι k} {b : K → ℕ}, IsMultiHomog f b → Ψ f = (∏ x, t x ^ b x) * c (aeval z f) := by
+  have hΨ : ∀ {f : MRing ι k} {b : K → ℕ}, _root_.GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog f b → Ψ f = (∏ x, t x ^ b x) * c (aeval z f) := by
     intro f b hf
     rw [MvPolynomial.aeval_unique Ψ]
     have hfun : (⇑Ψ ∘ X) = fun p => t p.1 * c (z p) := funext hΨX

@@ -49,8 +49,8 @@ theorem finsum_eq_sum (P : Ideal (MRing ι)) (s : MRing ι) (F : Ideal (MRing ι
   · intro W _ hW
     rw [divCycle_of_notMem (fun h => hW ((Set.Finite.mem_toFinset _).2 h)), Nat.cast_zero, zero_mul]
 
-theorem sub_eq_cycR {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
-    {P : Ideal (MRing ι)} {D : ℕ} {L : Fin D → HermLine ι} {A B : HermLine ι} (hP : IsArithVar P (D + 1))
+theorem sub_eq_cycR {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
+    {P : Ideal (MRing ι)} {D : ℕ} {L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hP : IsArithVar P (D + 1))
     (hL : ∀ j, IsSmoothHerm (L j)) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) {f g : MRing ι} {df dg : K → ℕ}
     (hf : IsMultiHomog f df) (hg : IsMultiHomog g dg) (hfP : f ∉ P) (hgP : g ∉ P)
     (hd : ∀ k, (df k : ℤ) - dg k = A.a k - B.a k)
@@ -58,7 +58,7 @@ theorem sub_eq_cycR {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine 
       ‖eval z (map (Int.castRingHom ℂ) f)‖ * B.h z = ‖eval z (map (Int.castRingHom ℂ) g)‖ * A.h z) :
     I P (D + 1) (Fin.snoc L A) - I P (D + 1) (Fin.snoc L B) = cycR I P L f - cycR I P L g := by
   obtain ⟨-, hAdd, hR⟩ := hI
-  set M : HermLine ι := (HermLine.sqMetric (ι := ι) dg).tensor B.inv with hMdef
+  set M : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := (HermLine.sqMetric (ι := ι) dg).tensor B.inv with hMdef
   have hM : IsSmoothHerm M :=
     ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor (isSmoothHerm_sqMetric dg) (ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_inv hB)
   have hRf := hR P D L _ f df hP hL (ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hM) (fun k => by
@@ -117,7 +117,7 @@ theorem not_isHorizontal {W : Ideal (MRing ι)} (h : charOf W ≠ 0) : ¬ IsHori
 
 end PositivityTheory.Xgp.lemma_v
 
-theorem PositivityTheory.Xgp.t_lemma_v : Inputs → ∀ (II : IntersectionSystem), IsFullIntersectionSystem II → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (D : ℕ) (L : Fin D → HermLine ι) (A B : HermLine ι) (T : Finset ℕ) (α : ℕ → ℝ), IsArithVar P (D + 1) → (∀ j, IsSmoothHerm (L j)) → IsSmoothHerm A → IsSmoothHerm B → (∀ p ∈ T, p.Prime ∧ 0 ≤ α p) → VertClose P T α A B → (∀ p ∈ T, ∀ j, NefAt P p (L j).a) → |II K ι P (D + 1) (Fin.snoc L A) - II K ι P (D + 1) (Fin.snoc L B)| ≤ (∑ p ∈ T, α p * Real.log p) * ptsIntegral P (pot L) fun _ => 1 := by
+theorem PositivityTheory.Xgp.t_lemma_v : Inputs → ∀ (II : IntersectionSystem), IsFullIntersectionSystem II → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (D : ℕ) (L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (T : Finset ℕ) (α : ℕ → ℝ), IsArithVar P (D + 1) → (∀ j, IsSmoothHerm (L j)) → IsSmoothHerm A → IsSmoothHerm B → (∀ p ∈ T, p.Prime ∧ 0 ≤ α p) → VertClose P T α A B → (∀ p ∈ T, ∀ j, NefAt P p (L j).a) → |II K ι P (D + 1) (Fin.snoc L A) - II K ι P (D + 1) (Fin.snoc L B)| ≤ (∑ p ∈ T, α p * Real.log p) * ptsIntegral P (pot L) fun _ => 1 := by
   intro hIn II hII K _ ι _ P D L A B T α hP hL hA hB hT hV hnef
   classical
   obtain ⟨f, g, df, dg, hf, hg, hfP, hgP, hd, hn, hout, hin⟩ := hV
@@ -126,15 +126,15 @@ theorem PositivityTheory.Xgp.t_lemma_v : Inputs → ∀ (II : IntersectionSystem
     T.biUnion fun p => (divSupp_finite P (C (p : ℤ) : MRing ι)).toFinset with hS
   have hrhs : (∑ p ∈ T, α p * Real.log p) * ptsIntegral P (pot L) (fun _ => 1) =
       ∑ W ∈ S, ∑ p ∈ T, α p * Real.log p *
-        ((divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ)) := by
+        ((_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ)) := by
     rw [Finset.sum_comm, Finset.sum_mul]
     refine Finset.sum_congr rfl fun p hp => ?_
     rw [hIn.degree K ι P D L p hP hL (hT p hp).1, PositivityTheory.Xgp.lemma_v.finsum_eq_sum P _ _ S, Finset.mul_sum]
     exact (Finset.subset_biUnion_of_mem (fun p : ℕ => (divSupp_finite P (C (p : ℤ) : MRing ι)).toFinset) hp).trans
       Finset.subset_union_right
-  have hpos : ∀ W, ∀ p ∈ T, 0 ≤ (divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ) ∧
-      (divCycle P (C (p : ℤ)) W : ℝ) * |(geoNum D W (fun j => (L j).a) : ℝ)| =
-        (divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ) := by
+  have hpos : ∀ W, ∀ p ∈ T, 0 ≤ (_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ) ∧
+      (_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle P (C (p : ℤ)) W : ℝ) * |(geoNum D W (fun j => (L j).a) : ℝ)| =
+        (_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ) := by
     intro W p hp
     by_cases hW : W ∈ divSupp P (C (p : ℤ))
     · have h0 : (0 : ℝ) ≤ (geoNum D W (fun j => (L j).a) : ℝ) := by
@@ -143,7 +143,7 @@ theorem PositivityTheory.Xgp.t_lemma_v : Inputs → ∀ (II : IntersectionSystem
     · rw [PositivityTheory.Xgp.lemma_v.divCycle_of_notMem hW]
       simp
   have hterm : ∀ W, ∀ p ∈ T, 0 ≤ α p * Real.log p *
-      ((divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ)) := fun W p hp =>
+      ((_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle P (C (p : ℤ)) W : ℝ) * (geoNum D W (fun j => (L j).a) : ℝ)) := fun W p hp =>
     mul_nonneg (mul_nonneg (hT p hp).2 (Real.log_natCast_nonneg p)) (hpos W p hp).1
   rw [hrhs]
   unfold cycR

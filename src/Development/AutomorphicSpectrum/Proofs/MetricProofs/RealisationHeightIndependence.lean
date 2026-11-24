@@ -70,13 +70,13 @@ theorem abs_le_expand {Λ : Type*} {m : ℕ} (T : Λ → Λ) (H : Λ) (Good : Λ
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
 theorem abs_sub_le_telescope (II : IntersectionSystem) (hII : IsFullIntersectionSystem II)
-    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) (A B : Fin (D + 1) → HermLine ι)
+    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) (A B : Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι)
     (hA : ∀ j, IsSmoothHerm (A j)) (hB : ∀ j, IsSmoothHerm (B j)) (M : ℝ)
-    (h : ∀ (k : Fin (D + 1)) (E : Fin D → HermLine ι), (∀ i, ∃ r, E i = A r ∨ E i = B r) →
+    (h : ∀ (k : Fin (D + 1)) (E : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι), (∀ i, ∃ r, E i = A r ∨ E i = B r) →
       |II K ι P (D + 1) (Fin.snoc E (A k)) - II K ι P (D + 1) (Fin.snoc E (B k))| ≤ M) :
     |II K ι P (D + 1) A - II K ι P (D + 1) B| ≤ ((D : ℝ) + 1) * M := by
   classical
-  let X : ℕ → Fin (D + 1) → HermLine ι := fun k i => if (i : ℕ) < k then B i else A i
+  let X : ℕ → Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := fun k i => if (i : ℕ) < k then B i else A i
   have hX : ∀ k j, IsSmoothHerm (X k j) := by
     intro k j
     simp only [X]
@@ -88,7 +88,7 @@ theorem abs_sub_le_telescope (II : IntersectionSystem) (hII : IsFullIntersection
     intro k hk
     let kk : Fin (D + 1) := ⟨k, hk⟩
     let τ : Equiv.Perm (Fin (D + 1)) := Equiv.swap kk (Fin.last D)
-    let E : Fin D → HermLine ι := fun i => X k (τ i.castSucc)
+    let E : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := fun i => X k (τ i.castSucc)
     have hτl : τ (Fin.last D) = kk := Equiv.swap_apply_right _ _
     have e1 : X k ∘ τ = Fin.snoc E (A kk) := by
       funext i
@@ -133,8 +133,8 @@ theorem abs_sub_le_telescope (II : IntersectionSystem) (hII : IsFullIntersection
   rw [h0, h1] at this
   simpa using this
 
-theorem vertClose_tensor {P : Ideal (MRing ι)} {T : Finset ℕ} {α : ℕ → ℝ} {A B : HermLine ι}
-    (h : VertClose P T α A B) (H : HermLine ι) : VertClose P T α (A.tensor H) (B.tensor H) := by
+theorem vertClose_tensor {P : Ideal (MRing ι)} {T : Finset ℕ} {α : ℕ → ℝ} {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι}
+    (h : VertClose P T α A B) (H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) : VertClose P T α (A.tensor H) (B.tensor H) := by
   obtain ⟨f, g, df, dg, hf, hg, hfP, hgP, hd, hn, h1, h2⟩ := h
   refine ⟨f, g, df, dg, hf, hg, hfP, hgP, fun k => ?_, fun z hz => ?_, h1, h2⟩
   · have := hd k
@@ -149,7 +149,7 @@ theorem holoOn_sub_set {e : ℕ} {X : Type} [TopologicalSpace X] {A : FinHolAtla
   (h j).mono (Set.inter_subset_inter_right _ (Set.preimage_mono hVU))
 
 theorem samePot_tensor {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {Y : Type} [TopologicalSpace Y]
-    {π : R.X → Y} (hπ : Continuous π) {A B : HermLine ι} {Q Q' W : LocPot Y}
+    {π : R.X → Y} (hπ : Continuous π) {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {Q Q' W : LocPot Y}
     (hA : SamePot R.A Set.univ (potOf R A) (Q.pullback π hπ))
     (hB : SamePot R.A Set.univ (potOf R B) (Q'.pullback π hπ))
     (hW : ∀ x y, W.φ x y = Q.φ x y + Q'.φ x y) :
@@ -168,7 +168,7 @@ theorem samePot_tensor {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {
   linarith
 
 theorem samePot_congr {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {Y : Type} [TopologicalSpace Y]
-    {π : R.X → Y} (hπ : Continuous π) {A : HermLine ι} {Q W : LocPot Y}
+    {π : R.X → Y} (hπ : Continuous π) {A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {Q W : LocPot Y}
     (hA : SamePot R.A Set.univ (potOf R A) (Q.pullback π hπ)) (hW : ∀ x y, W.φ x y = Q.φ x y) :
     SamePot R.A Set.univ (potOf R A) (W.pullback π hπ) := by
   intro x hx
@@ -193,12 +193,12 @@ def wordNum (S : AnSys D σ) (thH : LocPot S.X) (v : Fin D → Option σ) : ℝ 
 def wordBound [Fintype σ] (S : AnSys D σ) (thH : LocPot S.X) : ℝ :=
   ∑ v : Fin D → Option σ, |wordNum S thH v|
 
-def wLine {S : AnSys D σ} {P : Ideal (MRing ι)} (Re : Realis S P) (H : HermLine ι) (t : ℝ) (v : Option σ) :
-    HermLine ι :=
+def wLine {S : AnSys D σ} {P : Ideal (MRing ι)} (Re : Realis S P) (H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (t : ℝ) (v : Option σ) :
+    _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=
   v.elim H fun a => (Re.line a t).tensor H
 
 theorem pts_wLine (hE : ResExistsStatement) {S : AnSys D σ} [Fintype σ] {P : Ideal (MRing ι)} (Re : Realis S P)
-    {thH : LocPot S.X} (hth : IsPotential S.A thH) {H : HermLine ι} (hHs : IsSmoothHerm H)
+    {thH : LocPot S.X} (hth : IsPotential S.A thH) {H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hHs : IsSmoothHerm H)
     (hHp : SamePot Re.R.A Set.univ (potOf Re.R H) (thH.pullback Re.π Re.holo.1))
     {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ S.t₀) (v : Fin D → Option σ) :
     ptsIntegral P (pot fun i => wLine Re H t (v i)) (fun _ => 1) = Re.deg * wordNum S thH v := by
@@ -251,10 +251,10 @@ theorem pts_wLine (hE : ResExistsStatement) {S : AnSys D σ} [Fintype σ] {P : I
 
 theorem abs_pts_le (hE : ResExistsStatement) {S : AnSys D σ} [Fintype σ] {P : Ideal (MRing ι)}
     (Re Re' : Realis S P) {thH : LocPot S.X} (hth : IsPotential S.A thH) {T : Finset ℕ} {α : ℕ → ℝ}
-    {H : HermLine ι} (hHs : IsSmoothHerm H)
+    {H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hHs : IsSmoothHerm H)
     (hHp : SamePot Re.R.A Set.univ (potOf Re.R H) (thH.pullback Re.π Re.holo.1))
     (hV : ∀ a t, 0 < t → t ≤ S.t₀ → VertClose P T α (Re.line a t) (Re'.line a t))
-    {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ S.t₀) (L : Fin D → HermLine ι)
+    {t : ℝ} (ht0 : 0 < t) (ht1 : t ≤ S.t₀) (L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι)
     (hL : ∀ i, L i = H ∨ ∃ a, L i = (Re.line a t).tensor H ∨ L i = (Re'.line a t).tensor H) :
     |ptsIntegral P (pot L) fun _ => 1| ≤ Re.deg * wordBound S thH := by
   have hv : ∀ i, ∃ v : Option σ, L i = wLine Re H t v ∨ VertClose P T α (wLine Re H t v) (L i) := by
@@ -298,7 +298,7 @@ open CoeffWord
 theorem abs_num_sub_num_le : Inputs → ∀ (D : ℕ) (σ : Type) [Fintype σ] (S : AnSys D σ) (thH : LocPot S.X),
     IsPotential S.A thH → ∃ C₂ : ℝ, ∀ (II : IntersectionSystem), IsFullIntersectionSystem II →
     ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (Re Re' : Realis S P)
-      (T : Finset ℕ) (α : ℕ → ℝ) (H : HermLine ι), Re'.deg = Re.deg → (∀ p ∈ T, p.Prime ∧ 0 ≤ α p) →
+      (T : Finset ℕ) (α : ℕ → ℝ) (H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι), Re'.deg = Re.deg → (∀ p ∈ T, p.Prime ∧ 0 ≤ α p) →
       IsSmoothHerm H → SamePot Re.R.A Set.univ (potOf Re.R H) (thH.pullback Re.π Re.holo.1) →
       (∀ a t, 0 < t → t ≤ S.t₀ → VertClose P T α (Re.line a t) (Re'.line a t)) →
       (∀ p ∈ T, NefAt P p H.a ∧ ∀ a, NefAt P p ((Re.ref a).a + H.a) ∧ NefAt P p ((Re'.ref a).a + H.a)) →
@@ -325,8 +325,8 @@ theorem abs_num_sub_num_le : Inputs → ∀ (D : ℕ) (σ : Type) [Fintype σ] (
         II K ι P (D + 1) (Fin.snoc L (Re'.line (w k) t))) ?_
       (fun C hC => isSmoothHerm_tensor hC hHs) hHs E hEs _ ?_
     · intro L i C hL hC
-      have hs : ∀ (Z : HermLine ι), IsSmoothHerm Z →
-          ∀ j, IsSmoothHerm ((Fin.snoc L Z : Fin (D + 1) → HermLine ι) j) := by
+      have hs : ∀ (Z : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι), IsSmoothHerm Z →
+          ∀ j, IsSmoothHerm ((Fin.snoc L Z : Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j) := by
         intro Z hZ j
         refine Fin.lastCases ?_ (fun i => ?_) j
         · simpa using hZ

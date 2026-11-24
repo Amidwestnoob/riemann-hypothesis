@@ -273,7 +273,7 @@ def aDeg (M : FlagModel y Ψ N j) (τ : Ψ) (a : Fin N) (k₀ : K) : Option K �
   | none => 1
   | some k => if k = k₀ then 1 else -xiDeg M τ a k
 
-def potA (M : FlagModel y Ψ N j) (τ : Ψ) (a : Fin N) (k₀ : K) : HermLine fun o : Option K => ι (o.getD k₀) :=
+def potA (M : FlagModel y Ψ N j) (τ : Ψ) (a : Fin N) (k₀ : K) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine fun o : Option K => ι (o.getD k₀) :=
   fsHerm (fun o : Option K => ι (o.getD k₀)) (aDeg M τ a k₀)
 
 def IsPtData (M : FlagModel y Ψ N j) (τ : Ψ) (a : Fin N) (k₀ : K) (ca cb : Fin N) {e : ℕ}
@@ -300,7 +300,7 @@ def diagSec {e : ℕ} {X : Type} [TopologicalSpace X] (ψ : X → OpenPartialHom
     (u : X → X → ℂ) : X → X → ℂ := fun x y' => u x y' * ψ x y' (i₀ x)
 
 def secPot {κ : Type} [Fintype κ] {ρ : κ → Type} [∀ k, Fintype (ρ k)] {P J : Ideal (MRing ρ)} {e : ℕ}
-    (R : AnLogRes P J e) (A : HermLine ρ) (V : R.X → Set R.X) (hV : ∀ x, IsOpen (V x)) (hm : ∀ x, x ∈ V x) (c : ℝ) :
+    (R : AnLogRes P J e) (A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ρ) (V : R.X → Set R.X) (hV : ∀ x, IsOpen (V x)) (hm : ∀ x, x ∈ V x) (c : ℝ) :
     LocPot R.X where
   U := V
   isOpen_U := hV
