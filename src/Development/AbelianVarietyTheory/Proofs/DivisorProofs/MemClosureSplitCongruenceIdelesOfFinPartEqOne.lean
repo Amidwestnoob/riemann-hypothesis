@@ -65,8 +65,8 @@ theorem tendsto_mkEF (δ : E) {A B : ℕ → AF F} {a b : AF F} (hA : Tendsto A 
 
 theorem mkE_mem_intAEF (δ : 𝓞 E) (a b : Af F) (ha : ∀ v, ‖a v‖ ≤ 1) (hb : ∀ v, ‖b v‖ ≤ 1) :
     mkE (F := F) (δ : E) (Af F) a b ∈ intAEF F E :=
-  add_mem (AddSubgroup.subset_closure ⟨a, fun v => (norm_le_one_iff_int v _).1 (ha v), 1, rfl⟩)
-    (AddSubgroup.subset_closure ⟨b, fun v => (norm_le_one_iff_int v _).1 (hb v), δ, rfl⟩)
+  add_mem (AddSubgroup.subset_closure ⟨a, fun v => (GlobalTheory.HeckeSplitAll.Approx.norm_le_one_iff_int v _).1 (ha v), 1, rfl⟩)
+    (AddSubgroup.subset_closure ⟨b, fun v => (GlobalTheory.HeckeSplitAll.Approx.norm_le_one_iff_int v _).1 (hb v), δ, rfl⟩)
 
 theorem exists_splitIdemF (σ : E →ₐ[F] E) (δ : E) (hδ : σ δ = -δ) (hδ0 : δ ≠ 0) (Δ : F)
     (hΔ : algebraMap F E Δ = δ * δ) (v : HeightOneSpectrum (𝓞 F)) (s : v.adicCompletion F)
@@ -248,7 +248,7 @@ theorem exists_mem_grpHF (σ : E →ₐ[F] E) (N : ℕ) (hN : N ≠ 0) (δ : �
       ring
     · obtain ⟨g1, g2, g3⟩ := hg v hv
       rw [e3, e4, e3, e4, map_div₀, map_div₀, norm_div, norm_div, g3, div_one, div_one, map_neg, norm_neg]
-      exact ⟨g1, g2, norm_le_one_of_sub_le (g1.trans (norm_nat_le_one v N)), g2.trans (norm_nat_le_one v N)⟩
+      exact ⟨g1, g2, norm_le_one_of_sub_le (g1.trans (GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v N)), g2.trans (GlobalTheory.HeckeSplitAll.Approx.norm_nat_le_one v N)⟩
   refine ⟨GlobalTheory.HeckeSplitAll.cut (epInf_sq F) Y, ?_, by rw [cut_val, hY1, cut_mkE, e1, e2], by rw [cut_inv, hY2, cut_mkE, e1, e2]⟩
   rw [eq_mul_inv_of_mul_eq (cut_mul (epInf_sq F) Y)]
   exact mul_mem hY (inv_mem hx)
