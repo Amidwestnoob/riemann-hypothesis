@@ -172,7 +172,7 @@ theorem QuadraticExtensionData.Reads.movedAt : ∀ {B : GlobalTheory.Mem.Base} {
       intro r' b'
       apply (algebraMap B.host.E ((J.P i).1.adicCompletion B.host.E)).injective
       rw [← adAt_kb_eq_frsF J.A hJ.is (J.P i) hPn k hm β r' b', hstd, adAt_kStd_of_twist hW.tr.ok _ (J.P i) hPn u _ r' b']
-    unfold baseFr
+    unfold GlobalTheory.QTw.baseFr
     refine (congrArg _ (key _ _)).trans ?_
     have hiff : ((finCongr (rankN (I.rec7 l Z) k hm)) (Fin.cast rfl r) = e b) ↔ (r = e' b) := by
       constructor
