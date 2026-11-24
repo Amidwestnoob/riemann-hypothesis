@@ -89,7 +89,7 @@ theorem dH_comp (E : V ≃L[ℝ] V') (ρ : V' → B →L[ℂ] B) (v : V) (f : B)
 
 theorem quad_comp (E : V ≃L[ℝ] V') (ρ : V' → B →L[ℂ] B) {κ : Type} [Fintype κ] (a : κ → ℂ) (p q : κ → V') (f : B) :
     quad (fun u => ρ (E u)) a (fun i => E.symm (p i)) (fun i => E.symm (q i)) f = quad ρ a p q f := by
-  simp only [quad, dH_comp, E.apply_symm_apply]
+  simp only [_root_.GlobalTheory.Mem.Lift.quad, dH_comp, E.apply_symm_apply]
 
 theorem isQuadOf_comp (E : V ≃L[ℝ] V') {om : V' → V' → ℝ} {om' : V → V → ℝ} (hE : ∀ x y, om (E x) (E y) = om' x y)
     {X : V' → V'} {X' : V → V} (hX : ∀ v, E (X' v) = X (E v)) {κ : Type} [Fintype κ] {a : κ → ℂ} {p q : κ → V'}

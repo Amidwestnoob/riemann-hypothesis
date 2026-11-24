@@ -277,7 +277,7 @@ theorem sg_all (H : RLaw Y V) (hP : HasProj Y V) {g : Fin 2} {γ : κ → PowerS
         Y.sg ((M (1 - g)).mulVec v)) =
       alongCv γ (Y.sg v) - ∑ c, b c • alongCv γ (Y.sg (Y.u (1 - g) c)) := by
     unfold alongCv
-    rw [MvPowerSeries.subst_sub hΓ, MvPowerSeries.subst_comp_subst_apply hS hΓ, hb, sg_sum, subst_sum_smul hΓ]
+    rw [MvPowerSeries.subst_sub hΓ, MvPowerSeries.subst_comp_subst_apply hS hΓ, hb, sg_sum, _root_.GlobalTheory.RowLaw.CvEnd.subst_sum_smul hΓ]
     simp only [subst_endP H (M g) hγ0, hfixγ]
   beta_reduce at hK
   set_option synthInstance.maxHeartbeats 100000 in

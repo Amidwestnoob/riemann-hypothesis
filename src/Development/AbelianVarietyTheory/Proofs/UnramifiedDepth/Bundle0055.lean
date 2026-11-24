@@ -179,7 +179,7 @@ theorem exists_intS_frame_eq_prod : ∀ (C : Type) [Field C] [CharZero C] (V : V
     mvExp_sum _ (fun o => by rw [cc_subst (cr o), cH]), ← MvPowerSeries.substAlgHom_apply he, map_prod,
     ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun o _ => ?_
-  rw [MvPowerSeries.substAlgHom_apply, MvPowerSeries.subst_mul (hr o), subst_mvExp (cr o) (cH o), hgf o,
+  rw [MvPowerSeries.substAlgHom_apply, MvPowerSeries.subst_mul (hr o), _root_.GlobalTheory.RowVal.subst_mvExp (cr o) (cH o), hgf o,
     comp_cc (cπ o) ce, comp_cc (cE o) (cr o)]
   simp only [subst_endomorphismSeries_expAt H, hpt]
 

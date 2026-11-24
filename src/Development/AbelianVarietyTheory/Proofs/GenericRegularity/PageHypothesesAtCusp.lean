@@ -61,7 +61,7 @@ theorem thR_pos {D : D7} {j : ℕ} (w : WeightFamilies.Wt D j) (hg : ∀ i, 0 < 
     exact Real.rpow_pos_of_pos (abs_pos.2 (Int.cast_ne_zero.2 (NumberField.discr_ne_zero D.host.E))) _
   have h0 := hg 0
   have h1 := hg 1
-  unfold thR I2.th I2.RR
+  unfold _root_.GlobalTheory.RunJoin.thR I2.th I2.RR
   positivity
 
 

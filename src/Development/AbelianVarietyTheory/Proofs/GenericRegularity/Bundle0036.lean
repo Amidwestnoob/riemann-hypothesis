@@ -68,9 +68,9 @@ theorem evR_eq_natCast (hL : EvLaws Xo c) {h : GenFrEx Xo c} {χ : Rul Xo c} (h�
     rw [hn]
     simp
   have h2 : evR Xo c χ C.y = n := by
-    rw [evR_of_frMap hL hχ C.R.val C.gen] at h1
+    rw [_root_.GlobalTheory.SupGeneric.evR_of_frMap hL hχ C.R.val C.gen] at h1
     exact Subtype.ext (h1.trans (map_natCast C.R.val n).symm)
-  have h3 : evR Xo c χ z = n := by rw [evR_of_frMap hL hχ ψ hz, h2, map_natCast]
+  have h3 : evR Xo c χ z = n := by rw [_root_.GlobalTheory.SupGeneric.evR_of_frMap hL hχ ψ hz, h2, map_natCast]
   rw [hL.wt 0 0 χ hχ _ t _ _ (hL.test _ _) (hL.test _ _) hb, wchar_zero, h3]
   simp
 

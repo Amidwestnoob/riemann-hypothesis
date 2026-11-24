@@ -283,7 +283,7 @@ theorem isPtCube_of_isFrame : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     hpe _ _ _ (fun l j => by fin_cases l <;> simp) (fun j => hX (i, j)) (fun j => hX (k, j))
   have hadd : ∀ (i k : Fin 3) (j : Fin d), ψ (Ideal.Quotient.mk _ (psIn d m ![i, k] (F j))) =
       addP (fun j => MvPowerSeries.map β (F j)) (![a, b, u] i) (![a, b, u] k) j := fun i k j => by
-    rw [map_psIn ψ hψ, addP]
+    rw [map_psIn ψ hψ, _root_.GlobalTheory.AlphaPair.addP]
     congr 1
     funext l j'
     rw [hX]

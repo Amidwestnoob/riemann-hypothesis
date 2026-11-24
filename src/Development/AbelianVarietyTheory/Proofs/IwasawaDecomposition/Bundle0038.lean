@@ -203,7 +203,7 @@ theorem quad_normal (H X : Matrix ι ι ℂ) {B : Type} [NormedAddCommGroup B] [
     unfold dOp
     rw [dH_smul u _ (sm_add' (hy j) (sm_smul' I (hIy j))),
       dH_add u (hy j) (sm_smul' I (hIy j)), dH_smul u I (hIy j)]
-  unfold quad nOp xOp
+  unfold _root_.GlobalTheory.Mem.Lift.quad nOp xOp
   simp only [Fintype.sum_prod_type, Fintype.sum_bool]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun j _ => ?_
   simp only [nC, nP, nQ, Bool.false_eq_true, ↓reduceIte, hexp]

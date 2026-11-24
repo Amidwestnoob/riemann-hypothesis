@@ -244,7 +244,7 @@ theorem subst_ex_eq_mvExp (hY : RLaw Y V) (χ : MvPowerSeries κ C) (h0 : consta
   rw [subst_comp_subst_apply hex hA]
   congr 1
   funext i
-  unfold addP
+  unfold _root_.GlobalTheory.RowLaw.addP
   rw [subst_comp_subst_apply (hasSubst_of_constantCoeff_zero (log_add_const hY (hg 0) (hg 1))) hes]
   congr 1
   funext x

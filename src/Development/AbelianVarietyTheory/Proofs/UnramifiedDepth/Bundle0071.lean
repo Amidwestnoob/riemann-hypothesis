@@ -127,7 +127,7 @@ theorem formalAdd_cv_of_addMod :
   rw [nEval_sub hv, sub_eq_zero, ChartCompare.nEval_subst _ hc _ _ hv, nEval_cvAt _ (by simp) _ _ hv,
     nEval_add hv, ChartCompare.nEval_X _ hv, ChartCompare.nEval_X _ hv] at hz
   refine Eq.trans ?_ hz
-  unfold addP evP
+  unfold _root_.GlobalTheory.AlphaPair.addP evP
   congr 1
   funext q
   rw [nEval_cvAt _ (MvPowerSeries.constantCoeff_X _) _ _ hv, ChartCompare.nEval_X _ hv]

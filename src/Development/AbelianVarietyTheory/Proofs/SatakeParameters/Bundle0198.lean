@@ -132,7 +132,7 @@ theorem blockChar_eq_inv_detDD : ∀ {L : Type} [Field L] [NumberField L] [IsCMF
   obtain ⟨h1, h2⟩ := hne _ _ hv
   have hF : NG.detDD s r (d * b * d⁻¹) ≠ 0 := fun h0 => h1 (by rw [← hc, h0, map_zero])
   refine ⟨Units.mk0 _ hF, rfl, fun μ hμ => ?_⟩
-  rw [blockChar_eq μ _ (Units.mk0 _ h2) rfl]
+  rw [_root_.GlobalTheory.BlockType.blockChar_eq μ _ (Units.mk0 _ h2) rfl]
   have ht := hμ (Units.map c.toMonoidHom (Units.mk0 _ hF) * Units.mk0 _ h2) (by
     simp only [Units.val_mul, Units.coe_map, Units.val_mk0]
     rw [show (c.toMonoidHom : _ →* _) (NG.detDD s r (d * b * d⁻¹)) = c (NG.detDD s r (d * b * d⁻¹)) from rfl, hc]

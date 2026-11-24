@@ -264,7 +264,7 @@ theorem glue (ex : Pt C 1 dd) (hex : ∀ i, constantCoeff (ex i) = 0) (hl : PS C
     rw [subst_comp_subst_apply heS (hRS ρ)]
     simp only [hE1]
     set_option synthInstance.maxHeartbeats 100000 in
-      rw [subst_mul hS, subst_mvExp (hG0 ρ) hc2, ← coe_substAlgHom hS, map_smul, map_sum]
+      rw [subst_mul hS, _root_.GlobalTheory.RowVal.subst_mvExp (hG0 ρ) hc2, ← coe_substAlgHom hS, map_smul, map_sum]
     simp only [coe_substAlgHom, teichSelf_subst_inCol _ (hG0 ρ)]
   simp only [hR]
   rw [Finset.prod_mul_distrib, subst_mul hES]
@@ -274,7 +274,7 @@ theorem glue (ex : Pt C 1 dd) (hex : ∀ i, constantCoeff (ex i) = 0) (hl : PS C
     rw [coe_substAlgHom, subst_comp_subst_apply (hasSubst_of_constantCoeff_zero fun _ => constantCoeff_X _) hES]
     simp only [subst_X hES]
   · unfold FB.expS
-    rw [← mvExp_eq_subst hc1, subst_mvExp hE0 hc1, ← mvExp_sum]
+    rw [← mvExp_eq_subst hc1, _root_.GlobalTheory.RowVal.subst_mvExp hE0 hc1, ← mvExp_sum]
     · congr 1
       set_option synthInstance.maxHeartbeats 100000 in
         rw [← Finset.smul_sum, ← coe_substAlgHom hES, map_smul, map_sum]

@@ -267,7 +267,7 @@ theorem one_row (hs : PairsSep Y p) (gr : ∀ o, MvPowerSeries (WV (I o)) C)
     have e1 : (fun i => subst (genVec Y p v) (un1 (Y.ex i))) = fun _ => 0 := by
       funext i
       rw [e0, hz (cc_ex Y i)]
-    rw [one_mul, subst_mvExp (cE τ v) cL, e1, hz cL, mvExp_zero']
+    rw [one_mul, _root_.GlobalTheory.RowVal.subst_mvExp (cE τ v) cL, e1, hz cL, mvExp_zero']
     simp
   obtain ⟨M, hadj, hfix, hkill, himg⟩ := _root_.GlobalTheory.PlaceProj.exists_orth_proj C V O dd Y d Orb I p hs
   have hX := _root_.GlobalTheory.RowLawPair.rLaw_pairData C V O dd Y d (I o0) (p o0)
@@ -381,13 +381,13 @@ theorem one_row (hs : PairsSep Y p) (gr : ∀ o, MvPowerSeries (WV (I o)) C)
       fin_cases g <;> rfl
     rw [hEnd_eq (M o 0) (M o 1), e2, proj o, RawChart.hRow, subst_smul (hasSubst_of_constantCoeff_zero (cU o))]
     rfl
-  rw [mul_assoc, ← mvExp_add kD.1 cL, subst_mul hEs, subst_mvExp hE (by rw [map_add (f := _), kD.1, cL, add_zero]),
+  rw [mul_assoc, ← mvExp_add kD.1 cL, subst_mul hEs, _root_.GlobalTheory.RowVal.subst_mvExp hE (by rw [map_add (f := _), kD.1, cL, add_zero]),
     subst_prod' hE, subst_add hEs, subst_smul hEs, subst_smul hEs, hL, hD, subst_sub hEs, same, ← smul_add,
     sub_add_cancel, subst_sum'' hE, Finset.smul_sum]
   simp only [hrow]
   rw [mvExp_sum _ fun o => by rw [cc_subst (cU o), cc_hRow], ← Finset.prod_mul_distrib]
   refine Finset.prod_congr rfl fun o _ => ?_
-  rw [subst_mul (hasSubst_of_constantCoeff_zero (cU o)), subst_mvExp (cU o) (cc_hRow Y p o), proj o, ← hFe o]
+  rw [subst_mul (hasSubst_of_constantCoeff_zero (cU o)), _root_.GlobalTheory.RowVal.subst_mvExp (cU o) (cc_hRow Y p o), proj o, ← hFe o]
 
 end Row
 
@@ -472,14 +472,14 @@ theorem all_rows (n : ℕ) (gr : ∀ o, Fin n → MvPowerSeries (WV (I o)) C) (f
     have cR : ∀ w : WV (I o), constantCoeff (X (ρ, w) : MvPowerSeries (Fin n × WV (I o)) C) = 0 :=
       fun _ => constantCoeff_X _
     unfold rowCopy
-    rw [← subst_mvExp cR (cc_hRow Y p o), ← subst_mul (hasSubst_of_constantCoeff_zero cR), subst_subst cR (cU o)]
+    rw [← _root_.GlobalTheory.RowVal.subst_mvExp cR (cc_hRow Y p o), ← subst_mul (hasSubst_of_constantCoeff_zero cR), subst_subst cR (cU o)]
     congr 1
     funext w
     rw [subst_X (hasSubst_of_constantCoeff_zero (cU o))]
   simp only [e2]
   rw [Finset.prod_comm]
   refine Finset.prod_congr rfl fun ρ _ => ?_
-  rw [← subst_mvExp (cX ρ) cL, ← subst_mul (hasSubst_of_constantCoeff_zero (cX ρ)), subst_subst (cX ρ) hE,
+  rw [← _root_.GlobalTheory.RowVal.subst_mvExp (cX ρ) cL, ← subst_mul (hasSubst_of_constantCoeff_zero (cX ρ)), subst_subst (cX ρ) hE,
     ← hf ρ fun w => (ρ, w)]
   congr 1
   funext i
