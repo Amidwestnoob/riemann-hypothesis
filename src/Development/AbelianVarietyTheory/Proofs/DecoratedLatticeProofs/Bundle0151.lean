@@ -320,6 +320,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IntegralTranslate
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 namespace I195MixedCoordinates_35474aefd184915ecb24a8bf
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH

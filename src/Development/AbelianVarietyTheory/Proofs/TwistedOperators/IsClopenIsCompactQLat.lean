@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle003
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+
 open MeasureTheory ValuativeRel Matrix IsLocalRing
 open scoped Classical Pointwise
 open GlobalTheory.SplitWeil GlobalTheory.LatPair GlobalTheory.IndefiniteRowSideFullHecke.AppendedVectorData

@@ -17,6 +17,7 @@ public import GroundTheory.GlobalFields.Adele.Bundle0002
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ClassSumIntegral
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice MeasureTheory Formalism.L2.Theta
 open Formalism.IndefR
 open scoped TensorProduct
