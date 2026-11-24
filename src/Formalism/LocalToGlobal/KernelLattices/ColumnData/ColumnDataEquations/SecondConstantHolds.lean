@@ -64,7 +64,7 @@ variable {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} {B : Cd.Base D cc δ}
 
 theorem eqP_of_paths (B : Cd.Base D cc δ) (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (hδ0 : δ ≠ 0)
     (hS : B.StdOK) (χ : TaylorLogMetric.IdE D → ℂ) (hχ : TaylorLogMetric.IsChi D χ)
-    (hSq : SqP D B.tor) (hTL : Tr0L D B.tor) (hTR : Tr0R D B.tor) : B.EqP χ :=
+    (hSq : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SqP D B.tor) (hTL : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0L D B.tor) (hTR : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0R D B.tor) : B.EqP χ :=
   eqP_of_neg B hcc hδ hδ0 hS χ hχ hSq hTL hTR (negOneNorm D)
 
 end Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.J

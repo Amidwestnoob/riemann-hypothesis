@@ -147,7 +147,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : Car} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} {B : Cd.Base D cc δ}
 
-theorem first_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTL : Tr0L D B.tor) (hG : GaussRow B)
+theorem first_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTL : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0L D B.tor) (hG : GaussRow B)
     (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : J1 B := by
   intro N N' γ hN hN'
   obtain ⟨γ₁, γ₂, rfl, h1, h2⟩ := split_host D γ
@@ -156,7 +156,7 @@ theorem first_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTL : T
     (J1at_of_ne hS hL hG hN hN' (hLat N N' hN hN') (hSp N N' hN hN') γ₁ h1)
     (J1at_of_ne hS hL hG hN hN' (hLat N N' hN hN') (hSp N N' hN hN') γ₂ h2)
 
-theorem second_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTR : Tr0R D B.tor) (hG : GaussRow B)
+theorem second_constant_of_triangles_data (hS : B.StdOK) (hL : B.LatAll) (hTR : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0R D B.tor) (hG : GaussRow B)
     (hLat : ∀ N N', Even N → Even N' → Lat0IsLat B N N') (hSp : ∀ N N', Even N → Even N' → B.ThZeroSpans N N') : J2 B := by
   intro N N' γ' hN hN'
   obtain ⟨γ₁, γ₂, rfl, h1, h2⟩ := split_host D γ'

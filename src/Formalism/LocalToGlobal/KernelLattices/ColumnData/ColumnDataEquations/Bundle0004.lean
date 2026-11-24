@@ -69,8 +69,8 @@ theorem muOneL_of (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetr
     (hS : B.StdOK) : MuOneL B := by
   intro N N' L L₁ hN hN' hL hL₁
   have hLat := B.latAll hcc hδ h0
-  have hT := tripleData_of hLat (admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N')) (admissible_of_integral_conj_le hN hN' hL (sd0 N'))
-    (admissible_of_integral_conj_le hN hN' hL₁ (sd0 N'))
+  have hT := tripleData_of hLat (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N')) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' hL (sd0 N'))
+    (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' hL₁ (sd0 N'))
   obtain ⟨S₂, hS₂⟩ := (repsExist _ _ _ hT.i₁₂).1
   obtain ⟨S₃, hS₃⟩ := (repsExist _ _ _ hT.i₂₃).1
   refine ⟨S₂, S₃, hS₂, hS₃, ?_⟩
@@ -87,20 +87,20 @@ theorem muOneL_of (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetr
   rcases hΛ with rfl | rfl | rfl
   · exact ⟨fun x hx => rowProjection_mem_lattice B.tor hemb hx, fun x hx => rowSw_la B.tor hemb hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N'))⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N'))⟩
   · exact ⟨fun x hx => rowProjection_mem_lattice B.tor hemb hx, fun x hx => rowSw_la B.tor hemb hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' hL (sd0 N'))⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' hL (sd0 N'))⟩
   · exact ⟨fun x hx => rowProjection_mem_lattice B.tor hemb hx, fun x hx => rowSw_la B.tor hemb hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' hL₁ (sd0 N'))⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' hL₁ (sd0 N'))⟩
 
 theorem muOneR_of (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (h0 : δ ≠ 0) (B : Cd.Base D cc δ)
     (hS : B.StdOK) : MuOneR B := by
   intro N N' L' L'' hN hN' hL' hL''
   have hLat := B.latAll hcc hδ h0
-  have hT := tripleData_of hLat (admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N')) (admissible_of_integral_conj_le hN hN' (sd0 N) hL')
-    (admissible_of_integral_conj_le hN hN' (sd0 N) hL'')
+  have hT := tripleData_of hLat (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N')) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) hL')
+    (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) hL'')
   obtain ⟨S₂, hS₂⟩ := (repsExist _ _ _ hT.i₁₂).1
   obtain ⟨S₃, hS₃⟩ := (repsExist _ _ _ hT.i₂₃).1
   refine ⟨S₂, S₃, hS₂, hS₃, ?_⟩
@@ -117,20 +117,20 @@ theorem muOneR_of (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetr
   rcases hΛ with rfl | rfl | rfl
   · exact ⟨fun x hx => colP_mem_la B.tor hemb hx, fun x hx => colSw_la B.tor hemb hN hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N'))⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) (sd0 N'))⟩
   · exact ⟨fun x hx => colP_mem_la B.tor hemb hx, fun x hx => colSw_la B.tor hemb hN hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' (sd0 N) hL')⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) hL')⟩
   · exact ⟨fun x hx => colP_mem_la B.tor hemb hx, fun x hx => colSw_la B.tor hemb hN hx,
       fun r x hx => mulO_la B.tor hemb r hx,
-      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (admissible_of_integral_conj_le hN hN' (sd0 N) hL'')⟩
+      Formalism.L2.Ker.Cd.IntegralLatticeDensity.hermitian_form_integral_values D cc hcc δ hδ h0 N N' _ _ (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' (sd0 N) hL'')⟩
 
 theorem left_move_triangles_hold (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (h0 : δ ≠ 0) (B : Cd.Base D cc δ)
-    (hS : B.StdOK) : Tr0L D B.tor :=
+    (hS : B.StdOK) : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0L D B.tor :=
   left_move_triangles_of_unit (B.latAll hcc hδ h0) (muOneL_of hcc hδ h0 B hS)
 
 theorem right_move_triangles_hold (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (h0 : δ ≠ 0) (B : Cd.Base D cc δ)
-    (hS : B.StdOK) : Tr0R D B.tor :=
+    (hS : B.StdOK) : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0R D B.tor :=
   right_move_triangles_of_unit (B.latAll hcc hδ h0) (muOneR_of hcc hδ h0 B hS)
 
 end Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Mu
