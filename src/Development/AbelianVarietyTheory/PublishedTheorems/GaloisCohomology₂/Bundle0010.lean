@@ -102,18 +102,18 @@ def IsLAdicCharOf (ι : Qbar l ≃+* ℂ) (χ : HChar (maximalRealSubfield E))
 structure IsAttachedAbove (π : CuspSub E a) (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin a) (Qbar l))
     (HT : (E →+* Qbar l) → Multiset ℤ) (P : LocPrime l) {w : HeightOneSpectrum (𝓞 E)} {A : ValuationSubring Ω}
     (h : IsPlaceOver A w) {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw) : Prop where
+    (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw) : Prop where
 
-  deRham : IsdRAt P Bw (r.comp (Dec (F := E) A).subtype)
+  deRham : IsdRAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
 
   jumps : ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-    IsJumpsAt P Bw (r.comp (Dec (F := E) A).subtype) τ (HT τ)
+    IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (HT τ)
 
   iwahori : ∀ σ, π.IsLocComp w σ → PRep.fixed σ.ρ (SmGL.iwahori (w.adicCompletion E) (Fin a)) ≠ ⊥ →
-    IsSstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
-      ∀ rc, IsRec h rc → wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype) = rc (algNorm σ)
+    IsSstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+      ∀ rc, IsRec h rc → wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) = rc (algNorm σ)
 
-  crys : ∀ σ, π.IsLocComp w σ → SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype)
+  crys : ∀ σ, π.IsLocComp w σ → SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
 
 structure IsGalRepOf (π : CuspSub E a) (χ : HChar (maximalRealSubfield E)) (ι : Qbar l ≃+* ℂ)
     (r : G E Ω →* GL (Fin a) (Qbar l)) (wt : ℤ) (HT : (E →+* Qbar l) → Multiset ℤ) : Prop where
@@ -140,7 +140,7 @@ structure IsGalRepOf (π : CuspSub E a) (χ : HChar (maximalRealSubfield E)) (ι
   above : ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw), IsAttachedAbove π ι r HT P h Bw hj
+      (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw), IsAttachedAbove π ι r HT P h Bw hj
 
 end GlobalTheory.GalOfCusp
 
