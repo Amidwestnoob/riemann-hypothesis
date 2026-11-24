@@ -88,6 +88,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.SignLe
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.Base UpperTheory.V.Chr
 
 private theorem aux {O W M : Type} [CommRing O] [IsDomain O] [Group W] [AddCommGroup M] [Module O M] {N : ℕ} [NeZero N]
