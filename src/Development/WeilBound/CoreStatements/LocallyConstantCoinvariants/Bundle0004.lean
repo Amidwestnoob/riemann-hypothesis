@@ -158,7 +158,7 @@ theorem schr_inst (ψ : AddChar (Fv F v) ℂ) :
 theorem ad_heis (ψ : AddChar (AF F) ℂ) (w : (κ → AF F) × (κ → AF F)) (hw : At (evFin F v) w) (φ : (κ → Fv F v) → ℂ) :
     Acts (evFin F v) (schr ψ w) φ (@schr _ _ (invTwo v) (psiV ψ v) κ _ (locW v w) φ) := by
   intro r hr
-  rw [schr_inst, schr_tens ψ _ _ (indep_of hr.1), offP_eq, sub_smul, (at_iff _).1 hw, one_smul, sub_self, schr_zero]
+  rw [schr_inst, schr_tens ψ _ _ (indep_of hr.1), offP_eq, sub_smul, (PositivityTheory.Member.ZakTransform.at_iff _).1 hw, one_smul, sub_self, schr_zero]
   rfl
 
 theorem ad_rest (r : (κ → AF F) → ℂ) (φ₀ : (κ → Fv F v) → ℂ) (hne : φ₀ ≠ 0) (hr : Rest (evFin F v) φ₀ r)
@@ -191,7 +191,7 @@ theorem ad_act (ψ : AddChar (AF F) ℂ) (hψ : IsStd ψ)
     (fun Φ hΦ => lift_mem hL' (h1 Φ hΦ)) (fun l hl => h2 _ (lift_adm hL' l hl)) fun w Φ hΦ => by
       rw [Module.End.mul_apply, Module.End.mul_apply, h3 w Φ hΦ]
       refine lift_schr ψ ?_ (fun φ hφ => ?_) (h1 Φ hΦ)
-      · rw [offP_eq, offP_eq, ← sub_eq_zero, ← smul_sub, sub_smul, one_smul, (at_iff _).1 (h6 w).2, sub_self]
+      · rw [offP_eq, offP_eq, ← sub_eq_zero, ← smul_sub, sub_smul, one_smul, (PositivityTheory.Member.ZakTransform.at_iff _).1 (h6 w).2, sub_self]
       · have e := h5 (evP v w) _ (hL' φ hφ)
         rw [(h4 φ hφ).2.2.2] at e
         have e2 : evP v (s w) = sv (evP v w) := (h6 w).1
@@ -207,7 +207,7 @@ theorem ad_act (ψ : AddChar (AF F) ℂ) (hψ : IsStd ψ)
 
 theorem indep_at {r : (κ → AF F) → ℂ} (h : Indep v r) (x z : κ → AF F) (hz : At (evFin F v) z) : r (x + z) = r x := by
   have e : z = fun i => atPlace v (evFin F v (z i)) := funext fun i => by
-    rw [← ep_mul]; exact (congrFun ((at_iff z).1 hz) i).symm
+    rw [← ep_mul]; exact (congrFun ((PositivityTheory.Member.ZakTransform.at_iff z).1 hz) i).symm
   rw [e]; exact h x _
 
 attribute [local instance] GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele
