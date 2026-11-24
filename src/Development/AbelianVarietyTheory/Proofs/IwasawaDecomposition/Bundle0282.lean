@@ -263,6 +263,8 @@ theorem isMulRightInvariant (μ : Measure (GA E a)) [μ.IsHaarMeasure] : μ.IsMu
   have hfin := isFiniteMeasure_quotMeasure E a μ
   have h1 : μ (stdDom (latticeGL E a)) ≠ ⊤ := by
     rw [← quotMeasure_univ hd]; exact measure_ne_top _ _
+  haveI : SMulInvariantMeasure (latticeGL E a) (GA E a) μ :=
+    ⟨fun γ s _ => measure_preimage_mul μ γ.1 s⟩
   exact GlobalTheory.UnitU.isMulRightInvariant_of_fundamentalDomain _ μ hd (hd.measure_ne_zero (NeZero.ne μ)) h1
 
 theorem finvol : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (a : ℕ) (μ : Measure (GA E a))
