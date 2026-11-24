@@ -315,7 +315,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {F : Fn O} {
       · simp [gen]
       · intro j _ hj
         simp [gen, Pi.single_eq_of_ne hj]
-      · simp
+      · exact fun hnot => (hnot (Finset.mem_univ k')).elim
     exact ⟨k', w, ξ, by rw [hg]; exact h1', h2', h3'⟩
 
 end GlobalTheory.CompanionTheory.TowerNI
