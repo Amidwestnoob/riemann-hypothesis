@@ -76,7 +76,7 @@ theorem thR_pos_of_rank {D : D7} {j : ℕ} (w : WeightFamilies.Wt D j) (hr : 0 <
   have hrd := GlobalTheory.ArchInputs.one_le_rd (E := D.host.E)
   have h0 := (D.host.g_prime 0).pos
   have h1 := (D.host.g_prime 1).pos
-  unfold thR I2.th I2.RR
+  unfold _root_.GlobalTheory.RunJoin.thR I2.th I2.RR
   rw [hfE]
   positivity
 

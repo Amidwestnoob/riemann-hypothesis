@@ -195,7 +195,7 @@ theorem exists_isEnd_act : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O :
       rw [this, MvPowerSeries.subst_self]; rfl
     have e4 : un1 (Y.B.hL C Y.h a) = MvPowerSeries.subst
         (fun q : Fin 1 × Fin dd => (MvPowerSeries.X q.2 : MvPowerSeries (Fin dd) C)) (Y.B.hL C Y.h a) := by
-      rw [← subst_singlePointUncurry _ hX, MvPowerSeries.subst_self]; rfl
+      rw [← _root_.GlobalTheory.ActionLimit.subst_singlePointUncurry _ hX, MvPowerSeries.subst_self]; rfl
     rw [e4, FB.hL, actK_self, e3, ev, MvPowerSeries.subst_comp_subst_apply
       (MvPowerSeries.hasSubst_of_constantCoeff_zero fun q : Fin 2 × Fin dd => pair_points_zero_constant q0 (g a) q.1 q.2) hs,
       hEnd, hAt]

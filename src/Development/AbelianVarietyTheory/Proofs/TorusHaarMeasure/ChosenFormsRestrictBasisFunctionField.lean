@@ -89,14 +89,14 @@ theorem chosenForms_basis_of_value_basis {E : Type} [Field E] [NumberField E] [I
   · have := h1 (fun k => p (eδ.symm k)) (fun Z => by
       rw [← hp Z, ← eδ.sum_comp]
       refine Finset.sum_congr rfl fun k _ => ?_
-      rw [hsel, ratio_single _ _ _ (hg Z), eδ.symm_apply_apply]
+      rw [hsel, _root_.GlobalTheory.BigRec.ratio_single _ _ _ (hg Z), eδ.symm_apply_apply]
       rfl) (eδ k)
     exact (congrArg p (eδ.symm_apply_apply k)).symm.trans this
   · obtain ⟨q, hq, p, hp⟩ := h2 y
     refine ⟨q, hq, fun k => p (eδ k), fun Z => (hp Z).trans ?_⟩
     rw [← eδ.sum_comp]
     refine Finset.sum_congr rfl fun k _ => ?_
-    rw [hsel, ratio_single _ _ _ (hg Z)]
+    rw [hsel, _root_.GlobalTheory.BigRec.ratio_single _ _ _ (hg Z)]
     rfl
 
 

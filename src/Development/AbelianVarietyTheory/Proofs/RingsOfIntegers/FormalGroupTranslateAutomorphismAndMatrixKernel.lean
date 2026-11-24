@@ -153,13 +153,13 @@ theorem eq_cpt (x : Pt V 0 d) : x = cpt fun i => MvPowerSeries.constantCoeff (x 
   ext m
   have hm : m = 0 := Subsingleton.elim _ _
   subst hm
-  simp only [cpt]
+  simp only [_root_.GlobalTheory.PlaceInt.cpt]
   rw [MvPowerSeries.coeff_zero_C, MvPowerSeries.coeff_zero_eq_constantCoeff_apply]
 
 omit [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [CharZero V] in
 theorem cpt_zero {n : ℕ} : (cpt (0 : Fin d → V) : Pt V n d) = 0 := by
   funext i
-  simp [cpt]
+  simp [_root_.GlobalTheory.PlaceInt.cpt]
 
 theorem addV_cpt (F : Fin d → PS V 2 d) {α β δ : Fin d → V} (hα : Small α) (hβ : Small β)
     (h : (cpt δ : Pt V 0 d) = addV F (cpt α) (cpt β)) (n : ℕ) :

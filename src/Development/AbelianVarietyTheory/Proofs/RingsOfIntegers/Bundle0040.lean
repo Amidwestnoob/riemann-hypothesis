@@ -120,7 +120,7 @@ lemma cpt_const {V : Type} [CommRing V] {d : ℕ} (x : Pt V 0 d) :
   ext m
 
   obtain rfl : m = 0 := Subsingleton.elim _ _
-  simp [cpt]
+  simp [_root_.GlobalTheory.PlaceInt.cpt]
 
 lemma rel_prod {M P : Type*} [Monoid M] (R : M → P → Prop) (z : P) (s : P → P → P) (h1 : R 1 z)
     (hm : ∀ a a' x x', R a x → R a' x' → R (a * a') (s x x')) :
@@ -140,7 +140,7 @@ theorem kills_iff_mem_kerM : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
 
   have h0 : (0 : Pt T.V 0 (chD C.ch)) = cpt 0 := by
     funext k
-    simp [cpt]
+    simp [_root_.GlobalTheory.PlaceInt.cpt]
   have hstep : ∀ (g g' : ptO Xo (xOf y) ⟶ Xo.univ.t.G) (x x' : Pt T.V 0 (chD C.ch)),
       (∃ δ, x = cpt δ ∧ FormPt C g δ) → (∃ δ, x' = cpt δ ∧ FormPt C g' δ) →
         ∃ δ, addV B.G.F x x' = cpt δ ∧ FormPt C (g * g') δ := by

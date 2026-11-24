@@ -319,7 +319,7 @@ theorem fderiv_eq_quad_comm : ∀ (V : Type) [NormedAddCommGroup V] [NormedSpace
   have e5 : quad ρ c p q (ρ w f) = ρ w (quad ρ c p q f) + ρ w (dH ρ (X w) f)
       + (π * I * (om (X w) w : ℂ)) • ρ w f := by
     rw [← e3, ← e4, Finset.sum_smul]
-    unfold quad
+    unfold _root_.GlobalTheory.Mem.Lift.quad
     set_option synthInstance.maxHeartbeats 100000 in
       rw [map_sum, ← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun i _ => ?_

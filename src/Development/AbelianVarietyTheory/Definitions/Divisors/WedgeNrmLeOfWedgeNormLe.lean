@@ -36,7 +36,7 @@ theorem Reframes.evR_eq [IsLocalRing S] {φ : K →ₐ[c.F] S} {y : FrPt Xo c K}
     (h : Reframes φ y t z) {e : Ix Dw → ℤ} {f : Rul Xo c} (hf : f ∈ secZ Xo c e) :
     evR Xo c f z = ((∏ i, t i ^ e i : Sˣ) : S) * φ (evR Xo c f y) := by
   obtain ⟨w, h₁, h₂⟩ := h
-  rw [evR_frBor hf h₂, evR_frMap hf.1 h₁]
+  rw [evR_frBor hf h₂, _root_.GlobalTheory.FlagTan.evR_frMap hf.1 h₁]
 
 theorem Reframes.liesOn {φ : K →ₐ[c.F] S} {y : FrPt Xo c K} {t : Ix Dw → Sˣ} {z : FrPt Xo c S}
     (h : Reframes φ y t z) {Z : Comp Xo c} (hy : LiesOn Z y) : LiesOn Z z := fun s => by

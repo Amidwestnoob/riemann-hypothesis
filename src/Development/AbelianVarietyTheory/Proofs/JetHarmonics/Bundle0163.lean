@@ -277,7 +277,7 @@ theorem char_inCol (col : Fin 2) {f : PS C 1 dd} (hf : Pdiv.ChartF.IsCh Y.B.G.F 
     fun f g => MvPowerSeries.subst_mul (hasSubst_sb h2) f g
   rw [substPointsPowerSeries_eval_one h2 (zc_addOf Y 0 1), sb_addOf Y h2, hm, substPointsPowerSeries_eval_one h2 (zc_pt 0), substPointsPowerSeries_eval_one h2 (zc_pt 1), sb_pt' h2,
     sb_pt' h2] at e
-  rw [subst_inCol (zc_addP Y p (zc_gp _) (zc_gp _)), subst_inCol (zc_gp _), subst_inCol (zc_gp _)]
+  rw [_root_.GlobalTheory.RowLawSquare.subst_inCol (zc_addP Y p (zc_gp _) (zc_gp _)), _root_.GlobalTheory.RowLawSquare.subst_inCol (zc_gp _), _root_.GlobalTheory.RowLawSquare.subst_inCol (zc_gp _)]
   have e2 := col_addP Y p (zc_gp (C := C) (0 : Fin 2)) (zc_gp 1) col
   unfold RowLawSquare.colOf at e2
   rw [e2]
