@@ -12,6 +12,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSum
 open MeasureTheory NumberField GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
 open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalSpectrum UpperTheory.ConvolutionTheory.C Polynomial Topology
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 theorem UpperTheory.ConvolutionTheory.C.nearFinite :
     UpperTheory.ConvolutionTheory.C.NearFinite := by
   intro K _ _ n ι _ _ b ε hε horth U hU X _ _ _ τ c

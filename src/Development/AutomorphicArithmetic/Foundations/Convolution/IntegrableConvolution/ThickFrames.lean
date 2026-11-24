@@ -12,6 +12,7 @@ open MeasureTheory NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.AutomorphicForm GroundTheory.Global GroundTheory.Global.SemiLocal
 open PositivityTheory.Rg.Tf.Geo
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 namespace UpperTheory.ConvolutionTheory.L1
 
 def WordTens : Prop :=

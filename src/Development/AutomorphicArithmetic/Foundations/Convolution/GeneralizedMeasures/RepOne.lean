@@ -19,6 +19,7 @@ open GroundTheory.Global GroundTheory.Global.SemiLocal GroundTheory.Automorphic.
 open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.GM
 open scoped InnerProductSpace
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 section SlopeTestRemainingChoices
 
 variable {K : Type} [Field K] [NumberField K] {n : ℕ}
