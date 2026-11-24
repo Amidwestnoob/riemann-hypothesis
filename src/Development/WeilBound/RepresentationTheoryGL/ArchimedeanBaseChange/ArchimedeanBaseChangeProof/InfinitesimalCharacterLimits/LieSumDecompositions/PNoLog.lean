@@ -304,11 +304,11 @@ theorem ct_mem (hr : 0 < r) (hs : 0 < s) (ψ : Sm E (r + s)) (hψ : IsAutForm ψ
     rw [integral_const_mul, hF1]
 
 theorem rt_mem {F : Sm E (r + s)} (hF : F ∈ Vsp r s m) (k : Kinf E (r + s)) (g' : GL (Fin (r + s)) (Af E)) :
-    rt E (r + s) (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g') F ∈ Vsp r s m := by
+    GlobalTheory.CuspRep.rt E (r + s) (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g') F ∈ Vsp r s m := by
   refine ⟨fun x g => ?_, fun τ u => ?_⟩
   · simp only [rt_apply]
     rw [mul_assoc, hF.1]
-  · have hcomm : Commute (cap τ u) (rt E (r + s) (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g')) := by
+  · have hcomm : Commute (cap τ u) (GlobalTheory.CuspRep.rt E (r + s) (infGL E (r + s) (Unitary.toUnits k) * finGL E (r + s) g')) := by
       rw [map_mul]
       exact (GlobalTheory.CapAdInv.cap_commute_rt_infGL E _ τ u _).mul_right (commute_cap_finRep τ u g')
     rw [← Module.End.mul_apply, hcomm.eq, Module.End.mul_apply, hF.2, map_smul]

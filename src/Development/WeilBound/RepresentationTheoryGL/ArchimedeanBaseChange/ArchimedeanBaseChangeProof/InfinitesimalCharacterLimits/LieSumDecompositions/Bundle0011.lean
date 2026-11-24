@@ -194,13 +194,13 @@ theorem slice_decomp_left (F : Sm E (r + s)) (hu : ∀ (x : BlockIx (r + s) r �
     (l : GL (Fin (r + s)) (Af E)) (hl : ∀ y, F.1 (y * finGL E (r + s) l) = F.1 y) (k : Kinf E (r + s))
     (x : BlockIx (r + s) r → Af E) (a : GL (Fin r) (Af E)) (b : GL (Fin s) (Af E)) (t : GL (Fin (r + s)) (Af E))
     (m₂ : GA E s) :
-    sl0 m₂ (rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F) =
-      act (.fin a) (sl0 (m₂ * finGL E s b) (rt E (r + s) (BlockDerivatives.yp k t) F)) := by
+    sl0 m₂ (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F) =
+      act (.fin a) (sl0 (m₂ * finGL E s b) (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k t) F)) := by
   refine Subtype.ext (funext fun m₁ => ?_)
-  have L : (sl0 m₂ (rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F)).1 m₁ =
+  have L : (sl0 m₂ (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F)).1 m₁ =
       F.1 (lev (Ad E) r s (m₁, m₂) * BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) := by
     rw [left_slice_apply, rt_apply]
-  have R : (act (.fin a) (sl0 (m₂ * finGL E s b) (rt E (r + s) (BlockDerivatives.yp k t) F))).1 m₁ =
+  have R : (act (.fin a) (sl0 (m₂ * finGL E s b) (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k t) F))).1 m₁ =
       F.1 (lev (Ad E) r s (m₁ * finGL E r a, m₂ * finGL E s b) * BlockDerivatives.yp k t) := by
     rw [act_fin_eq, rt_apply, yp_one_fin, left_slice_apply, rt_apply]
   rw [L, R, yp_decomp]
@@ -211,13 +211,13 @@ theorem slice_decomp_right (F : Sm E (r + s)) (hu : ∀ (x : BlockIx (r + s) r �
     (l : GL (Fin (r + s)) (Af E)) (hl : ∀ y, F.1 (y * finGL E (r + s) l) = F.1 y) (k : Kinf E (r + s))
     (x : BlockIx (r + s) r → Af E) (a : GL (Fin r) (Af E)) (b : GL (Fin s) (Af E)) (t : GL (Fin (r + s)) (Af E))
     (m₁ : GA E r) :
-    sl1 m₁ (rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F) =
-      act (.fin b) (sl1 (m₁ * finGL E r a) (rt E (r + s) (BlockDerivatives.yp k t) F)) := by
+    sl1 m₁ (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F) =
+      act (.fin b) (sl1 (m₁ * finGL E r a) (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k t) F)) := by
   refine Subtype.ext (funext fun m₂ => ?_)
-  have L : (sl1 m₁ (rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F)).1 m₂ =
+  have L : (sl1 m₁ (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) F)).1 m₂ =
       F.1 (lev (Ad E) r s (m₁, m₂) * BlockDerivatives.yp k (unip x * lev (Af E) r s (a, b) * t * l)) := by
     rw [right_slice_apply, rt_apply]
-  have R : (act (.fin b) (sl1 (m₁ * finGL E r a) (rt E (r + s) (BlockDerivatives.yp k t) F))).1 m₂ =
+  have R : (act (.fin b) (sl1 (m₁ * finGL E r a) (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k t) F))).1 m₂ =
       F.1 (lev (Ad E) r s (m₁ * finGL E r a, m₂ * finGL E s b) * BlockDerivatives.yp k t) := by
     rw [act_fin_eq, rt_apply, yp_one_fin, right_slice_apply, rt_apply]
   rw [L, R, yp_decomp]

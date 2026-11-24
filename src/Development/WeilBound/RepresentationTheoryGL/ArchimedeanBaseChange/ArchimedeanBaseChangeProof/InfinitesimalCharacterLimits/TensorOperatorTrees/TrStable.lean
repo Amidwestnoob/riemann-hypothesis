@@ -75,13 +75,13 @@ theorem lie_mem_indSub {U₁ : Submodule ℂ (Sm E r)} {U₂ : Submodule ℂ (Sm
       · rfl
     unfold lieD
     rw [e]
-  · obtain ⟨X', hX'⟩ : ∃ X', rt E (r + s) (cf (r + s) k g) * lie E (r + s) X =
-        lie E (r + s) X' * rt E (r + s) (cf (r + s) k g) := by
+  · obtain ⟨X', hX'⟩ : ∃ X', GlobalTheory.CuspRep.rt E (r + s) (cf (r + s) k g) * lie E (r + s) X =
+        lie E (r + s) X' * GlobalTheory.CuspRep.rt E (r + s) (cf (r + s) k g) := by
       refine ⟨toL ((Unitary.toUnits k).val * Matrix.of X * ((Unitary.toUnits k)⁻¹).val), ?_⟩
       rw [cf, map_mul, mul_assoc, ← lie_rt_fin, ← mul_assoc, ← mul_assoc]
       exact congrArg (· * _) (GlobalTheory.CapAdInv.rt_lie (Unitary.toUnits k) (Matrix.of X))
     have ec : res (cf (r + s) k g) (lie E (r + s) X F).1 =
-        res 1 (lie E (r + s) X' (rt E (r + s) (cf (r + s) k g) F)).1 := funext fun m => by
+        res 1 (lie E (r + s) X' (GlobalTheory.CuspRep.rt E (r + s) (cf (r + s) k g) F)).1 := funext fun m => by
       have := congrArg (fun f : Module.End ℂ (Sm E (r + s)) => (f F).1 (lev (Ad E) r s m * 1)) hX'
       simp only [mul_apply_eq_comp, rt_apply, mul_one] at this
       rw [res_apply, res_apply, mul_one]
@@ -102,11 +102,11 @@ theorem isStable_indFin {U₁ : Submodule ℂ (Sm E r)} {U₂ : Submodule ℂ (S
   refine Submodule.mem_inf.2 ?_
   cases o with
   | fin g =>
-    have e : act (.fin g) φ = rt E (r + s) (cf (r + s) 1 g) φ := Subtype.ext (by rw [act_fin_val]; rfl)
+    have e : act (.fin g) φ = GlobalTheory.CuspRep.rt E (r + s) (cf (r + s) 1 g) φ := Subtype.ext (by rw [act_fin_val]; rfl)
     rw [e]
     exact ⟨isInd_rt hI 1 g, finVec_rt hK 1 g⟩
   | cpt k =>
-    have e : act (.cpt k) φ = rt E (r + s) (cf (r + s) k 1) φ := Subtype.ext (by rw [act_cpt_val]; rfl)
+    have e : act (.cpt k) φ = GlobalTheory.CuspRep.rt E (r + s) (cf (r + s) k 1) φ := Subtype.ext (by rw [act_cpt_val]; rfl)
     rw [e]
     exact ⟨isInd_rt hI k 1, finVec_rt hK k 1⟩
   | lie X => exact ⟨lie_mem_indSub hU₁ hU₂ hI hK X, GlobalTheory.CuspRep.KFin.kfin_lie E (r + s) X φ hK⟩

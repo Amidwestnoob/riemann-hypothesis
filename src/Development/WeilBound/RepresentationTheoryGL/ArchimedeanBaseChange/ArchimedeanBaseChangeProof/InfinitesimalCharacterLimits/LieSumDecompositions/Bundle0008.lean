@@ -368,9 +368,9 @@ theorem leaf_of (hC : Core) (hP : GrowPHolds) : Leaf := by
       left γ g := by simp [h.left, chiDet_ratGL]
       level := isOpen_stab_of_mem_nhds _ _ <| Filter.mem_of_superset
         ((h.level.inter (isOpen_ker_chiDet χ)).mem_nhds ⟨by simp, by simp⟩) fun k hk => by
-          have h1 : rt E a (finGL E a k) ψ = ψ := hk.1
+          have h1 : GlobalTheory.CuspRep.rt E a (finGL E a k) ψ = ψ := hk.1
           have h2 : chiDet a χ (finGL E a k) = 1 := hk.2
-          change rt E a (finGL E a k) _ = _
+          change GlobalTheory.CuspRep.rt E a (finGL E a k) _ = _
           rw [rt_mulChi, h1, h2, Units.val_one, one_smul]
       kfin := by
         have := h.kfin
