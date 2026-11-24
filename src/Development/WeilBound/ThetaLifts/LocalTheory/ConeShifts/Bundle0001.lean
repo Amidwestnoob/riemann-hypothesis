@@ -72,7 +72,7 @@ theorem aS_insert {S : Finset (Pl F)} {v : Pl F} (hv : v ∉ S) : aS F (insert v
 theorem aS_mul_self (S : Finset (Pl F)) : aS F S * aS F S = aS F S := by
   classical
   induction S using Finset.induction_on with
-  | empty => rw [aS, Finset.sum_empty, add_zero]; exact real_mul_self
+  | empty => rw [aS, Finset.sum_empty, add_zero]; exact real_mul_self (F := F)
   | insert v S hv ih =>
     rw [aS_insert hv]
     linear_combination idem_mul_self v + ih + 2 * idem_mul_aS hv
