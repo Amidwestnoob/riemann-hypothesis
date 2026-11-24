@@ -224,7 +224,7 @@ theorem first_partial_unit_eq_exp (Y : FBChart C V O dd) (n : ℕ) : p1 Y n = ex
     rw [map_sub, map_add (f := _), const_ev hA (h_const Y), const_ev hB (h_const Y), const_ev hC (h_const Y)]
     simp
   unfold p1
-  rw [hph, ev_ex h3 _ hE0, ev_sub h3, ev_add h3, ev_ev hA h3, ev_ev hB h3, ev_ev hC h3]
+  rw [hph, ev_ex h3 _ hE0, ev_sub h3, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add h3, ev_ev hA h3, ev_ev hB h3, ev_ev hC h3]
   congr 1
   have eA : (fun k i => ev ![mm2 Y.B.G n, pt C (n := 2) dd 0, pt C (n := 2) dd 1]
       ((![pt C (n := 3) dd 0, pt C dd 2] : Fin 2 → Pt C 3 dd) k i)) = ![mm2 Y.B.G n, pt C (n := 2) dd 1] := by

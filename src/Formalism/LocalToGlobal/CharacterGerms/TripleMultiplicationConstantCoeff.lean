@@ -197,7 +197,7 @@ theorem QQ_eq (Y : FBChart C V O dd) : QQ Y = ex (ev (n := 3) ![m3 Y.B.G V.l, p3
     rw [map_sub, map_add (f := _), eval_height_constantCoeff Y (z0p3 0) (z0p3 1), eval_height_constantCoeff Y (z0p3 0) (z0p3 2), eval_height_constantCoeff Y (z0p3 0) (triple_sum_constantCoeff _)]
     simp
   unfold QQ
-  rw [hph2, ev_ex ha _ hE0, ev_sub ha, ev_add ha, ev_ev (constant_zero_two_points _ (z0p3 0) (z0p3 1)) ha,
+  rw [hph2, ev_ex ha _ hE0, ev_sub ha, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add ha, ev_ev (constant_zero_two_points _ (z0p3 0) (z0p3 1)) ha,
     ev_ev (constant_zero_two_points _ (z0p3 0) (z0p3 2)) ha, ev_ev (constant_zero_two_points _ (z0p3 0) (triple_sum_constantCoeff _)) ha]
   have e1 : (fun k j => ev ![m3 Y.B.G V.l, p3 1, p3 2] ((![p3 0, p3 1] : Fin 2 → Pt C 3 dd) k j)) =
       ![m3 Y.B.G V.l, p3 1] := by
