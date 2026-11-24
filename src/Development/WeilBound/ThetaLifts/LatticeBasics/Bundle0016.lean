@@ -367,7 +367,7 @@ theorem ct_zero (hO : OffOpen) (hU : PositivityTheory.ThKEnd.Grp.UnipUGood) (hE1
       (by rw [setLIntegral_const]; exact ENNReal.mul_ne_top ENNReal.ofReal_ne_top fin.ne) (lintegral_mono fun y => ?_)
     have t1 : ∀ q : Cos σ Y, eisTerm (flat a (fun x => (a x : ℂ) ^ ((0 : ℂ) + n / 2)) 0 (s.re : ℂ)) (e (x, y)) q =
         ((a (q.out.1 * e (x, y)) ^ (s.re + n / 2) : ℝ) : ℂ) := fun q => by
-      rw [eisTerm, GlobalTheory.Doubling.flat, ← Complex.cpow_add _ _ (Complex.ofReal_ne_zero.2 (a0 _).ne'), Complex.ofReal_cpow (a0 _).le]
+      rw [eisTerm, _root_.GlobalTheory.ThK.Dbl.flat, ← Complex.cpow_add _ _ (Complex.ofReal_ne_zero.2 (a0 _).ne'), Complex.ofReal_cpow (a0 _).le]
       congr 1; push_cast; ring
     have t2 : HasSum (fun q : Cos σ Y => a (q.out.1 * e (x, y)) ^ (s.re + n / 2)) (Ê₁ s.re (e (x, y))).re := by
       simpa only [t1, Complex.ofReal_re] using Complex.hasSum_re (sm₁ (e (x, y)))
@@ -465,7 +465,7 @@ theorem normZeta_of (hS : SWFullX) (hX : BoxSecX) (hW : DblX) (hH : HgtEx) (hT :
     rw [← map_mul, Prod.mk_mul_mk, mul_inv_cancel, mul_one] at this
     have e2 := ((d2 Φ s1 Φ s1).2 1 g⁻¹ 1 _ (he _ _)).2
     rw [detInv_rat T.hW (one_mem _), one_smul, show ((1, 1) : UA σ X.J × UA σ W.J) = 1 from rfl, map_one, Module.End.one_apply] at e2
-    rw [this, GlobalTheory.Doubling.flat, e2, hc _ (T.weil.isUSplitting.pres _ _ s1) _ s1, zint, coef]
+    rw [this, _root_.GlobalTheory.ThK.Dbl.flat, e2, hc _ (T.weil.isUSplitting.pres _ _ s1) _ s1, zint, coef]
     exact mul_left_comm _ _ _
   refine ⟨U, fun z => (c' * c * M.μ.real M.dom : ℂ)⁻¹ * kpair χW e' M.μ M.dom (Ê z) fun _ => 1, t₁, hE.isOpen, hE.disc, u,
     (hol _ rp).const_mul _, fun z hz => ⟨(far z hz).1, (hc1 _).1 ?_, ?_⟩, fun I0 => mul_eq_zero_of_right _ ?_⟩

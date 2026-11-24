@@ -139,7 +139,7 @@ theorem sw_transl (h1 : SiegelWeilStd) (h2 : FrameConj) {r s r' s'} (hB : B.IsGo
   refine ⟨fun z => (d : ℂ) ^ (((m : ℂ) - n) / 2 - z) * e z, fun z hz => (dc.analyticAt z).meromorphicAt.mul (e1 z hz),
     ⟨t₁, fun z hz => ?_⟩, (dc.analyticAt _).mul e3, ?_⟩
   · refine (congrArg (HasSum · _) (funext fun q => ?_)).mpr ((e2 z hz).mul_left ((d : ℂ) ^ (((m : ℂ) - n) / 2 - z)))
-    simp only [eisTerm, GlobalTheory.Doubling.flat, mul, ← mul_assoc, mul_inv_cancel_right]
+    simp only [eisTerm, _root_.GlobalTheory.ThK.Dbl.flat, mul, ← mul_assoc, mul_inv_cancel_right]
     rw [Complex.ofReal_mul, Complex.mul_cpow_ofReal_nonneg d0.le (a0 _).le, ← mul_assoc,
       ← Complex.cpow_add _ _ (Complex.ofReal_ne_zero.2 d0.ne')]
     simp
