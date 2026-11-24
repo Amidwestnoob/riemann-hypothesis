@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Finite
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 open Set Filter Matrix Polynomial GlobalTheory.AdelicU NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.ClassParam (krylov exists_cyclic krylov_map)
 open Formalism.UG (cT IsHerm cT_mul cT_one)

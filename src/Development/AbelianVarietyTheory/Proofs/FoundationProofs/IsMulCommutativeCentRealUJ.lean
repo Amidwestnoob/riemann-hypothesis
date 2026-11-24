@@ -8,6 +8,8 @@ public import Formalism.RealPlaceAnalysis.InstMeasurableSpaceUJ
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 open MeasureTheory Set Filter Matrix Polynomial GlobalTheory.AdelicU NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.ClassParam (krylov exists_cyclic)
 open Formalism.UG (cT IsHerm cT_mul cT_one)
