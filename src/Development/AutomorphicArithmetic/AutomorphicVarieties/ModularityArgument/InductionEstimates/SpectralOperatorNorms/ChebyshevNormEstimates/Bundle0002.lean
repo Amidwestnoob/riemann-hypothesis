@@ -146,7 +146,7 @@ private theorem homog_norm {ι : Type} {H : Type} [NormedAddCommGroup H] [Normed
 
 theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.truncSB :
     ∀ {K : Type} [Field K] [NumberField K] {n d : ℕ} (evz : ℂ → PR K n →+* (Eu d →L[ℂ] Eu d)), (∀ z (c : ℂ), evz z (C (C c)) = c • 1) → ∀ (S : Set (Pl K)), (∀ R : PR K n, (∀ y ∈ R.vars, y.1 ∉ S) → ∃ M, SB (fun z => evz z R) M) →
-      ∀ (Φ : KF (Ix K n) (Pl K × Fin n)) G, admitted S Φ → IsGen Φ G → ∃ M : ℝ, ∀ k, SB (fun z => evz z (trunc k G)) (M ^ (k + 1)) := by
+      ∀ (Φ : KF (Ix K n) (Pl K × Fin n)) G, UpperTheory.ConvolutionTheory.admitted S Φ → IsGen Φ G → ∃ M : ℝ, ∀ k, SB (fun z => evz z (trunc k G)) (M ^ (k + 1)) := by
   intro K _ _ n d₀ evz hev S hS Φ G hΦ hG
   classical
   obtain ⟨K₀, G₀, hG₀⟩ := UpperTheory.ConvolutionTheory.FX.gen_piecesK (K →+* ℂ) (Pl K × Fin n) n Φ (by
