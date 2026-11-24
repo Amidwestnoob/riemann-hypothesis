@@ -15,6 +15,7 @@ noncomputable section
 
 open ValuativeRel Polynomial
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.Gal.InertialTypesAlt.L
 
 section

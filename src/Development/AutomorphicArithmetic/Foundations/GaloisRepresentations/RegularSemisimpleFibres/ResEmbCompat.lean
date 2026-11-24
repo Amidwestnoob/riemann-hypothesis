@@ -15,6 +15,7 @@ open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.Gal.InertialTypesAlt
 
 def hcL {F : Type} [Field F] (Y : List (Σ m : ℕ, GL (Fin m) F → ℂ)) : (n : ℕ) → GL (Fin n) F → ℂ :=

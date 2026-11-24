@@ -17,6 +17,7 @@ open GroundTheory.Global GroundTheory.Global.SemiLocal UpperTheory.V.Published U
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.Gal.InertialTypesAlt
 
 section Finite
