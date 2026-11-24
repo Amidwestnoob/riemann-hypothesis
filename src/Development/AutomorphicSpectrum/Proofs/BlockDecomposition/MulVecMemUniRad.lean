@@ -5,6 +5,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsMulRig
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open Matrix MeasureTheory PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 PositivityTheory.Rg.Tf.Loc

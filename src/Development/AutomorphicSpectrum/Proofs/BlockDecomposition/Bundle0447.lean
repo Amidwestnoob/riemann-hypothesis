@@ -179,6 +179,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MeetOfSteps
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter BoundedContinuousFunction

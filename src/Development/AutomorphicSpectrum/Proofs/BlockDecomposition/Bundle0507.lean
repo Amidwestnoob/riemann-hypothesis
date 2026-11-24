@@ -12,6 +12,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle04
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoExpMulPoly
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField MeasureTheory Filter Topology

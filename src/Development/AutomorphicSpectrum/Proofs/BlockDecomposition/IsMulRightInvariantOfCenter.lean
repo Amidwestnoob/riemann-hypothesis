@@ -12,6 +12,8 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGener
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open Matrix MeasureTheory PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D4 PositivityTheory.Rg.Tf.Loc

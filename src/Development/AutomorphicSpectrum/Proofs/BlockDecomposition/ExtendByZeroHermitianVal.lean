@@ -12,6 +12,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2732
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct Topology

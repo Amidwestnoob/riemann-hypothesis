@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGener
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 open scoped Matrix NNReal ENNReal TensorProduct
 open MeasureTheory Filter NumberField IsDedekindDomain
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicPointsUnimod
