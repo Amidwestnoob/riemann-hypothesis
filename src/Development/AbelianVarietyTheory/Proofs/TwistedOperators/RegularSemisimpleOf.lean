@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle006
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Matrix Formalism.UG NumberField GlobalTheory.IndefiniteRowSideFullHecke.CentralizerTensorForms
 open scoped TensorProduct
 
