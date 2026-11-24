@@ -26,6 +26,7 @@ open GroundTheory.Automorphic.GLnLocal GroundTheory.Automorphic.HeckeAlgebra Gro
 open ValuativeRel (valuation)
 open scoped ValuativeRel
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 section Local
 
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] {n : ℕ}
