@@ -52,7 +52,7 @@ theorem group_law_jacobian_eq (G : FGLaw C dd) (k i : Fin dd) :
 
 theorem group_law_zero_two_points (G : FGLaw C dd) (k : Fin dd) : ev (n := 2) ![P0, 0] (G.F k) = (P0 : Pt C 2 dd) k := by
   have h := congrArg (ev ![(P0 : Pt C 2 dd)]) (formalGroupLaw_ev_x_zero G k)
-  rw [lift_eval_two_points constant_zero_first_then_zero, ev_X (z0_1 _ z0P0) 0 k] at h
+  rw [lift_eval_two_points constant_zero_first_then_zero, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_X (z0_1 _ z0P0) 0 k] at h
   rw [show (P0 : Pt C 2 dd) k = (![(P0 : Pt C 2 dd)] : Fin 1 → Pt C 2 dd) 0 k from rfl, ← h]
   congr 1
   funext k' j

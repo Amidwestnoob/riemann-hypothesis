@@ -61,7 +61,7 @@ theorem ev_self1 (g : PS C 1 d) : ev (n := 1) ![pt C d 0] g = g := by
 theorem F_0P {n : ℕ} (P : Pt C n d) (hP : ∀ j, constantCoeff (P j) = 0) (a : Fin d) :
     ev ![0, P] (G.F a) = P a := by
   have h := congrArg (ev (![P] : Fin 1 → Pt C n d)) (G.unit a)
-  rw [ev_ev (constant_zero_zero_point (pt C d 0) (coordinate_point_constantCoeff 0)) (z0_1 P hP), ev_X (z0_1 P hP)] at h
+  rw [ev_ev (constant_zero_zero_point (pt C d 0) (coordinate_point_constantCoeff 0)) (z0_1 P hP), _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_X (z0_1 P hP)] at h
   have e : (fun k i => ev (![P] : Fin 1 → Pt C n d) ((![0, pt C d 0] : Fin 2 → Pt C 1 d) k i)) =
       (![0, P] : Fin 2 → Pt C n d) := by
     funext k i

@@ -42,7 +42,7 @@ theorem ev_zero_pt {n : ℕ} (f : PS C 1 dd) : ev (n := n) (![0] : Fin 1 → Pt 
     intro k i; fin_cases k; simp
   have h1 : f = MvPowerSeries.C (constantCoeff f) + (f - MvPowerSeries.C (constantCoeff f)) := by ring
   conv_lhs => rw [h1]
-  rw [ev_add hZ, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C]
+  rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add hZ, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C]
   have h2 : ev (n := n) (![0] : Fin 1 → Pt C n dd) (f - MvPowerSeries.C (constantCoeff f)) = 0 := by
     unfold ev
     have e : (fun p : Fin 1 × Fin dd => (![0] : Fin 1 → Pt C n dd) p.1 p.2) = fun _ => 0 := by
@@ -129,7 +129,7 @@ theorem ex_add (Y : FBChart C V O dd) (j : Fin dd) :
       show P i = _
       rw [hP]
       exact congrArg _ (addOf_pts Y.B.G.F i).symm
-    rw [e1, Y.lg_add m, ev_add hAB, ev_ev (z0_1 _ (z0_pt 0)) hAB, ev_ev (z0_1 _ (z0_pt 1)) hAB]
+    rw [e1, Y.lg_add m, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add hAB, ev_ev (z0_1 _ (z0_pt 0)) hAB, ev_ev (z0_1 _ (z0_pt 1)) hAB]
     have e2 : ∀ k : Fin 2, (fun k' i => ev (n := 2)
         (![comp1 Y.ex (pt C (n := 2) dd 0), comp1 Y.ex (pt C (n := 2) dd 1)] : Fin 2 → Pt C 2 dd)
         ((![pt C (n := 2) dd k] : Fin 1 → Pt C 2 dd) k' i)) = ![comp1 Y.ex (pt C (n := 2) dd k)] := by
@@ -219,7 +219,7 @@ theorem exDer_holds {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [Com
       funext k m
       fin_cases k
       show ev (n := 1) (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) ((X ((0 : Fin 2), m) : PS C 2 dd) + X ((1 : Fin 2), m)) = pt C dd 0 m
-      rw [ev_add hQ, ev_X hQ, ev_X hQ]
+      rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add hQ, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_X hQ, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_X hQ]
       show pt C dd 0 m + 0 = pt C dd 0 m
       rw [add_zero]
     rw [e, germEval_oneStandardPoint_self]
@@ -249,7 +249,7 @@ theorem exDer_holds {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [Com
       ite_eq_right (by decide : (0 : Fin 2) ≠ 1), ite_true,
       mul_zero, Finset.sum_const_zero, zero_add]
     rw [ev_sum hQ]
-    simp only [ev_mul hQ, eAB, eB, ex_lin]
+    simp only [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_mul hQ, eAB, eB, ex_lin]
     rw [Finset.sum_eq_single i]
     · rw [if_pos rfl, map_one, mul_one, ev_ev (z0_p0 _ (z0_pt 0)) hZex]
       congr 1
@@ -268,6 +268,6 @@ theorem exDer_holds {C : Type} [Field C] [CharZero C] {V : VF C} {O : Type} [Com
   unfold FBChart.dF
   rw [ev_sum hZex]
   refine Finset.sum_congr rfl fun i _ => ?_
-  rw [ev_mul hZex, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C, key i]
+  rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_mul hZex, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C, key i]
 
 end Formalism.L2.FormalSeriesBounds
