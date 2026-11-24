@@ -152,7 +152,7 @@ theorem locF_subst (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (yf :
   have h3 : ((ω.loc v (tv v ξ * x⁻¹) : ℂˣ) : ℂ)⁻¹ =
       ((ω.loc v (tv v ξ) : ℂˣ) : ℂ)⁻¹ * ((ω.loc v x : ℂˣ) : ℂ) := by
     rw [map_mul, map_inv, Units.val_mul, Units.val_inv_eq_inv_val, mul_inv, inv_inv]
-  unfold locF gI
+  unfold UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF gI
   rw [h3, h1]
   have hc2' := valued_le_iff x ((c v : ℤ) + dd v)
   by_cases hA : Valued.v (((tv v ξ * x⁻¹ : (v.adicCompletion F)ˣ) : v.adicCompletion F) * pLoc F v (yf : Af F)) ≤
