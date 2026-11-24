@@ -39,7 +39,7 @@ theorem generates_of_mono {O F : Type} [CommRing O] [Field F] (β : O →+* F) (
     have hx' : x ∉ Submodule.span K {(1 : F)} := fun hm => by
       obtain ⟨a, ha⟩ := Submodule.mem_span_singleton.1 hm
       exact hx (by rw [← ha, Algebra.smul_def, _root_.mul_one]; exact a.2)
-    obtain ⟨f, hf, hf'⟩ := Submodule.exists_dual_map_eq_bot_of_notMem hx' inferInstance
+    obtain ⟨f, hf, hf'⟩ := Submodule.exists_dual_map_eq_bot_of_notMem hx' Module.Projective.of_free
     have f₁ : f 1 = 0 := (Submodule.mem_bot K).1
       (hf' ▸ Submodule.mem_map_of_mem (Submodule.mem_span_singleton_self _))
     have := congrArg (fun z => TensorProduct.rid K F (LinearMap.lTensor F f z)) h₄
