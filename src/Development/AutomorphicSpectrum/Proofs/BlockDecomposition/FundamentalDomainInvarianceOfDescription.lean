@@ -51,7 +51,7 @@ theorem exists_measure_lt_top_slab (μ : Measure (AdelicGLn.AdelicGL K n)) [μ.I
     fun g => (AdelicGLn.prodEquiv K n g).2 with hp2
   have hp2c : Continuous p2 := continuous_snd.comp (AdelicGLn.prodEquiv K n).continuous
   set F : Set (AdelicGLn.FiniteAdelicGL K n) :=
-    (p2 '' ω) * (p2 '' (maxCompact (K := K) (n := n) : Set (AdelicGLn.AdelicGL K n))) with hFdef
+    (p2 '' ω) * (p2 '' (GroundTheory.Automorphic.Reduction.maxCompact (K := K) (n := n) : Set (AdelicGLn.AdelicGL K n))) with hFdef
   have hF : IsCompact F := (hω.image hp2c).mul (isCompact_maxCompact.image hp2c)
   set E : Set (AdelicGLn.AdelicGL K n) := {g | g ∈ siegelSet n ω t ∧
     1 ≤ (ideleModule K (AdelicGLn.det K n g) : ℝ) ∧

@@ -380,7 +380,7 @@ theorem exists_compact_decomp : ∀ (E : Type) [Field E] [NumberField E] [_root_
     ω ⊆ (adelicBorel (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)) → ∀ t : ℝ, 0 < t →
     ∃ (Ω : Set (GL (Fin a) (Cinf E))) (Kf : Set (GL (Fin a) (Af E))), IsCompact Ω ∧ IsCompact Kf ∧
       ∀ (r : Fin a → ℝ) (d : GL (Fin a) (Cinf E)), (∀ i, 0 < r i) → (∀ i j : Fin a, (j : ℕ) = i + 1 → t * r j ≤ r i) →
-        d.val = Matrix.diagonal (fun i => fun _ => (r i : ℂ)) → ∀ b ∈ ω, ∀ k ∈ maxCompact (K := E) (n := a),
+        d.val = Matrix.diagonal (fun i => fun _ => (r i : ℂ)) → ∀ b ∈ ω, ∀ k ∈ GroundTheory.Automorphic.Reduction.maxCompact (K := E) (n := a),
           ∃ c ∈ Ω, ∃ f ∈ Kf, b * infGL E a d * k = infGL E a (d * c) * finGL E a f := by
   intro E _ _ _ a ω hω hωB t ht
   set pI := GeneralLinearGroup.map (n := Fin a) (pInf E)
@@ -393,8 +393,8 @@ theorem exists_compact_decomp : ∀ (E : Type) [Field E] [NumberField E] [_root_
     rw [h0, map_zero]
   obtain ⟨Ω0, hΩ0, hΩ⟩ := _root_.GlobalTheory.upperCone_conj_compact E a (pI '' ω) hωI hup t ht
   have hK := isCompact_maxCompact (K := E) (n := a)
-  refine ⟨Ω0 * pI '' (maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
-    pF '' ω * pF '' (maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
+  refine ⟨Ω0 * pI '' (GroundTheory.Automorphic.Reduction.maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
+    pF '' ω * pF '' (GroundTheory.Automorphic.Reduction.maxCompact (K := E) (n := a) : Set (AdelicGLn.AdelicGL E a)),
     hΩ0.mul (hK.image (continuous_mapInf E a)),
     (hω.image (continuous_mapFin E a)).mul (hK.image (continuous_mapFin E a)), ?_⟩
   intro r d hr hrt hd b hb k hk

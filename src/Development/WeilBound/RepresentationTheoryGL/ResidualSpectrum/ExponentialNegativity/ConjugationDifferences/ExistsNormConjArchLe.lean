@@ -57,7 +57,7 @@ theorem exists_norm_conjArch_le {ω Q : Set (AdelicGLn.AdelicGL K n)} (hω : IsC
   set a := diagUnits n (fun i => posIdele (K := K) (ρ i) (hρ i))
   set s := ρ ⟨r, hrn⟩ / ρ ⟨r - 1, by omega⟩
   have hs : 0 ≤ s := div_nonneg (hρ _).le (hρ _).le
-  have h1 := hC₁ b hb ρ hρ hsieg 1 (maxCompact (K := K) (n := n)).one_mem P hP2 hP1
+  have h1 := hC₁ b hb ρ hρ hsieg 1 (GroundTheory.Automorphic.Reduction.maxCompact (K := K) (n := n)).one_mem P hP2 hP1
   rw [mul_one] at h1
   have hY : ‖conjArch K n (b * a) P‖ ≤ C₁' * s :=
     h1.trans (mul_le_mul_of_nonneg_right (le_max_left _ _) hs)

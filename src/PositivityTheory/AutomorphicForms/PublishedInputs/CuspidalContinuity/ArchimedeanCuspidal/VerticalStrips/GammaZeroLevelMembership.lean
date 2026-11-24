@@ -66,7 +66,7 @@ def lf (v : Pl) (a : Afˣ) : (Qv v)ˣ := Units.map (adeleAt v).toMonoidHom a
 def band : Set G2 := {g | 1 ≤ Dt g ∧ Dt g < 2}
 
 def inv2 (g : G2) : G2 := dg2 (GeneralLinearGroup.det g)⁻¹ (GeneralLinearGroup.det g)⁻¹ * g
-abbrev KA : Type := (maxCompact : Subgroup G2)
+abbrev KA : Type := (GroundTheory.Automorphic.Reduction.maxCompact : Subgroup G2)
 def LInv {X : Type} (H : G2 → X) : Prop := ∀ γ g, H (dia2 γ * g) = H g
 def CInv {X : Type} (H : G2 → X) : Prop := ∀ (z : Jd) g, H (dg2 z z * g) = H g
 

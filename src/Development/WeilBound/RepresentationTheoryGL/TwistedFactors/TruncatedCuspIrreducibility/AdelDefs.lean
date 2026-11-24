@@ -31,7 +31,7 @@ def blk {R : Type} [CommRing R] (m₁ : GL (Fin a) R) (m₂ : GL (Fin b) R) : GL
 variable (a b) in
 def HP (g : G1 K (a + b)) : ℝ :=
   sInf {t | ∃ (X : UPos (a + b) a → 𝔸[K]) (m₁ : AdelicGLn.AdelicGL K a) (m₂ : AdelicGLn.AdelicGL K b)
-    (k : AdelicGLn.AdelicGL K (a + b)), k ∈ (maxCompact : Subgroup (AdelicGLn.AdelicGL K (a + b))) ∧
+    (k : AdelicGLn.AdelicGL K (a + b)), k ∈ (GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K (a + b))) ∧
       (g : AdelicGLn.AdelicGL K (a + b)) = unipGL X * blk m₁ m₂ * k ∧ t = Real.log (detModule K a m₁).1}
 
 
@@ -74,7 +74,7 @@ variable (K n) in
 structure TypeDat where
   U : Subgroup (G1 K n)
   isOpen : ∃ O : Set (AdelicGLn.AdelicGL K n), IsOpen O ∧ ∀ g : G1 K n, g ∈ U ↔
-    (g : AdelicGLn.AdelicGL K n) ∈ O ∧ (g : AdelicGLn.AdelicGL K n) ∈ (maxCompact : Subgroup (AdelicGLn.AdelicGL K n))
+    (g : AdelicGLn.AdelicGL K n) ∈ O ∧ (g : AdelicGLn.AdelicGL K n) ∈ (GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n))
   ν : Measure (G1 K n)
   prob : IsProbabilityMeasure ν
   supp : ∀ᵐ k ∂ν, k ∈ U
@@ -95,7 +95,7 @@ def TypeDat.FixedByTypeProjector (D : TypeDat K n) (μ : Measure (G1 K n)) [μ.I
 def TypeDat.Level (D : TypeDat K n) (Kf : Subgroup (AdelicGLn.FiniteAdelicGL K n)) : Prop :=
   (∀ k : G1 K n, (AdelicGLn.prodEquiv K n k).1 = 1 → (k ∈ D.U ↔ (AdelicGLn.prodEquiv K n k).2 ∈ Kf)) ∧
   (∀ k : G1 K n, (AdelicGLn.prodEquiv K n k).2 = 1 →
-    (k : AdelicGLn.AdelicGL K n) ∈ (maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) → k ∈ D.U) ∧
+    (k : AdelicGLn.AdelicGL K n) ∈ (GroundTheory.Automorphic.Reduction.maxCompact : Subgroup (AdelicGLn.AdelicGL K n)) → k ∈ D.U) ∧
   ∀ k ∈ D.U, (AdelicGLn.prodEquiv K n k).1 = 1 → ∀ u ∈ D.U, D.e (k * u) = D.e u
 
 end PositivityTheory.Rg.Tf.Adel
