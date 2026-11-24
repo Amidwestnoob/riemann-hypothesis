@@ -251,7 +251,7 @@ theorem exists_affine_scalar : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocal
     simp only [constFn, map_add (f := _), map_mul, map_pow, map_natCast, map_ofNat]
   simp only [hc]
   have hl := hℓ α V f hf
-  unfold op
+  unfold GlobalTheory.Heat.op
   rw [← hΘ, ← hu]
   linear_combination (2 * (k : Γ(Y.H.left, Y.q.left ⁻¹ᵁ V))) * h2d f + (k : Γ(Y.H.left, Y.q.left ⁻¹ᵁ V)) ^ 2 * f * h3 +
     (k : Γ(Y.H.left, Y.q.left ⁻¹ᵁ V)) * f * h4 + 2 * (k : Γ(Y.H.left, Y.q.left ⁻¹ᵁ V)) * hl

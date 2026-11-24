@@ -522,7 +522,7 @@ theorem exists_basic_heat : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRin
       rw [← Finset.sum_neg_distrib]
       exact Finset.sum_congr rfl fun b _ => by rw [constFn_neg]; unfold dlg; ring
     unfold dlg at F1 F2 F3 E U1
-    simp only [ringOp, op, Matrix.map_apply]
+    simp only [ringOp, GlobalTheory.Heat.op, Matrix.map_apply]
     rw [E, U1]
     set g := pbT Y.q.left (Dd.toPre.P.L.g (j i) (j i')).val W
     set gi := pbT Y.q.left (Dd.toPre.P.L.g (j i) (j i'))⁻¹.val W

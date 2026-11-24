@@ -180,7 +180,7 @@ theorem op_constFn_mul {vv : Fin n → TanM (𝟙 (Sp R)) G} {dd : Fin n → Fld
     rw [(isDer_of_isField hd.1 hO).2, hd.2 O hO c]
   have e3 : constFn G.hom O (k : R) = (k : Γ(G.left, O)) := by simp [constFn]
   have e4 : ∀ a b : Γ(G.left, O), a * (constFn G.hom O c * b) = constFn G.hom O c * (a * b) := fun a b => by ring
-  unfold op
+  unfold GlobalTheory.Heat.op
   rw [e2, constFn_mul, constFn_mul, constFn_two, e3]
   simp only [e1, e4, ← Finset.mul_sum]
   ring

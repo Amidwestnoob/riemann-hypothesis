@@ -76,7 +76,7 @@ theorem within {R : Type} [CommRing R] [Algebra ℚ R] {G : Over (Sp R)} [GrpObj
     have c := ringOp_conj hdi hdd' (Θ := h.Θ.map (constFn G.hom Wo)) hs (fun a => constFn G.hom Wo (h.u a))
       (rsT (h.p i) Wo) (rsT (h.p' i) Wo) hg k f
     have gl := h.glue k i i' Wo hW f
-    simp only [op] at gl
+    simp only [GlobalTheory.Heat.op] at gl
     simp only [ringOp, Matrix.map_apply] at c
     rw [c] at gl
     have canc : ∀ z : Γ(G.left, Wo), g ^ k * z = 0 → z = 0 := fun z hz => by

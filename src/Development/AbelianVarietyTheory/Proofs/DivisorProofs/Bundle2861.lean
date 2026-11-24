@@ -246,7 +246,7 @@ theorem op_pow_mul : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj G] [I
     refine Finset.sum_congr rfl fun a _ => ?_
     rw [E2]
     ring
-  unfold op
+  unfold GlobalTheory.Heat.op
   rw [E3]
   linear_combination -hS + 2 * hU - ((k : Γ(G.left, Wo)) * g ^ k) * hsym
 
