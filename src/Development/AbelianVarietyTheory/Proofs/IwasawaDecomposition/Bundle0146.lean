@@ -196,7 +196,7 @@ namespace GlobalTheory.UnramModulus
 
 theorem inInertia_restrict {K Ω : Type} [Field K] [NumberField K] [Field Ω] [Algebra K Ω]
     (L : Type) [Field L] [Algebra K L] [Algebra L Ω] [IsScalarTower K L Ω] [IsGalois K L]
-    {v : HeightOneSpectrum (𝓞 K)} {A : ValuationSubring Ω} (hA : IsPlaceOver A v) {σ : G K Ω}
+    {v : HeightOneSpectrum (𝓞 K)} {A : ValuationSubring Ω} (hA : Formalism.ConjugateSelfDual.IsPlaceOver A v) {σ : Formalism.ConjugateSelfDual.G K Ω}
     (hσ : σ ∈ Ine (F := K) A) : GlobalTheory.NT.InInertia L v (AlgEquiv.restrictNormalHom L σ) := by
   let f : 𝓞 L →+* A := ((algebraMap L Ω).comp (algebraMap (𝓞 L) L)).codRestrict A fun x =>
     (A.valuation_le_one_iff _).1 (valuation_int_le_one A x)
@@ -236,7 +236,7 @@ theorem isModulus_top (H : GlobalTheory.Published.GlobalArtinReciprocity) (K M :
   let : Algebra M Ω := j.toRingHom.toAlgebra
   have : IsScalarTower K M Ω := IsScalarTower.of_algebraMap_eq fun x => (j.commutes x).symm
   let : CommGroup (M ≃ₐ[K] M) := { (inferInstance : Group (M ≃ₐ[K] M)) with mul_comm := mul_comm' }
-  let φ : G K Ω →* (M ≃ₐ[K] M) := AlgEquiv.restrictNormalHom M
+  let φ : Formalism.ConjugateSelfDual.G K Ω →* (M ≃ₐ[K] M) := AlgEquiv.restrictNormalHom M
   have hφ : Continuous φ := by
     refine continuous_of_isOpen_ker' φ ?_
     have : FiniteDimensional K j.fieldRange := j.equivFieldRange.toLinearEquiv.finiteDimensional

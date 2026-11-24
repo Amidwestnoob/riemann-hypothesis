@@ -33,11 +33,11 @@ variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] {l : 
 
 def toQ (κ : FractionRing O →+* Qbar l) : O →+* Qbar l := κ.comp (algebraMap O (FractionRing O))
 
-def inQ (κ : FractionRing O →+* Qbar l) (r : G E Ω →* Oˣ) : G E Ω →* (Qbar l)ˣ :=
+def inQ (κ : FractionRing O →+* Qbar l) (r : Formalism.ConjugateSelfDual.G E Ω →* Oˣ) : Formalism.ConjugateSelfDual.G E Ω →* (Qbar l)ˣ :=
   (Units.map (toQ κ).toMonoidHom).comp r
 
 def IsGal [TopologicalSpace O] (art : Ideles E →* Gab E Ω) (κ : FractionRing O →+* Qbar l) (ι : Qbar l ≃+* ℂ)
-    (χ : HChar E) (n : (E →+* ℂ) → ℤ) (r : G E Ω →* Oˣ) : Prop :=
+    (χ : HChar E) (n : (E →+* ℂ) → ℤ) (r : Formalism.ConjugateSelfDual.G E Ω →* Oˣ) : Prop :=
   IsAlgPos χ n ∧ Continuous (fun g => ((r g : Oˣ) : O)) ∧ IsLAdicOf art ι χ n (inQ κ r)
 
 def sideIso (ι : Qbar l ≃+* ℂ) (b : Bool) : Qbar l ≃+* ℂ :=
@@ -83,15 +83,15 @@ theorem pair_eq {P P' : PlE H} (h : IsConjPl H P P') : pair H P' = pair H P := b
 
 variable (H) (cc : Ω ≃+* Ω) (l : ℕ)
 
-def IsDel (M : ℕ) (T : Set (PlE H)) (d : G H.E Ω →* Multiplicative (ZMod (l ^ M))) : Prop :=
-  IsOpen (d.ker : Set (G H.E Ω)) ∧ AntiHom cc d ∧
-    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A, d σ = 1) ∧
-    (∀ v, v ∉ T → ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, d σ = 1) ∧
-    (∀ v, v ∈ T → ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ c, ∃ σ ∈ Ine (F := H.E) A, d σ = c)
+def IsDel (M : ℕ) (T : Set (PlE H)) (d : Formalism.ConjugateSelfDual.G H.E Ω →* Multiplicative (ZMod (l ^ M))) : Prop :=
+  IsOpen (d.ker : Set (Formalism.ConjugateSelfDual.G H.E Ω)) ∧ AntiHom cc d ∧
+    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A, d σ = 1) ∧
+    (∀ v, v ∉ T → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, d σ = 1) ∧
+    (∀ v, v ∈ T → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ c, ∃ σ ∈ Ine (F := H.E) A, d σ = c)
 
 
 open Classical in
-def delOf (M : ℕ) (T : Set (PlE H)) : G H.E Ω →* Multiplicative (ZMod (l ^ M)) :=
+def delOf (M : ℕ) (T : Set (PlE H)) : Formalism.ConjugateSelfDual.G H.E Ω →* Multiplicative (ZMod (l ^ M)) :=
   if h : ∃ d, IsDel H cc l M T d then h.choose else 1
 
 theorem isDel_delOf {M : ℕ} {T : Set (PlE H)} (h : ∃ d, IsDel H cc l M T d) : IsDel H cc l M T (delOf H cc l M T) := by
@@ -99,10 +99,10 @@ theorem isDel_delOf {M : ℕ} {T : Set (PlE H)} (h : ∃ d, IsDel H cc l M T d) 
   exact h.choose_spec
 
 theorem delOf_laws (M : ℕ) (T : Set (PlE H)) :
-    IsOpen ((delOf H cc l M T).ker : Set (G H.E Ω)) ∧ AntiHom cc (delOf H cc l M T) ∧
-    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A,
+    IsOpen ((delOf H cc l M T).ker : Set (Formalism.ConjugateSelfDual.G H.E Ω)) ∧ AntiHom cc (delOf H cc l M T) ∧
+    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A,
       delOf H cc l M T σ = 1) ∧
-    (∀ v, v ∉ T → ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, delOf H cc l M T σ = 1) := by
+    (∀ v, v ∉ T → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, delOf H cc l M T σ = 1) := by
   by_cases h : ∃ d, IsDel H cc l M T d
   · obtain ⟨h1, h2, h3, h4, -⟩ := isDel_delOf H cc l h
     exact ⟨h1, h2, h3, h4⟩
@@ -111,27 +111,27 @@ theorem delOf_laws (M : ℕ) (T : Set (PlE H)) :
 
 
 open Classical in
-def delCoord (Q : Finset (PlE H)) (M : ℕ) (P : PlE H) : G H.E Ω →* Multiplicative (ZMod (l ^ M)) :=
+def delCoord (Q : Finset (PlE H)) (M : ℕ) (P : PlE H) : Formalism.ConjugateSelfDual.G H.E Ω →* Multiplicative (ZMod (l ^ M)) :=
   if pair H P ⊆ ↑Q then delOf H cc l M (pair H P) else 1
 
-def delU (Q : Finset (PlE H)) (M : ℕ) : G H.E Ω →* Multiplicative (DelQM H l Q M) where
+def delU (Q : Finset (PlE H)) (M : ℕ) : Formalism.ConjugateSelfDual.G H.E Ω →* Multiplicative (DelQM H l Q M) where
   toFun σ := Multiplicative.ofAdd fun P => Multiplicative.toAdd (delCoord H cc l Q M P.1 σ)
   map_one' := by simp only [map_one, toAdd_one]; rfl
   map_mul' g h := by simp only [map_mul, toAdd_mul]; rfl
 
-theorem delU_apply (Q : Finset (PlE H)) (M : ℕ) (σ : G H.E Ω) (P : ↥Q) :
+theorem delU_apply (Q : Finset (PlE H)) (M : ℕ) (σ : Formalism.ConjugateSelfDual.G H.E Ω) (P : ↥Q) :
     Multiplicative.toAdd (delU H cc l Q M σ) P = Multiplicative.toAdd (delCoord H cc l Q M P.1 σ) := rfl
 
-theorem delU_eq_one_iff (Q : Finset (PlE H)) (M : ℕ) (σ : G H.E Ω) :
+theorem delU_eq_one_iff (Q : Finset (PlE H)) (M : ℕ) (σ : Formalism.ConjugateSelfDual.G H.E Ω) :
     delU H cc l Q M σ = 1 ↔ ∀ P ∈ Q, delCoord H cc l Q M P σ = 1 :=
   ⟨fun h P hP => Multiplicative.toAdd.injective (congrFun (congrArg Multiplicative.toAdd h) ⟨P, hP⟩),
     fun h => Multiplicative.toAdd.injective (funext fun P => congrArg Multiplicative.toAdd (h P.1 P.2))⟩
 
 theorem delCoord_laws (Q : Finset (PlE H)) (M : ℕ) (P : PlE H) :
-    IsOpen ((delCoord H cc l Q M P).ker : Set (G H.E Ω)) ∧ AntiHom cc (delCoord H cc l Q M P) ∧
-    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A,
+    IsOpen ((delCoord H cc l Q M P).ker : Set (Formalism.ConjugateSelfDual.G H.E Ω)) ∧ AntiHom cc (delCoord H cc l Q M P) ∧
+    (∀ v ∈ placesOver H.E l, ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A,
       delCoord H cc l Q M P σ = 1) ∧
-    (∀ v, v ∉ Q → ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A,
+    (∀ v, v ∉ Q → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A,
       delCoord H cc l Q M P σ = 1) := by
   unfold delCoord
   split_ifs with h
@@ -147,20 +147,20 @@ theorem delCoord_of_closed {Q : Finset (PlE H)} (hQ : ∀ P ∈ Q, ∀ P', IsCon
   · exact hQ P hP v hv
 
 def UniversalAnticyclotomicCharLaws : Prop :=
-  (∀ Q M v, v ∉ Q → ∀ A : ValuationSubring Ω, IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, delU H cc l Q M σ = 1) ∧
-  (∀ Q M v, v ∈ placesOver H.E l → ∀ A : ValuationSubring Ω, IsPlaceOver A v →
+  (∀ Q M v, v ∉ Q → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v → ∀ σ ∈ Ine (F := H.E) A, delU H cc l Q M σ = 1) ∧
+  (∀ Q M v, v ∈ placesOver H.E l → ∀ A : ValuationSubring Ω, Formalism.ConjugateSelfDual.IsPlaceOver A v →
     ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H.E) A, delU H cc l Q M σ = 1) ∧
   (∀ Q M, AntiHom cc (delU H cc l Q M)) ∧
-  (∀ (Q : Finset (PlE H)) (M : ℕ), IsOpen ((delU H cc l Q M).ker : Set (G H.E Ω))) ∧
+  (∀ (Q : Finset (PlE H)) (M : ℕ), IsOpen ((delU H cc l Q M).ker : Set (Formalism.ConjugateSelfDual.G H.E Ω))) ∧
   (∀ (M : ℕ) (Q' Q : Finset (PlE H)) (h : Q' ⊆ Q),
     (∀ P ∈ Q', ∀ P', IsConjPl H P P' → P' ∈ Q') → (∀ P ∈ Q, ∀ P', IsConjPl H P P' → P' ∈ Q) →
-    ∀ (σ : G H.E Ω) (P : PlE H) (hP : P ∈ Q'),
+    ∀ (σ : Formalism.ConjugateSelfDual.G H.E Ω) (P : PlE H) (hP : P ∈ Q'),
       Multiplicative.toAdd (delU H cc l Q' M σ) ⟨P, hP⟩ = Multiplicative.toAdd (delU H cc l Q M σ) ⟨P, h hP⟩) ∧
   (∀ (Q : Finset (PlE H)) (M : ℕ) (P : PlE H) (hP : P ∈ Q) (P' : PlE H) (hP' : P' ∈ Q),
-    IsConjPl H P P' → ∃ s : ℤˣ, ∀ σ : G H.E Ω,
+    IsConjPl H P P' → ∃ s : ℤˣ, ∀ σ : Formalism.ConjugateSelfDual.G H.E Ω,
       Multiplicative.toAdd (delU H cc l Q M σ) ⟨P', hP'⟩ =
         ((s : ℤ) : ZMod (l ^ M)) * Multiplicative.toAdd (delU H cc l Q M σ) ⟨P, hP⟩) ∧
-  (∀ (Q : Finset (PlE H)) (M : ℕ), (∀ P ∈ Q, ∀ P', IsConjPl H P P' → P' ∈ Q) → ∀ (P : PlE H) (hP : P ∈ Q) (σ : G H.E Ω),
+  (∀ (Q : Finset (PlE H)) (M : ℕ), (∀ P ∈ Q, ∀ P', IsConjPl H P P' → P' ∈ Q) → ∀ (P : PlE H) (hP : P ∈ Q) (σ : Formalism.ConjugateSelfDual.G H.E Ω),
     Multiplicative.toAdd (delU H cc l Q M σ) ⟨P, hP⟩ = Multiplicative.toAdd (delOf H cc l M (pair H P) σ)) ∧
   ∀ (M : ℕ) (P : PlE H), (∃ d, IsDel H cc l M (pair H P) d) → IsDel H cc l M (pair H P) (delOf H cc l M (pair H P))
 
@@ -172,7 +172,7 @@ theorem universal_anticyclotomic_character_laws : UniversalAnticyclotomicCharLaw
   · exact (delU_eq_one_iff H cc l Q M σ).2 fun P _ => (delCoord_laws H cc l Q M P).2.2.1 v hv A hA σ hσ
   · exact Multiplicative.toAdd.injective (funext fun P =>
       congrArg Multiplicative.toAdd ((delCoord_laws H cc l Q M P.1).2.1 g g' h))
-  · have e : ((delU H cc l Q M).ker : Set (G H.E Ω)) = ⋂ P ∈ Q, ((delCoord H cc l Q M P).ker : Set (G H.E Ω)) := by
+  · have e : ((delU H cc l Q M).ker : Set (Formalism.ConjugateSelfDual.G H.E Ω)) = ⋂ P ∈ Q, ((delCoord H cc l Q M P).ker : Set (Formalism.ConjugateSelfDual.G H.E Ω)) := by
       ext σ
       simp only [SetLike.mem_coe, MonoidHom.mem_ker, Set.mem_iInter, delU_eq_one_iff]
     rw [e]
