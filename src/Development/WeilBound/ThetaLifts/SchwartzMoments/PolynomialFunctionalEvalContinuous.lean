@@ -101,7 +101,7 @@ theorem pureA_pt (f : (κ → mixedEmbedding.mixedSpace F) → ℂ) (g : (κ →
 def rOf (g : (κ → FiniteAdeleRing (𝓞 F) F) → ℂ) : (κ → AF F) → ℂ := fun x => g fun i => (x i).2
 
 theorem tens_rOf (f : (κ → mixedEmbedding.mixedSpace F) → ℂ) (g : (κ → FiniteAdeleRing (𝓞 F) F) → ℂ) :
-    tens (evI F) f (rOf g) = pureA F f g := rfl
+    _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evI F) f (rOf g) = pureA F f g := rfl
 
 theorem snd_eq_zero {z : κ → AF F} (hz : At (evI F) z) (i : κ) : (z i).2 = 0 := by
   let u : AF F := (0, 1)
@@ -209,7 +209,7 @@ open scoped Classical in
 theorem heisLine_tens (M : Model σ X W) {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ)
     {u : Matrix (Fin n) (Fin d) (AE F E)} (hu : At (evI F) u) (f : SInf F (Fin n × Fin d))
     {r : (Fin n × Fin d → AF F) → ℂ} (hr : ∀ x z, At (evI F) z → r (x + z) = r x) (t : ℝ) :
-    M.heisLine ψ u t (tens (evI F) f r) = tens (evI F) (hl (aOf M u) (lOf M u) t f) r := by
+    M.heisLine ψ u t (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evI F) f r) = _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evI F) (hl (aOf M u) (lOf M u) t f) r := by
   have hab : ∀ s, evI F s = 0 → s • M.co.e u = 0 := fun s hs => by
     rw [← map_smul, hu s hs, map_zero]
   have ha : At (evI F) (M.co.e u).1 := fun s hs => congrArg Prod.fst (hab s hs)
@@ -224,7 +224,7 @@ theorem heisLine_tens (M : Model σ X W) {ψ : AddChar (AF F) ℂ} (hψ : IsStd 
       (fun i => evI F (x i)) + t • fun i => evI F ((M.co.e u).1 i) := by
     funext i
     simp [evI_add, evI_mul, evI_realAd, Algebra.smul_def]
-  simp only [schr, tens]
+  simp only [schr, _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens]
   rw [phase_line ψ hψ _ _ x hb t, e, hr x _ hat, evI_half_trace]
   simp only [hl, aOf, lOf, linForm_apply, mul_assoc]
   rfl
@@ -247,7 +247,7 @@ theorem actsD_dop (M : Model σ Y W) {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ)
     {u : Matrix (Fin n) (Fin d) (AE F E)} (hu : At (evI F) u) (f : SInf F (Fin n × Fin d)) :
     ActsD (evI F) (M.heisLine ψ u) f (dop (aOf M u) (lOf M u) f) := by
   intro r hr x
-  have e : (fun t => M.heisLine ψ u t (tens (evI F) f r) x) =
+  have e : (fun t => M.heisLine ψ u t (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.tens (evI F) f r) x) =
       fun t => hl (aOf M u) (lOf M u) t f (fun i => evI F (x i)) * r x := by
     funext t
     rw [heisLine_tens M hψ hu f hr.1 t]
