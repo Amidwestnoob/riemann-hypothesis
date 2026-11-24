@@ -198,7 +198,7 @@ theorem finite_split_holds : FinSplit := by
       have hω : ωF ω b = ∏ v ∈ S, ((ω.loc v (finUnitAt v b) : ℂˣ) : ℂ) :=
         character_product_holds F ω c H b S fun w hw => ⟨(hS w hw).1, hb w hw⟩
       rw [hω, ← Finset.prod_coe_sort S, ← Finset.prod_inv_distrib]
-      simp only [locF]
+      simp only [UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF]
       rw [Finset.prod_mul_distrib]
       congr 1
       unfold finK
