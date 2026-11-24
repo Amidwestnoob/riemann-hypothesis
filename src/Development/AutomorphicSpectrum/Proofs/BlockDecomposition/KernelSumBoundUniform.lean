@@ -231,6 +231,8 @@ theorem bessel_lintegral_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
       have e1 : ∫⁻ y, ‖α y‖ₑ * ‖g (x * y)‖ₑ ^ 2 ∂μ = ∫⁻ z, ‖α (x⁻¹ * z)‖ₑ * ‖g z‖ₑ ^ 2 ∂μ := by
         rw [← lintegral_mul_left_eq_self (fun z => ‖α (x⁻¹ * z)‖ₑ * ‖g z‖ₑ ^ 2) x]
         simp only [inv_mul_cancel_left]
+      have : SMulInvariantMeasure (latticeGL E N) (GA E N) μ :=
+        ⟨fun γ s _ => measure_preimage_mul μ (γ : GA E N) s⟩
       rw [e1, hF.lintegral_eq_tsum'']
       have e2 : ∀ γ : latticeGL E N, ∫⁻ z in F, ‖α (x⁻¹ * (γ • z))‖ₑ * ‖g (γ • z)‖ₑ ^ 2 ∂μ
           = ∫⁻ z in F, ‖α (x⁻¹ * ((γ : GA E N) * z))‖ₑ * ‖g z‖ₑ ^ 2 ∂μ := by
