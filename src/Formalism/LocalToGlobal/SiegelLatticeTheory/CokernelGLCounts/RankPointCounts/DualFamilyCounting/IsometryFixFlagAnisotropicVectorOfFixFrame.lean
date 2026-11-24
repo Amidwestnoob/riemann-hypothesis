@@ -1052,8 +1052,8 @@ theorem rowsGroupoid_of (hM : MMChar) : RowsGroupoid := by
       show c A2 • (c A2)⁻¹ • F' = F'
       rw [smul_inv_smul]
     have hgΛ : Formalism.HermitianLatticesTheory.gmap ((c A2 * h2⁻¹ * h1 * (c A1)⁻¹ : G0 F0) : (VS D).V ≃ₗ[D.host.E] (VS D).V) A1 = A2 := by
-      rw [gmap_mul, gmap_mul, gmap_mul, inv_gmap_of (c A1) (hc A1 hA1), hh1, hbb, inv_gmap_of h2 hh2,
-        hc A2 hA2]
+      simp only [StabilizerQuotient.gmap_mul]
+      rw [inv_gmap_of (c A1) (hc A1 hA1), hh1, hbb, inv_gmap_of h2 hh2, hc A2 hA2]
     have hgfix := (isomFix_iff F' hzt _).2 hgF
     exact (hs.2.1 A2 (hs.1 A2 hA2)).unique ⟨hA1, _, hgfix, hgΛ⟩
       ⟨hA2, 1, (isomFix (VS D).hT (UPair D F0 F')).one_mem, gmap_one_sat A2⟩
@@ -1082,7 +1082,7 @@ theorem rowsGroupoid_of (hM : MMChar) : RowsGroupoid := by
     let gG : G0 F0 := ⟨g, mem_stabilizer_of_isometry_fix F' hg⟩
     have hgF : gG • F' = F' := (isomFix_iff F' hzt gG).1 hg
     have hδ : Formalism.HermitianLatticesTheory.gmap ((γ⁻¹ * gG * c A : G0 F0) : (VS D).V ≃ₗ[D.host.E] (VS D).V) (b A) = Λ := by
-      rw [gmap_mul, gmap_mul, hc A hA]
+      simp only [StabilizerQuotient.gmap_mul, hc A hA]
       show Formalism.HermitianLatticesTheory.gmap ((γ⁻¹ : G0 F0) : (VS D).V ≃ₗ[D.host.E] (VS D).V) (Formalism.HermitianLatticesTheory.gmap g A) = Λ
       rw [hgA, inv_gmap_of γ rfl]
     have hbA : b A = Λ := by
@@ -1125,7 +1125,7 @@ theorem rowsGroupoid_of (hM : MMChar) : RowsGroupoid := by
         rw [hfix]
         show c A • (c A)⁻¹ • F' = F'
         rw [smul_inv_smul]
-      · rw [gmap_mul, gmap_mul, inv_gmap_of (c A) hcA]
+      · simp only [StabilizerQuotient.gmap_mul, inv_gmap_of (c A) hcA]
         have : Formalism.HermitianLatticesTheory.gmap (((h.1 : G0 F0)) : (VS D).V ≃ₗ[D.host.E] (VS D).V) (b A) = b A := h.1.2
         rw [this, hcA]
     · intro h1 h2 e
@@ -1138,7 +1138,7 @@ theorem rowsGroupoid_of (hM : MMChar) : RowsGroupoid := by
       let gG : G0 F0 := ⟨g, mem_stabilizer_of_isometry_fix F' hg1⟩
       have hgF : gG • F' = F' := (isomFix_iff F' hzt gG).1 hg1
       have hmem : Formalism.HermitianLatticesTheory.gmap (((c A)⁻¹ * gG * c A : G0 F0) : (VS D).V ≃ₗ[D.host.E] (VS D).V) (b A) = b A := by
-        rw [gmap_mul, gmap_mul, hcA]
+        simp only [StabilizerQuotient.gmap_mul, hcA]
         show Formalism.HermitianLatticesTheory.gmap (((c A)⁻¹ : G0 F0) : (VS D).V ≃ₗ[D.host.E] (VS D).V) (Formalism.HermitianLatticesTheory.gmap g A) = b A
         rw [hg2, inv_gmap_of (c A) hcA]
       have hst : (⟨_, hmem⟩ : Hsub (F0 := F0) (b A)) ∈ MulAction.stabilizer (Hsub (F0 := F0) (b A)) (tm A) := by
