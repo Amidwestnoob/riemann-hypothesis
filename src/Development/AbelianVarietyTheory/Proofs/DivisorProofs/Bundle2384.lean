@@ -436,7 +436,7 @@ open GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.ProjVar
 
 namespace GlobalTheory.FlagCls
 
-theorem isNormalScheme_of_isPreimmersion_of_flat {U X : Scheme.{0}} (j : U ⟶ X) [IsPreimmersion j] [Flat j]
+theorem isNormalScheme_of_isPreimmersion_of_flat {U X : Scheme.{0}} (j : U ⟶ X) [IsPreimmersion j] [AlgebraicGeometry.Flat j]
     (h : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme X) : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme U := by
   intro x
   obtain ⟨h1, h2⟩ := h (j x)
@@ -458,11 +458,11 @@ theorem isNormalScheme_of_isPullback_fractionField : ∀ (R K : Type) [CommRing 
   intro R K _ _ _ _ _ N G g j s hp hN
   have hb : IsPreimmersion (spMap (algebraMap R K)) :=
     IsPreimmersion.of_isLocalization (nonZeroDivisors R)
-  have hbf : Flat (spMap (algebraMap R K)) := by
+  have hbf : AlgebraicGeometry.Flat (spMap (algebraMap R K)) := by
     rw [Flat.SpecMap_iff]
     exact RingHom.flat_algebraMap_iff.mpr (IsLocalization.flat K (nonZeroDivisors R))
   have : IsPreimmersion j := MorphismProperty.of_isPullback (P := @IsPreimmersion) hp.flip hb
-  have : Flat j := MorphismProperty.of_isPullback (P := @Flat) hp.flip hbf
+  have : AlgebraicGeometry.Flat j := MorphismProperty.of_isPullback (P := @AlgebraicGeometry.Flat) hp.flip hbf
   exact isNormalScheme_of_isPreimmersion_of_flat j hN
 
 end GlobalTheory.FlagCls

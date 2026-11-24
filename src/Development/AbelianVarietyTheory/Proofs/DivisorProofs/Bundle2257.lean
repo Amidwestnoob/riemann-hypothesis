@@ -269,8 +269,8 @@ theorem exists_spread : ∀ (K Ω : Type) [Field K] [NumberField K] [Field Ω] [
     (fun _ => ⟨m, 𝟙 _, inferInstance, Category.id_comp _⟩) (fun _ => ProjSpace.toProj_str c t ht)
   obtain ⟨g, hg₁, hg₂⟩ := hg ()
   have := CommonModel.isProper_of_isProjOver hπ
-  have hZ : Flat (spMap (Int.castRingHom (𝓞 K))) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
+  have hZ : AlgebraicGeometry.Flat (spMap (Int.castRingHom (𝓞 K))) := by
+    rw [HasRingHomProperty.Spec_iff (P := @AlgebraicGeometry.Flat)]
     exact (RingHom.flat_algebraMap_iff (R := ℤ) (S := 𝓞 K)).2 inferInstance
   have har : IsArithVar π D := ⟨inferInstance, inferInstance, hX, hπ, inferInstance,
     IntModel.topologicalKrullDim_eq_succ (RingOfIntegers.not_isField K) H hD⟩

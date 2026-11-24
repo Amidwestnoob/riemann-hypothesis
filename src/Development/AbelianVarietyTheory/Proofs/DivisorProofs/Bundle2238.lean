@@ -53,8 +53,8 @@ noncomputable section
 namespace GlobalTheory.Mean4O.NormCoverFin
 
 theorem isDominant_j {F : Type} [Field F] [NumberField F] {Y : Var F} (V : Cover Y) : IsDominant V.j := by
-  have : Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
-  have : Flat V.j := MorphismProperty.of_isPullback V.pb.flip ‹_›
+  have : AlgebraicGeometry.Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
+  have : AlgebraicGeometry.Flat V.j := MorphismProperty.of_isPullback V.pb.flip ‹_›
   refine ⟨?_⟩
   obtain ⟨x⟩ : Nonempty V.G := inferInstance
   have h0 : genericPoint V.X ∈ Set.range V.j :=
@@ -71,7 +71,7 @@ theorem exists_cover : ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (V V
   intro F _ _ Y V V₂ G _ _ g _ _ k hk
   have := V.ar.isLocallyNoetherian
   have : IsProper V.p := CommonModel.isProper_of_isProjOver V.ar.isProjOver
-  have : Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
+  have : AlgebraicGeometry.Flat (spMap (algebraMap (𝓞 F) F)) := flat_specMap_localization (nonZeroDivisors (𝓞 F)) F
   have : IsPreimmersion (spMap (algebraMap (𝓞 F) F)) :=
     IsPreimmersion.of_isLocalization (R := 𝓞 F) (S := F) (nonZeroDivisors (𝓞 F))
   have : IsAffineHom V.j := MorphismProperty.of_isPullback V.pb.flip (isAffineHom_of_isAffine _)
@@ -102,10 +102,10 @@ theorem exists_cover : ∀ (F : Type) [Field F] [NumberField F] (Y : Var F) (V V
         (h.normalization.residueField (genericPoint h.normalization)) :=
       residueFieldMap_finite_of_locallyQuasiFinite h.fromNormalization _
     exact Module.finrank_pos
-  have hfl : Flat (h.fromNormalization ≫ V.p) :=
+  have hfl : AlgebraicGeometry.Flat (h.fromNormalization ≫ V.p) :=
     GlobalTheory.flat_fromNormalization_comp h F V.p (g ≫ V.π ≫ Y.str) w
-  have hfZ : Flat (spMap (Int.castRingHom (𝓞 F))) := by
-    rw [HasRingHomProperty.Spec_iff (P := @Flat)]
+  have hfZ : AlgebraicGeometry.Flat (spMap (Int.castRingHom (𝓞 F))) := by
+    rw [HasRingHomProperty.Spec_iff (P := @AlgebraicGeometry.Flat)]
     exact RingHom.flat_algebraMap_iff.mpr (inferInstance : Module.Flat ℤ (𝓞 F))
   have : Surjective g := surjective_of_isDominant_of_isClosed_range _ g.isClosedMap.isClosed_range
   have hη : (g ≫ V.π) (genericPoint G) ⤳ genericPoint Y.X :=

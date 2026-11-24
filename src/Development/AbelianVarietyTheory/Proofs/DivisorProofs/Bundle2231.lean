@@ -417,7 +417,7 @@ theorem dim_ne_zero_of_isProjOver {k : Type} [CommRing k] {Z : Scheme.{0}} (q : 
   have : IsFinite (spMap (Int.castRingHom k)) :=
     (IsFinite.SpecMap_iff _).2 (RingHom.finite_algebraMap.2 hfin)
   let t := q ≫ spMap (Int.castRingHom k)
-  have : Flat t := (flat_int_iff_charZero t).2 hc
+  have : AlgebraicGeometry.Flat t := (flat_int_iff_charZero t).2 hc
   obtain ⟨z, -, hz⟩ := Flat.generalizingMap t (genericPoint_specializes (t (genericPoint Z)))
   have hs : Set.range t = Set.univ := by
     rw [← t.isClosedMap.isClosed_range.closure_eq]

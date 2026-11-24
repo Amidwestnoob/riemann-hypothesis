@@ -412,7 +412,7 @@ theorem exists_isArithVar_effCartier_isIso (k : Type) [CommRing k] (X : Scheme.{
     have h1 := CurveDegreesCompare.residueDegree_comp (b ⁻¹ᵁ V).ι b (genericPoint _)
     rw [CurveDegreesCompare.residueDegree_of_isOpenImmersion, hg, h0, zero_mul] at h1
     exact one_ne_zero h1
-  have hflat : Flat ((b ≫ p) ≫ spMap (Int.castRingHom k)) := by
+  have hflat : AlgebraicGeometry.Flat ((b ≫ p) ≫ spMap (Int.castRingHom k)) := by
     rw [flat_int_iff_charZero]
     have := hX.charZero
     have : IsDominant b := ⟨by
