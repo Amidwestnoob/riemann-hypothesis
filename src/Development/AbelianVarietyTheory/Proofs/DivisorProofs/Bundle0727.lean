@@ -37,6 +37,7 @@ public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.AddMonoi
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsNilpotentOfIsNilDP
 section
+attribute [-instance] Formalism.BasicNotions.Examples₂.instIsEmptyClsEmptyColumnChain
 set_option autoImplicit false
 
 noncomputable section
