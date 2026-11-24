@@ -194,9 +194,7 @@ private theorem rv_w (ξ : Fin 2 → ℚ) :
   have hw : ((gl (wW ℚ) : GL (Fin 2) (A ℚ)) : Matrix (Fin 2) (Fin 2) (A ℚ)) = !![0, 1; -1, 0] := rfl
   rw [hw]
   funext j
-  fin_cases j <;> simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, UpperTheory.ConvolutionTheory.R2.rt]
-  · exact (map_neg (algebraMap ℚ (A ℚ)) (ξ 1)).symm
-  · rfl
+  fin_cases j <;> simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, rv, UpperTheory.ConvolutionTheory.R2.rt]
 
 theorem UpperTheory.thetaSeries_poisson_functional_equation :
     ∀ (Φ : (Fin 2 → A ℚ) → ℂ), Φ ∈ schwartzBruhatPi (K := ℚ) (ι := Fin 2) → ∃ Ψ ∈ schwartzBruhatPi (K := ℚ) (ι := Fin 2), ∀ (t : ℝ) (g : G1 ℚ) (u : (A ℚ)ˣ), ab u = 1 →
