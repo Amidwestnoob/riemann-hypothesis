@@ -407,7 +407,7 @@ theorem units_pullback_empty_product_one {B B' : Type} [CommRing B] [CommRing B'
     (e : Empty → Bˣ) : (1 : Bˣ) =
       (∏ j, e j) * Units.map (RingHom.id B).toMonoidHom ((1 : Bˣ) ^ 1 * (Units.map i.toMonoidHom a)⁻¹) := by
   subst ha
-  letI : IsEmpty Empty := ⟨Empty.elim⟩
+  haveI : IsEmpty Empty := ⟨fun e => nomatch e⟩
   simp
 
 def cmpHom (T : El (F.pt κ)) :
