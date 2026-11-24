@@ -35,7 +35,7 @@ private theorem psi_e {H : Type} [Group H] (E : H ≃* ↥(finU (E := L) (n := 2
   show ψ ((eG E).symm (eG E g)) = _
   rw [MulEquiv.symm_apply_apply]
 
-private instance : (finU (E := L) (n := 2)).Normal := by unfold finU; infer_instance
+private instance : (GlobalTheory.UnitaryBC.finU (E := L) (n := 2)).Normal := by unfold GlobalTheory.UnitaryBC.finU; infer_instance
 
 private theorem out_gen {H : Type} [Group H] (E : H ≃* ↥(finU (E := L) (n := 2) ⊓ SUA L)) (p : UA L 2 →* finU (E := L) (n := 2))
     (hp1 : ∀ f : finU (E := L) (n := 2), ∀ k ∈ infU L 2, p ((f : UA L 2) * k) = f)
