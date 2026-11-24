@@ -20,10 +20,10 @@ def IntInv (w : D.what₂.places.Pl) {n : ℕ} (N : Matrix (Fin n) (Fin n) ℂ) 
 def UpLatLoc0 (T : Forms0 D u) : Prop :=
   ∀ w, OverT D u w → (D.fm u).seenP w = true → ∀ v c (z : ↥(Ld D u 0 (Nat.zero_le _) c)),
     (D.fm u).fv 0 v c (T.lv0.pr v c z) = 1 →
-    ∀ (γ : UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
-      (η : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
-      (∀ v', v' ≠ (T.atT.eV v).1 → bc (prV (E := D.host.E) v') η.1 = 1) →
-      bc (inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 *
+    ∀ (γ : _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+      (η : _root_.Formalism.UG.UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (κ : T.cls0.lev.U),
+      (∀ v', v' ≠ (T.atT.eV v).1 → _root_.Formalism.UG.bc (prV (E := D.host.E) v') η.1 = 1) →
+      _root_.Formalism.UG.bc (_root_.Formalism.UG.inclE (F := D.host.F) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) γ.1 *
         (T.cls0.y ((D.fm u).up 0 v c (T.lv0.pr v c z))).1 = (T.cls0.y c).1 * η.1 * κ.1 →
       Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v) (mulLat γ.1.1 (clsCrd D u 0 (Nat.zero_le _) ((D.fm u).up 0 v c (T.lv0.pr v c z)))) =
         Formalism.HermitianLatticesTheory.localization₂ (T.atT.Pv v) (Ld D u 0 (Nat.zero_le _) c) →
@@ -135,7 +135,7 @@ theorem valSc_smul (T : Forms0 D u) (w : D.what₂.places.Pl) (c : (D.mem u).C.c
 
 theorem fnOf_tr (s : D.what₂.Tau → ℤ) (M : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ)
     (P : MvPolynomial (D.what₂.Tau × Fin (D.R.N 0) × Fin (D.R.N 0)) ℂ) (g : GL (Fin (D.R.N 0)) D.host.E)
-    (hg : g ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+    (hg : g ∈ _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (y : Frames (gramC (gramN D 0 (Nat.zero_le _)) (embT D))) :
     fnOf _ s M P (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) g hg y) =
       fnOf _ s (fun τ => M τ * atInf (embT D) (g : Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) D.host.E) τ) P y := by
@@ -143,7 +143,7 @@ theorem fnOf_tr (s : D.what₂.Tau → ℤ) (M : D.what₂.Tau → Matrix (Fin (
   simp only [LinearMap.coe_mk, AddHom.coe_mk, Subtype.coe_mk, Matrix.mul_assoc]
 
 theorem valSc_tr (T : Forms0 D u) (w : D.what₂.places.Pl) (c : (D.mem u).C.cls 0) (h : (D.mem u).C.Y 0 → ℂ)
-    (g : GL (Fin (D.R.N 0)) D.host.E) (hg : g ∈ UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
+    (g : GL (Fin (D.R.N 0)) D.host.E) (hg : g ∈ _root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)))
     (H : ∀ B : GL (Fin (D.R.N 0)) D.host.E, IsLocBasis (D.mem u).A.T (Ld D u 0 (Nat.zero_le _) c : Set _) B →
       ∃ M : D.what₂.Tau → Matrix (Fin (D.R.N 0)) (Fin (D.R.N 0)) ℂ,
       ∃ P ∈ Formalism.L2.Forms.IntSpan D w ((D.fm u).lam 0),
@@ -175,7 +175,7 @@ theorem upIncInt0_of (T : Forms0 D u) (hC : LocalLatticeBases.ChiFin0 T) (hL : U
   obtain ⟨γ, η, κ, h1, h2, h3, h4, -, h6⟩ := T.up_natural_level_zero v c z hx
   have e : (D.fm u).upT 0 v c (T.lv0.pr v c z) h = fun s =>
       ((((T.cls0.lev.chi κ)⁻¹ : ℂˣ)) : ℂ) * h (T.val0.eY.symm (frameTranslate (embT D) (fun τ x => embedding_conj_compat D τ x) γ.1⁻¹
-        ((UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
+        ((_root_.Formalism.UG.UJ (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _))).inv_mem γ.2) (T.val0.eY s))) :=
     funext fun s => h6 h s _ (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.is_translate_inverse T γ s)
   rw [e]
   obtain ⟨r, hr, her⟩ := chi_inv_int T hC w κ
