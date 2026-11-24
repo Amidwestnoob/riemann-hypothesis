@@ -235,7 +235,7 @@ theorem flatAt_dual (hψ : IsStdChar D ψ (-1)) (f : WO V W → ℂ) (hf : IsThe
       ψ (symplO V W (dV.extX W x) (dV.extY W a)) • (_root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source dV) W ψ vS.μ vS.𝓕 f (x ⬝ u.1.1) := by
     intro u
     have hs := (_root_.GlobalTheory.HeisMixSource.heis_mixS D ψ hψ V V₀ W ρ dV vS f hf).2.1 (x ⬝ u.1.1) a
-    unfold _root_.I195MixedCoordinates_0bc2bf51bedd9bcbcf543475.source at hs
+    unfold _root_.I195MixedCoordinates_5a743adb4eaabe3d936622f8.source at hs
     unfold _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source
     rw [hs]
     rw [symplO_eq_of_symplOH (a := dV.extX W (x ⬝ u.1.1)) (b := dV.extY W a) (a' := dV.extX W x) (b' := dV.extY W a)
@@ -260,7 +260,7 @@ theorem flatAt_iso (hψ : IsStdChar D ψ (-1)) (f : WO V W → ℂ) (hf : IsThet
         (_root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.target dW) V₀ ψ vT.μ vT.𝓕 ((_root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source dV) W ψ vS.μ vS.𝓕 f (x ⬝ u.1.1)) y := by
     intro u
     have hs := (_root_.GlobalTheory.HeisMixSource.heis_mixS D ψ hψ V V₀ W ρ dV vS f hf).2.2.1 (x ⬝ u.1.1) (dW.incX V₀ ξ)
-    unfold _root_.I195MixedCoordinates_0bc2bf51bedd9bcbcf543475.source at hs
+    unfold _root_.I195MixedCoordinates_5a743adb4eaabe3d936622f8.source at hs
     unfold _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source
     rw [hs]
     have hg := (_root_.GlobalTheory.MixValues.mixed_values D ψ hψ).1 V V₀ W ρ dV vS.μ vS.𝓕 vS.covol f hf (x ⬝ u.1.1)
@@ -282,7 +282,7 @@ theorem flatAt_core (hψ : IsStdChar D ψ (-1)) (f : WO V W → ℂ) (hf : IsThe
       heisO ψ V₀ W₀ w₀ ((_root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.target dW) V₀ ψ vT.μ vT.𝓕 ((_root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source dV) W ψ vS.μ vS.𝓕 f (x ⬝ u.1.1)) y) := by
     intro u
     have hs := (_root_.GlobalTheory.HeisMixSource.heis_mixS D ψ hψ V V₀ W ρ dV vS f hf).2.2.1 (x ⬝ u.1.1) (dW.inc0 V₀ w₀)
-    unfold _root_.I195MixedCoordinates_0bc2bf51bedd9bcbcf543475.source at hs
+    unfold _root_.I195MixedCoordinates_5a743adb4eaabe3d936622f8.source at hs
     unfold _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source
     rw [hs]
     have hg := (_root_.GlobalTheory.MixValues.mixed_values D ψ hψ).1 V V₀ W ρ dV vS.μ vS.𝓕 vS.covol f hf (x ⬝ u.1.1)
