@@ -117,28 +117,17 @@ end Divisors
 
 variable {D : D7}
 
-theorem exists_idem {P : Pl D.host.E} (hP : Formalism.L2.DIV.conjPl P ≠ P) : ∃ e : AE D, IsIdemAt e P := by
+theorem exists_idem {P : Pl D.host.E} (hP : _root_.Formalism.DivisionValues.conjPl P ≠ P) : ∃ e : AE D, IsIdemAt e P := by
   obtain ⟨Φ, hΦ⟩ := GlobalTheory.IdemSupport.exists_comp D
   obtain ⟨e, f, h⟩ := GlobalTheory.IdemSupport.exists_isPrimeIdem hΦ P
   rcases h with ⟨h, -⟩ | ⟨-, ⟨v, ε, -, rfl⟩, ht⟩
   · exact ⟨e, h⟩
-  · apply False.elim
-    apply hP
-    apply GlobalTheory.IdemSupport.eq_of_le
-    intro x hx
-    have hx' : x ∈ (GlobalTheory.IdemSupport.cP P).asIdeal := by
-      rw [GlobalTheory.IdemSupport.mem_cP]
-      have e : GlobalTheory.IdemSupport.cO D x = Formalism.L2.DIV.starOHom x := by
-        apply RingOfIntegers.ext
-        rw [GlobalTheory.IdemSupport.cO_coe]
-        exact (Formalism.L2.DIV.starO_coe x).symm
-      rw [e]
-      exact hx
+  · refine absurd (GlobalTheory.IdemSupport.eq_of_le (Ideal.map_le_iff_le_comap.2 fun x hx => ?_)) hP
     have h2 := GlobalTheory.IdemSupport.Comparison₂.conj (P := P) ht
     rw [GlobalTheory.IdemSupport.cA_algebraMap] at h2
     by_cases h0 : x = 0
     · rw [h0]; exact zero_mem _
-    · exact (ht x h0).2 ((h2 x h0).1 hx')
+    · exact (h2 x h0).2 ((ht x h0).1 hx)
 
 theorem idem_unique {P : Pl D.host.E} {e e' f' : AE D} (he : IsIdemAt e P) (h : IsPrimeIdem P e' f') :
     f' = e + cA D e := by
@@ -203,7 +192,7 @@ theorem sphOp_of {P : Pl D.host.E} {e : AE D} (he : IsIdemAt e P) {ϖ : 𝓞 D.h
   ⟨e, e + cA D e, ϖ, α, fun v hv => absurd hv (Finset.notMem_empty v), Or.inl ⟨he, rfl⟩, h1, h2, hd,
     fun _ _ => Iff.rfl, fun _ _ _ => rfl, hα, hD, hR, hc⟩
 
-theorem dual_rel : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), Formalism.L2.DIV.conjPl P ≠ P → ∀ j, j ≤ V.rank → ∀ (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π P (Finsupp.single (dualLab (splitLab V.rank j)) 1) (opOf π P (Finsupp.single (splitLab V.rank V.rank) 1) u) = opOf π P (Finsupp.single (splitLab V.rank (V.rank - j)) 1) u := by
+theorem dual_rel : ∀ {D : D7} (V : HSp D) (P : Pl D.host.E), _root_.Formalism.DivisionValues.conjPl P ≠ P → ∀ j, j ≤ V.rank → ∀ (M : Type) [AddCommGroup M] [Module ℂ M] (π : GA D V →* Module.End ℂ M) (u : M), (∀ k ∈ hyp V P, π k u = u) → opOf π P (Finsupp.single (dualLab (splitLab V.rank j)) 1) (opOf π P (Finsupp.single (splitLab V.rank V.rank) 1) u) = opOf π P (Finsupp.single (splitLab V.rank (V.rank - j)) 1) u := by
   classical
   intro D V P hP j hj M _ _ π u hu
   obtain ⟨e, he⟩ := exists_idem hP
