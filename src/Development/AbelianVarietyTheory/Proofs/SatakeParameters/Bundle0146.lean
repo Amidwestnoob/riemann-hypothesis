@@ -281,8 +281,8 @@ namespace GlobalTheory.AboveL
 section
 variable {K L Ω : Type} [Field Ω] [Field K] [NumberField K] [Algebra K Ω] [Field L] [NumberField L] [Algebra L Ω] [Algebra K L] [IsScalarTower K L Ω]
 
-theorem restrictScalars_mem_Dec {A : ValuationSubring Ω} {σ : G L Ω} (hσ : σ ∈ Dec (F := L) A) :
-    (σ.restrictScalars K : G K Ω) ∈ Dec (F := K) A := hσ
+theorem restrictScalars_mem_Dec {A : ValuationSubring Ω} {σ : G L Ω} (hσ : σ ∈ ReciprocityTheory.Gal.Dec (F := L) A) :
+    (σ.restrictScalars K : G K Ω) ∈ ReciprocityTheory.Gal.Dec (F := K) A := hσ
 
 theorem actsAs_restrictScalars {A : ValuationSubring Ω} {σ : G L Ω} {q f a b : ℕ} (hσ : ActsAs A (q ^ f) σ a b) :
     ActsAs A q (σ.restrictScalars K : G K Ω) (f * a) (f * b) := by

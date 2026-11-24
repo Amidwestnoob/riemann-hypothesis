@@ -133,7 +133,7 @@ def gI (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (v : HeightOneSpe
 
 theorem locF_subst (ω : HChar F) (c : HeightOneSpectrum (𝓞 F) → ℕ) (yf : (Af F)ˣ) (ξ : Fˣ)
     (v : HeightOneSpectrum (𝓞 F)) (x : (v.adicCompletion F)ˣ) :
-    locF ω c yf (ξ : F) v (tv v ξ * x⁻¹) = ((ω.loc v (tv v ξ) : ℂˣ) : ℂ)⁻¹ *
+    UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v (tv v ξ * x⁻¹) = ((ω.loc v (tv v ξ) : ℂˣ) : ℂ)⁻¹ *
       gI ω c v (-((c v : ℤ) + dd v)) (ordAt (xiF ξ * yf) v - c v) x := by
   have h1 : (((tv v ξ * x⁻¹)⁻¹ : (v.adicCompletion F)ˣ) : v.adicCompletion F) *
       algebraMap F (v.adicCompletion F) (ξ : F) = (x : v.adicCompletion F) := by
@@ -245,8 +245,8 @@ theorem local_integral_of_substitution : InvSubst → LocInt := by
   set M : ℤ := ordAt (xiF ξ * yf) v with hMdef
   set m : ℤ := M + dd v with hmdef
   have hB : M - (c v : ℤ) = A + m := by simp only [hAdef, hmdef]; ring
-  obtain ⟨hiff, heq⟩ := hInv F v (locF ω c yf (ξ : F) v) (tv v ξ)
-  have hsub : (fun x => locF ω c yf (ξ : F) v (tv v ξ * x⁻¹)) =
+  obtain ⟨hiff, heq⟩ := hInv F v (UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v) (tv v ξ)
+  have hsub : (fun x => UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v (tv v ξ * x⁻¹)) =
       fun x => ((ω.loc v (tv v ξ) : ℂˣ) : ℂ)⁻¹ * gI ω c v A (A + m) x := by
     funext x
     rw [locF_subst, hB]

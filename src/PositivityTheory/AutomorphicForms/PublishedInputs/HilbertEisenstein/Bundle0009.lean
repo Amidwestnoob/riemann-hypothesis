@@ -425,8 +425,8 @@ def InvSubst : Prop := ∀ (F : Type) [Field F] [NumberField F] (v : HeightOneSp
 
 def LocInt : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
   (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ (yf : (Af F)ˣ) (ξ : Fˣ) (v : HeightOneSpectrum (𝓞 F)),
-    Integrable (locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F)) ∧
-    ∫ a, locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F) =
+    Integrable (UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F)) ∧
+    ∫ a, UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F) =
       ((ω.loc v (Units.map (algebraMap F (v.adicCompletion F)).toMonoidHom ξ) : ℂˣ) : ℂ)⁻¹ *
         if ordAt (xiF ξ * yf) v + dd v < 0 then 0 else
           cst ω c v * ∑ j ∈ Finset.range ((ordAt (xiF ξ * yf) v + dd v).toNat + 1), chiW ω c v ^ j
@@ -439,10 +439,10 @@ def OmegaProd : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal 
 def FinSplit : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
   (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ (yf : (Af F)ˣ) (ξ : Fˣ) (S : Finset (HeightOneSpectrum (𝓞 F))),
     (∀ w ∉ S, c w = 0 ∧ dd w = 0 ∧ IsIntegralUnitAt yf w ∧ IsIntegralUnitAt (xiF ξ) w) →
-    (∀ v, Integrable (locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F))) →
+    (∀ v, Integrable (UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v) (multHaar (v.adicCompletion F))) →
     Integrable (fun b => finK c yf (ξ : F) b * (ωF ω b)⁻¹) (finiteIdeleMeasure F) ∧
       ∫ b, finK c yf (ξ : F) b * (ωF ω b)⁻¹ ∂finiteIdeleMeasure F =
-        ∏ v ∈ S, ∫ a, locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F)
+        ∏ v ∈ S, ∫ a, UpperTheory.HilbertEisensteinWeightOne.FourierExpansionEisenstein.L4.locF ω c yf (ξ : F) v a ∂multHaar (v.adicCompletion F)
 
 def OmegaPos : Prop := ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (ω : HChar F)
   (c : HeightOneSpectrum (𝓞 F) → ℕ), Hyp ω c → ∀ ξ : Fˣ, (∀ v, 0 < reAt v (ξ : F)) → ωF ω (xiF ξ) = 1

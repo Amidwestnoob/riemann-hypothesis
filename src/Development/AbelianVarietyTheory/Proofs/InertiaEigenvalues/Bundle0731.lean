@@ -112,7 +112,7 @@ end GlobalTheory.SingleBlockJac
 
 theorem GlobalTheory.SingleBlockJac.isSubquotient_piTensor_jac : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     (N : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin N) k) V)
-    (e : (Σ _ : Fin 1, Fin N) ≃ Fin N), IsSubquotient (piTensor fun _ : Fin 1 => π) (jac e π) := by
+    (e : (Σ _ : Fin 1, Fin N) ≃ Fin N), IsSubquotient (piTensor fun _ : Fin 1 => π) (GlobalTheory.SmGL.jac e π) := by
   intro k _ _ _ _ N V _ _ π e
   obtain ⟨φ⟩ := (GlobalTheory.SmGL.Placing.parInd_jac_placing k (Fin 1) (Fin N) (fun _ => Fin N)
     (GlobalTheory.JacTensor.oneBlock N) e V).2 π

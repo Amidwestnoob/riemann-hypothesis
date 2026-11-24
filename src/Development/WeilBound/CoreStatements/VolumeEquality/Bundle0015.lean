@@ -252,7 +252,7 @@ theorem geoPF : PtDim → GeoPF := by
   have : Nonempty K := ha.1
   have hA := arith_of_isPt hP
   have hgen : ∃ G : GenFibre inlV (mCoordIdeal (joinPt (fun x => algebraMap Ω₁ Ω (y x)) y')), ∀ (r : ℕ) (N : Fin r → K' → ℤ),
-      intNum G.Φ (fibreIdeal Sum.inl G) (fun j => fibreDeg Sum.inl (Sum.elim (0 : K → ℤ) (N j))) = inum Ω₁ y' N := by
+      intNum G.Φ (ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal Sum.inl G) (fun j => fibreDeg Sum.inl (Sum.elim (0 : K → ℤ) (N j))) = inum Ω₁ y' N := by
     let B := MvPolynomial K' Ω
     let Φ := FractionRing (MvPolynomial K Ω₁)
     let Φ' := FractionRing (MvPolynomial K B)
