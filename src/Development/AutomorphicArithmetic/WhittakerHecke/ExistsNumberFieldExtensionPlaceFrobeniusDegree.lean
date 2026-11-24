@@ -128,7 +128,7 @@ theorem UpperTheory.exists_numberField_extension_place_frobenius_degree :
     have hfζ' : aeval ζ' f = 0 := by
       have h2 := hmap f
       rw [hfζ, ← map_zero (algebraMap L Ω)] at h2
-      exact_mod_cast (algebraMap L Ω).injective h2
+      exact Subtype.ext ((algebraMap L Ω).injective h2)
     have hover : ∀ x : 𝓞 E, algebraMap (𝓞 E) (𝓞 L) x ∈ u.asIdeal ↔ x ∈ w.asIdeal := by
       intro x
       rw [← h x]
