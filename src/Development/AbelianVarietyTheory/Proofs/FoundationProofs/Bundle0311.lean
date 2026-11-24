@@ -11,6 +11,7 @@ public import Formalism.RealPlaceAnalysis.RealPlaceTaylor.Bundle0005
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasurableEmbeddingEquiv
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory Set GlobalTheory.AdelicU GlobalTheory.OpTrace NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.AutomorphicL2Unitary (IsTopIrreducible)
 open scoped ENNReal NNReal Topology ComplexConjugate ContDiff InnerProductSpace Matrix

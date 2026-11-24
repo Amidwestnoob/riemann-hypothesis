@@ -5,6 +5,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAux
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 open MeasureTheory Set Filter GlobalTheory.AdelicU GlobalTheory.SplitWeil NumberField
 open GlobalTheory.AutomorphicL2Unitary (conv starFn hasCompactSupport_starFn)
 open scoped Topology ComplexConjugate ContDiff Manifold
