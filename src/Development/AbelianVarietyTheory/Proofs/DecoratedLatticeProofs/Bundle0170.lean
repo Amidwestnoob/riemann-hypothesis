@@ -207,7 +207,10 @@ theorem vol_agree : ∀ (X : Fields) (Pr : Primes X) (R : Ranks) (Ch : Chars X P
         (volN ν _ (c + 1) 1 ((KO k (XIx (Fin R.k) (Fin R.t) j ⊕ Fin (c + 1))).subgroupOf (N k (XIx (Fin R.k) (Fin R.t) j) (c + 1) 1) :
           Set (N k (XIx (Fin R.k) (Fin R.t) j) (c + 1) 1))).toReal := by
       rw [volNat, hst]
-    rw [hvol, _root_.GlobalTheory.VolRatio.vol_ratio _ _ _ ho hAc hBc]
+    have : BorelSpace (GL (XIx (Fin R.k) (Fin R.t) j ⊕ Fin (c + 1)) k) :=
+      GlobalTheory.SplitFlip.borel_GL
+    have : BorelSpace (N k (XIx (Fin R.k) (Fin R.t) j) (c + 1) 1) := Subtype.borelSpace _
+    rw [hvol, _root_.GlobalTheory.VolRatio.vol_ratio (volN ν _ (c + 1) 1) _ _ ho hAc hBc]
     set K := Cgrp J g ⊓ N k (XIx (Fin R.k) (Fin R.t) j) (c + 1) 1 with hKdef
     set U := KO k (XIx (Fin R.k) (Fin R.t) j ⊕ Fin (c + 1)) ⊓ N k (XIx (Fin R.k) (Fin R.t) j) (c + 1) 1 with hUdef
     have hA : (Cgrp J g).subgroupOf (N k _ (c + 1) 1) = K.subgroupOf (N k _ (c + 1) 1) :=
