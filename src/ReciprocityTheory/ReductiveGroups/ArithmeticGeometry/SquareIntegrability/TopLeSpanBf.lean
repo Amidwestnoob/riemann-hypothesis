@@ -21,7 +21,7 @@ theorem finrank_span1 (hI : IsSplit P I) : Module.finrank ℂ (span1 (IR I)) = d
   have ho : Orthonormal ℂ (e (IR I)) := by
     rw [orthonormal_iff_ite]
     intro i j
-    rw [← Hf_eq_inner, Hf_e hK]
+    rw [← _root_.ReciprocityTheory.ChartRestriction.G.I2.Col.Hf_eq_inner, Hf_e hK]
     by_cases h : i = j <;> simp [h, eq_comm]
   rw [span1, finrank_span_eq_card ho.linearIndependent, Fintype.card_fin]
 

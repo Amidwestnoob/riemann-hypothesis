@@ -127,7 +127,7 @@ theorem hgtInt_of_k (hC : _root_.GlobalTheory.ThK.Dbl.Stab2Cpt_k) : _root_.Globa
       linear_combination h
     obtain ⟨q1, q2⟩ := Hgt.graph_alg (cA σ).toRingHom (g := mat g) g.1.mul_inv e3 hd
     have q : ∀ X : Matrix (Fin n) (Fin n) (AE F E), Algebra.norm (AF F) t.1.det • X = (t.1.det * (cA σ).toRingHom t.1.det) • X :=
-      fun X => by rw [← algebraMap_smul (AE F E), algebraMap_norm_eq hB.cm, ← cA_eq]; rfl
+      fun X => by rw [← algebraMap_smul (AE F E), algebraMap_norm_eq hB.cm, ← _root_.GlobalTheory.ThK.Dbl.Hgt.cA_eq]; rfl
     refine ⟨Matrix.GeneralLinearGroup.det t, ⟨k, hk, congrArg (fun x => Algebra.norm (AF F) (Matrix.det x)) e2⟩, e1 ▸ hg,
       .inl ⟨k, hk, Eq.symm ((q _).trans (q1.trans ?_))⟩, .inr ⟨k, hk, Eq.symm ((q _).trans (q2.trans ?_))⟩⟩ <;> rw [← e2] <;> rfl
 end GlobalTheory.ThK.Dbl
