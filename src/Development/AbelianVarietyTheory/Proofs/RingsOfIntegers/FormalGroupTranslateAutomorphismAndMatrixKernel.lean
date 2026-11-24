@@ -313,19 +313,19 @@ end GlobalTheory.PlaceInt.ShiftPf
 
 
 open GlobalTheory.PlaceInt.ShiftPf in
-theorem GlobalTheory.PlaceInt.shift_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [CharZero V] (d : ℕ) (O : Type) [CommRing O] [StarRing O] (B : FB V d O) (n : ℕ) (p : Matrix (Fin n) (Fin n) O), (0 ∈ kerM B p) ∧ (∀ f : PS V n d, shift B.G.F 0 f = f) ∧ ∀ α β : Fin n → Fin d → V, (∀ b, Small (α b)) → (∀ b, Small (β b)) → (∃ ψ : PS V n d ≃ₐ[V] PS V n d, ∀ f, shift B.G.F α f = ψ f) ∧ (α ∈ kerM B p ↔ ∀ f, shift B.G.F α (pullM B p f) = pullM B p f) ∧ ((∀ f, shift B.G.F α f = shift B.G.F β f) → α = β) ∧ ∃ δ : Fin n → Fin d → V, (∀ b, Small (δ b)) ∧ (∀ b, (cpt (δ b) : Pt V 0 d) = addV B.G.F (cpt (α b)) (cpt (β b))) ∧ (∀ f, shift B.G.F α (shift B.G.F β f) = shift B.G.F δ f) ∧ (α ∈ kerM B p → β ∈ kerM B p → δ ∈ kerM B p) := by
+theorem GlobalTheory.PlaceInt.shift_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [IsAdicComplete (maximalIdeal V) V] [CharZero V] (d : ℕ) (O : Type) [CommRing O] [StarRing O] (B : FB V d O) (n : ℕ) (p : Matrix (Fin n) (Fin n) O), (0 ∈ kerM B p) ∧ (∀ f : PS V n d, shift B.G.F 0 f = f) ∧ ∀ α β : Fin n → Fin d → V, (∀ b, Small (α b)) → (∀ b, Small (β b)) → (∃ ψ : PS V n d ≃ₐ[V] PS V n d, ∀ f, shift B.G.F α f = ψ f) ∧ (α ∈ kerM B p ↔ ∀ f, shift B.G.F α (pullM B p f) = pullM B p f) ∧ ((∀ f, shift B.G.F α f = shift B.G.F β f) → α = β) ∧ ∃ δ : Fin n → Fin d → V, (∀ b, Small (δ b)) ∧ (∀ b, (_root_.GlobalTheory.PlaceInt.cpt (δ b) : Pt V 0 d) = addV B.G.F (_root_.GlobalTheory.PlaceInt.cpt (α b)) (_root_.GlobalTheory.PlaceInt.cpt (β b))) ∧ (∀ f, shift B.G.F α (shift B.G.F β f) = shift B.G.F δ f) ∧ (α ∈ kerM B p → β ∈ kerM B p → δ ∈ kerM B p) := by
   intro V _ _ _ _ _ d O _ _ B n p
   refine ⟨?_, fun f => shift_zero B f, fun α β hα hβ => ?_⟩
   · unfold kerM
     rw [Set.mem_setOf_eq]
     refine ⟨fun b i => by simp, ?_⟩
-    have e : (fun j => (cpt ((0 : Fin n → Fin d → V) j) : Pt V 0 d)) = 0 := funext fun j => cpt_zero
+    have e : (fun j => (_root_.GlobalTheory.PlaceInt.cpt ((0 : Fin n → Fin d → V) j) : Pt V 0 d)) = 0 := funext fun j => cpt_zero
     rw [e]
     exact matV_zero B p
   · let δ : Fin n → Fin d → V := fun b i =>
-      MvPowerSeries.constantCoeff (addV B.G.F (cpt (α b) : Pt V 0 d) (cpt (β b)) i)
+      MvPowerSeries.constantCoeff (addV B.G.F (_root_.GlobalTheory.PlaceInt.cpt (α b) : Pt V 0 d) (_root_.GlobalTheory.PlaceInt.cpt (β b)) i)
     have hδ : ∀ b, Small (δ b) := fun b i => sm_addV B (sm_cpt (hα b)) (sm_cpt (hβ b)) i
-    have hδe : ∀ b, (cpt (δ b) : Pt V 0 d) = addV B.G.F (cpt (α b)) (cpt (β b)) := fun b => (eq_cpt _).symm
+    have hδe : ∀ b, (_root_.GlobalTheory.PlaceInt.cpt (δ b) : Pt V 0 d) = addV B.G.F (_root_.GlobalTheory.PlaceInt.cpt (α b)) (_root_.GlobalTheory.PlaceInt.cpt (β b)) := fun b => (eq_cpt _).symm
     refine ⟨shift_equiv B hα, mem_kerM_iff B p hα, shift_inj B hα hβ, δ, hδ, hδe,
       shift_shift B hα hβ hδe, fun ha hb => ?_⟩
     rw [mem_kerM_iff B p hα] at ha

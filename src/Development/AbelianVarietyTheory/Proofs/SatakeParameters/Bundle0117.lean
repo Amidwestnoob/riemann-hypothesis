@@ -201,7 +201,7 @@ theorem GlobalTheory.TwEig.pairComm_eigSum_sub_iSup : ∀ (s : Bool) {E I : Type
   · simp only [Formalism.L2.Col.eigSum, eigAt_tw]
     rw [sub_iSup']
     let e : (I → ℂ) ≃ (I → ℂ) := ⟨fun x i => cj s (x i), fun x i => cj s (x i),
-      fun x => funext fun i => cj_cj s (x i), fun x => funext fun i => cj_cj s (x i)⟩
+      fun x => funext fun i => _root_.Formalism.IndefR.Links.cj_cj s (x i), fun x => funext fun i => _root_.Formalism.IndefR.Links.cj_cj s (x i)⟩
     rw [← e.iSup_comp]
     refine iSup_congr fun x => ?_
     simp [e, Formalism.IndefR.Links.cj_cj]

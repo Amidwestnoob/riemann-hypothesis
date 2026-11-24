@@ -396,7 +396,7 @@ theorem exists_character (hG : GlobalFnsSt) (hA : IsAbelianScheme A) {X : Scheme
       ∀ (Z : Scheme.{0}) (r : Z ⟶ A.left) (z : Z) (J), Good M z J →
         val u (r ≫ ((toUnit A ≫ y.1) * 𝟙 A).left) z J = val u r z J * gm (r ≫ (toUnit A).left) z ⊤ c := by
     intro y
-    obtain ⟨c, hc⟩ := exists_ratio hM (fun U _ h => Finset.prod_congr rfl fun i _ => by
+    obtain ⟨c, hc⟩ := _root_.GlobalTheory.CommutatorPairing.exists_ratio hM (fun U _ h => Finset.prod_congr rfl fun i _ => by
         rw [← Category.assoc, transl_mulA k y.1 y.2]) (toUnit A).left _ he hp
       (DVR.pullGen_isGen _ _ _ u hu ((toUnit A ≫ y.1) * 𝟙 A).left) hu
     exact ⟨c, fun Z r z J hJ => (val_pull hJ _ _ _).symm.trans (hc Z r z J hJ)⟩

@@ -45,7 +45,7 @@ def StableBlockGA : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧ (∀ j, (D j).Inf (mW l₁)) ∧
       ∀ T : Finset (Pl E), (∀ w ∈ T, w ∈ S) → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ),
         (∀ w ∈ T, ¬ IsSplitAt w → e₂ w = .one) → 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 def StableBlockSA : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ (l₁ : InfinitePlace E → DomWeight n) (l₂ : InfinitePlace E → DomWeight 0), ∃ c₀ : ℝ, 0 < c₀ ∧
@@ -58,7 +58,7 @@ def StableBlockSA : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧ (∀ j, (D j).Inf (mW l₁)) ∧
       (∀ j w, ¬ IsSplitAt w → inv (B w) = B w → inv (B₁ j w) = B₁ j w) ∧
       ∀ T : Finset (Pl E), SplitIn S T → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ), 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 end UpperTheory.V.Z.Mult

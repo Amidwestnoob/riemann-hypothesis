@@ -292,7 +292,7 @@ theorem Stab.inv {σ : E →+* E} (hσ : ∀ x, σ (σ x) = x) {I : FractionalId
 theorem diff_ne_zero : ((differentIdeal ℤ (𝓞 E) : Ideal (𝓞 E)) : FractionalIdeal (𝓞 E)⁰ E) ≠ 0 :=
   FractionalIdeal.coeIdeal_ne_zero.2 differentIdeal_ne_bot
 
-theorem dInv_ne_zero (j : ℕ) : dInv E j ≠ 0 := pow_ne_zero _ (inv_ne_zero diff_ne_zero)
+theorem dInv_ne_zero (j : ℕ) : _root_.GlobalTheory.SgGlob.dInv E j ≠ 0 := pow_ne_zero _ (inv_ne_zero diff_ne_zero)
 
 theorem stab_dInv {σ : E →+* E} (hσ : ∀ x, σ (σ x) = x) (j : ℕ) : Stab σ (GlobalTheory.SgGlob.dInv E j) := by
   refine Stab.pow ?_ j

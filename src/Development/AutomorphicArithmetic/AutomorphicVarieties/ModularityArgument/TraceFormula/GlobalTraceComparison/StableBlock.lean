@@ -31,7 +31,7 @@ def G2s : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Global
     ∀ S : Set (Pl E), IsSection S → ∀ (K' : ∀ w : Pl E, Subgroup (UL n w)) (f : ∀ w : Pl E, UL n w → ℂ)
       (φ : ∀ a (w : Pl E), GLw a w × GLw (n - a) w → ℂ), IsLevelFam (fun w : Pl E => MonoidHom.id (UL n w)) (KL n) K' →
       GlobalTheory.BCT.IsTest (KL n) K' f → (∀ a ≤ n, IsTestP (φ a) ∧ ∀ w ∈ S, Match n a (n - a) w (μ.loc w) (f w) (φ a w)) →
-      geomU S lam f = ∑ i, ((sg i : ℤ) : ℂ) * geomSt2 S (l₁ i) (l₂ i) (φ (a i))
+      geomU S lam f = ∑ i, ((sg i : ℤ) : ℂ) * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S (l₁ i) (l₂ i) (φ (a i))
 
 def MuEx : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∃ (μ : HChar E) (e : InfinitePlace E → ℤ), IsMu μ e
 
@@ -47,7 +47,7 @@ def EndoBlock : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], 
     ∃ (J : Type) (_ : Fintype J) (D₁ : J → CD E a) (D₂ : J → CD E b) (B₁ B₂ : J → Pl E → Multiset ℂˣ),
       (∀ j w, Off Z w → (D₁ j).Sat w (B₁ j w) ∧ (D₂ j).Sat w (B₂ j w)) ∧
       ∀ T : Finset (Pl E), SplitIn S T → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (ρ : ℝ), 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def StableBlock : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ π : CuspSub E n,
   (CG.mk π).IsRegAlg → GlobalTheory.ContraPair.DualIsConj π → ∃ l₁ : InfinitePlace E → DomWeight n,
@@ -58,7 +58,7 @@ def StableBlock : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     ∃ (J : Type) (_ : Fintype J) (D : J → CD E n) (B₁ : J → Pl E → Multiset ℂˣ),
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧
       ∀ T : Finset (Pl E), SplitIn S T → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ), 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 def Peak : Prop := ∀ (B : Type) [CommRing B] [StarRing B] [Algebra ℂ B] [StarModule ℂ B] (H : Type) [NormedAddCommGroup H]

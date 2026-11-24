@@ -71,7 +71,7 @@ theorem dsig_dsig (hσ : IsDSHpk k r ε mu σ) {X Y : Mx k r} (hX : InLieHpk k r
     have e : (fun u : ℝ => σ (g * NormedSpace.exp ((u : ℂ) • Y)) v) =
         fun t : ℝ => σ g (σ (NormedSpace.exp ((t : ℂ) • Y)) v) := by
       funext t
-      rw [Hecke_multiplication k r ε mu H σ hσ g hgH _ (exp_mem hY t)]
+      rw [Hecke_multiplication k r ε mu H σ hσ g hgH _ (_root_.Gp91.GlobalTheory.DerivedAction.exp_mem hY t)]
       rfl
     rw [e] at h1
     simp only [hL]

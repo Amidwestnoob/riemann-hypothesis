@@ -211,7 +211,7 @@ theorem adj_mul {mu : Matrix (Fin n) (Fin n) (𝓞 E)} {m : ℕ} (h : IsSim H mu
   split_ifs <;> simp
 end Ker
 
-theorem exists_cpt {V : Type} [CommRing V] {d : ℕ} (v : Pt V 0 d) : ∃ δ : Fin d → V, cpt δ = v := by
+theorem exists_cpt {V : Type} [CommRing V] {d : ℕ} (v : Pt V 0 d) : ∃ δ : Fin d → V, _root_.GlobalTheory.PlaceInt.cpt δ = v := by
   refine ⟨fun i => MvPowerSeries.constantCoeff (v i), funext fun i => ?_⟩
   ext m
   obtain rfl : m = 0 := Subsingleton.elim _ _
@@ -261,7 +261,7 @@ theorem sum_hv_primary_kernel : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   have hmul : ∀ u u' : ptO Xo (xOf y) ⟶ Xo.univ.t.G, (∃ α, FormPt C u α) → (∃ α, FormPt C u' α) →
       ∃ α, FormPt C (u * u') α := by
     rintro u u' ⟨α, h⟩ ⟨α', h'⟩
-    obtain ⟨δ, hδ⟩ := exists_cpt (addV B.G.F (cpt α) (cpt α'))
+    obtain ⟨δ, hδ⟩ := exists_cpt (addV B.G.F (_root_.GlobalTheory.PlaceInt.cpt α) (_root_.GlobalTheory.PlaceInt.cpt α'))
     exact ⟨δ, fmul u u' α α' δ h h' hδ⟩
   have hpow : ∀ u : ptO Xo (xOf y) ⟶ Xo.univ.t.G, (∃ α, FormPt C u α) → ∀ m : ℕ, ∃ α, FormPt C (u ^ m) α := by
     intro u hu m

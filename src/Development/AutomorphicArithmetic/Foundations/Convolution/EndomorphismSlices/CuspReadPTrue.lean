@@ -68,7 +68,7 @@ def EndoP (P : Pred) : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       (∀ j, P E a (D₁ j) (mW l₁) ∧ P E b (D₂ j) (mW l₂)) ∧
       ∀ T : Finset (Pl E), (∀ w ∈ T, w ∈ S) → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (ρ : ℝ),
         (∀ w ∈ T, ¬ IsSplitAt w → e₂ w = .one) → 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
+        (∀ j, ‖val T e₁ e₂ (B₁ j) (B₂ j)‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k)
 
 def StableP (P : Pred) : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ π : CuspSub E n,
   (CG.mk π).IsRegAlg → GlobalTheory.ContraPair.DualIsConj π → ∃ l₁ : InfinitePlace E → DomWeight n,
@@ -80,7 +80,7 @@ def StableP (P : Pred) : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMF
       (∀ j, ¬ (D j).Has π ∧ ∀ w, Off Z w → (D j).Sat w (B₁ j w)) ∧ (∀ j, P E n (D j) (mW l₁)) ∧
       ∀ T : Finset (Pl E), (∀ w ∈ T, w ∈ S) → Disjoint T Z → ∀ (e₁ e₂ : Pl E → Ex (Fin (n + 1) × Fin (0 + 1))) (ρ : ℝ),
         (∀ w ∈ T, ¬ IsSplitAt w → e₂ w = .one) → 0 < ρ →
-        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
+        (∀ j, ‖val T e₁ e₂ (B₁ j) 0‖ < ρ) → Small ρ fun k => _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ (fam Z T φ e₁ e₂ k) -
           c * (∏ w ∈ Z, trc (τ w).ρ (KGL w (n := n)) fun g => φ w (g, 1)) * val T e₁ e₂ B 0 ^ k
 
 def RRead : Prop := ∀ P : Pred, CuspReadP P → Read P

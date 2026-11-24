@@ -115,7 +115,7 @@ def Ends : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n a b
     infOfWeight (lam v)) →
   (∀ w ∈ S, Φ w = if IsSplitAt w then ctMu h w (μ.loc w) (f w) else (K2 a b w : Set _).indicator 1) →
   (∀ w ∈ S, Φ' w = if IsSplitAt w then ctMu (Nat.add_zero n) w (μ.loc w) (f w) else (K2 n 0 w : Set _).indicator 1) →
-  geomSt2 S l₁ l₂ Φ = geomSt2 S lam l₀ Φ'
+  _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S l₁ l₂ Φ = _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S lam l₀ Φ'
 
 def Sep : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (S : Set (Pl E)), IsSection S → ∀ (Z : Finset (Pl E)) (I : Type) [Finite I]
   (B : Pl E → Multiset ℂˣ) (C : I → Pl E → Multiset ℂˣ),

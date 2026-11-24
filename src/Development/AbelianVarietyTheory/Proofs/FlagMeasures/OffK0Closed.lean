@@ -304,7 +304,7 @@ theorem pinCov_ccOneG (hJ : CompanionTheory.Lime.BM.UniqGap) (large₂ : SizeDat
     (Θ : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TopLift D.R.k D.R.rS (X.Vloc u (tauE X e j)) (X.Vloc u' (tauE X e j)))
     (TP : ∀ j : Fin (nfE D), Formalism.FourierDecayAlt.Top.TypeProj (parE e u u' de de' j)
       (towersOf X C u u' e j).base.π (towersOf X C u u' e j).base.z (m₀ j *ᵥ ν' j)) (A₀ : ℝ)
-    (Mo : ModelsFor (sOf (carrierInTc X C u u' e he hv CA de de' l grid grid1 a b ξ ξ'
+    (Mo : ModelsFor (_root_.Formalism.L2.SG.Pf.Carrier.sOf (carrierInTc X C u u' e he hv CA de de' l grid grid1 a b ξ ξ'
       (fun j => ccOneG C hB hJ large₂ hCl hH0 u u' (e (plE D j)) hTT (hW j) (hA j) hT hT' (a j) (b j) (ξ j) (ξ' j)
         (hpin1 j) (hscl j)) c ν' m₀ Θ TP A₀)))
     (Ac : ℝ) (hAc : Formalism.FourierDecayAlt.P.orbital_integral_converges.choose * ((D.R.rS : ℝ) + 1) ^ 2 *

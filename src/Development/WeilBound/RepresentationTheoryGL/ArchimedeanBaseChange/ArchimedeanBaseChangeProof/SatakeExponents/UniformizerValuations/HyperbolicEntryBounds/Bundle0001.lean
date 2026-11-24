@@ -142,7 +142,7 @@ theorem chainEx_of (h2 : G8.GlobalComplexCoefficients) (h3 : G8.G3) (h4 : G8.G4)
   simp only [zero_mul, zero_add]
   have hstep : ∀ i : ι, sg i / (c (a i) (n - a i) * 2 ^ K) *
       ellSum2 (μG (a i)) (μG (n - a i)) (adel S (u₁ (a i)) (u₂ (a i)) (ψ (some i)) (φ₁ (a i)) (φ₂ (a i))) =
-      z * (sg i * geomSt2 S (l₁ i) (l₂ i) (seen (φ₁ (a i)) (φ₂ (a i)))) := by
+      z * (sg i * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S (l₁ i) (l₂ i) (seen (φ₁ (a i)) (φ₂ (a i)))) := by
     intro i
     have hai := (hsg i).2.1
     obtain ⟨t₁, t₂, t₃, -⟩ := hφ (a i) hai
@@ -155,7 +155,7 @@ theorem chainEx_of (h2 : G8.GlobalComplexCoefficients) (h3 : G8.G3) (h4 : G8.G4)
     have h2K : (2 : ℂ) ^ K ≠ 0 := pow_ne_zero _ two_ne_zero
     have hc' := hc0 (a i) (n - a i)
     field_simp
-  calc z * geomU S lam f = ∑ i, z * (sg i * geomSt2 S (l₁ i) (l₂ i) (seen (φ₁ (a i)) (φ₂ (a i)))) := by
+  calc z * geomU S lam f = ∑ i, z * (sg i * _root_.PositivityTheory.Rg.BcB.G8.geomSt2 S (l₁ i) (l₂ i) (seen (φ₁ (a i)) (φ₂ (a i)))) := by
         rw [← Finset.mul_sum]
         exact congrArg (z * ·) (hgeo S hS K' f (fun a' => seen (φ₁ a') (φ₂ a')) hK' hf fun a' ha' =>
           ⟨(hφ a' ha').2.2.1, (hφ a' ha').2.2.2⟩)

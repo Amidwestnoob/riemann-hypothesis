@@ -292,7 +292,7 @@ theorem stepEx : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Pub
     GlobalTheory.Published.CasselmanWallach → ∀ D : D7, StepEx D := by
   intro h1 h2 h3 h4 D c hc k hk s s' hs hs' ω f hpre
   obtain ⟨X, hX, -, -, hX3, hX4, hX5⟩ := _root_.GlobalTheory.RealPlaceTheta.exists_record_theta_all h1 h2
-  have I : Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries h1 h2 h3 h4 D X hX
+  have I : _root_.GlobalTheory.PairLift.Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries h1 h2 h3 h4 D X hX
   have hPL : PairLifts D X :=
     GlobalTheory.T.pairThetaLift_factors_through_intertwiner D X I (_root_.GlobalTheory.PairLift.cuspAll_of_lowAll D X I (_root_.GlobalTheory.PairLift.lowAll_of_lowFock D X I (_root_.GlobalTheory.LowerMembersRule.lowFock D X I)))
   have hrule : ∀ τ, RulePar X (s.par τ) (s'.par τ) (c.a k τ) (c.a k τ) := fun τ =>

@@ -143,7 +143,7 @@ def Sm.gen (j : Fin n) : Sm B n := ⟨pt V d j, fun i => by simp [pt]⟩
 
 
 variable (B) in
-def Sm.const (α : Fin d → V) (hα : Small α) : Sm B n := ⟨cpt α, fun i => by simpa [GlobalTheory.PlaceInt.cpt] using hα i⟩
+def Sm.const (α : Fin d → V) (hα : Small α) : Sm B n := ⟨_root_.GlobalTheory.PlaceInt.cpt α, fun i => by simpa [GlobalTheory.PlaceInt.cpt] using hα i⟩
 
 def evA (a : Fin m → Sm B n) : PS V m d →ₐ[V] PS V n d :=
   (exists_algHom_evC (fun p : Fin m × Fin d => (a p.1).1 p.2) (fun p => (a p.1).2 p.2)).choose

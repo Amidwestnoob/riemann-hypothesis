@@ -417,7 +417,7 @@ theorem liftUp_mult : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheor
   intro hDS hHC hCD hCW D k V W S S' M M' θ ψ ω f hS hS' hθ hch hω hf ν 𝓕 hν h𝓕
   subst hS hS'
   obtain ⟨X, hX, _h1, _h2, h3, h4, h5⟩ := _root_.GlobalTheory.RealPlaceTheta.exists_record_theta_all hDS hHC
-  have hIn : Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries hDS hHC hCD hCW D X hX
+  have hIn : _root_.GlobalTheory.PairLift.Inputs D X := _root_.GlobalTheory.PairLift.inputs_of_chosenSeries hDS hHC hCD hCW D X hX
   have hPL : PairLifts D X :=
     GlobalTheory.T.pairThetaLift_factors_through_intertwiner D X hIn (_root_.GlobalTheory.PairLift.cuspAll_of_lowAll D X hIn (_root_.GlobalTheory.PairLift.lowAll_of_lowFock D X hIn (_root_.GlobalTheory.LowerMembersRule.lowFock D X hIn)))
   obtain ⟨χS, χT, hW, hexp⟩ := hω

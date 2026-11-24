@@ -120,7 +120,7 @@ theorem exists_ratio_genMap (hφ : Function.Injective φ) {X : Scheme.{0}} {L : 
     (hF : FormEq ψ ε ψ' ε') {t : LB.Gen (LB.LinComb L ψ ε)} {t' : LB.Gen (LB.LinComb L ψ' ε')} (ht : t.IsGen)
     (ht' : t'.IsGen) : ∃ r : (FractionRing R)ˣ, ∀ (z : (TK R').left) J, Good L z J →
       val t (genMap hφ) z J = unitAt (A := FractionRing R) (genMap hφ) z r * val t' (genMap hφ) z J := by
-  obtain ⟨r, hr⟩ := exists_ratio (F := FractionRing R) hL hF ht ht'
+  obtain ⟨r, hr⟩ := _root_.GlobalTheory.TauTwist.exists_ratio (F := FractionRing R) hL hF ht ht'
   have c : LB.Gen.Corr L _ _ _ _ t (scaleGen (unitOn r) t') :=
     corr_of_val hL fun y J hJ => (hr y J hJ).trans (val_scale r t' _ hJ).symm
   exact ⟨r, fun z J hJ => (val_corr hJ c _).trans (val_scale r t' _ hJ)⟩
