@@ -186,7 +186,7 @@ theorem exists_secMaps {A B : LB X} (hA : A.IsLB) (hB : B.IsLB) {w : LB.Iso A B}
       resG X (le_inf h h) (B.g p p : Γ(X, B.U p ⊓ B.U p)) = 1 := by
     intro p W h
     have e := congrArg (fun u : Γ(X, B.U p)ˣ => resG X h (u : Γ(X, B.U p))) (hB.g_self p)
-    simp only [val_res, resG_resG, Units.val_one, map_one] at e
+    simp only [val_res, _root_.GlobalTheory.Cartier.resG_resG, Units.val_one, map_one] at e
     exact e
   have glue : ∀ p : B.ι, ∃ b : Γ(X, B.U p), ∀ q : A.ι, resG X (inf_le_left : B.U p ⊓ A.U q ≤ B.U p) b =
       (@id (Γ(X, B.U p ⊓ A.U q)ˣ) (w.s (p, q)) : Γ(X, B.U p ⊓ A.U q)) *
@@ -207,7 +207,7 @@ theorem exists_secMaps {A B : LB X} (hA : A.IsLB) (hB : B.IsLB) {w : LB.Iso A B}
         rw [hself p h₁, one_mul] at k
         change resG X inf_le_left _ = resG X inf_le_right _
         rw [map_mul, map_mul]
-        repeat rw [resG_resG]
+        repeat rw [_root_.GlobalTheory.Cartier.resG_resG]
         exact k)
     exact ⟨b, hb⟩
   choose b hb using glue
@@ -221,10 +221,10 @@ theorem exists_secMaps {A B : LB X} (hA : A.IsLB) (hB : B.IsLB) {w : LB.Iso A B}
   refine ⟨B.U p ⊓ B.U p' ⊓ A.U q, ⟨hy, hq⟩, h₀, ?_⟩
   have e₁ := congrArg (resG X (le_inf h₁ h₂)) (hb p q)
   have e₂ := congrArg (resG X (le_inf h₁' h₂)) (hb p' q)
-  rw [map_mul, resG_resG, resG_resG] at e₁ e₂
+  rw [map_mul, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG] at e₁ e₂
   have k := iso_sec_chart hw a p p' q q h₁ h₁' h₂ h₂
   change resG X h₀ (resG X inf_le_left (b p)) = resG X h₀ ((B.g p p' : Γ(X, B.U p ⊓ B.U p')) * resG X inf_le_right (b p'))
-  rw [map_mul, resG_resG, resG_resG]
+  rw [map_mul, _root_.GlobalTheory.Cartier.resG_resG, _root_.GlobalTheory.Cartier.resG_resG]
   exact e₁.trans (k.trans (congrArg _ e₂.symm))
 
 theorem relAmple_tw_of_roots : ∀ (R : Type) [CommRing R] (X : Over (Spec (CommRingCat.of R))) (Q : LB X.left) (m : ℕ) (ζ : Fin (m + 1) → LB.Sec Q), Q.IsLB → VeryAmpleBy X.hom Q ζ → ∀ (A C : LB X.left) (n : ℕ), 1 ≤ n → A.IsLB → C.IsLB → LBIso (pw A ((n + 1 : ℕ) : ℤ)) Q → LBIso (pw C (n : ℤ)) Q → RelAmple X (tw C A (-1)) := by
