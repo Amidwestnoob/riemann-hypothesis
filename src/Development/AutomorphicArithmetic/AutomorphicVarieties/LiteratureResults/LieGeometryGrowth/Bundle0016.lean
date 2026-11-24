@@ -125,7 +125,7 @@ theorem UpperTheory.V.Lit.Geo.Cs.loc :
   rw [mul_assoc, mul_comm _ M]
   refine mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left (Real.exp_le_exp.2 ?_) hM) hD0
   have h3 : |lam (pt h y)| ≤ B₀ + |lam (finGL E a y)| := by
-    rw [pt, hl.add]
+    rw [UpperTheory.V.Lit.Geo.Cs.pt, hl.add]
     exact (abs_add_le _ _).trans (add_le_add (hB₀ h hh) le_rfl)
   have h4 := mul_nonneg hA (hf (pt h y))
   have h5 := mul_le_mul_of_nonneg_left h3 hB

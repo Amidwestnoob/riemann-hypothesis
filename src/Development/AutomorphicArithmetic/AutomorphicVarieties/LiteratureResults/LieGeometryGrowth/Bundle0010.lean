@@ -263,7 +263,7 @@ theorem UpperTheory.V.Lit.Geo.Cs.descEx :
   obtain ⟨k, hk⟩ := exists_unitary hp.choose_spec.symm
   obtain ⟨u, hu⟩ := QuotientGroup.mk_out_eq_mul U x
   beta_reduce
-  rw [dite_eq_left hp, hk, pt_mul, hf.f_cpt, hu, pt, pt, map_mul (finGL E a), ← mul_assoc, hf.f_lev _ u.2]
+  rw [dite_eq_left hp, hk, pt_mul, hf.f_cpt, hu, UpperTheory.V.Lit.Geo.Cs.pt, UpperTheory.V.Lit.Geo.Cs.pt, map_mul (finGL E a), ← mul_assoc, hf.f_lev _ u.2]
 end
 end
 
