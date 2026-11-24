@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle003
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.OpECutOmEquivariant
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx
 
 namespace GlobalTheory.RootEx.CutRow
