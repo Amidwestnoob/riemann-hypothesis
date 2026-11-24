@@ -62,7 +62,8 @@ theorem normGroup_adjoin_eq_norm_range_completion : ∀ (E K : Type) [Field E] [
         simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, map_add (f := _)] at hx hy ⊢
         exact add_mem hx hy
       | smul a x _ hx =>
-        simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, map_smul] at hx ⊢
+        change c.toLinearMap (a • x) ∈ _
+        rw [c.toLinearMap.map_smul]
         exact IntermediateField.smul_mem _ hx
     · rw [IntermediateField.adjoin_le_iff]
       rintro _ ⟨x, rfl⟩
