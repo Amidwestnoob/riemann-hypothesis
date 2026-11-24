@@ -80,7 +80,7 @@ theorem nat_over {A A' B B' : Type} [CommRing A] [Algebra S A] [CommRing A'] [Al
     (ψ : A →ₐ[S] B) (ψ' : A' →ₐ[T] B') (e : (ψ' : A' →+* B').comp bA = bB.comp (ψ : A →+* B)) :
     homAt (x0T f x0) ψ' ≫ bcO f x0 bA hA = bcO f x0 bB hB ≫ homAt x0 ψ := by
   apply Over.OverMorphism.ext
-  simp only [Over.comp_left, bcO_left, homAt, Over.homMk_left, ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap,
+  simp only [Over.comp_left, bcO_left, _root_.Formalism.L2.Pj.homAt, Over.homMk_left, ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap,
     ← Spec.map_comp, ← CommRingCat.ofHom_comp, e]
 
 end BC
