@@ -13,6 +13,7 @@ open GlobalTheory.Doubling (absE)
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 namespace GlobalTheory.StdPairLoc
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
 
