@@ -200,7 +200,7 @@ theorem exists_unif_good {V : Type} [CommRing V] [IsDomain V] [IsLocalRing V] (h
   have r : LBIso A.L (D.toPre.P.L.pull (pullback.fst D.toPre.P.A.hom (jK V))) := PolBaseChange.lbIso_refl A.isLB
   have hm : IsMonHom (Iso.refl A.A).hom := inferInstanceAs (IsMonHom (𝟙 A.A))
   have hw : LBIso (A.L.pull (Iso.refl A.A).hom.left) (D.toPre.P.L.pull (pullback.fst D.toPre.P.A.hom (jK V))) := by
-    have := lbIso_pull_comp r (𝟙 A.A.left)
+    have := GlobalTheory.ZM.lbIso_pull_comp r (𝟙 A.A.left)
     exact Eq.mp (congrArg (fun f => LBIso _ (D.toPre.P.L.pull f)) (Category.id_comp _)) this
   let U : Unif (maximalIdeal V) D A D.toPre.P.A := ⟨SelfUnif.selfPre D A (Iso.refl _) hm hw, fun k _ =>
     SelfUnif.expBij D A (Iso.refl _) hm hw firstFiveLaws.1.globalFns (IsAdicComplete.le_jacobson_bot _) k⟩
@@ -257,7 +257,7 @@ theorem UMem.nonempty_of_regular {X₁ : Setup F W i} {z₁ : X₁.M.Z} {act : M
   letI := P.isAb.comm
   obtain ⟨D, A, U, ψ, hX, hψ, hL, hE⟩ := exists_unif_good hV P
   have r : LBIso P.L (X₁.ρ.P.L.pull (pullback.fst X₁.ρ.P.A.hom (spMap yV))) := PolBaseChange.lbIso_refl P.isLB
-  obtain ⟨wl, hwl⟩ := LBIso.trans A.isLB (LB.isLB_pull P.isLB _) (LB.isLB_pull X₁.ρ.P.isLB _) hL (lbIso_pull_comp r ψ)
+  obtain ⟨wl, hwl⟩ := LBIso.trans A.isLB (LB.isLB_pull P.isLB _) (LB.isLB_pull X₁.ρ.P.isLB _) hL (GlobalTheory.ZM.lbIso_pull_comp r ψ)
   haveI := hV.2.2.2
   obtain ⟨r₀, hr₀, -, -, hu⟩ := (PsiCoordLocal.main V D hV.2.1 0).1
   refine ⟨{
