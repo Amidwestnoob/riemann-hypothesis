@@ -131,7 +131,12 @@ theorem exists_root_step {F : Type} [Field F] [IsAlgClosed F] (T : Subring F)
     ext t
     simp [ε, AdjoinRoot.algebraMap_eq]
   have hε : IsLocalHom (ε.comp (algebraMap T (AdjoinRoot (X ^ k - C (u : T))))) := by
-    rw [hερ]; infer_instance
+    rw [hερ]
+    have : IsLocalHom (algebraMap (ResidueField T) (AlgebraicClosure (ResidueField T))) :=
+      ⟨fun x hx => isUnit_iff_ne_zero.mpr fun h => by
+        rw [h, map_zero] at hx
+        exact (isUnit_iff_ne_zero.mp hx) rfl⟩
+    exact RingHom.isLocalHom_comp (algebraMap (ResidueField T) (AlgebraicClosure (ResidueField T))) (residue T)
   obtain ⟨B, _, _, _, ψ, ρ', j', -, h2, h3, h4, h5⟩ :=
     TorsionUnram.exists_local_of_etale ε hε T.subtype Subtype.val_injective
   obtain ⟨hD, f, hf, hirr⟩ := UnramSub.range (i := j') h3
