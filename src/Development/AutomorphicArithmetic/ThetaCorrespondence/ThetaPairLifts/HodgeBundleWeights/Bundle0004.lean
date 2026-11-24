@@ -91,7 +91,7 @@ section
 section
 open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.SlopeRec GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.RefSum
 namespace GlobalTheory.UnramCM
-theorem unramified_points_of_CMDatum : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (Dw.p = 0 ∨ Dw.q = 0 ∨ (3 ≤ Dw.p + Dw.q ∧ (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0))) → (∀ p : ℕ, p.Prime → l.GoodAt p) → UnramPts Xo c (badPrimes H l) := by
+theorem unramified_points_of_CMDatum : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (Dw.p = 0 ∨ Dw.q = 0 ∨ (3 ≤ Dw.p + Dw.q ∧ (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0))) → (∀ p : ℕ, p.Prime → l.GoodAt p) → UnramPts Xo c (GlobalTheory.FlatTw.badPrimes H l) := by
   intro hP E _ _ _ H Dw l Xo c hpq hcase hg
   refine UnramPts.of_index_one fun Z w hw => ?_
   have hch : ∃ q : ℕ, q.Prime ∧ ((q : ℕ) : 𝓞 c.F) ∈ w.asIdeal := by
@@ -102,14 +102,14 @@ theorem unramified_points_of_CMDatum : _root_.GlobalTheory.CovTop.PublishedHodge
     rw [← Ideal.Quotient.eq_zero_iff_mem, map_natCast]
     exact ringChar.Nat.cast_ringChar
   obtain ⟨q, hq, hqw⟩ := hch
-  have hqB : q ∉ badPrimes H l := fun h => hw q h hqw
+  have hqB : q ∉ GlobalTheory.FlatTw.badPrimes H l := fun h => hw q h hqw
   have hM : l.M' ≠ 0 := Nat.lcm_ne_zero (by have := l.three_le; omega) l.A_pos.ne'
   have h3 : 3 ≤ l.M' := le_trans l.three_le (Nat.le_of_dvd (Nat.pos_of_ne_zero hM) (Nat.dvd_lcm_left _ _))
   have hqd : ¬ q ∣ 2 * l.M' * H.d := fun h => hqB <| by
     have hD : (discr E).natAbs ≠ 0 := Int.natAbs_ne_zero.mpr (discr_ne_zero E)
     have hne : 2 * H.d * (discr E).natAbs * l.M' ≠ 0 :=
       mul_ne_zero (mul_ne_zero (mul_ne_zero two_ne_zero H.d_prime.ne_zero) hD) hM
-    rw [badPrimes, Nat.mem_primeFactors_of_ne_zero hne]
+    rw [GlobalTheory.FlatTw.badPrimes, Nat.mem_primeFactors_of_ne_zero hne]
     refine ⟨hq, ?_⟩
     have : 2 * l.M' * H.d ∣ 2 * H.d * (discr E).natAbs * l.M' :=
       ⟨(discr E).natAbs, by ring⟩
@@ -131,7 +131,7 @@ end
 section
 open GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.SlopeRec GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.RefSum
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.cm_points_unramified : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (Dw.p = 0 ∨ Dw.q = 0 ∨ (3 ≤ Dw.p + Dw.q ∧ (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0))) → (∀ p : ℕ, p.Prime → l.GoodAt p) → UnramPts Xo c (badPrimes H l) := by
+theorem _root_.GlobalTheory.T.cm_points_unramified : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l), 1 ≤ Dw.p + Dw.q → (Dw.p = 0 ∨ Dw.q = 0 ∨ (3 ≤ Dw.p + Dw.q ∧ (∃ D₁ : Datum H, D₁.p = 1 ∧ D₁.q = 0))) → (∀ p : ℕ, p.Prime → l.GoodAt p) → UnramPts Xo c (GlobalTheory.FlatTw.badPrimes H l) := by
   first | exact @_root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum | exact _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum | (intros; apply _root_.GlobalTheory.UnramCM.unramified_points_of_CMDatum <;> assumption)
 end
 end
