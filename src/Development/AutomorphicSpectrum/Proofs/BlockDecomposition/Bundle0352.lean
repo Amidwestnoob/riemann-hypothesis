@@ -129,7 +129,7 @@ theorem exists_cong_of_mem_Km {N m : ℕ} {g : GL (Fin N) k} (hg : g ∈ Km k N 
 theorem diagPow_val (N : ℕ) (a : Fin N → ℤ) :
     (diagPow k N a).val = Matrix.diagonal (fun i => (algebraMap 𝒪[k] k (unif k)) ^ (a i)) := by
   ext i j
-  simp [diagPow, unifU, Matrix.diagonal_apply]
+  simp [Zls.diagPow, unifU, Matrix.diagonal_apply]
 
 theorem diagPow_add (N : ℕ) (a b : Fin N → ℤ) :
     diagPow k N (a + b) = diagPow k N a * diagPow k N b := by
