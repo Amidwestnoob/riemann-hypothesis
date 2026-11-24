@@ -95,7 +95,7 @@ theorem eventually_localComponent_mem (P : HeightOneSpectrum (𝓞 E)) {c : E} (
         algebraMap E (P.adicCompletion E) 1 * z := by
     intro i j
     have ht : Filter.Tendsto (fun u : GL (Fin n) (AfE F E) => u⁻¹) (𝓝 1) (𝓝 1) := by
-      simpa using (continuous_inv (G := GL (Fin n) (AfE F E))).tendsto 1
+      simpa only [inv_one] using (continuous_inv (G := GL (Fin n) (AfE F E))).tendsto 1
     exact ht.eventually (hval 1 one_ne_zero i j)
   have h1 := Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => hval c hc i j
   have h2 := Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => hval 1 one_ne_zero i j
