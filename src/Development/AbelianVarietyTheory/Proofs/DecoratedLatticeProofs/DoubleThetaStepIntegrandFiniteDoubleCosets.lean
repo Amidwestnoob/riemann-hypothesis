@@ -120,10 +120,10 @@ theorem conv_support {G : Type} [Monoid G] : ∀ {n : ℕ} (H : Fin n → Type) 
   | zero =>
     intro H φ e a ha
     refine ⟨fun i => i.elim0, fun i => i.elim0, ?_⟩
-    simpa [conv] using Finsupp.support_single_subset ha
+    simpa [GlobalTheory.QPl.conv] using Finsupp.support_single_subset ha
   | succ n ih =>
     intro H φ e a ha
-    rw [List.ofFn_succ, conv, List.foldr_cons] at ha
+    rw [List.ofFn_succ, GlobalTheory.QPl.conv, List.foldr_cons] at ha
     obtain ⟨x, hx, h2⟩ := Finset.mem_biUnion.1 (Finsupp.support_sum ha)
     obtain ⟨y, hy, h3⟩ := Finset.mem_biUnion.1 (Finsupp.support_sum h2)
     obtain rfl := Finset.mem_singleton.1 (Finsupp.support_single_subset h3)

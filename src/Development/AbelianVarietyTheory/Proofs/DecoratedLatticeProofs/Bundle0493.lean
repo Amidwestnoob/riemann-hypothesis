@@ -104,7 +104,7 @@ theorem conv_support_mem {G : Type} [Monoid G] (M : Submonoid G) (l : List (G â†
   induction l with
   | nil =>
     intro g hg
-    have : g = 1 := by simpa [conv] using Finsupp.support_single_subset hg
+    have : g = 1 := by simpa [GlobalTheory.QPl.conv] using Finsupp.support_single_subset hg
     exact this â–¸ M.one_mem
   | cons e l ih =>
     intro g hg
