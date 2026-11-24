@@ -21,6 +21,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Bundle0069
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.HV GlobalTheory.GalOfCusp UpperTheory.V.Th
 

@@ -28,6 +28,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.HeckeCl
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

@@ -3,6 +3,7 @@ module
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.Bundle0022
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 namespace UpperTheory.Gal.W2.FA
 

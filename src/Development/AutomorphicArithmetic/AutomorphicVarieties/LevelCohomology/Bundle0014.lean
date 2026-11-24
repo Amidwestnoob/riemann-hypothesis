@@ -26,6 +26,7 @@ public import Formalism.DirichletDensity.DirichletDensityProofs.Bundle0001
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.FdAdjoinRange
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.Base UpperTheory.V.Odd UpperTheory.V.ML UpperTheory.V.X
 
 private theorem fd_adjoin_range (l : ℕ) [Fact l.Prime] {ι : Type} [Finite ι] (f : ι → PadicAlgCl l) :
