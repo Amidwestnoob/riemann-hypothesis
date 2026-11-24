@@ -26,7 +26,7 @@ variable {X : Scheme.{0}} (G : Over X) [GrpObj G] {S : Type} [CommRing S] (x0 : 
 
 abbrev GS : Over (Spec (CommRingCat.of S)) := (Over.pullback x0).obj G
 
-instance : GrpObj (GS G x0) := Functor.grpObjObj
+local instance : GrpObj (GS G x0) := Functor.grpObjObj
 
 def br {A : Type} [CommRing A] [Algebra S A] (f : overAt x0 A ⟶ G) : sp (R₀ := S) A ⟶ GS G x0 :=
   (Over.mapPullbackAdj x0).homEquiv (sp (R₀ := S) A) G f
