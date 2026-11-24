@@ -46,6 +46,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0041
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubOrthProjPerpMem
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 
 noncomputable section
