@@ -124,8 +124,8 @@ def Compat (b : Base D R) (β : R →+* k) (red : (Obar p).toSubring →+* k) : 
 structure Frame (T : Theory p) (red : (Obar p).toSubring →+* k) (r : ℕ) (H : PDivGroup p k) (act : D.O → (H ⟶ H))
     (rat : ℤ → (H ⟶ H) → Prop) (d : (w : Fin G.m) → GL (Fin G.n) (KQ p (G.Fw w) r)) where
 
-  io : GlobalTheory.LKLoc.intR p (Q0 p) r →+* WittVector p k
-  io_red : ∀ (a : GlobalTheory.LKLoc.intR p (Q0 p) r) (z : (Obar p).toSubring),
+  io : GlobalTheory.LKLoc.intR p (GlobalTheory.LKRes.Q0 p) r →+* WittVector p k
+  io_red : ∀ (a : GlobalTheory.LKLoc.intR p (GlobalTheory.LKRes.Q0 p) r) (z : (Obar p).toSubring),
     (z : PadicAlgCl p) = ((a : Qr p r) : PadicAlgCl p) → WittVector.constantCoeff (io a) = red z
 
   sp : ∀ w, D.O →+* Matrix (Fin D.m) (Fin D.m) (intKQ p (G.Fw w) r)
@@ -133,7 +133,7 @@ structure Frame (T : Theory p) (red : (Obar p).toSubring →+* k) (r : ℕ) (H :
     Matrix.scalar (Fin D.m) (inclK p (G.Fw w) r (G.embW w (L.e c)))
 
   B : ∀ w, Matrix (Fin D.m) (Fin G.n) (intKQ p (G.Fw w) r) →+ T.M H
-  B_smul : ∀ w (a : GlobalTheory.LKLoc.intR p (Q0 p) r) (a' : intKQ p (G.Fw w) r), (a' : KQ p (G.Fw w) r) = inclQ p (G.Fw w) r a →
+  B_smul : ∀ w (a : GlobalTheory.LKLoc.intR p (GlobalTheory.LKRes.Q0 p) r) (a' : intKQ p (G.Fw w) r), (a' : KQ p (G.Fw w) r) = inclQ p (G.Fw w) r a →
     ∀ X, B w (a' • X) = io a • B w X
   B_act : ∀ w c X, T.map (act c) (B w X) = B w ((sp w c)ᵀ * X)
   B_span : Submodule.span (WittVector p k) (⋃ w, Set.range (B w)) =
