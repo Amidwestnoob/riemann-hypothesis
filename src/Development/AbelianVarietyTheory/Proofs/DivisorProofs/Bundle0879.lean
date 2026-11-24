@@ -132,7 +132,7 @@ theorem exists_root_step {F : Type} [Field F] [IsAlgClosed F] (T : Subring F)
     simp [ε, AdjoinRoot.algebraMap_eq]
   have hε : IsLocalHom (ε.comp (algebraMap T (AdjoinRoot (X ^ k - C (u : T))))) := by
     rw [hερ]
-    have : IsLocalHom (algebraMap (ResidueField T) (AlgebraicClosure (ResidueField T))) :=
+    haveI : IsLocalHom (algebraMap (ResidueField T) (AlgebraicClosure (ResidueField T))) :=
       ⟨fun x hx => isUnit_iff_ne_zero.mpr fun h => by
         rw [h, map_zero] at hx
         exact (isUnit_iff_ne_zero.mp hx) rfl⟩
