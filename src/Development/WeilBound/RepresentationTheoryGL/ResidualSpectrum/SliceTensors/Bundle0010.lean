@@ -406,6 +406,10 @@ theorem memL2_of_smoothing (μ : Measure (GA E N)) [μ.IsHaarMeasure] [μ.IsMulR
     _ = ν K * ∫⁻ x in stdDom (latticeGL E N), ∫⁻ y, ‖α y * chart φ x y‖ₑ ^ 2 ∂ν ∂μ :=
         lintegral_const_mul' _ _ hKν.ne
     _ = ν K * ∫⁻ y, ∫⁻ x in stdDom (latticeGL E N), ‖α y * chart φ x y‖ₑ ^ 2 ∂μ ∂ν := by
+        have : SigmaCompactSpace (GA E N) := sigmaCompactSpace_of_locallyCompact_secondCountable
+        have hμ : SigmaFinite μ := Measure.IsHaarMeasure.sigmaFinite μ
+        have : SFinite (μ.restrict (stdDom (latticeGL E N))) :=
+          @instSFiniteOfSigmaFinite _ _ _ (@Restrict.sigmaFinite _ _ μ hμ _)
         rw [lintegral_lintegral_swap hmeas]
     _ = ν K * ((∫⁻ y, ‖α y‖ₑ ^ 2 ∂ν) * I) := by
         simp_rw [hin]
