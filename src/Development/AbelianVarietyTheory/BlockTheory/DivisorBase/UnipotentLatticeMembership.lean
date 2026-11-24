@@ -38,7 +38,7 @@ abbrev TypePl : Type := Σ k : Fin 2, D.nd.PlG k
 
 instance finiteLevelGroupFintype : Fintype (G0g D.nd) :=
   haveI : ∀ k, NeZero (D.host.g k) := fun k => ⟨(D.host.g_prime k).ne_zero⟩
-  Fintype.ofFinite _
+  by classical infer_instance
 
 end Level
 
