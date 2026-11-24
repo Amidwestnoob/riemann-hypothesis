@@ -228,7 +228,7 @@ theorem exists_coord (S T : HSp D) (he : IsSplitIdem D e) :
       ⟨γ.1ᵀ, (γ⁻¹).1ᵀ, by rw [← Matrix.transpose_mul, Units.inv_mul, Matrix.transpose_one],
         by rw [← Matrix.transpose_mul, Units.mul_inv, Matrix.transpose_one]⟩
     obtain ⟨h, hh, hρ⟩ := GlobalTheory.SplitOnto.exists_suppAt_rho_eq e v π he hπ T βT γ'
-    refine ⟨h⁻¹, suppAt_of (GlobalTheory.SplitScalar.off_smul_mt_inv hh), fun m => ?_⟩
+    refine ⟨h⁻¹, _root_.GlobalTheory.SplitLinear.suppAt_of (GlobalTheory.SplitScalar.off_smul_mt_inv hh), fun m => ?_⟩
     have e1 : (mt T h).map π * βT.1 = βT.1 * γ'.1 := by
       rw [← hρ, rho_val, Matrix.mul_assoc (βT⁻¹).1, ← Matrix.mul_assoc βT.1, Units.mul_inv, Matrix.one_mul]
     rw [AddMonoidHom.comp_apply, AddMonoidHom.comp_apply, section_act hπ q1 q2, inv_inv, one]

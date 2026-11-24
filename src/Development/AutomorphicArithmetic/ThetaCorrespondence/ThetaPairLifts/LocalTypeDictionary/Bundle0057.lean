@@ -167,7 +167,7 @@ open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj Globa
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField GlobalTheory.FunObj.borelKw
   GlobalTheory.FunObj.borelSpaceKw
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-theorem archimedean_tensor_unfold_datum : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => FlipAt ch (C / 2) → DatAt ch C := by
+theorem archimedean_tensor_unfold_datum : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => _root_.GlobalTheory.ArchTens.FlipAt ch (C / 2) → DatAt ch C := by
   classical
   intro _
   refine ⟨0, fun CF _ => ⟨12, fun ε C hC => ⟨0, fun D large₂ _ _ Γ _ _ Pl0 T A Ks _ _ _ R F s ch hch _ hok hF σ Φ β hβ w x y => ?_⟩⟩⟩
@@ -189,7 +189,7 @@ end
 section
 open GlobalTheory.SumSize GlobalTheory.RowClaim GlobalTheory.ArchTens
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.archimedean_tensor_factor_unfolding : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => FlipAt ch (C / 2) → DatAt ch C := by
+theorem _root_.GlobalTheory.T.archimedean_tensor_factor_unfolding : _root_.GlobalTheory.FunPr.ThetaLocalInputs → BigC fun _ ch C _ => _root_.GlobalTheory.ArchTens.FlipAt ch (C / 2) → DatAt ch C := by
   first | exact @_root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum | exact _root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum | (intros; apply _root_.GlobalTheory.ArchTens.Unfold.archimedean_tensor_unfold_datum <;> assumption)
 end
 end

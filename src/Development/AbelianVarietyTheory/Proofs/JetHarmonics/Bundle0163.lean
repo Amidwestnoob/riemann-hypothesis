@@ -209,7 +209,7 @@ omit [CharZero C] in
 theorem inCol_eq (col : Fin 2) (f : PS C 1 dd) : inCol col (un1 f) =
     MvPowerSeries.subst (fun q : Fin 1 × Fin dd =>
       (MvPowerSeries.X (col, q.2) : MvPowerSeries (Fin 2 × Fin dd) C)) f :=
-  subst_singlePointUncurry (fun _ => MvPowerSeries.constantCoeff_X _) f
+  _root_.GlobalTheory.RowLawSquare.subst_singlePointUncurry (fun _ => MvPowerSeries.constantCoeff_X _) f
 
 omit [CharZero C] in
 theorem intS_inCol (col : Fin 2) {f : PS C 1 dd} (hf : IntS V f) : IntS V (inCol col (un1 f)) := by

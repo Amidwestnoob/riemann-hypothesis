@@ -192,7 +192,7 @@ theorem mem_delW_iff {p : ℕ} [Fact p.Prime] (lam : ι → DomWeight n) (Z : ZB
 theorem map_mem_vlIntSpan_iff_delW : ∀ {K ι : Type} [Field K] [NumberField K] [Fintype ι] (σ : K →+* ℂ) (Pl : Rows.Places K) (w : Pl.Pl) {p : ℕ} [Fact p.Prime] (φ : K →+* ℂ_[p]), (∀ x, x ∈ intW Pl w ↔ ‖φ x‖ ≤ 1) → ∀ {n : ℕ} (lam : ι → DomWeight n) (G : MvPolynomial (ι × Fin n × Fin n) K), G ∈ Formalism.L2.DIV.VV K lam → (MvPolynomial.map σ G ∈ vlIntSpan σ Pl w lam ↔ (fun y : ι → Matrix (Fin n) (Fin n) ℂ_[p] => MvPolynomial.eval (fun k : ι × Fin n × Fin n => y k.1 k.2.1 k.2.2) (MvPolynomial.map φ G)) ∈ WeylLatticeDuality.DelW p ι n (fun τ => (lam τ).natW)) := by
   classical
   intro K ι _ _ _ σ Pl w p _ φ hφ n lam G hG
-  choose r e hr using fun τ => exists_weylBasis n (lam τ).natW (natW_anti (lam τ))
+  choose r e hr using fun τ => exists_weylBasis n (lam τ).natW (_root_.Formalism.L2.Col.natW_anti (lam τ))
   set Z := zOf lam e with hZ
   have hG' : G ∈ Submodule.span K (Set.range fun i => MvPolynomial.map (Int.castRingHom K) (Z.bZ i)) := by
     rw [Z.span_F K]
@@ -367,7 +367,7 @@ theorem secC_eq_of_evC_eq_evV : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), 
       rfl
     · simp only [Pi.one_apply, Matrix.one_mul]
       rfl
-  have h2 := fnOf_injective _ _ 1 (fun _ => by simp) (stdFrC (n := B.R.N (i + 1)) (embAt B.embLL B.fields.emb)) hfun
+  have h2 := _root_.Formalism.L2.Col.fnOf_injective _ _ 1 (fun _ => by simp) (stdFrC (n := B.R.N (i + 1)) (embAt B.embLL B.fields.emb)) hfun
   exact MvPolynomial.map_injective _ B.embLL.injective h2
 
 end GlobalTheory.Mem.Col2.PolyId
