@@ -174,7 +174,7 @@ theorem hi1 (Y : FBChart C V O dd) (i : Fin dd) :
       funext k j; fin_cases k
       · exact hE1F j
       · exact eval_outer_points_last j
-    rw [e, eval_points_two]
+    rw [e, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.eval_points_two]
   have hE1D : ∀ f : PS C 2 dd, ev (n := 2) (![pt C dd 0, 0, pt C dd 1] : Fin 3 → Pt C 2 dd) (ev (n := 3) ![pt C dd 0, pt C dd 1] f) =
       ev (n := 2) ![pt C dd 0, 0] f := by
     intro f

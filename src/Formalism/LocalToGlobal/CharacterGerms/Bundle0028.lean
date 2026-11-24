@@ -254,7 +254,7 @@ theorem ev_pt_dF (Y : FBChart C V O dd) (v : Fin dd → C) (g' : Fin 2) (j : Fin
   unfold FBChart.dF
   rw [ev_sum hZ]
   refine Finset.sum_congr rfl fun i _ => ?_
-  rw [ev_mul hZ, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C, ev_ev hZ' hZ]
+  rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_mul hZ, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_C, ev_ev hZ' hZ]
   congr 2
   funext k j'
   fin_cases k
@@ -315,7 +315,7 @@ variable {C : Type} [Field C] {V : VF C} {O : Type} [CommRing O] {n d : ℕ} (K 
 
 theorem em_iter (x : O) (a : ZMod d) (k : ℕ) : V.MM (K.em (a + k) x - K.em a x ^ V.l ^ k) := by
   induction k with
-  | zero => simp [mm_zero]
+  | zero => simp [_root_.Formalism.L2.FormalSeriesBounds.GmExArith.mm_zero]
   | succ k ih =>
     have h1 := K.em_frob (a + k) x
     have h2 := mm_pow_sub (K.em_int _ x) ((K.em_int a x).pow _) ih V.l

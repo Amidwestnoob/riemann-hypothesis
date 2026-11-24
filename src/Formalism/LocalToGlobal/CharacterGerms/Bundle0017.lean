@@ -154,7 +154,7 @@ theorem formalGroupLaw_ev_x_zero (Y : FBChart C V O dd) {n : ℕ} (A : Pt C n dd
     funext k j; fin_cases k
     · exact (ev_zero hB).symm
     · exact (ev_X hB 0 j).symm
-  rw [e2, ← ev_ev hU hB, Y.B.G.unit i, ev_X hB]
+  rw [e2, ← ev_ev hU hB, Y.B.G.unit i, _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_X hB]
   rfl
 
 theorem lg_addOf (Y : FBChart C V O dd) {n : ℕ} (P Q : Pt C n dd) (hP : ∀ j, constantCoeff (P j) = 0)
@@ -162,7 +162,7 @@ theorem lg_addOf (Y : FBChart C V O dd) {n : ℕ} (P Q : Pt C n dd) (hP : ∀ j,
     ev ![addOf Y.B.G.F P Q] (Y.lg i) = ev ![P] (Y.lg i) + ev ![Q] (Y.lg i) := by
   have hPQ : Z0 (![P, Q] : Fin 2 → Pt C n dd) := constant_zero_two_points P Q hP hQ
   have h := congrArg (ev (![P, Q] : Fin 2 → Pt C n dd)) (Y.lg_add i)
-  rw [ev_add hPQ] at h
+  rw [_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add hPQ] at h
   have hA : Z0 (![addOf Y.B.G.F (pt C (n := 2) dd 0) (pt C (n := 2) dd 1)] : Fin 1 → Pt C 2 dd) :=
     z0_1 _ (fun j => const_addOf Y 0 1 j)
   rw [ev_ev hA hPQ, ev_ev (z0_1 _ (z0_pt 0)) hPQ, ev_ev (z0_1 _ (z0_pt 1)) hPQ] at h
