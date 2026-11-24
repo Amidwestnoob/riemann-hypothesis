@@ -100,7 +100,7 @@ theorem ker_data (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E)
     have : (fstHom k k _).comp ψ = e := pt_inj h₁ h₂ (by
       rw [← homAt_comp, Category.assoc, hψ, he, cp_nat g _ _ _ 0 (by simp) (fun j => by simp), cp_zero g _ _ rfl])
     exact fun x => DFunLike.congr_fun this x
-  refine ⟨κ, h₁, h₂, Δ, e, fun i => co i c, fun j => LinearMap.proj j ∘ₗ sndHom k _ ∘ₗ ψ.toLinearMap, hΔ, he,
+  refine ⟨κ, h₁, h₂, Δ, e, fun i => PositivityTheory.Xgn.JetKernelRank.co i c, fun j => LinearMap.proj j ∘ₗ sndHom k _ ∘ₗ ψ.toLinearMap, hΔ, he,
     fun i => ?_, Fintype.linearIndependent_iff.2 fun l hl => ?_, fun j x y => ?_,
     Fintype.linearIndependent_iff.2 fun l hl => ?_, fun j i => ?_⟩
   · have a₁ := N Δ (AlgHom.id k _)
@@ -138,7 +138,7 @@ theorem ker_data (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E)
       (fun m => by simpa [a', sum_tmul, smul_tmul'] using congrArg (· ⊗ₜ[k] (1 : Sq k r)) (kill u _ hu m))
       (fun m => by simpa [b', tmul_sum] using congrArg ((1 : Sq k s) ⊗ₜ[k] ·) (kill v _ hv m))
     obtain ⟨α, β, e'⟩ := second_jet_expansion (k := k) a' b' ha hb (g.B.ad a)
-    have a₃ := congrArg (fun q => (co i q).snd j) ((a₁.unique a₂).trans ((congrArg _ hU₁).trans e'))
+    have a₃ := congrArg (fun q => (PositivityTheory.Xgn.JetKernelRank.co i q).snd j) ((a₁.unique a₂).trans ((congrArg _ hU₁).trans e'))
     simp only [co_map] at a₃
     refine a₃.trans ?_
     simp [a', b', snd_sum, Algebra.TensorProduct.algebraMap_apply, Matrix.mulVec, dotProduct, Finset.mul_sum]

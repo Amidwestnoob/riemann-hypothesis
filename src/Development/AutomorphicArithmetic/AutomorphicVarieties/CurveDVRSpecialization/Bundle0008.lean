@@ -150,6 +150,7 @@ private theorem chain_nat {α : Type} {r : α → α → Prop} {p q : α} (H : R
         simp only [le_refl, if_true, show ¬ (i + 1 ≤ i) from by omega, if_false, hh]
         exact hbd
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing in
 theorem UpperTheory.V.Pr.rankThree_deformationSetup_splitting_condition :
     ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [UpperTheory.V.Fr.IsCoef l O] [Algebra ℤ_[l] O] (F : UpperTheory.V.Fr.Frame l (IsLocalRing.ResidueField O)) (T : UpperTheory.V.Pr.Setup F 3), T.SecondThirdPrimeConditionTransfer := by
   intro l _ O _ _ _ _ _ F T Φ hΦ hN4 J hJ x L p q hp hTE hch hPex P' hP' hP'q hP'TI

@@ -331,6 +331,7 @@ theorem mem_stab (he : ∀ h h', IsEmb h h' (e (h, h'))) (q : Cos σ Y) (x : UA 
   exact ⟨fun ⟨δ, h, e⟩ => e ▸ ⟨δ.2, (k δ).1 h⟩, fun h => ⟨⟨x, h.1⟩, (k _).2 h.2, rfl⟩⟩
 
 open Classical in
+set_option synthInstance.maxHeartbeats 400000 in
 theorem unfoldC (hO : OffOpen) (hU : PositivityTheory.ThKEnd.Grp.UnipUGood) {B : Base F E} {r s : ℕ} (hB : B.IsGood σ) (hY : Y.IsSkew σ B r s)
     (d0 : Y.J.det ≠ 0) [LocallyCompactSpace (UA σ Y.J)] [SecondCountableTopology (UA σ Y.J)] [T2Space (UA σ Y.J)]
     (hχ : IsHecke F E χ) (he : ∀ h h', IsEmb h h' (e (h, h'))) (ce : Continuous e) (cf : Continuous f) (hf : Law χ z f)

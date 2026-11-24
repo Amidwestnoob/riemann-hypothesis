@@ -137,6 +137,7 @@ theorem continuous_flat (hc : Continuous f) (ha : Continuous a) (h0 : ∀ x, 0 <
 def kpair (χ : Chr F E) (e : UA σ Y.J × UA σ Y.J →* G2 σ Y) (μ : Measure (UA σ Y.J)) (D : Set (UA σ Y.J)) (Ê : G2 σ Y → ℂ)
     (φ : UA σ Y.J → ℂ) : ℂ := ∫ y, Ê (e y) * detInv χ y.2 * (φ y.2 * star (φ y.1)) ∂(μ.restrict D).prod (μ.restrict D)
 
+set_option synthInstance.maxHeartbeats 400000 in
 theorem kpair_cont {B : Base F E} {r s : ℕ} (hB : B.IsGood σ) (hY : Y.IsHerm σ B r s ∨ Y.IsSkew σ B r s) (h0 : min r s = 0)
     (c : Cpt σ Y.J) (hχ : IsHecke F E χ) (he : ∀ h h', IsEmb h h' (e (h, h'))) (ce : Continuous e)
     (hK : IsCompact (K : Set (G2 σ Y))) (ha : IsHgt K a) (ca : Continuous a) (a0 : ∀ x, 0 < a x) (cf : Continuous f) (hf : Law χ z f)

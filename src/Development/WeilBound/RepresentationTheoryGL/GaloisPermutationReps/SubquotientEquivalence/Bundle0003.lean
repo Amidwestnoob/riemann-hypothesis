@@ -124,7 +124,7 @@ theorem st8a : St4 → St5 → St6 → St7 → St8a := by
       refine ⟨ψ.toLinearEquiv.injective.comp (hj P hP).1, fun g v => ?_⟩
       change ψ (j P hP _) = π₀.ρ g (ψ (j P hP v))
       rw [(hj P hP).2, equiv_apply]
-    have hcc := hasCentralChar_of_equiv ψ (hω P hP)
+    have hcc := PositivityTheory.Rg.DzCount.CentralCharacterTransfer.hasCentralChar_of_equiv ψ (hω P hP)
     refine ⟨rfl, ⟨hn, h5 k (τ P).V n (τ P).ρ (hτ P hP).2 π₀ j₀ hj₀⟩, ?_, ω P hP, hcc, hc P hP⟩
     change fixed π₀.ρ (KOne k (Fin n)) ≠ ⊥
     rw [h6 k (τ P).V n (τ P).ρ (hτ P hP).2 π₀ (ω P hP) hcc j₀ hj₀]

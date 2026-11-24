@@ -112,6 +112,7 @@ theorem ptOf_comp {S : Scheme.{0}} (t : Sp ℂ ⟶ S) {A B : Over S}
   ext
   simp [ptOf, pullback.lift_fst]
 
+set_option synthInstance.maxHeartbeats 400000 in
 theorem ptOf_injective {S : Scheme.{0}} (t : Sp ℂ ⟶ S) {A : Over S} :
     Function.Injective (ptOf t (A := A)) := by
   intro y y' h
