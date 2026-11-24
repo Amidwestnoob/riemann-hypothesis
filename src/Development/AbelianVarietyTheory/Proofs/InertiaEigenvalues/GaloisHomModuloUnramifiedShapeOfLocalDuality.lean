@@ -18,6 +18,8 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 namespace GlobalTheory.ShapeUnrTriv
 
 open ReciprocityTheory.Gal Formalism.NG Formalism.RepresentationBoundsCohomology.BR ReciprocityTheory.ChartRestriction.T2 GlobalTheory.ShapeNeg
