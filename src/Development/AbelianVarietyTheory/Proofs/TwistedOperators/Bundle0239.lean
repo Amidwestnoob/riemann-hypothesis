@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle015
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEmbeddingSkew
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
