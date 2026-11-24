@@ -33,8 +33,8 @@ def rc (m : Levi k fun _ : Fin 2 => Fin d) : ℝ :=
 
 theorem rc_pos (m : Levi k fun _ : Fin 2 => Fin d) : 0 < rc m := by
   unfold rc
-  have h0 := nabs_pos' k (Matrix.GeneralLinearGroup.det (m 0))
-  have h1 := nabs_pos' k (Matrix.GeneralLinearGroup.det (m 1))
+  have h0 := _root_.GlobalTheory.SmGL.nabs_pos' k (Matrix.GeneralLinearGroup.det (m 0))
+  have h1 := _root_.GlobalTheory.SmGL.nabs_pos' k (Matrix.GeneralLinearGroup.det (m 1))
   positivity
 
 theorem rc_mul (m m' : Levi k fun _ : Fin 2 => Fin d) : rc (m * m') = rc m * rc m' := by
@@ -50,8 +50,8 @@ theorem chi_val (s : ℝ) (m : Levi k fun _ : Fin 2 => Fin d) :
   rw [e, val_absPow_ofReal, val_absPow_ofReal, ← Complex.ofReal_mul]
   congr 1
   unfold rc
-  have h0 := (nabs_pos' k (Matrix.GeneralLinearGroup.det (m 0))).le
-  have h1 := (nabs_pos' k (Matrix.GeneralLinearGroup.det (m 1))).le
+  have h0 := (_root_.GlobalTheory.SmGL.nabs_pos' k (Matrix.GeneralLinearGroup.det (m 0))).le
+  have h1 := (_root_.GlobalTheory.SmGL.nabs_pos' k (Matrix.GeneralLinearGroup.det (m 1))).le
   rw [Real.mul_rpow (inv_nonneg.2 h0) h1, Real.inv_rpow h0, Real.rpow_neg h0]
 
 theorem rc_of_KO (q : parab k (blk2 d)) (hq : (q : GL (Fin (d + d)) k) ∈ KO k (Fin (d + d))) :

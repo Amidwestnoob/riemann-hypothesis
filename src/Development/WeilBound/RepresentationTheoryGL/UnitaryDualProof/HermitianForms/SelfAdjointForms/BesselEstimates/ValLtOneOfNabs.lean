@@ -190,7 +190,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
   have hsc : ∀ i (x y : V), B (π (σ i) x) (π (σ i) y) = ((nabs k z ^ ((i : ℝ) * (m + 1) * s) : ℝ) : ℂ) * B x y :=
     fun i x y => B_scal hB z i x y
-  have hcpos : ∀ i : ℕ, 0 < nabs k z ^ ((i : ℝ) * (m + 1) * s) := fun i => Real.rpow_pos_of_pos (nabs_pos' k z) _
+  have hcpos : ∀ i : ℕ, 0 < nabs k z ^ ((i : ℝ) * (m + 1) * s) := fun i => Real.rpow_pos_of_pos (_root_.GlobalTheory.SmGL.nabs_pos' k z) _
   have hself : ∀ i, B (u i) v = B (u i) (u i) := by
     intro i
     have e : B (a i) (π (σ i) v) = B (a i) (avg ψ h π (xi0 k m) A (π (σ i) v)) :=
