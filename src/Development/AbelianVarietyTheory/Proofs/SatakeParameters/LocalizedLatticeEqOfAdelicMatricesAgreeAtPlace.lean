@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle026
 @[expose] public section
 
 noncomputable section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.Ker Formalism.L2.DIV GlobalTheory.TwU GlobalTheory.TwV
 open Formalism.UG (bc prV)
 open Formalism.L2.PairingIndexBounds.F Formalism.MainNotions.G.KAat
