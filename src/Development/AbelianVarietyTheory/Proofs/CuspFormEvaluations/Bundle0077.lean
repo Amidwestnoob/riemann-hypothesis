@@ -48,10 +48,10 @@ theorem framedPoint_bcGenR (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   obtain ⟨x, _, _, _, _, _, s, gen⟩ := z
   dsimp only at hx pm h1 h2 h3
   subst hx
-  have hpm : pm = bcPm ψ.toRingHom y.x := by
+  have hpm : pm = ReciprocityTheory.ChartRestriction.G.PullbackSections.bcPm ψ.toRingHom y.x := by
     apply pullback.hom_ext
     · exact h2.trans (bcPm_fst _ _).symm
-    · exact h1.trans (bcPm_snd _ _).symm
+    · exact h1.trans (ReciprocityTheory.ChartRestriction.G.PullbackSections.bcPm_snd _ _).symm
   subst hpm
   exact ⟨s, h3, gen⟩
 
