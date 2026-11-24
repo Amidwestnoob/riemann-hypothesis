@@ -81,10 +81,10 @@ theorem prod_flat {G : Type} [CommGroup G] (τ : Psi H) (t : Ix Dw → G) :
       · have hn : (⟨ρ, h⟩ : Psi H) ≠ τ := fun e => h1 (congrArg Subtype.val e)
         exact (wtOf_big _ 0 ⟨ρ, h⟩ i (i.2.trans_eq (mult_big ⟨ρ, h⟩).symm)).trans (by simp [flatWt, parWt, hn])
       · have hn : (⟨conjEmb ρ, conj_mem h⟩ : Psi H) ≠ τ := fun e =>
-          h2 ((conjEmb_conjEmb ρ).symm.trans (congrArg (fun s : Psi H => conjEmb s.1) e))
+          h2 ((GlobalTheory.AllWt.conjEmb_conjEmb ρ).symm.trans (congrArg (fun s : Psi H => conjEmb s.1) e))
         have hq : (i : ℕ) < Dw.q := by simpa [Datum.mult, h] using i.2
         have e := wtOf_small (flatWt Dw τ) 0 ⟨conjEmb ρ, conj_mem h⟩ i hq
-        simp only [conjEmb_conjEmb] at e
+        simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at e
         exact e.trans (by simp [flatWt, parWt, hn])
     rw [this, zpow_zero]
 

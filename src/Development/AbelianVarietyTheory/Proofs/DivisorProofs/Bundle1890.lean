@@ -371,7 +371,7 @@ theorem wtOf_fst (τ : E →+* ℂ) (i : ℕ) (hi : i < Dw.mult τ) : (wtOf Dw 0
     simp
   · have hq : i < Dw.q := by simpa [Datum.mult, h] using hi
     have e := wtOf_small (Dw := Dw) 0 (-4) ⟨conjEmb τ, conj_mem h⟩ i hq
-    simp only [conjEmb_conjEmb] at e
+    simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at e
     rw [e]
     simp
 
