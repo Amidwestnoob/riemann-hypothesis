@@ -364,7 +364,7 @@ theorem exists_gMem_of_trait : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z
     exact ⟨r, hr⟩
   choose t ht using hpsi
   obtain ⟨wl, hwl⟩ := LBIso.trans A.isLB (pull_isLB (pull_isLB O.L.isLB _) _) (pull_isLB X₁.ρ.P.isLB _) hβL
-    (lbIso_pull_comp hψL β)
+    (GlobalTheory.ZM.lbIso_pull_comp hψL β)
   refine ⟨D.toPre.X, inferInstance, t, fun a => (E a).h, ⟨{
     cn := hV
     loc := hev

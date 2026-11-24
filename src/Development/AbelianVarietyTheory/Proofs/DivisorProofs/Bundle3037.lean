@@ -355,7 +355,7 @@ theorem gMem_baseChange : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z₁ :
   have hI : (maximalIdeal V).map j ≤ maximalIdeal V' := map_maximalIdeal_le j
   obtain ⟨D', hD, A', gA, U', hPU, hgA, htA, hrel⟩ := exists_pull_gen hAd hAd' j hj hI 𝔪.semi 𝔪.U
   have hwl : LBIso A'.L (X₁.ρ.P.L.pull (gA ≫ 𝔪.φ)) :=
-    LBIso.trans A'.isLB (pull_isLB 𝔪.A.isLB _) (pull_isLB X₁.ρ.P.isLB _) htA (lbIso_pull_comp ⟨𝔪.wl, 𝔪.wl_gen⟩ gA)
+    LBIso.trans A'.isLB (pull_isLB 𝔪.A.isLB _) (pull_isLB X₁.ρ.P.isLB _) htA (GlobalTheory.ZM.lbIso_pull_comp ⟨𝔪.wl, 𝔪.wl_gen⟩ gA)
   obtain ⟨wl, hwl⟩ := hwl
   haveI := 𝔪.loc
   have hlev : 1 ≤ X₁.S.r * X₁.S.N := Nat.one_le_iff_ne_zero.2 (Nat.mul_ne_zero (by have := X₁.S.r_pos; omega) (by have := X₁.S.N_ge; omega))
