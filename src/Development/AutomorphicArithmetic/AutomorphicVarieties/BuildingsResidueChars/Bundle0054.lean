@@ -294,7 +294,7 @@ theorem UpperTheory.galois_character_of_algebraic_hecke :
   obtain ⟨T⟩ := UpperTheory.V.Loc.tiedP l
   have H1 : Af.HasHT (Af.tw R μ) fun τ => (HT τ).map (· + -m (ι.toRingHom.comp τ)) := by
     intro w A h O _ _ _ Bw hj
-    obtain ⟨_root_.ReciprocityTheory.Gal.d1, j1⟩ := hHT w A h O Bw hj
+    obtain ⟨d1, j1⟩ := hHT w A h O Bw hj
     obtain ⟨d2, -, -, j2⟩ :=
       GlobalTheory.Published.heckeLAdicCharacterAbove_iff.1 P.aut.chA K Ω l _ _ ⟨T⟩ ι art hart κ m μ hκ hμ hL w A h O Bw hj
     have t := GlobalTheory.TwistAbove.twist_above l _ _ ⟨T⟩ K Ω _ O Bw n (R.comp (ReciprocityTheory.Gal.Dec (F := K) A).subtype)
