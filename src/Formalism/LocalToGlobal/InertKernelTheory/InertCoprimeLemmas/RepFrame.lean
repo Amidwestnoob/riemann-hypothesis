@@ -378,9 +378,7 @@ theorem cols_of_trace (D : D7) (hT : TraceTau D) {p : ℕ} [Fact p.Prime] (lam :
         refine Finset.sum_congr rfl fun τ _ => ?_
         set_option synthInstance.maxHeartbeats 100000 in
           simp only [lamB, lamBc, lamC_embT, hY, map_sum, map_mul]
-        refine Finset.sum_congr rfl fun _ _ => ?_
-        erw [lamC_embT, lamC_embT]
-        exact mul_comm _ _
+        exact Finset.sum_congr rfl fun _ _ => mul_comm _ _
     _ = lam (∑ τ : D.what₂.Tau, embQ D τ Y) := (map_sum lam _ _).symm
     _ = if i = i' then 1 else 0 := by
         rw [hq]
