@@ -286,7 +286,7 @@ theorem om_ptOf_exp {D : D7} {V W : HSp D} {S S' : D.what₂.Tau → SPar} {ψ :
     ω (g, h) (GlobalTheory.Chain.ptOf ψ θ M M' f φ) = GlobalTheory.Chain.ptOf ψ θ M M' f
       (polAct M M' x₁ x₃ (fun τ => compAt θ τ (Formalism.L2.Theta.mt V g)) (fun τ => compAt θ τ (Formalism.L2.Theta.mt W h)) φ) := by
   unfold GlobalTheory.Chain.ptOf
-  rw [cart_eq_one M hε, cart_eq_one M' hε'] at hv ⊢
+  rw [GlobalTheory.CompactHowe.LastStep.cart_eq_one M hε, GlobalTheory.CompactHowe.LastStep.cart_eq_one M' hε'] at hv ⊢
   have e1 := _root_.GlobalTheory.VacuumCharacter.vacuum_character D ψ θ V W χS χT ω hω hθ hV hW (fun _ => 1) (isCartan_one M hε) (isCartan_one M' hε')
     _ _ ha hb x₁ (fun τ => x₁ τ - V.rank) x₃ h1
     (fun τ => by push_cast; rw [h1]; ring)
