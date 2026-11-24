@@ -196,7 +196,7 @@ theorem UpperTheory.V.Ws.bl :
         (hK.flag s hs) fun i j hij => ?_
       have h1 : adj u * ((z s).map f - (r s * y.map f * r s⁻¹ - y.map f)) * u =
           f.mapMatrix (adj u₁ * (z s - (r₁ s * y * r₁ s⁻¹ - y)) * u₁) := by
-        rw [eu, er, er, adj_map]
+        rw [eu, er, er, _root_.adj_map]
         simp only [map_mul, map_sub]
         rfl
       rw [h1, RingHom.mapMatrix_apply, Matrix.map_apply, hfl s hs i j hij, map_zero]
@@ -231,7 +231,7 @@ theorem UpperTheory.V.Ws.bl :
       funext fun g => by rw [eK]; exact (twistPt _ _ _ (hBK g) (hzK g)).2.2.1]
     refine spanB _ _ _ ⟨fun g => ⟨𝔞.toK (𝔞.a c (D.th g)), ?_⟩, hBK⟩ hsp
     have h1 := congrArg (𝔞.toK.mapMatrix : M4 𝔞.V →+* M4 𝔞.K) (hK.mult g)
-    rw [map_mul, ← adj_map] at h1
+    rw [map_mul, ← _root_.adj_map] at h1
     refine h1.trans ?_
     ext i j
     by_cases h : i = j <;> simp [Matrix.one_apply, h]
