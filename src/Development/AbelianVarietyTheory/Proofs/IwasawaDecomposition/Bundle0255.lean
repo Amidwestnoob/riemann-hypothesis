@@ -65,15 +65,15 @@ theorem finAf_mem_intU_iff (a : Neutral.B1.Ideles E) : finAf F E a ∈ intU F E 
   exact mul_le_of_le_one_right' (h.2 P)
 
 theorem local_mem_suppAt (P : HeightOneSpectrum (𝓞 E)) (x : (P.adicCompletion E)ˣ) :
-    finAf F E (Neutral.B1.localIdele E P x) ∈ suppAt E (P.under (𝓞 F)) := by
+    finAf F E (GlobalTheory.Mem.Chr.localIdele E P x) ∈ suppAt E (P.under (𝓞 F)) := by
   rw [mem_suppAt_iff]
   intro Q hQ
   rw [afIso_finAf_apply]
   exact ev_local_ne (fun e => hQ (by rw [e])) x
 
 theorem local_mem_unitIdl {P : HeightOneSpectrum (𝓞 E)} {x : (P.adicCompletion E)ˣ} (hx : Formalism.L2.Host.IsUnitAt P x) :
-    Neutral.B1.localIdele E P x ∈ unitIdl E := fun Q => by
-  change Valued.v (ev Q (Neutral.B1.localIdele E P x : AdeleRing (𝓞 E) E)) = 1
+    GlobalTheory.Mem.Chr.localIdele E P x ∈ unitIdl E := fun Q => by
+  change Valued.v (ev Q (GlobalTheory.Mem.Chr.localIdele E P x : AdeleRing (𝓞 E) E)) = 1
   by_cases h : Q = P
   · subst h
     rw [ev_local_self]
@@ -116,10 +116,10 @@ theorem exists_under_eq (v : HeightOneSpectrum (𝓞 F)) : ∃ P : HeightOneSpec
 
 theorem local_mem_wildAt {P : HeightOneSpectrum (𝓞 E)} {x : (P.adicCompletion E)ˣ} (hx : Formalism.L2.Host.IsUnitAt P x)
     (h1 : Valued.v ((x : P.adicCompletion E) - 1) ≤ WithZero.exp (-1 : ℤ)) :
-    finAf F E (Neutral.B1.localIdele E P x) ∈ wildAt E (P.under (𝓞 F)) := by
+    finAf F E (GlobalTheory.Mem.Chr.localIdele E P x) ∈ wildAt E (P.under (𝓞 F)) := by
   refine ⟨?_, local_mem_suppAt P x⟩
   have hu := (finAf_mem_intU_iff (F := F) _).2 (local_mem_unitIdl hx)
-  set y := finAf F E (Neutral.B1.localIdele E P x) with hy
+  set y := finAf F E (GlobalTheory.Mem.Chr.localIdele E P x) with hy
   have hu1 : (y : AfE F E) ∈ RInt F E := hu.1
   have hu2 : ((y⁻¹ : (AfE F E)ˣ) : AfE F E) ∈ RInt F E := hu.2
   refine ⟨⟨⟨_, hu1⟩, ⟨_, hu2⟩, Subtype.ext y.mul_inv, Subtype.ext y.inv_mul⟩, ?_, Units.ext rfl⟩
@@ -169,14 +169,19 @@ theorem afIso_one_tmul (a : FiniteAdeleRing (𝓞 F) F) (k : F) (P : HeightOneSp
 
 theorem finAf_locF_mem (v : HeightOneSpectrum (𝓞 F)) (k : Fˣ) :
     finAf F E (GlobalTheory.Mem.Chr.locF F v k) ∈ (idF F E).range := by
-  refine ⟨Units.map (RingHom.snd (InfiniteAdeleRing F) (FiniteAdeleRing (𝓞 F) F)).toMonoidHom (Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k)), Units.ext ((afIso F E).injective (FiniteAdeleRing.ext _ fun P => ?_))⟩
+  refine ⟨Units.map (RingHom.snd (InfiniteAdeleRing F) (FiniteAdeleRing (𝓞 F) F)).toMonoidHom (GlobalTheory.Mem.Chr.localIdele F v (Formalism.L2.Host.atFin v k)), Units.ext ((afIso F E).injective (FiniteAdeleRing.ext _ fun P => ?_))⟩
   rw [afIso_finAf_apply, GlobalTheory.Mem.Chr.locF, Units.coe_prod, map_prod]
-  change afIso F E (1 ⊗ₜ[F] ((Neutral.B1.localIdele F v (Formalism.L2.Host.atFin v k) : Neutral.B1.Ideles F) : AdeleRing (𝓞 F) F).2) P = _
+  change afIso F E (1 ⊗ₜ[F] ((GlobalTheory.Mem.Chr.localIdele F v (Formalism.L2.Host.atFin v k) : Neutral.B1.Ideles F) : AdeleRing (𝓞 F) F).2) P = _
+  have ev_ne {Q : HeightOneSpectrum (𝓞 E)} (hQ : P ≠ Q) (x : (Q.adicCompletion E)ˣ) :
+      ev P (Neutral.B1.localIdele E Q x : AdeleRing (𝓞 E) E) = 1 :=
+    (Neutral.B1.localIdele_isSupportedAt E Q x).2 P hQ
   by_cases h : P ∈ Formalism.L2.Host.aboveF (L := E) F v
-  · rw [Finset.prod_eq_single_of_mem P h (fun Q _ hQ => ev_local_ne hQ.symm _), ev_local_self]
+  · rw [Finset.prod_eq_single_of_mem P h (fun Q _ hQ => ev_ne hQ.symm _)]
+    change _ = (Neutral.B1.localIdele E P _ : AdeleRing (𝓞 E) E).2 P
+    rw [Neutral.B1.localIdele_snd_self]
     obtain rfl := mem_above.1 h
     exact afIso_one_tmul _ (k : F) P (ev_local_self (P.under (𝓞 F)) (Formalism.L2.Host.atFin _ k))
-  · rw [Finset.prod_eq_one fun Q hQ => ev_local_ne (fun e : P = Q => h (e ▸ hQ)) _,
+  · rw [Finset.prod_eq_one fun Q hQ => ev_ne (fun e : P = Q => h (e ▸ hQ)) _,
       afIso_one_tmul _ 1 P ((ev_local_ne (fun e => h (mem_above.2 e)) (Formalism.L2.Host.atFin v k)).trans (map_one _).symm),
       map_one, map_one]
 
