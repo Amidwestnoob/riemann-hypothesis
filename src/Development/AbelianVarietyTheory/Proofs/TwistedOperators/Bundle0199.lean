@@ -261,6 +261,9 @@ theorem mk_unitMap_eq_iff (a b) : (QuotientGroup.mk (unitMap P k a) : Cls P k) =
   rw [QuotientGroup.eq, QuotientGroup.eq, ← map_inv, ← map_mul]
   rfl
 
+local instance : (GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.norms (toSR P) k).Normal :=
+  ⟨fun x hx g => by simpa only [mul_comm g x, mul_assoc, mul_inv_cancel, mul_one] using hx⟩
+
 def clsMap : GlobalTheory.IndefiniteRowSideFullHecke.SelfReciprocalLocalField.NormClass (toSR P) k →* Cls P k :=
   QuotientGroup.map _ _ (unitMap P k) fun _ h => h
 
