@@ -26,6 +26,7 @@ public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsUn
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.CocompactTensor
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta MeasureTheory NumberField IsDedekindDomain
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
