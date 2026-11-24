@@ -180,6 +180,8 @@ theorem cusp_of_fibre_vanish : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → �
     obtain ⟨c, hc, hcle⟩ := GlobalTheory.T.truncatedLeastLatticeSize_bounded_below_unipotentRadical B.I W x hW
     obtain ⟨hνfin, -, hνc, hνinv⟩ := hν
     have := hνfin
+    haveI : SigmaFinite ν := IsFiniteMeasure.toSigmaFinite ν
+    haveI : SFinite ν := inferInstance
     obtain ⟨hfc, hfinv, -⟩ := hf
     have hae : ∀ᵐ m ∂ν, m ∈ B.I.NA W := mem_ae_iff.2 hνc
     have hbound : ∀ᵐ m ∂ν, ∀ g, ‖phe B d g * f (m * x * g)‖ ≤

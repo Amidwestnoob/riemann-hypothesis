@@ -237,6 +237,7 @@ theorem nC_lt (S : Sizes) (j : ℕ) : S.nC j < S.nC (j + 1) := by
   rw [add_mul]
   omega
 
+set_option maxSynthPendingDepth 2 in
 theorem oneLine : OneLine := by
   intro ι _ _ S P hP
   choose lam hl0 hl1 hl using fun τ => GlobalTheory.T.exists_ganGrossPrasad_row_weights S (P τ) (hP τ)
@@ -253,11 +254,11 @@ theorem oneLine : OneLine := by
   have i1 := (GlobalTheory.T.outer_irr_iso_weylRep_of_pos ι _ (nR_pos S _) (psiWt P) (fun τ => lam τ 0) hl0).symm
   have i2 := ((GlobalTheory.T.outer_irr_iso_weylRep_of_pos ι _ (nC_pos S _) (baseWt P) (fun τ => (kap τ 0).dual) hk0).symm.dual.trans
     (_root_.GlobalTheory.OneFunctional.iso_outer_dual ι _ _ _)).trans (Iso.outer fun τ => iso_dual_dual (nC_pos S _) (kap τ 0))
-  let c : Representation ℂ (Gc ι S) (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nR (0 : Fin (S.m + 1))) (lam τ 0))) := (outer fun τ => irr _ (lam τ 0)).comp ((Pi.evalMonoidHom _ 0).comp (rowComp (ι := ι) S))
+  let c := (outer fun τ => irr _ (lam τ 0)).comp ((Pi.evalMonoidHom _ 0).comp (rowComp (ι := ι) S))
   let d := (outer fun τ => irr _ (kap τ 0)).comp
     ((Pi.evalMonoidHom (fun i : Fin (S.m + 1) => UG ι (S.nC i)) 0).comp (MonoidHom.snd (∀ j : Fin S.m, UG ι (S.nR j)) _))
-  have j1 : Iso (psiRep P) c := by unfold psiRep; exact i1.comp _
-  have j2 : Iso (baseRep P).dual d := (iso_dual_comp _ _).trans (i2.comp _)
+  have j1 := i1.comp ((Pi.evalMonoidHom _ 0).comp (rowComp (ι := ι) S))
+  have j2 := (iso_dual_comp _ _).trans (i2.comp ((Pi.evalMonoidHom (fun i : Fin (S.m + 1) => UG ι (S.nC i)) 0).comp (MonoidHom.snd (∀ j : Fin S.m, UG ι (S.nR j)) _)))
   let r : Gc ι S →* UG ι (S.nC S.m) :=
     (Pi.evalMonoidHom (fun i : Fin (S.m + 1) => UG ι (S.nC i)) (Fin.last _)).comp (MonoidHom.snd _ _)
   let x := outer fun τ => (irr (S.nR S.m) (lam τ (Fin.last _))).comp (embed1 S.nC_succ)
@@ -290,7 +291,8 @@ theorem oneLine : OneLine := by
         refine congrArg _ (funext fun j => ?_)
         simp only [rowFock, MonoidHom.comp_apply, e]
       · simp only [c, MonoidHom.comp_apply, e])
-  have h3 : invFun (Representation.tprod (x.comp r) (y.comp r)) = invFun (Representation.tprod x y) := by
+  have h3 : invFun (V := (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nR S.m) (lam τ (Fin.last _)))) ⊗[ℂ] (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nC S.m) (kap τ (Fin.last _))))) (Representation.tprod (x.comp r) (y.comp r)) =
+      invFun (V := (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nR S.m) (lam τ (Fin.last _)))) ⊗[ℂ] (⨂[ℂ] τ : ι, ↥(nablaSq ℂ (S.nC S.m) (kap τ (Fin.last _))))) (Representation.tprod x y) := by
     ext l
     refine ⟨fun h g z => ?_, fun h g z => h (r g) z⟩
     have := h (1, Function.update 1 (Fin.last _) g) z

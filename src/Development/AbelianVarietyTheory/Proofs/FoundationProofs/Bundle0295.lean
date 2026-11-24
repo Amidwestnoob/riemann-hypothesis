@@ -332,7 +332,7 @@ theorem exists_scalar (hc : Crv D cc δ) {e0 : VC D N N' → ℂ}
       Iop D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') (La D (tor0 D cc δ) L L') e0 := by
   have hg1 := (GlobalTheory.InducedType.induced_type D).1
   have k0 : KLat D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') :=
-    Or.inr ⟨_, _, sd_of_moves (moves_one D N), sd_of_moves (moves_one D N'), rfl⟩
+    Or.inr ⟨_, _, sd_of_moves (GlobalTheory.VacuumScalar.moves_one D N), sd_of_moves (GlobalTheory.VacuumScalar.moves_one D N'), rfl⟩
   have k1 : KLat D (tor0 D cc δ) (La D (tor0 D cc δ) L L') := Or.inr ⟨_, _, sd_of_moves hL, sd_of_moves hL', rfl⟩
   obtain ⟨-, hTh, -, -⟩ := _root_.GlobalTheory.theta_translation_intertwiner_unitary D cc δ hc N N' _ _ k0 k1 e0 he
   obtain ⟨a1, -, a3, a4, -, a6, -⟩ := lattice_facts hc he W.nz hL hL'
@@ -353,7 +353,7 @@ theorem exists_scalar (hc : Crv D cc δ) {e0 : VC D N N' → ℂ}
       Module.End.mul_apply, Wl_apply, Wl_apply, h2]
     rfl
   obtain ⟨y, hy, hyW⟩ := _root_.GlobalTheory.WeilEquiv.om_wd_moved D hg1 cc δ hc.1.1 N N' e0 W g⁻¹ g g'⁻¹ g' L _ L' _ hL hL'
-    (by rw [inv_mul_cancel]; exact moves_one D N) (by rw [inv_mul_cancel]; exact moves_one D N') x hx _ hF
+    (by rw [inv_mul_cancel]; exact GlobalTheory.VacuumScalar.moves_one D N) (by rw [inv_mul_cancel]; exact GlobalTheory.VacuumScalar.moves_one D N') x hx _ hF
   rw [← W.mul _ _ _ _ _ heT, inv_mul_cancel, inv_mul_cancel, W.one _ heT, ← Wl_apply y, a6 y hy] at hyW
   have := congrArg (W.Om g g') hyW
   rwa [← W.mul _ _ _ _ _ hWT, mul_inv_cancel, mul_inv_cancel, W.one _ hWT] at this

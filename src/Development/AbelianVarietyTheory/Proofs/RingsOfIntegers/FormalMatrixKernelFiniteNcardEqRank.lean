@@ -134,9 +134,12 @@ theorem finite_ncard_kerM : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscrete
       (fun h => hjac (hinj (by rw [h, map_zero]))) fun ω => ?_
     have h1 := GlobalTheory.FiniteQuotOmega.jacobian_smul_kaehler_eq_zero V (Fin n × Fin d) f hfin
       (Ideal.Quotient.mk I (↑U⁻¹ : PS V n d) • ω)
-    rw [hU, smul_smul, ← map_mul, _root_.mul_assoc, Units.mul_inv, _root_.mul_one] at h1
-    rw [← h1]
-    exact (algebraMap_smul (PS V n d ⧸ I) (jacM B p) ω).symm
+    let π : PS V n d →+* PS V n d ⧸ I := Ideal.Quotient.mk I
+    have key : jacM B p • ω = π (MvPowerSeries.C (jacM B p) * (↑U : PS V n d)) • π (↑U⁻¹ : PS V n d) • ω := by
+      rw [← smul_assoc, smul_eq_mul, ← map_mul, _root_.mul_assoc, Units.mul_inv, _root_.mul_one]
+      exact (algebraMap_smul (PS V n d ⧸ I) (jacM B p) ω).symm
+    rw [key, ← hU]
+    exact h1
   obtain ⟨hF, hcard, -⟩ := GlobalTheory.finite_card_trace_algHom_of_isReduced_baseChange V
     (PS V n d ⧸ I) Ω hred
   have hfI : ∀ b i, Ideal.Quotient.mk I (matV B p (fun j => pt V (n := n) d j) b i) = 0 :=

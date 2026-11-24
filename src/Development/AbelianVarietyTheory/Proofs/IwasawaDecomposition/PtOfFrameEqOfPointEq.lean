@@ -143,14 +143,14 @@ theorem exists_frame_mulVec (X : Data E r) {p : ℕ} (hr : r = p + X.p0) (ρ : (
     (hV : IsUnit V.det) (hVt : ∀ j j', V j j' ≠ 0 → (e j).1 = (e j').1) (x : Frame X.Ψ r) :
     ∃ b : Frame X.Ψ r, (∀ τ, (mat b τ).det ≠ 0) ∧
       (∀ τ (a c : Fin r), (c : ℕ) < X.p0 → ¬ (a : ℕ) < X.p0 → b τ a c = 0) ∧
-      ∀ v j, Formalism.L2.PjFree.perFr X (rmul x b) v (ρ (e j).1) (e j).2 = (V *ᵥ fun j => Formalism.L2.PjFree.perFr X x v (ρ (e j).1) (e j).2) j := by
+      ∀ v j, perFr X (rmul x b) v (ρ (e j).1) (e j).2 = (V *ᵥ fun j => perFr X x v (ρ (e j).1) (e j).2) j := by
   classical
   obtain ⟨f, hf⟩ := GlobalTheory.FrameUnif.exists_letter_equiv X.Ψ X.cmType p X.p0 r hr ρ hρ m hp hq
   obtain ⟨idx, hi⟩ : ∃ idx : Fin g ≃ X.Ψ × Fin r, ∀ j,
       (ρ (e j).1 ∈ X.Ψ ∧ (idx j).1.1 = ρ (e j).1 ∧ ((idx j).2 : ℕ) = X.p0 + (e j).2) ∨
       (ρ (e j).1 ∉ X.Ψ ∧ (idx j).1.1 = ComplexEmbedding.conjugate (ρ (e j).1) ∧
         ((idx j).2 : ℕ) = X.p0 - 1 - (e j).2 ∧ ((e j).2 : ℕ) < X.p0) := ⟨e.trans f, fun j => hf (e j)⟩
-  have hfr : ∀ (x : Frame X.Ψ r) (v : Fin r → E) j, Formalism.L2.PjFree.perFr X x v (ρ (e j).1) (e j).2 =
+  have hfr : ∀ (x : Frame X.Ψ r) (v : Fin r → E) j, perFr X x v (ρ (e j).1) (e j).2 =
       if ((idx j).2 : ℕ) < X.p0 then hermC (idx j).1.1 X.Gm (FD.col (mat x (idx j).1) (idx j).2)
         (Data.emb (idx j).1.1 v) else ((mat x (idx j).1)⁻¹ *ᵥ Data.emb (idx j).1.1 v) (idx j).2 := by
     intro x v j
@@ -160,10 +160,10 @@ theorem exists_frame_mulVec (X : Data E r) {p : ℕ} (hr : r = p + X.p0) (ρ : (
     dsimp only at h ⊢
     rcases h with ⟨a, rfl, rfl⟩ | ⟨a, rfl, rfl, d⟩
     · rw [if_neg (by omega)]
-      unfold Formalism.L2.PjFree.perFr
+      unfold perFr
       rw [dite_eq_left a, dite_eq_left hn]
     · rw [if_pos (by omega)]
-      unfold Formalism.L2.PjFree.perFr
+      unfold perFr
       rw [dite_eq_right a, dite_eq_left (show conjEmb (ρ (e j).1) ∈ X.Ψ from hτ), dite_eq_left hn]
       rfl
   have hbl : ∀ j j', V j j' ≠ 0 → (idx j).1 = (idx j').1 ∧ (((idx j).2 : ℕ) < X.p0 ↔ ((idx j').2 : ℕ) < X.p0) := by
@@ -273,7 +273,7 @@ theorem exists_adapted {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw
   exact this
 
 theorem exists_frBor {H : Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {σ : c.F →+* ℂ}
-    (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : Formalism.L2.PjFree.IsUnf U) (hσ : Formalism.L2.PjFree.GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
+    (U : Formalism.L2.PjFree.Unf Xo c σ r) (hU : IsUnf U) (hσ : GoodEmb c σ) (k : U.Comp) (x : (U.X k).dom) (y : FrPt Xo c (CAt σ))
     (h : (U.un k x).x = y.x) :
     ∃ b : Frame (U.X k).Ψ r, (∀ τ, (mat b τ).det ≠ 0) ∧
       (∀ τ (a c : Fin r), (c : ℕ) < (U.X k).p0 → ¬ (a : ℕ) < (U.X k).p0 → b τ a c = 0) ∧
