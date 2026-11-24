@@ -182,6 +182,9 @@ theorem kpair_cont {B : Base F E} {r s : ℕ} (hB : B.IsGood σ) (hY : Y.IsHerm 
     ((hi (s - s₀ + z).re (by have := (le_max_right _ _).trans_lt hs; simp; linarith)).const_mul C).mono'
       (cs.comp (ce.comp (Continuous.prodMk_right 1))).aestronglyMeasurable (.of_forall fun g => hC _)
   have i2 := i1.mul_bdd (continuous_detInv hχ).aestronglyMeasurable (.of_forall fun g => (norm_detInv χ g).le)
+  haveI : μ.IsHaarMeasure := hμ
+  haveI : SigmaFinite μ := Measure.IsHaarMeasure.sigmaFinite _
+  haveI : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
   exact ⟨u, i2, fun φ h => An.far_right _ μ (ck s u) (bc h) i2
     (unfold0 F E σ B n Y r _ hB hY h0 χ e hχ he _ _ _ cs (cE s u) sm (hf.flat ha a0 s) μ D hμ hD i1 _ h)⟩
 
