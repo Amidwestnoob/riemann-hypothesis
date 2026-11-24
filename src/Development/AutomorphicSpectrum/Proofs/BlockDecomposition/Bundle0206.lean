@@ -333,8 +333,8 @@ theorem continuous_toAb' : Continuous (toAb E Ω) := continuous_quot_mk
 
 theorem hausdorff_absolute_galois_abelianization : T2Space (Gab E Ω) := by
   haveI : Algebra.IsIntegral E Ω := (IsAlgClosure.isAlgebraic (R := E) (K := Ω)).isIntegral
-  haveI : T2Space (G E Ω) := krullTopology_t2
-  haveI : IsClosed (((commutator (G E Ω)).topologicalClosure : Subgroup (G E Ω)) : Set (G E Ω)) :=
+  haveI : T2Space (Formalism.ConjugateSelfDual.G E Ω) := krullTopology_t2
+  haveI : IsClosed (((commutator (Formalism.ConjugateSelfDual.G E Ω)).topologicalClosure : Subgroup (Formalism.ConjugateSelfDual.G E Ω)) : Set (Formalism.ConjugateSelfDual.G E Ω)) :=
     Subgroup.isClosed_topologicalClosure _
   infer_instance
 
@@ -345,9 +345,9 @@ end GlobalTheory.CompanionTheory.InertOpen
 namespace GlobalTheory.CompanionTheory.InertOpen
 
 theorem exists_openSubgroup_ine_art_units : ∀ {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime] (art : Ideles E →* Gab E Ω), IsGlobalArtin art →
-    ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), IsPlaceOver A w →
+    ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), Formalism.ConjugateSelfDual.IsPlaceOver A w →
     ∀ (U : Subgroup (w.adicCompletion E)ˣ), IsOpen (U : Set (w.adicCompletion E)ˣ) → (∀ x ∈ U, IsUnitAt w x) →
-    ∃ V : Subgroup (G E Ω), IsOpen (V : Set (G E Ω)) ∧
+    ∃ V : Subgroup (Formalism.ConjugateSelfDual.G E Ω), IsOpen (V : Set (Formalism.ConjugateSelfDual.G E Ω)) ∧
       ∀ σ ∈ V, σ ∈ Ine (F := E) A → ∃ x ∈ U, art (localIdele E w x) = toAb E Ω σ := by
   intro E Ω _ _ _ _ _ l _ art hart w A hA U hUo _
   haveI := hausdorff_absolute_galois_abelianization (E := E) (Ω := Ω)
@@ -369,7 +369,7 @@ theorem exists_openSubgroup_ine_art_units : ∀ {E Ω : Type} [Field E] [NumberF
   have h1 : (1 : Gab E Ω) ∉ C := by
     rintro ⟨y, ⟨-, hyK⟩, hy⟩
     exact hyK ⟨1, U.one_mem, by rw [map_one, hy]⟩
-  have hW : (toAb E Ω) ⁻¹' Cᶜ ∈ nhds (1 : G E Ω) :=
+  have hW : (toAb E Ω) ⁻¹' Cᶜ ∈ nhds (1 : Formalism.ConjugateSelfDual.G E Ω) :=
     (hC.isOpen_compl.preimage continuous_toAb').mem_nhds (by simpa using h1)
   obtain ⟨M, hM, hMs⟩ := (krullTopology_mem_nhds_one_iff E Ω _).1 hW
   refine ⟨M.fixingSubgroup, M.fixingSubgroup_isOpen, fun σ hσV hσI => ?_⟩
