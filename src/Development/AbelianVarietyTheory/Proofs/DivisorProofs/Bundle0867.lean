@@ -141,7 +141,7 @@ theorem star_eq_conj (D : D7) (x : D.host.E) : star x = D.host.conj x := by
   show D.host.φ₀ (IsCMField.complexConj D.host.E x) = _
   rw [NumberField.IsCMField.complexEmbedding_complexConj, Formalism.HC.HostAx.conjE_apply]
 
-theorem not_isConjPl : ∀ {D : D7} (Pb : Formalism.L2.Host.PiBar D.host) (Pg : Finset (Pl D.host.E)), (∀ PP, PP ∈ Pg ↔ ∃ k, Pb.Div k PP) → ∀ PP ∈ Pg, ∀ PP' ∈ Pg, ¬ Formalism.IndefR.Lev.IsConjPl PP PP' := by
+theorem not_isConjPl : ∀ {D : D7} (Pb : Formalism.L2.Host.PiBar D.host) (Pg : Finset (Pl D.host.E)), (∀ PP, PP ∈ Pg ↔ ∃ k, Pb.Div k PP) → ∀ PP ∈ Pg, ∀ PP' ∈ Pg, ¬ _root_.Formalism.IndefR.Lev.IsConjPl PP PP' := by
   intro D Pb Pg hPg PP hP PP' hP' hc
   obtain ⟨k, hk⟩ := (hPg PP).1 hP
   obtain ⟨k', hk'⟩ := (hPg PP').1 hP'
