@@ -347,7 +347,7 @@ theorem exists_pull_eq_smul {R : Type} [CommRing R] [IsNoetherianRing R] {Y : Sc
   obtain ⟨E, hE⟩ := P.sec K g Y₀ π f₀ h
   obtain ⟨v₀, hv₀⟩ := E.surjective (SecOnR.topEquiv f₀ _ x₀)
   obtain ⟨z, hz, -⟩ := hu K g hr.isUnit v₀.1 v₀.2
-  obtain ⟨c, w, hc, hw⟩ := exists_common_denominator g hg z
+  obtain ⟨c, w, hc, hw⟩ := GlobalTheory.AbLaw.FibreLift.exists_common_denominator g hg z
   have hv : g ∘ B.mulVec w = g c • v₀.1 := by
     rw [← hz, ← Matrix.mulVec_smul, ← hw]
     exact funext fun j => RingHom.map_mulVec g _ _ j
