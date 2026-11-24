@@ -66,7 +66,7 @@ theorem exists_metric [Module.Finite (𝓞 L) V] [Module.Projective (𝓞 L) V]
       h σ (e σ ((1 : ComplexAt σ) ⊗ₜ x)) (e σ ((1 : ComplexAt σ) ⊗ₜ y)) := by
   have tm : ∀ (σ : L →+* ℂ) (z : ComplexAt σ) (x : V), (z ⊗ₜ[𝓞 L] x : Fibre σ V) =
       ((ofComplex σ).symm z : ℂ) • ((1 : ComplexAt σ) ⊗ₜ[𝓞 L] x) := fun σ z x => by
-    rw [TensorProduct.smul_tmul', complex_smul_def]
+    rw [TensorProduct.smul_tmul', GroundTheory.Heights₂.Heights.ComplexAt.complex_smul_def]
     simp
   have cm : ∀ (σ : L →+* ℂ) (x : V), conjMap σ V ((1 : ComplexAt σ) ⊗ₜ[𝓞 L] x) =
       (1 : ComplexAt (conjugate σ)) ⊗ₜ[𝓞 L] x := fun σ x => by
@@ -117,7 +117,7 @@ theorem exists_fibre_equiv {S : Scheme.{0}} (G : Over S) [GrpObj G] [Smooth G.ho
     induction t using TensorProduct.induction_on with
     | zero => simp
     | tmul z a =>
-      rw [TensorProduct.smul_tmul', he, he, complex_smul_def, map_mul, mul_smul]
+      rw [TensorProduct.smul_tmul', he, he, GroundTheory.Heights₂.Heights.ComplexAt.complex_smul_def, map_mul, mul_smul]
       simp
     | add a b ha hb' => rw [smul_add, map_add (f := _), map_add (f := _), ha, hb', smul_add]
   · exact (he 1 a).trans (by simp)

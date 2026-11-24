@@ -43,7 +43,7 @@ open GroundTheory.Heights₂.Heights.ComplexAt
 theorem tmul_eq_smul_one {K : Type} [Field K] (σ : K →+* ℂ) {M : Type} [AddCommGroup M] [Module (𝓞 K) M]
     (z : ComplexAt σ) (m : M) :
     (z ⊗ₜ[𝓞 K] m : Fibre σ M) = ((ofComplex σ).symm z : ℂ) • ((1 : ComplexAt σ) ⊗ₜ[𝓞 K] m) := by
-  rw [smul_tmul', complex_smul_def, AlgEquiv.apply_symm_apply, _root_.mul_one]
+  rw [smul_tmul', GroundTheory.Heights₂.Heights.ComplexAt.complex_smul_def, AlgEquiv.apply_symm_apply, _root_.mul_one]
 
 theorem exists_isometric_ext {K L' : Type} [Field K] [NumberField K] [Field L'] [NumberField L'] [Algebra K L']
     (B : HermitianBundle.{0} K) (B' : HermitianBundle.{0} L')
