@@ -188,7 +188,7 @@ theorem exists_mixChart_linB : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Glo
   have hX : ∀ u, (coX (Bs.τ v) (Γ.V'.bas v) (Γ.W.bas v) u).map jj =
       (Bp⁻¹).val * u.map (fun a => cpt w (toEAf D a)) * ((C⁻¹).val)ᵀ := fun u => by
     unfold coX
-    rw [map_mul_equiv, map_mul_equiv, Matrix.transpose_map, Matrix.map_map]
+    rw [_root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, Matrix.transpose_map, Matrix.map_map]
     have : u.map (⇑jj ∘ ⇑(piW (Bs.τ v))) = u.map (fun a => cpt w (toEAf D a)) := Matrix.ext fun _ _ => hjj _
     rw [this, hBp, hC]
     rfl

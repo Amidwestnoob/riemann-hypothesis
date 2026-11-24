@@ -134,7 +134,7 @@ theorem exists_bridgeD : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     have key : Jm (P w) (Q w) * (Jm (P w) (Q w) * c w * Jm (R w) (S w)) * Jm (R w) (S w) = c w := by
       calc _ = (Jm (P w) (Q w) * Jm (P w) (Q w)) * c w * (Jm (R w) (S w) * Jm (R w) (S w)) := by
             simp only [Matrix.mul_assoc]
-        _ = c w := by rw [jm_mul_self, jm_mul_self, Matrix.one_mul, Matrix.mul_one]
+        _ = c w := by rw [_root_.GlobalTheory.VacBridge.jm_mul_self, _root_.GlobalTheory.VacBridge.jm_mul_self, Matrix.one_mul, Matrix.mul_one]
     rw [Matrix.mul_smul, Matrix.smul_mul, smul_smul, key, Complex.I_mul_I, neg_one_smul]
   have hLP : ∀ c, L (Pm c) = Pm (L c) := by
     intro c

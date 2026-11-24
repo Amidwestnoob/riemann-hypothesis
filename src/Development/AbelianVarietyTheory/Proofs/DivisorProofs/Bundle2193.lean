@@ -187,7 +187,7 @@ theorem two_mul_rank_le_nCol (Dw : Datum H) : 2 * (Dw.p + Dw.q) ≤ nCol Dw := b
     rwa [Fintype.card_fin] at this
   have h1 := hle τ
   have h2 := hle (ReciprocityTheory.ChartRestriction.G.Geo.Tor.conjEmb τ)
-  unfold nCol
+  unfold _root_.GlobalTheory.RefSum.nCol
   omega
 
 end Cols

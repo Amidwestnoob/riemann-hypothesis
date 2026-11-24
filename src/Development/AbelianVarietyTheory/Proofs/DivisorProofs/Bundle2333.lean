@@ -445,7 +445,7 @@ theorem Dat.diagSum_coc : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj 
     rw [Nat.cast_pow, ← map_natCast (algebraMap R (G.A N)), ← map_pow, hN, map_zero]
   rw [diagSum, LinearMap.sum_apply]
   simp only [AlgHom.toLinearMap_apply, hterm]
-  rw [chi, Finset.sum_sub_distrib, Finset.sum_sub_distrib, Finset.sum_range_sub (fun j ↦ K j), Finset.sum_const,
+  rw [_root_.GlobalTheory.PtExt.chi, Finset.sum_sub_distrib, Finset.sum_sub_distrib, Finset.sum_range_sub (fun j ↦ K j), Finset.sum_const,
     Finset.card_range, nsmul_eq_mul, hz, zero_mul, sub_zero]
   have : K (p ^ N) = K 0 := by simp only [K, hq]
   rw [this, sub_self, sub_zero]

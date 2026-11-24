@@ -73,7 +73,7 @@ theorem exists_coef_any {BS : D.what₂.Tau → Matrix (Fin S.rank) (Fin S.rank)
     · norm_num
   have hom1 : ∀ W a c b d, omDir S T τ (W * unitMap (BS τ) (BT τ) a c) τ (unitMap (BS τ) (BT τ) b d) =
       if c = d then o W b a else 0 := fun W a c b d => by
-    rw [omDir, if_pos rfl, trace_unitMap (hB τ)]
+    rw [omDir, if_pos rfl, _root_.GlobalTheory.FockKill.trace_unitMap (hB τ)]
     split_ifs <;> simp [o]
   have hJ : ∀ (W : Matrix (Fin T.rank) (Fin T.rank) ℂ) (u : Matrix (Fin T.rank) (Fin S.rank) ℂ),
       cplxO 1 (cart M τ) (W * u) = Complex.I • (cart M τ * W) * u := fun W u => by

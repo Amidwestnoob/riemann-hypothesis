@@ -268,7 +268,7 @@ theorem torsion_from_closure : ∀ (R : Type) [CommRing R] [IsDomain R] (A : Pol
     have : Surjective (spMap em.toRingHom) := ⟨fun y => ⟨default, Subsingleton.elim _ _⟩⟩
     have : Epi (spMap em.toRingHom) := Flat.epi_of_flat_of_surjective _
     apply (cancel_epi (spMap em.toRingHom)).1
-    rw [← Category.assoc, hw, Over.w t0, hs, ← spMap_comp_spMap]
+    rw [← Category.assoc, hw, Over.w t0, hs, ← _root_.GlobalTheory.spMap_comp_spMap]
     rfl
   let w1 : TFK (R := R) (Kb R) ⟶ torsion A.A N := Over.homMk w hw2
   refine ⟨w1 ≫ torsion.ι A.A N, ?_, ?_⟩

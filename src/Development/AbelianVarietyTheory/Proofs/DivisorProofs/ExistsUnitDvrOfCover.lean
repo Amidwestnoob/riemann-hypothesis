@@ -237,7 +237,7 @@ theorem exists_cmp_ext {X P : Scheme.{0}} [IsLocallyNoetherian X] [GlobalTheory.
     have hc' : (s ≫ J) z ∈ L.U c.1 ⊓ M.U c.2 := hc
     have hd' : (s ≫ J) z ∈ L.U d.1 ⊓ M.U d.2 := hd
     have hU : (s ≫ J) z ∈ p ⁻¹ᵁ U := hJU _
-    rw [gm_res_pullU s J z (hle c) hc, gm_res_pullU s J z (hle d) hd]
+    rw [_root_.GlobalTheory.GenericExtend.gm_res_pullU s J z (hle c) hc, _root_.GlobalTheory.GenericExtend.gm_res_pullU s J z (hle d) hd]
     refine Eq.trans ?_ (congrArg (· * _) (gm_div M L (s ≫ J) z c d ⟨hc', hd'⟩)).symm
     have k := congrArg (Units.map ((s ≫ J).stalkMap z).hom.toMonoidHom)
       (hu _ hU c.1 d.1 c.2 d.2 hc'.1 hd'.1 hc'.2 hd'.2)
@@ -259,7 +259,7 @@ theorem exists_cmp_ext {X P : Scheme.{0}} [IsLocallyNoetherian X] [GlobalTheory.
         rw [← Scheme.Hom.comp_apply, ← Scheme.Hom.comp_apply, Category.assoc, w, Category.assoc]
       have hU : e ((κ ≫ U.ι) z) ∈ p ⁻¹ᵁ U := hw ▸ hJU _
       have hm : e ((κ ≫ U.ι) z) ∈ p ⁻¹ᵁ U ⊓ (L.U c.1 ⊓ M.U c.2) := ⟨hU, hc'⟩
-      rw [gm_res_pullU (κ ≫ eU) J z (hle c) (show J ((κ ≫ eU) z) ∈ (LB.div L M).U c by rw [hw]; exact hc'), Category.assoc, w, ← Category.assoc,
+      rw [_root_.GlobalTheory.GenericExtend.gm_res_pullU (κ ≫ eU) J z (hle c) (show J ((κ ≫ eU) z) ∈ (LB.div L M).U c by rw [hw]; exact hc'), Category.assoc, w, ← Category.assoc,
         ← gm_pull (κ ≫ U.ι) e z _ hm, map_mul, map_inv, gm_res _ z (l₁ c) hc', gm_res _ z (l₂ c) hc',
         germ_pull_eq_stalkMap _ z _ hm, germ_pull_eq_stalkMap _ z _ (l₁ c hc'),
         germ_pull_eq_stalkMap _ z _ (l₂ c hc'), ← hn _ c.1 c.2 hU hc'.1 hc'.2, map_mul, mul_inv_cancel_right,
