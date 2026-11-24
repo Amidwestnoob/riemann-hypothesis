@@ -456,7 +456,7 @@ theorem pt_of_vec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
     rw [hX, aug_mk]
     simp
   refine ⟨?_, fun h => ?_, fun h => ?_⟩
-  · rw [← Category.assoc, homAt_comp]
+  · rw [← Category.assoc, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp]
     exact x_zero g _ h0
   · obtain ⟨ψ, h1, h2⟩ := pow_coord g p (by omega) (PositivityTheory.HtPt.Cb.mulp_V k p d _ g.B) χ
     rw [h1]
@@ -472,7 +472,7 @@ theorem pt_of_vec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
     set_option synthInstance.maxHeartbeats 100000 in
       rw [h2, Finset.sum_congr rfl fun j _ => this j, ← Finset.sum_mul, ← map_sum, hq, map_zero, zero_mul]
   · obtain ⟨χ', a1, a2⟩ := exists_low hp χ h0
-    rw [toFirst_eq, ← Category.assoc, homAt_comp, ← a2, ← homAt_comp, Category.assoc, x_trTo] at h
+    rw [toFirst_eq, ← Category.assoc, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, ← a2, ← Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, Category.assoc, x_trTo] at h
     obtain ⟨χ₀, -, hu⟩ := (PositivityTheory.HtPt.Cd.germ_univ E H hstar X0 t k x d g).2 Unit 1 1 (MonObj.comp_one _)
     have e1 := hu χ' ⟨a1, h.symm⟩
     have e2 := hu ((Algebra.ofId k _).comp jetAug) ⟨fun q => by
@@ -490,10 +490,10 @@ theorem pow_first : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
   obtain ⟨χ₂, ⟨b0, rfl⟩, -⟩ := (PositivityTheory.HtPt.Cd.germ_univ E H hstar X0 t k x d g).2 Unit p y₂ hy₂
   obtain ⟨χ', a1, a2⟩ := exists_low hp χ a0
   obtain ⟨χ₂', b1, b2⟩ := exists_low hp χ₂ b0
-  rw [toFirst_eq, ← Category.assoc, ← Category.assoc, homAt_comp, homAt_comp, ← a2, ← b2, ← homAt_comp, ← homAt_comp,
+  rw [toFirst_eq, ← Category.assoc, ← Category.assoc, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, ← a2, ← b2, ← Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, ← Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp,
     Category.assoc, Category.assoc, x_trTo] at h
   obtain ⟨χ₀, -, hu⟩ := (PositivityTheory.HtPt.Cd.germ_univ E H hstar X0 t k x d g).2 Unit 1 (homAt x χ' ≫ g.x 1) (by
-    rw [← Category.assoc, homAt_comp]
+    rw [← Category.assoc, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp]
     exact x_zero g _ a1)
   have e : χ' = χ₂' := (hu χ' ⟨a1, rfl⟩).trans (hu χ₂' ⟨b1, h⟩).symm
   have e' : (trTo k Unit hp).comp χ = (trTo k Unit hp).comp χ₂ := by rw [← a2, ← b2, e]
@@ -597,7 +597,7 @@ theorem torus_tan : ∀ (k : Type) [Field k] (p : ℕ) [Fact p.Prime] [CharP k p
   refine ⟨y, ?_, e, fun h => ?_⟩
   · have : (jetAug : Jet k Unit p →ₐ[k] k) = (jetAug : Jet k Unit 1 →ₐ[k] k).comp (toFirst k p hp) :=
       jet_hom_ext fun _ => rfl
-    rw [this, ← homAt_comp, Category.assoc, e, h₁]
+    rw [this, ← Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, Category.assoc, e, h₁]
   · refine charVal_ext fun χ => ?_
     rw [← e, charVal_comp (toFirst k p hp : Jet k Unit p →+* Jet k Unit 1) y _ rfl, charVal_one]
     have hpw : ∀ n : ℕ, charVal (y ^ n) χ = charVal y χ ^ n := fun n => by
@@ -1276,7 +1276,7 @@ variable {X0 : Scheme.{0}} {G : Over X0} [GrpObj G] {k : Type} [Field k] {x : Sp
   {φ : G'.left ⟶ G.left} (h : IsGrpPullback G' G x φ)
 
 def fibPt (A : Type) [CommRing A] [Algebra k A] : (overAt (𝟙 (Sp k)) A ⟶ G') →* (overAt x A ⟶ G) :=
-  (preHom (Over.homMk (𝟙 _) (by simp) : overAt x A ⟶ Over.mk ((overAt (𝟙 (Sp k)) A).hom ≫ x))).comp (pushHom h _)
+  (ReciprocityTheory.ChartRestriction.G.Geo.Tor.preHom (Over.homMk (𝟙 _) (by simp) : overAt x A ⟶ Over.mk ((overAt (𝟙 (Sp k)) A).hom ≫ x))).comp (pushHom h _)
 
 theorem fibPt_left {A : Type} [CommRing A] [Algebra k A] (y : overAt (𝟙 (Sp k)) A ⟶ G') :
     (fibPt h A y).left = y.left ≫ φ := Category.id_comp _
@@ -1330,7 +1330,7 @@ theorem geompf_tan : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
     jet_hom_ext fun _ => rfl
   have hy' : homAt (𝟙 (Sp k)) (jetAug : Jet k Unit 1 →ₐ[k] k) ≫ homAt (𝟙 (Sp k)) (toFirst k p hp) ≫ y' = 1 := by
     apply fibPt_inj h
-    rw [← Category.assoc, homAt_comp, ← ha, ← fibPt_nat, hy, map_one]
+    rw [← Category.assoc, Formalism.MainNotions.ModuliIntegralCharts.H1.GermD.homAt_comp, ← ha, ← fibPt_nat, hy, map_one]
   have hc1 : ∃ c : LB.Gen (Out.translDiff t.G t.PP.L (fibPt h _ (homAt (𝟙 (Sp k)) (toFirst k p hp) ≫ y'))),
       c.IsGen := by
     rw [← fibPt_nat]
