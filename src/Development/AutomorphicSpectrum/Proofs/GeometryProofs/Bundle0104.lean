@@ -145,7 +145,7 @@ namespace GlobalTheory.CompanionTheory.Ar
 
 theorem labels_all_once : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (l : Geo.Tor.Level H)
     (c : Coeff l), Function.Injective (labelEmb (H := H) c) ∧
-      Nat.card (CMType H ⊕ CMType H) = Module.finrank ℚ E := by
+      Nat.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E := by
   intro E _ _ _ H l c
   classical
   have hre : H.rt0.re = 0 := by
@@ -188,9 +188,9 @@ theorem labels_all_once : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     · rw [h, hconj0]
     · rw [h, map_neg, hconj0]
   refine ⟨?_, ?_⟩
-  · have k1 : ∀ (τ : CMType H) (x : 𝓞 E), ((labelEmb c (Sum.inl τ) x : ℂ)) = τ.1 (x : E) :=
+  · have k1 : ∀ (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (x : 𝓞 E), ((labelEmb c (Sum.inl τ) x : ℂ)) = τ.1 (x : E) :=
       fun _ _ => rfl
-    have k2 : ∀ (τ : CMType H) (x : 𝓞 E),
+    have k2 : ∀ (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (x : 𝓞 E),
         ((labelEmb c (Sum.inr τ) x : ℂ)) = τ.1 ((H.bar x : 𝓞 E) : E) := fun _ _ => rfl
     have ext' : ∀ τ τ' : E →+* ℂ, (∀ x : 𝓞 E, τ (x : E) = τ' (x : E)) → τ = τ' := by
       intro τ τ' h
@@ -223,7 +223,7 @@ theorem labels_all_once : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
             simp [ComplexEmbedding.conjugate_coe_eq])
         right_inv := fun τ => Subtype.ext (RingHom.ext fun x => by
             simp [ComplexEmbedding.conjugate_coe_eq]) }
-    have hc : Nat.card (CMType H ⊕ CMType H) = Nat.card (E →+* ℂ) :=
+    have hc : Nat.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Nat.card (E →+* ℂ) :=
       Nat.card_congr ((Equiv.sumCongr (Equiv.refl _) e).trans (Equiv.sumCompl _))
     rw [hc, Nat.card_eq_fintype_card, NumberField.Embeddings.card E ℂ]
 

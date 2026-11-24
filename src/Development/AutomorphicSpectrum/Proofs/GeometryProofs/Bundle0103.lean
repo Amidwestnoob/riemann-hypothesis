@@ -235,7 +235,7 @@ open HodgeChar0
 theorem ht_eq_dR_of_not_inFibre : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H)
     (Xo : Moduli D l) (c : Coeff l) (O₀ : Type) [CommRing O₀] (β : O₀ →+* c.F) (Y : Model Xo c β) (S : Finset ℕ)
     (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y)
-    (p : ℕ), p ∈ S → ∀ (s : CMType H ⊕ CMType H) (q : Cpt 𝔐.ξ), (∀ p' : ℕ, p'.Prime → ¬ InFibre 𝔐.ξ p' q) →
+    (p : ℕ), p ∈ S → ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (q : Cpt 𝔐.ξ), (∀ p' : ℕ, p'.Prime → ¬ InFibre 𝔐.ξ p' q) →
       𝔐.HT p s q = 𝔐.dR s q := by
   intro E _ _ _ H D l Xo c O₀ _ β Y S Ω _ K _ J y 𝔐 p hp s q hq
   classical
@@ -245,10 +245,10 @@ theorem ht_eq_dR_of_not_inFibre : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     intro s s' h
     refine HodgeBasic.labelEmb_injective c (RingHom.ext fun a => hcst ?_)
     exact congrArg (fun m : 𝓞 E →+* Ω => m a) h
-  letI : Fintype (CMType H) := Fintype.ofFinite _
-  have hcard : Fintype.card (CMType H ⊕ CMType H) = Module.finrank ℚ E := by
+  letI : Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) := Fintype.ofFinite _
+  have hcard : Fintype.card (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) = Module.finrank ℚ E := by
     rw [Fintype.card_of_bijective (HodgeBasic.labelHom_bijective H), Embeddings.card]
-  have hint := _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (CMType H ⊕ CMType H) 𝔐.emb hinj hcard
+  have hint := _root_.GlobalTheory.CompanionTheory.Ar.isInternal_eigSp Ω 𝔐.Li E 𝔐.ρ (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) 𝔐.emb hinj hcard
   have htop : (⨆ s, 𝔐.Vgen s) = ⊤ := hint.submodule_iSup_eq_top
   have hind : iSupIndep 𝔐.Vgen := hint.submodule_iSupIndep
   have hreg : ∀ s a (q : Cpt 𝔐.ξ), 𝔐.emb s a ∈ regAt 𝔐.ξ q := fun s a q =>
@@ -257,7 +257,7 @@ theorem ht_eq_dR_of_not_inFibre : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   have hnat := unitAt_natCast (q := q) hq
   have hV : ∀ s, 𝔐.V s q = 𝔐.dR s q := fun s =>
     Lat.patch_of_not S _ _ fun p hp => hq p (𝔐.S_prime p hp)
-  have hint' : ∀ (s : CMType H ⊕ CMType H) a, IsIntegral ℤ (𝔐.emb s a) := fun s a =>
+  have hint' : ∀ (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) a, IsIntegral ℤ (𝔐.emb s a) := fun s a =>
     (Algebra.IsIntegral.isIntegral (R := ℤ) a).map (𝔐.emb s).toIntAlgHom
   have hsep : ∀ s t, s ≠ t → ∃ a, 𝔐.emb s a ≠ 𝔐.emb t a ∧ (𝔐.emb s a - 𝔐.emb t a)⁻¹ ∈ regAt 𝔐.ξ q := by
     intro s t hst

@@ -212,7 +212,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 theorem isLieEigen_of_gen (𝔐 : HodgeCpt Y S y) {L : Type} [Field L] [NumberField L] (z : Sp (𝓞 L) ⟶ 𝔐.X)
     (hp : genPt 𝔐.ξ ⤳ centre (spMap (algebraMap (𝓞 L) L) ≫ z))
     (g₀ : c.F →+* 𝔐.X.presheaf.stalk (centre (spMap (algebraMap (𝓞 L) L) ≫ z)))
-    (hg : (genMap 𝔐.ξ ⟨_, hp⟩).comp g₀ = 𝔐.cst) (s : CMType H ⊕ CMType H) (U : Submodule Ω 𝔐.Li) (hU : U ≤ 𝔐.Vgen s)
+    (hg : (genMap 𝔐.ξ ⟨_, hp⟩).comp g₀ = 𝔐.cst) (s : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (U : Submodule Ω 𝔐.Li) (hU : U ≤ 𝔐.Vgen s)
     (σ : L →+* ℂ) {V : Type} [AddCommGroup V] [Module (𝓞 L) V] (MB : LieModel 𝔐.t.G z V) (x : V)
     (hx : x ∈ subGens 𝔐.M U z MB)
     (w : epsAt (spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ z) ⟶ 𝔐.t.G)
@@ -244,13 +244,13 @@ theorem isLieEigen_of_gen (𝔐 : HodgeCpt Y S y) {L : Type} [Field L] [NumberFi
 
 end Eigen
 
-theorem orthAt_subFib : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (h : LieMetric 𝔐.M y), h.Orth 𝔐.t.act → ∀ (L : Type) [Field L] [NumberField L] (z : Sp (𝓞 L) ⟶ 𝔐.X) (B : GroundTheory.Heights₂.Heights.HermitianBundle.{0} L) (MB : LieModel 𝔐.t.G z B.carrier), IsFibre (fun z v w c => c = h.ip z v w) z B MB → ∀ (s s' : CMType H ⊕ CMType H), s ≠ s' → ∀ U U' : Submodule Ω 𝔐.Li, U ≤ 𝔐.Vgen s → U' ≤ 𝔐.Vgen s' → OrthAt B (FlagFib.subFib 𝔐.M U z MB) (FlagFib.subFib 𝔐.M U' z MB) := by
+theorem orthAt_subFib : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (h : LieMetric 𝔐.M y), h.Orth 𝔐.t.act → ∀ (L : Type) [Field L] [NumberField L] (z : Sp (𝓞 L) ⟶ 𝔐.X) (B : GroundTheory.Heights₂.Heights.HermitianBundle.{0} L) (MB : LieModel 𝔐.t.G z B.carrier), IsFibre (fun z v w c => c = h.ip z v w) z B MB → ∀ (s s' : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H), s ≠ s' → ∀ U U' : Submodule Ω 𝔐.Li, U ≤ 𝔐.Vgen s → U' ≤ 𝔐.Vgen s' → OrthAt B (FlagFib.subFib 𝔐.M U z MB) (FlagFib.subFib 𝔐.M U' z MB) := by
   intro E _ _ _ H D l Xo c Y S Ω _ K _ J y 𝔐 h hO L _ _ z B MB hF s s' hss U U' hU hU' σ x hx x' hx'
   have hp : genPt 𝔐.ξ ⤳ centre (spMap (algebraMap (𝓞 L) L) ≫ z) := 𝔐.all _
   obtain ⟨g₀, hg⟩ := GlobalTheory.CompanionTheory.Ar.Flat.KonstReg.exists_const_stalk E H D l Xo c Y S Ω K J y 𝔐 ⟨_, hp⟩
     (fun n hn => isUnit_natCast_stalk 𝔐.X L _ n hn)
   classical
-  let : Fintype (CMType H) := Fintype.ofFinite _
+  let : Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) := Fintype.ofFinite _
   let ι₀ : c.F →+* ℂ := σ.comp ((Scheme.stalkClosedPointTo (spMap (algebraMap (𝓞 L) L) ≫ z)).hom.comp g₀)
   have hinj := (GlobalTheory.CompanionTheory.Ar.LabelCount.labels_injective_card E H l c ℂ ι₀).1
   have hne : ι₀.comp (labelEmb c s) ≠ ι₀.comp (labelEmb c s') := fun e => hss (hinj e)

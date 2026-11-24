@@ -66,7 +66,7 @@ open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPoly
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
-theorem exists_flatHerm_hodgeCpt_const : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : CMType H × Fin (D.p + D.q) → K → ℤ) (e : CMType H × Fin (D.p + D.q) → Ω) (τ : CMType H) (F' : Type) [Field F'] [NumberField F'] (ψ : F' →+* Ω) (A : HermLine J) (c₀ : Ω) (r : HeightOneSpectrum (𝓞 F') →₀ ℚ) (cinf : (F' →+* ℂ) → ℝ), Fl.RootLines xdeg e → A.a = ∑ i, xdeg (τ, i) → Birational y → IsConjInvariantH A → c₀ ≠ 0 → (∀ p ∈ genFibre ℤ 𝔐.ξ, (lineLat (𝔐.V (.inl τ)) (𝔐.V (.inr τ)) (labelRk D (.inl τ)) (labelRk D (.inr τ)) (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ)))).IsGenAt p (c₀ * ∏ i, e (τ, i))) → (∀ (v : HeightOneSpectrum (𝓞 F')) (π : F'), v.valuation F' π = WithZero.exp (-1 : ℤ) → ∃ (m : ℕ) (k : ℤ), 0 < m ∧ (k : ℚ) = m * r v ∧ ∀ p : Cpt 𝔐.ξ, (∀ a : F', v.valuation F' a ≤ 1 → ψ a ∈ regAt 𝔐.ξ p) → OrderAt (lineLat (𝔐.V (.inl τ)) (𝔐.V (.inr τ)) (labelRk D (.inl τ)) (labelRk D (.inr τ)) (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ)))) (c₀ * ∏ i, e (τ, i)) (ψ π) m k p) → (∀ σ, 0 < cinf σ) → (∀ (σ : F' →+* ℂ) z (g h : MRing J) (dg dh : K → ℕ), PtOver y ψ σ z → IsMultiHomog g dg → IsMultiHomog h dh → (∀ k, (dg k : ℤ) - dh k = A.a k) → aeval y g = c₀ * aeval y h → ‖evC z g‖ = cinf σ * A.h z * ‖evC z h‖) → OverInt y ψ ∧ ∃ Sf : FlatHerm y ψ A, Sf.ht = ((r.sum fun v q => (q : ℝ) * Real.log (Ideal.absNorm v.asIdeal)) - ∑ σ : F' →+* ℂ, Real.log (cinf σ)) / (Module.finrank ℚ F' : ℝ) := by
+theorem exists_flatHerm_hodgeCpt_const : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (Fl : 𝔐.Flag) (xdeg : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → K → ℤ) (e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → Ω) (τ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (F' : Type) [Field F'] [NumberField F'] (ψ : F' →+* Ω) (A : HermLine J) (c₀ : Ω) (r : HeightOneSpectrum (𝓞 F') →₀ ℚ) (cinf : (F' →+* ℂ) → ℝ), Fl.RootLines xdeg e → A.a = ∑ i, xdeg (τ, i) → Birational y → IsConjInvariantH A → c₀ ≠ 0 → (∀ p ∈ genFibre ℤ 𝔐.ξ, (lineLat (𝔐.V (.inl τ)) (𝔐.V (.inr τ)) (labelRk D (.inl τ)) (labelRk D (.inr τ)) (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ)))).IsGenAt p (c₀ * ∏ i, e (τ, i))) → (∀ (v : HeightOneSpectrum (𝓞 F')) (π : F'), v.valuation F' π = WithZero.exp (-1 : ℤ) → ∃ (m : ℕ) (k : ℤ), 0 < m ∧ (k : ℚ) = m * r v ∧ ∀ p : Cpt 𝔐.ξ, (∀ a : F', v.valuation F' a ≤ 1 → ψ a ∈ regAt 𝔐.ξ p) → OrderAt (lineLat (𝔐.V (.inl τ)) (𝔐.V (.inr τ)) (labelRk D (.inl τ)) (labelRk D (.inr τ)) (exteriorPower.ιMulti Ω _ (Fl.b (.inl τ))) (exteriorPower.ιMulti Ω _ (Fl.b (.inr τ)))) (c₀ * ∏ i, e (τ, i)) (ψ π) m k p) → (∀ σ, 0 < cinf σ) → (∀ (σ : F' →+* ℂ) z (g h : MRing J) (dg dh : K → ℕ), PtOver y ψ σ z → IsMultiHomog g dg → IsMultiHomog h dh → (∀ k, (dg k : ℤ) - dh k = A.a k) → aeval y g = c₀ * aeval y h → ‖evC z g‖ = cinf σ * A.h z * ‖evC z h‖) → OverInt y ψ ∧ ∃ Sf : FlatHerm y ψ A, Sf.ht = ((r.sum fun v q => (q : ℝ) * Real.log (Ideal.absNorm v.asIdeal)) - ∑ σ : F' →+* ℂ, Real.log (cinf σ)) / (Module.finrank ℚ F' : ℝ) := by
   intro E _ _ _ H D l Xo c O _ β Y S Ω _ K _ J _ y 𝔐 Fl xdeg e τ F' _ _ ψ A c₀ r cinf hR hA hB hC hc₀ hgen hZ hcinf hnorm
   have hN : NormalCpt 𝔐.ξ := XR.normalCpt_of_isCptGen 𝔐.tie.gen 𝔐.normal
   have hO : OverInt y ψ := overInt_of_normalCpt 𝔐.tie hN ψ
@@ -121,7 +121,7 @@ theorem exists_frame_ring {S T : Type} [CommRing S] [Algebra c.F S] [CommRing T]
 
 
 set_option backward.isDefEq.respectTransparency false in
-theorem exists_localData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (τ : E →+* ℂ) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (a : ⋀[Z.Ω]^D.p Z.V) (b : ⋀[Z.Ω]^D.q Z.V) (S : Type) [CommRing S] [Algebra c.F S] (z : Formalism.L2.Pj.FrPt Xo c S) (q : Ideal S) [q.IsPrime] (hp : D.mult τ = D.p) (hq : D.mult (ComplexEmbedding.conjugate τ) = D.q), IsLineGenOn (Z.eig τ) (Z.eig (ComplexEmbedding.conjugate τ)) D.p D.q a b Z.genFib → centre (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) ∈ U → ∃ (R : Type) (_ : CommRing R) (x : Sp R ⟶ Y.X) (_ : IsOpenImmersion x) (θ : R →+* (Localization.AtPrime q)) (φ₂ : R →+* Z.Ω) (e₁ : Fin D.p → (epsAt x ⟶ Y.t.G)) (e₂ : Fin D.q → (epsAt x ⟶ Y.t.G)) (f : R) (b₁ : Fin D.p → Z.V) (b₂ : Fin D.q → Z.V) (α κ : Z.Ω) (C₁ : Matrix (Fin D.p) (Fin D.p) (Localization.AtPrime q)) (C₂ : Matrix (Fin D.q) (Fin D.q) (Localization.AtPrime q)), spMap θ ≫ x = spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z ≫ Y.j ∧ spMap φ₂ ≫ x = Z.ξ₀ ≫ Y.j ∧ a = α • exteriorPower.ιMulti Z.Ω D.p b₁ ∧ b = κ • exteriorPower.ιMulti Z.Ω D.q b₂ ∧ φ₂ f = α / κ ∧ (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₁ i)) ∧ (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₂ i)) ∧ (∀ i, (Z.M.pt (b₁ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₁ i).left) ∧ (∀ i, (Z.M.pt (b₂ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₂ i).left) ∧ IsUnit C₁.det ∧ IsUnit C₂.det ∧ (∀ i, ∃ V : Sp (DualNumber (Localization.AtPrime q)) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₁ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S (Localization.AtPrime q)) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S (Localization.AtPrime q))) ≫ z.u τ (k.cast hp.symm)) (C₁ i) V) ∧ (∀ i, ∃ V : Sp (DualNumber (Localization.AtPrime q)) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₂ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S (Localization.AtPrime q)) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S (Localization.AtPrime q))) ≫ z.u (ComplexEmbedding.conjugate τ) (k.cast hq.symm)) (C₂ i) V) := by
+theorem exists_localData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (τ : E →+* ℂ) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (a : ⋀[Z.Ω]^D.p Z.V) (b : ⋀[Z.Ω]^D.q Z.V) (S : Type) [CommRing S] [Algebra c.F S] (z : Formalism.L2.Pj.FrPt Xo c S) (q : Ideal S) [q.IsPrime] (hp : D.mult τ = D.p) (hq : D.mult (ComplexEmbedding.conjugate τ) = D.q), IsLineGenOn (Z.eig τ) (Z.eig (ComplexEmbedding.conjugate τ)) D.p D.q a b Z.genFib → _root_.GlobalTheory.CompanionTheory.Ar.centre (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) ∈ U → ∃ (R : Type) (_ : CommRing R) (x : Sp R ⟶ Y.X) (_ : IsOpenImmersion x) (θ : R →+* (Localization.AtPrime q)) (φ₂ : R →+* Z.Ω) (e₁ : Fin D.p → (epsAt x ⟶ Y.t.G)) (e₂ : Fin D.q → (epsAt x ⟶ Y.t.G)) (f : R) (b₁ : Fin D.p → Z.V) (b₂ : Fin D.q → Z.V) (α κ : Z.Ω) (C₁ : Matrix (Fin D.p) (Fin D.p) (Localization.AtPrime q)) (C₂ : Matrix (Fin D.q) (Fin D.q) (Localization.AtPrime q)), spMap θ ≫ x = spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z ≫ Y.j ∧ spMap φ₂ ≫ x = Z.ξ₀ ≫ Y.j ∧ a = α • exteriorPower.ιMulti Z.Ω D.p b₁ ∧ b = κ • exteriorPower.ιMulti Z.Ω D.q b₂ ∧ φ₂ f = α / κ ∧ (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₁ i)) ∧ (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₂ i)) ∧ (∀ i, (Z.M.pt (b₁ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₁ i).left) ∧ (∀ i, (Z.M.pt (b₂ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₂ i).left) ∧ IsUnit C₁.det ∧ IsUnit C₂.det ∧ (∀ i, ∃ V : Sp (DualNumber (Localization.AtPrime q)) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₁ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S (Localization.AtPrime q)) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S (Localization.AtPrime q))) ≫ z.u τ (k.cast hp.symm)) (C₁ i) V) ∧ (∀ i, ∃ V : Sp (DualNumber (Localization.AtPrime q)) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S (Localization.AtPrime q)) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₂ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S (Localization.AtPrime q)) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S (Localization.AtPrime q))) ≫ z.u (ComplexEmbedding.conjugate τ) (k.cast hq.symm)) (C₂ i) V) := by
   intro E _ _ _ H D l Xo c U τ O _ β Y Z a b S _ _ z q _ hp hq hgen hcen
   classical
   let T := Localization.AtPrime q
@@ -133,7 +133,7 @@ theorem exists_localData : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have hy1 : under y = spMap (algebraMap S T) ≫ z.x := by
     simp only [y, under, Category.assoc, zPt_fst]
   obtain ⟨h, κ, hκ₁, hκ₂⟩ := _root_.GlobalTheory.CompanionTheory.Ar.LocFn.Coef.exists_coef E H D l Xo c U O β Y Z T y c₀ hy2 hcen
-  let P : Cpt (Z.ξ₀ ≫ Y.j) := ⟨centre (y ≫ Y.j), h⟩
+  let P : Cpt (Z.ξ₀ ≫ Y.j) := ⟨_root_.GlobalTheory.CompanionTheory.Ar.centre (y ≫ Y.j), h⟩
   let x₀ := Y.X.fromSpecStalk P.1
   let θs : Y.X.presheaf.stalk P.1 →+* T := (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom
   have hθs : spMap θs ≫ x₀ = y ≫ Y.j := Scheme.Spec_stalkClosedPointTo_fromSpecStalk _
@@ -227,10 +227,10 @@ theorem exists_regular_near : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     have h := hy₃ ⟨t, rfl⟩
     rw [hy₀, Scheme.Hom.comp_apply, spMap_field_pt] at h
     exact h
-  have hcen : centre (spMap (algebraMap p.R (Localization.AtPrime q)) ≫ zPt z) ∈ U := by
+  have hcen : _root_.GlobalTheory.CompanionTheory.Ar.centre (spMap (algebraMap p.R (Localization.AtPrime q)) ≫ zPt z) ∈ U := by
     have key : ∀ t : Sp (Localization.AtPrime q), (spMap (algebraMap p.R (Localization.AtPrime q)) ≫ zPt z) t =
         zPt z ((spMap (algebraMap p.R (Localization.AtPrime q))) t) := fun t => by rw [Scheme.Hom.comp_apply]
-    have e : centre (spMap (algebraMap p.R (Localization.AtPrime q)) ≫ zPt z) = zPt z (⟨q, hqp⟩ : PrimeSpectrum p.R) :=
+    have e : _root_.GlobalTheory.CompanionTheory.Ar.centre (spMap (algebraMap p.R (Localization.AtPrime q)) ≫ zPt z) = zPt z (⟨q, hqp⟩ : PrimeSpectrum p.R) :=
       (key _).trans (congrArg (zPt z) (spMap_local_pt q))
     rw [e]
     exact hmemU
@@ -313,8 +313,8 @@ theorem valAt_add {a b : Ω} {r s : ℂ} (h : ValAt ξ z a r) (h' : ValAt ξ z b
   obtain ⟨_, t', rfl, rfl⟩ := h'
   exact ⟨hz, t + t', map_add _ _ _, map_add _ _ _⟩
 
-theorem valAt_int (hz : genPt ξ ⤳ centre z) (n : ℤ) : ValAt ξ z (n : Ω) (n : ℂ) :=
-  ⟨hz, (n : X.presheaf.stalk (centre z)), map_intCast _ _, map_intCast _ _⟩
+theorem valAt_int (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (n : ℤ) : ValAt ξ z (n : Ω) (n : ℂ) :=
+  ⟨hz, (n : X.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)), map_intCast _ _, map_intCast _ _⟩
 
 variable {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {y : (Σ k, J k) → Ω}
   {w : (Σ k, J k) → ℂ}
@@ -323,7 +323,7 @@ theorem evC_xpow (w : (Σ k, J k) → ℂ) (c : ∀ k, J k) (e : K → ℕ) :
     evC w (ArakelovGeometry.xpow c e) = ∏ k, w ⟨k, c k⟩ ^ e k := by
   simp [evC, ArakelovGeometry.xpow, map_prod]
 
-theorem exists_form_valAt (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) (c : ∀ k, J k)
+theorem exists_form_valAt (hz : genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z) (hw : CoordsAt ξ y z w) (c : ∀ k, J k)
     (hy : ∀ k, y ⟨k, c k⟩ ≠ 0) (hc : ∀ k, IsUnit (w ⟨k, c k⟩)) {x : Ω} (hx : x ∈ chartRingZ y c) :
     ∃ (δ : K → ℕ) (G : MRing J), IsMultiHomog G δ ∧ aeval y G = x * ∏ k, y ⟨k, c k⟩ ^ δ k ∧
       ValAt ξ z x (evC w G / ∏ k, w ⟨k, c k⟩ ^ δ k) := by
@@ -390,7 +390,7 @@ theorem exists_form_valAt (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) 
 
 end Values
 
-theorem valAt_cst : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (F' : Type) [Field F'] [NumberField F'] (ψ : F' →+* Ω) (σ : F' →+* ℂ) (z : Spec (CommRingCat.of ℂ) ⟶ X) (w : (Σ k, J k) → ℂ), NormalCpt ξ → (CoordTie ℤ ξ fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) → CoordsAt ξ y z w → PtOver y ψ σ w → genPt ξ ⤳ centre z → ∀ a : F', ValAt ξ z (ψ a) (σ a) := by
+theorem valAt_cst : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRingCat.of Ω) ⟶ X) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (F' : Type) [Field F'] [NumberField F'] (ψ : F' →+* Ω) (σ : F' →+* ℂ) (z : Spec (CommRingCat.of ℂ) ⟶ X) (w : (Σ k, J k) → ℂ), NormalCpt ξ → (CoordTie ℤ ξ fun c' : (k : K) → J k => ∏ k, y ⟨k, c' k⟩) → CoordsAt ξ y z w → PtOver y ψ σ w → genPt ξ ⤳ _root_.GlobalTheory.CompanionTheory.Ar.centre z → ∀ a : F', ValAt ξ z (ψ a) (σ a) := by
   intro X Ω _ ξ K _ J _ y F' _ _ ψ σ z w hN ht hw hp hz a
   classical
   choose c hc using hw.1

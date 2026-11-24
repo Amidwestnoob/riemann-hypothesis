@@ -229,7 +229,7 @@ end GlobalTheory.CompanionTheory.Ar.PB.FMX.Frm
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FMX.Frm
 
-theorem frames_main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : CMType H ⊕ CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) → FramesOK (aOf 𝔐 bW bO φ) x₀ m := by
+theorem frames_main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)), FormsOK 𝔐 bW bO m φ → CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) → FramesOK (aOf 𝔐 bW bO φ) x₀ m := by
   intro E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 bW bO n m φ hF tie Q hQ hrel hle
   classical
   choose cb hcb using hrel
@@ -242,7 +242,7 @@ theorem frames_main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
     rw [← Finset.prod_div_distrib]
     exact prod_mem fun k _ => hrat (baseInl k) (c' k)
   choose Ts C B hT hAT hBC hC hB using fun s =>
-    _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.Frm.frames_at_point 𝔐.ξ (seg x₀) (LL 𝔐 s) (m s) (n s) (rk (CMType H) D.p D.q s) (VV 𝔐 s) (φ s) (cc 𝔐 bW bO s)
+    _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.Frm.frames_at_point 𝔐.ξ (seg x₀) (LL 𝔐 s) (m s) (n s) (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q s) (VV 𝔐 s) (φ s) (cc 𝔐 bW bO s)
       (hF.1 s) (hF.2.1 s).1 (hF.2.1 s).2 (hF.2.2.1 s) P _ hin
   obtain ⟨F, rfl, h1, h2, h3⟩ := frames_pure (aOf 𝔐 bW bO φ) x₀ m (regAt 𝔐.ξ P) cb hc0 hrat Ts C B hT hAT hBC hC hB
   exact ⟨F, h1, hcb, fun r I => ⟨hreg _ (h2 r I).1, hreg _ (h2 r I).2⟩,

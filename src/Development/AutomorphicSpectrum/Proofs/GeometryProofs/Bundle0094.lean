@@ -106,7 +106,7 @@ theorem isAlgebraic_mem_cst_range : ∀ (E : Type) [Field E] [NumberField E] [Is
   letI : Algebra 𝔐.Ω₀ Ω := 𝔐.fn.toAlgebra
   obtain ⟨-, u, -, -, -, -, hdiag, hup, -, hind, -, hfin⟩ := Fl.generic
   rw [hdeg] at hfin
-  let x : (Σ q : CMType H ⊕ CMType H, {lk : Fin (labelRk D q) × Fin (labelRk D q) // lk.2 < lk.1}) → Ω :=
+  let x : (Σ q : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H, {lk : Fin (labelRk D q) × Fin (labelRk D q) // lk.2 < lk.1}) → Ω :=
     fun q => u q.1 q.2.1.1 q.2.1.2
   let A := IntermediateField.adjoin 𝔐.Ω₀
     (Set.range fun q : Σ σ, Fin (labelRk D σ) × Fin (labelRk D σ) => u q.1 q.2.1 q.2.2)

@@ -140,7 +140,7 @@ theorem gen_of_mat' (F₀ Ω G : Type) [Field F₀] [Field Ω] [Field G] [Algebr
 
 
 set_option maxHeartbeats 1000000 in
-theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : CMType H ⊕ CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)) (d : ℕ), FormsOK 𝔐 bW bO m φ → 𝔐.IsCover d → ∀ (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) j → Submodule.span (GenField Ω (rk (CMType H) D.p D.q)) (Set.range j) = ⊤ → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ∃ Fl : 𝔐'.Flag, Fl.deg = d ∧ ColFlags 𝔐 bW bO j Fl := by
+theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)) (d : ℕ), FormsOK 𝔐 bW bO m φ → 𝔐.IsCover d → ∀ (𝔐' : HodgeCpt Y S (yv (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀)) (pr : 𝔐'.X ⟶ 𝔐.X) (j : 𝔐.Li →+ 𝔐'.Li), HodgeOver 𝔐' 𝔐 pr (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) j → Submodule.span (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (Set.range j) = ⊤ → (∀ s, 𝔐'.V s = (𝔐.V s).pull 𝔐'.ξ pr j) → ∃ Fl : 𝔐'.Flag, Fl.deg = d ∧ ColFlags 𝔐 bW bO j Fl := by
   classical
   intro E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 bW bO n m φ d hF hC 𝔐' pr j hO hspan hV
   obtain ⟨hvb, hcc, htw, -⟩ := hF
@@ -149,26 +149,26 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     convert 𝔐'.tie using 1
     exact Subsingleton.elim _ _
   have htie := GlobalTheory.T.hodgeCpt_dual_frame_generic E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 bW bO n φ 𝔐'.X 𝔐'.ξ htie₀
-  have hch := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.inChart_iff_of_dominates 𝔐.X 𝔐'.X Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr
-    (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) ((k : K₀) → J₀ k) (seg x₀) 𝔐.tie htie₀.gen hdom
-  have hfl := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Flags.pull_isFlagVB_genB 𝔐.X Ω 𝔐.ξ (EE 𝔐) ((k : K₀) → J₀ k) (seg x₀) (CMType H ⊕ CMType H)
-    (rk (CMType H) D.p D.q) (VV 𝔐) (LL 𝔐) m n φ (cc 𝔐 bW bO) 𝔐'.X 𝔐'.ξ pr 𝔐.tie 𝔐.all hvb htw hcc htie 𝔐'.all hdom hch
-  obtain ⟨Φ, hΦ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagStep.exists_tensor_equiv_of_semilinear Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.Li 𝔐'.Li j hext.1 hext.2 hspan
+  have hch := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.inChart_iff_of_dominates 𝔐.X 𝔐'.X Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr
+    (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) ((k : K₀) → J₀ k) (seg x₀) 𝔐.tie htie₀.gen hdom
+  have hfl := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.Flags.pull_isFlagVB_genB 𝔐.X Ω 𝔐.ξ (EE 𝔐) ((k : K₀) → J₀ k) (seg x₀) (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H)
+    (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (VV 𝔐) (LL 𝔐) m n φ (cc 𝔐 bW bO) 𝔐'.X 𝔐'.ξ pr 𝔐.tie 𝔐.all hvb htw hcc htie 𝔐'.all hdom hch
+  obtain ⟨Φ, hΦ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.FlagStep.exists_tensor_equiv_of_semilinear Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.Li 𝔐'.Li j hext.1 hext.2 hspan
   have hjΦ : Φ.toLinearMap.toAddMonoidHom.comp
-      (TensorProduct.mk Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.Li 1).toAddMonoidHom = j := AddMonoidHom.ext hΦ
+      (TensorProduct.mk Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.Li 1).toAddMonoidHom = j := AddMonoidHom.ext hΦ
 
   have hW : ∀ τ, (𝔐'.V (.inl τ)).IsFlagVBOn Set.univ (fun k : Fin D.p =>
-      ∑ a, genU Ω (rk (CMType H) D.p D.q) (.inl τ) a k • j (bW τ a)) := by
+      ∑ a, genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) a k • j (bW τ a)) := by
     intro τ
-    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.PullMap.isFlagVBOn_pull_of_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr 𝔐.Li (EE 𝔐) (inW 𝔐)
+    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.PullMap.isFlagVBOn_pull_of_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr 𝔐.Li (EE 𝔐) (inW 𝔐)
       (LinearMap.fst Ω _ _) (𝔐.V (.inl τ)) D.p (fun a => (bW τ a : 𝔐.Li))
-      (genU Ω (rk (CMType H) D.p D.q) (.inl τ)) (LinearMap.ext fun _ => rfl) (hfl (.inl τ))
-    have h2 := _root_.GlobalTheory.CompanionTheory.Ar.FlagStep.isFlagVBOn_pull_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr 𝔐.Li _ 𝔐'.Li
+      (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ)) (LinearMap.ext fun _ => rfl) (hfl (.inl τ))
+    have h2 := _root_.GlobalTheory.CompanionTheory.Ar.FlagStep.isFlagVBOn_pull_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr 𝔐.Li _ 𝔐'.Li
       (𝔐.V (.inl τ)) _ Φ Set.univ _ _ h1
     rw [hjΦ, ← hV] at h2
-    have e : (fun k : Fin D.p => ∑ a, genU Ω (rk (CMType H) D.p D.q) (.inl τ) a k • j (bW τ a)) =
-        fun k => Φ (∑ l, genU Ω (rk (CMType H) D.p D.q) (.inl τ) l k •
-          TensorProduct.mk Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.Li 1 (bW τ l)) := by
+    have e : (fun k : Fin D.p => ∑ a, genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) a k • j (bW τ a)) =
+        fun k => Φ (∑ l, genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) l k •
+          TensorProduct.mk Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.Li 1 (bW τ l)) := by
       funext k
       set_option synthInstance.maxHeartbeats 100000 in
         rw [map_sum]
@@ -198,14 +198,14 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     | smul t f _ h1 => simp only [LinearMap.smul_apply, h1, smul_zero]
 
   have hO' : ∀ τ, (𝔐'.V (.inr τ)).IsFlagVBOn Set.univ (fun k : Fin D.q =>
-      colFrame (fun a => j (v τ a)) (genU Ω (rk (CMType H) D.p D.q) (.inr τ) : Matrix (Fin D.q) (Fin D.q) _)ᵀ⁻¹ k.rev) := by
+      colFrame (fun a => j (v τ a)) (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ) : Matrix (Fin D.q) (Fin D.q) _)ᵀ⁻¹ k.rev) := by
     intro τ
-    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.PullMap.isFlagVBOn_pull_of_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr _ (EE 𝔐) (inO 𝔐 τ)
+    have h1 := _root_.GlobalTheory.CompanionTheory.Ar.FlagBun.PullMap.isFlagVBOn_pull_of_map 𝔐.X 𝔐'.X Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) 𝔐.ξ 𝔐'.ξ pr _ (EE 𝔐) (inO 𝔐 τ)
       ((LinearMap.proj τ).comp (LinearMap.snd Ω _ _)) (omBundle 𝔐 τ) D.q (fun a => bO τ a)
-      (genU Ω (rk (CMType H) D.p D.q) (.inr τ)) (LinearMap.ext fun _ => by simp [inO]) (hfl (.inr τ))
+      (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ)) (LinearMap.ext fun _ => by simp [inO]) (hfl (.inr τ))
     rw [hV]
     exact _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.GenFl.flags_dual_of_flags_pull E H D l Xo c Y S Ω K₀ J₀ x₀ 𝔐 τ 𝔐'.X _ 𝔐'.ξ pr 𝔐'.Li j (bO τ) (v τ) _ hext hdom (hv τ)
-      (fun a => genU_diag (r := rk (CMType H) D.p D.q) (.inr τ) a) (fun a b h => genU_above (r := rk (CMType H) D.p D.q) (.inr τ) a b h) h1
+      (fun a => genU_diag (r := rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ) a) (fun a b h => genU_above (r := rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ) a b h) h1
 
   obtain ⟨ι, hι, hdomι, hfin⟩ := GlobalTheory.T.hodgeCpt_morphism_compat E H D l Xo c Y S Ω _ K₀ _ J₀ _ x₀ _ 𝔐 𝔐' pr _ j d hO hC
   obtain ⟨Li₀, _, _, M₀, j₁, V₀, c₀, hpt₁, hext₁, hV₀, hc₀⟩ :=
@@ -220,7 +220,7 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
     refine ⟨hO.map_Vgen s, fun h => (Submodule.mem_iInf _).2 fun t => ?_⟩
     have h1 : 𝔐'.ρ t (j w) - 𝔐'.emb s t • j w = 0 := (Submodule.mem_iInf _).1 h t
     show 𝔐.ρ t w - 𝔐.emb s t • w = 0
-    have e : 𝔐'.emb s t = algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (𝔐.emb s t) := by
+    have e : 𝔐'.emb s t = algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (𝔐.emb s t) := by
       show 𝔐'.cst _ = _
       rw [hcst]; rfl
     apply hjinj
@@ -245,27 +245,27 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
       (fun k => (hV₀ s _).1 (by rw [← (hc₀ s).2]; exact Submodule.subset_span ⟨k, rfl⟩)) (heb s).2
       (by simpa using Module.finrank_eq_card_basis B) (Module.Finite.of_basis B)
   choose A hAu hAe using hA
-  let U : ∀ s, Matrix (Fin (rk (CMType H) D.p D.q s)) (Fin (rk (CMType H) D.p D.q s))
-      (GenField Ω (rk (CMType H) D.p D.q)) := fun s =>
-    if Sum.isRight s = true then revInv (genU Ω (rk (CMType H) D.p D.q) s) else genU Ω (rk (CMType H) D.p D.q) s
-  have hU : IsGenFam Ω (GenField Ω (rk (CMType H) D.p D.q)) U :=
-    _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.GenFl.isGenFam_revInv_ite Ω _ _ (rk (CMType H) D.p D.q) (genU Ω (rk (CMType H) D.p D.q)) (fun s => Sum.isRight s = true)
+  let U : ∀ s, Matrix (Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q s)) (Fin (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q s))
+      (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) := fun s =>
+    if Sum.isRight s = true then revInv (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) s) else genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) s
+  have hU : IsGenFam Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) U :=
+    _root_.GlobalTheory.CompanionTheory.Ar.PB.FMX.GenFl.isGenFam_revInv_ite Ω _ _ (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (fun s => Sum.isRight s = true)
       (genU_isGenFam Ω _)
-  have hUl : ∀ τ, U (.inl τ) = genU Ω (rk (CMType H) D.p D.q) (.inl τ) := fun τ => if_neg (by simp)
-  have hUr : ∀ τ, U (.inr τ) = revInv (genU Ω (rk (CMType H) D.p D.q) (.inr τ)) := fun τ => if_pos (by simp)
+  have hUl : ∀ τ, U (.inl τ) = genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) := fun τ => if_neg (by simp)
+  have hUr : ∀ τ, U (.inr τ) = revInv (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ)) := fun τ => if_pos (by simp)
   let b : ∀ s, Fin (labelRk D s) → 𝔐'.Li := fun s k => ∑ a, U s a k • j (eb s a)
-  have hbW : ∀ τ k, b (.inl τ) k = ∑ a, genU Ω (rk (CMType H) D.p D.q) (.inl τ) a k • j (bW τ a) := fun τ k => by
+  have hbW : ∀ τ k, b (.inl τ) k = ∑ a, genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) a k • j (bW τ a) := fun τ k => by
     show ∑ a, U (.inl τ) a k • j (bW τ a) = _
     rw [hUl]
   have hbO : ∀ τ (k : Fin D.q), b (.inr τ) k = colFrame (fun a => j (v τ a))
-      (genU Ω (rk (CMType H) D.p D.q) (.inr τ) : Matrix (Fin D.q) (Fin D.q) _)ᵀ⁻¹ k.rev := fun τ k => by
+      (genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ) : Matrix (Fin D.q) (Fin D.q) _)ᵀ⁻¹ k.rev := fun τ k => by
     show ∑ a : Fin D.q, U (.inr τ) a k • j (v τ a.rev) = _
     rw [hUr]
     exact Fintype.sum_equiv Fin.revPerm _ _ fun a => rfl
-  have hb : ∀ s k, b s k = ∑ l, ((A s).map (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))) * U s) l k •
+  have hb : ∀ s k, b s k = ∑ l, ((A s).map (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))) * U s) l k •
       (j.comp j₁) (c₀ s l) := by
     intro s k
-    have h1 : ∀ a, j (eb s a) = ∑ l, algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q)) (A s l a) •
+    have h1 : ∀ a, j (eb s a) = ∑ l, algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (A s l a) •
         (j.comp j₁) (c₀ s l) := fun a => by
       set_option synthInstance.maxHeartbeats 100000 in
         rw [hAe s a, map_sum]
@@ -283,18 +283,18 @@ theorem exists_colFlags : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   have hjpt : ∀ e, (𝔐'.M.pt ((j.comp j₁) e)).left ≫ 𝔐'.m.φ = spMap (dualMap 𝔐'.fn) ≫ (M₀.pt e).left := by
     intro e
     show (𝔐'.M.pt (j (j₁ e))).left ≫ _ = _
-    rw [hpt, hpt₁ e, ← hι, spMap_dual_comp ι (algebraMap Ω (GenField Ω (rk (CMType H) D.p D.q))), Category.assoc]
+    rw [hpt, hpt₁ e, ← hι, spMap_dual_comp ι (algebraMap Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q))), Category.assoc]
   have hgen : letI := 𝔐'.fn.toAlgebra
-      GlobalTheory.CompanionTheory.Ar.IsGenericFlag (Ω' := GenField Ω (rk (CMType H) D.p D.q)) (j.comp j₁) V₀ b d := by
-    exact gen_of_mat' 𝔐'.Ω₀ Ω (GenField Ω (rk (CMType H) D.p D.q)) ι 𝔐'.fn hι Li₀ 𝔐'.Li (j.comp j₁) _ (labelRk D) V₀ c₀ b U A d
+      GlobalTheory.CompanionTheory.Ar.IsGenericFlag (Ω' := GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) (j.comp j₁) V₀ b d := by
+    exact gen_of_mat' 𝔐'.Ω₀ Ω (GenField Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q)) ι 𝔐'.fn hι Li₀ 𝔐'.Li (j.comp j₁) _ (labelRk D) V₀ c₀ b U A d
       hc₀ (fun a e => by
         show j (j₁ (a • e)) = 𝔐'.fn a • j (j₁ e)
         rw [hext₁.1, hext.1, ← hι]; rfl)
       (fun s => hext.2 _ _ (hext₁.2 _ _ (hc₀ s).1)) hU hAu hb hC.1 hfin
-  have hw : ∀ τ, wBlock (gMat D.p D.q Ω τ) = genU Ω (rk (CMType H) D.p D.q) (.inl τ) := fun τ => by
+  have hw : ∀ τ, wBlock (gMat D.p D.q Ω τ) = genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inl τ) := fun τ => by
     ext a b
     exact GenMat.gMat_w Ω τ a b
-  have ho : ∀ τ, omBlock (gMat D.p D.q Ω τ) = genU Ω (rk (CMType H) D.p D.q) (.inr τ) := fun τ => by
+  have ho : ∀ τ, omBlock (gMat D.p D.q Ω τ) = genU Ω (rk (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q) (.inr τ) := fun τ => by
     ext a b
     exact GenMat.gMat_om Ω τ a b
   refine ⟨{ b := b, sub := hsub, Li₀ := Li₀, M₀ := M₀, j := j.comp j₁, j_pt := hjpt, V₀ := V₀,

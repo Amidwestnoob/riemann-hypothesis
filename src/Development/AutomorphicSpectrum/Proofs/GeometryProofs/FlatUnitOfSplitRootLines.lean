@@ -224,7 +224,7 @@ theorem isGeom_of_splitComps [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞
   obtain ⟨a, ha⟩ := hs Z.Ω (Z.ξ₀ ≫ Y.j) Z.inc Z.gen hover x hz
   exact ⟨a, ha⟩
 
-theorem flat_unit_of_root_lines : Flat.FlatLineGenerator → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (R : Top.RootModel (CMType H) (D.p + D.q)) (𝔐 : HodgeCpt Y S R.y) (Fl : 𝔐.Flag) (e : CMType H × Fin (D.p + D.q) → R.Ω), 1 ≤ D.p + D.q → SplitComps Y → Fl.RootLines R.xdeg e → Ht.FlatUnit R := by
+theorem flat_unit_of_root_lines : Flat.FlatLineGenerator → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (R : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (𝔐 : HodgeCpt Y S R.y) (Fl : 𝔐.Flag) (e : _root_.GlobalTheory.CompanionTheory.Ar.CMType H × Fin (D.p + D.q) → R.Ω), 1 ≤ D.p + D.q → SplitComps Y → Fl.RootLines R.xdeg e → Ht.FlatUnit R := by
   intro hA0 E _ _ _ H D l Xo c Y S R 𝔐 Fl e hpq hs hroot τ
   haveI : NumberField c.F := { to_charZero := inferInstance, to_finiteDimensional := c.fin }
   have hβ : Function.Injective (algebraMap (𝓞 c.F) c.F) ∧ IsNoetherianRing (𝓞 c.F) ∧

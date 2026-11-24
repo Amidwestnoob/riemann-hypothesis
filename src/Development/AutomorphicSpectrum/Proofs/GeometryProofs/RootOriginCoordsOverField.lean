@@ -41,19 +41,19 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar
 
-theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Sys : PB.AnSys (Top.dimFl (CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys) (R : Top.RootModel (CMType H) (D.p + D.q)) (o : RootOrigin Y ∅ R Fx) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (bk : R.K → K) (bx : ∀ k, R.ι k ≃ J (bk k)) (i : R.Ω →+* Ω) (𝔐 : HodgeCpt Y S y) (h : 𝔐.X ⟶ o.𝔐.X) (Fl : 𝔐.Flag) (xdeg : RootIx D → K → ℤ) (e : RootIx D → Ω), o.Fl.deg = 1 → Cmp.IsEmbedded o.Re.R.A R.P o.Re.R.U o.Re.R.lift → Function.Bijective o.Re.π → Function.Injective bk → (∀ k a, y ⟨bk k, bx k a⟩ = i (R.y ⟨k, a⟩)) → GlobalTheory.CompanionTheory.Ar.Dominates 𝔐.ξ o.𝔐.ξ h i → 𝔐.f = h ≫ o.𝔐.f → 𝔐.cst = i.comp o.𝔐.cst → (∀ s a, (𝔐.M.pt (Fl.b s a)).left ≫ 𝔐.m.φ = spMap (dualMap i) ≫ (o.𝔐.M.pt (o.Fl.b s a)).left ≫ o.𝔐.m.φ) → (letI := i.toAlgebra; Module.finrank R.Ω Ω = Fl.deg) → Fl.RootLines xdeg e → 𝔐.OmVB → SmoothGenericFibreM y → ∃ (RM : Top.RootModel (CMType H) (D.p + D.q)) (o' : RootOrigin Y S RM Fx), o'.𝔐.OmVB ∧ o'.𝔐.R = 𝔐.R ∧ o'.Re.J = ⊤ ∧ ∃ _ : Algebra ℚ RM.Ω, SmoothGenericFibreM RM.y := by
+theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (Sys : PB.AnSys (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (Option (RootIx D))) (Fx : FixedData Y Sys) (R : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o : RootOrigin Y ∅ R Fx) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (bk : R.K → K) (bx : ∀ k, R.ι k ≃ J (bk k)) (i : R.Ω →+* Ω) (𝔐 : HodgeCpt Y S y) (h : 𝔐.X ⟶ o.𝔐.X) (Fl : 𝔐.Flag) (xdeg : RootIx D → K → ℤ) (e : RootIx D → Ω), o.Fl.deg = 1 → Cmp.IsEmbedded o.Re.R.A R.P o.Re.R.U o.Re.R.lift → Function.Bijective o.Re.π → Function.Injective bk → (∀ k a, y ⟨bk k, bx k a⟩ = i (R.y ⟨k, a⟩)) → GlobalTheory.CompanionTheory.Ar.Dominates 𝔐.ξ o.𝔐.ξ h i → 𝔐.f = h ≫ o.𝔐.f → 𝔐.cst = i.comp o.𝔐.cst → (∀ s a, (𝔐.M.pt (Fl.b s a)).left ≫ 𝔐.m.φ = spMap (dualMap i) ≫ (o.𝔐.M.pt (o.Fl.b s a)).left ≫ o.𝔐.m.φ) → (letI := i.toAlgebra; Module.finrank R.Ω Ω = Fl.deg) → Fl.RootLines xdeg e → 𝔐.OmVB → SmoothGenericFibreM y → ∃ (RM : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) (o' : RootOrigin Y S RM Fx), o'.𝔐.OmVB ∧ o'.𝔐.R = 𝔐.R ∧ o'.Re.J = ⊤ ∧ ∃ _ : Algebra ℚ RM.Ω, SmoothGenericFibreM RM.y := by
   intro hG E _ _ _ H D l Xo c Y Sys Fx R o S Ω _ _ K _ J _ y bk bx i 𝔐 h Fl xdeg e hdeg1 hemb hbij hbk hy hd hf hcst
     hfl hfin hlines hom hsm
   have hβ : Function.Injective (algebraMap (𝓞 c.F) c.F) := RingOfIntegers.coe_injective
   have hv := isBlockMap_blkV bx hbk
   haveI : Nonempty K := ⟨bk o.k₀⟩
   obtain ⟨hbir, harith⟩ := _root_.GlobalTheory.CompanionTheory.Ar.flagged_model_dim E H D l Xo c _ _ Y S Ω K J y 𝔐 Fl hβ
-  have harith' : ReciprocityTheory.ChartRestriction.G.Geo.IsArithVar (mCoordIdeal y) (Top.dimFl (CMType H) (D.p + D.q) + 1) := harith
+  have harith' : ReciprocityTheory.ChartRestriction.G.Geo.IsArithVar (mCoordIdeal y) (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q) + 1) := harith
   obtain ⟨R'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.nonempty_anLogRes_of_smoothGenericFibre K J Ω y _ harith' hsm
   have hP₀ : ¬ (⊤ : Ideal (MRing R.ι)) ≤ mCoordIdeal R.y := fun h' =>
     R.arith.2.1.1.ne_top (top_le_iff.1 h')
   have hle : mCoordIdeal R.y ≤ imageZ (blkV bk bx) (mCoordIdeal y) := mCoordIdeal_le_imageZ i bx hy
-  let R₀ : AnLogRes (mCoordIdeal R.y) ⊤ (Top.dimFl (CMType H) (D.p + D.q)) := withTop o.Re.R hP₀ hemb
+  let R₀ : AnLogRes (mCoordIdeal R.y) ⊤ (Top.dimFl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q)) := withTop o.Re.R hP₀ hemb
   obtain ⟨hh, hholo, horb⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.Proj.holoMap_of_blockProj R.K R.ι K J bk (blkV bk bx) (mCoordIdeal R.y) (mCoordIdeal y) ⊤ _ _ R₀ R' hv hle
   have hdpos : 0 < Fl.deg := by
     obtain ⟨-, -, -, -, -, -, -, -, -, -, h0, -⟩ := Fl.generic
@@ -91,7 +91,7 @@ theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
   have hlift : ∀ x, ∀ k, ∃ a, R'.lift x x ⟨k, a⟩ ≠ 0 := fun x => (R'.mem x x (R'.mem_U x)).1
   have hlift₀ : ∀ x k, ∃ a, R'.lift x x (blkV bk bx ⟨k, a⟩) ≠ 0 := fun x => restr_ne hv (hlift x)
   have horb' : ∀ x, SameOrbit (o.Re.R.lift (hh x) (hh x)) (fun p => R'.lift x x (blkV bk bx p)) := horb
-  let RM : Top.RootModel (CMType H) (D.p + D.q) :=
+  let RM : Top.RootModel (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) (D.p + D.q) :=
     { K := K, «ι» := J, Ω := Ω, y := y, arith := harith', birational := hbir, xdeg := xdeg
       x := fun t r => (pullHerm hv (R.x t r)).tensor (T r)
       x_deg := fun t r => by
@@ -132,7 +132,7 @@ theorem root_model_on_cover : Top.Given → ∀ (E : Type) [Field E] [NumberFiel
     show pullDeg bk (o.sing r).a + (T r).a = xdeg r
     rw [o.sing_deg, hTa]
     abel
-  have hInt : ∀ z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X, 𝔐.Interior z ↔ o.𝔐.Interior (z ≫ h) := fun z => hab (centre z)
+  have hInt : ∀ z : Spec (CommRingCat.of ℂ) ⟶ 𝔐.X, 𝔐.Interior z ↔ o.𝔐.Interior (z ≫ h) := fun z => hab (_root_.GlobalTheory.CompanionTheory.Ar.centre z)
   let o' : RootOrigin Y S RM Fx :=
     { 𝔐 := 𝔐, Fl := Fl, g := i.comp o.g
       g_over := by

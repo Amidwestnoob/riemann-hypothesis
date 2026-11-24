@@ -249,15 +249,15 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 
 theorem values_core (𝔐 : HodgeCpt Y S y) {L : Type} [Field L] (z : Sp L ⟶ 𝔐.X) (tK : SAB H (Sp L))
     (mp : SABMap tK 𝔐.t z) {V : Type} [AddCommGroup V] [Module L V] (MV : LieModel tK.G (𝟙 (Sp L)) V)
-    (ρ : 𝓞 E →+* Module.End L V) (σ : CMType H ⊕ CMType H → (𝓞 E →+* L)) (hσ : Function.Injective σ)
+    (ρ : 𝓞 E →+* Module.End L V) (σ : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → (𝓞 E →+* L)) (hσ : Function.Injective σ)
     (hact : MV.IsActOf tK.act.act ρ) (hlab : 𝔐.LabVal z id σ)
     (hlat : 𝔐.M.lat ⟨centre z, 𝔐.all _⟩ = ⨆ s, 𝔐.dR s ⟨centre z, 𝔐.all _⟩)
-    (lab : CMType H ⊕ CMType H) {m : ℕ} (s : Fin m → 𝔐.Li) (hfr : (𝔐.dR lab).IsFrameAt s ⟨centre z, 𝔐.all _⟩) :
+    (lab : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) {m : ℕ} (s : Fin m → 𝔐.Li) (hfr : (𝔐.dR lab).IsFrameAt s ⟨centre z, 𝔐.all _⟩) :
     ∃ sL : Fin m → V, (∀ k, ∃ v : epsAt z ⟶ 𝔐.t.G, 𝔐.M.ValAt z (s k) v ∧ (MV.pt (sL k)).left ≫ mp.φ = v.left) ∧
       LinearIndependent L sL ∧ Submodule.span L (Set.range sL) = eigSp ρ (σ lab) := by
   classical
   haveI := 𝔐.t.semi.smooth
-  haveI : Fintype (CMType H ⊕ CMType H) := Fintype.ofFinite _
+  haveI : Fintype (_root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) := Fintype.ofFinite _
   have hξ : IsCptGen 𝔐.ξ := 𝔐.tie.gen
   let q : Cpt 𝔐.ξ := ⟨centre z, 𝔐.all _⟩
   obtain ⟨M₁, hM₁⟩ := (LiePull.lieModel_pullback _ _ 𝔐.t.G tK.G z mp.φ mp.cart L (𝟙 _) V).2 MV
@@ -279,7 +279,7 @@ theorem values_core (𝔐 : HodgeCpt Y S y) {L : Type} [Field L] (z : Sp L ⟶ �
     rw [show 𝔐.dR lab q = _ from hfr.2]
     exact Submodule.subset_span ⟨k, rfl⟩
   choose b hb using fun k => honto (s k) (hs_mem k).1
-  have hdec : ∀ t, ∃ f : CMType H ⊕ CMType H → T, (∀ j, i (f j) ∈ eigSp 𝔐.ρ (𝔐.emb j)) ∧ t = ∑ j, f j := by
+  have hdec : ∀ t, ∃ f : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → T, (∀ j, i (f j) ∈ eigSp 𝔐.ρ (𝔐.emb j)) ∧ t = ∑ j, f j := by
     intro t
     have h1 := hilat t
     rw [show 𝔐.M.lat q = _ from hlat] at h1
@@ -329,7 +329,7 @@ theorem values_core (𝔐 : HodgeCpt Y S y) {L : Type} [Field L] (z : Sp L ⟶ �
 
 end Core
 
-theorem values_of_frame : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (L : Type) [Field L] [NumberField L] (z : Sp (𝓞 L) ⟶ 𝔐.X) (P : AbPart 𝔐.t (spMap (algebraMap (𝓞 L) L) ≫ z)) (V : Type) [AddCommGroup V] [Module L V] [Module (𝓞 L) V] [IsScalarTower (𝓞 L) L V] (MV : LieModel P.tK.G (𝟙 (Sp L)) V) (A : LinPt E L (CMType H) V) (lab : CMType H ⊕ CMType H) (m : ℕ) (s : Fin m → 𝔐.Li), 𝔐.IsLinPtOf z P MV A → (𝔐.dR lab).IsFrameAt s ⟨centre (spMap (algebraMap (𝓞 L) L) ≫ z), 𝔐.all _⟩ → ∃ sL : Fin m → V, IsValues 𝔐 z P MV s sL ∧ LinearIndependent L sL ∧ Submodule.span L (Set.range sL) = eigSp A.ρ (A.σ lab) := by
+theorem values_of_frame : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Tor.Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (L : Type) [Field L] [NumberField L] (z : Sp (𝓞 L) ⟶ 𝔐.X) (P : AbPart 𝔐.t (spMap (algebraMap (𝓞 L) L) ≫ z)) (V : Type) [AddCommGroup V] [Module L V] [Module (𝓞 L) V] [IsScalarTower (𝓞 L) L V] (MV : LieModel P.tK.G (𝟙 (Sp L)) V) (A : LinPt E L (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) V) (lab : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H) (m : ℕ) (s : Fin m → 𝔐.Li), 𝔐.IsLinPtOf z P MV A → (𝔐.dR lab).IsFrameAt s ⟨centre (spMap (algebraMap (𝓞 L) L) ≫ z), 𝔐.all _⟩ → ∃ sL : Fin m → V, IsValues 𝔐 z P MV s sL ∧ LinearIndependent L sL ∧ Submodule.span L (Set.range sL) = eigSp A.ρ (A.σ lab) := by
   intro E _ _ _ H D l Xo c Y S Ω _ K _ J _ y 𝔐 L _ _ z P V _ _ _ _ MV A lab m s hLin hfr
   obtain ⟨hact, hlab, -⟩ := hLin
   have hlat := (_root_.GlobalTheory.CompanionTheory.Ar.HodgeChar0.lattices_of_char_zero E H D l Xo c (𝓞 c.F) (algebraMap _ _) Y S Ω K J y 𝔐

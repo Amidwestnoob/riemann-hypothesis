@@ -21,12 +21,12 @@ theorem blkF_ne_inl (Ψ : Type) (p q : ℕ) {K₀ : Type} (k : K₀) (r : Ψ × 
   unfold blkF
   split_ifs <;> simp
 
-theorem hasSncBoundary_reTie : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : CMType H ⊕ CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)) (ht : CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀))) (e : ℕ), HasSncBoundary 𝔐 e → HasSncBoundary (reTie 𝔐 (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀) ht) e := by
+theorem hasSncBoundary_reTie : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (S : Finset ℕ) (Ω : Type) [Field Ω] [CharZero Ω] (K₀ : Type) [Fintype K₀] (J₀ : K₀ → Type) [∀ k, Fintype (J₀ k)] (x₀ : (Σ k, J₀ k) → Ω) (𝔐 : HodgeCpt Y S x₀) (bW : WBases 𝔐) (bO : OmBases 𝔐) (n m : _root_.GlobalTheory.CompanionTheory.Ar.CMType H ⊕ _root_.GlobalTheory.CompanionTheory.Ar.CMType H → ℕ) (φ : ∀ s, Fin (n s) → Module.Dual Ω (EE 𝔐)) (ht : CoordTie ℤ 𝔐.ξ (seg (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀))) (e : ℕ), HasSncBoundary 𝔐 e → HasSncBoundary (reTie 𝔐 (xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀) ht) e := by
   intro E _ _ _ H D l Xo c Y S Ω _ _ K₀ _ J₀ _ x₀ 𝔐 bW bO n m φ ht e hs
   obtain ⟨bd, hsnc, hiff⟩ := hs
-  let bk : K₀ → NonPluckerBlocks (blkF (CMType H) D.p D.q K₀) :=
-    fun k => ⟨Sum.inl k, fun r => blkF_ne_inl (CMType H) D.p D.q k r⟩
-  let bx : ∀ k, J₀ k ≃ baseIdx (idx (p := D.p) (q := D.q) J₀ n) (blkF (CMType H) D.p D.q K₀) (bk k) :=
+  let bk : K₀ → NonPluckerBlocks (blkF (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q K₀) :=
+    fun k => ⟨Sum.inl k, fun r => blkF_ne_inl (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q k r⟩
+  let bx : ∀ k, J₀ k ≃ baseIdx (idx (p := D.p) (q := D.q) J₀ n) (blkF (_root_.GlobalTheory.CompanionTheory.Ar.CMType H) D.p D.q K₀) (bk k) :=
     fun k => Equiv.refl _
   have hval : ∀ (k : K₀) (a : J₀ k),
       xb (p := D.p) (q := D.q) (aOf 𝔐 bW bO φ) x₀ ⟨bk k, bx k a⟩ = x₀ ⟨k, a⟩ := fun _ _ => rfl
