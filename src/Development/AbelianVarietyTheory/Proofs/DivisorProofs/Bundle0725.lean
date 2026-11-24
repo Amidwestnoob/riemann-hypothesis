@@ -400,8 +400,8 @@ attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.AnPer
 
 theorem taylor_congr {I : Type} [Fintype I] [DecidableEq I] {D : Type} [CommRing D] [Algebra ℂ D] (N : ℕ) (t : I → D)
-    {f f' : (I → ℂ) → ℂ} (h : f =ᶠ[nhds 0] f') : GlobalTheory.PeriodFamily.taylor N t f = GlobalTheory.PeriodFamily.taylor N t f' := by
-  unfold GlobalTheory.PeriodFamily.taylor
+    {f f' : (I → ℂ) → ℂ} (h : f =ᶠ[nhds 0] f') : _root_.GlobalTheory.PeriodFamily.taylor N t f = _root_.GlobalTheory.PeriodFamily.taylor N t f' := by
+  unfold _root_.GlobalTheory.PeriodFamily.taylor
   refine Finset.sum_congr rfl fun k _ ↦ Finset.sum_congr rfl fun s _ ↦ ?_
   rw [(h.iteratedFDeriv ℂ k).eq_of_nhds]
 
