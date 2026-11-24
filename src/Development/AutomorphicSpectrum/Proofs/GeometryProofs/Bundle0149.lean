@@ -76,7 +76,7 @@ theorem finrank_lieModel_of_algebra (X : Scheme.{0}) (G : Over X) [GrpObj G] [Sm
           refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [dualMap, epsMul, mul_smul]
         rw [hb, Category.assoc]) }
 
-  have hl : ∀ e, ((MV.pt (j e)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap A K)) ≫ (M₀.pt e).left) := fun e => by
+  have hl : ∀ e, ((MV.pt (j e)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap A K)) ≫ (M₀.pt e).left) := fun e => by
     change (MV.pt (f e)).left ≫ 𝟙 G.left = _
     rw [hf, Category.comp_id]
     rfl
@@ -188,7 +188,7 @@ section SlopeTestRemainingChoices
 
 theorem dualMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (φ : R →+* R') (ψ : R' →+* R'') :
     (dualMap ψ).comp (dualMap φ) = dualMap (ψ.comp φ) := by
-  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap]
+  refine RingHom.ext fun a => TrivSqZeroExt.ext ?_ ?_ <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap]
 
 theorem spec_dualMap {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (φ : R →+* R') (ψ : R' →+* R'') :
     spMap (dualMap ψ) ≫ spMap (dualMap φ) = spMap (dualMap (ψ.comp φ)) := by
@@ -211,23 +211,23 @@ theorem lieValAt_base (M : LieModel G ξ E) (hξ : IsCptGen ξ) {R R' : Type} [C
   have base : ∀ {A B : Type} [CommRing A] [CommRing B] (f : A →+* B)
       {x : Sp A ⟶ X} {y : Sp B ⟶ X} (hf : spMap f ≫ x = y)
       (u : epsAt x ⟶ G), IsTanAt G x u →
-      ∃ b : epsAt y ⟶ epsAt x, b.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ∧ IsTanAt G y (b ≫ u) := by
+      ∃ b : epsAt y ⟶ epsAt x, b.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ∧ IsTanAt G y (b ≫ u) := by
     intro A B _ _ f x y hf u hu
-    have ha : spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ spMap (algebraMap A (DualNumber A)) =
+    have ha : spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ spMap (algebraMap A (DualNumber A)) =
         spMap (algebraMap B (DualNumber B)) ≫ spMap f := by
       rw [spec_comp, spec_comp]
       congr 2
-      ext a <;> simp [GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
-    let b : epsAt y ⟶ epsAt x := Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
+      ext a <;> simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.algebraMap_eq_inl]
+    let b : epsAt y ⟶ epsAt x := Over.homMk (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f)) (by
       change _ ≫ _ ≫ x = _ ≫ y
       rw [← Category.assoc, ha, Category.assoc, hf])
     refine ⟨b, rfl, ?_⟩
-    change _ ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ u.left = _
-    have hh : spMap (TrivSqZeroExt.fstHom B B B).toRingHom ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) =
+    change _ ≫ spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ u.left = _
+    have hh : spMap (TrivSqZeroExt.fstHom B B B).toRingHom ≫ spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) =
         spMap f ≫ spMap (TrivSqZeroExt.fstHom A A A).toRingHom := by
       rw [spec_comp, spec_comp]
       congr 2
-      exact RingHom.ext fun a => by simp [GlobalTheory.CompanionTheory.Ar.dualMap]
+      exact RingHom.ext fun a => by simp [_root_.GlobalTheory.CompanionTheory.Ar.dualMap]
     rw [← Category.assoc, hh, Category.assoc, hu]
     exact congrArg (·.left) (comp_one (M := G) (Over.homMk (spMap f) hf : Over.mk y ⟶ Over.mk x))
   obtain ⟨b, hb, ht⟩ := base (X.presheaf.stalkSpecializes c).hom hσ v hv.1
@@ -248,7 +248,7 @@ omit [GrpObj G] [Module Ω E] in
 theorem exists_transport {S : Scheme.{0}} {G : Over S} [GrpObj G] {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R')
     {x : Sp R ⟶ S} {x' : Sp R' ⟶ S} (hx : spMap c ≫ x = x') {E E' : Type} [AddCommGroup E] [Module R E]
     [AddCommGroup E'] [Module R' E'] (M : LieModel G x E) (M' : LieModel G x' E') :
-    ∃ j : E →ₛₗ[c] E', ∀ e, ((M'.pt (j e)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt e).left) := by
+    ∃ j : E →ₛₗ[c] E', ∀ e, ((M'.pt (j e)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt e).left) := by
   subst hx
   exact (_root_.GlobalTheory.CompanionTheory.Ar.LieBaseChange.existsUnique_semilinear_lifts S G R R' c x E E' M M').exists
 
@@ -271,12 +271,12 @@ theorem exists_integral_form : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] [IsC
     (∀ h' : genPt ξ ⤳ centre (spMap (algebraMap (𝓞 L) L) ≫ z), ∀ e ∈ M.lat ⟨_, h'⟩, f e ∈ regAt ξ ⟨_, h'⟩) →
     ∃ g : B.carrier →ₗ[𝓞 L] A,
       (∀ (x : B.carrier) (e : Li) (v : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G) (u : L),
-        M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x).left) →
+        M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x).left) →
         ValAt ξ (spMap (algebraMap (𝓞 L) L) ≫ z) (f e) u → algebraMap A L (g x) = u) ∧
       ∀ (e : Li) (u : A), e ∈ M.lat ⟨_, h⟩ → ValAt ξ (spMap (algebraMap (𝓞 L) A) ≫ z) (f e) u →
         ∃ (d : 𝓞 L) (n : ℕ) (x x' : B.carrier) (v : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G),
           d ∉ 𝔭 ∧ n ≠ 0 ∧ g x = algebraMap (𝓞 L) A d * u ∧ M.ValAt _ ((n : Ω) • e) v ∧
-          (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left) ∧ (n : 𝓞 L) • x = d • x' := by
+          (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left) ∧ (n : 𝓞 L) • x = d • x' := by
   intro X G _ _ _ Ω _ ξ Li _ _ M L _ _ 𝔭 _ A _ _ _ _ _ _ z B MB f h hξ hreg hreg'
   have hzz : spMap (algebraMap A L) ≫ spMap (algebraMap (𝓞 L) A) ≫ z = spMap (algebraMap (𝓞 L) L) ≫ z := by
     rw [← Category.assoc, spec_comp, ← IsScalarTower.algebraMap_eq]
@@ -297,8 +297,8 @@ theorem exists_integral_form : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] [IsC
   let jL : B.carrier →ₗ[𝓞 L] EL :=
     { toFun := fun x => k (j x), map_add' := fun x x' => by simp
       map_smul' := fun c x => by simp [hks] }
-  have hj : ∀ x, ((MA.pt (j x)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) A)) ≫ (MB.pt x).left) := hj₀
-  have hjL : ∀ x, ((ML.pt (jL x)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x).left) := fun x => by
+  have hj : ∀ x, ((MA.pt (j x)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) A)) ≫ (MB.pt x).left) := hj₀
+  have hjL : ∀ x, ((ML.pt (jL x)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x).left) := fun x => by
     have h1 := hk (j x)
     have h2 := hj x
     rw [Category.comp_id] at h1 h2 ⊢

@@ -305,7 +305,7 @@ theorem tangent_congr (hξ : IsCptGen ξ) {G : Over X} [GrpObj G] (hG : IsSemiAb
       secVal_res _ inf_le_right h' hV f'] at e1
     have e2 := congrArg TrivSqZeroExt.snd e1
     have h0 : secVal vb (i ⁻¹ᵁ V) hP 0 = 0 := by simp [secVal]
-    simp only [h0, GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.snd_zero] at e2
+    simp only [h0, _root_.GlobalTheory.CompanionTheory.Ar.dualMap, TrivSqZeroExt.snd_zero] at e2
     have e3 := Ideal.Quotient.eq_zero_iff_mem.1 e2.symm
     obtain ⟨r₀, hr₀⟩ := Ideal.mem_span_singleton.1 e3
     exact ⟨r₀, by simpa only [zero_add, TrivSqZeroExt.snd_sub] using hr₀⟩
