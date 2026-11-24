@@ -27,7 +27,7 @@ theorem integral_eq_coord : ∀ (W : Type) [Fintype W] (n M : ℕ) (μ : Measure
     ∫ X, F X ∂μ = (c : ℂ) * ∫ x : TupV W n M, F (tupCoord x) := by
   intro W _ n M μ hμ
   have hν : (Measure.map tupCoord (volume : Measure (TupV W n M))).IsAddHaarMeasure :=
-    tupCoord.isAddHaarMeasure_map _
+    tupCoord.isAddHaarMeasure_map (volume : Measure (TupV W n M))
   obtain ⟨c, hc⟩ : ∃ c : NNReal, μ = c • Measure.map tupCoord (volume : Measure (TupV W n M)) :=
     ⟨_, Measure.isAddLeftInvariant_eq_smul μ (Measure.map tupCoord (volume : Measure (TupV W n M)))⟩
   refine ⟨(c : ℝ), NNReal.coe_nonneg _, fun F => ?_⟩
