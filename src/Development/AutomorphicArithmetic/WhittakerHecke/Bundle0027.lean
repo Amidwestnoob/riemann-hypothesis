@@ -34,7 +34,8 @@ theorem UpperTheory.exists_whittaker_heckeEigenvalues_at_inert_place :
     ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] (D : Dat ℚ E) (P : CuspSub E 2) (ω χ : HChar ℚ),
           CenN P ω → (∀ a, (χ.1 a * ω.1 a) ^ 2 = 1) → ∀ (L N : ℕ) φ, admitted D ω φ → Gd D P L N φ → ∀ a, IsAs P χ N a → ∀ v : H.P ℚ, ¬ Bad N v → ∀ w : H.P E, w.under (𝓞 ℚ) = v → H.Inert D v w →
           ∃ m : ℕ → ℂ, m 0 = 1 ∧
-            (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) → Wo D φ (em E (aE (pv v ^ k)) * g) = m k * Wo D φ g) ∧
+            (∀ (k : ℕ) g, (∀ w : H.P E, w.under (𝓞 ℚ) = v → H.KAt w g) →
+              Wo D φ (em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) * g) = m k * Wo D φ g) ∧
             ((∃ h, Wo D φ h ≠ 0) → (PowerSeries.mk fun k => a (normV v ^ k)) * (1 - PowerSeries.X ^ 2) =
               PowerSeries.mk fun k => ((normV v ^ k : ℕ) : ℂ) * ((χ.val v : ℂˣ) : ℂ) ^ k * m k) := by
   intro E _ _ _ D P ω χ _ _ L N φ hA hG a hIs v hv w hw hI
@@ -48,7 +49,8 @@ theorem UpperTheory.exists_whittaker_heckeEigenvalues_at_inert_place :
     rw [(H.lcLaws E w).1, e1, ← e2]
     exact hleft ![u, t] h
   obtain ⟨ϖ', hϖ', hz, -⟩ := hI.unif (atFin v (unif v)) (unif_spec v)
-  have hem : ∀ k : ℕ, em E (aE (pv v ^ k)) = aE (H.idl w ϖ' ^ k) := fun k => by
+  have hem : ∀ k : ℕ, em E (aE (UpperTheory.ConvolutionTheory.RankTwoDescent.pv v ^ k)) =
+      aE (H.idl w ϖ' ^ k) := fun k => by
     refine em_aE _ _ ?_
     rw [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, map_pow, hz, Dat.mkE, map_zero, zero_mul, add_zero]
     rfl
