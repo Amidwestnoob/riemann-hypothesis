@@ -435,6 +435,8 @@ theorem exists_pos_isInvIntegral (k : Type) [Field k] [ValuativeRel k] [Topologi
       (∀ f, IsTestFun f → I (fun g => (starRingEnd ℂ) (f g)) = (starRingEnd ℂ) (I f)) ∧
       ∀ f, IsTestFun f → (∀ g, 0 ≤ (f g).re) → 0 ≤ (I f).re ∧ ((I f).re = 0 → ∀ g, (f g).re = 0) := by
   borelize k
+  letI : MeasurableSpace (GL (Fin m) k) :=
+    @Units.instMeasurableSpace _ _ GlobalTheory.SplitWeil.matrixMeasurableSpace
   obtain ⟨I, h⟩ := exists_pos_invariant_form (H := unipB k (Fin m)) isClosed_unipB
     (fun μ _ => inferInstance)
     (fun μ hμ => @UnipHaar.haar_isMulRightInvariant k _ _ _ _ (Fin m) (Fin m) (fun _ => Unit) _ _ _ _ _ _
