@@ -210,6 +210,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.InvariantExtensionIntegrableOnCompact
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open MeasureTheory Filter Set Formalism.MainNotions.S GlobalTheory.RightRegFund
 open scoped ENNReal Pointwise
 

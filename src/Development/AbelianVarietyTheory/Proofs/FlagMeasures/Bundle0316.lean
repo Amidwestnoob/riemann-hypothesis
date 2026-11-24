@@ -289,6 +289,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasureFundamentalDomainLtOfDeepPointBound
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open MeasureTheory NumberField Formalism.MainNotions.S GlobalTheory.Count
 
 namespace GlobalTheory.DeepArith

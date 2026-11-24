@@ -41,6 +41,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0373
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicTransportMeasureThird
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open MeasureTheory Formalism.MainNotions.S Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult GlobalTheory.RowLev GlobalTheory.SmVec NumberField Matrix

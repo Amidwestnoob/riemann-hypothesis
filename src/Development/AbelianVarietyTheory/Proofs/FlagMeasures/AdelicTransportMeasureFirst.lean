@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0324
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.CuspCompare
 
 open MeasureTheory Matrix
