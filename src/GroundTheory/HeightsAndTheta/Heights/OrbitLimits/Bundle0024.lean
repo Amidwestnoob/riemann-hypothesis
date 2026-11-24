@@ -9,6 +9,8 @@ public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.Bundle0017
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0008
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.Bundle0021
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0010
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 
 @[expose] public section
 
@@ -22,7 +24,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MeasureTheory Filter
 open ReciprocityTheory.ChartRestriction.G.Geo (MRing HermLine IsSmoothHerm IsArithVar IsGoodProj IsSheet ptsIntegralAt sheetDensity
-  _root_.ReciprocityTheory.ChartRestriction.G.Geo.fibre pot mcPts fibreFinite isOpen_blockNonzero)
+  fibre pot mcPts fibreFinite isOpen_blockNonzero)
 
 section
 

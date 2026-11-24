@@ -12,6 +12,8 @@ public import GroundTheory.HeightsAndTheta.Heights.Intersections.Bundle0010
 public import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PPointIntegral
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.Bundle0006
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.Bundle0016
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 
 @[expose] public section
 
@@ -176,7 +178,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open Filter Topology
 open ReciprocityTheory.ChartRestriction.G.Geo (MRing HermLine IsSmoothHerm IsArithVar IsGoodProj IsSheet ptsIntegral
-  ptsIntegralAt sheetDensity _root_.ReciprocityTheory.ChartRestriction.G.Geo.fibre maDensity mixedDisc cxHessian pot segre mcPts goodProjExists)
+  ptsIntegralAt sheetDensity fibre maDensity mixedDisc cxHessian pot segre mcPts goodProjExists)
 
 theorem maDensity_eq_zero_of_eventuallyEq_zero {D : ℕ} (φ : Fin (D + 1) → (Fin (D + 1) → ℂ) → ℝ)
     (y : Fin (D + 1) → ℂ) (h : φ 0 =ᶠ[𝓝 y] 0) : maDensity φ y = 0 := by
