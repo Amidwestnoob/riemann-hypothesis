@@ -48,6 +48,7 @@ namespace GlobalTheory.KFinAvg
 variable {k r : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   {σ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ → (H →L[ℂ] H)}
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat in
 theorem dsigW_sub_avg {μ : Measure (Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)}
     {φ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ → ℂ} {v : H}
     (hU : Formalism.MainNotions.S.IsURepOn (Formalism.QuantumDeterminants.UH (PI.UpqRep.Hpk k r)) σ) (hv : Formalism.MainNotions.S.IsSmoothVec (k := k) (r := r) σ v)
@@ -71,6 +72,7 @@ theorem dsigW_sub_avg {μ : Measure (Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + 
     simp only [map_sub]
     exact ((Formalism.MainNotions.LowestKTypeMultiplicity.dsigW_hasDeriv hU hv D hD1 hX).sub (hD' D X hD1 hX)).deriv
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat in
 theorem kDense : Formalism.MainNotions.S.Pv.AmpDD.KDense := by
   intro k r ε lam H _ _ _ σ _ hDS v hv Ws hWs e he
   obtain ⟨-, hU, -⟩ := GlobalTheory.BesselMapOne.rep_of_isDSHpk hDS
@@ -112,13 +114,17 @@ theorem kDense : Formalism.MainNotions.S.Pv.AmpDD.KDense := by
     ring
   refine ⟨∫ g, peakN μ m g • σ g v ∂μ, ?_, ?_⟩
   · have := GlobalTheory.T.integral_translate_family_isKFinite_hermitian k r H σ μ hU hμ N b hbc htr (fun j => c j / (Z : ℂ)) v
-    simpa only [← e1] using this
+    simp only [← e1] at this
+    exact this
   · have hD' := fun D X hD hX => GlobalTheory.T.hasDerivAt_derived_action_max_compact_average k r H σ μ (peakN μ m) v D X hU hμ
       (by rw [show peakN μ m = fun g => ∑ j, (c j / (Z : ℂ)) * b j g from funext e1]
           exact continuous_finsetSum _ fun j _ => continuous_const.mul (hbc j)) hv' hD hX
     have hterm : ∀ w ∈ Ws, ‖PI.UpqRep.dsigW (k := k) (r := r) σ w (v - ∫ g, peakN μ m g • σ g v ∂μ)‖ ≤ e / (L + 1) := by
       intro w hw
-      rw [Formalism.MainNotions.BridgeCS3d.dsigW_eq, dsigW_sub_avg hU hv' hD' w (hWs w hw), norm_sub_rev, ← dist_eq_norm]
+      have hdiff := dsigW_sub_avg hU hv' hD' w (hWs w hw)
+      change Formalism.MainNotions.S.dsigW (k := k) (r := r) σ w
+        (v - ∫ g, peakN μ m g • σ g v ∂μ) = _ at hdiff
+      rw [Formalism.MainNotions.BridgeCS3d.dsigW_eq, hdiff, norm_sub_rev, ← dist_eq_norm]
       exact (hm w hw).le
     calc (Ws.map fun w => ‖PI.UpqRep.dsigW (k := k) (r := r) σ w (v - ∫ g, peakN μ m g • σ g v ∂μ)‖).sum
         ≤ (Ws.map fun _ => e / (L + 1)).sum := List.sum_le_sum (fun w hw => hterm w hw)
