@@ -124,7 +124,7 @@ theorem fl_eq_flCol (ψ : AddChar k Circle) (hψ : Continuous ψ) (hne : ψ ≠ 
   have h := (((GlobalTheory.RootEx.FourierJacobi.fourierJacobiBessel k).2.2.2.1 n n' c ρ h1 hc).2.2.2 ψ ν hψ hne hν).1
     1 continuous_const Φ β
   have h2 := h.2 x
-  unfold fl at h2 ⊢
+  unfold GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage.fl at h2 ⊢
   rw [om_colE_indep, h2]
   rfl
 
