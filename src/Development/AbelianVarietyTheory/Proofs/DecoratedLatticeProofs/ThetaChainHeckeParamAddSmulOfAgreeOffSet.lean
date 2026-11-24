@@ -30,7 +30,7 @@ theorem satGL_add (hx : IsSatVecGL w ρ x B) (hx' : IsSatVecGL w ρ x' B) (h0 : 
 
 theorem satGL_smul (hx : IsSatVecGL w ρ x B) {a : ℂ} (ha : a ≠ 0) : IsSatVecGL w ρ (a • x) B :=
   ⟨smul_ne_zero ha hx.1, Submodule.smul_mem _ a hx.2.1, hx.2.2.1, fun ϖ hϖ j hj => by
-    rw [heckeVec_smul (Final.GLintComm E w n) (Tj_mem_hecke hϖ j), hx.2.2.2 ϖ hϖ j hj, smul_comm]⟩
+    rw [GlobalTheory.LFun.SatCompare.heckeVec_smul (Final.GLintComm E w n) (Tj_mem_hecke hϖ j), hx.2.2.2 ϖ hϖ j hj, smul_comm]⟩
 
 end GLcase
 
@@ -49,7 +49,7 @@ theorem satU_add (hU : IsUnramInv ϖ c q) (hx : IsSatVecU ϖ q ρ x α) (hx' : I
 theorem satU_smul (hU : IsUnramInv ϖ c q) (hx : IsSatVecU ϖ q ρ x α) {a : ℂ} (ha : a ≠ 0) :
     IsSatVecU ϖ q ρ (a • x) α :=
   ⟨smul_ne_zero ha hx.1, Submodule.smul_mem _ a hx.2.1, fun t ht => by
-    rw [heckeVec_smul (P.isCommensurated_integral_unitary_of_unramified hU n) ht, hx.2.2 t ht, smul_comm]⟩
+    rw [GlobalTheory.LFun.SatCompare.heckeVec_smul (P.isCommensurated_integral_unitary_of_unramified hU n) ht, hx.2.2 t ht, smul_comm]⟩
 
 end Ucase
 
