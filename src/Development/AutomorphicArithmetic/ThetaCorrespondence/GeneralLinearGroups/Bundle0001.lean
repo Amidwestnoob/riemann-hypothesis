@@ -260,7 +260,7 @@ private theorem deltaHalf_scalar (k : Type) [Field k] [ValuativeRel k] [Topologi
     [∀ a, DecidableEq (m a)] (t : kˣ) :
     (deltaHalf k m (fun a => Matrix.GeneralLinearGroup.scalar (m a) t) : ℂ) = 1 := by
   rw [val_deltaHalf]
-  have hx : nabs k t ≠ 0 := (nabs_pos' k t).ne'
+  have hx : nabs k t ≠ 0 := (_root_.GlobalTheory.SmGL.nabs_pos' k t).ne'
   have hn : ∀ a, nabs k (Matrix.GeneralLinearGroup.det (Matrix.GeneralLinearGroup.scalar (m a) t)) =
       nabs k t ^ ((Fintype.card (m a) : ℤ)) := by
     intro a

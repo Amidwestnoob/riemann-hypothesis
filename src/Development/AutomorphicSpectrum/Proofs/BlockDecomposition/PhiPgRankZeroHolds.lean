@@ -580,7 +580,7 @@ theorem scal_one (d : kˣ) :
     ((absPow k (((-1 / 2 : ℝ)) : ℂ) d : ℂˣ) : ℂ) * (((absPow k (((1 : ℝ)) : ℂ) d : ℂˣ) : ℂ) *
       ((absPow k (((-((0 + 1 : ℕ) : ℝ) / 2 : ℝ)) : ℂ) d : ℂˣ) : ℂ)) = 1 := by
   rw [val_absPow_ofReal, val_absPow_ofReal, val_absPow_ofReal, ← Complex.ofReal_mul, ← Complex.ofReal_mul]
-  have hp := nabs_pos' k d
+  have hp := _root_.GlobalTheory.SmGL.nabs_pos' k d
   rw [← Real.rpow_add hp, ← Real.rpow_add hp]
   norm_num
 

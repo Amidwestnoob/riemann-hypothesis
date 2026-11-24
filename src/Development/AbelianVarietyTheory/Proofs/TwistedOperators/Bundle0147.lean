@@ -226,7 +226,7 @@ theorem deltaHalf_scalar {α : Type} (m : α → Type) [Fintype α] [LinearOrder
     rw [mul_comm, _root_.zpow_mul, zpow_natCast]
     simp [nabs]
   simp only [h1, h3, ← Real.rpow_intCast]
-  rw [← Real.rpow_sum_of_pos (nabs_pos' k z), ← Int.cast_sum, h2]
+  rw [← Real.rpow_sum_of_pos (_root_.GlobalTheory.SmGL.nabs_pos' k z), ← Int.cast_sum, h2]
   simp
 
 theorem multiProd_scalar {α n : Type} {m : α → Type} [Fintype α] [LinearOrder α] [∀ a, Fintype (m a)]

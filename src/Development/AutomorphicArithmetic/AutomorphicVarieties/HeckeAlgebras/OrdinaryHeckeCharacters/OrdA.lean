@@ -125,7 +125,7 @@ private theorem ordA_val (ω : Fin n → kˣ →* ℂˣ) (j : ℕ) (hj : j ≤ n
         (unif k ^ (if (i : ℕ) < j then (1 : ℤ) else 0)) : ℂ) = psEig ω j := by
   have hq : nabs k (unif k) = (Nat.card 𝓀[k] : ℝ)⁻¹ := GlobalTheory.GLDoubling.nabs_unif GlAx.unif_spec
   have h0 : (Nat.card 𝓀[k] : ℂ) ≠ 0 := by
-    have := nabs_pos' k (unif k)
+    have := _root_.GlobalTheory.SmGL.nabs_pos' k (unif k)
     rw [hq] at this
     exact_mod_cast (inv_pos.1 this).ne'
   have h1 : ∀ i : Fin n, ((absPow k ((modExp (fun _ : Fin n => Unit) i : ℂ) / 2) * (ω i * absPow k (((n : ℂ) - 1) / 2)))

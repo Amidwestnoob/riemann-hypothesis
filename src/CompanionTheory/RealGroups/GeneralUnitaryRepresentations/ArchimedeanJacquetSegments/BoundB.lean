@@ -286,7 +286,7 @@ theorem bound_main : Bound k := by
   have hnorm : ‖((deltaHalf k (fun _ : Fin 2 => Fin d) ![Matrix.GeneralLinearGroup.scalar (Fin d) t, 1] : ℂ) * c)‖ =
       ‖c‖ * nabs k t ^ (((d * d : ℕ) : ℝ) / 2) := by
     rw [norm_mul, val_deltaHalf, Complex.norm_real, Real.norm_of_nonneg (Real.sqrt_nonneg _), modulus_scalar_block,
-      mul_comm, Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul (nabs_pos' k t).le]
+      mul_comm, Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul (_root_.GlobalTheory.SmGL.nabs_pos' k t).le]
     congr 2
     ring
   rw [← hnorm]

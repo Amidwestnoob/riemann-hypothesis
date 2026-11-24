@@ -384,7 +384,7 @@ theorem card_eq_one : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
   choose c hc using fun i => GlobalTheory.T.central_character_exists k (x i) t
   obtain ⟨hpart, hfull⟩ := hex t ht (c ∘ Fin.rev) fun i => hc (Fin.rev i)
   have hle : h ≤ 1 := length_le_one_of_partial_products (fun i => ((x i).1 : ℝ)) (fun i => s (D i))
-    (fun i => ‖c i‖) (nabs_pos' k t) hnabs (fun i => by exact_mod_cast hpos (D i)) hanti
+    (fun i => ‖c i‖) (_root_.GlobalTheory.SmGL.nabs_pos' k t) hnabs (fun i => by exact_mod_cast hpos (D i)) hanti
     (fun i => hs (D i) t (c i) (hc i)) hpart hfull
   have hh0 : h ≠ 0 := by
     rintro rfl

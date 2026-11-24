@@ -52,8 +52,8 @@ theorem absPow_ofReal_injective : ∀ (k : Type) [Field k] [ValuativeRel k] [Top
     rw [h] at hx
     exact_mod_cast hx.symm.trans hy
   have h3 := congrArg Real.log h2
-  rw [Real.log_rpow (nabs_pos' k ϖ), Real.log_rpow (nabs_pos' k ϖ)] at h3
-  exact mul_right_cancel₀ (Real.log_ne_zero_of_pos_of_ne_one (nabs_pos' k ϖ) h1) h3
+  rw [Real.log_rpow (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ), Real.log_rpow (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ)] at h3
+  exact mul_right_cancel₀ (Real.log_ne_zero_of_pos_of_ne_one (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ) h1) h3
 
 end GlobalTheory.TypeTwo
 end

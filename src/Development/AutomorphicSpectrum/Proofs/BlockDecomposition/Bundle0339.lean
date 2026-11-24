@@ -399,7 +399,7 @@ theorem deltaHalf_scalar (t : kˣ) :
     have h3 : ∀ (s : Finset α) (f : α → ℤ), ∏ a ∈ s, nabs k t ^ f a = nabs k t ^ ∑ a ∈ s, f a := fun s f => by
       induction s using Finset.induction_on with
       | empty => simp
-      | insert a s ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, zpow_add₀ (nabs_pos' k t).ne', ih]
+      | insert a s ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, zpow_add₀ (_root_.GlobalTheory.SmGL.nabs_pos' k t).ne', ih]
     rw [h3, sum_card_mul_modExp, zpow_zero]
   refine Units.ext ?_
   rw [val_deltaHalf, h1]

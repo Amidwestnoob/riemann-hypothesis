@@ -33,7 +33,7 @@ theorem add_one_le_of_precedes (Δ Δ' : Segment k) (hΔ : IsCentred Δ) (hΔ' :
     exact GlobalTheory.LocGL.UnitaryOrder.hasCentralChar_nu _ hω _
   obtain ⟨ϖ, hϖ⟩ := exists_uniformizer k
   have hne : nabs k ϖ ≠ 1 := fun e => uniformizer_lt_one.ne (hϖ ▸ (nabs_eq_one_iff ϖ).1 e)
-  have hL0 : Real.log (nabs k ϖ) ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one (nabs_pos' k ϖ) hne
+  have hL0 : Real.log (nabs k ϖ) ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ) hne
   have hA := hΔ ω hω ϖ
   have hA' := hΔ' _ hω' ϖ
   rw [GlobalTheory.LocGL.UnitaryOrder.log_norm_mul_absPow, hd] at hA'

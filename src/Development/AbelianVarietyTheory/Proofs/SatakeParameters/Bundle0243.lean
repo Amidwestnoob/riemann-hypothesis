@@ -243,7 +243,7 @@ theorem unlinked_chars_comp_normU : ∀ (E M : Type) [Field E] [NumberField E] [
   have hval : ∀ (s : ℝ) (x : (u.adicCompletion M)ˣ), ‖((absPow (u.adicCompletion M) (s : ℂ) x : ℂˣ) : ℂ)‖ =
       nabs (u.adicCompletion M) x ^ s := fun s x => by
     rw [val_absPow_ofReal, Complex.norm_real, Real.norm_eq_abs,
-      abs_of_nonneg (Real.rpow_nonneg (nabs_pos' _ x).le _)]
+      abs_of_nonneg (Real.rpow_nonneg (_root_.GlobalTheory.SmGL.nabs_pos' _ x).le _)]
   have key : ∀ j, ∃ e : ℝ, |e| < 1 / 2 ∧ ∀ x, ‖(((ξ j).comp (GlobalTheory.BCChar.normU w u) x : ℂˣ) : ℂ)‖ =
       nabs (u.adicCompletion M) x ^ (e - c) := by
     intro j
@@ -264,7 +264,7 @@ theorem unlinked_chars_comp_normU : ∀ (E M : Type) [Field E] [NumberField E] [
     have h1' : ‖((absPow (u.adicCompletion M) 1 x : ℂˣ) : ℂ)‖ = nabs (u.adicCompletion M) x ^ (1 : ℝ) := by
       rw [← hval]; simp
     rw [ha', hb', h1'] at hx
-    have ht := nabs_pos' (u.adicCompletion M) x
+    have ht := _root_.GlobalTheory.SmGL.nabs_pos' (u.adicCompletion M) x
     rw [val_absPow_ofReal, MonoidHom.one_apply, Units.val_one]
     have : nabs (u.adicCompletion M) x ^ (a - b - 1) = 1 := by
       rw [show a - b - 1 = (a - c) - ((b - c) + 1) by ring, Real.rpow_sub ht, Real.rpow_add ht, hx,
