@@ -191,7 +191,7 @@ theorem kch_eq_one_of_wchar {E : Type} [Field E] [NumberField E] [IsCMField E] {
   rw [Units.coe_prod, Units.val_pow_eq_pow_val]
   exact h
 
-theorem rootVal_unique : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1)) (r : ℕ) (M : ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)), Formalism.L2.PjFree.GoodEmb c σ → ModelBase M → NegXi M → FramesOK e F M un → ∀ (y : FrPt Xo c (CAt σ)) (v v' : ℂ), RootVal (unfOf e F M un) y v → RootVal (unfOf e F M un) y v' → v = v' := by
+theorem rootVal_unique : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ) (g : ℕ) (e : Fin g ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ)) (F : FamilyUnif Xo (σ.comp (IntermediateField.inclusion c.le).toRingHom) (fun j => Formalism.L2.PjFree.relab c σ (e j).1)) (r : ℕ) (M : GlobalTheory.FrameUnif.ModelsOf F r) (un : ∀ k, (M.X k).dom → FrPt Xo c (CAt σ)), Formalism.L2.PjFree.GoodEmb c σ → GlobalTheory.FrameUnif.ModelBase M → NegXi M → GlobalTheory.FrameUnif.FramesOK e F M un → ∀ (y : FrPt Xo c (CAt σ)) (v v' : ℂ), RootVal (GlobalTheory.FrameUnif.unfOf e F M un) y v → RootVal (GlobalTheory.FrameUnif.unfOf e F M un) y v' → v = v' := by
   intro E _ _ _ H Dw l Xo c σ g e F r M un hσ hM hN hun y v v' hv hv'
   obtain ⟨k, x, t, ht, rfl⟩ := hv
   obtain ⟨k', x', t', ht', rfl⟩ := hv'
@@ -214,8 +214,8 @@ theorem rootVal_unique : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   have d1 : Formalism.L2.Pj.Dom (fun _ : (E →+* ℂ) × ℕ => 1) 0 := ⟨fun _ => antitone_const, by decide⟩
   have d2 : Formalism.L2.Pj.Dom (fun _ : (E →+* ℂ) × ℕ => 0) 2 := ⟨fun _ => antitone_const, by decide⟩
   have k1 : kch t1 = 1 := kch_eq_one_of_wchar t1 ((hw1 _ _ d1).trans (hw1 _ _ d2).symm)
-  have hla : Formalism.L2.PjFree.laU (unfOf e F M un) (fun _ => 1) 0 k' =
-      Formalism.L2.PjFree.laU (unfOf e F M un) (fun _ => 0) 2 k' := by
+  have hla : Formalism.L2.PjFree.laU (GlobalTheory.FrameUnif.unfOf e F M un) (fun _ => 1) 0 k' =
+      Formalism.L2.PjFree.laU (GlobalTheory.FrameUnif.unfOf e F M un) (fun _ => 0) 2 k' := by
     funext τ j
     simp only [Formalism.L2.PjFree.laU]
     split_ifs <;> simp
