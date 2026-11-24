@@ -135,7 +135,8 @@ theorem value_of_congr2 (h : Reads σ μ ξ) (ht : ∀ P, ξ.TameAt P) {P : Heig
   have key : ∀ Q, Valued.v (evP F Q ((u / l : (AfE F E)ˣ) : AfE F E) - 1) < 1 := fun Q => by
     have e1 : evP F Q ((u / l : (AfE F E)ˣ) : AfE F E) * evP F Q (l : AfE F E) = evP F Q (u : AfE F E) := by
       rw [← map_mul, ← Units.val_mul, div_mul_cancel]
-    have e2 : evP F Q (l : AfE F E) = ev Q (localIdele E P (atFin P x) : AdeleRing (𝓞 E) E) :=
+    have e2 : evP F Q (l : AfE F E) =
+        ev Q (GlobalTheory.Mem.Chr.localIdele E P (atFin P x) : AdeleRing (𝓞 E) E) :=
       GlobalTheory.Mem.ReadTwist.afIso_finAf_apply _ Q
     by_cases hQ : Q = P
     · subst hQ
