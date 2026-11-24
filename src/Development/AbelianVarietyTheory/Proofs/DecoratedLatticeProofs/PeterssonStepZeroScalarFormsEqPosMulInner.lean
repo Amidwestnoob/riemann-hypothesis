@@ -21,6 +21,7 @@ public import Formalism.LocalRingCardinality.Bundle0005
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.StepZeroNorm
 
 section Chi
