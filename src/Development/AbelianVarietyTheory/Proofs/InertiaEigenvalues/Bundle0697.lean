@@ -470,7 +470,9 @@ theorem unfold_mirabolic : ∀ (E : Type) [Field E] [NumberField E] (a : ℕ) [M
   have : LocallyCompactSpace (Matrix (Fin a) (Fin a) (Ad E))ᵐᵒᵖ :=
     MulOpposite.opHomeomorph.symm.isClosedEmbedding.locallyCompactSpace
   have : LocallyCompactSpace (GA E a) := Units.isClosedEmbedding_embedProduct.locallyCompactSpace
-  have : SFinite μ := inferInstance
+  have : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite μ := SigmaFinite.of_isFiniteMeasureOnCompacts μ
+  have : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
   refine ⟨fun f hf => ?_, fun f f' hf hf' h1 h2 => ?_⟩
   · exact lintegral_tower μ hψ hm h𝓕 h𝓕₀ (fun g => (w g : ℝ≥0∞)) (by fun_prop)
       (fun γ hγ g => by simp only [hwΓ γ hγ g]) (fun k _ y g => by simp only [hwU k y g]) hf
