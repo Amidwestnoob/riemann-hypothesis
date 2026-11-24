@@ -177,14 +177,14 @@ theorem used_loc (D : D7) (i : D.nd.Loc) : D.nd.mu i = D.what₂.mu0 ∨ ∃ w, 
   Or.inr ⟨D.nd.w i, (D.nd.mu_w i).trans ((D.what₂.muAt_or _).resolve_left (D.nd.w_tw i)).symm⟩
 
 theorem lamPos_of_used {D : D7} (h : LamUsed D) {μ} (hμ : μ = D.what₂.mu0 ∨ ∃ w, μ = D.what₂.muAt w) {j : ℕ}
-    (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : LamPos D μ j := by
+    (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : GlobalTheory.RowCopy.LamPos D μ j := by
   obtain ⟨k, rfl⟩ : ∃ k, j = k + 1 := ⟨j - 1, by omega⟩
   exact h μ hμ ⟨k, by omega⟩
 
-theorem lamLoc {D : D7} (h : LamUsed D) (i : D.nd.Loc) : LamPos D (D.nd.mu i) (D.nd.j i) :=
+theorem lamLoc {D : D7} (h : LamUsed D) (i : D.nd.Loc) : GlobalTheory.RowCopy.LamPos D (D.nd.mu i) (D.nd.j i) :=
   lamPos_of_used h (used_loc D i) (D.nd.j_range i).1 (D.nd.j_range i).2
 
-theorem up_injective {D : D7} {μ} {j : ℕ} (h : LamPos D μ j) (hI : DirectSum.IsInternal (D.what₂.isot j)) :
+theorem up_injective {D : D7} {μ} {j : ℕ} (h : GlobalTheory.RowCopy.LamPos D μ j) (hI : DirectSum.IsInternal (D.what₂.isot j)) :
     Function.Injective (D.what₂.thetaT μ j) := by
   have hs : Function.Surjective (D.what₂.thetaP μ j ∘ₗ D.what₂.thetaT μ j) := by
     rw [← LinearMap.range_eq_top, eq_top_iff, ← hI.submodule_iSup_eq_top, iSup_le_iff]
