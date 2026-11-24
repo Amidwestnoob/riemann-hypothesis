@@ -19,6 +19,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.IntegralHeckeForms
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsPotential
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BK GlobalTheory.BKReal Matrix
