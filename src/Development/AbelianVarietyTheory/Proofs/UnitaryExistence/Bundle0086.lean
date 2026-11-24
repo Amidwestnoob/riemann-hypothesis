@@ -66,10 +66,10 @@ def holSub (B : Set V) (k : V → (A →ₐ[K] CAt σ)) : Subalgebra K A where
     exact differentiableOn_const _
 
 theorem mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {t : A} :
-    t ∈ Formalism.L2.PjFree.holSub B k ↔ DifferentiableOn ℂ (fun b => Formalism.L2.PjFree.toC (k b t)) B := Iff.rfl
+    t ∈ GlobalTheory.HolEval.holSub B k ↔ DifferentiableOn ℂ (fun b => Formalism.L2.PjFree.toC (k b t)) B := Iff.rfl
 
-theorem inv_mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {d x : A} (hx : x ∈ Formalism.L2.PjFree.holSub B k)
-    (h : d * x = 1) : d ∈ Formalism.L2.PjFree.holSub B k := by
+theorem inv_mem_holSub {B : Set V} {k : V → (A →ₐ[K] CAt σ)} {d x : A} (hx : x ∈ GlobalTheory.HolEval.holSub B k)
+    (h : d * x = 1) : d ∈ GlobalTheory.HolEval.holSub B k := by
   rw [mem_holSub] at hx ⊢
   have key : ∀ b, Formalism.L2.PjFree.toC (k b d) * Formalism.L2.PjFree.toC (k b x) = 1 := fun b => by
     rw [← toC_mul, ← map_mul, h, map_one, toC_one]
@@ -122,19 +122,19 @@ theorem differentiableOn_evR : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] 
     exact differentiableOn_empty
   have : Nonempty (A.R →ₐ[c.F] CAt σ) := ⟨(hk b₀ hb₀).choose⟩
   choose! kk hkk using hk
-  have hX : ∀ τ i j, X τ i j ∈ Formalism.L2.PjFree.holSub B kk := by
+  have hX : ∀ τ i j, X τ i j ∈ GlobalTheory.HolEval.holSub B kk := by
     intro τ i j
     rw [mem_holSub]
     refine (hG τ i j).congr fun b hb => ?_
     show Formalism.L2.PjFree.toC (kk b (X τ i j)) = Formalism.L2.PjFree.toC (G b τ i j)
     rw [← (hkk b hb).2.1 τ]
     rfl
-  have hs : (s : A.R) ∈ Formalism.L2.PjFree.holSub B kk := by
+  have hs : (s : A.R) ∈ GlobalTheory.HolEval.holSub B kk := by
     rw [mem_holSub]
     refine ha.congr fun b hb => ?_
     show Formalism.L2.PjFree.toC (kk b (s : A.R)) = Formalism.L2.PjFree.toC (a b)
     rw [(hkk b hb).2.2]
-  have hA' := _root_.GlobalTheory.frameRing_subalgebra_eq_top c.F (E →+* ℂ) (fun τ => Dw.mult τ) p.R A.R π X s hFR (Formalism.L2.PjFree.holSub B kk)
+  have hA' := _root_.GlobalTheory.frameRing_subalgebra_eq_top c.F (E →+* ℂ) (fun τ => Dw.mult τ) p.R A.R π X s hFR (GlobalTheory.HolEval.holSub B kk)
     (fun t => by
       rw [mem_holSub]
       refine (hψ t).congr fun b hb => ?_
@@ -147,7 +147,7 @@ theorem differentiableOn_evR : Out.SecBaseChangeSt → ∀ (E : Type) [Field E] 
       refine ⟨((v⁻¹ : (A.R)ˣ) : A.R), inv_mem_holSub (det_mem _ (X τ) (hX τ)) ?_, ?_⟩ <;>
         · rw [← hv]
           exact Units.inv_mul v)
-  have he : f A u ∈ Formalism.L2.PjFree.holSub B kk := by
+  have he : f A u ∈ GlobalTheory.HolEval.holSub B kk := by
     rw [hA']
     exact Algebra.mem_top
   rw [mem_holSub] at he
