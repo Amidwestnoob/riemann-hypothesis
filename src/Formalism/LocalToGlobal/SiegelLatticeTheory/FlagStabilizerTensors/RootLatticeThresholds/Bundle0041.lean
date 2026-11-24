@@ -66,7 +66,7 @@ theorem Ea_mul (a b : CV D) : Ea a * Ea b = if a = b then Ea a else 0 := by
         (D.ntypes.eSer kv.1 (Formalism.CyclotomicNorms.monicOf (b kv)))).coeff (γ kv) := by
     simp only [coeff_mul_fin]
     rw [Fintype.prod_sum]
-    refine Finset.sum_congr rfl fun δ _ => ?_
+    refine Finset.sum_congr (by ext; simp) fun δ _ => ?_
     rw [← Finset.prod_mul_distrib]
     rfl
   rw [key]
