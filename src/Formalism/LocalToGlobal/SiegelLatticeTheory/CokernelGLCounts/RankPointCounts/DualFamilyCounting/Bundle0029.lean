@@ -172,7 +172,7 @@ theorem ratPair_of (hD : TotPosAll) : RatPair := by
   have hdet := det_ne_of_totPos D Z hP
   obtain ⟨w0, hw0, hwt⟩ := exists_W_vec D hN hy (tv (D.mem u).A.T (D.mem u').A.T Z)
     (tv_star D _ _ Z) (tv_pos D hD hN Z hP)
-  set p := pv F0.e y F0.z (D.mem u).A.T (D.mem u').A.T Z w0 with hp
+  set p := Formalism.L2.SG.Pf.Cnt.R1.pv F0.e y F0.z (D.mem u).A.T (D.mem u').A.T Z w0 with hp
   set f' : Fin (D.R.rS + 1) → (VS D).V := fun b => ∑ a, Z a b • p a with hf'
   have hfp : ∀ a a', (VS D).hT (F0.fvec a) (p a') = if a = a' then 1 else 0 :=
     fun a a' => hf_pv hy hN hw0 a a'
