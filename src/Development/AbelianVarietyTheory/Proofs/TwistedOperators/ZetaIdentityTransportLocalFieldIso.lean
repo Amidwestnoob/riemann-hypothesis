@@ -22,6 +22,10 @@ attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.Co
 namespace GlobalTheory.FlipMatch.FieldTransport
 open ValuativeRel
 
+-- Match the units topology and matrix-entry measurable space used by SplitFlip.haarVol.
+attribute [local instance 2000] Units.instTopologicalSpaceUnits Units.instMeasurableSpace
+  GlobalTheory.SplitWeil.matrixMeasurableSpace GlobalTheory.SplitFlip.borel_GL
+
 section
 variable {k k' : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   [Field k'] [ValuativeRel k'] [TopologicalSpace k'] [IsNonarchimedeanLocalField k'] {j : k ≃+* k'}
