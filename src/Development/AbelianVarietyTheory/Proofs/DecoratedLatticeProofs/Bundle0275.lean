@@ -132,6 +132,7 @@ theorem lintegral_besGrp_eq : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.Hida
   intro D X h u ψ A B μSf hSf hσf hS
   haveI := hSf
   haveI := hσf
+  haveI : SFinite μSf := @MeasureTheory.instSFiniteOfSigmaFinite _ _ μSf hσf
   have hR := Formalism.L2.SG.Pf.foldReady_holds X.B.I
   haveI : BorelSpace X.B.I.GA := hR.2.2.2.1
   haveI : SecondCountableTopology X.B.I.GA := hR.2.1
