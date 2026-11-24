@@ -132,7 +132,7 @@ theorem exists_act_smul (hG : GlobalFnsSt) (θ θ' : ThetaGrp A.A A.L (k : ℤ) 
     let z : (TFK (R := R) F).left := (default : PrimeSpectrum F)
     choose J hJ using fun χ : (TFK (R := R) F).left ⟶ A.A.left => exists_chart A.isLB (χ z)
     refine Units.ne_zero _ ((ha _ (lift (𝟙 (TFK (R := R) F)) (1 : _ ⟶ A.A)).left z J hJ).trans ?_)
-    exact (congrArg _ (map_zero _)).trans (gs_zero' _ z ⊤ trivial)
+    exact (congrArg _ (map_zero _)).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ z ⊤ trivial)
   · refine (h' _ _ y J hJ).trans (Eq.trans ?_ (sval_smul' hJ _ c u).symm)
     refine Eq.trans ?_ (congrArg₂ (· * ·) (ha _ (𝟙 _) y J hJ) (h _ _ y J hJ).symm)
     rw [← _root_.mul_assoc, ← Units.val_mul]

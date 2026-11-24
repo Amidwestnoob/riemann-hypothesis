@@ -282,13 +282,13 @@ theorem generates_of_inv {n : ℕ} [NeZero n] {H : Type} [AddCommGroup H] [Modul
 theorem mu_equivariant (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] (n : ℕ) [NeZero n]
     (c : Gal(Ω/K) →* (ZMod n)ˣ) (ζ : Ωˣ) (hζ : IsPrimitiveRoot ζ n)
     (hc : ∀ g : Gal(Ω/K), g (ζ : Ω) = (ζ : Ω) ^ ((c g : (ZMod n)ˣ) : ZMod n).val)
-    (g : Gal(Ω/K)) (m : ZMod n) : muEquiv ζ hζ (charRep c g m) =
+    (g : Gal(Ω/K)) (m : ZMod n) : muEquiv ζ hζ (_root_.ReciprocityTheory.Gal.charRep c g m) =
       (galRootsOfUnity.{0} K Ω n).ρ g (muEquiv ζ hζ m) := by
   rw [galRootsOfUnity_ρ_apply]
   apply Additive.toMul.injective
   apply Subtype.ext
   apply Units.ext
-  change (((Additive.toMul (muEquiv ζ hζ (charRep c g m)) : rootsOfUnity n Ω) : Ωˣ) : Ω) =
+  change (((Additive.toMul (muEquiv ζ hζ (_root_.ReciprocityTheory.Gal.charRep c g m)) : rootsOfUnity n Ω) : Ωˣ) : Ω) =
     g (((Additive.toMul (muEquiv ζ hζ m) : rootsOfUnity n Ω) : Ωˣ) : Ω)
   rw [muEquiv_apply, muEquiv_apply, ReciprocityTheory.Gal.charRep_apply, Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val,
     map_pow, hc, ← pow_mul, ZMod.val_mul]
@@ -306,16 +306,16 @@ theorem core (K Ω : Type) [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNo
     (hκ : ∀ g : Gal(Ω/K), g (y : Ω) = (ζ : Ω) ^ (κ g).val * y)
     (hadd : ∀ g h, χ (g * h) = χ g + χ h)
     (hF : ∀ g, unramifiedDegree K Ω g = Multiplicative.ofAdd 1 → χ g = 1)
-    (z : Z2 (charRep c)) (hz : ∀ g h, z.1 (g, h) = κ g * χ h) :
-    Submodule.span (ZMod n) {(Submodule.Quotient.mk z : H2 (charRep c))} = ⊤ := by
+    (z : Z2 (_root_.ReciprocityTheory.Gal.charRep c)) (hz : ∀ g h, z.1 (g, h) = κ g * χ h) :
+    Submodule.span (ZMod n) {(Submodule.Quotient.mk z : H2 (_root_.ReciprocityTheory.Gal.charRep c))} = ⊤ := by
   have hcont := _root_.GlobalTheory.CompanionTheory.LocalUnram.continuous_of_additive_of_frobenius_eq_one K Ω n χ hadd hF
   have he := mu_equivariant K Ω n c ζ hζ hc
-  obtain ⟨e2, hex, he2⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc2 Gal(Ω/K) (ZMod n) (ZMod n) (charRep c)
+  obtain ⟨e2, hex, he2⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc2 Gal(Ω/K) (ZMod n) (ZMod n) (_root_.ReciprocityTheory.Gal.charRep c)
     (galRootsOfUnity.{0} K Ω n) (muEquiv ζ hζ) he
   have hJ : Function.Injective (cohomologyMap (rootsOfUnityToUnits K Ω n) 2).hom :=
     cohomologyMap_f_injective_of_subsingleton (kummerSequence_shortExact (K := K) (L := Ω) n hn) 1
       subsingleton_cohomology_one_galUnits
-  let T : H2 (charRep c) →+ QZ := ((brauerInv K Ω).comp
+  let T : H2 (_root_.ReciprocityTheory.Gal.charRep c) →+ QZ := ((brauerInv K Ω).comp
     (cohomologyMap (rootsOfUnityToUnits K Ω n) 2).hom.toAddMonoidHom).comp e2.toAddMonoidHom
   have hTinj : Function.Injective T :=
     (brauerInv_bijective K Ω).1.comp (hJ.comp e2.injective)
@@ -336,24 +336,24 @@ theorem core_dec (K Ω : Type) [Field K] [ValuativeRel K] [TopologicalSpace K] [
     (hκ : ∀ g : Gal(Ω/K), g (y : Ω) = (ζ : Ω) ^ (κ (ε g)).val * y)
     (hadd : ∀ g h, χ (g * h) = χ g + χ h)
     (hF : ∀ g, unramifiedDegree K Ω g = Multiplicative.ofAdd 1 → χ (ε g) = 1)
-    (z : Z2 (charRep c)) (hz : ∀ g h, z.1 (g, h) = κ g * χ h) :
-    Submodule.span (ZMod n) {(Submodule.Quotient.mk z : H2 (charRep c))} = ⊤ := by
+    (z : Z2 (_root_.ReciprocityTheory.Gal.charRep c)) (hz : ∀ g h, z.1 (g, h) = κ g * χ h) :
+    Submodule.span (ZMod n) {(Submodule.Quotient.mk z : H2 (_root_.ReciprocityTheory.Gal.charRep c))} = ⊤ := by
   letI := algebraicValuativeRel K Ω
   letI := algebraicTopology K Ω
   haveI := algebraicValuativeRel_valuativeExtension K Ω
   haveI := algebraicTopology_isValuativeTopology K Ω
   let c' : Gal(Ω/K) →* (ZMod n)ˣ := c.comp (ε : Gal(Ω/K) →* D)
-  let T := ReciprocityTheory.Neutral.Bridge.equivH2OfIso ε (charRep c) (charRep c') (fun _ _ => rfl)
-  let z' : Z2 (charRep c') := ReciprocityTheory.Gal.compatiblePairCocycles2 (charRep c) (charRep c')
+  let T := ReciprocityTheory.Neutral.Bridge.equivH2OfIso ε (_root_.ReciprocityTheory.Gal.charRep c) (_root_.ReciprocityTheory.Gal.charRep c') (fun _ _ => rfl)
+  let z' : Z2 (_root_.ReciprocityTheory.Gal.charRep c') := ReciprocityTheory.Gal.compatiblePairCocycles2 (_root_.ReciprocityTheory.Gal.charRep c) (_root_.ReciprocityTheory.Gal.charRep c')
     (ε : Gal(Ω/K) →* D) (ReciprocityTheory.Neutral.Bridge.continuous_coe_iso ε) LinearMap.id continuous_id (fun _ _ => rfl) z
   have hspan := core K Ω n hn c' ζ y a hζ hc ha hy (fun g => κ (ε g)) (fun g => χ (ε g)) hκ
     (fun g h => by rw [map_mul, hadd]) hF z' (fun g h => hz _ _)
   rw [Submodule.eq_top_iff']
   intro x
-  have hx : T x ∈ Submodule.span (ZMod n) {(Submodule.Quotient.mk z' : H2 (charRep c'))} := by
+  have hx : T x ∈ Submodule.span (ZMod n) {(Submodule.Quotient.mk z' : H2 (_root_.ReciprocityTheory.Gal.charRep c'))} := by
     rw [hspan]; trivial
   obtain ⟨b, hb⟩ := Submodule.mem_span_singleton.1 hx
-  have : x = b • (Submodule.Quotient.mk z : H2 (charRep c)) := by
+  have : x = b • (Submodule.Quotient.mk z : H2 (_root_.ReciprocityTheory.Gal.charRep c)) := by
     apply T.injective
     rw [← hb, map_smul, show T (Submodule.Quotient.mk z) = Submodule.Quotient.mk z' from
       ReciprocityTheory.Neutral.Bridge.equivH2OfIso_mk ε _ _ _ z]

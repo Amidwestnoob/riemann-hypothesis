@@ -60,7 +60,7 @@ theorem heisO_reFi (ψ : AddChar (AF D.host.F) ℂ)
     (hB : ∀ x y : WO (reS S b) T, symplO (reS S b) T x y = symplO S T (reW S T b x) (reW S T b y))
     (u : WO (reS S b) T) (g : WO (reS S b) T → ℂ) :
     reFi S T b (heisO ψ (reS S b) T u g) = heisO ψ S T (reW S T b u) (reFi S T b g) := by
-  have h := heisO_reF S T b ψ hB u (reFi S T b g)
+  have h := _root_.GlobalTheory.AdSpan.ReVec.heisO_reF S T b ψ hB u (reFi S T b g)
   rw [reF_reFi] at h
   rw [h, reFi_reF]
 
@@ -111,7 +111,7 @@ theorem isThetaAt_reframe : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T :
         funext s
         simp only [reFi, LinearMap.funLeft_apply, reWi_add, reWi_reW]
       rw [h1, hTm.trans _ (isSBHalf_comp_reWi S T b e Λ Λ' hΛ Ψ hΨ) _
-        ((isHalf_reW_iff S T b e x).2 hx), ← heisO_reF S T b ψ hB]
+        ((isHalf_reW_iff S T b e x).2 hx), ← _root_.GlobalTheory.AdSpan.ReVec.heisO_reF S T b ψ hB]
       rfl
     · intro Ψ hΨ y hy
       simp only [LinearMap.comp_apply]
@@ -120,7 +120,7 @@ theorem isThetaAt_reframe : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T :
         funext s
         simp only [reFi, LinearMap.funLeft_apply, hB, reW_reWi]
       rw [h1, hTm.modul _ (isSBHalf_comp_reWi S T b e Λ Λ' hΛ Ψ hΨ) _
-        ((isHalf_reW_iff S T b _ y).2 hy), ← heisO_reF S T b ψ hB]
+        ((isHalf_reW_iff S T b _ y).2 hy), ← _root_.GlobalTheory.AdSpan.ReVec.heisO_reF S T b ψ hB]
       rfl
     · rw [LinearMap.comp_apply, LinearMap.comp_apply, map_smul (reFi S T b),
         reFi_halfInd S T b e Λ Λ' hΛ, hTm.vac]

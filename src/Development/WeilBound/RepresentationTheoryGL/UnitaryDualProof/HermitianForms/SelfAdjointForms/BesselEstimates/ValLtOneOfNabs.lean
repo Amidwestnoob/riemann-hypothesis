@@ -134,7 +134,7 @@ theorem B_scal (hB : Lv ψ h π s B) (z : kˣ) (i : ℕ) (a b : V) :
     rw [Algebra.algebraMap_eq_smul_one, Matrix.det_smul, Matrix.det_one, mul_one, Fintype.card_fin]
     push_cast
     rfl
-  rw [hdet, nabs_pow, nabs_pow, ← pow_mul, ← Real.rpow_natCast, ← Real.rpow_mul (nabs_pos' k z).le] at e
+  rw [hdet, nabs_pow, nabs_pow, ← pow_mul, ← Real.rpow_natCast, ← Real.rpow_mul (_root_.GlobalTheory.SmGL.nabs_pos' k z).le] at e
   show B (π (blkAt k (m + 1) N (by omega) g) a) (π (blkAt k (m + 1) N (by omega) g) b) = _
   rw [e]
   congr 3
@@ -266,7 +266,7 @@ theorem dens_bessel_of (hB : Lv ψ h π s B)
     rw [hval i, ← hσu i, hsc i, hself i]
     rw [show ((A₀.relIndex A : ℕ) : ℂ) * (((nabs k z ^ ((i : ℝ) * (m + 1) * s) : ℝ) : ℂ) * B (u i) (u i)) =
       (((A₀.relIndex A : ℝ) * nabs k z ^ ((i : ℝ) * (m + 1) * s) : ℝ) : ℂ) * B (u i) (u i) by push_cast; ring]
-    rw [Complex.re_ofReal_mul, Real.rpow_neg (nabs_pos' k z).le]
+    rw [Complex.re_ofReal_mul, Real.rpow_neg (_root_.GlobalTheory.SmGL.nabs_pos' k z).le]
     have := (hcpos i).ne'
     field_simp
   refine summable_of_sum_range_le (c := (A₀.relIndex A : ℝ) * (B v v).re) (fun i => ?_) (fun I => ?_)

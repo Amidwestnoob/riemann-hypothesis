@@ -371,23 +371,23 @@ end
 namespace GlobalTheory.EtC.GmStep.KillColim
 
 theorem val_laurent (A S : Type) [CommRing A] [CommRing S] [Algebra A S] (t : Finset S) :
-    (laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom).comp
-        (laurentMap (algebraMap A (Algebra.adjoin A (t : Set S)))) = laurentMap (algebraMap A S) := by
+    (_root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A (t : Set S)).val.toRingHom).comp
+        (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A (t : Set S)))) = _root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A S) := by
   rw [laurentMap_comp]
   congr 1
 
 theorem incl_laurent (A S : Type) [CommRing A] [CommRing S] [Algebra A S] {t u : Finset S}
     (h : (t : Set S) ⊆ u) :
-    (laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (R := A) h)).toRingHom).comp
-        (laurentMap (algebraMap A (Algebra.adjoin A (t : Set S)))) =
-      laurentMap (algebraMap A (Algebra.adjoin A (u : Set S))) := by
+    (_root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (R := A) h)).toRingHom).comp
+        (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A (t : Set S)))) =
+      _root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A (u : Set S))) := by
   rw [laurentMap_comp]
   congr 1
 
 theorem kill_colim : ∀ (q : ℕ) (A S : Type) [CommRing A] [CommRing S] [Algebra A S], IsUnit (q : A) →
     ∀ (n i : ℤ) (x : Ht q (sp (LaurentPolynomial A)) n i),
-    pull _ (spMap (laurentMap (algebraMap A S))) _ _ x = 0 →
-    ∃ t : Finset S, pull _ (spMap (laurentMap (algebraMap A (Algebra.adjoin A (t : Set S))))) _ _ x = 0 := by
+    pull _ (spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A S))) _ _ x = 0 →
+    ∃ t : Finset S, pull _ (spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A (t : Set S))))) _ _ x = 0 := by
   intro q A S _ _ _ hq n i x hx
   classical
   have hu : IsUnit (q : (diag A S).obj ∅) := by
@@ -396,18 +396,18 @@ theorem kill_colim : ∀ (q : ℕ) (A S : Type) [CommRing A] [CommRing S] [Algeb
     rw [map_natCast] at this
     exact this
   have e1 : spMap ((cocone A S).ι.app ∅).hom ≫
-      spMap (laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S)))) =
-      spMap (laurentMap (algebraMap A S)) :=
-    (spMap_comp' _ (laurentMap (Algebra.adjoin A ((∅ : Finset S) : Set S)).val.toRingHom)).trans
+      spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S)))) =
+      spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A S)) :=
+    (spMap_comp' _ (_root_.GlobalTheory.EtC.GmStep.laurentMap (Algebra.adjoin A ((∅ : Finset S) : Set S)).val.toRingHom)).trans
       (congrArg spMap (val_laurent A S ∅))
   have hy0 : pull _ (spMap ((cocone A S).ι.app ∅).hom) _ _
-      (pull _ (spMap (laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S))))) _ _ x) = 0 :=
+      (pull _ (spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S))))) _ _ x) = 0 :=
     (pull_comp _ _ _ _ _ x).symm.trans ((congrArg (fun g => pull _ g (tw q i) n x) e1).trans hx)
   obtain ⟨k, f, hk⟩ := (GlobalTheory.T.etaleCohomology_twisted_filtered_colimit_continuity q (diag A S) (cocone A S) (coconeIsColimit A S) n i).2 ∅ _ hu hy0
   have e2 : spMap ((diag A S).map f).hom ≫
-      spMap (laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S)))) =
-      spMap (laurentMap (algebraMap A (Algebra.adjoin A (k : Set S)))) :=
-    (spMap_comp' _ (laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (R := A)
+      spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A ((∅ : Finset S) : Set S)))) =
+      spMap (_root_.GlobalTheory.EtC.GmStep.laurentMap (algebraMap A (Algebra.adjoin A (k : Set S)))) :=
+    (spMap_comp' _ (_root_.GlobalTheory.EtC.GmStep.laurentMap (Subalgebra.inclusion (Algebra.adjoin_mono (R := A)
       (Finset.coe_subset.2 f.le))).toRingHom)).trans
       (congrArg spMap (incl_laurent A S (Finset.coe_subset.2 f.le)))
   exact ⟨k, (congrArg (fun g => pull _ g (tw q i) n x) e2).symm.trans ((pull_comp _ _ _ _ _ x).trans hk)⟩

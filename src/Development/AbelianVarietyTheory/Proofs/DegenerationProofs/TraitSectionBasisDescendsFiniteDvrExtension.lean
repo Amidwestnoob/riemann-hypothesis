@@ -174,12 +174,12 @@ theorem fn_unique {U : Y.Opens} (a b : Fin n → Γ(Y, U))
   obtain ⟨_, ⟨V, hV, rfl⟩, hyV, hle⟩ := Y.isBasis_affineOpens.exists_subset_of_mem_open hy U.isOpen
   have hle : V ≤ U := hle
   have e := fn_indep H hV c hi (fun i => resFn π hle (a i - b i : Γ(Y, U))) (fn_ext fun z hz => by
-    refine (gs_comb H c _ z hz).trans (Eq.trans ?_ (gs_zero' (𝟙 Y') z (p ⁻¹ᵁ V) hz).symm)
+    refine (gs_comb H c _ z hz).trans (Eq.trans ?_ (_root_.GlobalTheory.FieldBaseChange.gs_zero' (𝟙 Y') z (p ⁻¹ᵁ V) hz).symm)
     refine (Finset.sum_congr rfl fun i _ => congrArg _ ((gs_res p z hle hz _).trans
       (gs_sub' p z U (hle hz) _ _))).trans ?_
     simp only [mul_sub, Finset.sum_sub_distrib, h z (hle hz), sub_self]) i
   exact sub_eq_zero.1 ((gs_sub' _ y U hy _ _).symm.trans ((gs_res (𝟙 Y) y hle hyV _).symm.trans
-    ((congrArg (gs (𝟙 Y) y V) e).trans (gs_zero' _ y V hyV))))
+    ((congrArg (gs (𝟙 Y) y V) e).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ y V hyV))))
 
 variable (hc : ∀ y, ∃ a : Fin n → S, y = ∑ i, fS (a i) * c i)
 include hc

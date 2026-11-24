@@ -200,7 +200,7 @@ theorem exists_log_pole_along_boundary (hP : _root_.GlobalTheory.CovTop.Hypothes
   have hzw' : ∀ b, (show Sp (DualNumber K) ⟶ Y₀ TF.X Z from zw b) ≫ inc₀ TF.X Z = TF.X.ptY (w b) := fun b => by
     exact (congrArg (zw b ≫ ·) eM).symm.trans (hzw b)
   have hkM := ezM ▸ hk
-  have key := ω₀.isKS K P Q t w z zw i k W' hW'i g hz (fun b => hzO b W' hz) hkM ho hi (chartFr_congr ezM.symm hkM hQ)
+  have key := ω₀.isKS K P Q t w z zw i k W' hW'i g hz (fun b => hzO b W' hz) hkM ho hi (_root_.GlobalTheory.LogPole.chartFr_congr ezM.symm hkM hQ)
     hQP hw hzw
   obtain ⟨v₁, v₂⟩ := _root_.GlobalTheory.LogPole.vert_jac_det_one E H Dw l Xo c TF Z U n e v hv W k L N hc K z hzW P₀ P hU ez hP₀ hB (fun b => w (.inr b))
     (fun b => zw (.inr b)) (fun b => hzO _ W hzW) hw.2 (fun b => hzw' _)

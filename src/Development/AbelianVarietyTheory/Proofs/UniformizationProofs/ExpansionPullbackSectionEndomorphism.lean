@@ -78,10 +78,10 @@ theorem term_eq_zero [IsNoetherianRing R] (hI : I ≤ Ideal.jacobson ⊥) (k : �
     refine (pullback.fst G.hom (jK R)).app_injective _ (fn_ext fun y hy => ?_)
     have hy' : y ∈ LB.wchart U.LG.L (fun _ : Fin 1 => pullback.fst G.hom (jK R)) j :=
       mem_wchart.2 fun i => mem_wchart.1 hy i
-    refine (gs_pull (𝟙 _) _ y _ hy _).trans (Eq.trans ?_ ((congrArg _ (map_zero _)).trans (gs_zero' _ y _ hy)).symm)
+    refine (gs_pull (𝟙 _) _ y _ hy _).trans (Eq.trans ?_ ((congrArg _ (map_zero _)).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ y _ hy)).symm)
     exact (gs_pullFn pullback.condition _ _ (𝟙 _) y hy').symm.trans
       ((congrArg (fun s : LB.Sec (LB.LinComb U.LG.L (K := Fin 1) (fun _ => pullback.fst G.hom (jK R)) (fun _ => (k : ℤ))) =>
-        gs (𝟙 _) y (LB.wchart U.LG.L (fun _ : Fin 1 => pullback.fst G.hom (jK R)) j) (LB.Sec.f s j)) h).trans (gs_zero' _ y _ hy'))
+        gs (𝟙 _) y (LB.wchart U.LG.L (fun _ : Fin 1 => pullback.fst G.hom (jK R)) j) (LB.Sec.f s j)) h).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ y _ hy'))
   have := D.toPre.P.isAb.smooth
   have : GeometricallyConnected D.toPre.P.A.hom := D.toPre.P.isAb.geomConnected
   refine SecOver.ext _ _ ((sec_eq_zero_and_hom_eq_of_thickenings R I hI D.toPre.P.A).1 _
@@ -222,7 +222,7 @@ theorem main : LL → AllUF fun {R} _ _ {I} {D} {A} {G} _ _ U F _ _ => ∀ (E : 
     ring
   · rw [sval_comb (H b) _ z hJ, CoefBasic.cst_eq, map_zero, zero_mul, Finset.sum_eq_zero, zero_mul, zero_mul]
     intro i _
-    exact (congrArg _ ((congrArg (gs _ z _) (p₄ i b hb _)).trans (gs_zero' _ z _ (hJ.mem _ _)))).trans (mul_zero _)
+    exact (congrArg _ ((congrArg (gs _ z _) (p₄ i b hb _)).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ z _ (hJ.mem _ _)))).trans (mul_zero _)
 
 end GlobalTheory.UT.PullExp
 end

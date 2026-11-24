@@ -357,7 +357,7 @@ theorem norm_absPow_one_lt {ϖ : kˣ} (hϖ : valuation k (ϖ : k) = uniformizer 
     ‖(absPow k 1 ϖ : ℂ)‖ < 1 := by
   borelize k
   have h1 : nabs k ϖ ≤ 1 := SplitWeil.Model.nabs_le_one ϖ (hϖ ▸ uniformizer_lt_one.le)
-  rw [val_absPow, Complex.cpow_one, Complex.norm_real, Real.norm_of_nonneg (nabs_pos' k ϖ).le]
+  rw [val_absPow, Complex.cpow_one, Complex.norm_real, Real.norm_of_nonneg (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ).le]
   refine lt_of_le_of_ne h1 fun h => ?_
   have h2 : absPow k ((1 : ℝ) : ℂ) = 1 := by
     rw [eq_unrChar (isUnram_absPow k _) hϖ, show absPow k ((1 : ℝ) : ℂ) ϖ = 1 from by

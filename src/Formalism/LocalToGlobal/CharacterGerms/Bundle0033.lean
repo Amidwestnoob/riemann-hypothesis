@@ -53,7 +53,7 @@ theorem up_ne_zero (m : ℕ) (i : Fin dd) : ((0 : Fin (m + 1)), i) ∉ Set.range
 theorem coeff_rz (m : ℕ) (f : PS C (m + 1) dd) (ν : Fin m × Fin dd →₀ ℕ) :
     coeff ν (ev (rz m) f) = coeff (ν.mapDomain (up m)) f := by
   unfold ev
-  rw [coeff_subst (hasSubst_ev (constant_zero_restrict_points m)), finsum_eq_single _ (ν.mapDomain (up m))]
+  rw [coeff_subst (_root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.hasSubst_ev (constant_zero_restrict_points m)), finsum_eq_single _ (ν.mapDomain (up m))]
   · rw [Finsupp.prod_mapDomain_index_inj (up_inj m)]
     have e : (ν.prod fun t e => (fun p : Fin (m + 1) × Fin dd => rz (C := C) (dd := dd) m p.1 p.2) (up m t) ^ e) =
         monomial ν (1 : C) := by

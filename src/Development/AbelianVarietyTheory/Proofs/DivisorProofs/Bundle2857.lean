@@ -173,7 +173,7 @@ theorem square_val (hG : GlobalFnsSt) (hA : IsAbelianScheme A) (hL : L.IsLB)
   have hX : (fst T A ≫ θ.pt) ^ 4 = 1 := by rw [← MonObj.comp_pow, hx, MonObj.comp_one]
   have s₁ : val σ (1 : T ⊗ A ⟶ A).left y J = 1 :=
     (val_pull hJ σ (eSec A) (T ⊗ A).hom).symm.trans ((val_corr hJ hσ₁ _).trans (val_one _))
-  have sy := (val_symGen θ nu rfl hJ 1).symm.trans ((val_corr hJ hs _).trans (val_one _))
+  have sy := (_root_.GlobalTheory.SymLiftOdd.val_symGen θ nu rfl hJ 1).symm.trans ((val_corr hJ hs _).trans (val_one _))
   rw [hnu y J hJ, hnu y J hJ, s₁, _root_.mul_one, inv_one] at sy
   have gθ := fun w => grep_two (L := L) (n := translPt A θ.pt) (a := ((4 : ℕ) : ℤ)) (b := -((4 : ℕ) : ℤ))
     (α := θ.φ) θ.isGen w
@@ -230,7 +230,7 @@ theorem exists_symmetric_square : ∀ (R : Type) [CommRing R] [IsDomain R] (A : 
   obtain ⟨θ, hpt, hv⟩ := exists_scale hL θ₀ b⁻¹
   have hθ : θ.pt = x := hpt.trans h₀
   have hs : LB.Gen.Corr A.L _ _ _ _ (symGen A.A A.L ((4 : ℕ) : ℤ) θ nu) (LB.oneGen A.L) := corr_of_val hL fun y J hJ => by
-    have e₁ := (val_symGen θ₀ nu h₀ hJ (snd _ _)).symm.trans (ha _ y J hJ)
+    have e₁ := (_root_.GlobalTheory.SymLiftOdd.val_symGen θ₀ nu h₀ hJ (snd _ _)).symm.trans (ha _ y J hJ)
     rw [val_one, id_eq_lift, _root_.GlobalTheory.SymLiftOdd.val_symGen θ nu hθ hJ, hv y J hJ, hv y J hJ, map_inv]
     rw [hb, map_pow] at e₁
     apply Additive.ofMul.injective
