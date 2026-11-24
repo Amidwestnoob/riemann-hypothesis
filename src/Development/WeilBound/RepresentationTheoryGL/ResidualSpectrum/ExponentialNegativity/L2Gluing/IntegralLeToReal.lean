@@ -180,6 +180,9 @@ theorem l2glue_holds : An.L2DecayOfCountEscape := by
       _ = (Real.exp (-(2 * An.rho K n r * t)) * (⌈C * Real.exp (2 * An.rho K n r * t)⌉₊ : ℝ)) *
             (∫⁻ x in F \ T, ‖φ x‖ₑ ^ 2 ∂μ).toReal := by ring
       _ ≤ _ := mul_le_mul_of_nonneg_right h5 ENNReal.toReal_nonneg
+  have : SigmaCompactSpace (AdelicGLn.AdelicGL K n) := by
+    have : LocallyCompactSpace (AdelicGLn.AdelicGL K n) := AdelicGLn.locallyCompactSpace K n
+    exact sigmaCompactSpace_of_locallyCompact_secondCountable
   have htail := l2glue.tail μ F (fun x => ‖φ x‖ₑ ^ 2) hfin
   rw [tendsto_order]
   refine ⟨fun a ha => Eventually.of_forall fun t => lt_of_lt_of_le ha
