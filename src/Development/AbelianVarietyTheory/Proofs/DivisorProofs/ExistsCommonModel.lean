@@ -24,6 +24,7 @@ set_option autoImplicit false
 
 noncomputable section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GlobalTheory.BlockSum
 
 open Formalism.WeaklyAdmissibleFiltrations TensorProduct Module

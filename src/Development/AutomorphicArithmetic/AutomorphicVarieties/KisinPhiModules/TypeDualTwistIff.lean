@@ -10,6 +10,7 @@ open Formalism.BasicNotions Formalism.BasicNotions.Loc UpperTheory.V.Loc UpperTh
 section
 open TensorProduct GlobalTheory.Pst Polynomial Matrix
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 private theorem zpow_fix {Q R : Type} [Field Q] [CommRing R] [Algebra Q R] (f : R →ₐ[Q] R) (T : Rˣ) (c : Qˣ)
     (h : f (T : R) = (c : Q) • T) (m : ℤ) :
     ((c ^ m : Qˣ) : Q) • f ((T ^ (-m) : Rˣ) : R) = ((T ^ (-m) : Rˣ) : R) := by
