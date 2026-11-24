@@ -86,7 +86,7 @@ theorem toBcris_hom {P : PhiMod O K l e a ι} {Q : PhiMod O K l e a κ} (F : BK.
       _ = Q.mxInv τ * Q.mx τ * (F.mat (τ - 1)).map (frob K l) * P.mxInv τ := by
           rw [F.comm]; simp only [Matrix.mul_assoc]
       _ = _ := by rw [Q.mxInv_mul_mx, Matrix.one_mul]
-  have hA : ∀ (g : ZMod a → A O K) (h : ∀ τ, (g τ : K⟦X⟧) ∈ invL l (S O K e)),
+  have hA : ∀ (g : ZMod a → A O K) (h : ∀ τ, (g τ : K⟦X⟧) ∈ invL l (GlobalTheory.BK.S O K e)),
       ϖ.iB t K (fun τ => ⟨(g τ : K⟦X⟧), h τ⟩) = toB l O (ϖ.iTot t K g) := fun g h =>
     (ϖ.iB_of_mem t K (fun τ => ⟨g τ, A_le_S l e (g τ).2⟩)).trans
       (congrArg (toOB l O) (ϖ.iC_of_mem t K g))
@@ -94,7 +94,7 @@ theorem toBcris_hom {P : PhiMod O K l e a ι} {Q : PhiMod O K l e a κ} (F : BK.
   rw [toBcris_apply, Matrix.mulVec, dotProduct]
   simp only [Matrix.map_apply, toBcris_apply, homMat, Matrix.of_apply, ← PiSys.iTot_frob]
   trans ∑ j, ϖ.iB t K (fun τ => ⟨(frobAc l (fun τ => ⟨F.mat τ i j, F.mem τ i j⟩) τ : K⟦X⟧),
-      le_away _ _ (A_le_S l e (Subtype.prop _))⟩) * ϖ.iB t K (GlobalTheory.BKReal.coordL P (invL l (S O K e)) m j)
+      le_away _ _ (A_le_S l e (Subtype.prop _))⟩) * ϖ.iB t K (GlobalTheory.BKReal.coordL P (invL l (GlobalTheory.BK.S O K e)) m j)
   swap
   · exact Finset.sum_congr rfl fun j _ => by rw [hA]
   set_option synthInstance.maxHeartbeats 100000 in
