@@ -222,6 +222,8 @@ theorem pet_smoothing_left (hω : ω.IsUnitary) (hα : IsTest (invSet E a) α) (
       ((norm_nonneg _).trans (hC 1))) (norm_nonneg _)
   rw [(pet_eq_setIntegral hω (smoothing_mem_bddForms ν hα h) h' hD).2]
   simp only [smoothing, ← integral_mul_const]
+  have : SFinite (μ.restrict (stdDom (latticeGL E a))) :=
+    @instSFiniteOfSigmaFinite _ _ _ (IsFiniteMeasure.toSigmaFinite _)
   rw [integral_integral_swap hi]
   refine integral_congr_ae (.of_forall fun x => ?_)
   simp only [(pet_eq_setIntegral hω (chart_mem_bddForms h x) h' hD).2, ← integral_const_mul, mul_assoc]
