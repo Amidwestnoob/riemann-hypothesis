@@ -45,11 +45,11 @@ theorem UpperTheory.ConvolutionTheory.R2.C.opsRel :
     rw [map_inv, inv_eq_iff_mul_eq_one, ← pow_two, hη]
   have habinv : ∀ a : (A F)ˣ, ab a⁻¹ = (ab a)⁻¹ := by
     intro a
-    have h1 : ab a * ab a⁻¹ = 1 := by rw [← ab_mul, mul_inv_cancel, ab_one]
+    have h1 : ab a * ab a⁻¹ = 1 := by rw [← _root_.ab_mul, mul_inv_cancel, _root_.ab_one]
     exact eq_inv_of_mul_eq_one_right h1
   have habpos : ∀ a : (A F)ˣ, ab a ≠ 0 := by
     intro a h
-    have h1 : ab a * ab a⁻¹ = 1 := by rw [← ab_mul, mul_inv_cancel, ab_one]
+    have h1 : ab a * ab a⁻¹ = 1 := by rw [← _root_.ab_mul, mul_inv_cancel, _root_.ab_one]
     simp [h] at h1
   have hWW : ∀ (φ : S4 F) v, (O.W (O.W φ)).1 v = φ.1 (-v) := by
     intro φ v
@@ -65,10 +65,10 @@ theorem UpperTheory.ConvolutionTheory.R2.C.opsRel :
     simp only [Module.End.mul_apply, O.N_apply, add_mul, psi_add]
     ring
   · ext φ v
-    simp [O.M_apply, ab_one]
+    simp [O.M_apply, _root_.ab_one]
   · intro a a'
     ext φ v
-    simp only [Module.End.mul_apply, O.M_apply, ab_mul, map_mul, Units.val_mul]
+    simp only [Module.End.mul_apply, O.M_apply, _root_.ab_mul, map_mul, Units.val_mul]
     push_cast
     have : (fun i => (a : A F) * (a' : A F) * v i) = fun i => (a' : A F) * ((a : A F) * v i) := by
       funext i; ring

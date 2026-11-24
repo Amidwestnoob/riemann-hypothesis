@@ -252,14 +252,14 @@ private lemma det_eq (g : G1 F) : g.1 0 0 * g.1 1 1 - g.1 0 1 * g.1 1 0 = 1 := b
 
 private lemma nm_val (b : A F) (a : (A F)ˣ) :
     (nU b * mD a).1 = !![(a : A F), b * ((a⁻¹ : (A F)ˣ) : A F); 0, ((a⁻¹ : (A F)ˣ) : A F)] := by
-  rw [Matrix.SpecialLinearGroup.coe_mul, nU_val, mD_val, Matrix.mul_fin_two]
+  rw [Matrix.SpecialLinearGroup.coe_mul, nU_val, _root_.mD_val, Matrix.mul_fin_two]
   simp
 
 private lemma cell_val (b b' : A F) (a : (A F)ˣ) :
     (nU b * mD a * wW F * nU b').1 =
       !![-(b * ((a⁻¹ : (A F)ˣ) : A F)), (a : A F) - b * ((a⁻¹ : (A F)ˣ) : A F) * b';
         -((a⁻¹ : (A F)ˣ) : A F), -(((a⁻¹ : (A F)ˣ) : A F) * b')] := by
-  rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, nm_val, wW_val, nU_val,
+  rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, nm_val, _root_.wW_val, nU_val,
     Matrix.mul_fin_two, Matrix.mul_fin_two]
   congr 1
   simp
@@ -274,28 +274,28 @@ private lemma rel_part : Rel (nU (F := F)) mD (wW F) := by
     rw [Matrix.SpecialLinearGroup.coe_mul, nU_val, nU_val, nU_val, Matrix.mul_fin_two]
     simp [add_comm]
   · apply sl_ext
-    simp [mD_val, Matrix.one_fin_two]
+    simp [_root_.mD_val, Matrix.one_fin_two]
   · intro a a'
     apply sl_ext
-    rw [Matrix.SpecialLinearGroup.coe_mul, mD_val, mD_val, mD_val, Matrix.mul_fin_two]
+    rw [Matrix.SpecialLinearGroup.coe_mul, _root_.mD_val, _root_.mD_val, _root_.mD_val, Matrix.mul_fin_two]
     simp [mul_comm]
   · intro a b
     apply sl_ext
     have he : (a : A F) * ((a⁻¹ : (A F)ˣ) : A F) = 1 := a.mul_inv
-    rw [Matrix.SpecialLinearGroup.coe_mul, nm_val, mD_val, nU_val, Matrix.mul_fin_two]
+    rw [Matrix.SpecialLinearGroup.coe_mul, nm_val, _root_.mD_val, nU_val, Matrix.mul_fin_two]
     have hq : (a : A F) ^ 2 * b * ((a⁻¹ : (A F)ˣ) : A F) = (a : A F) * b := by
       linear_combination ((a : A F) * b) * he
     simp [hq]
   · intro a
     apply sl_ext
-    rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, wW_val, mD_val, mD_val, Matrix.mul_fin_two, Matrix.mul_fin_two]
+    rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, _root_.wW_val, _root_.mD_val, _root_.mD_val, Matrix.mul_fin_two, Matrix.mul_fin_two]
     simp
 
 private lemma gauss_part : Gauss (nU (F := F)) mD (wW F) := by
   intro t
   apply sl_ext
   have he : (t : A F) * ((t⁻¹ : (A F)ˣ) : A F) = 1 := t.mul_inv
-  rw [cell_val, Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, wW_val, nU_val, Matrix.mul_fin_two, Matrix.mul_fin_two]
+  rw [cell_val, Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, _root_.wW_val, nU_val, Matrix.mul_fin_two, Matrix.mul_fin_two]
   simp [he]
 
 private lemma tri_part (g : G1 F) : g 1 0 = 0 ↔ ∃ b a, g = nU b * mD a := by
