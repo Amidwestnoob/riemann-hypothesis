@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsP
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC GlobalTheory.Et NumberField IsDedekindDomain TensorProduct
 open GlobalTheory.GalV (HTower Htot hop galV Splits IsCorrOp IsGalois pullTot galTot galTotRep pullTot_comp)
 open UpperTheory.Gal.TranscendenceTraces (Wt trHQ)
