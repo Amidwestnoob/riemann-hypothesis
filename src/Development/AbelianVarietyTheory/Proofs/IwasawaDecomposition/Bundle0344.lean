@@ -107,7 +107,7 @@ theorem locLen_finite {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [M
     (A C : Submodule (𝓞 K) V) (hA : A.FG) :
     {w : HeightOneSpectrum (𝓞 K) | Formalism.HermitianLatticesTheory.locLen w.asIdeal A C ≠ 0}.Finite := by
   by_cases h : ∀ x ∈ A, ∃ s : 𝓞 K, s ≠ 0 ∧ s • x ∈ C
-  · obtain ⟨s, hs, hC⟩ := Formalism.L2.Host.exists_unif A C hA h
+  · obtain ⟨s, hs, hC⟩ := GlobalTheory.Mem.IdxFin.exists_unif A C hA h
     have hf := Ideal.finite_factors (I := Ideal.span {s}) (by simpa using hs)
     refine hf.subset fun w hw => ?_
     by_contra hn
