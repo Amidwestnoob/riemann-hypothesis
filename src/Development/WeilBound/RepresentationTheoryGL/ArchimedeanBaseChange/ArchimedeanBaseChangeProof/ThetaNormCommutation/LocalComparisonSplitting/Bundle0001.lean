@@ -189,12 +189,23 @@ theorem termOf_holds : TermOf := by
   obtain ⟨e, he⟩ := hCI E a b
   let e' : (GA E a × GA E b) →* (Gi E a b × Gf E a b) := e.toMulEquiv.toMonoidHom
   have he' : ∀ x, e' x = comps x := he
+  have : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite μ₁ := Measure.IsHaarMeasure.sigmaFinite μ₁
+  have : SigmaCompactSpace (GA E b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite μ₂ := Measure.IsHaarMeasure.sigmaFinite μ₂
+  have : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
+  have : (μ₁.prod μ₂).IsHaarMeasure := Measure.prod.instIsHaarMeasure μ₁ μ₂
+  have : SigmaFinite (μ₁.prod μ₂) := Measure.prod.instSigmaFinite
+  have : SFinite (μ₁.prod μ₂) := MeasureTheory.instSFiniteOfSigmaFinite
   have hνH : (ν₁.prod ν₂).IsHaarMeasure := inferInstance
   have hνS : SigmaFinite (ν₁.prod ν₂) := inferInstance
   have hαH : (Measure.pi fun _ : InfinitePlace E => ν₁.prod ν₂).IsHaarMeasure := inferInstance
   let α : Measure (Gi E a b) := Measure.pi fun _ => ν₁.prod ν₂
   obtain ⟨β, hβ, hmap⟩ := hHS (GA E a × GA E b) (Gi E a b) (Gf E a b) (μ₁.prod μ₂) α e
   haveI := hβ
+  have : SigmaCompactSpace (Gf E a b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  have : SigmaFinite β := Measure.IsHaarMeasure.sigmaFinite β
+  have : SFinite β := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨hKo₁, hKc₁⟩ := hKf E a
   obtain ⟨hKo₂, hKc₂⟩ := hKf E b
   have hKo : IsOpen (((Kf E a).prod (Kf E b) : Subgroup (Gf E a b)) : Set (Gf E a b)) := by
@@ -271,6 +282,11 @@ theorem termOf_holds : TermOf := by
     group
   obtain ⟨hfin, hstab, hdc⟩ :=
     hFH E hU a b S hS φ₁ φ₂ hφ₁ hφ₂ (d₁ * u₁⁻¹) (d₂ * u₂⁻¹) (hP₁.1 hd₁) (hP₂.1 hd₂)
+  have : T1Space (GA E a) := T2Space.t1Space
+  have : T1Space (GA E b) := T2Space.t1Space
+  have : MeasurableSingletonClass (GA E a) := OpensMeasurableSpace.toMeasurableSingletonClass
+  have : MeasurableSingletonClass (GA E b) := OpensMeasurableSpace.toMeasurableSingletonClass
+  have : MeasurableSingletonClass (GA E a × GA E b) := Prod.instMeasurableSingletonClass
   have hQ := hQS (GA E a × GA E b) (Gi E a b) (Gf E a b) (μ₁.prod μ₂) α β e' (map_continuous e).measurable hmap
     ((ratCent d₁).prod (ratCent d₂)) (gam (d₁ * u₁⁻¹) (d₂ * u₂⁻¹)) ((Kf E a).prod (Kf E b)) U hΓ hinj hKo hKc hUo
     F₁ F₂ hF₁m hF₁i hF₁inv hF₂inv hF₂U hfin hstab
