@@ -49,10 +49,10 @@ theorem siegelOrb : SiegelOrb := by
     rw [Matrix.det_conjTranspose]
     exact hSu.star
   refine ⟨mkGR (nU X) (by rw [det_nU]; exact one_ne_zero) (inG_nU hX) * mkGR (mM S) (det_mM hSu) (inG_mM hSu), ?_, ?_⟩
-  · rw [mR_mul, mR_mkGR, mR_mkGR, toBlocks₂₁_mul]
+  · rw [_root_.PositivityTheory.Rg.Sw.Glob.GaussH.mR_mul, mR_mkGR, mR_mkGR, toBlocks₂₁_mul]
     simp [nU, mM]
   · unfold actZ
-    rw [mR_mul, mR_mkGR, mR_mkGR, toBlocks₁₁_mul, toBlocks₁₂_mul, toBlocks₂₁_mul, toBlocks₂₂_mul]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.GaussH.mR_mul, mR_mkGR, mR_mkGR, toBlocks₁₁_mul, toBlocks₁₂_mul, toBlocks₂₁_mul, toBlocks₂₂_mul]
     simp only [nU, mM, Matrix.toBlocks_fromBlocks₁₁, Matrix.toBlocks_fromBlocks₁₂, Matrix.toBlocks_fromBlocks₂₁,
       Matrix.toBlocks_fromBlocks₂₂, Matrix.zero_mul, Matrix.mul_zero, Matrix.one_mul, zero_add, add_zero]
     rw [Matrix.nonsing_inv_nonsing_inv _ hSu', Matrix.add_mul, Matrix.mul_assoc X, Matrix.nonsing_inv_mul _ hSu',

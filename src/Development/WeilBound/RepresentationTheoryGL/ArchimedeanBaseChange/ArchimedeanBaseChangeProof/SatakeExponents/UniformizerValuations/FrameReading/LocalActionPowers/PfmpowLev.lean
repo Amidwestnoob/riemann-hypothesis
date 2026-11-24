@@ -59,7 +59,7 @@ theorem exists_level_prod (w : Pl E) (U : Subgroup (GLw a w × GLw b w)) (hU : I
 
 theorem isHecke_idem {w : Pl E} (V₁ : Subgroup (GLw a w)) (V₂ : Subgroup (GLw b w))
     (hV₁ : IsLevel (thL a w) (GlobalTheory.LFun.KGL w (n := a)) V₁) (hV₂ : IsLevel (thL b w) (GlobalTheory.LFun.KGL w (n := b)) V₂) :
-    IsHecke (V₁.prod V₂) (idem (V₁.prod V₂)) := by
+    IsHecke (V₁.prod V₂) (_root_.PositivityTheory.Rg.BcB.F.Tail.idem (V₁.prod V₂)) := by
   have hVo : IsOpen ((V₁.prod V₂ : Subgroup (GLw a w × GLw b w)) : Set (GLw a w × GLw b w)) := by
     rw [Subgroup.coe_prod]; exact hV₁.1.prod hV₂.1
   have hVc : IsClosed ((V₁.prod V₂ : Subgroup (GLw a w × GLw b w)) : Set (GLw a w × GLw b w)) :=
@@ -72,12 +72,12 @@ theorem isHecke_idem {w : Pl E} (V₁ : Subgroup (GLw a w)) (V₂ : Subgroup (GL
     obtain ⟨h1, h2⟩ := Subgroup.mem_prod.1 hx
     exact Subgroup.mem_prod.2 ⟨hV₁.2.1 h1, hV₂.2.1 h2⟩
   refine ⟨HasCompactSupport.intro' (hK.of_isClosed_subset hVc hsub) hVc fun x hx => ?_, fun k hk x => ⟨?_, ?_⟩⟩
-  · unfold idem; exact Set.indicator_of_notMem hx _
-  · unfold idem
+  · unfold _root_.PositivityTheory.Rg.BcB.F.Tail.idem; exact Set.indicator_of_notMem hx _
+  · unfold _root_.PositivityTheory.Rg.BcB.F.Tail.idem
     by_cases hx : x ∈ V₁.prod V₂
     · rw [Set.indicator_of_mem hx, Set.indicator_of_mem ((V₁.prod V₂).mul_mem hk hx)]
     · rw [Set.indicator_of_notMem hx, Set.indicator_of_notMem (fun h => hx (by simpa using (V₁.prod V₂).mul_mem ((V₁.prod V₂).inv_mem hk) h))]
-  · unfold idem
+  · unfold _root_.PositivityTheory.Rg.BcB.F.Tail.idem
     by_cases hx : x ∈ V₁.prod V₂
     · rw [Set.indicator_of_mem hx, Set.indicator_of_mem ((V₁.prod V₂).mul_mem hx hk)]
     · rw [Set.indicator_of_notMem hx, Set.indicator_of_notMem (fun h => hx (by simpa using (V₁.prod V₂).mul_mem h ((V₁.prod V₂).inv_mem hk)))]

@@ -259,7 +259,7 @@ theorem eigen (hI : Iwa) (hM : Mult) (p q : ℕ) (e : ℤ) (A B : GR n) (ψ : (F
   have hne : F0 p q e k0 ≠ 0 := by
     intro h0
     have h2 := (hM1 k0 k0⁻¹ (inv_mem hk0)).1
-    rw [mul_inv_cancel, weight_factor_one, h0, zero_mul] at h2
+    rw [mul_inv_cancel, _root_.PositivityTheory.Rg.Sw.AbsSt.LocOpA.weight_factor_one, h0, zero_mul] at h2
     exact one_ne_zero h2
   let K0 : KR n := ⟨k0, hk0⟩
   have hK0 : (K0 : GR n) = k0 := rfl
