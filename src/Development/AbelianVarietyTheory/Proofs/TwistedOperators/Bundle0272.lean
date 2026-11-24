@@ -50,7 +50,7 @@ open Formalism.MainNotions.S
 
 namespace GlobalTheory.CuspRep
 
-theorem isCuspFun_of_mem_L2cusp : ∀ (D : D7) (V : HSp D) (μ : Measure (GA D V)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant], ∀ F ∈ GlobalTheory.Cusp.L2cusp V μ, ∀ ψ : GA D V → ℂ, Continuous ψ → LeftInv (GQ V) ψ → lift (GQ V) F =ᵐ[μ] ψ → IsCuspFun V ψ := by
+theorem isCuspFun_of_mem_L2cusp : ∀ (D : D7) (V : HSp D) (μ : Measure (Formalism.L2.Theta.GA D V)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant], ∀ F ∈ GlobalTheory.Cusp.L2cusp V μ, ∀ ψ : Formalism.L2.Theta.GA D V → ℂ, Continuous ψ → LeftInv (GQ V) ψ → lift (GQ V) F =ᵐ[μ] ψ → IsCuspFun V ψ := by
   intro D V μ _ _ F hF ψ hψc hψl hFψ
   refine (GlobalTheory.Cusp.isCuspFun_iff hψl).2 fun W hW => ?_
   have hc := GlobalTheory.Cusp.cocompact_single (D := D) hW
@@ -64,10 +64,10 @@ theorem isCuspFun_of_mem_L2cusp : ∀ (D : D7) (V : HSp D) (μ : Measure (GA D V
   have h2 : GlobalTheory.Cusp.constTermOn (GQ V) (GlobalTheory.Cusp.NA (.single hW)) ψ =ᵐ[μ] 0 := by
     refine ae_eq_zero_of_forall_setIntegral_isCompact_eq_zero' hcont.locallyIntegrable fun S hS => ?_
     rw [GlobalTheory.CuspAE.setIntegral_constTermOn hc hψl hψc.stronglyMeasurable hψc.locallyIntegrable hS]
-    calc _ = ∫ q, ∫ y in S, lift (GQ V) F (((q.out : GlobalTheory.Cusp.NA (.single hW)) : GA D V) * y) ∂μ
+    calc _ = ∫ q, ∫ y in S, lift (GQ V) F (((q.out : GlobalTheory.Cusp.NA (.single hW)) : Formalism.L2.Theta.GA D V) * y) ∂μ
             ∂GlobalTheory.Cusp.probMeasure (GQ V) (GlobalTheory.Cusp.NA (.single hW)) :=
           integral_congr_ae (.of_forall fun q => integral_congr_ae (ae_restrict_of_ae
-            ((measurePreserving_mul_left μ ((q.out : GlobalTheory.Cusp.NA (.single hW)) : GA D V)).quasiMeasurePreserving.ae
+            ((measurePreserving_mul_left μ ((q.out : GlobalTheory.Cusp.NA (.single hW)) : Formalism.L2.Theta.GA D V)).quasiMeasurePreserving.ae
               hFψ.symm)))
       _ = ∫ y in S, GlobalTheory.Cusp.constTermOn (GQ V) (GlobalTheory.Cusp.NA (.single hW)) (lift (GQ V) F) y ∂μ :=
           (GlobalTheory.CuspAE.setIntegral_constTermOn hc (leftInv_lift F) hm (GlobalTheory.CuspAE.locallyIntegrable_lift F) hS).symm
