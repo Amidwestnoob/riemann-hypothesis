@@ -194,7 +194,7 @@ namespace GlobalTheory.EtC
 
 open IntDescent in
 theorem cechAug_eqv_of_isIntegralHom_of_strictlyHenselian : ∀ (q : ℕ) (i : ℤ) (A : Type) [CommRing A], SH A → IsUnit (q : A) →
-    ∀ (Y : Scheme.{0}) (g : Y ⟶ Spec (CommRingCat.of A)), IsIntegralHom g → Surjective g → Eqv _ (cechAug g) (tw q i) := by
+    ∀ (Y : Scheme.{0}) (g : Y ⟶ Spec (CommRingCat.of A)), IsIntegralHom g → Surjective g → Eqv _ (_root_.GlobalTheory.EtC.cechAug g) (tw q i) := by
   intro q i A _ hSH hq Y g hg hsurj
   obtain ⟨_, _⟩ := hSH
   set Ω := AlgebraicClosure (IsLocalRing.ResidueField A)
@@ -209,11 +209,11 @@ theorem cechAug_eqv_of_isIntegralHom_of_strictlyHenselian : ∀ (q : ℕ) (i : �
   have hEu : Eqv (ZMod q) (sch.map u) (tw q i) :=
     hsq _ _ (𝟙 _) (𝟙 _) u inferInstance (IsPullback.id_vert u)
   obtain ⟨s, hs⟩ := _root_.GlobalTheory.exists_point_algClosure_residueField_of_isIntegralHom A Y g hg hsurj
-  have hEs : Eqv (ZMod q) (cechAug (pullback.snd g u)) (tw q i) :=
+  have hEs : Eqv (ZMod q) (_root_.GlobalTheory.EtC.cechAug (pullback.snd g u)) (tw q i) :=
     _root_.GlobalTheory.cechAug_eqv_of_section (ZMod q) (tw q i) _ _ (pullback.snd g u) (pullback.lift s (𝟙 _) (by rw [hs, Category.id_comp]))
       (pullback.lift_snd _ _ _)
   obtain ⟨-, hcomp, -, -⟩ := GlobalTheory.T.etaleCohomologyEquivalence_basic_properties (ZMod q) (tw q i)
-  have h1 : Eqv (ZMod q) (cechAug (pullback.snd g u) ≫ sch.map u) (tw q i) :=
+  have h1 : Eqv (ZMod q) (_root_.GlobalTheory.EtC.cechAug (pullback.snd g u) ≫ sch.map u) (tw q i) :=
     (hcomp _ _ _ _ _).1 hEs hEu
   rw [← hm.w] at h1
   exact (hcomp _ _ _ _ _).2.1 hEm h1
@@ -241,7 +241,7 @@ theorem sh_of_isSepClosed (Ω : Type) [Field Ω] [IsSepClosed Ω] : SH Ω := by
     Algebra.IsIntegral.of_surjective (Algebra.ofId Ω (IsLocalRing.ResidueField Ω)) IsLocalRing.residue_surjective
   exact Algebra.IsAlgebraic.isSepClosed (F := Ω)
 
-theorem cech_level_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] [IsSepClosure K Ω] (k : ℕ) (m : ℕ), 0 < m → ∀ y : H R (disc.obj ((cech (Spec.map (CommRingCat.ofHom (algebraMap K Ω)))).obj (op ⦋k⦌))) F m, y = 0 := by
+theorem cech_level_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] [IsSepClosure K Ω] (k : ℕ) (m : ℕ), 0 < m → ∀ y : H R (disc.obj ((_root_.GlobalTheory.EtC.cech (Spec.map (CommRingCat.ofHom (algebraMap K Ω)))).obj (op ⦋k⦌))) F m, y = 0 := by
   intro R _ F hF K Ω _ _ _ _ k m hm y
   haveI : IsSepClosed Ω := IsSepClosure.sep_closed K
   haveI : Algebra.IsSeparable K Ω := IsSepClosure.separable
@@ -265,7 +265,7 @@ theorem cech_level_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F
     rw [Polynomial.eval₂_map, hc]
     exact h
   have hac : AcycF R (sp Γ(Z, ⊤)) F := GlobalTheory.T.integral_strictHenselian_acyclic_finitary R F hF Ω Γ(Z, ⊤) (sh_of_isSepClosed Ω)
-  let i : sp Γ(Z, ⊤) ≅ disc.obj ((cech (Spec.map (CommRingCat.ofHom (algebraMap K Ω)))).obj (op ⦋k⦌)) :=
+  let i : sp Γ(Z, ⊤) ≅ disc.obj ((_root_.GlobalTheory.EtC.cech (Spec.map (CommRingCat.ofHom (algebraMap K Ω)))).obj (op ⦋k⦌)) :=
     sch.mapIso Z.isoSpec.symm ≪≫ disc.mapIso e
   have heq : Eqv R i.hom F := (GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F).1 _ _ i.hom inferInstance
   have hs := ((GlobalTheory.T.etaleCohomologyEquivalence_basic_properties R F).2.2.2 _ _ i.hom heq).1 hac (m : ℤ) (by exact_mod_cast hm)

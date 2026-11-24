@@ -37,7 +37,7 @@ end GlobalTheory.EtC.DescZero
 
 namespace GlobalTheory.EtC.DescZero
 
-def cπ {Y X : Scheme.{0}} (f : Y ⟶ X) (n : ℕ) (k : Fin (n + 1)) : (cech f).obj (op ⦋n⦌) ⟶ (sch.obj Y).obj (op ⦋0⦌) :=
+def cπ {Y X : Scheme.{0}} (f : Y ⟶ X) (n : ℕ) (k : Fin (n + 1)) : (_root_.GlobalTheory.EtC.cech f).obj (op ⦋n⦌) ⟶ (sch.obj Y).obj (op ⦋0⦌) :=
   WidePullback.π (fun _ : Fin (n + 1) => yoneda.map f) k
 
 end GlobalTheory.EtC.DescZero

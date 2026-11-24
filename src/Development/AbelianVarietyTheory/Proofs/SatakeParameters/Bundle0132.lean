@@ -404,9 +404,9 @@ theorem det_map {n m : ℕ} (f : Module.End ℂ (Fin n → ℂ)) (g : Module.End
   rw [← LinearMap.det_toMatrix (b.tensorProduct c), TensorProduct.toMatrix_map, Matrix.det_kronecker,
     LinearMap.det_toMatrix, LinearMap.det_toMatrix, Fintype.card_fin, Fintype.card_fin]
 
-theorem det_diagEnd {m : ℕ} (c : Fin m → ℂ) : LinearMap.det (diagEnd c) = ∏ i, c i := by
+theorem det_diagEnd {m : ℕ} (c : Fin m → ℂ) : LinearMap.det (_root_.GlobalTheory.WeilDeligne.diagEnd c) = ∏ i, c i := by
   classical
-  have e : diagEnd c = Matrix.toLin' (Matrix.diagonal c) := by
+  have e : _root_.GlobalTheory.WeilDeligne.diagEnd c = Matrix.toLin' (Matrix.diagonal c) := by
     refine LinearMap.ext fun v => funext fun i => ?_
     simp [Matrix.mulVec_diagonal]
   rw [e, LinearMap.det_toLin', Matrix.det_diagonal]

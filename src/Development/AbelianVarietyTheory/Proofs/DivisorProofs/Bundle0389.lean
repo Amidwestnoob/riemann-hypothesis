@@ -228,7 +228,7 @@ theorem level_iso : ∀ (A A' : Type) [CommRing A] [CommRing A'] [Algebra A A'] 
     e.hom ≫ (cechC A A').app (op ⦋k⦌) =
       yoneda.map (Spec.map (CommRingCat.ofHom (LaurentPolynomial.C : PiTensorProduct A (fun _ : Fin (k + 1) => A') →+*
         LaurentPolynomial (PiTensorProduct A (fun _ : Fin (k + 1) => A'))))) ≫ e0.hom ∧
-    e.hom ≫ (cechAug (laurentHom A A')).app (op ⦋k⦌) =
+    e.hom ≫ (_root_.GlobalTheory.EtC.cechAug (laurentHom A A')).app (op ⦋k⦌) =
       yoneda.map (Spec.map (CommRingCat.ofHom (laurentMap (algebraMap A (PiTensorProduct A (fun _ : Fin (k + 1) => A')))))) := by
   intro A A' _ _ _ k
   let ι : Fin (k + 1) → (A' →+* PiTensorProduct A (fun _ : Fin (k + 1) => A')) := fun j =>

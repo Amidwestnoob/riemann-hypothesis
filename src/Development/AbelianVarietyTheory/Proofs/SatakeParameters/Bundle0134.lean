@@ -96,8 +96,8 @@ theorem multiProd_rename : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologica
   intro k _ _ _ _ γ γ' n _ _ _ _ _ _ f hf hs m _ _ e e₂ he X _ _ σ
   let κ := kappa hf hs X
   have key : ∀ (p : parab k e₂) (q : parab k e), (p : GL n k) = q → ∀ w,
-      ((twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂)) p (κ w) =
-        κ (((twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e)) q w) := by
+      ((_root_.GlobalTheory.SmGL.twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂)) p (κ w) =
+        κ (((_root_.GlobalTheory.SmGL.twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e)) q w) := by
     intro p q hpq w
     rw [MonoidHom.comp_apply, MonoidHom.comp_apply, leviProj_rename he p q hpq, twist_apply, twist_apply,
       deltaHalf_rename hf hs, piTensor_rename hf hs]
@@ -105,12 +105,12 @@ theorem multiProd_rename : ∀ {k : Type} [Field k] [ValuativeRel k] [Topologica
   have hP := mem_parab_rename (k := k) hf he
   refine ⟨Representation.Equiv.mk (LinearEquiv.ofLinear
     (GlobalTheory.SmGL.MultiIrr.indPull
-      (σ := (twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂))
-      (τ := (twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e))
+      (σ := (_root_.GlobalTheory.SmGL.twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂))
+      (τ := (_root_.GlobalTheory.SmGL.twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e))
       (MonoidHom.id _) continuous_id κ.toLinearMap fun p => ⟨⟨p, (hP p).2 p.2⟩, rfl, fun w => key p _ rfl w⟩)
     (GlobalTheory.SmGL.MultiIrr.indPull
-      (σ := (twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e))
-      (τ := (twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂))
+      (σ := (_root_.GlobalTheory.SmGL.twist (piTensor σ) (deltaHalf k m)).comp (leviProj k e))
+      (τ := (_root_.GlobalTheory.SmGL.twist (piTensor fun c' => σ (f c')) (deltaHalf k fun c' => m (f c'))).comp (leviProj k e₂))
       (MonoidHom.id _) continuous_id κ.symm.toLinearMap fun q => ⟨⟨q, (hP q).1 q.2⟩, rfl, fun w =>
         κ.injective (by
           simp only [LinearEquiv.coe_coe]

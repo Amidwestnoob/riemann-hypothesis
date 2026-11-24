@@ -65,7 +65,7 @@ theorem coeff_expT (f : MvPowerSeries σ K) (N : ℕ) (α : σ →₀ ℕ) :
   rw [div_eq_inv_mul]
 
 theorem coeff_expMv_eq_expT {f : MvPowerSeries σ K} (hf : constantCoeff f = 0) {α : σ →₀ ℕ}
-    {N : ℕ} (hN : Finsupp.degree α < N) : coeff α (expMv f) = coeff α (expT f N) := by
+    {N : ℕ} (hN : Finsupp.degree α < N) : coeff α (_root_.PI.FglPhSplit.expMv f) = coeff α (expT f N) := by
   rw [coeff_expT]
   change (∑ n ∈ range ((α.sum fun _ k => k) + 1), coeff α (f ^ n) / (n.factorial : K)) = _
   rw [deg_eq]
@@ -125,12 +125,12 @@ private theorem coeff_expT_add_eq_coeff_expT_mul_expT [CharZero K] {f g : MvPowe
     rw [coeff_pow_mul_pow_eq_zero hf hg (by omega), zero_div]
 
 theorem expMv_add [CharZero K] {f g : MvPowerSeries σ K} (hf : constantCoeff f = 0)
-    (hg : constantCoeff g = 0) : expMv (f + g) = expMv f * expMv g := by
+    (hg : constantCoeff g = 0) : _root_.PI.FglPhSplit.expMv (f + g) = _root_.PI.FglPhSplit.expMv f * _root_.PI.FglPhSplit.expMv g := by
   classical
   ext α
   have hfg : constantCoeff (f + g) = 0 := by rw [map_add (f := _), hf, hg, add_zero]
   rw [coeff_expMv_eq_expT hfg (Nat.lt_succ_self (Finsupp.degree α)), coeff_mul]
-  have key : ∀ p ∈ antidiagonal α, coeff p.1 (expMv f) * coeff p.2 (expMv g) =
+  have key : ∀ p ∈ antidiagonal α, coeff p.1 (_root_.PI.FglPhSplit.expMv f) * coeff p.2 (_root_.PI.FglPhSplit.expMv g) =
       coeff p.1 (expT f (Finsupp.degree α + 1)) * coeff p.2 (expT g (Finsupp.degree α + 1)) := by
     intro p hp
     rw [Finset.HasAntidiagonal.mem_antidiagonal] at hp

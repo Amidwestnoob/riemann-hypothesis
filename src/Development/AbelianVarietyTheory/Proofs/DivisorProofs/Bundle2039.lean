@@ -212,13 +212,13 @@ namespace GlobalTheory.FormalOrigin
 open Finset TaylorRingHom
 
 theorem taylor_isRingHom : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B)
-    (ds : Fin n → Derivation ℤ A A), ∃ T : A →+* MvPowerSeries (Fin n) B, ∀ f, T f = taylor ev (fun i => ⇑(ds i)) f := by
+    (ds : Fin n → Derivation ℤ A A), ∃ T : A →+* MvPowerSeries (Fin n) B, ∀ f, T f = _root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i)) f := by
   intro A B _ _ _ n ev ds
-  refine ⟨{ toFun := taylor ev (fun i => ⇑(ds i))
+  refine ⟨{ toFun := _root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i))
             map_one' := ?_, map_mul' := ?_, map_zero' := ?_, map_add' := ?_ }, fun f => rfl⟩
   · ext α
     rw [MvPowerSeries.coeff_apply, MvPowerSeries.coeff_one]
-    unfold taylor
+    unfold _root_.GlobalTheory.FormalOrigin.taylor
     rw [iterOp_one]
     split_ifs with h
     · subst h; simp
@@ -227,7 +227,7 @@ theorem taylor_isRingHom : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra �
     ext α
     rw [MvPowerSeries.coeff_mul]
     simp only [MvPowerSeries.coeff_apply]
-    unfold taylor
+    unfold _root_.GlobalTheory.FormalOrigin.taylor
     set_option synthInstance.maxHeartbeats 100000 in
       rw [iterOp_mul, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun p hp => ?_
@@ -238,12 +238,12 @@ theorem taylor_isRingHom : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra �
     ring
   · ext α
     rw [MvPowerSeries.coeff_apply, map_zero]
-    unfold taylor
+    unfold _root_.GlobalTheory.FormalOrigin.taylor
     rw [iterOp_zero', map_zero, smul_zero]
   · intro f g
     ext α
     rw [MvPowerSeries.coeff_apply, map_add (f := _), MvPowerSeries.coeff_apply, MvPowerSeries.coeff_apply]
-    unfold taylor
+    unfold _root_.GlobalTheory.FormalOrigin.taylor
     rw [iterOp_add, map_add (f := _), smul_add]
 
 end GlobalTheory.FormalOrigin

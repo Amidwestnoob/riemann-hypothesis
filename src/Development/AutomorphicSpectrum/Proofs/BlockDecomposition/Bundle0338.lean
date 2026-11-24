@@ -82,9 +82,9 @@ theorem frobFun_law (e : (Σ a, m a) ≃ n) {τ : Representation ℂ (GL n k) V}
 
 theorem frobFun_mem (e : (Σ a, m a) ≃ n) {τ : Representation ℂ (GL n k) V} {ρ : Representation ℂ (Levi k m) W}
     (f : (GlobalTheory.SmGL.jac e τ).IntertwiningMap ρ) (v : V) :
-    frobFun e f v ∈ indSpace (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e)) := by
+    frobFun e f v ∈ indSpace (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)) := by
   show ∀ (h : ↥(parab k e)) (g : GL n k),
-    frobFun e f v (↑h * g) = ((twist ρ (deltaHalf k m)).comp (leviProj k e)) h (frobFun e f v g)
+    frobFun e f v (↑h * g) = ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)) h (frobFun e f v g)
   intro p x
   rw [frobFun_law, MonoidHom.comp_apply, twist_apply]
 
@@ -98,13 +98,13 @@ theorem frobFun_translate (e : (Σ a, m a) ≃ n) {τ : Representation ℂ (GL n
 
 theorem frobFun_smooth (e : (Σ a, m a) ≃ n) {τ : Representation ℂ (GL n k) V} (hτ : IsSmooth τ)
     {ρ : Representation ℂ (Levi k m) W} (f : (GlobalTheory.SmGL.jac e τ).IntertwiningMap ρ) (v : V) :
-    (⟨frobFun e f v, frobFun_mem e f v⟩ : indSpace (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e))) ∈
-      smoothPart (ind (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e))) := by
-  show IsOpen {g : GL n k | (ind (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e))) g
+    (⟨frobFun e f v, frobFun_mem e f v⟩ : indSpace (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e))) ∈
+      smoothPart (ind (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e))) := by
+  show IsOpen {g : GL n k | (ind (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e))) g
     ⟨frobFun e f v, frobFun_mem e f v⟩ = ⟨frobFun e f v, frobFun_mem e f v⟩}
-  set F : indSpace (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e)) :=
+  set F : indSpace (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)) :=
     ⟨frobFun e f v, frobFun_mem e f v⟩ with hF
-  set R := ind (parab k e) ((twist ρ (deltaHalf k m)).comp (leviProj k e)) with hR
+  set R := ind (parab k e) ((_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)).comp (leviProj k e)) with hR
   have hstab : ∀ s, τ s v = v → R s F = F := by
     intro s hs
     apply Subtype.ext

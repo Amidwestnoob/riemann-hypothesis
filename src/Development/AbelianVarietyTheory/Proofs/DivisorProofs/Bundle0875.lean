@@ -164,10 +164,10 @@ theorem hInv_of_integral (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRin
         simp only [Arrow.mk_hom, ← Functor.map_comp, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
         congr 3
         ext x <;> simp)
-  let m : cech (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ⟶
-      cech (Spec.map (CommRingCat.ofHom (algebraMap A B))) := Arrow.mapCechNerve F
-  have hsq : m ≫ cechAug (Spec.map (CommRingCat.ofHom (algebraMap A B))) =
-      cechAug (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ≫
+  let m : _root_.GlobalTheory.EtC.cech (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ⟶
+      _root_.GlobalTheory.EtC.cech (Spec.map (CommRingCat.ofHom (algebraMap A B))) := Arrow.mapCechNerve F
+  have hsq : m ≫ _root_.GlobalTheory.EtC.cechAug (Spec.map (CommRingCat.ofHom (algebraMap A B))) =
+      _root_.GlobalTheory.EtC.cechAug (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ≫
         spMap (Polynomial.C : A →+* Polynomial A) := by
     clear E h1 h1' hT hf1 hf2 hf1' hf2' hint hker hq hq' hi
     refine NatTrans.ext (funext fun n => ?_)
@@ -221,7 +221,7 @@ theorem hInv_of_integral (q : ℕ) [NeZero q] (A B : Type) [CommRing A] [CommRin
       exact (E.2.1 _ _ _ _ _).1 (hT k i) (E.1 _ _ _ (disc.mapIso e).isIso_hom)
     rw [hmn]
     exact (E.2.1 _ _ _ _ _).2.1 (E.1 _ _ _ (disc.mapIso e').isIso_hom) h3
-  have h2 : Eqv _ (cechAug (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ≫
+  have h2 : Eqv _ (_root_.GlobalTheory.EtC.cechAug (Spec.map (CommRingCat.ofHom (Polynomial.mapRingHom (algebraMap A B)))) ≫
       spMap (Polynomial.C : A →+* Polynomial A)) (tw q i) := by
     rw [← hsq]; exact (E.2.1 _ _ _ _ _).1 hm h1
   exact (E.2.1 _ _ _ _ _).2.1 h1' h2

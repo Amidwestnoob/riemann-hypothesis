@@ -42,7 +42,7 @@ theorem infSign_ideleMap_finPartI (b : Neutral.B1.Ideles (maximalRealSubfield E)
     rw [map_one]; rfl
   simp only [MonoidHom.comp_apply, this, map_one]
 
-theorem eta_eq_infSign (hU : Unr E) (b : Neutral.B1.Ideles (maximalRealSubfield E))
+theorem eta_eq_infSign (hU : _root_.GlobalTheory.BCT.Unr E) (b : Neutral.B1.Ideles (maximalRealSubfield E))
     (hb : b ∈ GlobalTheory.Mem.Chr.unitIdl (maximalRealSubfield E)) :
     (GlobalTheory.GalOfCusp.quadChar E).1 b = infSign E (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E b) := by
   set f := GlobalTheory.Mem.Chr.finPartI (maximalRealSubfield E) b

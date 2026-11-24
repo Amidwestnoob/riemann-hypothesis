@@ -133,7 +133,7 @@ end GlobalTheory.UPel.HT.Hecke.Comp
 
 namespace GlobalTheory.UPel.HT.Hecke.Comp
 
-theorem nonempty_objMap_forget : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (g g' : D.La →ₗ[D.O] D.La) (c c' k N : ℕ), k.Coprime p → 3 ≤ N → N.Coprime p → (∀ x, g (g' x) = k • x) → (∀ x, g' (g x) = k • x) → c * c' = k ^ 2 → ∀ (hc : (N * k * k).Coprime p) (S : Scheme.{0}) (s : S ⟶ Sp R) (o : Obj b (N * k * k) s) (o₁ : Obj b (N * k) s) (o₂ : Obj b N s) (ψ₁ : o.A ⟶ o₁.A) (ψ₂ : o₁.A ⟶ o₂.A), IsHecke g' c' k (N * k) o o₁ ψ₁ → IsHecke g c k N o₁ o₂ ψ₂ → Nonempty (ObjMap (o.forget N ⟨k * k, by ring⟩ hc) o₂ (𝟙 S)) := by
+theorem nonempty_objMap_forget : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [CommRing R] (b : Base D R) (g g' : D.La →ₗ[D.O] D.La) (c c' k N : ℕ), k.Coprime p → 3 ≤ N → N.Coprime p → (∀ x, g (g' x) = k • x) → (∀ x, g' (g x) = k • x) → c * c' = k ^ 2 → ∀ (hc : (N * k * k).Coprime p) (S : Scheme.{0}) (s : S ⟶ Sp R) (o : Obj b (N * k * k) s) (o₁ : Obj b (N * k) s) (o₂ : Obj b N s) (ψ₁ : o.A ⟶ o₁.A) (ψ₂ : o₁.A ⟶ o₂.A), _root_.GlobalTheory.UPel.HT.Hecke.IsHecke g' c' k (N * k) o o₁ ψ₁ → _root_.GlobalTheory.UPel.HT.Hecke.IsHecke g c k N o₁ o₂ ψ₂ → Nonempty (ObjMap (o.forget N ⟨k * k, by ring⟩ hc) o₂ (𝟙 S)) := by
   intro p _ D R _ b g g' c c' k N hkp hN3 hNp hgg' hg'g hcc' hc S s o o₁ o₂ ψ₁ ψ₂ h₁ h₂
   obtain ⟨hm₁, ha₁, he₁, hG₁, ⟨hP₁⟩, -⟩ := h₁
   obtain ⟨hm₂, ha₂, he₂, hG₂, ⟨hP₂⟩, -⟩ := h₂

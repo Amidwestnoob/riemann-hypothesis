@@ -257,7 +257,7 @@ theorem map_orderEmb {s : ℕ} {β : Type*} (T : Finset (Fin s)) (g : Fin s → 
 
 theorem exists_equiv_of_eq_nu {p q : ℕ} (x : Irr k p) (y : Irr k q) (c : ℂ)
     (h : IrrGL.of x.π x.smooth x.irr = (IrrGL.of y.π y.smooth y.irr).nu c) :
-    ∃ hpq : p = q, Nonempty ((hpq ▸ x : Irr k q).π.Equiv (twist y.π (detChar (Fin q) (absPow k c)))) := by
+    ∃ hpq : p = q, Nonempty ((hpq ▸ x : Irr k q).π.Equiv (_root_.GlobalTheory.SmGL.twist y.π (detChar (Fin q) (absPow k c)))) := by
   rw [IrrGL.nu, IrrGL.tw_of] at h
   have hpq : p = q := congrArg Sigma.fst h
   subst hpq

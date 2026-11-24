@@ -121,7 +121,7 @@ theorem jac_deriv_rel (ψ : AddChar k Circle) (n j : ℕ) {V : Type} [AddCommGro
       Function.Surjective L ∧ ∀ g x,
         L (((GlobalTheory.SmGL.jac (stdBlocks (dd n (j + 1)) (dd_sum n j)) π).comp (iota n (j + 1)) :
           Representation ℂ (GL (Fin n) k) _) g x) =
-        twist (GlobalTheory.BZMir.deriv k ψ j π) (detChar (Fin n) (absPow k (-(((j : ℂ) + 1) / 2)))) g (L x) := by
+        _root_.GlobalTheory.SmGL.twist (GlobalTheory.BZMir.deriv k ψ j π) (detChar (Fin n) (absPow k (-(((j : ℂ) + 1) / 2)))) g (L x) := by
   obtain ⟨L, hL, hLe⟩ := exists_jac_deriv ψ n j π
   refine ⟨L, hL, fun g x => ?_⟩
   obtain ⟨v, rfl⟩ := Submodule.Quotient.mk_surjective _ x
@@ -157,7 +157,7 @@ theorem derivSub (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) : GlobalT
     exact hy (by rw [h0, LinearMap.zero_apply])
   obtain ⟨S0, f, hf'⟩ := exists_irr_sub_of_quot hA _ (isSmooth_jac _ hs)
     (GlobalTheory.CompanionTheory.JacquetBridge.jacquetFiniteLength k _ _ _ _ V π hs hf) _ L hLe hne
-  refine ⟨⟨S0.V, twist S0.ρ (detChar (Fin (n + 1)) (absPow k (-(((j : ℂ) + 1) / 2))))⁻¹,
+  refine ⟨⟨S0.V, _root_.GlobalTheory.SmGL.twist S0.ρ (detChar (Fin (n + 1)) (absPow k (-(((j : ℂ) + 1) / 2))))⁻¹,
     isSmooth_twist S0.smooth hχi, isIrreducible_twist S0.irr _⟩, ⟨f.toLinearMap, fun g => ?_⟩, hf'⟩
   ext w
   have e := LinearMap.congr_fun (f.isIntertwining' g) w

@@ -35,10 +35,10 @@ theorem charpoly_blockDiag {m o R : Type*} [Fintype m] [DecidableEq m] [Fintype 
   rfl
 
 theorem charpoly_map_diagEnd {n m : ℕ} (f : Module.End ℂ (Fin n → ℂ)) (c : Fin m → ℂ) :
-    LinearMap.charpoly (TensorProduct.map f (diagEnd c)) = ∏ i, LinearMap.charpoly (c i • f) := by
+    LinearMap.charpoly (TensorProduct.map f (_root_.GlobalTheory.WeilDeligne.diagEnd c)) = ∏ i, LinearMap.charpoly (c i • f) := by
   classical
   set b := Pi.basisFun ℂ (Fin n)
-  have e : LinearMap.toMatrix (Pi.basisFun ℂ (Fin m)) (Pi.basisFun ℂ (Fin m)) (diagEnd c) =
+  have e : LinearMap.toMatrix (Pi.basisFun ℂ (Fin m)) (Pi.basisFun ℂ (Fin m)) (_root_.GlobalTheory.WeilDeligne.diagEnd c) =
       Matrix.diagonal c := by
     ext i j
     simp [Matrix.diagonal_apply, Pi.single_apply]

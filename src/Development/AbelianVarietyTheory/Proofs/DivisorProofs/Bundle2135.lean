@@ -461,7 +461,7 @@ theorem list_foldr_iterate_single_of_nodup {A : Type} {n : ℕ} (d : Fin n → A
 
 theorem taylor_coeff_single (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B)
     (ds : Fin n → Derivation ℤ A A) (j : Fin n) (f : A) :
-    MvPowerSeries.coeff (Finsupp.single j 1) (taylor ev (fun i => ⇑(ds i)) f) = ev (ds j f) := by
+    MvPowerSeries.coeff (Finsupp.single j 1) (_root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i)) f) = ev (ds j f) := by
   have hit : iterOp (fun i => ⇑(ds i)) (Finsupp.single j 1) f = ds j f := by
     unfold iterOp
     rw [list_foldr_iterate_single_of_nodup _ j f _ (List.nodup_finRange n)]

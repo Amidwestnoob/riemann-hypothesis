@@ -96,9 +96,9 @@ def oneArr : Arrow.mk (yoneda.map (fB A A')) ⟶ Arrow.mk (yoneda.map (fT A A'))
       simp only [Arrow.mk_hom, ← Functor.map_comp, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
       rw [laurentPolynomialEvalAtOne_comp_mapRingHom])
 
-def cP : cech (fT A A') ⟶ cech (fB A A') := Arrow.mapCechNerve (constArr A A')
+def cP : _root_.GlobalTheory.EtC.cech (fT A A') ⟶ _root_.GlobalTheory.EtC.cech (fB A A') := Arrow.mapCechNerve (constArr A A')
 
-def cS : cech (fB A A') ⟶ cech (fT A A') := Arrow.mapCechNerve (oneArr A A')
+def cS : _root_.GlobalTheory.EtC.cech (fB A A') ⟶ _root_.GlobalTheory.EtC.cech (fT A A') := Arrow.mapCechNerve (oneArr A A')
 
 abbrev inc : Fin (1 + 1) → (A' →+* A' ⊗[A] A') :=
   ![Algebra.TensorProduct.includeLeftRingHom, (Algebra.TensorProduct.includeRight : A' →ₐ[A] A' ⊗[A] A').toRingHom]
@@ -170,7 +170,7 @@ theorem laurent_univ (R : Type) [CommRing R] (g : Fin (1 + 1) → (LaurentPolyno
     simp only [RingHom.comp_apply, GmPhiNat.laurentMap_T] at h0
     rw [h0, hψT]
 
-theorem level_one : ∃ e : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial (A' ⊗[A] A')))) ≅ (cech (fT A A')).obj (op ⦋1⦌),
+theorem level_one : ∃ e : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial (A' ⊗[A] A')))) ≅ (_root_.GlobalTheory.EtC.cech (fT A A')).obj (op ⦋1⦌),
     e.hom ≫ (cP A A' ≫ cS A A').app (op ⦋1⦌) = yoneda.map (Spec.map (CommRingCat.ofHom (flat (A' ⊗[A] A')))) ≫ e.hom := by
   obtain ⟨e, he⟩ := GlobalTheory.T.spec_widePushout_iso_widePullback_yoneda (LaurentPolynomial A) (LaurentPolynomial A') (LaurentPolynomial (A' ⊗[A] A'))
     (laurentMap (algebraMap A A')) 1 (fun j => laurentMap (inc A A' j))
@@ -189,7 +189,7 @@ theorem level_one : ∃ e : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial 
     exact flat_laurentMap (inc A A' j)
   apply WidePullback.hom_ext
   · exact hπ
-  · have h0 : ∀ k : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial (A' ⊗[A] A')))) ⟶ (cech (fT A A')).obj (op ⦋1⦌),
+  · have h0 : ∀ k : yoneda.obj (Spec (CommRingCat.of (LaurentPolynomial (A' ⊗[A] A')))) ⟶ (_root_.GlobalTheory.EtC.cech (fT A A')).obj (op ⦋1⦌),
         k ≫ WidePullback.base (fun _ : Fin (1 + 1) => (Arrow.mk (yoneda.map (fT A A'))).hom) =
           (k ≫ WidePullback.π _ 0) ≫ (Arrow.mk (yoneda.map (fT A A'))).hom := fun k => by
       rw [← WidePullback.π_arrow _ 0]; exact (Category.assoc _ _ _).symm
@@ -203,10 +203,10 @@ theorem cobd_pull {R : Type} [CommRing R] {E E' : Spc} {F : Shv R} {n : ℕ} (φ
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [← Category.assoc, ← Functor.map_comp, SimplicialObject.δ_naturality, Functor.map_comp, Category.assoc]
 
-theorem cobd_of_h1_zero {R : Type} [CommRing R] (F : Shv R) {Y X : Scheme.{0}} (f : Y ⟶ X) (hE : Eqv R (cechAug f) F)
-    (hX : ∀ x : H R (sch.obj X) F 1, x = 0) (σ : (free R).obj ((cech f).obj (op ⦋1⦌)) ⟶ F) (hσ : cobd σ = 0) :
+theorem cobd_of_h1_zero {R : Type} [CommRing R] (F : Shv R) {Y X : Scheme.{0}} (f : Y ⟶ X) (hE : Eqv R (_root_.GlobalTheory.EtC.cechAug f) F)
+    (hX : ∀ x : H R (sch.obj X) F 1, x = 0) (σ : (free R).obj ((_root_.GlobalTheory.EtC.cech f).obj (op ⦋1⦌)) ⟶ F) (hσ : cobd σ = 0) :
     ∃ τ, σ = cobd τ := by
-  obtain ⟨y, hy⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F (cech f) 1).1 σ hσ
+  obtain ⟨y, hy⟩ := (GlobalTheory.T.simplicialCochain_classes_basic_properties R F (_root_.GlobalTheory.EtC.cech f) 1).1 σ hσ
   obtain ⟨x, rfl⟩ := (hE 1).2 y
   rw [hX x, map_zero] at hy
   exact GlobalTheory.T.simplicialCochain_coboundary_of_class_zero R F _ σ hy
@@ -264,7 +264,7 @@ variable (A A' : Type) [CommRing A] [CommRing A'] [Algebra A A']
 theorem cobd_laurent (q : ℕ) [NeZero q] (hint : Algebra.IsIntegral A A')
     (hker : RingHom.ker (algebraMap A A') ≤ nilradical A) (hq : IsUnit (q : A))
     (hA : ∀ j : ℤ, Subsingleton (Ht q (sp A) 1 j)) (i : ℤ)
-    (σ : (free (ZMod q)).obj ((cech (fT A A')).obj (op ⦋1⦌)) ⟶ tw q i) (hσ : cobd σ = 0) : ∃ τ, σ = cobd τ := by
+    (σ : (free (ZMod q)).obj ((_root_.GlobalTheory.EtC.cech (fT A A')).obj (op ⦋1⦌)) ⟶ tw q i) (hσ : cobd σ = 0) : ∃ τ, σ = cobd τ := by
   have hi : (algebraMap A A').IsIntegral := fun a => hint.isIntegral a
   obtain ⟨hf1, hf2⟩ := GmStep.spec_integral_surj (algebraMap A A') hi hker
   have hqA : IsUnit (q : Γ(Spec (CommRingCat.of A), ⊤)) := by

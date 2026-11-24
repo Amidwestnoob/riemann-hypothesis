@@ -85,7 +85,7 @@ theorem mk_ne_zero (hD : GlobalTheory.Published.DepthZeroJacquetInjective) {m : 
     {s : ℕ} (d : Fin s → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin m) :
     (Submodule.Quotient.mk y : Jacquet σ (unipRad k e)) ≠ 0 := by
   intro h0
-  let σ' : Representation ℂ (GL (Fin m) k) V := twist σ (detChar (Fin m) χ⁻¹)
+  let σ' : Representation ℂ (GL (Fin m) k) V := _root_.GlobalTheory.SmGL.twist σ (detChar (Fin m) χ⁻¹)
   let π : Irr k m := ⟨V, σ', isSmooth_twist hs hχ.inv.detChar, GlobalTheory.LocGL.isIrreducible_twist hi _⟩
   have hker : twKer σ' (unipRad k e) 1 = twKer σ (unipRad k e) 1 := by
     unfold twKer

@@ -389,7 +389,7 @@ theorem span_coefLatFn (lam : D.what₂.Tau → DomWeight n)
     rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
     exact key _
 
-theorem harmLat_fg_span : ∀ (D : D7) (m n : ℕ) (w : Weight D n) (B : GLR D n) (K : Type) [Field K] [NumberField K] (σ : K →+* ℂ) (emb : D.what₂.Tau → (D.host.E →+* K)) (O : Subring ℂ) (M : Submodule (𝓞 D.host.E) (Fin n → D.host.E)), w.Good → (∀ τ, w.p τ + w.q τ ≤ m) → IsCoefRing σ emb O → Submodule.IsFullLattice D.host.E M → (harmLat σ emb O m w B M).FG ∧ Submodule.span ℂ (harmLat σ emb O m w B M : Set (PolF D m n)) = harm m w B := by
+theorem harmLat_fg_span : ∀ (D : D7) (m n : ℕ) (w : _root_.GlobalTheory.ExportSeries.Weight D n) (B : GLR D n) (K : Type) [Field K] [NumberField K] (σ : K →+* ℂ) (emb : D.what₂.Tau → (D.host.E →+* K)) (O : Subring ℂ) (M : Submodule (𝓞 D.host.E) (Fin n → D.host.E)), w.Good → (∀ τ, w.p τ + w.q τ ≤ m) → IsCoefRing σ emb O → Submodule.IsFullLattice D.host.E M → (harmLat σ emb O m w B M).FG ∧ Submodule.span ℂ (harmLat σ emb O m w B M : Set (PolF D m n)) = harm m w B := by
   intro D m n w B K _ _ σ emb O M hw hm hc hM
   exact fg_span_comap O (harm m w B) (harmFn m w B) (_root_.GlobalTheory.ExportSeries.HarmInj.harm_inj D m n w B hw hm) _ (coefLatFn_fg hc w.lam hM)
     ((span_coefLatFn w.lam hM).trans (GlobalTheory.T.fockHarmonicValueSpace_map_eq_dualWeylModuleFunctions D m n w B hw hm).symm)

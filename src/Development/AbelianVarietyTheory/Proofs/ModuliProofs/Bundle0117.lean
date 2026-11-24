@@ -312,7 +312,7 @@ theorem tObj_pull : ∀ (o : Type) [CommRing o] (g k : ℕ) (J : Type) (b : TBas
   subst hs
   have h := isGrpPullback_pullback t.A f
   have hL' := pull_isLB t.isLB (pullback.fst t.A.hom f)
-  have hiso := lbIso_refl hL'
+  have hiso := _root_.GlobalTheory.PolBaseChange.lbIso_refl hL'
   obtain ⟨hab, hamp, hk⟩ := pol_pull _ _ _ _ _ _ _ _ t.isLB hL' t.ab h hiso
   choose pt hpt using fun i => exists_sec h (t.pt i)
   have hpt' : ∀ i, (pt i).left ≫ pullback.fst t.A.hom f = f ≫ (t.pt i).left := fun i =>

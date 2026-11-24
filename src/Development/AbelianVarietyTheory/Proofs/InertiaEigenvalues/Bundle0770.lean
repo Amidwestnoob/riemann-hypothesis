@@ -78,7 +78,7 @@ theorem invTrK_invTrK (g : GLR D n) : invTrK (invTrK g) = g := by
   funext τ
   exact Units.ext rfl
 
-theorem map_harm_eq (D : D7) (m n : ℕ) (w : Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m) :
+theorem map_harm_eq (D : D7) (m n : ℕ) (w : _root_.GlobalTheory.ExportSeries.Weight D n) (B : GLR D n) (hw : w.Good) (hm : ∀ τ, w.p τ + w.q τ ≤ m) :
     (harm m w B).map (harmFn m w B) =
       Submodule.span ℂ {φ | ∃ F : VV ℂ w.lam, φ = coefFn (RingHom.id ℂ) w.lam (F : Pol ℂ D.what₂.Tau n)} := by
   obtain ⟨s, hs⟩ := _root_.GlobalTheory.ExportSeries.DeltaExtremal.harmFn_delta D m n w B hw hm

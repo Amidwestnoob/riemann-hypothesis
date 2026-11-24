@@ -429,7 +429,7 @@ theorem polFam_baseChange : ∀ (o : Type) [CommRing o] (g N' : ℕ) (J : Type) 
   intro o _ g N' J b Mat κ R _ β v A _ L act Q R' _ ρ ⟨hab, hdim, hL, hrig, hsym, hamp, ⟨hhom, htor, hbij⟩, hfib⟩
   have h := isGrpPullback_pullback A (spMap ρ)
   have hL' := LB.isLB_pull hL (pullback.fst A.hom (spMap ρ))
-  have hiso := lbIso_refl hL'
+  have hiso := _root_.GlobalTheory.PolBaseChange.lbIso_refl hL'
   obtain ⟨hab', hamp', -⟩ := pol_pull _ _ _ _ _ _ _ _ hL hL' hab h hiso
   choose pt hpt using fun i => exists_sec h (Q i)
   have hpt' : ∀ i, (pt i).left ≫ pullback.fst A.hom (spMap ρ) = spMap ρ ≫ (Q i).left := fun i =>

@@ -234,7 +234,7 @@ theorem exists_etZ_of_algebraicIndependent : Out.Laws → ∀ (k K : Type) [Fiel
   have hdet : ∀ (t : Fin x'.P.g → RR x' n) (m : Fin x'.P.g → Fin (n ^ x.P.g) → K),
       (∀ i, Coords x' b' (m i) (t i).f) → (∀ i, valT (T := K) z.left (x'.P.L.U c) ((t i).f c) = 0) →
       (∀ i, ∑ j, m i j * e j = 0) ∧
-        (Matrix.of fun i a => ∑ j, m i j * D a j).det = u ^ Fintype.card (Fin x'.P.g) * jac x' t z c := by
+        (Matrix.of fun i a => ∑ j, m i j * D a j).det = u ^ Fintype.card (Fin x'.P.g) * _root_.GlobalTheory.KeyKa.jac x' t z c := by
     intro t m hm ht
     refine ⟨fun i => by rw [(hval _ _ (hm i)).1, ht i, mul_zero], Eq.trans ?_ (Matrix.det_smul _ _)⟩
     congr 1
