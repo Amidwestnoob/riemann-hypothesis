@@ -32,18 +32,18 @@ theorem UpperTheory.Gal.Int.Div.phiSeed_of :
     have hpol : (GlobalTheory.RoadU.satWD h a B).charPol g = rootPol (algSat a (normV w) B) := by
       rw [UpperTheory.Gal.TP.Sub.satPol_holds E Ω A w h a B g, hg]
       simp [unrPol, rootPol]
-    have hcd : ∀ x, Matrix.GeneralLinearGroup.det (((rk1 ψ).comp (Dec (F := E) A).subtype) x) =
-        Matrix.GeneralLinearGroup.det ((r.comp (Dec (F := E) A).subtype) x) := by
+    have hcd : ∀ x, Matrix.GeneralLinearGroup.det (((rk1 ψ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) x) =
+        Matrix.GeneralLinearGroup.det ((r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) x) := by
       intro x
       apply Units.ext
       simp [rk1, Matrix.det_fin_one, hdet]
     obtain ⟨J, hCl⟩ := hψ.2 w hw B hB
     obtain ⟨hcC, -, -, hcP⟩ := hCl.2 P AI hT A h O Bw hj
-    have hcPst := ((hConj l P AI hT E Ω A O Bw 1 ((rk1 ψ).comp (Dec (F := E) A).subtype)
-      ((rk1 ψ).comp (Dec (F := E) A).subtype)).1 hcC).2
+    have hcPst := ((hConj l P AI hT E Ω A O Bw 1 ((rk1 ψ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+      ((rk1 ψ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 hcC).2
     have hprod := UpperTheory.Gal.crystallineComparison.detWD_holds l P AI hT ι E Ω A w h O Bw hj a
-      (r.comp (Dec (F := E) A).subtype) ((rk1 ψ).comp (Dec (F := E) A).subtype) hcd hrc hcPst g hg
-    have heig : (wdAt P ι Bw h hj ((rk1 ψ).comp (Dec (F := E) A).subtype)).eig g =
+      (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ((rk1 ψ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) hcd hrc hcPst g hg
+    have heig : (wdAt P ι Bw h hj ((rk1 ψ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).eig g =
         {(algSat a (normV w) B).prod} := by
       rw [WD.eig, hcP g, hg]
       simp [unrPol]
@@ -54,15 +54,15 @@ theorem UpperTheory.Gal.Int.Div.phiSeed_of :
     have hcard : (algSat a (normV w) B).card = a := by
       obtain ⟨σ, -, hσ⟩ := hB
       simpa [algSat] using GlobalTheory.LFun.HasSatGL.card hσ
-    have hx : (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g =
+    have hx : (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g =
         rootPol (algSat a (normV w) B) := by
       refine hRoot _ _ m (WD.charPol_monic _ g) ?_ ?_ hprod (hAlg a _ B hq hgen)
       · rw [WD.charPol_natDegree, GlobalTheory.PstLaws.lpDim_wdAt, hcard]
       · rw [← hpol]
         exact (hdvd g).trans hdiv
     have hxu := (GlobalTheory.PstLaws.unr_wdAt_iff Bw h hj P ι _
-      ((hConj l P AI hT E Ω A O Bw a (r.comp (Dec (F := E) A).subtype)
-        (r.comp (Dec (F := E) A).subtype)).1 hrc).2).2 hrc
+      ((hConj l P AI hT E Ω A O Bw a (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+        (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).1 hrc).2).2 hrc
     have hsu := (UpperTheory.Gal.crystallineComparison.satGeom_of E Ω A w h a B).1
     intro g'
     rw [UpperTheory.Gal.crystallineComparison.unrGeom_of E Ω A w h _ _ hxu hsu g hg (hx.trans hpol.symm)]

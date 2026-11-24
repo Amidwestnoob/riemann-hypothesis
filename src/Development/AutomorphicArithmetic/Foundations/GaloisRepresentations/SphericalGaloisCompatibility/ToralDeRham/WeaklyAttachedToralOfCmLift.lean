@@ -100,7 +100,7 @@ theorem exists_cm_lift_fix_charKer : UpperTheory.Gal.ToralGalois.Inq → ∀ (Ω
     subst this
     exact hd.1 ht0
   have ht₀i : (t₀ : G M₀ Ω) ∈ Ine (F := M₀) A := deg_eq_zero_iff.1 hdt₀
-  have hinV : (⟨(t₀ : G M₀ Ω), Weil_le_Dec h₀ t₀.2⟩ : Dec (F := M₀) A) ∈ V :=
+  have hinV : (⟨(t₀ : G M₀ Ω), Weil_le_Dec h₀ t₀.2⟩ : ReciprocityTheory.Gal.Dec (F := M₀) A) ∈ V :=
     (hV₁ _).1 fun z => htfix z
   have h1 := hVine ⟨_, ht₀i⟩ _ hinV rfl j
   have h2 : ineIncl h₀ ⟨_, ht₀i⟩ = t₀ := Subtype.ext rfl

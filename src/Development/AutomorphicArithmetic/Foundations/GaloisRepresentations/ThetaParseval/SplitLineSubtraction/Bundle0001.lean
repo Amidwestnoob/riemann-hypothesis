@@ -33,18 +33,18 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
   intro P AI hT A h O _ _ _ Bw hj
   obtain ⟨c1, d1, j1, p1⟩ := h1.2 P AI hT A h O Bw hj
   obtain ⟨c2, d2, j2, p2⟩ := h2.2 P AI hT A h O Bw hj
-  have e1 : (rk1 μ).comp (Dec (F := E) A).subtype = rk1 (μ.comp (Dec (F := E) A).subtype) := by
+  have e1 : (rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype = rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     ext g i j
     rfl
-  have e2 : (tw s μ).comp (Dec (F := E) A).subtype =
-      tw (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype) := by
+  have e2 : (tw s μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+      tw (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     ext g i j
     simp [UpperTheory.V.Af.tw_val]
-  have e3 : Formalism.MainNotions.SumRepresentations.At.twGL (s.comp (Dec (F := E) A).subtype)
-      (Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (Dec (F := E) A).subtype))) =
-      tw (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype) := by
-    have hdet : Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (Dec (F := E) A).subtype))
-        = μ.comp (Dec (F := E) A).subtype := by
+  have e3 : Formalism.MainNotions.SumRepresentations.At.twGL (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+      (Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))) =
+      tw (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+    have hdet : Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))
+        = μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype := by
       ext g
       simp [GlobalTheory.TripleGal.rk1, Matrix.det_unique]
     rw [hdet]
@@ -52,11 +52,11 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
     simp [Formalism.MainNotions.SumRepresentations.At.twGL, UpperTheory.V.Af.tw_val, Algebra.algebraMap_eq_smul_one, Matrix.smul_apply]
   rw [e1] at c1 d1 j1 p1
   rw [e2]
-  have cs : Continuous (s.comp (Dec (F := E) A).subtype) := hs.comp continuous_subtype_val
-  have cμ : Continuous (μ.comp (Dec (F := E) A).subtype) := hμ.comp continuous_subtype_val
+  have cs : Continuous (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hs.comp continuous_subtype_val
+  have cμ : Continuous (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hμ.comp continuous_subtype_val
   have ck := (hC _ (Qbar l) 1 1).2.2.2 _ cμ
   have ct := (hC _ (Qbar l) a 1).2.2.1 _ _ cs cμ
-  obtain ⟨l1, l2⟩ := hL l P AI hT E Ω A O Bw a (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype)
+  obtain ⟨l1, l2⟩ := hL l P AI hT E Ω A O Bw a (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
   have dt := l1 d2 d1
   refine ⟨l2 c2 c1, dt, ?_, ?_⟩
   · intro τ LL' τ' hi
@@ -65,11 +65,11 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
     have q1 := hP l P AI hT E Ω A O Bw a _ cs d2
     have q2 := hP l P AI hT E Ω A O Bw 1 _ ck d1
     have q3 := hP l P AI hT E Ω A O Bw a _ ct dt
-    have hcs : Continuous fun g : ↥(Dec (F := E) A) =>
-        ((s.comp (Dec (F := E) A).subtype g : GL (Fin a) (Loc.Om l)) : Matrix (Fin a) (Fin a) (Loc.Om l)) :=
+    have hcs : Continuous fun g : ↥(ReciprocityTheory.Gal.Dec (F := E) A) =>
+        ((s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g : GL (Fin a) (Loc.Om l)) : Matrix (Fin a) (Fin a) (Loc.Om l)) :=
       Units.continuous_val.comp cs
-    have hck : Continuous fun g : ↥(Dec (F := E) A) =>
-        ((rk1 (μ.comp (Dec (F := E) A).subtype) g : GL (Fin 1) (Loc.Om l)) : Matrix (Fin 1) (Fin 1) (Loc.Om l)) :=
+    have hck : Continuous fun g : ↥(ReciprocityTheory.Gal.Dec (F := E) A) =>
+        ((rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) g : GL (Fin 1) (Loc.Om l)) : Matrix (Fin 1) (Fin 1) (Loc.Om l)) :=
       Units.continuous_val.comp ck
     rw [← e3] at q3
     have key := GlobalTheory.T.fontaineParameter_twist_potentiallySemistable l P AI hT ι E Ω A w h O Bw hj a _ _ hcs hck q1 q2 q3
@@ -94,7 +94,7 @@ theorem UpperTheory.Gal.TP.Sub.charAbove_holds :
   obtain ⟨a, ha'⟩ := GlobalTheory.localArtinExists_holds E Ω A w h
   have hξ := GlobalTheory.Published.ParamAboveModel.isComp_loc (w := w) χ
   have d := hD E Ω l P AI hT ι art ha χ n μ h1 h2 h3 w A h O Bw hj
-  have hc : Continuous ((rk1 μ).comp (Dec (F := E) A).subtype) :=
+  have hc : Continuous ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
     ((hC (G E Ω) (Qbar l) 0 0).2.2.2 μ h2).comp continuous_subtype_val
   have hr := hP l P AI hT E Ω A O Bw 1 _ hc d.1
   have e := hW E Ω l P AI hT ι art ha χ n μ h1 h2 h3 w A h O Bw hj _ hξ a ha'
@@ -279,14 +279,14 @@ theorem UpperTheory.Gal.TP.Sub.clConj_holds :
   · intro P AI hT A h O _ _ _ Bw hj
     obtain ⟨c1, c2, c3, c4⟩ := h2 P AI hT A h O Bw hj
     obtain ⟨K, hK⟩ := exists_finExt_gl (g⁻¹)
-    have e : r'.comp (Dec (F := E) A).subtype =
-        (MulAut.conj (g⁻¹)⁻¹).toMonoidHom.comp (r.comp (Dec (F := E) A).subtype) := by
+    have e : r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+        (MulAut.conj (g⁻¹)⁻¹).toMonoidHom.comp (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
       ext1 x
       simp [hg, MulAut.conj_apply]
     have hc' : Continuous r' := (hCont (G E Ω) (Qbar l) a a).2.1 r r' hiso hr
-    have cρ : Continuous (r.comp (Dec (F := E) A).subtype) := hr.comp continuous_subtype_val
-    have cρ' : Continuous (r'.comp (Dec (F := E) A).subtype) := hc'.comp continuous_subtype_val
-    have d' : IsdRAt P Bw (r'.comp (Dec (F := E) A).subtype) := by
+    have cρ : Continuous (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hr.comp continuous_subtype_val
+    have cρ' : Continuous (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hc'.comp continuous_subtype_val
+    have d' : IsdRAt P Bw (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
       rw [e]
       exact isdRAt_conj _ K hK c2
     refine ⟨?_, d', fun τ LL' τ' hI => ?_, fun x => ?_⟩
@@ -294,8 +294,8 @@ theorem UpperTheory.Gal.TP.Sub.clConj_holds :
       exact GlobalTheory.ConjCrys.isCrysAt_conj _ K hK c1
     · rw [e]
       exact GlobalTheory.ConjCrys.isJumpsAt_conj _ K hK (c3 τ LL' τ' hI)
-    · rw [GlobalTheory.ConjGal.wdAt_conj P ι Bw h hj (r.comp (Dec (F := E) A).subtype)
-        (r'.comp (Dec (F := E) A).subtype) g (fun x => hg x)
+    · rw [GlobalTheory.ConjGal.wdAt_conj P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+        (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) g (fun x => hg x)
         (hPst l P AI hT E Ω A O Bw a _ cρ c2) (hPst l P AI hT E Ω A O Bw a _ cρ' d')]
       exact c4 x
 end

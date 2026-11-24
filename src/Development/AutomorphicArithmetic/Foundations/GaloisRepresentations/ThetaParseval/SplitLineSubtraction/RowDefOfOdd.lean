@@ -41,11 +41,11 @@ def unrPol (S : Multiset ℂ) (m : ℤ) : ℂ[X] := (S.map fun z => X - C (z ^ (
 def Above (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (S : Multiset ℂ)
     (J : (E →+* Qbar l) → Multiset ℤ) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-    IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype) ∧ IsdRAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
+    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+    IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ IsdRAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
       (∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-        IsJumpsAt P Bw (r.comp (Dec (F := E) A).subtype) τ (J τ)) ∧
-      ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g = unrPol S (deg g)
+        IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (J τ)) ∧
+      ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g = unrPol S (deg g)
 
 def Cl (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (S : Multiset ℂ)
     (J : (E →+* Qbar l) → Multiset ℤ) : Prop :=

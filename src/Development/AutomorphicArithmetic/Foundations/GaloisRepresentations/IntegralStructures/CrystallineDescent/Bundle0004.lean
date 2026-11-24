@@ -42,7 +42,7 @@ private theorem bad_finite {a : ℕ} (π : CuspSub E a) (w₀ : HeightOneSpectru
   · exact Or.inr (Or.inr h)
 
 private theorem serves (hR : RamUnr) {a : ℕ} (π : CuspSub E a) (ι : Qbar l ≃+* ℂ) (w₀ : HeightOneSpectrum (𝓞 E)) (Q : QCM E Ω)
-    (h1 : ∀ t ∈ bad l π w₀, ∀ A : ValuationSubring Ω, IsPlaceOver A t → ∀ g ∈ Dec (F := E) A, Fixes ↥Q.K g)
+    (h1 : ∀ t ∈ bad l π w₀, ∀ A : ValuationSubring Ω, IsPlaceOver A t → ∀ g ∈ ReciprocityTheory.Gal.Dec (F := E) A, Fixes ↥Q.K g)
     (h2 : RamOff (bad l π w₀) Q)
     (h3 : ∀ P : CuspSub ↥Q.K a, IsLift π P → ∃ p : HeightOneSpectrum (𝓞 ↥Q.K) → Prop, RowP Ω p P ι ∧
       (∀ᶠ w : HeightOneSpectrum (𝓞 ↥Q.K) in Filter.cofinite, (normV w).Prime → p w) ∧ ∀ w, w.under (𝓞 E) = w₀ → p w) :

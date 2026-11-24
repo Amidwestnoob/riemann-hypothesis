@@ -30,9 +30,9 @@ def LocalGlobalCompatAtIwahoriFixedPlaces : Prop :=
       (((l : ℕ) : 𝓞 E) ∈ w.asIdeal → ClauseAt .dR π ι r w ∧
         ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
         ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-          (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw),
-          IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).mono0 ∧
+          (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw),
+          IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).mono0 ∧
           ∀ t : Ine (F := E) A,
-            (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol (ineIncl h t) = (rc (algNorm σ)).charPol (ineIncl h t))
+            (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol (ineIncl h t) = (rc (algNorm σ)).charPol (ineIncl h t))
 
 end UpperTheory.Gal.ToralGalois.R2

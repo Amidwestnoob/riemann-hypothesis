@@ -69,7 +69,7 @@ def SphDown (c : GlobalTheory.RoadU.Sph) : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (a : ℕ) (π : CuspSub E a) (Q : QCM E Ω) (P : CuspSub ↥Q.K a), IsLift π P →
     ∀ (ρ : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (B : Multiset ℂˣ), (CG.mk π).HasSat w B →
-    (∀ A : ValuationSubring Ω, IsPlaceOver A w → Dec (F := E) A ≤ (res E Ω ↥Q.K).range) →
+    (∀ A : ValuationSubring Ω, IsPlaceOver A w → ReciprocityTheory.Gal.Dec (F := E) A ≤ (res E Ω ↥Q.K).range) →
     (∀ w' : HeightOneSpectrum (𝓞 ↥Q.K), w'.under (𝓞 E) = w → (CG.mk P).HasSat w' B →
       GlobalTheory.RoadU.SphAt c P ι (ρ.comp (res E Ω ↥Q.K)) w' B) →
     GlobalTheory.RoadU.SphAt c π ι ρ w B
@@ -79,7 +79,7 @@ section
 variable {E Ω : Type} [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime]
 
 def Serves {a : ℕ} (π : CuspSub E a) (ι : Qbar l ≃+* ℂ) (w₀ : HeightOneSpectrum (𝓞 E)) (Q : QCM E Ω) : Prop :=
-  (∀ A : ValuationSubring Ω, IsPlaceOver A w₀ → Dec (F := E) A ≤ (res E Ω ↥Q.K).range) ∧
+  (∀ A : ValuationSubring Ω, IsPlaceOver A w₀ → ReciprocityTheory.Gal.Dec (F := E) A ≤ (res E Ω ↥Q.K).range) ∧
     (∃ w : HeightOneSpectrum (𝓞 ↥Q.K), ¬ Algebra.IsUnramifiedAt (𝓞 E) w.asIdeal ∧ ∃ B, (CG.mk π).HasSat (w.under (𝓞 E)) B) ∧
     ∀ P : CuspSub ↥Q.K a, IsLift π P → ∃ p : HeightOneSpectrum (𝓞 ↥Q.K) → Prop, RowP Ω p P ι ∧
       (∀ᶠ w : HeightOneSpectrum (𝓞 ↥Q.K) in Filter.cofinite, (normV w).Prime → p w) ∧ ∀ w, w.under (𝓞 E) = w₀ → p w

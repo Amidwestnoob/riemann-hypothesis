@@ -420,11 +420,11 @@ def NiceAlt (π : CuspSub E a) {w : HeightOneSpectrum (𝓞 E)} {A : ValuationSu
 structure LocalConditionsAbovePrime (π : CuspSub E a) (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin a) (Qbar l))
     (HT : (E →+* Qbar l) → Multiset ℤ) (P : LocPrime l) {w : HeightOneSpectrum (𝓞 E)} {A : ValuationSubring Ω}
     (h : IsPlaceOver A w) {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw) : Prop where
-  deRham : _root_.UpperTheory.GalS.NiceAlt π h → IsdRAt P Bw (r.comp (Dec (F := E) A).subtype)
+    (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw) : Prop where
+  deRham : _root_.UpperTheory.GalS.NiceAlt π h → IsdRAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
   jumps : _root_.UpperTheory.GalS.NiceAlt π h → ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
-    IsJumpsAt P Bw (r.comp (Dec (F := E) A).subtype) τ (HT τ)
-  crys : ∀ σ, π.IsLocComp w σ → SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype)
+    IsJumpsAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ (HT τ)
+  crys : ∀ σ, π.IsLocComp w σ → SmGL.IsSpherical σ.ρ → IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
 structure IsGalUAlt (π : CuspSub E a) (χ : HChar (maximalRealSubfield E)) (ι : Qbar l ≃+* ℂ)
     (r : G E Ω →* GL (Fin a) (Qbar l)) (wt : ℤ) (HT : (E →+* Qbar l) → Multiset ℤ) : Prop where
   cont : Continuous r
@@ -438,7 +438,7 @@ structure IsGalUAlt (π : CuspSub E a) (χ : HChar (maximalRealSubfield E)) (ι 
   above : ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw), _root_.UpperTheory.GalS.LocalConditionsAbovePrime π ι r HT P h Bw hj
+      (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw), _root_.UpperTheory.GalS.LocalConditionsAbovePrime π ι r HT P h Bw hj
 def PairUAlt : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (a : ℕ), 1 ≤ a →
@@ -457,10 +457,10 @@ def CarUAlt : Prop :=
     ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
     ∀ (w : HeightOneSpectrum (𝓞 E)), w ∈ placesOver E l → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
       (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-      (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw)
+      (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw)
       (σ : SmIrr (GL (Fin a) (w.adicCompletion E))), π.IsLocComp w σ →
       ∀ rc : IrrGL (k := w.adicCompletion E) → WD h, _root_.UpperTheory.Zero.LLC.IsRecT h rc → NcW (rc (algNorm σ)) →
-        Ab (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)) (rc (algNorm σ))
+        Ab (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)) (rc (algNorm σ))
 theorem CuspUAlt.of_isCsd (H : _root_.UpperTheory.GalS.CuspUAlt) {E : Type} (Ω : Type) [Field E]
     [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {l : ℕ} [Fact l.Prime] (ι : Qbar l ≃+* ℂ)
     {a : ℕ} (ha : 1 ≤ a) {π : CuspSub E a} (hr : (CG.mk π).IsRegAlg) (hc : π.IsCsd) :

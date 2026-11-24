@@ -126,7 +126,7 @@ structure IsAttachedAwayS : Prop where
 
 structure IsAttachedHodgeS : Prop extends IsAttachedAwayS D T ι π s r where
   above : ∀ w ∈ placesOver D.host.E l, ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l D.host.E D.nd.Om (Dec (F := D.host.E) (D.nd.plOm.1 w)) O), Induces Bw →
+    (Bw : LocBridge l D.host.E D.nd.Om (ReciprocityTheory.Gal.Dec (F := D.host.E) (D.nd.plOm.1 w)) O), Induces Bw →
     (UpperTheory.GalS.Nc D.nd D.naut (D.naut.locG π w) → IsDeRhamOf D ι π s r Bw) ∧
       (D.naut.unr (D.naut.locG π w) → IsCrysAt (D.loc l) Bw (resDec D.nd.plOm.1 r w)) ∧
       (UpperTheory.GalS.Nc D.nd D.naut (D.naut.locG π w) → IsPotCrysAt (D.loc l) Bw (resDec D.nd.plOm.1 r w))

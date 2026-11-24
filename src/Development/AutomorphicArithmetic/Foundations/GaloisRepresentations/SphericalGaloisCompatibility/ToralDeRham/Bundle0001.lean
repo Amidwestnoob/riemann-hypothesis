@@ -35,12 +35,12 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 namespace GlobalTheory.RoadU
 
-theorem toralAbove_of_holds : UpperTheory.Gal.ToralGalois.Inq → GlobalTheory.RoadU.SphericalLevelCondition .all .crys → GlobalTheory.RoadU.SphericalLevelCondition .all .phi → ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (n : ℕ), 1 ≤ n → ∀ (π : CuspSub E n) (χ : HChar (maximalRealSubfield E)), InScope .all l π χ → ∀ r : G E Ω →* GL (Fin n) (Qbar l), Weak π ι r → ∀ (w : HeightOneSpectrum (𝓞 E)), ((l : ℕ) : 𝓞 E) ∈ w.asIdeal → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) σ, π.IsLocComp w σ → ∀ (ξ : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ)) (hξ : ∀ j, IsSmoothChar (ξ j)), HasSupport (algNorm σ).rep (chars ξ hξ) → Unlinked (chars ξ hξ) → ∀ a : Weil h →* (w.adicCompletion E)ˣ, IsLocalArtin h a → ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw), IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).mono0 ∧ ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
+theorem toralAbove_of_holds : UpperTheory.Gal.ToralGalois.Inq → GlobalTheory.RoadU.SphericalLevelCondition .all .crys → GlobalTheory.RoadU.SphericalLevelCondition .all .phi → ∀ (E Ω : Type) [Field E] [NumberField E] [IsCMField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (n : ℕ), 1 ≤ n → ∀ (π : CuspSub E n) (χ : HChar (maximalRealSubfield E)), InScope .all l π χ → ∀ r : G E Ω →* GL (Fin n) (Qbar l), Weak π ι r → ∀ (w : HeightOneSpectrum (𝓞 E)), ((l : ℕ) : 𝓞 E) ∈ w.asIdeal → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w) σ, π.IsLocComp w σ → ∀ (ξ : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ)) (hξ : ∀ j, IsSmoothChar (ξ j)), HasSupport (algNorm σ).rep (chars ξ hξ) → Unlinked (chars ξ hξ) → ∀ a : Weil h →* (w.adicCompletion E)ˣ, IsLocalArtin h a → ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : GlobalTheory.Pst.Induces Bw), IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).mono0 ∧ ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
   intro hI hC hF E Ω _ _ _ _ _ _ l _ ι n hn π χ hπ r hr w hl A h σ hσ ξ hξ hsupp hunl a ha P AI hT O _ _ _ Bw hj
   have key : ∀ g : Weil h, deg g ≠ 0 →
-      IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) ∧
-      (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).mono0 ∧
-      (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
+      IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧
+      (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).mono0 ∧
+      (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g = ∏ j, (X - C ((ξ j (a g) : ℂˣ) : ℂ)) := by
     intro g hg
     obtain ⟨M, _, _, _, _, _, _, _, u, h', Q, χ', hQ, hlift, hfix, B, hB, hchar⟩ :=
       GlobalTheory.T.frobenius_charpoly_of_unlinked_unramified_support hI Ω E l ι n hn π χ hπ r hr w A h σ hσ ξ hξ hsupp hunl a ha g hg
@@ -53,10 +53,10 @@ theorem toralAbove_of_holds : UpperTheory.Gal.ToralGalois.Inq → GlobalTheory.R
     obtain ⟨LL₀, Bw₀, hjj₀, -, -⟩ := GlobalTheory.AboveLRes.exists_bridge (L := M) Bw hj Bw.LL
     have hj₀ : GlobalTheory.Pst.Induces Bw₀ := fun x => by rw [hjj₀]; exact hj x
     have hc₀ := hcl P AI hT A h' _ Bw₀ hj₀ τ hτ hsph
-    have hp₀ : IsPstAt P Bw₀ ((resTo M r).comp (Dec (F := M) A).subtype) :=
+    have hp₀ : IsPstAt P Bw₀ ((resTo M r).comp (ReciprocityTheory.Gal.Dec (F := M) A).subtype) :=
       GlobalTheory.GalCut.IwaAll.isPstAt_of_isSstAt P AI hT Bw₀ _
         (GlobalTheory.CrysSst.isSstAt_of_isCrysAt l P AI hT M Ω _ _ Bw₀ n _ hc₀)
-    have hpst : IsPstAt P Bw (r.comp (Dec (F := E) A).subtype) :=
+    have hpst : IsPstAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
       GlobalTheory.AboveLRes.isPstAt_of_resTo E M Ω A l P AI hT n r hr.1 O _ Bw Bw₀ hj hj₀ hp₀
     obtain ⟨O', _, _, _, Bw', hj', -, hres⟩ :=
       GlobalTheory.AboveLRes.wdAt_resTo E M Ω A w u h h' l ι P AI hT n r O Bw hj hpst

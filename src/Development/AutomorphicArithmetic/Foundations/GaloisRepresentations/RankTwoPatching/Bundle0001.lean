@@ -32,8 +32,8 @@ theorem galRS_iso {F Ω : Type} [Field F] [NumberField F] [IsTotallyReal F] [Fie
   have ew : ∀ (w : HeightOneSpectrum (𝓞 F)) (hw : ((l : ℕ) : 𝓞 F) ∉ w.asIdeal) (A : ValuationSubring Ω) (h : IsPlaceOver A w),
       wdOf h hw ι r' = wdOf h hw ι r := fun w hw A h =>
     ((isWDOf_wdOf (h := h) hw ι (Units.continuous_val.comp H.cont)).of_conj hw p fun g => hp' _).wdOf_eq hw
-  have hc : ∀ (A : ValuationSubring Ω) (g : ↥(Dec (F := F) A)), r'.comp (Dec (F := F) A).subtype g =
-      p * r.comp (Dec (F := F) A).subtype g * p⁻¹ := fun A g => hp g
+  have hc : ∀ (A : ValuationSubring Ω) (g : ↥(ReciprocityTheory.Gal.Dec (F := F) A)), r'.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype g =
+      p * r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype g * p⁻¹ := fun A g => hp g
   refine ⟨continuous_of_iso H.cont hi, hs, H.plain, fun w σ hσ hP => ⟨fun A h rc hrc => ⟨fun hl => ?_, fun O _ _ _ Bw hj g => ?_⟩,
     fun A h O _ _ _ Bw hj => ?_⟩, fun w hw B hB => (H.frob w hw B hB).of_iso hi,
     fun w hw A h m => ew w hw A h ▸ H.ratio w hw A h m, H.weights, H.weights_sym, fun w A h O _ _ _ Bw hj σ hσ hS => ?_⟩

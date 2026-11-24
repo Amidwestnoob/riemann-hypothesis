@@ -38,26 +38,26 @@ variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAl
 
 def CrysAt (r : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O), Induces Bw →
-    IsCrysAt P Bw (r.comp (Dec (F := E) A).subtype)
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Induces Bw →
+    IsCrysAt P Bw (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
 
 def PhiPol (ι : Qbar l ≃+* ℂ) (r : G E Ω →* GL (Fin a) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (B : Multiset ℂˣ) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-    ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (Dec (F := E) A).subtype)).charPol g = (GlobalTheory.RoadU.satWD h a B).charPol g
+    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+    ∀ g : Weil h, (wdAt P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g = (GlobalTheory.RoadU.satWD h a B).charPol g
 
 def PhiKilled (ι : Qbar l ≃+* ℂ) (ρ : G E Ω →* GL (Fin dd) (Qbar l)) (w : HeightOneSpectrum (𝓞 E)) (a : ℕ) (B : Multiset ℂˣ) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω) (h : IsPlaceOver A w)
-    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Induces Bw),
-    IsCrysAt P Bw (ρ.comp (Dec (F := E) A).subtype) ∧ ∃ g : Weil h, deg g = -1 ∧ ∃ m : ℕ,
-      (wdAt P ι Bw h hj (ρ.comp (Dec (F := E) A).subtype)).charPol g ∣ ((GlobalTheory.RoadU.satWD h a B).charPol g) ^ m
+    (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Induces Bw),
+    IsCrysAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ ∃ g : Weil h, deg g = -1 ∧ ∃ m : ℕ,
+      (wdAt P ι Bw h hj (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).charPol g ∣ ((GlobalTheory.RoadU.satWD h a B).charPol g) ^ m
 
 def HTRichEx (ρ : G E Ω →* GL (Fin dd) (Qbar l)) (a : ℕ) : Prop :=
   ∃ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) ∧
     ∃ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω), ((l : ℕ) : 𝓞 E) ∈ w.asIdeal ∧ IsPlaceOver A w ∧
     ∃ (O : Type) (_ : CommRing O) (_ : Algebra ℤ_[l] O) (_ : TopologicalSpace O)
-      (Bw : LocBridge l E Ω (Dec (F := E) A) O), Induces Bw ∧
-    ∃ (τ : E →+* Qbar l) (J : Multiset ℤ), IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ J ∧
+      (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Induces Bw ∧
+    ∃ (τ : E →+* Qbar l) (J : Multiset ℤ), IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J ∧
       ∃ J₀ : Finset ℤ, J₀.card = a ∧ (∀ j ∈ J₀, j ∈ J) ∧ Lacunary J₀
 
 variable [IsCMField E]
@@ -65,11 +65,11 @@ variable [IsCMField E]
 def JumpsOcc (U : Submodule ℂ (UA E a → ℂ)) (ι : Qbar l ≃+* ℂ) (ρ : G E Ω →* GL (Fin dd) (Qbar l))
     (w : HeightOneSpectrum (𝓞 E)) : Prop :=
   ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) → ∀ (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (Dec (F := E) A) O), Induces Bw →
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O), Induces Bw →
       ∀ (τ : E →+* Qbar l) (LL' : FinExt l) (τ' : ↥Bw.Kw.1 →ₐ[ℚ_[l]] ↥LL'.1), IsInduced Bw τ τ' →
         ∀ (lam : DomWeight a) (J : Multiset ℤ), HasWeightAt U (ι.toRingHom.comp τ) lam →
           J.map (fun n : ℤ => (n : ℂ)) = (infOfWeight lam).map (fun z => ((a : ℂ) - 1) / 2 - z) →
-          ∃ J' : Multiset ℤ, IsJumpsAt P Bw (ρ.comp (Dec (F := E) A).subtype) τ J' ∧ ∀ j ∈ J, j ∈ J'
+          ∃ J' : Multiset ℤ, IsJumpsAt P Bw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) τ J' ∧ ∀ j ∈ J, j ∈ J'
 
 def VBase (ι : Qbar l ≃+* ℂ) (d : ℕ) (U : Submodule ℂ (UA E a → ℂ))
     (ρ : G E Ω →* GL (Fin dd) (Qbar l)) : Prop :=

@@ -33,8 +33,8 @@ structure IsGalRS (π : TR.CuspSub F a) (ι : Qbar l ≃+* ℂ) (r : G F Ω →*
     (HT τ).map (fun n : ℤ => (n : ℂ)) = m.map fun z => ((a : ℂ) - 1) / 2 - z
   weights_sym : ∀ τ : F →+* Qbar l, HT τ = (HT τ).map (wt - ·)
   crys : ∀ (w : HeightOneSpectrum (𝓞 F)) (A : ValuationSubring Ω), IsPlaceOver A w →
-    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (Dec (F := F) A) O), Induces Bw →
-      ∀ σ, π.IsLocComp w σ → GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt (Loc.PP l) Bw (r.comp (Dec (F := F) A).subtype)
+    ∀ (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] (Bw : LocBridge l F Ω (ReciprocityTheory.Gal.Dec (F := F) A) O), Induces Bw →
+      ∀ σ, π.IsLocComp w σ → GlobalTheory.SmGL.IsSpherical σ.ρ → IsCrysAt (Loc.PP l) Bw (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
 end Real
 
 def GaloisRepExistsTotallyRealGL2 : Prop :=
