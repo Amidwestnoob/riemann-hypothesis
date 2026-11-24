@@ -49,11 +49,11 @@ theorem gelPair_split (n : ℕ) (w : Pl E) (hw : IsSplitAt w) : GelPair (KL n w)
   · intro k hk
     exact Subgroup.mem_subgroupOf.2 (Formalism.UG.P.heckecomm_tr_mem (Ov E w) k.1 (Subgroup.mem_subgroupOf.1 hk))
 
-theorem gelPair_inert (hE : Unr E) (n : ℕ) (w : Pl E) (hw : ¬ IsSplitAt w) : GelPair (KL n w) :=
+theorem gelPair_inert (hE : _root_.GlobalTheory.BCT.Unr E) (n : ℕ) (w : Pl E) (hw : ¬ IsSplitAt w) : GelPair (KL n w) :=
   ⟨relIndex_conj_KL_ne_zero n w, fun g => g⁻¹, fun a b => mul_inv_rev a b, fun a => inv_inv a,
     fun g => _root_.GlobalTheory.CompanionTheory.InvDoubleCoset.inv_mem_doubleCoset E hE w hw n g, fun _ hk => (KL n w).inv_mem hk⟩
 
-theorem gelPair_KL (hE : Unr E) (n : ℕ) (w : Pl E) : GelPair (KL n w) := by
+theorem gelPair_KL (hE : _root_.GlobalTheory.BCT.Unr E) (n : ℕ) (w : Pl E) : GelPair (KL n w) := by
   by_cases hw : IsSplitAt w
   · exact gelPair_split n w hw
   · exact gelPair_inert hE n w hw

@@ -226,7 +226,7 @@ theorem deriv_charD :
   have inv_mul : ∀ h ∈ U, hinv h * h = 1 := fun h hh => by
     funext w
     rw [Pi.mul_apply, hhinv, Matrix.mul_assoc, Matrix.mul_assoc, ← Matrix.mul_assoc _ (Jm (R w) (S w)) (h w), hh w,
-      jm_mul_self, Pi.one_apply]
+      _root_.GlobalTheory.RealLift.OneParam.jm_mul_self, Pi.one_apply]
   have mul_inv : ∀ h ∈ U, h * hinv h = 1 := fun h hh => by
     funext w
     have := congrFun (inv_mul h hh) w
