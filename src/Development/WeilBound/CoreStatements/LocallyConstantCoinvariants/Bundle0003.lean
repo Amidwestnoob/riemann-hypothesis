@@ -12,6 +12,7 @@ public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.Bundle00
 
 -- bundled from Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.CompFinLiftE
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace PositivityTheory.KCo

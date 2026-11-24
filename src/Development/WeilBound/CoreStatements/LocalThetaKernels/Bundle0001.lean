@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUni
 
 -- bundled from Development.WeilBound.CoreStatements.LocalThetaKernels.IwasAd
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace PositivityTheory.ThKH.Iwas
