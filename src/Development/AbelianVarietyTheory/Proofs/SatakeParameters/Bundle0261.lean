@@ -431,7 +431,7 @@ theorem stdLat_fg (E : Type) [Field E] (n : ℕ) : (Formalism.L2.Col.stdLat E n)
   Submodule.fg_pi fun _ => by rw [Submodule.one_eq_span]; exact Submodule.fg_span_singleton _
 
 theorem stdAt_of_stdOver (D : D7) {p : ℕ} (hp : p.Prime) {n : ℕ} {N : Submodule (𝓞 D.host.E) (Sp D.host.E n)} (hN : N.FG)
-    (h : StdOver p N) : StdAt D p ((recSeam D).lat N) := by
+    (h : GlobalTheory.IndefiniteRowSideFullHecke.CharacterValuation.StdOver p N) : StdAt D p ((recSeam D).lat N) := by
   obtain ⟨s, hs, h1⟩ := exists_denom hp hN (M' := Formalism.L2.Col.stdLat D.host.E n) fun P hP => (le_locP _ _).trans (h P hP).le
   obtain ⟨t, ht, h2⟩ := exists_denom hp (stdLat_fg D.host.E n) (M' := N) fun P hP => (le_locP _ _).trans (h P hP).ge
   have hl : ∀ x, x ∈ (recSeam D).lat N ↔ x ∈ N := fun x => GlobalTheory.SeamTransport.mem_lat (recSeam D) N x
