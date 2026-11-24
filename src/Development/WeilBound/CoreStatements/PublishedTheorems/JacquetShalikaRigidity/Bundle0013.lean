@@ -196,6 +196,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.VolumeShellOf
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
