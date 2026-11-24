@@ -168,7 +168,9 @@ theorem dom_change (hG : GrpTop) (hE : EpsOf) (hB : B.IsGood σ) {r s : ℕ} (hX
   have hd'' : IsFundamentalDomain (ratU σ X.J) D' m := hd'.mono hac
   refine ⟨((Measure.haarScalarFactor m m' : NNReal) : ℂ), ?_, fun φ hφ => ?_⟩
   · exact_mod_cast hpos.ne'
-  · have h1 : ∫ g in D, φ g ∂m = ∫ g in D', φ g ∂m := hd.setIntegral_eq hd'' fun γ g => hφ γ γ.2 g
+  · have : SMulInvariantMeasure (ratU σ X.J) (UA σ X.J) m :=
+      ⟨fun γ s _ => measure_preimage_mul m (γ : UA σ X.J) s⟩
+    have h1 : ∫ g in D, φ g ∂m = ∫ g in D', φ g ∂m := hd.setIntegral_eq hd'' fun γ g => hφ γ γ.2 g
     rw [h1]
     conv_lhs => rw [hc]
     rw [Measure.restrict_smul, integral_smul_nnreal_measure]
