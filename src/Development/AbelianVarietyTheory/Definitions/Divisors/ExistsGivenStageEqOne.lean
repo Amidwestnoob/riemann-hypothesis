@@ -77,12 +77,12 @@ theorem canFlip_cols {m : ℕ} : ∀ i, i ≤ m →
     simp only [midEdge]
     split_ifs <;> first | omega | rfl | (congr 1; omega)
 
-theorem canFlip_flipOrder (m : ℕ) : CanFlip (givenPath m) (flipOrder m) ∧ (flipOrder m).length = m ^ 2 ∧
-    (flipOrder m).foldl (fun γ x => flipPath x.1 x.2 γ) (givenPath m) = oppositePath m := by
+theorem canFlip_flipOrder (m : ℕ) : CanFlip (GlobalTheory.SplitFlip.givenPath m) (flipOrder m) ∧ (flipOrder m).length = m ^ 2 ∧
+    (flipOrder m).foldl (fun γ x => flipPath x.1 x.2 γ) (GlobalTheory.SplitFlip.givenPath m) = oppositePath m := by
   have rev : (List.range m).reverse = (List.range m).map fun p => m - 1 - p := by
     simp [List.range_eq_range', List.reverse_range']
-  have e1 : givenPath m = (List.range (m + m)).map (midEdge m 0 0) := by
-    rw [givenPath, rev, List.range_add, List.map_append, List.map_map, List.map_map]
+  have e1 : GlobalTheory.SplitFlip.givenPath m = (List.range (m + m)).map (midEdge m 0 0) := by
+    rw [GlobalTheory.SplitFlip.givenPath, rev, List.range_add, List.map_append, List.map_map, List.map_map]
     congr 1 <;> refine List.map_congr_left fun p hp => ?_ <;> have := List.mem_range.1 hp <;>
       simp only [Function.comp, midEdge] <;> split_ifs <;> first | omega | rfl | (congr 1; omega)
   have e2 : oppositePath m = (List.range (m + m)).map (midEdge m m 0) := by
@@ -361,7 +361,7 @@ def givenLevel : (locGrid G t w).Level
   | (_ + 1, _ + 1) => KO (Kw w) _
 
 def givenStage (Φ : G.Datum) : (locGrid G t w).PiLocalization₂ :=
-  ⟨givenPath D.R.m, givenLevel G t w, (locGrid G t w).lines₂ (givenPath D.R.m) (givenDatum t w B Φ)⟩
+  ⟨GlobalTheory.SplitFlip.givenPath D.R.m, givenLevel G t w, (locGrid G t w).lines₂ (GlobalTheory.SplitFlip.givenPath D.R.m) (givenDatum t w B Φ)⟩
 
 def flipStage (W : G.Weil) (Φ : G.Datum) : (locGrid G t w).PiLocalization₂ :=
   (givenStage t w B Φ).flips .one (psiAt W w) (unifAt w) (depthAt G w) (flipOrder D.R.m)

@@ -200,8 +200,8 @@ end Local
 
 section Path
 
-theorem isPath_givenPath (m : ℕ) : IsPath (givenPath m) := by
-  unfold IsPath givenPath
+theorem isPath_givenPath (m : ℕ) : IsPath (GlobalTheory.SplitFlip.givenPath m) := by
+  unfold IsPath GlobalTheory.SplitFlip.givenPath
   rw [List.isChain_append, List.isChain_map, List.isChain_map, List.isChain_reverse, List.isChain_range,
     List.isChain_range]
   refine ⟨fun _ _ => rfl, fun _ _ => rfl, ?_⟩
@@ -209,17 +209,17 @@ theorem isPath_givenPath (m : ℕ) : IsPath (givenPath m) := by
   | zero => simp
   | succ m => simp [List.range_succ_eq_map]
 
-theorem mem_givenPath {m : ℕ} {b : Edge} (hb : b ∈ givenPath m) :
+theorem mem_givenPath {m : ℕ} {b : Edge} (hb : b ∈ GlobalTheory.SplitFlip.givenPath m) :
     (∃ j < m, b = .theta 0 j) ∨ ∃ i < m, b = .ex i 0 := by
-  simp only [givenPath, List.mem_append, List.mem_map, List.mem_reverse, List.mem_range] at hb
+  simp only [GlobalTheory.SplitFlip.givenPath, List.mem_append, List.mem_map, List.mem_reverse, List.mem_range] at hb
   rcases hb with ⟨j, h, rfl⟩ | ⟨i, h, rfl⟩
   exacts [.inl ⟨j, h, rfl⟩, .inr ⟨i, h, rfl⟩]
 
-theorem notMem_inner {m : ℕ} : (0, m) ∉ innerVertices (givenPath m) := by
+theorem notMem_inner {m : ℕ} : (0, m) ∉ innerVertices (GlobalTheory.SplitFlip.givenPath m) := by
   cases m with
-  | zero => simp [innerVertices, givenPath]
+  | zero => simp [innerVertices, GlobalTheory.SplitFlip.givenPath]
   | succ m =>
-    rw [innerVertices, givenPath]
+    rw [innerVertices, GlobalTheory.SplitFlip.givenPath]
     nth_rewrite 1 [List.range_succ]
     simp
 
@@ -231,7 +231,7 @@ theorem isAdmissible_of_laws (Γ : Grid k) (s : Assignment) (m : ℕ) (J : Γ.Le
       Γ.edgeFactor s g (.theta 0 j) * φ (.theta 0 j) (Γ.moveArgs s g x _) = (c j / c (j + 1) : ℂˣ) * φ (.theta 0 j) (x _))
     (hX : ∀ g : Γ.VertexGroup, (∀ Y, g Y ∈ J Y) → ∀ i < m, ∀ x,
       Γ.edgeFactor s g (.ex i 0) * φ (.ex i 0) (Γ.moveArgs s g x _) = φ (.ex i 0) (x _)) :
-    Γ.IsAdmissible s (givenPath m) J (Γ.lines₂ (givenPath m) φ) := by
+    Γ.IsAdmissible s (GlobalTheory.SplitFlip.givenPath m) J (Γ.lines₂ (GlobalTheory.SplitFlip.givenPath m) φ) := by
   intro X hX' u hu
   have hg : ∀ Y, (Pi.mulSingle X u : Γ.VertexGroup) Y ∈ J Y := fun Y => by
     by_cases hY : Y = X
@@ -243,7 +243,7 @@ theorem isAdmissible_of_laws (Γ : Grid k) (s : Assignment) (m : ℕ) (J : Γ.Le
   obtain ⟨c, h0, h1, hc⟩ := hθ g hg hm
   funext x
   simp only [Grid.pathAct, Grid.lines₂, ← List.prod_map_mul]
-  simp only [givenPath, List.map_append, List.map_map, List.prod_append, List.map_reverse, List.prod_reverse,
+  simp only [GlobalTheory.SplitFlip.givenPath, List.map_append, List.map_map, List.prod_append, List.map_reverse, List.prod_reverse,
     Function.comp_def]
   congr 1
   · rw [List.map_congr_left fun j hj => hc j (List.mem_range.1 hj) x, List.prod_map_mul]
@@ -433,7 +433,7 @@ theorem intM_coord (hL : L.Is μ₀) {i : ℕ} (hi : i < D.R.m) (y : homLat (G.�
       (y.1.map (algebraMap D.host.E (Kw w)))) :=
   fun _ _ => intM_frames (B.isFrame_β hL hi (Nat.zero_le _)) (B.isFrame_β hL hi.le (Nat.zero_le _)) w y _ _
 
-theorem isNatDatum_givenDatum (hL : L.Is μ₀) {b : Edge} (hb : b ∈ givenPath D.R.m) :
+theorem isNatDatum_givenDatum (hL : L.Is μ₀) {b : Edge} (hb : b ∈ GlobalTheory.SplitFlip.givenPath D.R.m) :
     IsNatDatum (unifAt w) (depthAt G w) (givenDatum t w B Φ b) := by
   obtain ⟨j, -, rfl⟩ | ⟨i, hi, rfl⟩ := mem_givenPath hb
   · obtain ⟨h1, h2⟩ := stepFn_periodic L t hL w j
