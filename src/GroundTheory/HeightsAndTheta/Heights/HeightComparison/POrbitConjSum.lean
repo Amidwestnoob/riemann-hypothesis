@@ -17,7 +17,7 @@ theorem OrbitConjSum.proof : OrbitConjSum.Statement := by
   intro ι _ _ n x g hx hg
   classical
   obtain ⟨c, hc⟩ := exists_chart hx
-  let L := ratioField x c
+  let L := GroundTheory.Heights₂.Heights.OrbitConjSum.ratioField x c
   have hΦ : Function.Surjective (conjPt x hx) := exists_conjPt_eq x hx c hc
   have : Finite (projPts (ι := blockIdx n) (orbitIdeal x)) := Finite.of_surjective _ hΦ
   let _ : Fintype (projPts (ι := blockIdx n) (orbitIdeal x)) := Fintype.ofFinite _
