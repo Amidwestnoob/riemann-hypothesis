@@ -85,7 +85,7 @@ theorem characters_of_nearestPlane_of_short_integers (hNP : Ext.NearestPlane)
     exact ⟨(Submodule.mem_inf.mp this).2, (Submodule.mem_inf.mp this).1⟩
   · intro s s'
     show Hf (w s) (w s') = _
-    rw [Hf_eq_inner, hort s' s'.2 s s.2]
+    rw [ReciprocityTheory.ChartRestriction.G.I2.ChA.Hf_eq_inner, hort s' s'.2 s s.2]
     by_cases h : s = s'
     · subst h; simp
     · rw [if_neg (fun e => h (Fin.ext e).symm), if_neg h]

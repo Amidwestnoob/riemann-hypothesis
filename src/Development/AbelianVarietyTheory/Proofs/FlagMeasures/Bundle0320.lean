@@ -154,7 +154,7 @@ theorem map_toO (g : GV D) (U : Submodule D.host.E (VS D).V) :
     (toO (VS D) U).map ((g : (VS D).V →ₗ[D.host.E] (VS D).V).restrictScalars (𝓞 D.host.E)) =
       toO (VS D) (U.map (g : (VS D).V →ₗ[D.host.E] (VS D).V)) := by
   ext x
-  simp only [toO, Submodule.mem_map, Submodule.restrictScalars_mem, LinearMap.restrictScalars_apply]
+  simp only [Formalism.MainNotions.S.Lat.toO, Submodule.mem_map, Submodule.restrictScalars_mem, LinearMap.restrictScalars_apply]
 
 theorem map_orth {g : GV D} (hg : g ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT) (U : Submodule D.host.E (VS D).V) :
     (orth (VS D) U).map (g : (VS D).V →ₗ[D.host.E] (VS D).V) =

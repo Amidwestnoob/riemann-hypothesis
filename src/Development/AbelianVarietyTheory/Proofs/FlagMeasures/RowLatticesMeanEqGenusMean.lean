@@ -214,7 +214,7 @@ theorem mem_Lsub {Λ : LatV D} {v : (hS D).V} :
     v ∈ Lsub Λ (lf D F0) ↔ v ∈ orth (hS D) F0.X ∧ ∃ l ∈ Λ, l ∈ orth (hS D) F0.X ∧ v - l ∈ F0.X := by
   show v ∈ ((Λ ⊓ toO (hS D) (orth (hS D) F0.X)) ⊔ toO (hS D) F0.X) ⊓ toO (hS D) (orth (hS D) F0.X) ↔ _
   rw [Submodule.mem_inf, Submodule.mem_sup]
-  simp only [Submodule.mem_inf, toO, Submodule.restrictScalars_mem]
+  simp only [Submodule.mem_inf, Formalism.MainNotions.S.Lat.toO, Submodule.restrictScalars_mem]
   constructor
   · rintro ⟨⟨l, ⟨hl, hlo⟩, b, hb, rfl⟩, hv⟩
     exact ⟨hv, l, hl, hlo, by simpa using hb⟩

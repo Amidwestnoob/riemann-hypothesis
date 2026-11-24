@@ -375,7 +375,7 @@ theorem rowLat_transport : ∀ (D : D7) (T : D.host.E) (F0 G' : FlagG (VS D) D.R
     change v ∈ Formalism.HermitianLatticesTheory.gmap g⁻¹ Λ ⊓ toO (VS D) F0.X ↔ v ∈ XS D F0
     rw [mem_XS hfr, ← hX]
     change _ ↔ g v ∈ Λ ⊓ toO (VS D) G'.X
-    simp only [Submodule.mem_inf, toO, Submodule.restrictScalars_mem]
+    simp only [Submodule.mem_inf, Formalism.MainNotions.S.Lat.toO, Submodule.restrictScalars_mem]
     rw [mem_gmap_inv, mem_X hfr]
   · intro c hc
     apply hprim c
