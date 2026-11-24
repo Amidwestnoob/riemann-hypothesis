@@ -146,8 +146,8 @@ theorem _root_.GlobalTheory.ThK.Dbl.badFactor_of (hD : DblX) (hS : StabEx) (hV :
       have := (law P.base d1 (d2 Φ m Φ m).1).flat (s₀ := ((d : ℂ) - n) / 2) ha a0 z
       rwa [show z - ((d : ℂ) - n) / 2 + d / 2 = z + n / 2 by ring] at this
     have R : ∀ k ∈ K, At (evFin F v) (mat2 k - 1) → ∀ y, G (y * k) = G y := fun k hk h y => by
-      simp only [hG, GlobalTheory.Doubling.flat, hgt_mul ha y hk, map_mul, Module.End.mul_apply, fx v hvT k hk h]
-    have Z : ∀ g, G (e (g, 1)) = c * zint om ν a e Φ z g := fun g => by rw [hG, GlobalTheory.Doubling.flat, cf, zint]; ring
+      simp only [hG, _root_.GlobalTheory.ThK.Dbl.flat, hgt_mul ha y hk, map_mul, Module.End.mul_apply, fx v hvT k hk h]
+    have Z : ∀ g, G (e (g, 1)) = c * zint om ν a e Φ z g := fun g => by rw [hG, _root_.GlobalTheory.ThK.Dbl.flat, cf, zint]; ring
     have G1 : G 1 ≠ 0 := by
       rw [← map_one e, show (1 : UA σ X.J × UA σ X.J) = (1, 1) from rfl, Z, zint, hgt_one ha (show e (1, 1) ∈ K from map_one e ▸ K.one_mem)]
       simpa using ⟨c0.ne', N⟩

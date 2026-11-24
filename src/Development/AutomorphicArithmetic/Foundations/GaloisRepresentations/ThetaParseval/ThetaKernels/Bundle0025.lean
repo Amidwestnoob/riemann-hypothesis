@@ -281,7 +281,7 @@ theorem eisContinues_of_k (h1 : _root_.GlobalTheory.ThK.Dbl.EisBL_k) (h2 : _root
   refine (eisCont_of_reg (f := flat a f s₁) (Ê := fun z x => (d : ℂ) ^ (s₁ - z) * Ê z (x * p)) (t := t₁) (fun z hz x => ?_)
     (fun x => dc.differentiableOn.mul (e2 _)) fun s₀ => ?_).imp fun U hU => ⟨_, hU⟩
   · refine (congrArg (HasSum · _) (funext fun q => ?_)).mp ((e1 z hz (x * p)).mul_left ((d : ℂ) ^ (s₁ - z)))
-    simp only [eisTerm, GlobalTheory.Doubling.flat, ← mul_assoc, mul_inv_cancel_right]
+    simp only [eisTerm, _root_.GlobalTheory.ThK.Dbl.flat, ← mul_assoc, mul_inv_cancel_right]
     rw [Complex.ofReal_mul, Complex.mul_cpow_ofReal_nonneg d0.le (a0 _).le, ← mul_assoc,
       ← Complex.cpow_add _ _ (Complex.ofReal_ne_zero.2 d0.ne')]
     simp
