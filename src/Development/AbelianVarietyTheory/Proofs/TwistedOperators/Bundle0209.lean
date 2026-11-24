@@ -364,6 +364,9 @@ theorem haar_coords : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S�
   let μ : Measure (UX D ρ) := Measure.haar
   let lB : Measure (Mx D ρ S₀.rank) := Measure.addHaar
   let lC : Measure (skewA D ρ) := Measure.addHaar
+  haveI : μ.IsHaarMeasure := inferInstanceAs ((Measure.haar : Measure (UX D ρ)).IsHaarMeasure)
+  haveI : SigmaFinite μ := Measure.IsHaarMeasure.sigmaFinite _
+  haveI : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨e, he⟩ := GlobalTheory.MixPer.flagCoord_homeo D S S₀ ρ d
   have hΦ : (fun p : UX D ρ × (Mx D ρ S₀.rank × skewA D ρ) => d.levi p.1.1 * (d.nB p.2.1 * d.nC p.2.2)) =
       Subtype.val ∘ e := funext fun p => (he p).symm
