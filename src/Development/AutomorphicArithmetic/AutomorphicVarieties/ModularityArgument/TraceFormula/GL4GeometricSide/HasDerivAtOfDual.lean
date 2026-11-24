@@ -5,6 +5,8 @@ public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.KugaCo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField Matrix Finset GlobalTheory.CuspRep GlobalTheory.GKCoh GlobalTheory.WigAlg PositivityTheory.RgBcC PositivityTheory.RgBcC.RealD PositivityTheory.RgBcC.Bridge PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.Cz PositivityTheory.Rg.Cz.GK

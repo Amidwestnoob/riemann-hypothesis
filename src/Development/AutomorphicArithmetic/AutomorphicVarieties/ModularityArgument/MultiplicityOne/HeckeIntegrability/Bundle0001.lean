@@ -10,6 +10,7 @@ public import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.Bundl
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.HeckeIntegrability.GlobalTwistedTraceBound
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField MeasureTheory Matrix Finset

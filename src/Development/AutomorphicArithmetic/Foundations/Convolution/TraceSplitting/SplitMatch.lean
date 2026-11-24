@@ -9,6 +9,8 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.LocalGro
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain

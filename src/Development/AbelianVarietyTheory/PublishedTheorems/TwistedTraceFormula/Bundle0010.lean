@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0001
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.EisRegularAtOfEisPoleLE
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open scoped NNReal ComplexConjugate

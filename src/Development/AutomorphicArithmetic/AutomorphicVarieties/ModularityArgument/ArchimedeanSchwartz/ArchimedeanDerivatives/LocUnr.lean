@@ -6,6 +6,7 @@ public import GroundTheory.GlobalFields.TateThesis.RootNumberLocalPlace
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open scoped Classical
 

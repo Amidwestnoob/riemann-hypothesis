@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.MemL2OfBo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField MeasureTheory Matrix Formalism.L2.Host

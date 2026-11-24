@@ -13,6 +13,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 -- bundled from Development.AutomorphicArithmetic.DivisorFrames.HaarVolKOLeResCardPowOfCongruenceLe
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory GlobalTheory.SplitFlip GlobalTheory.SplitWeil ValuativeRel GlobalTheory.ConjSize
 
 open GlobalTheory.FunObj.GivenAdm in
@@ -221,6 +222,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.DivisorFrames.UnramifiedCharacterInvariant
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory GlobalTheory.SplitFlip GlobalTheory.SplitWeil ValuativeRel GlobalTheory.ConjSize
 
 open scoped Pointwise in

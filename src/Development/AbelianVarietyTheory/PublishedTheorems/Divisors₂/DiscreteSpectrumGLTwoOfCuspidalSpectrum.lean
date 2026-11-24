@@ -10,6 +10,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1206
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.L2.Host

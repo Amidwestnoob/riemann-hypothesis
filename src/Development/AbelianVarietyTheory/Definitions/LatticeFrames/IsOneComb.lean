@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValLast
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 set_option genSizeOfSpec false
 set_option genInjectivity false
 
