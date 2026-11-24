@@ -317,7 +317,7 @@ theorem dimParts_of_schur {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : 
     {A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
     (R : RealDat3 D A3 Ks) (F : Face3 D A3) {s : ℕ} (hOk : A3.fam3.Ok3 s) (hW : R.WeakCharacterisation F) (hEx : R.toRealDat.ExAt)
     (hX : GoodStable A3.A.X) (hD : GlobalTheory.CuspMult.CuspDecomp D) (hM : GlobalTheory.CuspMult.MultEq R.toRealDat)
-    (hU : R.toRealDat.LUnif) (hS : SchurAll R.toRealDat) : (R.toCx3 F).DimParts false := by
+    (hU : R.toRealDat.LUnif) (hS : GlobalTheory.Hk3.SchurAll R.toRealDat) : (R.toCx3 F).DimParts false := by
   obtain ⟨hC, hSF, hEE, hWc⟩ := GlobalTheory.CoreOfWeak.core_of_weak R F hW hEx
   have hIrr : ∀ χ ∈ A3.A.X, IsAbsIrrChar χ := hOk.ok2.irr
   obtain ⟨hE, -, -, -, hEev, hEchar⟩ := _root_.GlobalTheory.Hk3.OpsRows.exists_opsE R.toRealDat F.lv2 hC hS R.SF hSF

@@ -429,7 +429,7 @@ theorem side_label {D : D7} (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (Λ :
   have h1 : ((1 : ℕ) : 𝓞 D.host.E) ∉ (pl P).asIdeal := by
     rw [Nat.cast_one]; exact (Ideal.ne_top_iff_one _).1 (pl P).isPrime.ne_top
   have hl := fun e f' he => (GlobalTheory.LevSplit.lev_split V β Λ 1 (flag1L L) hc').2 (pl P) e f' he h1 hoff
-  have hinv : ∀ g (x : (levEnv V β L).J), IsLocElt V (pl P) x → Pr.ext f.1 (g * x) = Pr.ext f.1 g := by
+  have hinv : ∀ g (x : (levEnv V β L).J), GlobalTheory.Hk3.IsLocElt V (pl P) x → Pr.ext f.1 (g * x) = Pr.ext f.1 g := by
     rintro g ⟨x, hx⟩ ⟨e, f', a, he, ha, hxa, hs⟩
     obtain rfl : x = (finHom V).rangeRestrict a := Subtype.ext hxa
     exact ext_mul Pr f g _ (Units.ext ((hl e f' he).2.1 a ⟨ha, hx⟩ hs))
