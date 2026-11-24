@@ -336,7 +336,10 @@ theorem GlobalTheory.CompanionTheory.Conc.smNear : ∀ (E : Type) [Field E] [Num
     MulOpposite.opHomeomorph.symm.isEmbedding.secondCountableTopology
   have : SecondCountableTopology (GA E N) := Units.isEmbedding_embedProduct.secondCountableTopology
   have : SigmaCompactSpace (GA E N) := sigmaCompactSpace_of_locallyCompact_secondCountable
-  have : SFinite μ := inferInstance
+  have : SigmaFinite μ := SigmaFinite.of_isFiniteMeasureOnCompacts μ
+  have : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
+  have : SecondCountableTopologyEither (GA E N) (archGroup E N) :=
+    secondCountableTopologyEither_of_left _ _
   have hwm : Measurable fun y => ENNReal.ofReal (β y) := hk.cont.measurable.ennreal_ofReal
   set P : Measure (archGroup E N) := ν.withDensity fun y => ENNReal.ofReal (β y) with hP
   have : IsProbabilityMeasure P := by
