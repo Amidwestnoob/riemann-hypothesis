@@ -327,7 +327,7 @@ theorem GlobalTheory.CompanionTheory.Ar.RootHt.ArchB.gramAt_det_ne_zero : ∀ (X
     (hz : genPt ξ ⤳ centre z) (r : ℕ) (b : Fin r → Li) (π : Fin r → Module.Dual Ω Li)
     (B : Fin r → (epsAt z ⟶ G)), IsCptGen ξ → (∀ j l, π j (b l) = if j = l then 1 else 0) →
     (∀ j, ∀ e ∈ M.lat ⟨centre z, hz⟩, π j e ∈ regAt ξ ⟨centre z, hz⟩) → (∀ j, M.ValAt z (b j) (B j)) →
-    ∀ (n : ℕ) (ix : Fin n → Fin r), Function.Injective ix → (gramAt h z fun l => B (ix l)).det ≠ 0 := by
+    ∀ (n : ℕ) (ix : Fin n → Fin r), Function.Injective ix → (GlobalTheory.CompanionTheory.Ar.RootHt.gramAt h z fun l => B (ix l)).det ≠ 0 := by
   intro X Ω _ ξ K J y G _ _ _ Li _ _ M h z hz r b π B hξ hπ hreg hB n ix hix
   obtain ⟨Vz, _, _, ⟨MR⟩⟩ := lieModel_exists X G ℂ z
   have htan : ∀ j, IsTanAt G z (B j) := fun j => isTanAt_of_valAt (hB j)
@@ -348,9 +348,9 @@ theorem GlobalTheory.CompanionTheory.Ar.RootHt.ArchB.gramAt_det_ne_zero : ∀ (X
       simpa [map_sum, hd] using this
   obtain ⟨core, hcore⟩ := h.herm z Vz MR
   have key := core_gram_det_ne_zero core (β ∘ ix) (hli.comp ix hix)
-  have hm : (gramAt h z fun l => B (ix l)) = Matrix.of fun a b => core.inner ((β ∘ ix) a) ((β ∘ ix) b) := by
+  have hm : (GlobalTheory.CompanionTheory.Ar.RootHt.gramAt h z fun l => B (ix l)) = Matrix.of fun a b => core.inner ((β ∘ ix) a) ((β ∘ ix) b) := by
     ext a c
-    simp [gramAt, hcore, hβ]
+    simp [GlobalTheory.CompanionTheory.Ar.RootHt.gramAt, hcore, hβ]
   rw [hm]
   exact key
 end

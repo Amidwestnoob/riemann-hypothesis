@@ -89,7 +89,7 @@ theorem adF_inl {T : Over (Sp k)} (P R : T ⟶ GF t x) (a : 𝓞 E) (I : ULift.{
     (lift P R).left ≫ adF t x a (Sum.inl I) =
       (psum (GF t x) ![P, R ≫ (Over.pullback x).map (t.act.act (H.bar a))] I.down).left := by
   show (lift P R).left ≫ (sqPt t x (psum t.G ![fst t.G t.G, snd t.G t.G ≫ t.act.act (H.bar a)] I.down)).left = _
-  rw [sqPt_psum, ← Over.comp_left, comp_psum]
+  rw [sqPt_psum, ← Over.comp_left, GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.AdTr.comp_psum]
   refine congrArg (fun z => (psum (GF t x) z I.down).left) (funext fun i => ?_)
   fin_cases i
   · simp [sqPt_fst]
@@ -99,7 +99,7 @@ theorem adF_inr {T : Over (Sp k)} (P R : T ⟶ GF t x) (a : 𝓞 E) (I : ULift.{
     (lift P R).left ≫ adF t x a (Sum.inr I) =
       (psum (GF t x) ![P ≫ (Over.pullback x).map (t.act.act a), R] I.down).left := by
   show (lift P R).left ≫ (sqPt t x (psum t.G ![fst t.G t.G ≫ t.act.act a, snd t.G t.G] I.down)).left = _
-  rw [sqPt_psum, ← Over.comp_left, comp_psum]
+  rw [sqPt_psum, ← Over.comp_left, GlobalTheory.CompanionTheory.Ar.Flat.FrGauge.AdTr.comp_psum]
   refine congrArg (fun z => (psum (GF t x) z I.down).left) (funext fun i => ?_)
   fin_cases i
   · simp [sqPt_comp, sqPt_fst]

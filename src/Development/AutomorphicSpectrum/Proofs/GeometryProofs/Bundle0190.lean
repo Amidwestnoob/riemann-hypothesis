@@ -221,21 +221,21 @@ def idU : epsAt zV ⟶ CategoryTheory.Over.mk ((epsOver T.V T.V).hom ≫ zV) :=
   CategoryTheory.Over.homMk (𝟙 _) (by rw [Category.id_comp]; rfl)
 
 def pushAt (h : IsGrpPullback B A zV Ψ) : (epsOver T.V T.V ⟶ B) →* (epsAt zV ⟶ A) :=
-  (preHom (idU T zV)).comp (pushHom h (epsOver T.V T.V))
+  (ReciprocityTheory.ChartRestriction.G.Geo.Tor.preHom (idU T zV)).comp (pushHom h (epsOver T.V T.V))
 
 def pushGen (h : IsGrpPullback B A zV Ψ) : (epsOver T.V T.V ⟶ B) →* (epsAt (gen T zV) ⟶ A) :=
-  (preHom (epsBase (algebraMap T.V T.Fr) rfl)).comp (pushAt T zV h)
+  (ReciprocityTheory.ChartRestriction.G.Geo.Tor.preHom (epsBase (algebraMap T.V T.Fr) rfl)).comp (pushAt T zV h)
 
 variable {T zV}
 
 theorem pushAt_left (h : IsGrpPullback B A zV Ψ) (v : epsOver T.V T.V ⟶ B) :
     (pushAt T zV h v).left = v.left ≫ Ψ := by
-  simp [pushAt, preHom, pushHom, pushPt, idU]
+  simp [pushAt, ReciprocityTheory.ChartRestriction.G.Geo.Tor.preHom, pushHom, pushPt, idU]
 
 theorem pushGen_left (h : IsGrpPullback B A zV Ψ) (v : epsOver T.V T.V ⟶ B) :
     (pushGen T zV h v).left =
       Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap T.V T.Fr))) ≫ v.left ≫ Ψ := by
-  simp [pushGen, preHom, pushAt_left, GlobalTheory.CompanionTheory.Ar.LieTangent.epsBase]
+  simp [pushGen, ReciprocityTheory.ChartRestriction.G.Geo.Tor.preHom, pushAt_left, GlobalTheory.CompanionTheory.Ar.LieTangent.epsBase]
 private theorem key_lemma' {X : Scheme.{0}} {A : CategoryTheory.Over X} [GrpObj A] {Y : Scheme.{0}} (zV : Y ⟶ X)
     {f : Y ⟶ X} (hf : f = zV) :
     (1 : CategoryTheory.Over.mk f ⟶ A).left = (1 : CategoryTheory.Over.mk zV ⟶ A).left := by
