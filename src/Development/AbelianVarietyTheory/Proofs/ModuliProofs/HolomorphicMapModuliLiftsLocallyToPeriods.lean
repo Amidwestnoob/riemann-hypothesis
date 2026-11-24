@@ -138,7 +138,7 @@ open LocLift
 set_option maxHeartbeats 400000 in
 theorem LocLift.holomorphic_map_lifts_to_periods : ThetaUnifAV → Out.Laws → (∀ (k : Type) [Field
     k] (X : Scheme.{0}) (s
-    : X ⟶ Sp k), Smooth s → IsReduced X ∧ IsNormalScheme X ∧ IsLocallyNoetherian X) → (∀ (E
+    : X ⟶ Sp k), Smooth s → IsReduced X ∧ ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme X ∧ IsLocallyNoetherian X) → (∀ (E
     : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (B
     : Type) [CommRing B] (b : Base l B) (S : Scheme.{0}) (s : S ⟶ Sp B) (o
     : Obj D l b s), IsAbelianScheme o.t.G ∧ SmoothOfRelativeDimension (Module.finrank ℚ E / 2 * (D.p
