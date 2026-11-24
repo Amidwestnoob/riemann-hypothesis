@@ -169,6 +169,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EqZeroOfForallAlgHom
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace GlobalTheory.FiniteOrderRule
@@ -262,6 +263,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EvRSumSmulFin
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.FieldBC
