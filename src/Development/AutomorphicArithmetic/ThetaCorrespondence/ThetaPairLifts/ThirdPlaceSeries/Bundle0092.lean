@@ -384,10 +384,10 @@ def LambdaPrimeBundleCondition : BdP _root_.GlobalTheory.Fc.BundleCondition := f
   Formalism.L2.Rows.RowsHoldLam3 b.P
 def SlotLambdaPrimeCondition (Q : V4.Slot) (Lk : LkT _root_.GlobalTheory.Fc.BundleCondition) : Prop := Row Q Lk (AtAll _root_.GlobalTheory.Fc.R1.LambdaPrimeBundleCondition)
 def DivisorBundleCondition : BdP _root_.GlobalTheory.Fc.BundleCondition := fun D O _ b =>
-  DivRows3G b.P
+  _root_.GlobalTheory.Cp.DivRows3G b.P
 def SlotDivisorCondition (Q : V4.Slot) (Lk : LkT _root_.GlobalTheory.Fc.BundleCondition) : Prop := Row Q Lk (AtAll _root_.GlobalTheory.Fc.R1.DivisorBundleCondition)
 def DecompositionPointBundle : BdP _root_.GlobalTheory.Fc.BundleCondition := fun D O _ b =>
-  DcPtG b.P
+  _root_.GlobalTheory.Cp.DcPtG b.P
 def SlotDecompositionPointCondition (Q : V4.Slot) (Lk : LkT _root_.GlobalTheory.Fc.BundleCondition) : Prop := Row Q Lk (AtAll _root_.GlobalTheory.Fc.R1.DecompositionPointBundle)
 def SelectionJumpBundleCondition : BdP _root_.GlobalTheory.Fc.BundleCondition := fun D O _ b =>
   Nonempty (_root_.Formalism.L2.SG.JoinSI.IndefiniteRealisationJoin (R := b.R) (S := b.S) (Q := b.B.Q))

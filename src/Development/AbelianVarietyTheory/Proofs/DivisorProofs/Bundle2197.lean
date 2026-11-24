@@ -238,7 +238,7 @@ theorem gen_frame (X : FlagCover Y) (C : FlagCpt Y (RingEquiv.refl c.F)) (g : C.
   obtain ⟨G₀, hG₀⟩ := g₁.exists_isMap (φ' := constF (RingEquiv.refl c.F) C.Y)
     (x' := genericPt C.Y ≫ C.π ≫ GlobalTheory.Toroidal.genι Y) (RingHom.id _) ht₀.2.1 ht₀.1
   refine ⟨k₀, hz₀, G₀, t₀, fun σ i => ?_, fun τ => ?_⟩
-  · rw [hG₀ σ i, spMap_dualMap_id, Category.id_comp, hg₁ σ i]
+  · rw [hG₀ σ i, _root_.GlobalTheory.VarFlagSpec.spMap_dualMap_id, Category.id_comp, hg₁ σ i]
     exact hfr σ i
   · obtain ⟨h1, h2⟩ := ht₀.co τ hG₀
     exact ⟨fun a i h => h1 a i h, h2⟩

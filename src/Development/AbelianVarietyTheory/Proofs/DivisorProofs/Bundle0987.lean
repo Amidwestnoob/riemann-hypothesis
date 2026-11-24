@@ -284,7 +284,7 @@ theorem exists_const_mul_eq_gen : ∀ (R K : Type) [CommRing R] [IsDomain R] [Is
     rw [Units.val_mul, map_mul, DvrModel.coe_pull_g, ← ffMap_germ φ hφ] at e
     rw [map_mul, hr, hr]
     exact (germToFunctionField_res _ _).symm.trans (e.trans (congrArg _ (germToFunctionField_res _ _)))
-  have htr : ∀ i j x t, x ∈ M.U i → x ∈ M.U j → UnitAt x (t * r j) → UnitAt x (t * r i) := by
+  have htr : ∀ i j x t, x ∈ M.U i → x ∈ M.U j → _root_.GlobalTheory.VerticalUnit.UnitAt x (t * r j) → _root_.GlobalTheory.VerticalUnit.UnitAt x (t * r i) := by
     intro i j x t hi hj h
     rw [hg i j x hi hj, mul_left_comm]
     exact UnitAt.mul ⟨Units.map (X.left.presheaf.germ (M.U i ⊓ M.U j) x ⟨hi, hj⟩).hom (M.g i j),

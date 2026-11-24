@@ -121,7 +121,7 @@ theorem chr_core {F : Face D A} (h : GlobalTheory.Hk3.Core R F) (i : Fin D.R.m) 
 
 theorem exists_lift_core {F : Face D A} (h : GlobalTheory.Hk3.Core R F) (i : Fin D.R.m) (t : T) :
     ∃ th : (R.HV i t).H →ₗ[ℂ] (R.HW i (sg0 D A)).H, ∀ x, (R.HW i (sg0 D A)).e (th x) = R.thF i t x :=
-  exists_factor (R.HW i (sg0 D A)).e (R.thF i t) (R.Wall i (sg0 D A)) (h.models.HW i (sg0 D A)).1
+  _root_.GlobalTheory.BaseScalar.exists_factor (R.HW i (sg0 D A)).e (R.thF i t) (R.Wall i (sg0 D A)) (h.models.HW i (sg0 D A)).1
     (h.models.HW i (sg0 D A)).2.1 (h.thP.thF_mem i t)
 
 theorem isLift_core {F : Face D A} (h : GlobalTheory.Hk3.Core R F) (i : Fin D.R.m) (t : T)

@@ -339,7 +339,7 @@ theorem exists_gtCoord_of_torusQuotient : GlobalFnsSt → ∀ (R : Type) [CommRi
     rw [Category.id_comp]
     exact u χ y J hJ
   · exact (val_pull hJ _ _ _).trans ((w χ _ (𝟙 _) y J hJ).trans ((val_mul hJ _ _ _).trans
-      (congrArg₂ (· * ·) (val_charGen _ _ _ _ _ _ _) (val_pull hJ _ _ _))).symm)
+      (congrArg₂ (· * ·) (_root_.GlobalTheory.WeightGen.val_charGen _ _ _ _ _ _ _) (val_pull hJ _ _ _))).symm)
 
 end GlobalTheory
 end
