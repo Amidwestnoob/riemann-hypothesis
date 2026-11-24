@@ -264,8 +264,8 @@ theorem incM_map {n m : Type} (J : Matrix n m E) {w : InfinitePlace F} (τ : Emb
   simp [incM, piInf, compInf, inclR, infEmb_tmul]
 
 theorem pol_le (hV : VacLine) {n d P Q R S : ℕ} {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) {ψ : AddChar (AF F) ℂ}
-    {τ : ∀ w : InfinitePlace F, EmbOver E w} {A : InfinitePlace F → Matrix (Fin n) (Ix P Q) ℂ}
-    {C : InfinitePlace F → Matrix (Fin d) (Ix R S) ℂ} {Φ : Tens F P Q R S →ₗ[ℂ] SInf F (Fin n × Fin d)}
+    {τ : ∀ w : InfinitePlace F, EmbOver E w} {A : InfinitePlace F → Matrix (Fin n) (_root_.Formalism.BasicNotions.TH.Ix P Q) ℂ}
+    {C : InfinitePlace F → Matrix (Fin d) (_root_.Formalism.BasicNotions.TH.Ix R S) ℂ} {Φ : Tens F P Q R S →ₗ[ℂ] SInf F (Fin n × Fin d)}
     (hcm : IsCMExt F E σ) (hψ : IsStd ψ) (hfr : Framed τ (incM F X.J) (incM F W.J) 1 Complex.I A C)
     (hθX : ∀ w, X.θ w * A w = A w * Jm P Q) (hθW : ∀ w, W.θ w * C w = C w * Jm R S) (hΦ : IsFockMap ψ τ M.co A C Φ) :
     M.Pol ψ τ ≤ LinearMap.range Φ := by
@@ -283,7 +283,7 @@ theorem pol_le (hV : VacLine) {n d P Q R S : ℕ} {X : Spc F E n} {W : Spc F E d
         (A w * A' w) * u.map (piInf (τ w)) * ((C w) * (C' w))ᵀ by
           rw [Matrix.transpose_mul]; simp only [Matrix.mul_assoc], hA', hC']
     simp
-  have tw : ∀ w (c : Matrix (Ix P Q) (Ix R S) ℂ) (e : ℂ),
+  have tw : ∀ w (c : Matrix (_root_.Formalism.BasicNotions.TH.Ix P Q) (_root_.Formalism.BasicNotions.TH.Ix R S) ℂ) (e : ℂ),
       A w * (e • (Jm P Q * c * Jm R S)) * (C w)ᵀ = e • (X.θ w * (A w * c * (C w)ᵀ) * (W.θ w)ᵀ) := by
     intro w c e
     have h2 : (C w)ᵀ * (W.θ w)ᵀ = Jm R S * (C w)ᵀ := by
@@ -304,7 +304,7 @@ theorem pol_le (hV : VacLine) {n d P Q R S : ℕ} {X : Spc F E n} {W : Spc F E d
 
 theorem exists_fock (hF : FockEx) {n d : ℕ} {X : Spc F E n} {W : Spc F E d} {B : Base F E} {M : Model σ X W} {χX χW : Chr F E}
     {om : Rep σ X W} {r s r' s' : ℕ} (hp : IsPair B M χX χW om r s r' s') :
-    ∃ (A : InfinitePlace F → Matrix (Fin n) (Ix r s) ℂ) (C : InfinitePlace F → Matrix (Fin d) (Ix r' s') ℂ)
+    ∃ (A : InfinitePlace F → Matrix (Fin n) (_root_.Formalism.BasicNotions.TH.Ix r s) ℂ) (C : InfinitePlace F → Matrix (Fin d) (_root_.Formalism.BasicNotions.TH.Ix r' s') ℂ)
       (Φ : Tens F r s r' s' →ₗ[ℂ] SInf F (Fin n × Fin d)), Framed B.emb (incM F X.J) (incM F W.J) 1 Complex.I A C ∧
       (∀ w, X.θ w * A w = A w * Jm r s) ∧ (∀ w, W.θ w * C w = C w * Jm r' s') ∧ IsFockMap B.ψ B.emb M.co A C Φ := by
   choose A hA using fun w => PositivityTheory.RL.frameEx n r s _ _ (hp.herm.sig w) (hp.herm.cartan w)
