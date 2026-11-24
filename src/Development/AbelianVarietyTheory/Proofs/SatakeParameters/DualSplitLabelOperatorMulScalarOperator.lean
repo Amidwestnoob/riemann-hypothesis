@@ -122,12 +122,23 @@ theorem exists_idem {P : Pl D.host.E} (hP : Formalism.L2.DIV.conjPl P ≠ P) : �
   obtain ⟨e, f, h⟩ := GlobalTheory.IdemSupport.exists_isPrimeIdem hΦ P
   rcases h with ⟨h, -⟩ | ⟨-, ⟨v, ε, -, rfl⟩, ht⟩
   · exact ⟨e, h⟩
-  · refine absurd (GlobalTheory.IdemSupport.eq_of_le (Ideal.map_le_iff_le_comap.2 fun x hx => ?_)) hP
+  · apply False.elim
+    apply hP
+    apply GlobalTheory.IdemSupport.eq_of_le
+    intro x hx
+    have hx' : x ∈ (GlobalTheory.IdemSupport.cP P).asIdeal := by
+      rw [GlobalTheory.IdemSupport.mem_cP]
+      have e : GlobalTheory.IdemSupport.cO D x = Formalism.L2.DIV.starOHom x := by
+        apply RingOfIntegers.ext
+        rw [GlobalTheory.IdemSupport.cO_coe]
+        exact (Formalism.L2.DIV.starO_coe x).symm
+      rw [e]
+      exact hx
     have h2 := GlobalTheory.IdemSupport.Comparison₂.conj (P := P) ht
     rw [GlobalTheory.IdemSupport.cA_algebraMap] at h2
     by_cases h0 : x = 0
     · rw [h0]; exact zero_mem _
-    · exact (h2 x h0).2 ((ht x h0).1 hx)
+    · exact (ht x h0).2 ((h2 x h0).1 hx')
 
 theorem idem_unique {P : Pl D.host.E} {e e' f' : AE D} (he : IsIdemAt e P) (h : IsPrimeIdem P e' f') :
     f' = e + cA D e := by
