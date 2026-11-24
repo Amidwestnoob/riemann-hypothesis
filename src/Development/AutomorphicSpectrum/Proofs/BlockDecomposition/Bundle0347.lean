@@ -401,7 +401,7 @@ namespace GlobalTheory.CompanionTheory.TopNilp
 
 theorem nabs_absPow_of_tendsto_zero : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (t : kˣ), Filter.Tendsto (fun n : ℕ => (t : k) ^ n) Filter.atTop (nhds 0) → 0 < nabs k t ∧ nabs k t < 1 ∧ ∀ d : ℕ, ‖((absPow k (d : ℂ) t : ℂˣ) : ℂ)‖ = nabs k t ^ d := by
   intro k _ _ _ _ t ht
-  have hpos : 0 < nabs k t := nabs_pos' k t
+  have hpos : 0 < nabs k t := _root_.GlobalTheory.SmGL.nabs_pos' k t
   refine ⟨hpos, ?_, fun d => ?_⟩
   · by_contra hge
     have h1 : valuation k ((1 : kˣ) : k) ≤ valuation k (t : k) :=

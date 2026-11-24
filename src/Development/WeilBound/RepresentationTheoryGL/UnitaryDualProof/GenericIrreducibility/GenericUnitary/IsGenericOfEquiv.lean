@@ -25,7 +25,7 @@ theorem isGeneric_of_equiv {N : ℕ} {V W : Type} [AddCommGroup V] [Module ℂ V
 theorem unitCC_nu_neg (x : IrrGL (k := k)) (ω : kˣ →* ℂˣ) (hω : HasCentralChar x.rep ω) (s : ℝ)
     (hn : ∀ z, ‖(ω z : ℂ)‖ = nabs k z ^ ((x.1 : ℝ) * s)) : UOrder.UnitCC (x.nu ((-s : ℝ) : ℂ)).rep := by
   refine ⟨ω * absPow k ((-s : ℝ) : ℂ) ^ x.1, GlobalTheory.LocGL.UnitaryOrder.hasCentralChar_nu x hω _, fun z => ?_⟩
-  have hz := nabs_pos' k z
+  have hz := _root_.GlobalTheory.SmGL.nabs_pos' k z
   have hpos : 0 < ‖(((ω * absPow k ((-s : ℝ) : ℂ) ^ x.1) z : ℂˣ) : ℂ)‖ := norm_pos_iff.2 (Units.ne_zero _)
   have hlog := GlobalTheory.LocGL.UnitaryOrder.log_norm_mul_absPow ω (-s) x.1 z
   rw [hn, Real.log_rpow hz] at hlog

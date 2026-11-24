@@ -196,7 +196,7 @@ theorem eq_zero_of_nu_eq (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (
     rw [← h7, map_pow, Units.val_pow_eq_pow_val]
   rw [val_absPow_ofReal] at h8
   have h9 : (nabs k ϖ ^ s) ^ x.1 = 1 := by exact_mod_cast h8
-  have hpos : 0 < nabs k ϖ := nabs_pos' k ϖ
+  have hpos : 0 < nabs k ϖ := _root_.GlobalTheory.SmGL.nabs_pos' k ϖ
   have h10 : nabs k ϖ ^ s = 1 := (pow_eq_one_iff_of_nonneg (Real.rpow_nonneg hpos.le s) hd.ne').1 h9
   have hne : nabs k ϖ ≠ 1 := fun e => ValuativeRel.uniformizer_lt_one.ne (hϖ ▸ (nabs_eq_one_iff ϖ).1 e)
   have h11 := congrArg Real.log h10

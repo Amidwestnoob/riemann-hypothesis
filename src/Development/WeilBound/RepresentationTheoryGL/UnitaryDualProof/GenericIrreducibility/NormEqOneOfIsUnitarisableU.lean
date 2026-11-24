@@ -39,7 +39,7 @@ theorem hasCentralChar_nu_u (x : IrrGL (k := k)) {ω : kˣ →* ℂˣ} (h : HasC
 theorem log_norm_mul_absPow_u (ω : kˣ →* ℂˣ) (t : ℝ) (d : ℕ) (z : kˣ) :
     Real.log ‖(((ω * absPow k (t : ℂ) ^ d) z : ℂˣ) : ℂ)‖ =
       Real.log ‖(ω z : ℂ)‖ + d * t * Real.log (nabs k z) := by
-  have hz := nabs_pos' k z
+  have hz := _root_.GlobalTheory.SmGL.nabs_pos' k z
   have hω : ‖(ω z : ℂ)‖ ≠ 0 := norm_ne_zero_iff.2 (ω z).ne_zero
   rw [MonoidHom.mul_apply, MonoidHom.pow_apply, Units.val_mul, Units.val_pow_eq_pow_val, val_absPow_ofReal,
     norm_mul, norm_pow, Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg hz.le _),
@@ -98,7 +98,7 @@ theorem add_one_le_of_precedes_u (k : Type) [Field k] [ValuativeRel k] [Topologi
     exact hasCentralChar_nu_u _ hω _
   obtain ⟨ϖ, hϖ⟩ := exists_uniformizer k
   have hne : nabs k ϖ ≠ 1 := fun e => uniformizer_lt_one.ne (hϖ ▸ (nabs_eq_one_iff ϖ).1 e)
-  have hL0 : Real.log (nabs k ϖ) ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one (nabs_pos' k ϖ) hne
+  have hL0 : Real.log (nabs k ϖ) ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one (_root_.GlobalTheory.SmGL.nabs_pos' k ϖ) hne
   have hA := log_norm_centralChar_u hL hU hω ϖ
   have hA' := log_norm_centralChar_u hL' hU' hω' ϖ
   rw [log_norm_mul_absPow_u, hd] at hA'

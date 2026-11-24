@@ -69,7 +69,7 @@ private theorem deltaHalf_scalar (d : Fin 2 → ℕ) (t : kˣ) :
     simp only [modulus, Fin.prod_univ_two, nabs_det_scalar, modExp]
     simp only [Finset.sum_filter, Fin.sum_univ_two]
     simp
-    have hp : nabs k t ≠ 0 := ne_of_gt (nabs_pos' k t)
+    have hp : nabs k t ≠ 0 := ne_of_gt (_root_.GlobalTheory.SmGL.nabs_pos' k t)
     have he : (nabs k t ^ d 1) ^ d 0 = nabs k t ^ (((d 0 : ℕ) : ℤ) * ((d 1 : ℕ) : ℤ)) := by
       rw [mul_comm, zpow_mul, zpow_natCast, zpow_natCast]
     have he' : (nabs k t ^ d 0) ^ d 1 = nabs k t ^ (((d 0 : ℕ) : ℤ) * ((d 1 : ℕ) : ℤ)) := by

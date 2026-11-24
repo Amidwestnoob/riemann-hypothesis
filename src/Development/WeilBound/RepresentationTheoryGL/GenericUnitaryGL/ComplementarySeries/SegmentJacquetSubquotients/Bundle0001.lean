@@ -57,11 +57,11 @@ theorem not_equiv_segTerm {d : ℕ} (hd : 0 < d) (σ : IrrRep (GL (Fin d) k)) (l
   have h4 := mul_right_cancel₀ hc0 (smul_left_injective ℂ hφv h3)
   rw [val_absPow, val_absPow, Complex.cpow_natCast, Complex.cpow_natCast] at h4
   have h5 : nabs k (x ^ d) ^ (a : ℕ) = nabs k (x ^ d) ^ (b : ℕ) := by exact_mod_cast h4
-  have hpos : 0 < nabs k (x ^ d) := nabs_pos' k _
+  have hpos : 0 < nabs k (x ^ d) := _root_.GlobalTheory.SmGL.nabs_pos' k _
   have hne : nabs k (x ^ d) ≠ 1 := by
     have hpow : nabs k (x ^ d) = nabs k x ^ d := by simp [nabs]
     rw [hpow]
-    exact fun e => hx ((pow_eq_one_iff_of_nonneg (nabs_pos' k x).le hd.ne').1 e)
+    exact fun e => hx ((pow_eq_one_iff_of_nonneg (_root_.GlobalTheory.SmGL.nabs_pos' k x).le hd.ne').1 e)
   exact hab (Fin.ext (pow_right_injective₀ hpos hne h5))
 
 end PositivityTheory.Pf1.SegRepC.Twist

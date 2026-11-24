@@ -82,7 +82,7 @@ private theorem jq_delta {x : kˣ} (hx : IsUnif x) (a : Fin n → ℤ) :
   have hnx : nabs k x = ((resCard k : ℝ))⁻¹ := GlobalTheory.SplitWeil.nabs_uniformiser hp hpx.symm
   have hq : (0 : ℝ) < resCard k := by
     rw [← inv_pos, ← hnx]
-    exact nabs_pos' k x
+    exact _root_.GlobalTheory.SmGL.nabs_pos' k x
   have key : ∀ (s : Finset (Fin n)) (f : Fin n → ℤ), ∏ i ∈ s, (resCard k : ℝ) ^ f i = (resCard k : ℝ) ^ ∑ i ∈ s, f i := by
     intro s f
     induction s using Finset.induction_on with

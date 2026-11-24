@@ -196,7 +196,7 @@ theorem nabs_pow_nat (t : kˣ) (n : ℕ) : nabs k (t ^ n) = nabs k t ^ n := by
 
 theorem norm_absPow_nat (n : ℕ) (u : kˣ) : ‖((absPow k ((n : ℕ) : ℂ) u : ℂˣ) : ℂ)‖ = nabs k u ^ n := by
   have h : ((n : ℕ) : ℂ) = (((n : ℝ)) : ℂ) := by push_cast; rfl
-  rw [h, val_absPow_ofReal, Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg (nabs_pos' k u).le _),
+  rw [h, val_absPow_ofReal, Complex.norm_real, Real.norm_of_nonneg (Real.rpow_nonneg (_root_.GlobalTheory.SmGL.nabs_pos' k u).le _),
     Real.rpow_natCast]
 
 theorem cast_tri (l : ℕ) (hl : 0 < l) : (((l * (l - 1) / 2 : ℕ)) : ℝ) = (l : ℝ) * ((l : ℝ) - 1) / 2 := by
@@ -211,7 +211,7 @@ theorem exponent_lseg (Δ : Segment k) (y : IrrGL (k := k)) (s e : ℝ) (t : kˣ
   have h1 := GlobalTheory.T.segment_rep_central_character k Δ y hL t c hc
   have h2 := hy t _ h1
   have hdeg : y.1 = Δ.len * Δ.d := hL.deg_eq.symm
-  have hα : 0 < nabs k t := nabs_pos' k t
+  have hα : 0 < nabs k t := _root_.GlobalTheory.SmGL.nabs_pos' k t
   have hlog : Real.log (nabs k t) ≠ 0 := Real.log_ne_zero_of_pos_of_ne_one hα ht.ne
   rw [norm_mul, norm_pow, norm_absPow_nat, nabs_pow_nat, hcn, ← Real.rpow_natCast, ← Real.rpow_natCast,
     ← Real.rpow_natCast, ← Real.rpow_mul hα.le, ← Real.rpow_mul hα.le,
@@ -242,7 +242,7 @@ theorem exponent_lt_of_precedes : ∀ (k : Type) [Field k] [ValuativeRel k] [Top
   obtain ⟨hlink, j, hj, hf⟩ := hP
   obtain ⟨t, ht⟩ := _root_.GlobalTheory.CompanionTheory.LocalFieldPow.exists_unit_pow_tendsto_zero k
   have hα1 : nabs k t < 1 := GlobalTheory.CompanionTheory.NabsContract.nabs_lt_one_of_tendsto_pow k t ht
-  have hα : 0 < nabs k t := nabs_pos' k t
+  have hα : 0 < nabs k t := _root_.GlobalTheory.SmGL.nabs_pos' k t
   obtain ⟨e, he⟩ := GlobalTheory.T.central_character_norm_eq_pow k Δ.first Δ.isCusp_first.1
   obtain ⟨c, hc⟩ := GlobalTheory.T.central_character_exists k Δ.first t
   have hcn : ‖c‖ = nabs k t ^ ((Δ.d : ℝ) * e) := he t c hc
