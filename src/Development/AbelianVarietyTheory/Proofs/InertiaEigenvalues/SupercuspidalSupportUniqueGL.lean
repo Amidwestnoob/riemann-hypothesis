@@ -287,11 +287,11 @@ theorem exists_map_of_isCuspidal {b : ℕ} (hb : 0 < b) {ρ : Representation ℂ
     IsSubquotient.isSmooth ⟨S, Representation.IntertwiningMap.id _, Function.surjective_id⟩ hτ
   obtain ⟨ω, hω, hωc⟩ := exists_smooth_hasCentralChar hρc.1 hρi
   obtain ⟨ψ, hψ, hψ1⟩ := exists_root_norm hω hb
-  have hc' : IsCuspidal (twist ρ (detChar (Fin b) ψ)) := isCuspidal_twist hρc hψ
+  have hc' : IsCuspidal (GlobalTheory.SmGL.twist ρ (detChar (Fin b) ψ)) := isCuspidal_twist hρc hψ
   have hsc := GlobalTheory.CuspCoef.isSupercuspidal_of_isCuspidal k b V _ hc'
   haveI : Nontrivial V := GlobalTheory.SmGL.Model.nontrivial_of_isIrreducible hρi
   obtain ⟨y, hy⟩ := exists_ne (0 : V)
-  obtain ⟨l, hl, hly⟩ := GlobalTheory.SmoothForm.exists_smooth_form_ne_zero _ _ (twist ρ (detChar (Fin b) ψ)) (fun U hU => by
+  obtain ⟨l, hl, hly⟩ := GlobalTheory.SmoothForm.exists_smooth_form_ne_zero _ _ (GlobalTheory.SmGL.twist ρ (detChar (Fin b) ψ)) (fun U hU => by
     obtain ⟨γ, hγ, h⟩ := GlobalTheory.CentralExponent.exists_cong_subset (n := Fin b) hU
     exact ⟨_, GlobalTheory.CentralExponent.isOpen_cong γ hγ, GlobalTheory.CentralExponent.isCompact_cong γ hγ, h⟩) hc'.1 y hy
   have hu := GlobalTheory.isUnitarisable_of_isSupercuspidal _ _ _ l hl (fun h => hly (by rw [h]; rfl))
@@ -302,7 +302,7 @@ theorem exists_map_of_isCuspidal {b : ℕ} (hb : 0 < b) {ρ : Representation ℂ
       have h := hasCentralChar_twist hωc ψ z
       rw [Fintype.card_fin] at h
       exact ⟨_, hψ1 z, h⟩)
-  obtain ⟨ι, hι⟩ := GlobalTheory.CuspBack.exists_back _ _ _ (twist S.toRepresentation (detChar (Fin b) ψ)) _ (twistMap p _)
+  obtain ⟨ι, hι⟩ := GlobalTheory.CuspBack.exists_back _ _ _ (GlobalTheory.SmGL.twist S.toRepresentation (detChar (Fin b) ψ)) _ (twistMap p _)
     (isSmooth_twist hSs hψ.detChar) hsc hu
     (fun z hz' => by
       rw [Matrix.GeneralLinearGroup.center_eq_range_scalar] at hz'
