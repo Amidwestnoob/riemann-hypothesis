@@ -262,7 +262,7 @@ theorem GlobalTheory.LieDisc.hAdj_algebra : ∀ (E : Type) [Field E] [NumberFiel
         ext b
         have := congrFun hcv b
         simp only [Pi.zero_apply] at this
-        rw [← cc_cc (v b), this]; simp [cc]
+        rw [← _root_.GlobalTheory.LieDisc.cc_cc (v b), this]; simp [cc]
       have hA : hAdj G Y + Y = 0 := by
         ext i j
         have := congrFun (hv (Pi.single j 1)) i

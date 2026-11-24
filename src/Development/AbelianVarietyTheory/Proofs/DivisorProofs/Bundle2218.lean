@@ -131,7 +131,7 @@ theorem chi_natural (p : ℕ) (R : Type) [CommRing R] (hp : (p : R) = 0)
     chi p g D' (spOver φ ≫ x) - φ (chi p g D x) = f D D' φ (x ^ p) - f D D' φ 1 := by
   have hp' : (p : D') = 0 := by
     rw [← map_natCast (algebraMap R D') p, hp, map_zero]
-  unfold chi
+  unfold _root_.GlobalTheory.PtExt.chi
   rw [map_sum φ, ← Finset.sum_sub_distrib]
   have h : ∀ i ∈ Finset.range p, g D' ((spOver φ ≫ x) ^ i) (spOver φ ≫ x) - φ (g D (x ^ i) x) =
       (f D D' φ (x ^ (i + 1)) - f D D' φ (x ^ i)) - f D D' φ x := by

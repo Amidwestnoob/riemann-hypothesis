@@ -231,7 +231,7 @@ theorem exists_symmetric_square : ∀ (R : Type) [CommRing R] [IsDomain R] (A : 
   have hθ : θ.pt = x := hpt.trans h₀
   have hs : LB.Gen.Corr A.L _ _ _ _ (symGen A.A A.L ((4 : ℕ) : ℤ) θ nu) (LB.oneGen A.L) := corr_of_val hL fun y J hJ => by
     have e₁ := (val_symGen θ₀ nu h₀ hJ (snd _ _)).symm.trans (ha _ y J hJ)
-    rw [val_one, id_eq_lift, val_symGen θ nu hθ hJ, hv y J hJ, hv y J hJ, map_inv]
+    rw [val_one, id_eq_lift, _root_.GlobalTheory.SymLiftOdd.val_symGen θ nu hθ hJ, hv y J hJ, hv y J hJ, map_inv]
     rw [hb, map_pow] at e₁
     apply Additive.ofMul.injective
     replace e₁ := congrArg Additive.ofMul e₁

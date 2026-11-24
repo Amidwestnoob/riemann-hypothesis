@@ -309,7 +309,7 @@ theorem nCol_le (Dw : Datum H) :
   have h2 : Fintype.card (Lt1 Dw) ≤ Module.finrank ℚ E * (Dw.p + Dw.q) := card_Lt1_le_finrank_mul
   have h3 := Nat.mul_le_mul_right (2 * (Dw.p + Dw.q)) h2
   have h4 := Nat.mul_div_le (∑ f : Lt1 Dw, 2 * GlobalTheory.FactorDepth.rk f) 8
-  unfold nCol
+  unfold _root_.GlobalTheory.RefSum.nCol
   nlinarith
 
 end Free

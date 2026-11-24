@@ -53,7 +53,7 @@ theorem wdb_normSq_div {n : ℕ} (ρ : ℝ) (j : Fin n) (z : V n) :
   have hv : HasFDerivAt (fun w : V n => ‖w‖ ^ 2 / ρ ^ 2) (((ρ ^ 2)⁻¹ : ℝ) • (2 • innerSL ℝ z)) z := by
     rw [e]; exact h1
   unfold wdb
-  rw [fderiv_ofReal_apply hv.differentiableAt, fderiv_ofReal_apply hv.differentiableAt, hv.fderiv]
+  rw [_root_.ReciprocityTheory.L2DbarEstimates.fderiv_ofReal_apply hv.differentiableAt, _root_.ReciprocityTheory.L2DbarEstimates.fderiv_ofReal_apply hv.differentiableAt, hv.fderiv]
   simp only [bas, ContinuousLinearMap.smul_apply, innerSL_apply_apply, smul_eq_mul, nsmul_eq_mul]
   have hr : ∀ x y : V n, inner ℝ x y = re (inner ℂ x y) := by
     intro x y

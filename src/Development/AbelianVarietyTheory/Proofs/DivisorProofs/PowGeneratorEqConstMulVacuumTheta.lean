@@ -290,7 +290,7 @@ theorem exists_const_fib (hC : Formalism.MainNotions.ModuliIntegralCharts.H1.Cha
     refine right_ne_zero_of_mul (h2 ▸ Finset.prod_ne_zero_iff.2 fun b _ => ?_)
     rw [fock, Pi.zero_apply, zero_add, zero_add]
     exact mul_ne_zero (Complex.exp_ne_zero _) (hq b)
-  rw [hval x.1 x.2 hux, map_one, map_one, thP, polyDeriv_one] at h1
+  rw [_root_.GlobalTheory.SW.hval x.1 x.2 hux, map_one, map_one, thP, polyDeriv_one] at h1
   rw [← mul_right_cancel₀ h3 h1]
   exact hprod
 
