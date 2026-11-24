@@ -328,7 +328,7 @@ theorem unifAlpha : ∀ (E : Type) [Field E] [NumberField E] [_root_.NumberField
   obtain ⟨P, hPm, hPd, hP⟩ := exists_monic_aeval_add_of_kill Ω (lapOp (⇑b) - Ω) hc q r hq hr
   have hsum : Ω + (lapOp (⇑b) - Ω) = lapOp (⇑b) := LinearMap.ext fun x => by simp
   rw [hsum] at hP
-  letI : MeasurableSpace (archGroup E a) := borel _
+  letI : MeasurableSpace (archGroup E a) := _root_.borel _
   haveI : BorelSpace (archGroup E a) := ⟨rfl⟩
   haveI := hμ
   let e := archHomeo E a

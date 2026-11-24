@@ -435,7 +435,7 @@ theorem norm_le_of_unip_variation : ∀ (E : Type) [Field E] [NumberField E] [_r
     IsCuspForm ψ → ∀ s : ℕ, 0 < s → s < a → ∀ (g : GA E a) (e : ℝ),
       (∀ x : BlockIx a s → Ad E, ‖ψ.1 (unip x * g) - ψ.1 g‖ ≤ e) → ‖ψ.1 g‖ ≤ e := by
   intro E _ _ _ a ψ hψ s hs0 hsa g e he
-  letI : MeasurableSpace (BlockIx a s → Ad E) := borel _
+  letI : MeasurableSpace (BlockIx a s → Ad E) := _root_.borel _
   haveI : BorelSpace (BlockIx a s → Ad E) := ⟨rfl⟩
   set μ : Measure (BlockIx a s → Ad E) := Measure.addHaar with hμ
   obtain ⟨𝓕, h𝓕, h0, htop⟩ := _root_.GlobalTheory.CuspRep.exists_isAddFundamentalDomain_ratN E a s μ

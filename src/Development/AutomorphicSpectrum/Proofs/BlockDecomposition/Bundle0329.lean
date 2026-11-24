@@ -174,7 +174,7 @@ theorem unip_eq_unipGL {R : Type} [CommRing R] {r : ℕ} (x : BlockIx a r → R)
     unip x = AutomorphicForm.unipGL x := Units.ext rfl
 
 theorem pi_eq_borel (r : ℕ) :
-    (MeasurableSpace.pi : MeasurableSpace (BlockIx a r → Ad E)) = borel (BlockIx a r → Ad E) :=
+    (MeasurableSpace.pi : MeasurableSpace (BlockIx a r → Ad E)) = _root_.borel (BlockIx a r → Ad E) :=
   BorelSpace.measurable_eq
 
 theorem isCuspidal_of_constantTerm {φ : GA E a → ℂ} (hl : ∀ γ g, φ (ratGL E a γ * g) = φ g)

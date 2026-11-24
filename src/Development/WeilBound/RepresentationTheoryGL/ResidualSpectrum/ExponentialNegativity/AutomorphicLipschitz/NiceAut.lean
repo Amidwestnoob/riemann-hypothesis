@@ -31,7 +31,7 @@ theorem lip_of_autForm (φ : Sm E N) (hφ : IsAutForm φ) (R : ℝ) :
       ∀ g (Y : ArchMatrix E N) (M : ℝ), Y * Y = 0 → ‖Y‖ ≤ R → (∀ q ∈ Q₀, ‖φ.1 (g * q)‖ ≤ M) →
         ‖φ.1 (g * CuspidalSpectrum.archExp Y) - φ.1 g‖ ≤ C * ‖Y‖ * M := by
   have hs := GlobalTheory.CompanionTheory.ArchSmooth.sm_mem_archSmooth E N φ
-  let _ : MeasurableSpace (archGroup E N) := borel _
+  let _ : MeasurableSpace (archGroup E N) := _root_.borel _
   have _ : BorelSpace (archGroup E N) := ⟨rfl⟩
   have hD := fun J : Fin 1 → Fin (archDim E N) =>
     GlobalTheory.CompanionTheory.HCRep.uJ_eq_conv E N φ hs hφ Measure.haar 1 J
