@@ -41,6 +41,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0373
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicTransportMeasureThird
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
