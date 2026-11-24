@@ -68,17 +68,21 @@ theorem polyDeriv_rename {θ : W → ℂ} {x : W} (hθ : ContDiffAt ℂ ω θ x)
 
 end Deriv
 
+private theorem isHomogeneous_rowTotal {T k : Type} [Fintype T] [Field k] {m : T → ℕ} {n : ℕ} {a : T → ℕ → ℕ}
+    {P : MvPolynomial (Letter T m n) k} (h : RowDeg m n k a P) :
+    P.IsHomogeneous (∑ σ, ∑ i : Fin (m σ), a σ i) := by
+  intro d hd
+  have := h d (MvPolynomial.mem_support_iff.2 hd)
+  have e : Finsupp.weight (1 : Letter T m n → ℕ) d = d.degree := by
+    rw [Finsupp.degree_eq_weight_one]; rfl
+  rw [e, Finsupp.degree_eq_sum, Fintype.sum_sigma]
+  refine Finset.sum_congr rfl fun σ _ => ?_
+  rw [Fintype.sum_prod_type]
+  exact Finset.sum_congr rfl fun i _ => this σ i
+
 theorem isHomogeneous_of_rowDeg {T k : Type} [Fintype T] [Field k] {m : T → ℕ} {n : ℕ} {a : T → ℕ → ℕ}
     {P : MvPolynomial (Letter T m n) k} (h : RowDeg m n k a P) : P.IsHomogeneous P.totalDegree := by
-  have h1 : P.IsHomogeneous (∑ σ, ∑ i : Fin (m σ), a σ i) := by
-    intro d hd
-    have := h d (MvPolynomial.mem_support_iff.2 hd)
-    have e : Finsupp.weight (1 : Letter T m n → ℕ) d = d.degree := by
-      rw [Finsupp.degree_eq_weight_one]; rfl
-    rw [e, Finsupp.degree_eq_sum, Fintype.sum_sigma]
-    refine Finset.sum_congr rfl fun σ _ => ?_
-    rw [Fintype.sum_prod_type]
-    exact Finset.sum_congr rfl fun i _ => this σ i
+  have h1 := isHomogeneous_rowTotal h
   by_cases h0 : P = 0
   · rw [h0]; exact MvPolynomial.isHomogeneous_zero _ _ _
   · rw [h1.totalDegree h0]; exact h1
@@ -265,4 +269,7 @@ theorem GlobalTheory.Dict.shortValAt_eq_thP : Formalism.MainNotions.ModuliIntegr
   simp only [map_mul, map_inv₀, map_pow, map_natCast]
   have key (a b c d t s : ℂ) : a * b * c * ((N : ℂ) ^ P.totalDegree)⁻¹ * ((N : ℂ) ^ P.totalDegree * d * t * s) =
       a * b * c * d * t * s := by field_simp
-  exact key _ _ _ _ _ _
+  by_cases hzero : P = 0
+  · simp [hzero, I2.polyDeriv] <;> exact mul_zero _
+  · rw [← (isHomogeneous_rowTotal hP.2.2).totalDegree hzero]
+    exact key _ _ _ _ _ _
