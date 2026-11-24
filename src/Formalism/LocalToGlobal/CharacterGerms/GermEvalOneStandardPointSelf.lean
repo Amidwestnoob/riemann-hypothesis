@@ -154,7 +154,7 @@ theorem lg_mulL {V : VF C} {O : Type} [CommRing O] [StarRing O] (Y : FBChart C V
     have hAdd : addOf Y.B.G.F (pt C (n := 2) dd 0) (pt C dd 1) = Y.B.G.F :=
       funext fun j => PartialDerivEval.eval_points_two _
     have h1 := congrArg (ev ![mulL Y.B.G.F n, pt C (n := 1) dd 0]) (Y.lg_add k)
-    rw [hAdd, ev_add hA, ev_ev (z0_1 _ Y.B.G.const) hA, ev_ev (z0_1 _ (fun j => z0_pt 0 j)) hA,
+    rw [hAdd, Formalism.L2.FormalSeriesBounds.PartialDerivEval.ev_add hA, ev_ev (z0_1 _ Y.B.G.const) hA, ev_ev (z0_1 _ (fun j => z0_pt 0 j)) hA,
       ev_ev (z0_1 _ (fun j => z0_pt 1 j)) hA] at h1
     have e1 : (fun k' j => ev ![mulL Y.B.G.F n, pt C (n := 1) dd 0]
         ((![Y.B.G.F] : Fin 1 → Pt C 2 dd) k' j)) = ![mulL Y.B.G.F (n + 1)] := by
