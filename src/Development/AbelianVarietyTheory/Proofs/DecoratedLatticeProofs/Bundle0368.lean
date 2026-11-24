@@ -424,7 +424,7 @@ theorem base_enlarge {g : GA D S} {h : GA D T} (hg : SuppAt e S g) (hh : SuppAt 
       (r3 w ⟨hw, (isHalf_iff S T).1 hwe⟩)
   rw [om_eq_sum_lattice hW hS hT he hf hfix hg hh hx hy hR hRu hle, r1,
     model_sum hTm fun u hu => isHalf_mono hae (hR u hu).2,
-    sum_halfInd he.1 hc hae (GlobalTheory.SplitScalar.idem_smul_mem he.1) (suppAt_inv hg) (suppAt_inv hh) hR hRu hle]
+    sum_halfInd he.1 hc hae (GlobalTheory.SplitScalar.idem_smul_mem he.1) (_root_.GlobalTheory.SplitLinear.suppAt_inv hg) (_root_.GlobalTheory.SplitLinear.suppAt_inv hh) hR hRu hle]
 
 theorem law_enlarge' {g : GA D S} {h : GA D T} (hg : SuppAt e S g) (hh : SuppAt e T h)
     (hle : ∀ w ∈ latO S T ΛS ΛT fun _ => True, IsHalf e w → actO S T g⁻¹ h⁻¹ w ∈ latO S T ΛS ΛT fun _ => True) :
@@ -442,11 +442,11 @@ theorem law_place' {g : GA D S} {h : GA D T} (hg : SuppAt e S g) (hh : SuppAt e 
   letI := GlobalTheory.FinPl.PlacesAdeles.selfDual_isFull T ΛT hT
   obtain ⟨N, hN, h1⟩ := exists_nsmul_actO (ΛS := ΛS) (ΛT := ΛT) inferInstance inferInstance g⁻¹ h⁻¹
   obtain ⟨z, z1, z2⟩ := exists_scalar he T hN
-  have z4 : SuppAt e T z⁻¹ := suppAt_of (GlobalTheory.SplitScalar.off_smul_mt_inv z1)
-  have l1 := law_enlarge' hW hS hT ha hinf hc hf hTm he hae hfix hg (suppAt_mul hh z4) fun w hw hwe => by
+  have z4 : SuppAt e T z⁻¹ := _root_.GlobalTheory.SplitLinear.suppAt_of (GlobalTheory.SplitScalar.off_smul_mt_inv z1)
+  have l1 := law_enlarge' hW hS hT ha hinf hc hf hTm he hae hfix hg (_root_.GlobalTheory.SplitLinear.suppAt_mul hh z4) fun w hw hwe => by
     rw [actO_scalar' z2 g h hwe]
     exact h1 w hw
-  have l2 := law_enlarge' hW hS hT ha hinf hc hf hTm he hae hfix (suppAt_one e S) z4 fun w hw hwe => by
+  have l2 := law_enlarge' hW hS hT ha hinf hc hf hTm he hae hfix (_root_.GlobalTheory.SplitLinear.suppAt_one e S) z4 fun w hw hwe => by
     rw [inv_one, inv_inv, actO_scalar z2 hwe]
     exact nsmul_mem hw N
   have l3 := l1.mul inferInstance inferInstance (l2.inv inferInstance inferInstance (fac_ne_zero _ _))

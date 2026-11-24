@@ -105,7 +105,7 @@ theorem PhiQ_add (ξ : (𝓞 E ⧸ P.asIdeal)ˣ →* Kˣ) {k₀ r c' n' c n : �
   have e1 := fun a p p' => intAt_add_q (a := a) (hZ p p')
   have e2 := fun a p p' => intAt_add_q_div (a := a) (hZ p p')
   refine ite_eq_ite_zero (by simp only [e1, e2]) fun h => ?_
-  exact unitV_congr _ (redP_det_add_q (fun s s' => h.1 _ _ (by have := s.2; omega) (by have := s'.2; omega)) fun _ _ => hZ _ _)
+  exact _root_.GlobalTheory.LastSteps.unitV_congr _ (redP_det_add_q (fun s s' => h.1 _ _ (by have := s.2; omega) (by have := s'.2; omega)) fun _ _ => hZ _ _)
 
 end Phi
 
