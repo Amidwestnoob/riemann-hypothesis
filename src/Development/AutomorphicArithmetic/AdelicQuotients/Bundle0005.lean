@@ -195,6 +195,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AdelicQuotients.ExistsCompactConjMemCentralizerMulOfSeparableCha
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open PositivityTheory.Rg.Tf.Geo
 
 private def piGL {W : Type} (K : W → Type) [∀ w, CommRing (K w)] (n : ℕ) (g : ∀ w, GL (Fin n) (K w)) :
@@ -428,6 +429,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AdelicQuotients.QuotientIntegralLtTopOfInvariantClosedEmbedding
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory NumberField IsDedekindDomain Polynomial
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace GroundTheory.Global GroundTheory.Global.SemiLocal
 open GroundTheory.Global.AdeleBaseChange
