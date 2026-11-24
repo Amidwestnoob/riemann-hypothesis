@@ -312,7 +312,7 @@ theorem law_flat {K : Subgroup (G2 σ Y)} {a : G2 σ Y → ℝ} (hK : IsHgt K a)
     rw [← Complex.cpow_add _ _ hd]
     congr 1
     ring
-  simp only [flat]
+  simp only [GlobalTheory.ThK.Dbl.flat]
   rw [hgt_par_mul hK hp x, hf.law p t x hp, Complex.ofReal_mul, Complex.mul_cpow_ofReal_nonneg h0 (hgt_nonneg hK x), hc]
   ring
 
