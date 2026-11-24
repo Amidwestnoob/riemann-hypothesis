@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.Gco
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open NumberField IsDedekindDomain CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel Formalism.ConjugateSelfDual
 
 noncomputable section
