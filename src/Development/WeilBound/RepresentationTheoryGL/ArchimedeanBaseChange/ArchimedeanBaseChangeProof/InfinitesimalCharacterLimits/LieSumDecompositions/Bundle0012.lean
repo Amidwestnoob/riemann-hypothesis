@@ -204,7 +204,7 @@ theorem stepC_left (hU : IsAutSt U) {c : ℂ} (hT : IsSliceMap U c T) (hexp : HE
     (hψ₀ : ψ₀ ∈ U) :
     ∃ F : Finset (Sm E r), (↑F : Set (Sm E r)) ⊆ BlockDerivatives.LS U T ∧ ∀ W : Submodule ℂ (Sm E r), _root_.GlobalTheory.CuspRep.IsStable W →
       (↑F : Set (Sm E r)) ⊆ W → ∀ (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)) (m₂ : GA E s),
-        sl0 m₂ (T (rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W := by
+        sl0 m₂ (T (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W := by
   classical
   have hL : IsOpen ((JFinTr.stabFin ψ₀ : Subgroup (GL (Fin (r + s)) (Af E))) : Set (GL (Fin (r + s)) (Af E))) :=
     (hU.2 ψ₀ hψ₀).level
@@ -228,7 +228,7 @@ theorem stepC_right (hU : IsAutSt U) {c : ℂ} (hT : IsSliceMap U c T) (hexp : H
     (hψ₀ : ψ₀ ∈ U) :
     ∃ F : Finset (Sm E s), (↑F : Set (Sm E s)) ⊆ BlockDerivatives.RS U T ∧ ∀ W : Submodule ℂ (Sm E s), _root_.GlobalTheory.CuspRep.IsStable W →
       (↑F : Set (Sm E s)) ⊆ W → ∀ (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)) (m₁ : GA E r),
-        sl1 m₁ (T (rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W := by
+        sl1 m₁ (T (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W := by
   classical
   have hL : IsOpen ((JFinTr.stabFin ψ₀ : Subgroup (GL (Fin (r + s)) (Af E))) : Set (GL (Fin (r + s)) (Af E))) :=
     (hU.2 ψ₀ hψ₀).level
@@ -256,7 +256,7 @@ theorem LS_fg (hU : IsAutSt U) {c : ℂ} (hT : IsSliceMap U c T) (hfg : FinGen U
   have hc := collect (α := Sm E (r + s)) (β := Sm E r) S₀ (BlockDerivatives.LS U T)
     (fun (ψ₀ : Sm E (r + s)) (F : Finset (Sm E r)) => ∀ W : Submodule ℂ (Sm E r), _root_.GlobalTheory.CuspRep.IsStable W → (↑F : Set (Sm E r)) ⊆ W →
       ∀ (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)) (m₂ : GA E s),
-        sl0 m₂ (T (rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W)
+        sl0 m₂ (T (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W)
     (fun ψ₀ F F' hFF' h W hW hW' => h W hW ((Finset.coe_subset.2 hFF').trans hW'))
     (fun ψ₀ hψ₀ => stepC_left hU hT hexp (hS₀U hψ₀))
   obtain ⟨F, hF, hQ⟩ := hc
@@ -277,7 +277,7 @@ theorem RS_fg (hU : IsAutSt U) {c : ℂ} (hT : IsSliceMap U c T) (hfg : FinGen U
   have hc := collect (α := Sm E (r + s)) (β := Sm E s) S₀ (BlockDerivatives.RS U T)
     (fun (ψ₀ : Sm E (r + s)) (F : Finset (Sm E s)) => ∀ W : Submodule ℂ (Sm E s), _root_.GlobalTheory.CuspRep.IsStable W → (↑F : Set (Sm E s)) ⊆ W →
       ∀ (k : Kinf E (r + s)) (g : GL (Fin (r + s)) (Af E)) (m₁ : GA E r),
-        sl1 m₁ (T (rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W)
+        sl1 m₁ (T (GlobalTheory.CuspRep.rt E (r + s) (BlockDerivatives.yp k g) ψ₀)) ∈ W)
     (fun ψ₀ F F' hFF' h W hW hW' => h W hW ((Finset.coe_subset.2 hFF').trans hW'))
     (fun ψ₀ hψ₀ => stepC_right hU hT hexp (hS₀U hψ₀))
   obtain ⟨F, hF, hQ⟩ := hc

@@ -154,21 +154,21 @@ theorem yp_mul {a : ℕ} (k k' : Kinf E a) (g g' : GL (Fin a) (Af E)) :
   InducedTensorMap.cf_mul a k k' g g'
 
 theorem rt_yp_rt {a : ℕ} (k k' : Kinf E a) (g g' : GL (Fin a) (Af E)) (φ : Sm E a) :
-    rt E a (BlockDerivatives.yp k g) (rt E a (BlockDerivatives.yp k' g') φ) = rt E a (BlockDerivatives.yp (k * k') (g * g')) φ := by
+    GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp k g) (GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp k' g') φ) = GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp (k * k') (g * g')) φ := by
   rw [← yp_mul, map_mul, Module.End.mul_apply]
 
-theorem act_fin_eq {a : ℕ} (h : GL (Fin a) (Af E)) (φ : Sm E a) : act (.fin h) φ = rt E a (BlockDerivatives.yp 1 h) φ := by
+theorem act_fin_eq {a : ℕ} (h : GL (Fin a) (Af E)) (φ : Sm E a) : act (.fin h) φ = GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp 1 h) φ := by
   refine Subtype.ext (funext fun x => ?_)
   simp [BlockDerivatives.yp]
   rfl
 
-theorem act_cpt_eq {a : ℕ} (κ : Kinf E a) (φ : Sm E a) : act (.cpt κ) φ = rt E a (BlockDerivatives.yp κ 1) φ := by
+theorem act_cpt_eq {a : ℕ} (κ : Kinf E a) (φ : Sm E a) : act (.cpt κ) φ = GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp κ 1) φ := by
   refine Subtype.ext (funext fun x => ?_)
   simp [BlockDerivatives.yp]
   rfl
 
 theorem rt_lie_yp {a : ℕ} (k : Kinf E a) (g : GL (Fin a) (Af E)) (X : Lie E a) :
-    ∃ X' : Lie E a, rt E a (BlockDerivatives.yp k g) * lie E a X = lie E a X' * rt E a (BlockDerivatives.yp k g) := by
+    ∃ X' : Lie E a, GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp k g) * lie E a X = lie E a X' * GlobalTheory.CuspRep.rt E a (BlockDerivatives.yp k g) := by
   refine ⟨toL ((Unitary.toUnits k).val * Matrix.of X * ((Unitary.toUnits k)⁻¹).val), ?_⟩
   rw [BlockDerivatives.yp, map_mul, mul_assoc, ← lie_rt_fin, ← mul_assoc, ← mul_assoc]
   exact congrArg (· * _) (GlobalTheory.CapAdInv.rt_lie (Unitary.toUnits k) (Matrix.of X))
@@ -204,9 +204,9 @@ theorem isAutSt_tw {V : Submodule ℂ (Sm E a)} (hV : IsAutSt V) (w : ℂ) : IsA
       left γ g := by simp [h.left, chiDet_ratGL]
       level := isOpen_stab_of_mem_nhds _ _ <| Filter.mem_of_superset
         ((h.level.inter (isOpen_ker_chiDet χ)).mem_nhds ⟨by simp, by simp⟩) fun k hk => by
-          have h1 : rt E a (finGL E a k) ψ = ψ := hk.1
+          have h1 : GlobalTheory.CuspRep.rt E a (finGL E a k) ψ = ψ := hk.1
           have h2 : chiDet a χ (finGL E a k) = 1 := hk.2
-          change rt E a (finGL E a k) _ = _
+          change GlobalTheory.CuspRep.rt E a (finGL E a k) _ = _
           rw [rt_mulChi, h1, h2, Units.val_one, one_smul]
       kfin := by
         have := h.kfin
