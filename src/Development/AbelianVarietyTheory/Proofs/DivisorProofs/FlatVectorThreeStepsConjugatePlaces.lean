@@ -316,10 +316,10 @@ theorem vecFlat_three_steps : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0
   · unfold GlobalTheory.BaseCmp.IsTypeVec GlobalTheory.BaseCmp.lattice₂
     rw [← h.ψ, ← h.ΛS, ← h.ΛT, ← h.βS, ← h.βT, ← h.vac, ← h.Pg]
     exact t1
-  · unfold ThAt GlobalTheory.BaseCmp.flatDat
+  · unfold GlobalTheory.BigOn.Exp.TupLe.Swap.ThAt GlobalTheory.BaseCmp.flatDat
     rw [← h.ψ, ← h.ΛS, ← h.ΛT, ← h.βS, ← h.βT]
     exact t2
-  · unfold ThAt GlobalTheory.BaseCmp.flatDat
+  · unfold GlobalTheory.BigOn.Exp.TupLe.Swap.ThAt GlobalTheory.BaseCmp.flatDat
     rw [← h.ψ, ← h.ΛS, ← h.ΛT, ← h.βS, ← h.βT]
     exact t3
 

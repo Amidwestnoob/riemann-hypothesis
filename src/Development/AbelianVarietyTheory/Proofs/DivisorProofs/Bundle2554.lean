@@ -340,7 +340,7 @@ theorem tau_sum_fst : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Ideal R) (D 
       rw [SumTau.psum_one]; exact s₁
     have t₃ : P ≫ psum D.toPre.P.A ![fst D₁.toPre.P.A D.toPre.P.A ≫ i₁, snd D₁.toPre.P.A D.toPre.P.A] {0, 1} =
         toUnit (TK R) ≫ D.toPre.c (j₁ y + y') := by
-      rw [psum_pair, D.toPre.c_add, comp_padd', comp_padd']
+      rw [psum_pair, D.toPre.c_add, GlobalTheory.MumProd.SumTau.comp_padd', GlobalTheory.MumProd.SumTau.comp_padd']
       exact congrArg₂ (padd D.toPre.P.A) s₀ s₁
     have c₀ : ((-1 : ℤ) ^ (2 - (∅ : Finset (Fin 2)).card)) = 1 := by decide
     have c₁ : ((-1 : ℤ) ^ (2 - ({0} : Finset (Fin 2)).card)) = -1 := by decide

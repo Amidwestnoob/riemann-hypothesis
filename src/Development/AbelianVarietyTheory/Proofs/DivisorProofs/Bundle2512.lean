@@ -75,7 +75,7 @@ theorem prod_alt_const {U : Type} [CommGroup U] (m : U) :
 
 theorem lift_one_psum {G : Over S} [GrpObj G] [IsCommMonObj G] {T : Over S} (I : Finset (Fin 2)) :
     lift (1 : T ⟶ G) (1 : T ⟶ G) ≫ psum G (x2 G) I = 1 := by
-  rw [comp_psum]
+  rw [ReciprocityTheory.ChartRestriction.G.DVR.comp_psum]
   have e : (fun k => lift (1 : T ⟶ G) (1 : T ⟶ G) ≫ x2 G k) = fun _ => (1 : T ⟶ G) := by
     funext k
     fin_cases k <;> simp [x2]

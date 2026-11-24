@@ -262,7 +262,7 @@ theorem degree_eq_of_scaling_zpow {K σ : Type} [Field K] [CharZero K] (G P : Mv
       simp
   have h2 := sub_eq_zero.1 ((mul_eq_zero.1 h1).resolve_left hP)
   have h3 := congrArg (AddMonoidAlgebra.coeff · μ) h2
-  rw [coeff_aeval_scale, MvPolynomial.coeff_C_mul] at h3
+  rw [GlobalTheory.LamT.FieldPoly.coeff_aeval_scale, MvPolynomial.coeff_C_mul] at h3
   have h4 : (2 : K) ^ μ.degree = 2 ^ d := mul_right_cancel₀ hμ h3
   rw [← zpow_natCast] at h4
   exact two_zpow_injective h4

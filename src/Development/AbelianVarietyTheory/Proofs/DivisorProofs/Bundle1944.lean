@@ -370,7 +370,7 @@ theorem cInf_eq_frame_norm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     have hc : s.cInf (σ'.comp (algebraMap c.F K)) = s.cInf (σ.comp (algebraMap c.F K)) := by
       have i1 := s.norm_inf (σ.comp (algebraMap c.F K))
       have i2 := s.norm_inf (σ'.comp (algebraMap c.F K))
-      rw [e0, goodOf_conj, i1] at i2
+      rw [e0, GlobalTheory.CompHt.goodOf_conj, i1] at i2
       exact (Set.singleton_eq_singleton_iff.1 i2).symm
     have hgr : ∀ {n : ℕ} (v : Fin n → Fin F.P₀.g → K), (h.gram σ' v).det.re = (h.gram σ v).det.re := fun v => by
       have : h.gram σ' v = (h.gram σ v).map (starRingEnd ℂ) := by

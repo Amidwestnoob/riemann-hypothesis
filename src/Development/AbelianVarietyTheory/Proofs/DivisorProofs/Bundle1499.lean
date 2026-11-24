@@ -323,7 +323,7 @@ theorem chi_norm_global (χ : Formalism.L2.Host.HChar D.host.E) {n : D.what₂.T
     refine Finset.prod_eq_one fun τ _ => ?_
     have h0 : embT D τ (a : D.host.E) ≠ 0 := (map_ne_zero _).2 a.ne_zero
     have h1 : embT D τ ((Formalism.L2.Host.upF D.host.F k' : D.host.Eˣ) : D.host.E) = ((Complex.normSq (embT D τ (a : D.host.E)) : ℝ) : ℂ) := by
-      rw [hu, map_mul, emb_conj, Complex.mul_conj]
+      rw [hu, map_mul, GlobalTheory.NormSum.UnramHecke.emb_conj, Complex.mul_conj]
     have h2 : (0 : ℝ) < Complex.normSq (embT D τ (a : D.host.E)) := Complex.normSq_pos.2 h0
     rw [h1, Complex.norm_real, Real.norm_of_nonneg h2.le, div_self (by exact_mod_cast h2.ne'), one_zpow]
   rw [hk, finIdl_incU]
