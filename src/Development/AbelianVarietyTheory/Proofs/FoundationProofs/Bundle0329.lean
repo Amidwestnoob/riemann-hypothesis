@@ -137,7 +137,7 @@ theorem exists_eq_smul_idem {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (hσ : Good
 variable {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} {x : ℝ}
 
 theorem ConstSec.exists_eq_smul (hU : ∀ σ, GoodEmb c σ → IsUnf (U σ)) (hF : FnAlgClosed (Xo := Xo) (c := c)) {Z : Comp Xo c}
-    {la : Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s t : ConstSec U x Z la δ) :
+    {la : _root_.GlobalTheory.AllWt.Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s t : ConstSec U x Z la δ) :
     ∃ (a : c.F) (ha : a ≠ 0), t = s.smul a ha := by
   have hσ := goodEmb_goodOf c c.F.val.toRingHom
   let u : ConstSec U x Z 0 0 := (t.mul s.symm).copy (add_neg_cancel la) (add_neg_cancel δ)
@@ -158,7 +158,7 @@ theorem ConstSec.exists_eq_smul (hU : ∀ σ, GoodEmb c σ → IsUnf (U σ)) (hF
   exact ⟨a, h0, ConstSec.ext h⟩
 
 theorem ConstSec.deg_eq (hU : ∀ σ, GoodEmb c σ → IsUnf (U σ)) (hF : FnAlgClosed (Xo := Xo) (c := c)) {Z : Comp Xo c}
-    {la : Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s t : ConstSec U x Z la δ) : t.deg = s.deg := by
+    {la : _root_.GlobalTheory.AllWt.Weight Dw} {δ : HeightOneSpectrum (𝓞 c.F) → ℝ} (s t : ConstSec U x Z la δ) : t.deg = s.deg := by
   obtain ⟨a, ha, rfl⟩ := ConstSec.exists_eq_smul hU hF s t
   exact ConstSec.deg_smul a ha s
 

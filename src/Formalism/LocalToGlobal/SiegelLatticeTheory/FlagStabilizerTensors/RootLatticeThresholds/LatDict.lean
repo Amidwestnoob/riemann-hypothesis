@@ -151,7 +151,7 @@ theorem hT_herm (x y : (VS D).V) : (VS D).hT y x = star ((VS D).hT x y) := by
 
 theorem hT_f_prV (a : Fin D.R.rS) (v : (VS D).V) : (VS D).hT (X.fY a) (prV X v) = 0 := by
   set_option synthInstance.maxHeartbeats 100000 in
-    simp [prV_apply, map_sub, map_sum, hT_f_e, X.ff]
+    simp [prV_apply, map_sub, map_sum, _root_.Formalism.L2.SG.Pf.Level.hT_f_e, X.ff]
 
 theorem hT_e_prV (a : Fin D.R.rS) (v : (VS D).V) : (VS D).hT (X.eX a) (prV X v) = 0 := by
   set_option synthInstance.maxHeartbeats 100000 in
@@ -686,7 +686,7 @@ theorem coef_span1 (a : Fin D.R.rS) {y : (VS D).V} (hy : y ∈ latSpanS (fun a =
   induction hy using Submodule.span_induction with
   | mem w hw =>
     obtain ⟨b, x, hx, rfl⟩ := hw
-    rw [map_smul, hT_f_e, smul_eq_mul]
+    rw [map_smul, _root_.Formalism.L2.SG.Pf.Level.hT_f_e, smul_eq_mul]
     exact aa_mem_of_eq hx
   | zero => rw [map_zero]; exact zero_mem _
   | add w w' _ _ hw hw' => rw [map_add]; exact add_mem hw hw'
@@ -955,7 +955,7 @@ theorem prH_zero : prH (D := D) X.eX f' 0 = 0 := by simp [prH]
 
 theorem dlt_e (b : Fin D.R.rS) : dlt X f' (X.eX b) = X.eX b := by
   rw [dlt_apply, prV_e, prH_zero]
-  simp [hT_f_e, X.ee]
+  simp [_root_.Formalism.L2.SG.Pf.Level.hT_f_e, X.ee]
 
 include hef in
 theorem dlt_f (b : Fin D.R.rS) : dlt X f' (X.fY b) = f' b := by
