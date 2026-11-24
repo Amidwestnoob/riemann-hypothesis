@@ -34,7 +34,7 @@ theorem adelic_bounds : AdelBounds := by
   set g := finMat σ J h with hgdef
   have hgg' : g * g' = 1 := by rw [hgdef, hg'def, ← finMat_mul, mul_inv_cancel, finMat_one]
   have hg'g : g' * g = 1 := by rw [hgdef, hg'def, ← finMat_mul, inv_mul_cancel, finMat_one]
-  have hU : cT (PI.UJClassFin.sigR (Af F) σ) g * JR (Af F) J * g = JR (Af F) J := finMat_unitary σ J h
+  have hU : _root_.PI.UJClassFin.cT (PI.UJClassFin.sigR (Af F) σ) g * JR (Af F) J * g = JR (Af F) J := finMat_unitary σ J h
   have hvs : ∀ (c : E) (x : Fin M → E), vinc (F := F) (c • x) = inclR (F := F) (Af F) c • vinc (F := F) x := by
     intro c x
     funext i

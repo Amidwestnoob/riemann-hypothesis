@@ -18,7 +18,7 @@ def HermApprox : Prop :=
     (∀ a, σ a = star a) → (∃ θ : E, σ θ ≠ θ) →
     h.IsSymm → h.Nondegenerate → Submodule.IsFullLattice E L0 →
     ∀ N ∈ genus h L0, ∀ P : Finset (Ideal (𝓞 E)), (∀ p ∈ P, p.IsMaximal) →
-      ∃ γ : UJ (σ : E →+* E) (gramOf h b), ∀ p ∈ P,
+      ∃ γ : _root_.PI.UJClassFin.UJ (σ : E →+* E) (gramOf h b), ∀ p ∈ P,
         loc (K := E) p (gmap (linOf b (γ : GL (Fin M) E)) L0) = loc (K := E) p N
 
 section Over

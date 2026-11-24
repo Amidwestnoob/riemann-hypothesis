@@ -25,7 +25,7 @@ theorem normIdSm_of (hGS : Formalism.FourierDecayAlt.ThreeDimData.GrowthS) (hGG 
   have : SigmaFinite μW := hμW.1
   have : SigmaFinite μN := hμN.1
   have hds' : IsDSHpk k r ε lam σ := hds
-  have hHaar : IsHaarOn (UH (Hpk k r)) μG := hμG
+  have hHaar : _root_.Formalism.MainNotions.S.IsHaarOn (UH (Hpk k r)) μG := hμG
   have hq' : IsQuotMeas μG (muSof μW μN) νq := hq
   have hGr := Cv.grpAll k r z
   have hSg := Cv.sigAll k r ε lam H σ hds'
