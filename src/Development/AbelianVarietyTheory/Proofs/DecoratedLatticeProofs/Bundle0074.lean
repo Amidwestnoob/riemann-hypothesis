@@ -113,7 +113,7 @@ theorem classNumbers_leS : ∃ C : ℝ, 0 ≤ C ∧ ∀ (CY : ℝ) (D : D7) (N :
   obtain ⟨hH, -, -, -, hmu, -, -, -, hS⟩ := hyp
   have hQ : QE sel (mu : Chr X.F X.E X.K) = ∅ := by
     rw [hmu]
-    exact twistPrimes_trivialTuple_empty sel Sg
+    exact Formalism.L2.Col.twistPrimes_trivialTuple_empty sel Sg
   have hSG : rowSG Pr sel mu = Pr.vGs := by
     unfold rowSG uSG
     ext w

@@ -87,7 +87,7 @@ theorem rowSG_one (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (�
     rcases Finset.mem_union.mp hw with h | h
     · exact h
     · have h' : w ∈ QE sel ((mu0 X.F X.E X.K Sg : Tup X.F X.E X.K Sg) : Chr X.F X.E X.K) := h
-      rw [twistPrimes_trivialTuple_empty sel Sg] at h'
+      rw [Formalism.L2.Col.twistPrimes_trivialTuple_empty sel Sg] at h'
       simp at h'
   · intro hw
     exact Finset.mem_union.mpr (Or.inl hw)
