@@ -46,16 +46,12 @@ namespace GlobalTheory
 theorem levelMaps_closed : Out.Laws → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H), 1 ≤ D.p + D.q → ToroidalLevelCompatibility (H := H) (D := D) := by
   intro hL
 
-  have hsm (k : Type) [Field k] (X : Scheme.{0}) (s : X ⟶ Sp k) (hs : Smooth s) :
-      IsReduced X ∧ GlobalTheory.IsNormalScheme X ∧ IsLocallyNoetherian X := by
-    obtain ⟨hred, hnormal, hnoeth⟩ :=
-      GlobalTheory.isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field k X s hs
-    exact ⟨hred, GlobalTheory.IsNormalScheme.of_pred hnormal, hnoeth⟩
   have hid := ObjMaps.id_comp_cancel
   have hlow := obj_lower_level
   have hrep := moduli_rep_of_base hid
   have hsim := SimAlg.sim_group
-  have hact := Moduli.LevelAction.similitude_acts hsm hid hlow hrep
+  have hact := Moduli.LevelAction.similitude_acts
+    GlobalTheory.isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field hid hlow hrep
     (exists_obj_twist_by_similitude hsim) hsim
   exact levelMaps_of_parts
     (GlobalTheory.exists_levelMap
@@ -425,7 +421,7 @@ theorem pushInvertible_of_model : Out.Laws → Out.Laws2 → Out.Laws3 → ∀ (
       first | infer_instance | (cases sa; assumption)
     exact GlobalTheory.grpObj_geometricallyIntegral_of_smooth C.X C.t.G
   exact @GlobalTheory.PushInv.pushInvertible_of_densePart C.X U hN (C.jQ ≫ pullback.fst C.s (spMap β))
-    (GlobalTheory.IsNormalScheme.of_pred C.normal) hPre hFl hDo hQC
+    C.normal hPre hFl hDo hQC
     C.t.G o.t.G C.m.φ C.t.PP.L o.t.PP.L hSm hGI hPB C.t.PP.isLB o.t.PP.isLB hIso
     (GlobalTheory.PushInv.pushInvertible_any hS hH U (GlobalTheory.Obj.toPolAV o)) hθ
 
