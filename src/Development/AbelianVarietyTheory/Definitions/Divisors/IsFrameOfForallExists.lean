@@ -128,7 +128,7 @@ theorem map_of_linearEquiv (he : IsFrame e) {e' : ι → Γ(G, U)}
 
 theorem map_iso (he : IsFrame e) (φ : F ⟶ G) [IsIso φ] : IsFrame fun i => φ.app U (e i) :=
   he.map_of_linearEquiv
-    (fun V _ => LinearEquiv.ofBijective (appLinear φ V)
+    (fun V _ => LinearEquiv.ofBijective (GlobalTheory.QCoh.appLinear φ V)
       (ConcreteCategory.bijective_of_isIso (φ.app V)))
     fun _ h i => app_resM φ h (e i)
 
@@ -478,7 +478,7 @@ instance mono_incl : Mono N.incl :=
   QCoh.mono_of_locally_app_injective _ fun W _ hx => ⟨W, hx, le_rfl, N.incl_app_injective W⟩
 
 def lift (φ : G ⟶ F) (h : ∀ V s, φ.app V s ∈ N.sec V) : G ⟶ N.toMod :=
-  homOfLinear (G := N.toMod) (fun V => (appLinear φ V).codRestrict (N.sec V) (h V))
+  homOfLinear (G := N.toMod) (fun V => (GlobalTheory.QCoh.appLinear φ V).codRestrict (N.sec V) (h V))
     fun hW s => Subtype.ext (app_resM φ hW s)
 
 @[reassoc (attr := simp)] theorem lift_incl (φ : G ⟶ F) (h : ∀ V s, φ.app V s ∈ N.sec V) :
@@ -505,7 +505,7 @@ theorem isQuasicoherent [F.IsQuasicoherent]
 end Sub
 
 def Sub.ker (φ : F ⟶ G) : Sub F where
-  sec V := LinearMap.ker (appLinear φ V)
+  sec V := LinearMap.ker (GlobalTheory.QCoh.appLinear φ V)
   res_mem h s hs := (app_resM φ h s).trans ((congrArg _ hs).trans (map_zero _))
   mem_of_local {V s} H := by
     choose W hW hx hs using fun x : V => H x x.2

@@ -200,18 +200,18 @@ theorem homApp_sum {κ : Type*} (t : Finset κ) (φ : κ → Γ(homMod F G, V)) 
 variable (F G) in
 def homGlobalEquiv : Γ(homMod F G, ⊤) ≃+ (F ⟶ G) where
   toFun φ := homOfLinear (fun _ => homApp φ le_top) fun h s => homApp_resM φ le_top h s
-  invFun φ := homMk (fun W _ => appLinear φ W) fun _ _ _ h s => app_resM φ h s
+  invFun φ := homMk (fun W _ => GlobalTheory.QCoh.appLinear φ W) fun _ _ _ h s => app_resM φ h s
   left_inv _ := rfl
   right_inv _ := rfl
   map_add' _ _ := rfl
 
 def homMap {F' G' : X.Modules} (α : F' ⟶ F) (β : G ⟶ G') : homMod F G ⟶ homMod F' G' :=
   homOfLinear (fun V =>
-    { toFun φ := homMk (fun W h => appLinear β W ∘ₗ homApp φ h ∘ₗ appLinear α W)
+    { toFun φ := homMk (fun W h => GlobalTheory.QCoh.appLinear β W ∘ₗ homApp φ h ∘ₗ GlobalTheory.QCoh.appLinear α W)
         fun W W' h h' s => by
-          simp only [LinearMap.comp_apply, appLinear_apply, app_resM, homApp_resM φ h h']
-      map_add' := fun φ ψ => hom_ext fun W h s => map_add (appLinear β W) _ _
-      map_smul' := fun a φ => hom_ext fun W h s => map_smul (appLinear β W) _ _ })
+          simp only [LinearMap.comp_apply, GlobalTheory.QCoh.appLinear_apply, app_resM, homApp_resM φ h h']
+      map_add' := fun φ ψ => hom_ext fun W h s => map_add (GlobalTheory.QCoh.appLinear β W) _ _
+      map_smul' := fun a φ => hom_ext fun W h s => map_smul (GlobalTheory.QCoh.appLinear β W) _ _ })
     fun _ _ => rfl
 
 @[simp] theorem homApp_homMap {F' G' : X.Modules} (α : F' ⟶ F) (β : G ⟶ G')
@@ -500,9 +500,9 @@ private theorem repr_map_iso_app_eq_repr (he : IsFrame e) (φ : F ⟶ G) [IsIso 
   have key : φ.app V s = ∑ j, (he.basis h).repr s j • ((he.map_iso φ).basis h) j := by
     conv_lhs => rw [← (he.basis h).sum_repr s]
     set_option synthInstance.maxHeartbeats 100000 in
-      rw [← appLinear_apply, map_sum]
+      rw [← GlobalTheory.QCoh.appLinear_apply, map_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
-    rw [map_smul, appLinear_apply]
+    rw [map_smul, GlobalTheory.QCoh.appLinear_apply]
     simp only [IsFrame.basis_apply, app_resM]
   rw [key, Module.Basis.repr_sum_self]
 

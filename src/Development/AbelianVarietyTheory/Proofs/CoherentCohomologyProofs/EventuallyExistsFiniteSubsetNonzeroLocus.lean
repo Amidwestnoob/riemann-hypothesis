@@ -188,7 +188,7 @@ theorem coe_support_secIdeal (hL : L.IsLB) (s : L.Sec) :
 
 theorem IsMulBy.ker_π_app [F.IsQuasicoherent] {φ : G ⟶ F} {s : L.Sec} (H : IsMulBy φ s)
     (hL : L.IsLB) (W : X.affineOpens) :
-    LinearMap.ker (appLinear (cokernel.π φ) W.1) = (secIdeal hL s).ideal W • ⊤ := by
+    LinearMap.ker (GlobalTheory.QCoh.appLinear (cokernel.π φ) W.1) = (secIdeal hL s).ideal W • ⊤ := by
   have key : ∀ (x : W.1) (t : (F.presheaf.stalk (x : X) :)), stalkLinear (cokernel.π φ) x t = 0 ↔
       t ∈ (secIdeal hL s).ideal W • (⊤ : Submodule Γ(X, W.1) (F.presheaf.stalk (x : X) :)) := by
     intro x t
@@ -218,7 +218,7 @@ theorem IsMulBy.ker_π_app [F.IsQuasicoherent] {φ : G ⟶ F} {s : L.Sec} (H : I
     rw [Submodule.localized₀_smul, Submodule.localized₀_top, ← key, germLinear_apply,
       stalkLinear_germ, show (cokernel.π φ).app W.1 t = 0 from ht, map_zero]
   · obtain ⟨x, rfl⟩ : ∃ x' : W.1, x' = x := ⟨⟨x, hx⟩, rfl⟩
-    rw [appLinear_apply, ← stalkLinear_germ]
+    rw [GlobalTheory.QCoh.appLinear_apply, ← stalkLinear_germ]
     refine (key x _).2 ?_
     have := Submodule.mem_map_of_mem (f := germLinear F x) ht
     rw [Submodule.map_smul''] at this
@@ -246,7 +246,7 @@ theorem surjective_and_ker_unit_subschemeι (I : X.IdealSheafData) (F : X.Module
     [F.IsQuasicoherent] (W : X.affineOpens) :
     Function.Surjective
       (((Scheme.Modules.pullbackPushforwardAdjunction I.subschemeι).unit.app F).app W.1) ∧
-    LinearMap.ker (appLinear
+    LinearMap.ker (GlobalTheory.QCoh.appLinear
       ((Scheme.Modules.pullbackPushforwardAdjunction I.subschemeι).unit.app F) W.1) =
         I.ideal W • ⊤ := by
   have e : I.subschemeι ⁻¹ᵁ W.1 ≤ I.subschemeι ⁻¹ᵁ W.1 := le_rfl
@@ -268,14 +268,14 @@ theorem surjective_and_ker_unit_subschemeι (I : X.IdealSheafData) (F : X.Module
 
 theorem surjective_and_ker_unitToPush_subschemeι (I : X.IdealSheafData) (W : X.affineOpens) :
     Function.Surjective ((unitToPush I.subschemeι).app W.1) ∧
-      LinearMap.ker (appLinear (unitToPush I.subschemeι) W.1) = I.ideal W • ⊤ :=
+      LinearMap.ker (GlobalTheory.QCoh.appLinear (unitToPush I.subschemeι) W.1) = I.ideal W • ⊤ :=
   ⟨I.subschemeι_app_surjective W,
     (I.ker_subschemeι_app W).trans ((Ideal.mul_top _).symm.trans (Ideal.smul_eq_mul _ _).symm)⟩
 
 theorem IsMulBy.exists_cokernel_iso [F.IsQuasicoherent] [G.IsQuasicoherent] {φ : G ⟶ F} {s : L.Sec}
     (H : IsMulBy φ s) (hL : L.IsLB) {E : X.Modules} [E.IsQuasicoherent] (η : F ⟶ E)
     (h : ∀ W : X.affineOpens, Function.Surjective (η.app W.1) ∧
-      LinearMap.ker (appLinear η W.1) = (secIdeal hL s).ideal W • ⊤) :
+      LinearMap.ker (GlobalTheory.QCoh.appLinear η W.1) = (secIdeal hL s).ideal W • ⊤) :
     ∃ e : cokernel φ ≅ E, cokernel.π φ ≫ e.hom = η := by
   have key : ∀ W : X.Opens, IsAffineOpen W → Function.Exact (φ.app W) (η.app W) := fun W hW t =>
     (SetLike.ext_iff.1 ((h ⟨W, hW⟩).2.trans (H.ker_π_app hL ⟨W, hW⟩).symm) t).trans
@@ -347,7 +347,7 @@ theorem surjective_cutπ_app [F.IsQuasicoherent] (W : X.affineOpens) :
     Function.Surjective ((cutπ F hL s).app W.1) := surjective_app_of_epi _ W.2
 
 theorem ker_cutπ_app [F.IsQuasicoherent] (W : X.affineOpens) :
-    LinearMap.ker (appLinear (cutπ F hL s) W.1) = (secIdeal hL s).ideal W • ⊤ :=
+    LinearMap.ker (GlobalTheory.QCoh.appLinear (cutπ F hL s) W.1) = (secIdeal hL s).ideal W • ⊤ :=
   (isMulBy_cutHom F hL s).ker_π_app hL W
 
 theorem exists_cut_iso_pushforward_pullback [F.IsQuasicoherent] :
@@ -591,7 +591,7 @@ theorem cut_by_regular_section {X : Scheme.{0}} [AlgebraicGeometry.IsNoetherian 
       (∀ (W : X.affineOpens) (i : L.ι) (h : W.1 ≤ L.U i),
         (secIdeal hL s).ideal W = Ideal.span {resG X h (s.f i)}) ∧
       (∀ W : X.affineOpens, Function.Surjective ((cokernel.π (cutHom F hL s)).app W.1) ∧
-        LinearMap.ker (appLinear (cokernel.π (cutHom F hL s)) W.1) =
+        LinearMap.ker (GlobalTheory.QCoh.appLinear (cokernel.π (cutHom F hL s)) W.1) =
           (secIdeal hL s).ideal W • ⊤) ∧
       Nonempty (cokernel (cutHom F hL s) ≅
         (Scheme.Modules.pushforward (secIdeal hL s).subschemeι).obj

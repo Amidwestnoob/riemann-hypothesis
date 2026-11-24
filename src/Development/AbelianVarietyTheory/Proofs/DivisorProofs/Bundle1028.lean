@@ -323,15 +323,15 @@ theorem isVB_X₁_of_shortExact : ∀ (X : Scheme.{0}) (S : ShortComplex X.Modul
       · rw [Sum.elim_inl, Sum.elim_inl, ← he, QCoh.stalkLinear_germ]
       · rw [Sum.elim_inr, Sum.elim_inr, germ_resM])
   refine ⟨W, fun i => resM S.X₁ hW (e i), hxW, fun T hT => ?_⟩
-  refine (bijective_sumElim_iff (f := appLinear S.f T) (g := appLinear S.g T)
+  refine (bijective_sumElim_iff (f := GlobalTheory.QCoh.appLinear S.f T) (g := GlobalTheory.QCoh.appLinear S.g T)
     (QCoh.injective_app_of_mono S.f T) (QCoh.exact_app_of_exact_of_mono hS.exact T) _
     (fun j => resM S.X₂ ((hT.trans hW).trans hV) (t j)) ?_).1 ?_
-  · simp only [appLinear_apply, app_resM, ht]
+  · simp only [GlobalTheory.QCoh.appLinear_apply, app_resM, ht]
     exact hc T _
   · convert hv T hT using 3
     funext k
     rcases k with i | j
-    · simp only [Sum.elim_inl, appLinear_apply, app_resM]
+    · simp only [Sum.elim_inl, GlobalTheory.QCoh.appLinear_apply, app_resM]
     · simp only [Sum.elim_inr, resM_resM]
 
 end GlobalTheory.VB
