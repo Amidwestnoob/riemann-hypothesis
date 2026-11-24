@@ -174,7 +174,7 @@ theorem heckeD_eq_sum_of {v : HeightOneSpectrum (𝓞 (maximalRealSubfield L))} 
 theorem isoTyp_scalar (a : NG.AlgWt L n) (J : Subgroup (GAf L n)) (χ : J →* ℂˣ)
     (B : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L))))
     (hyp : NG.HypOutside J χ B) (S : Submodule ℂ (GAf L n → a.W)) (hS : NG.IsIrrRep a.ρ S) (s : SplitPlace L)
-    (ϖ : s.v.adicCompletion (maximalRealSubfield L)) (k : ℕ) (hsB : s.v ∉ B) (hϖ : IsUnif L s.v ϖ) :
+    (ϖ : s.v.adicCompletion (maximalRealSubfield L)) (k : ℕ) (hsB : s.v ∉ B) (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ) :
     ∃ c : ℂ, ∀ f ∈ NG.isoTyp a.ρ S, f ∈ NG.TypeSp a.ρ J χ → NG.tN J s ϖ k f = c • f := by
   classical
   have tc : ∀ κ : GAf L n, TrivOutside {s.v} κ → TrivOutside Bᶜ κ := fun κ hκ v hv =>
@@ -276,7 +276,7 @@ theorem isoTyp_scalar (a : NG.AlgWt L n) (J : Subgroup (GAf L n)) (χ : J →* �
   obtain ⟨t, ht, hft⟩ := Submodule.mem_sSup_iff_exists_finset.1 hf
   exact (hsum t ht).2 f hft hfix
 
-theorem main : ∀ (D : D7) (μ : D.what₂.Tup) (j : ℕ) (Mr : MtReal D μ j) (B : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield D.host.E)))), NG.IsProdLevel Mr.J → NG.HypOutside Mr.J Mr.χ B → ∀ (S : Submodule ℂ (GAf D.host.E D.R.nV → Mr.wt.W)), NG.IsIrrRep Mr.wt.ρ S → ∀ (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)) (k : ℕ), s.v ∉ B → IsUnif D.host.E s.v ϖ → 1 ≤ k → k ≤ D.R.nV → ∃ c : ℂ, ∀ y ∈ (NG.isoTyp Mr.wt.ρ S).comap Mr.real, NG.tN Mr.J s ϖ k (Mr.real y) = c • Mr.real y := by
+theorem main : ∀ (D : D7) (μ : D.what₂.Tup) (j : ℕ) (Mr : MtReal D μ j) (B : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield D.host.E)))), NG.IsProdLevel Mr.J → NG.HypOutside Mr.J Mr.χ B → ∀ (S : Submodule ℂ (GAf D.host.E D.R.nV → Mr.wt.W)), NG.IsIrrRep Mr.wt.ρ S → ∀ (s : SplitPlace D.host.E) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)) (k : ℕ), s.v ∉ B → Formalism.AUTREP.IsUnif D.host.E s.v ϖ → 1 ≤ k → k ≤ D.R.nV → ∃ c : ℂ, ∀ y ∈ (NG.isoTyp Mr.wt.ρ S).comap Mr.real, NG.tN Mr.J s ϖ k (Mr.real y) = c • Mr.real y := by
   intro D μ j Mr B _ hyp S hS s ϖ k hsB hϖ _ _
   obtain ⟨c, hc⟩ := isoTyp_scalar Mr.wt Mr.J Mr.χ B hyp S hS s ϖ k hsB hϖ
   refine ⟨c, fun y hy => hc _ (Submodule.mem_comap.1 hy) ?_⟩

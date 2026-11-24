@@ -130,7 +130,7 @@ namespace GlobalTheory.TSetFinLoc
 open GlobalTheory.TSetFin
 
 theorem finite_image_tSet_loc : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (s : SplitPlace L)
-    (ϖ : s.v.adicCompletion (maximalRealSubfield L)), IsUnif L s.v ϖ → ∀ J : Subgroup (GAf L n),
+    (ϖ : s.v.adicCompletion (maximalRealSubfield L)), Formalism.AUTREP.IsUnif L s.v ϖ → ∀ J : Subgroup (GAf L n),
     (∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax L n)) → ∀ k : ℕ,
     ((fun x : GAf L n => (x : GAf L n ⧸ J)) '' tSet L n s ϖ k).Finite := by
   intro L _ _ _ n s ϖ hϖ J hJ k

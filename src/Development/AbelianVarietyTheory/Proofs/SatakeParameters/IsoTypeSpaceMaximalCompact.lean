@@ -61,7 +61,7 @@ theorem map_mem_KGL_iff {s : SplitPlace L} {c : s.v.adicCompletion L⁺ ≃+* s.
   simp only [Matrix.GeneralLinearGroup.map_apply, RingEquiv.toRingHom_eq_coe, RingHom.coe_coe, mem_Ov_iff hc hcL]
 
 theorem isUnifV_map {s : SplitPlace L} {c : s.v.adicCompletion L⁺ ≃+* s.w.adicCompletion L} (hc : Continuous c) (hcL : ∀ x : L, c (s.i x) = algebraMap L (s.w.adicCompletion L) x)
-    {ϖ : s.v.adicCompletion L⁺} (hϖ : IsUnif L s.v ϖ) : Formalism.UG.IsUnifV L s.w (c ϖ) := by
+    {ϖ : s.v.adicCompletion L⁺} (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ) : Formalism.UG.IsUnifV L s.w (c ϖ) := by
   show Valued.v (c ϖ) = _
   rw [GlobalTheory.SplitConjVal.valuation_eq s c hc hcL]
   exact hϖ
@@ -99,7 +99,7 @@ theorem heckeD_eq_heckeVec {n : ℕ} {W : Type} [AddCommGroup W] [Module ℂ W] 
     (hcL : ∀ x : L, c (s.i x) = algebraMap L (s.w.adicCompletion L) x)
     (e : GL (Fin n) (s.v.adicCompletion L⁺) →* GAf L n) (he1 : ∀ g, TrivOutside {s.v} (e g))
     (he2 : ∀ g, s.loc n (e g) = g) (J : Subgroup (GAf L n))
-    (hJ : ∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax L n)) {ϖ : s.v.adicCompletion L⁺} (hϖ : IsUnif L s.v ϖ)
+    (hJ : ∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax L n)) {ϖ : s.v.adicCompletion L⁺} (hϖ : Formalism.AUTREP.IsUnif L s.v ϖ)
     (k : ℕ) {F : GAf L n → W} (hF : ∀ κ ∈ Umax L n, TrivOutside {s.v} κ → NG.rt L n κ F = F) :
     NG.heckeD J (tSet L n s ϖ k) F =
       GlobalTheory.LFun.heckeVec (locAct n W s c e) (GlobalTheory.LFun.KGL s.w (n := n)) (Formalism.UG.Tj ℂ n (Formalism.UG.Ov L s.w) (c ϖ) k) F := by

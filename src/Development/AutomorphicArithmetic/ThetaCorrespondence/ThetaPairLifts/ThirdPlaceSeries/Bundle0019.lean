@@ -90,7 +90,7 @@ structure AUSideAlt (D : D7) where
   infW : ∀ j h1 h2 a (τ : D.host.E →+* ℂ) lam, a.HWAt τ lam → D.nbc.infW j (clsWt j h1 h2 a) τ = NG.infOf lam
   locUnr : ∀ j h1 h2 π (s : SplitPlace D.host.E), π.SphericalAtPlace s.v → D.naut.unr (D.nbc.locAU j (cls j h1 h2 π) s.w)
   locPol : ∀ j h1 h2 π (s : SplitPlace D.host.E) (w : PlE D.host) (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)),
-    IsConjPl D.host w s.w → IsUnif D.host.E s.v ϖ → ∀ J : Subgroup (GAf D.host.E D.R.nV),
+    IsConjPl D.host w s.w → Formalism.AUTREP.IsUnif D.host.E s.v ϖ → ∀ J : Subgroup (GAf D.host.E D.R.nV),
     (∀ κ, TrivOutside {s.v} κ → (κ ∈ J ↔ κ ∈ Umax D.host.E D.R.nV)) → ∀ f ∈ π.S, f ≠ 0 →
     (∀ κ ∈ Umax D.host.E D.R.nV, TrivOutside {s.v} κ → NG.rt D.host.E D.R.nV κ f = f) → ∀ c : ℕ → ℂ,
     (∀ k, 1 ≤ k → k ≤ D.R.nV → NG.tN J s ϖ k f = c k • f) →
@@ -152,7 +152,7 @@ structure AutomorphicSpecialisation {cf : CharFrame D} {jE : D.host.E →+* Qb} 
   typeV : ∀ i P, Y.naut.typeV i P = (NG.isoTyp (mlX M X i).wt.ρ (S i P)).comap (mlX M X i).real
   ptV : ∀ i P x, Y.naut.ptV i P = some x ↔ ∀ (w : PlE D.host) (k : ℕ) (s : SplitPlace D.host.E)
     (ϖ : s.v.adicCompletion (maximalRealSubfield D.host.E)), SplitOut X.nd i w → IsConjPl D.host w s.w →
-    IsUnif D.host.E s.v ϖ → 1 ≤ k → k ≤ D.R.nV → ∀ y ∈ Y.naut.typeV i P,
+    Formalism.AUTREP.IsUnif D.host.E s.v ϖ → 1 ≤ k → k ≤ D.R.nV → ∀ y ∈ Y.naut.typeV i P,
     NG.tN (mlX M X i).J s ϖ k ((mlX M X i).real y) = iotaO X.nd Y.naut i ((X.nd.hT i w k : X.nd.X i → X.nd.O i) x) • (mlX M X i).real y
   emb : ∀ i P, Cb.embAV i P = A.au.cls (X.nd.j i) (X.nd.j_range i).1 (X.nd.j_range i).2
     { (mlX M X i).wt with S := S i P, irrS := irr i P }
