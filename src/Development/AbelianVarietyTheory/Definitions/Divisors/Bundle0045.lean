@@ -186,6 +186,7 @@ def eigSub : Submodule c.F (Rul Xo c) :=
   ⨅ g : G, LinearMap.ker (actLev (Xo := Xo) c lev g - ((χ g : (c.F)ˣ) : c.F) • (LinearMap.id : Rul Xo c →ₗ[c.F] Rul Xo c))
 
 def eigLat (W : WTZ D.host.E) : Submodule (𝓞 c.F) (cuspW Xo c U W) :=
+  letI : Module c.F (cuspW Xo c U W) := Submodule.module _
   latW U W ⊓ ((eigSub lev χ).comap (cuspW Xo c U W).subtype).restrictScalars (𝓞 c.F)
 
 end Eigen
