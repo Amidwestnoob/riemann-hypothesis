@@ -159,7 +159,7 @@ theorem aCong (u u' : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) 
         · rw [hcd]; simp
         · have : pinv w c ≠ pinv w d := fun e => hcd (pinv_inj w e)
           rw [Matrix.one_apply_ne hcd, Matrix.one_apply_ne this]
-      rw [hXdef, conj_apply, hcv, mul_comm, ← mul_assoc, mul_inv_cancel₀ (cv_ne w d), one_mul, hone]
+      rw [hXdef, Formalism.L2.SG.Pf.BlockPermutation.conj_apply, hcv, mul_comm, ← mul_assoc, mul_inv_cancel₀ (cv_ne w d), one_mul, hone]
       exact hq _ _
     · have hcd : c ≠ d := fun e => hs (by rw [e])
       rw [hB c d hs, Matrix.one_apply_ne hcd, sub_zero]
