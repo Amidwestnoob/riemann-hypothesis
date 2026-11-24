@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle006
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open NumberField MeasureTheory GlobalTheory.CuspRep
 
 noncomputable section

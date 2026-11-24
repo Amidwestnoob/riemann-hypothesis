@@ -11,6 +11,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0176
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 namespace GlobalTheory.SUVol.DensOne

@@ -26,6 +26,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeo
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantTermIntegralLeftInvariant
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField MeasureTheory GlobalTheory.CuspRep
 
 namespace GlobalTheory.LeviConstTerm
