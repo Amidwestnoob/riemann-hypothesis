@@ -26,6 +26,7 @@ open scoped InnerProductSpace ContDiff
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.RowsFinMult
 
 theorem finiteDimensional_of_bound {V : Type} [AddCommGroup V] [Module ℂ V] (W : Submodule ℂ V) (N : ℕ)

@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0067
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.TensRep
 
 section General

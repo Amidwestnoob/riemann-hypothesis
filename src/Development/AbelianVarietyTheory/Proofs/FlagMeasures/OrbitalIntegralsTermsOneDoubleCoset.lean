@@ -25,6 +25,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 open scoped ComplexConjugate InnerProductSpace
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.CosetOrbital
 
 open Formalism.L2.SG.TermOp.Vanish Formalism.L2.SG.Pf.FormTranspose

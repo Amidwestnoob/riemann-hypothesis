@@ -18,6 +18,7 @@ open scoped InnerProductSpace ComplexOrder ContDiff
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.SmoothGrowth
 
 theorem integrableOn_of_sq {X : Type} [MeasurableSpace X] (μ : Measure X) (U : Set X) (hU : μ U ≠ ⊤)
