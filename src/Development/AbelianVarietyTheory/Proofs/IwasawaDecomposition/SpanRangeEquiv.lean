@@ -430,7 +430,7 @@ theorem gen_state (v₀ : (Dof x).what₂.places.Pl) (j : Fin (Dof x).R.m) (v : 
   have e : w.I.xi ((Dof x).what₂.muTw v₀) = T.xiTw w.I.C v₀ :=
     (P.q.mu.tw v₀).trans (congrArg (fun g => T.xiTw g v₀) w.C_eq.symm)
   have hu : ∀ u, u ∉ QOf P v₀ → (T.psi v₀).UnrAt u := fun u hu => by
-    unfold QOf at hu
+    unfold GlobalTheory.HeightCounting.Up.QOf at hu
     split_ifs at hu with h
     · exact ((T.psi_is v₀).ram u).2 hu
     · rw [P.supp v₀ h]
