@@ -193,6 +193,8 @@ theorem map_pol (ε : Fin n → Bool) : ∃ c : ℝ≥0, c ≠ 0 ∧ muCD ε = c
       toM_eB, ← pmat_low ε B]
     rfl
   have hpm : Measurable (pol ε) := (continuous_pol ε).measurable
+  letI : MeasurableSpace (Matrix (Fin n) (Fin n) ℂ) :=
+    inferInstanceAs (MeasurableSpace (Fin n → Fin n → ℂ))
   have hpolC : Continuous (Y := Fin n → Fin n → ℂ) (polarM (ε := ε)) :=
     ReciprocityTheory.ChartRestriction.DS.polarM_continuous ε
   have hpolM : Measurable (polarM (ε := ε)) := hpolC.measurable
