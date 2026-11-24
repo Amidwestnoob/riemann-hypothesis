@@ -281,10 +281,10 @@ theorem frPoly_secZ_degree_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   have hS : Out.SecBaseChangeSt := GlobalTheory.lawsFieldsSeparately.2.1
   have h2 : (2 : K) ≠ 0 := two_ne_zero
   have hev : ∀ Y : ∀ b : E →+* ℂ, Matrix (Fin (Dw.mult b)) (Fin (Dw.mult b)) K,
-      evalFr (∏ b, blockDetPoly K Dw.mult b) Y = ∏ b, (Y b).det := fun Y => by
-    simp only [← evalFr_blockDetPoly Dw.mult _ Y]
+      evalFr (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) Y = ∏ b, (Y b).det := fun Y => by
+    simp only [← GlobalTheory.LamT.FieldPoly.evalFr_blockDetPoly Dw.mult _ Y]
     simp only [evalFr, map_prod]
-  have hDp : (∏ b, blockDetPoly K Dw.mult b) ≠ 0 := fun h0 => by
+  have hDp : (∏ b, GlobalTheory.LamT.FieldPoly.blockDetPoly K Dw.mult b) ≠ 0 := fun h0 => by
     have h1 := hev fun _ => 1
     rw [h0] at h1
     simp [evalFr] at h1
