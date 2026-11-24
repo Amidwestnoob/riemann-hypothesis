@@ -106,7 +106,7 @@ theorem exists_dom_exponents_bar : ∀ (E : Type) [Field E] [NumberField E] [IsC
     intro τ
     by_cases h : τ (H.rt : E) = H.rt0
     · exact Or.inl ⟨⟨τ, h⟩, rfl, by simp [Datum.mult, h]⟩
-    · exact Or.inr ⟨⟨conjEmb τ, conj_mem h⟩, conjEmb_conjEmb τ, by simp [Datum.mult, h]⟩
+    · exact Or.inr ⟨⟨conjEmb τ, conj_mem h⟩, GlobalTheory.AllWt.conjEmb_conjEmb τ, by simp [Datum.mult, h]⟩
   have nonneg : ∀ (τ : E →+* ℂ) (i : ℕ), i < Dw.mult τ → 0 ≤ val (τ, i) := by
     intro τ i hi
     rcases split τ with ⟨σ, rfl, hm⟩ | ⟨σ, rfl, hm⟩

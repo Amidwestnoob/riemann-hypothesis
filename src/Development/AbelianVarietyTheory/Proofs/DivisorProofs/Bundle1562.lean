@@ -229,15 +229,15 @@ theorem norm_diagChar_flatWt : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       by_cases h' : conjEmb ρ (H.rt : E) = H.rt0
       · rw [dite_eq_left h', dite_eq_left hi]
         by_cases h2 : ρ = conjEmb τ.1
-        · have h3 : (⟨conjEmb ρ, h'⟩ : Psi H) = τ := Subtype.ext (show conjEmb ρ = τ.1 by rw [h2, conjEmb_conjEmb])
+        · have h3 : (⟨conjEmb ρ, h'⟩ : Psi H) = τ := Subtype.ext (show conjEmb ρ = τ.1 by rw [h2, GlobalTheory.AllWt.conjEmb_conjEmb])
           rw [if_pos h3, if_neg h1, if_pos h2]
           norm_num
         · have h3 : (⟨conjEmb ρ, h'⟩ : Psi H) ≠ τ := fun e => h2 (by
-            rw [← congrArg Subtype.val e, conjEmb_conjEmb])
+            rw [← congrArg Subtype.val e, GlobalTheory.AllWt.conjEmb_conjEmb])
           rw [if_neg h3, if_neg h1, if_neg h2]
           norm_num
       · rw [dite_eq_right h']
-        have h2 : ρ ≠ conjEmb τ.1 := fun e => h' (by rw [e, conjEmb_conjEmb]; exact τ.2)
+        have h2 : ρ ≠ conjEmb τ.1 := fun e => h' (by rw [e, GlobalTheory.AllWt.conjEmb_conjEmb]; exact τ.2)
         simp [h1, h2]
   have e0 : e none = 0 := by simp [he_def, exOf, exZ, wtOf_snd]
   let f : (CAt σ)ˣ →* ℂˣ := Units.map (MonoidHom.id ℂ)

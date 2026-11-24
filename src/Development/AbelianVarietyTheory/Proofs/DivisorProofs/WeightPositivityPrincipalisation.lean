@@ -512,7 +512,7 @@ theorem exists_cuspOn_ne_zero_of_ball (hL : Laws U x) (hp : 1 ≤ Dw.p) (hq : 1 
       have a2 := hanti ⟨conjEmb ρ, conj_mem h⟩ (j - i) ⟨Dw.p + (Dw.q - 1 - j), by omega⟩
         ⟨Dw.p + (Dw.q - 1 - i), by omega⟩ (by simp only; omega)
       have a3 := hbar ⟨conjEmb ρ, conj_mem h⟩
-      simp only [Pi.add_apply, parWt, hw, conjEmb_conjEmb] at e1 e2
+      simp only [Pi.add_apply, parWt, hw, GlobalTheory.AllWt.conjEmb_conjEmb] at e1 e2
       rw [hG, e1, e2]
       omega
   have hoff : ∀ ρ j, ¬ j < Dw.mult ρ → G.1 (ρ, j) = 0 := fun ρ j hj => by

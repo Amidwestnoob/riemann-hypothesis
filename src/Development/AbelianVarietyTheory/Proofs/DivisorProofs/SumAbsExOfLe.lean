@@ -244,7 +244,7 @@ theorem sum_abs_exOf_le (u : AllWt.Weight Dw) :
     · have hq : (i : ℕ) < Dw.q := by simpa [Datum.mult, h] using hi
       refine ⟨(⟨conjEmb τ, conj_mem h⟩, ⟨Dw.p + (Dw.q - 1 - i), by omega⟩), ?_, .inr ⟨rfl, rfl, hq⟩⟩
       have e := wtOf_small u 0 ⟨conjEmb τ, conj_mem h⟩ i hq
-      simp only [conjEmb_conjEmb] at e
+      simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at e
       rw [show exOf Dw u 0 (some ⟨τ, i⟩) = _ from e, sub_zero, Int.cast_neg, abs_neg]
   choose F hF hR using key
   have hinj : Function.Injective F := by
@@ -258,7 +258,7 @@ theorem sum_abs_exOf_le (u : AllWt.Weight Dw) :
       · exact h1.1.symm.trans h2.1
       · omega
       · omega
-      · rw [← conjEmb_conjEmb τ, ← h1.1, h2.1, conjEmb_conjEmb]
+      · rw [← GlobalTheory.AllWt.conjEmb_conjEmb τ, ← h1.1, h2.1, GlobalTheory.AllWt.conjEmb_conjEmb]
     obtain rfl : i = i' := Fin.ext (by omega)
     rfl
   rw [l1, ← Fintype.sum_prod_type', Finset.sum_congr rfl fun s _ => hF s,

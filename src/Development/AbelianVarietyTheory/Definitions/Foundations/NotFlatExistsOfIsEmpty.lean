@@ -41,11 +41,11 @@ theorem sum_flatWt (τ : Psi H) :
       have h2 : ∀ i : Fin (Dw.mult ρ), (wtOf Dw (flatWt Dw τ) 0).1 (ρ, i) = if ρ = conjEmb τ.1 then 1 else 0 :=
         fun i => by
           have := wtOf_small (flatWt Dw τ) 0 ⟨_, conj_mem h⟩ i (hm ▸ i.2)
-          simp only [conjEmb_conjEmb] at this
+          simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at this
           rw [this]
           by_cases e : ρ = conjEmb τ.1
-          · simp [flatWt, parWt, Subtype.ext_iff, e, conjEmb_conjEmb]
-          · have : conjEmb ρ ≠ τ.1 := fun e' => e (by rw [← e', conjEmb_conjEmb])
+          · simp [flatWt, parWt, Subtype.ext_iff, e, GlobalTheory.AllWt.conjEmb_conjEmb]
+          · have : conjEmb ρ ≠ τ.1 := fun e' => e (by rw [← e', GlobalTheory.AllWt.conjEmb_conjEmb])
             simp [flatWt, parWt, Subtype.ext_iff, e, this]
       simp only [h2]
       split_ifs <;> simp_all

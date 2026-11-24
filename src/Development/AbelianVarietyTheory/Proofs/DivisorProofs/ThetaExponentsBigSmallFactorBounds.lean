@@ -42,7 +42,7 @@ theorem thA_out (u : GlobalTheory.AllWt.Weight Dw) (n : ℕ) (τ : E →+* ℂ) 
 theorem psi_or_conj (τ : E →+* ℂ) : (∃ τ' : Psi H, τ = τ'.1) ∨ ∃ τ' : Psi H, τ = conjEmb τ'.1 := by
   by_cases h : τ (H.rt : E) = H.rt0
   · exact Or.inl ⟨⟨τ, h⟩, rfl⟩
-  · exact Or.inr ⟨⟨conjEmb τ, conj_mem h⟩, (conjEmb_conjEmb τ).symm⟩
+  · exact Or.inr ⟨⟨conjEmb τ, conj_mem h⟩, (GlobalTheory.AllWt.conjEmb_conjEmb τ).symm⟩
 
 theorem mult_psi (τ : Psi H) : Dw.mult τ.1 = Dw.p := by unfold Datum.mult; rw [if_pos τ.2]
 
@@ -140,10 +140,10 @@ theorem card_psi (F : ℕ) (hF : Module.finrank ℚ E = 2 * F) :
       simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hτ ⊢
       exact conj_mem hτ
     · intro a _ b _ h
-      rw [← conjEmb_conjEmb a, h, conjEmb_conjEmb]
+      rw [← GlobalTheory.AllWt.conjEmb_conjEmb a, h, GlobalTheory.AllWt.conjEmb_conjEmb]
     · intro b hb
       simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hb
-      exact ⟨conjEmb b, by simpa using conj_not_mem (H := H) ⟨b, hb⟩, conjEmb_conjEmb b⟩
+      exact ⟨conjEmb b, by simpa using conj_not_mem (H := H) ⟨b, hb⟩, GlobalTheory.AllWt.conjEmb_conjEmb b⟩
   have ht := Finset.card_filter_add_card_filter_not (s := (Finset.univ : Finset (E →+* ℂ)))
     (fun τ : E →+* ℂ => τ (H.rt : E) = H.rt0)
   rw [Finset.card_univ, NumberField.Embeddings.card E ℂ, hF] at ht

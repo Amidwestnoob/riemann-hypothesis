@@ -414,13 +414,13 @@ theorem exOf_flatWt_some (τ : Psi H) (σ : E →+* ℂ) (i : Fin (Dw.mult σ)) 
   · have h' := conj_mem h
     have hq : (i : ℕ) < Dw.q := by simpa [Datum.mult, h] using hi
     have e0 := wtOf_small (flatWt Dw τ) 0 ⟨conjEmb σ, h'⟩ i hq
-    simp only [conjEmb_conjEmb] at e0
+    simp only [GlobalTheory.AllWt.conjEmb_conjEmb] at e0
     refine e0.trans ?_
     have hne : σ ≠ τ.1 := fun e' => h (e' ▸ τ.2)
     have hiff : (⟨conjEmb σ, h'⟩ : Psi H) = τ ↔ σ = conjEmb τ.1 := by
       constructor
-      · intro e'; rw [← congrArg Subtype.val e', conjEmb_conjEmb]
-      · intro e'; apply Subtype.ext; show conjEmb σ = τ.1; rw [e', conjEmb_conjEmb]
+      · intro e'; rw [← congrArg Subtype.val e', GlobalTheory.AllWt.conjEmb_conjEmb]
+      · intro e'; apply Subtype.ext; show conjEmb σ = τ.1; rw [e', GlobalTheory.AllWt.conjEmb_conjEmb]
     by_cases e : σ = conjEmb τ.1
     · have h2 := hiff.2 e
       rw [if_neg hne, if_pos e]
