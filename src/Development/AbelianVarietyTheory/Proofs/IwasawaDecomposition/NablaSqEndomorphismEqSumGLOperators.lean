@@ -68,10 +68,10 @@ theorem coeff_sqAct_diag {k : Type} [Field k] {r : ℕ} (lam : DomWeight r) (t :
       (∏ a, (t a : k)) ^ lam.detShift * ((∏ a, (t a : k) ^ Formalism.GradedWeylDivisibility.rowDeg m a) * AddMonoidAlgebra.coeff f m) := by
   have e1 : ((diagGL k r t : GL (Fin r) k) : Matrix (Fin r) (Fin r) k).transpose =
       Matrix.diagonal fun a => (t a : k) := by
-    simp [diagGL]
+    simp [Formalism.BasicNotions.diagGL]
   have e2 : ((Matrix.GeneralLinearGroup.det (diagGL k r t) : kˣ) : k) = ∏ a, (t a : k) := by
     rw [Matrix.GeneralLinearGroup.val_det_apply]
-    simp [diagGL, Matrix.det_diagonal]
+    simp [Formalism.BasicNotions.diagGL, Matrix.det_diagonal]
   unfold sqAct detPow
   rw [MvPolynomial.coeff_smul, e1, rowAct_diagonal, coeff_aeval_scale, prod_rowDeg (fun a => (t a : k)), smul_eq_mul,
     Units.val_zpow_eq_zpow_val, e2]

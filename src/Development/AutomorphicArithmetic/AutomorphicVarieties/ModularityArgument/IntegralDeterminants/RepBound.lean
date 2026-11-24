@@ -157,7 +157,7 @@ private theorem side {n : ℕ} (lam : DomWeight n) {κ : Type} [Fintype κ] [Dec
         simp [c]
       · simp [h, Ne.symm h]
     · ext r s
-      simp [dg, diagGL, diagonal_apply, apply_ite ψ]
+      simp [dg, Formalism.BasicNotions.diagGL, diagonal_apply, apply_ite ψ]
   have hT : ∀ x y : GL (Fin n) ℂ, LinearMap.toMatrix b b (GlobalTheory.Branching.sqRep ℂ n lam (x * y)) =
       LinearMap.toMatrix b b (GlobalTheory.Branching.sqRep ℂ n lam x) * LinearMap.toMatrix b b (GlobalTheory.Branching.sqRep ℂ n lam y) :=
     fun x y => by rw [map_mul, Module.End.mul_eq_comp, LinearMap.toMatrix_comp b b b]
@@ -199,7 +199,7 @@ private theorem decomp (hψ : ∀ x, Valued.v x ≤ 1 → nu ι (ψ x) ≤ 1) {n
     rw [h1] at h2
     have h3 : Valued.v ((ϖ : u.adicCompletion E) ^ a i) ≤ 1 := by
       have : (dg ϖ a).val i i = (ϖ : u.adicCompletion E) ^ a i := by
-        simp [dg, diagGL, Units.val_zpow_eq_zpow_val]
+        simp [dg, Formalism.BasicNotions.diagGL, Units.val_zpow_eq_zpow_val]
       rw [← this]
       exact h2
     rw [map_zpow₀] at h3
