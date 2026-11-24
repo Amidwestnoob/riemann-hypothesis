@@ -273,7 +273,7 @@ private theorem idx {d : Fin n → kˣ} (hd : Dom d) {s : Finset (GL (Fin n) k)}
       (((deltaHalf k (fun _ : Fin n => Unit) (leviTorus k (Fin n) d))⁻¹ : ℂˣ) : ℂ) := by
   let ρ₀ : Representation ℂ (GL (Fin n) k) ℂ := Representation.trivial ℂ _ ℂ
   have hq : IsUnit (resCard k : ℂ) := (Nat.cast_ne_zero.2 (Nat.card_pos (α := 𝓀[k])).ne').isUnit
-  obtain ⟨θ, hθ, -⟩ := thetaEx k n ⊤ ℂ ℂ ρ₀ hq
+  obtain ⟨θ, hθ, -⟩ := _root_.UpperTheory.V.AlgebraTools.thetaEx k n ⊤ ℂ ℂ ρ₀ hq
   let w : fixd ρ₀ (iwC k n ⊤) := ⟨1, fun _ _ => by simp [ρ₀]⟩
   have h := jqTheta k n ⊤ ℂ ρ₀ θ hθ d w
   have hJ : (Sig.Lev.iw k).J n = iwC k n ⊤ := (Sig.link k n).1

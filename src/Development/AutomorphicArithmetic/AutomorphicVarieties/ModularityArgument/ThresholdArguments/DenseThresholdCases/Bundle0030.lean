@@ -430,7 +430,7 @@ theorem UpperTheory.V.Ws.hida_modular_ideal_map :
     intro b hb
     rw [Ideal.mem_comap, h3]
     exact Ideal.mem_map_of_mem _ (hτJ b hb)
-  obtain ⟨β₀, hβ, hβ'⟩ := descend K
+  obtain ⟨β₀, hβ, hβ'⟩ := _root_.UpperTheory.V.Ws.H5.descend K
   have hn := (twChOps _ β₀ hβ).1 n
   have hT := phiTw K X B β₀ hβ' n φ φ' hφ hφ'
   refine le_antisymm (key _ hn φ φ' hT) (key _ (twChOps _ _ hn).2.1 φ' φ ?_)

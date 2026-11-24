@@ -87,7 +87,7 @@ theorem ptAutR'_alt :
       Units.inv_mul_cancel_right, K.rho_val]
     rfl
   rw [h4] at h3
-  obtain ⟨P, hPair⟩ := ptPair K n r hr
+  obtain ⟨P, hPair⟩ := _root_.UpperTheory.V.Ws.Pt.ptPair K n r hr
   haveI : IsAlgClosure T.L Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) _⟩
   have h5 : Sd.IsAlgChar ι (K.twc n * κ⁻¹) := by
     obtain ⟨χ, hc, art, a', b1, b2, b3⟩ := h2
