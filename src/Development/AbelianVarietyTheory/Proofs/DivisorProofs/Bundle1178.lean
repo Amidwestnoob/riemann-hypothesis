@@ -295,6 +295,8 @@ theorem pair_step : ∀ {K L : Type} [Field K] [Field L] [Algebra ℂ K] [Algebr
   let M := FractionRing (R ⊗[ℂ] S)
   let j : R ⊗[ℂ] S →ₐ[ℂ] M := IsScalarTower.toAlgHom ℂ _ M
   have hj : Function.Injective j := IsFractionRing.injective (R ⊗[ℂ] S) M
+  haveI : Module.Flat ℂ R := Module.Flat.of_free
+  haveI : Module.Flat ℂ S := Module.Flat.of_free
   have hl : Function.Injective (j.comp Algebra.TensorProduct.includeLeft) := by
     rw [AlgHom.coe_comp]
     exact hj.comp (Algebra.TensorProduct.includeLeft_injective (S := ℂ) (algebraMap ℂ S).injective)
