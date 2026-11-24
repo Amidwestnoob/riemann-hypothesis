@@ -36,6 +36,8 @@ public import Formalism.LocalToGlobal.BesselHermitianTheta.Bundle0002
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 section
 
 noncomputable section

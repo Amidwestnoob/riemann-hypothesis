@@ -12,6 +12,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle060
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instMeasMat
 

@@ -457,6 +457,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.WeilSiegelFormula
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct

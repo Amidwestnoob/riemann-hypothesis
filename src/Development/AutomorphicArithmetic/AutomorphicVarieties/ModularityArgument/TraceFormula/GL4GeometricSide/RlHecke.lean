@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Continuou
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField MeasureTheory Matrix

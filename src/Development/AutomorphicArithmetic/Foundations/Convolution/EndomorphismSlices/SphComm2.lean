@@ -4,6 +4,8 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Endomorp
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
