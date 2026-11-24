@@ -12,6 +12,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem rs_dvd {l : ℕ} [Fact l.Prime] (n : ℕ) (a : ℤ_[l]) :
     PadicInt.toZModPow n a = 1 ↔ (l : ℤ_[l]) ^ n ∣ a - 1 := by
   rw [← sub_eq_zero, ← map_one (PadicInt.toZModPow n), ← map_sub, ← RingHom.mem_ker,

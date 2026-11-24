@@ -10,6 +10,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeT
 
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem rigloc_adFun {m : ℕ} {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) (x : GG (m := m) (R := R))
     (X : Matrix (Fin m) (Fin m) R) : (x.adFun X).map f = (GG.map f x).adFun (X.map f) := by
   have h1 : (((GG.map f x).left⁻¹ : GL (Fin m) S) : Matrix (Fin m) (Fin m) S) =

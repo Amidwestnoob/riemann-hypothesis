@@ -18,6 +18,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 open Matrix IsLocalRing ReciprocityTheory.Gal UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.UnitaryThreeInertia Module
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section Abs
 
 variable {k D M : Type} [Field k] [Group D] [TopologicalSpace D] [AddCommGroup M] [Module k M] [Module.Finite k M]
