@@ -195,7 +195,7 @@ theorem thetaChar_family {g m : ℕ} {B : Set (Fin m → ℂ)} {p q : Fin g → 
     rwa [Matrix.mulVec_mulVec, hinv b hb, Matrix.one_mulVec] at this
 
 theorem exists_thetaFrame_of_preconnected : Out.Laws → (∀ (k : Type) [Field k] (X : Scheme.{0}) (s
-    : X ⟶ Sp k), Smooth s → IsReduced X ∧ IsNormalScheme X ∧ IsLocallyNoetherian X) → (∀ (E
+    : X ⟶ Sp k), Smooth s → IsReduced X ∧ ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme X ∧ IsLocallyNoetherian X) → (∀ (E
     : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (B
     : Type) [CommRing B] (b : Base l B) (S : Scheme.{0}) (s : S ⟶ Sp B) (o
     : Obj D l b s), IsAbelianScheme o.t.G ∧ SmoothOfRelativeDimension (Module.finrank ℚ E / 2 * (D.p
