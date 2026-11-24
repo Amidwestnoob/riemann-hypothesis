@@ -24,6 +24,7 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.IndefiniteRowSideFullHecke.TwistedLevelValues
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.AdelicScalar
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

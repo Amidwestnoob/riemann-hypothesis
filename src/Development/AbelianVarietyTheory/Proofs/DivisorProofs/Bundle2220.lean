@@ -256,6 +256,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaLevelConjugateCharacter
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain
 open Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.Lev
 open GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3

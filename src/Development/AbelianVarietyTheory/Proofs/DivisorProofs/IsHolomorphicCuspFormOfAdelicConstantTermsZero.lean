@@ -19,6 +19,7 @@ open scoped TensorProduct InnerProductSpace ContDiff
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.HolDict.IntoCusp
 
 open ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.FD.EmbeddingHermitianPairs ReciprocityTheory.ChartRestriction.G.FD.TransvectionPeriodicity

@@ -58,6 +58,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.RelayGeneralCaseOfA
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LintegralUniformizerTorusTranslateUnipotentQuoti
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix Formalism.UG GlobalTheory.CuspRep MeasureTheory

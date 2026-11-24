@@ -24,6 +24,7 @@ open scoped TensorProduct InnerProductSpace ContDiff ComplexOrder
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DefLift GlobalTheory.OrientedHeis GlobalTheory.HolDict.TransvGroup
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.TransvConst
 
 variable {D : D7} {S T : HSp D} {ξ : Fin T.rank → D.host.E} {ψ : AddChar (AF D.host.F) ℂ}

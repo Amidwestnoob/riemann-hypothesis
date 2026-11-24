@@ -450,6 +450,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnfoldMirabolic
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField MeasureTheory Matrix GlobalTheory.CuspRep GlobalTheory.CuspGeneric GlobalTheory.MirTower

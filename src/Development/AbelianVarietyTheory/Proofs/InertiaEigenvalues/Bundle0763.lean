@@ -71,6 +71,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CellLintegral
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 open NumberField IsDedekindDomain Matrix Formalism.UG GlobalTheory.CuspRep MeasureTheory
 open scoped ENNReal

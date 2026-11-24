@@ -292,6 +292,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.HaarFundamentalDomainMapIsometryConj
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta IsDedekindDomain NumberField Finset
 open Formalism.DivisionValues (vw)
 open Formalism.L2.Host (HChar)

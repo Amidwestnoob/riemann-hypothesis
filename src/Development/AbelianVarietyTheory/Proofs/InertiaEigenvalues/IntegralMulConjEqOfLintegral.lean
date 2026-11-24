@@ -17,6 +17,7 @@ noncomputable section
 open NumberField MeasureTheory Matrix GlobalTheory.CuspRep GlobalTheory.CuspGeneric
 open scoped ENNReal NNReal ComplexConjugate
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.MirTower
 
 section Polar
