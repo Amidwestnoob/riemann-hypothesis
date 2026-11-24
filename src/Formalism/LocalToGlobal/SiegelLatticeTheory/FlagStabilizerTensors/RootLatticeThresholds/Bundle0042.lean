@@ -252,9 +252,9 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 variable {D : D7} {X : HidaSetting D} {Y : Formalism.L2.SG.Full.Full X} {u u' : D.what₂.Word}
 
 theorem partner (hN : Formalism.L2.SG.PoincareInHH.Cut.NeatKu X u' Y.hK) (hIR : Formalism.L2.SG.Pf.SatGramRep.IotaRepC)
-    {l₁ l₂ s₁ : TT Y u u'} (hrow : rowOf Y.TR (Y.cs u) (Y.cs u') l₁ = rowOf Y.TR (Y.cs u) (Y.cs u') l₂)
+    {l₁ l₂ s₁ : Formalism.L2.SG.PackageTie2.TT Y u u'} (hrow : rowOf Y.TR (Y.cs u) (Y.cs u') l₁ = rowOf Y.TR (Y.cs u) (Y.cs u') l₂)
     (h : l₁.toTerm = s₁.toTerm) :
-    ∃ s₂ : TT Y u u', s₂.toTerm = l₂.toTerm ∧
+    ∃ s₂ : Formalism.L2.SG.PackageTie2.TT Y u u', s₂.toTerm = l₂.toTerm ∧
       rowOf Y.TR (Y.cs u) (Y.cs u') s₁ = rowOf Y.TR (Y.cs u) (Y.cs u') s₂ := by
   obtain ⟨γ, rfl⟩ := Formalism.L2.SG.Pf.KernelOfEmbedding.fib_gam hN h
   refine ⟨Formalism.L2.SG.Pf.KernelOfEmbedding.act Y ⟨l₁.lam', l₁.mem'⟩ γ l₂, Formalism.L2.SG.Pf.KernelOfEmbedding.toTerm_act _ _ _, ?_⟩
@@ -296,7 +296,7 @@ theorem fibreCountEq_of (hF : FinX Y) (hN : ∀ u' : D.what₂.Word, Formalism.L
   obtain ⟨f, hf⟩ := Formalism.L2.SG.Pf.FibreCounting.fib_bij (hN u') l₁.1
   have hcard : Fintype.card (fib Y q.1.1) = Nat.card ↥(autLz D (X.Fu u') l₁.1.lam') := by
     rw [← Nat.card_eq_fintype_card]
-    have e1 : fib Y q.1.1 ≃ {s : TT Y u u' // s.toTerm = l₁.1.toTerm} :=
+    have e1 : fib Y q.1.1 ≃ {s : Formalism.L2.SG.PackageTie2.TT Y u u' // s.toTerm = l₁.1.toTerm} :=
       Equiv.subtypeEquivRight (fun s => by rw [l₁.2])
     exact (Nat.card_congr e1).trans (Nat.card_congr (Equiv.ofBijective f hf))
   have hpos : 0 < Fintype.card (fib Y q.1.1) := Fintype.card_pos_iff.2 ⟨l₁⟩

@@ -303,7 +303,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {X : HidaSetting D} {Y : Full X}
 
-theorem isFundR_fundOf {u u' : D.what₂.Word} (s : TT Y u u') : LoopTerm.IsFundR s (TermOp.FundOf s) := by
+theorem isFundR_fundOf {u u' : D.what₂.Word} (s : Formalism.L2.SG.PackageTie2.TT Y u u') : LoopTerm.IsFundR s (TermOp.FundOf s) := by
   obtain ⟨hm, hex, huniq⟩ := KappaOffDiagonal.fundOf_spec (Closed.FundExistsC_holds D X Y u u') s
   refine ⟨hm, fun r _ => ?_⟩
   obtain ⟨q, hq, hqr⟩ := hex r
@@ -331,7 +331,7 @@ section Covol
 
 open Set TermOp TermOp.Vanish
 
-theorem roinf_sub_rset {u u' : D.what₂.Word} (s : TT Y u u') {q : X.B.I.Ginf} (hq : q ∈ ROinf s) : q ∈ Rset s := by
+theorem roinf_sub_rset {u u' : D.what₂.Word} (s : Formalism.L2.SG.PackageTie2.TT Y u u') {q : X.B.I.Ginf} (hq : q ∈ ROinf s) : q ∈ Rset s := by
   have hs0 : q ∈ ROset X (X.Fu u) (X.Fu u') s.lam s.lam' s.lin := hq
   obtain ⟨z, n, hz, hzs, hn, hn'⟩ := hs0
   have hl : RatLink X (s.pt⁻¹ * z * s.pt) (s.lin⁻¹ * n * s.lin) :=
