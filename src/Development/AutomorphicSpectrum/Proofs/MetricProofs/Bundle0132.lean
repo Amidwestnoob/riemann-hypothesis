@@ -30,10 +30,10 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
 
 open Classical in
-def ratioWt (A B : HermLine ι) (z : (Σ k, ι k) → ℂ) : ℝ :=
+def ratioWt (A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (z : (Σ k, ι k) → ℂ) : ℝ :=
   if ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0 then Real.log (A.h z) - Real.log (B.h z) else 0
 
-theorem ratioWt_of_mem {A B : HermLine ι} {z : (Σ k, ι k) → ℂ} (hz : ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0) :
+theorem ratioWt_of_mem {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {z : (Σ k, ι k) → ℂ} (hz : ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0) :
     ratioWt A B z = Real.log (A.h z) - Real.log (B.h z) := if_pos hz
 
 omit [Fintype K] [∀ k, Fintype (ι k)] in
@@ -41,7 +41,7 @@ theorem smul_mem_iff (c : K → ℂ) (z : (Σ k, ι k) → ℂ) (hc : ∀ k, c k
     (∀ k, ∃ i, (fun p : Σ k, ι k => c p.1 * z p) ⟨k, i⟩ ≠ 0) ↔ ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0 := by
   simp [hc]
 
-theorem ratioWt_smul {A B : HermLine ι} (hab : A.a = B.a) (c : K → ℂ) (z : (Σ k, ι k) → ℂ)
+theorem ratioWt_smul {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) (c : K → ℂ) (z : (Σ k, ι k) → ℂ)
     (hc : ∀ k, c k ≠ 0) : ratioWt A B (fun p => c p.1 * z p) = ratioWt A B z := by
   by_cases hz : ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0
   · rw [ratioWt_of_mem hz, ratioWt_of_mem ((smul_mem_iff c z hc).2 hz), A.smul c z hc, B.smul c z hc, hab]
@@ -52,37 +52,37 @@ theorem ratioWt_smul {A B : HermLine ι} (hab : A.a = B.a) (c : K → ℂ) (z : 
   · have hz' := fun h => hz ((smul_mem_iff c z hc).1 h)
     simp only [ratioWt, if_neg hz, if_neg hz']
 
-theorem ratioWt_smooth {A B : HermLine ι} (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) :
+theorem ratioWt_smooth {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) :
     SmoothFn (ratioWt A B) := by
   have h : ContDiffOn ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun z => Real.log (A.h z) - Real.log (B.h z))
       {z | ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0} :=
     (ContDiffOn.log hA fun z hz => (A.pos z hz).ne').sub (ContDiffOn.log hB fun z hz => (B.pos z hz).ne')
   exact h.congr fun z hz => ratioWt_of_mem hz
 
-def wtLine {A B : HermLine ι} (hab : A.a = B.a) : HermLine ι :=
+def wtLine {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι :=
   HermLine.ofWeight (ratioWt A B) fun c z hc => ratioWt_smul hab c z hc
 
-theorem wtLine_h {A B : HermLine ι} (hab : A.a = B.a) (z : (Σ k, ι k) → ℂ) :
+theorem wtLine_h {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) (z : (Σ k, ι k) → ℂ) :
     (wtLine hab).h z = Real.exp (-ratioWt A B z) := rfl
 
-theorem wtLine_smooth {A B : HermLine ι} (hab : A.a = B.a) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) :
+theorem wtLine_smooth {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) :
     IsSmoothHerm (wtLine hab) :=
   Real.contDiff_exp.comp_contDiffOn (ratioWt_smooth hA hB).neg
 
-theorem logNormRat_wtLine {A B : HermLine ι} (hab : A.a = B.a) :
+theorem logNormRat_wtLine {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) :
     logNormRat (wtLine hab) 1 1 = ratioWt A B := by
   funext z
   simp [logNormRat, wtLine_h]
 
-theorem tensor_wtLine_h {A B : HermLine ι} (hab : A.a = B.a) {z : (Σ k, ι k) → ℂ}
+theorem tensor_wtLine_h {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hab : A.a = B.a) {z : (Σ k, ι k) → ℂ}
     (hz : ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0) : (A.tensor (wtLine hab)).h z = B.h z := by
   change A.h z * Real.exp (-ratioWt A B z) = B.h z
   rw [ratioWt_of_mem hz, neg_sub, Real.exp_sub, Real.exp_log (B.pos z hz), Real.exp_log (A.pos z hz)]
   field_simp [(A.pos z hz).ne']
 
-theorem snoc_smooth {n : ℕ} {L : Fin n → HermLine ι} {B : HermLine ι} (hL : ∀ j, IsSmoothHerm (L j))
+theorem snoc_smooth {n : ℕ} {L : Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hL : ∀ j, IsSmoothHerm (L j))
     (hB : IsSmoothHerm B) (j : Fin (n + 1)) :
-    IsSmoothHerm ((Fin.snoc L B : Fin (n + 1) → HermLine ι) j) := by
+    IsSmoothHerm ((Fin.snoc L B : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j) := by
   refine Fin.lastCases ?_ (fun i => ?_) j
   · rw [Fin.snoc_last]
     exact hB
@@ -90,8 +90,8 @@ theorem snoc_smooth {n : ℕ} {L : Fin n → HermLine ι} {B : HermLine ι} (hL 
     exact hL i
 
 theorem position_metric (hML : MetricLocalStatement) (II : IntersectionSystem) (hII : IsIntersectionSystem II)
-    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) (L : Fin D → HermLine ι)
-    (hL : ∀ j, IsSmoothHerm (L j)) (A B : HermLine ι) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B)
+    {P : Ideal (MRing ι)} {D : ℕ} (hP : IsArithVar P (D + 1)) (L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι)
+    (hL : ∀ j, IsSmoothHerm (L j)) (A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B)
     (hab : A.a = B.a) :
     II K ι P (D + 1) (Fin.snoc L B) = II K ι P (D + 1) (Fin.snoc L A) - ptsIntegral P (pot L) (ratioWt A B) := by
   have hT : IsSmoothHerm (A.tensor (wtLine hab)) := ContDiffOn.mul hA (wtLine_smooth hab hA hB)
@@ -116,10 +116,10 @@ theorem position_metric (hML : MetricLocalStatement) (II : IntersectionSystem) (
 theorem position_integral (hE : ResExistsStatement) {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {X : Type}
     [TopologicalSpace X] [CompactSpace X] [T2Space X] (A : FinHolAtlas D X) (π : R.X → X)
     (hπ : HoloMap R.A A π) (dg : ℕ) (br : Set X) (hP : IsArithVar P (D + 1))
-    (hdeg : IsDegreeOff A R.A π dg br) (L : Fin D → HermLine ι) (Φ : Fin D → LocPot X)
+    (hdeg : IsDegreeOff A R.A π dg br) (L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (Φ : Fin D → LocPot X)
     (hL : ∀ j, IsSmoothHerm (L j)) (hΦ : ∀ j, IsPotential A (Φ j))
     (hS : ∀ j, SamePot R.A Set.univ (potOf R (L j)) ((Φ j).pullback π hπ.1))
-    (B₁ B₂ : HermLine ι) (h₁ : IsSmoothHerm B₁) (h₂ : IsSmoothHerm B₂) (hab : B₁.a = B₂.a)
+    (B₁ B₂ : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (h₁ : IsSmoothHerm B₁) (h₂ : IsSmoothHerm B₂) (hab : B₁.a = B₂.a)
     (v : X → ℝ) (hv : Continuous v)
     (hlog : ∀ x, Real.log (B₁.h (R.lift x x)) - Real.log (B₂.h (R.lift x x)) = v (π x)) :
     ptsIntegral P (pot L) (ratioWt B₁ B₂) = dg * mInt A Φ v := by
@@ -182,17 +182,17 @@ theorem num_sub_num : Inputs → ∀ (II : IntersectionSystem), IsFullIntersecti
     intro b _
     split_ifs
     exacts [⟨ht, ht0⟩, ⟨ht', ht'0⟩]
-  let Wd : ℕ → Fin (D + 1) → HermLine ι := fun m j => Re.line (w j) (if (j : ℕ) < m then t else t')
+  let Wd : ℕ → Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := fun m j => Re.line (w j) (if (j : ℕ) < m then t else t')
   have hdeg : (Re.deg : ℝ) ≠ 0 := Nat.cast_ne_zero.2 Re.deg_pos.ne'
   have step : ∀ r : Fin (D + 1), II K ι P (D + 1) (Wd (r + 1)) - II K ι P (D + 1) (Wd r) =
       Re.deg * mInt S.A (fun i => S.potT (w (r.succAbove i)) (if r.succAbove i < r then t else t'))
         (fun x => S.phT (w r) t x - S.phT (w r) t' x) := by
     intro r
-    let L : Fin D → HermLine ι := fun i => Re.line (w (r.succAbove i)) (if r.succAbove i < r then t else t')
+    let L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι := fun i => Re.line (w (r.succAbove i)) (if r.succAbove i < r then t else t')
     have hL : ∀ i, IsSmoothHerm (L i) := fun i => Re.line_smooth _ _ (hsc _).1 (hsc _).2
-    have hsm : ∀ B : HermLine ι, IsSmoothHerm B → ∀ j : Fin (D + 1),
-        IsSmoothHerm ((Fin.snoc L B : Fin (D + 1) → HermLine ι) j) := fun B hB j => snoc_smooth hL hB j
-    have e1 : Wd (r + 1) = (Fin.snoc L (Re.line (w r) t) : Fin (D + 1) → HermLine ι) ∘ toEnd r := by
+    have hsm : ∀ B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι, IsSmoothHerm B → ∀ j : Fin (D + 1),
+        IsSmoothHerm ((Fin.snoc L B : Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) j) := fun B hB j => snoc_smooth hL hB j
+    have e1 : Wd (r + 1) = (Fin.snoc L (Re.line (w r) t) : Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) ∘ toEnd r := by
       funext j
       rcases Fin.eq_self_or_eq_succAbove r j with rfl | ⟨i, rfl⟩
       · rw [Function.comp_apply, toEnd_self, Fin.snoc_last]
@@ -203,7 +203,7 @@ theorem num_sub_num : Inputs → ∀ (II : IntersectionSystem), IsFullIntersecti
           omega
         rw [Function.comp_apply, toEnd_succAbove, Fin.snoc_castSucc]
         exact congrArg (Re.line (w (r.succAbove i))) (if_congr hiff rfl rfl)
-    have e0 : Wd r = (Fin.snoc L (Re.line (w r) t') : Fin (D + 1) → HermLine ι) ∘ toEnd r := by
+    have e0 : Wd r = (Fin.snoc L (Re.line (w r) t') : Fin (D + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) ∘ toEnd r := by
       funext j
       rcases Fin.eq_self_or_eq_succAbove r j with rfl | ⟨i, rfl⟩
       · rw [Function.comp_apply, toEnd_self, Fin.snoc_last]

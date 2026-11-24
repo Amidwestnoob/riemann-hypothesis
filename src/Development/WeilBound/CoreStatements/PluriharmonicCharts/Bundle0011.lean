@@ -338,7 +338,7 @@ theorem exists_log {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e 
     ring
 
 theorem exists_samePot {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P J : Ideal (MRing ι)} {D : ℕ}
-    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {T : Finset ℕ} {α : ℕ → ℝ} {A B : HermLine ι}
+    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {T : Finset ℕ} {α : ℕ → ℝ} {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι}
     (h : A = B ∨ VertClose P T α A B) :
     ∃ N : Set R.X, IsNull R.A N ∧ SamePot R.A Nᶜ (potOf R A) (potOf R B) := by
   rcases h with rfl | ⟨f, g, df, dg, hf, hg, hfP, hgP, -, hn, -, -⟩
@@ -366,7 +366,7 @@ theorem exists_samePot {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype 
 
 end PositivityTheory.Xgp.vert_deg
 
-theorem PositivityTheory.Xgp.t_vert_deg : ResExistsStatement → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (D : ℕ) (L L' : Fin D → HermLine ι) (T : Finset ℕ) (α : ℕ → ℝ), IsArithVar P (D + 1) → (∀ j, IsSmoothHerm (L j)) → (∀ j, IsSmoothHerm (L' j)) → (∀ j, L j = L' j ∨ VertClose P T α (L j) (L' j)) → ∀ (Am : HermLine ι) (s : MRing ι), IsSmoothHerm Am → IsSectionOn P Am s → ptsIntegral P (pot L) (logNorm Am s) = ptsIntegral P (pot L') (logNorm Am s) := by
+theorem PositivityTheory.Xgp.t_vert_deg : ResExistsStatement → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (D : ℕ) (L L' : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (T : Finset ℕ) (α : ℕ → ℝ), IsArithVar P (D + 1) → (∀ j, IsSmoothHerm (L j)) → (∀ j, IsSmoothHerm (L' j)) → (∀ j, L j = L' j ∨ VertClose P T α (L j) (L' j)) → ∀ (Am : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s : MRing ι), IsSmoothHerm Am → IsSectionOn P Am s → ptsIntegral P (pot L) (logNorm Am s) = ptsIntegral P (pot L') (logNorm Am s) := by
   intro hE K _ ι _ P D L L' T α hP hL hL' hV Am s hAm hs
   obtain ⟨J, ⟨R⟩⟩ := exists_anLogRes hE hP
   choose N hN hS using fun j => PositivityTheory.Xgp.vert_deg.exists_samePot R hP (hV j)

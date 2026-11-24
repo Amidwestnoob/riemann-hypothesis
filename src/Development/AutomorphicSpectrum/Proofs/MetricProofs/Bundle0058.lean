@@ -79,8 +79,8 @@ end
 
 theorem integrable_chartAbsDens_cellWeight : ∀ (K : Type) [Fintype K] [DecidableEq K] (ι : K → Type) [∀ k, Fintype (ι k)]
     (Q : Ideal (MRingOver ℂ ι)) (e m : ℕ) (σ : Fin m ≃ ((k : K) → ι k)) (i : (k : K) → ι k)
-    (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)) (N : Fin e → HermLine ι)
-    (A : HermLine ι) (s : MRingOver ℂ ι) (a : K → ℕ)
+    (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)) (N : Fin e → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι)
+    (A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (s : MRingOver ℂ ι) (a : K → ℕ)
     (J : Ideal (MvPolynomial (Fin m) ℂ)),
     IsSmoothHerm A → (∀ k, A.a k = a k) → IsMultiHomog s a →
     Measurable ((domCell i).indicator (absLogNorm A s)) →

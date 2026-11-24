@@ -130,7 +130,7 @@ theorem chartLift_of_chartSet {m : ℕ} {Q : Ideal (MRingOver ℂ ι)} (hQ : IsM
     simp
 
 theorem term_eq {e m : ℕ} {Q : Ideal (MRingOver ℂ ι)} {σ : Fin m ≃ ((k : K) → ι k)} {i : (k : K) → ι k}
-    {L : Fin e → HermLine ι} {g : ((Σ k, ι k) → ℂ) → ℝ}
+    {L : Fin e → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {g : ((Σ k, ι k) → ℂ) → ℝ}
     {Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)}
     (hMH : IsMultiHomogIdeal Q) (hL : ∀ j, IsSmoothHerm (L j))
     (hg : ∀ (c : K → ℂ) (z : (Σ k, ι k) → ℂ), (∀ k, c k ≠ 0) → g (fun p => c p.1 * z p) = g z)
@@ -226,7 +226,7 @@ theorem term_eq {e m : ℕ} {Q : Ideal (MRingOver ℂ ι)} {σ : Fin m ≃ ((k :
 
 theorem fibreSum : ∀ (K : Type) [Fintype K] [DecidableEq K] (ι : K → Type) [∀ k, Fintype (ι k)]
     (Q : Ideal (MRingOver ℂ ι)) (e m : ℕ) (σ : Fin m ≃ ((k : K) → ι k)) (i : (k : K) → ι k)
-    (L : Fin e → HermLine ι) (g : ((Σ k, ι k) → ℂ) → ℝ)
+    (L : Fin e → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (g : ((Σ k, ι k) → ℂ) → ℝ)
     (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ)),
     IsCxVar Q e → (∀ j, IsSmoothHerm (L j)) →
     (∀ (c : K → ℂ) (z : (Σ k, ι k) → ℂ), (∀ k, c k ≠ 0) → g (fun p => c p.1 * z p) = g z) →

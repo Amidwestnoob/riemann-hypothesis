@@ -77,7 +77,7 @@ theorem isPrime_span : (Ideal.span {C (p : ℤ)} : Ideal (MRing ι)).IsPrime := 
   exact RingHom.ker_isPrime _
 
 theorem isRelevant_span (k₀ : K) (hk : ∀ a : K, a = k₀) {n : ℕ} (σ : ι k₀ ≃ Fin (n + 1)) :
-    IsRelevant (Ideal.span {C (p : ℤ)} : Ideal (MRing ι)) := by
+    _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsRelevant (Ideal.span {C (p : ℤ)} : Ideal (MRing ι)) := by
   intro k
   obtain rfl := hk k
   refine ⟨σ.symm 0, ?_⟩

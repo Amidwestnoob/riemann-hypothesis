@@ -242,7 +242,7 @@ open GroundTheory.Heights₂.Heights.Inter GroundTheory.Heights₂.Heights.Inter
 
 theorem smooth_pull {K K' : Type} [Fintype K] [Fintype K'] {ι : K → Type} {ι' : K' → Type} [∀ k, Fintype (ι k)]
     [∀ k, Fintype (ι' k)] {κ : K → K'} {v : (Σ k, ι k) → (Σ k, ι' k)} (hb : IsBlockMap κ v)
-    {A : HermLine ι} {A' : HermLine ι'} (hA : IsSmoothHerm A) (hp : IsPullHerm κ v A A') : IsSmoothHerm A' := by
+    {A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {A' : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι'} (hA : IsSmoothHerm A) (hp : IsPullHerm κ v A A') : IsSmoothHerm A' := by
   have hfun : A'.h = fun z => A.h (fun p => z (v p)) := funext hp.2
   unfold IsSmoothHerm
   rw [hfun]
@@ -262,23 +262,23 @@ theorem smooth_pull {K K' : Type} [Fintype K] [Fintype K'] {ι : K → Type} {ι
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem cons_eq_snoc {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
-    {P : Ideal (MRing ι)} {n : ℕ} {L : Fin n → HermLine ι} {A : HermLine ι} (hP : IsArithVar P (n + 1))
+theorem cons_eq_snoc {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
+    {P : Ideal (MRing ι)} {n : ℕ} {L : Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hP : IsArithVar P (n + 1))
     (hL : ∀ j, IsSmoothHerm (L j)) (hA : IsSmoothHerm A) :
     I P (n + 1) (Fin.cons A L) = I P (n + 1) (Fin.snoc L A) := by
   have hrot := hI.1 P (n + 1) (Fin.cons A L) (finRotate (n + 1)) hP (smooth_cons hA hL)
-  have hsnoc : (Fin.cons A L : Fin (n + 1) → HermLine ι) ∘ finRotate (n + 1) = Fin.snoc L A :=
+  have hsnoc : (Fin.cons A L : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) ∘ finRotate (n + 1) = Fin.snoc L A :=
     (Fin.snoc_eq_cons_rotate L A).symm
   rw [hsnoc] at hrot
   exact hrot.symm
 
-theorem sq_sub {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) → ℝ} (hF : IsIntersectionFamily I)
-    {P : Ideal (MRing ι)} {n : ℕ} {L : Fin n → HermLine ι} {X₀ X₁ : HermLine ι} (hW : IsArithVar P (n + 2))
+theorem sq_sub {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) → ℝ} (hF : IsIntersectionFamily I)
+    {P : Ideal (MRing ι)} {n : ℕ} {L : Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {X₀ X₁ : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hW : IsArithVar P (n + 2))
     (hL : ∀ j, IsSmoothHerm (L j)) (hs0 : IsSmoothHerm X₀) (hs1 : IsSmoothHerm X₁) (c : K → ℤ)
     (hdeg : ∀ k, 2 * c k = -(X₀.a k + X₁.a k)) :
     I P (n + 2) (Fin.cons X₀ (Fin.cons X₀ L)) - I P (n + 2) (Fin.cons X₁ (Fin.cons X₁ L)) =
-      -2 * (I P (n + 2) (Fin.snoc (Fin.cons X₀ L : Fin (n + 1) → HermLine ι) (halfInvLine X₀ X₁ c hdeg)) -
-        I P (n + 2) (Fin.snoc (Fin.cons X₁ L : Fin (n + 1) → HermLine ι) (halfInvLine X₀ X₁ c hdeg))) := by
+      -2 * (I P (n + 2) (Fin.snoc (Fin.cons X₀ L : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (halfInvLine X₀ X₁ c hdeg)) -
+        I P (n + 2) (Fin.snoc (Fin.cons X₁ L : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (halfInvLine X₀ X₁ c hdeg))) := by
   set Q := X₀.tensor X₁ with hQ
   set LL := halfInvLine X₀ X₁ c hdeg with hLL
   have hsQ : IsSmoothHerm Q := DiagRAux.isSmoothHerm_tensor hs0 hs1
@@ -298,14 +298,14 @@ theorem sq_sub {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) �
     norm_num
     rw [Real.rpow_neg_one]
     exact mul_inv_cancel₀ hpos.ne'
-  set G : HermLine ι → HermLine ι → ℝ :=
-    fun A B => I P (n + 2) (Fin.snoc (Fin.cons A L : Fin (n + 1) → HermLine ι) B) with hG
+  set G : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι → ℝ :=
+    fun A B => I P (n + 2) (Fin.snoc (Fin.cons A L : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) B) with hG
   have G_add : ∀ {A B C'}, IsSmoothHerm A → IsSmoothHerm B → IsSmoothHerm C' →
       G A (B.tensor C') = G A B + G A C' := fun hA hB hC =>
     hF.2.1 P (n + 1) _ _ _ hW (smooth_cons hA hL) hB hC
   have G_symm : ∀ {A B}, IsSmoothHerm A → IsSmoothHerm B → G A B = G B A := by
     intro A B hA hB
-    have := hF.1 P (n + 2) (Fin.snoc (Fin.cons B L : Fin (n + 1) → HermLine ι) A)
+    have := hF.1 P (n + 2) (Fin.snoc (Fin.cons B L : Fin (n + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) A)
       (Equiv.swap 0 (Fin.last (n + 1))) hW (smooth_snoc hA (smooth_cons hB hL))
     rw [snoc_cons_comp_swap] at this
     exact this
@@ -327,7 +327,7 @@ theorem sq_sub {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → HermLine ι) �
 
 end PositivityTheory.Xgp.sq_R
 
-theorem PositivityTheory.Xgp.t_sq_R : Inputs → ∀ (II : IntersectionSystem), IsFullIntersectionSystem II → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (d : ℕ) (k₀ : K) (xi2 : K → ℤ) (Q : AlgSq P d k₀ xi2) (Xi : HermLine ι) (X₀ X₁ : HermLine Q.ιW), Xi.a = xi2 → IsSmoothHerm Xi → IsPullHerm (Q.κ 0) (Q.v 0) Xi X₀ → IsPullHerm (Q.κ 1) (Q.v 1) Xi X₁ → ∀ T : Fin (d + 1) → HermLine Q.ιW, (∀ j, IsSmoothHerm (T j)) → II Q.KW Q.ιW Q.PW (d + 3) (Fin.cons X₀ (Fin.cons X₀ T)) - II Q.KW Q.ιW Q.PW (d + 3) (Fin.cons X₁ (Fin.cons X₁ T)) = 2 * (ptsIntegral Q.PW (pot (Fin.cons X₀ T : Fin (d + 2) → HermLine Q.ιW)) (Q.logNormT Xi) - ptsIntegral Q.PW (pot (Fin.cons X₁ T : Fin (d + 2) → HermLine Q.ιW)) (Q.logNormT Xi)) := by
+theorem PositivityTheory.Xgp.t_sq_R : Inputs → ∀ (II : IntersectionSystem), IsFullIntersectionSystem II → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (d : ℕ) (k₀ : K) (xi2 : K → ℤ) (Q : AlgSq P d k₀ xi2) (Xi : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) (X₀ X₁ : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW), Xi.a = xi2 → IsSmoothHerm Xi → IsPullHerm (Q.κ 0) (Q.v 0) Xi X₀ → IsPullHerm (Q.κ 1) (Q.v 1) Xi X₁ → ∀ T : Fin (d + 1) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW, (∀ j, IsSmoothHerm (T j)) → II Q.KW Q.ιW Q.PW (d + 3) (Fin.cons X₀ (Fin.cons X₀ T)) - II Q.KW Q.ιW Q.PW (d + 3) (Fin.cons X₁ (Fin.cons X₁ T)) = 2 * (ptsIntegral Q.PW (pot (Fin.cons X₀ T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW)) (Q.logNormT Xi) - ptsIntegral Q.PW (pot (Fin.cons X₁ T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW)) (Q.logNormT Xi)) := by
   intro hIn II hII K _ ι _ P d k₀ xi2 Q Xi X₀ X₁ hXa hX hp0 hp1 T hT
   have hF : IsIntersectionFamily (II Q.KW Q.ιW) := hII.1 Q.KW Q.ιW
   have hW : IsArithVar Q.PW (d + 3) := Q.arithW
@@ -342,25 +342,25 @@ theorem PositivityTheory.Xgp.t_sq_R : Inputs → ∀ (II : IntersectionSystem), 
   have hsLL : IsSmoothHerm LL := GroundTheory.Heights₂.Heights.Inter.DiagRAux.isSmoothHerm_halfInvLine hs0 hs1 _ hdeg
   have hrat : IsRatSectionOn Q.PW LL Q.g Q.h :=
     ⟨_, _, Q.g_deg, Q.h_deg, Q.g_nmem, Q.h_nmem, fun k => rfl⟩
-  have hdiv : ReciprocityTheory.ChartRestriction.G.AI.T.toZCycle (divCycle Q.PW Q.g) - ReciprocityTheory.ChartRestriction.G.AI.T.toZCycle (divCycle Q.PW Q.h) =
+  have hdiv : ReciprocityTheory.ChartRestriction.G.AI.T.toZCycle (_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle Q.PW Q.g) - ReciprocityTheory.ChartRestriction.G.AI.T.toZCycle (_root_.ReciprocityTheory.ChartRestriction.G.Geo.divCycle Q.PW Q.h) =
       Finsupp.single Q.Δ 1 := by
     classical
     ext W
     simp only [Q.div_eq, ReciprocityTheory.ChartRestriction.G.AI.T.toZCycle, Finsupp.coe_sub, Pi.sub_apply, Finsupp.mapRange_apply,
       Finsupp.coe_add, Pi.add_apply, Finsupp.single_apply]
     split_ifs <;> push_cast <;> ring
-  have key : ∀ A : HermLine Q.ιW, IsSmoothHerm A →
-      II Q.KW Q.ιW Q.PW (d + 3) (Fin.snoc (Fin.cons A T : Fin (d + 2) → HermLine Q.ιW) LL) =
+  have key : ∀ A : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW, IsSmoothHerm A →
+      II Q.KW Q.ιW Q.PW (d + 3) (Fin.snoc (Fin.cons A T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW) LL) =
         II Q.KW Q.ιW Q.Δ (d + 2) (Fin.snoc T A) -
-          ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → HermLine Q.ιW)) (Q.logNormT Xi) := by
+          ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW)) (Q.logNormT Xi) := by
     intro A hA
     have e7 := hIn.ratR Q.KW Q.ιW (II Q.KW Q.ιW) hF Q.PW (d + 2) (Fin.cons A T) LL Q.g Q.h hW
       (GroundTheory.Heights₂.Heights.Inter.DiagRAux.smooth_cons hA hT) hsLL hrat
     have e8 := GroundTheory.Heights₂.Heights.Inter.DiagRAux.cycR_sub_eq (II Q.KW Q.ιW) Q.PW
-      (Fin.cons A T : Fin (d + 2) → HermLine Q.ιW) Q.g Q.h Q.Δ hdiv Q.arithΔ.2.2.1
+      (Fin.cons A T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW) Q.g Q.h Q.Δ hdiv Q.arithΔ.2.2.1
     have e9 := PositivityTheory.Xgp.sq_R.cons_eq_snoc hF Q.arithΔ hT hA
-    have e10 : ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → HermLine Q.ιW)) (logNormRat LL Q.g Q.h) =
-        ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → HermLine Q.ιW)) (Q.logNormT Xi) := by
+    have e10 : ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW)) (logNormRat LL Q.g Q.h) =
+        ptsIntegral Q.PW (pot (Fin.cons A T : Fin (d + 2) → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine Q.ιW)) (Q.logNormT Xi) := by
       refine GroundTheory.Heights₂.Heights.Inter.ZeroSetNull.proof Q.KW Q.ιW Q.PW (d + 2) (Q.g * Q.h) (Q.dg + Q.dh) _ _ _ hW
         (by classical exact GroundTheory.Heights₂.Heights.Inter.exHomog_mul Q.g_deg Q.h_deg)
         (fun hm => (hWp.mem_or_mem hm).elim Q.g_nmem Q.h_nmem) ?_
