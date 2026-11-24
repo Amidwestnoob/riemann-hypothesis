@@ -44,6 +44,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0037
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalFixed
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory Formalism.L2.Theta Formalism.IndefR.Mult GlobalTheory.CuspMult GlobalTheory.PRep

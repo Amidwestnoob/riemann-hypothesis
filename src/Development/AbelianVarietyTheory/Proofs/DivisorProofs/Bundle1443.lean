@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1368
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetEqOne
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain Polynomial MeasureTheory GroundTheory.Automorphic UpperTheory.V.Af GlobalTheory.HenQ

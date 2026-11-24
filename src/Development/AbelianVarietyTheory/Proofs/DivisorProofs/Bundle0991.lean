@@ -38,6 +38,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0922
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearSection
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix

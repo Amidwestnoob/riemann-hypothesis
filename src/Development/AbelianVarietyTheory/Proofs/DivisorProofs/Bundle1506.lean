@@ -38,6 +38,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.LocallyCompa
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonFieldTypeVanishingX
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 section
 noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR.Mult Formalism.MainNotions.S

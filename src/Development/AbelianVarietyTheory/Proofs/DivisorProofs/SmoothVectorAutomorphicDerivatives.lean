@@ -17,6 +17,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0199
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 namespace GlobalTheory.SmoothRep
