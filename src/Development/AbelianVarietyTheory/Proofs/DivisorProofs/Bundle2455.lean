@@ -411,7 +411,7 @@ theorem torsion_section_label : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Alg
     let c : Sp (PadicAlgCl p) ⟶ Sp R := spMap ((OO p).subtype.comp ev)
     have hc : c ≫ ξ = gPt p ≫ y := by
       rw [← hev]
-      simp only [c, gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
+      simp only [c, GlobalTheory.ZH.gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
     have hcW : Set.range c ⊆ Set.range W.ι := by
       rw [Scheme.Opens.range_ι]
       rintro _ ⟨w, rfl⟩
@@ -435,7 +435,7 @@ theorem torsion_section_label : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Alg
     let c : Sp (PadicAlgCl p) ⟶ Sp R := spMap ((OO p).subtype.comp ev)
     have hc : c ≫ ξ = gPt p ≫ y := by
       rw [← hev]
-      simp only [c, gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
+      simp only [c, GlobalTheory.ZH.gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
     refine ⟨c (genericPoint _), ?_⟩
     show ξ (c (genericPoint _)) ∈ U₀
     rw [← Scheme.Hom.comp_apply, hc]

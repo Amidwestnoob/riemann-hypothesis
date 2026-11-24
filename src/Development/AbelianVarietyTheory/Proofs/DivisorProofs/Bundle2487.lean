@@ -72,7 +72,7 @@ theorem val_gPt_of_stalk : ∀ (o Ω : Type) [CommRing o] [Field Ω] [Algebra o 
   have hg : gPt p ≫ y = spMap ((OO p).subtype.comp ev) ≫ (spMap j ≫ M.Z.fromSpecStalk x) := by
     rw [← hy, ← Category.assoc]
     congr 1
-    rw [gPt, spMap, spMap, spMap, ← Spec.map_comp]
+    rw [GlobalTheory.ZH.gPt, spMap, spMap, spMap, ← Spec.map_comp]
     rfl
   have hU' : ⊤ ≤ (gPt p ≫ y) ⁻¹ᵁ U := by
     rw [hg]; exact fun w _ => hU (x := spMap ((OO p).subtype.comp ev) w) trivial
