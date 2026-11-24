@@ -423,7 +423,7 @@ theorem exists_ne_zero_back (hL : Laws U x) (Z : Comp Xo c) (u : AllWt.Weight Dw
 theorem modelWt_entry {σ : c.F →+* ℂ} (V : Unf Xo c σ r) (hσ : GoodEmb c σ) (hV : IsUnf V) (la : AllWt.Weight Dw) (m : ℤ)
     (k : V.Comp) (τ' : (V.X k).Ψ) : ∃ τ : Psi H, ∀ j : Fin r, modelWt V (wtOf Dw la m) k τ' j =
       if h : (j : ℕ) < Dw.q then la τ ⟨Dw.p + j, by omega⟩ else la τ ⟨j - Dw.q, by have := hV.1; have := j.2; omega⟩ := by
-  have hsurj : Function.Surjective (relab (E := E) c σ) := Finite.injective_iff_surjective.1 (relab_injective σ)
+  have hsurj : Function.Surjective (relab (E := E) c σ) := Finite.injective_iff_surjective.1 (GlobalTheory.AllWt.relab_injective σ)
   obtain ⟨hp0, hΨ⟩ := hV.2.1 k
   have hr := hV.1
   obtain ⟨τ', hτ'⟩ := τ'
