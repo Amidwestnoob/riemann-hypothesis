@@ -375,7 +375,7 @@ theorem vac_leftE (hok : s.Ok) (hE : B.EqP χ) {a b : ℕ} {N : Submodule (𝓞 
     (hA : TaylorLogMetric.admitted D a b (s.lat N) (s.lat N')) (γ : UF X.E b) (hγ : gmap γ.1 N' = N') (z : VCx X.Tau a b) :
     (ambOf s B χ cD : Amb X).e a b N N' (leftE (ambOf s B χ cD : Amb X) a γ.1 z) = (ambOf s B χ cD : Amb X).e a b N N' z := by
   letI := D.host.cmStar
-  have h := hE.1 a b ⟨s.lat N, hA.2.2.1⟩ ⟨s.lat N', hA.2.2.2⟩ hA.1 hA.2.1 1 ⟨matOf s γ.1, matOf_unitary s hok γ⟩
+  have h := hE.1 a b ⟨s.lat N, hA.2.2.1⟩ ⟨s.lat N', hA.2.2.2⟩ hA.1 hA.2.1 1 ⟨GlobalTheory.Mem.Col2.JetEx.VacEqPf.matOf s γ.1, matOf_unitary s hok γ⟩
   have h1 : SDLat.smulLat ((1 : Matrix.unitaryGroup (Fin a) D.host.E) : Matrix (Fin a) (Fin a) D.host.E) (s.lat N) = s.lat N := by
     change SDLat.smulLat (1 : Matrix (Fin a) (Fin a) D.host.E) _ = _
     unfold SDLat.smulLat
