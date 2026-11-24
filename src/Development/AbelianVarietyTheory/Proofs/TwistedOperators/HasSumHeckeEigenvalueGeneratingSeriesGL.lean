@@ -13,6 +13,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAux
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+
 noncomputable section
 
 open MeasureTheory ValuativeRel Matrix IsDedekindDomain NumberField Formalism.UG GlobalTheory.PRep GlobalTheory.LFun GlobalTheory.LocGL GlobalTheory.LGrp GlobalTheory.SplitWeil
