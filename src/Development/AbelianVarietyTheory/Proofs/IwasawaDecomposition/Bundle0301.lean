@@ -328,7 +328,7 @@ theorem mem_Fi_of_free {E K ι : Type} [Field E] [NumberField E] [StarRing E] [F
     funext y
     show S.tr emb σ c.1 g.1 (φ c) y = φ c y
     rw [hg]
-    simp [GStep.tr, trFr_apply, frMul_one]
+    simp [GStep.tr, trFr_apply, GlobalTheory.Mem.Col2.frMul_one]
 
 
 set_option maxHeartbeats 1000000 in
