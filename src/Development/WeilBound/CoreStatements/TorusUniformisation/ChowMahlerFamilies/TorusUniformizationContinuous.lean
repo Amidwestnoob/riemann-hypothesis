@@ -245,7 +245,7 @@ theorem exists_coords {X : Scheme.{0}} {Ω : Type} [Field Ω] {K : Type} [Fintyp
       (g (X.presheaf.map (homOfLE (hle q)).op (t q))) := by
     intro q
     refine ⟨hall _, X.presheaf.germ W _ hcz (X.presheaf.map (homOfLE (hle q)).op (t q)), ?_, hg _⟩
-    rw [genMap_germ W (hall _) hcz, ← genMap_germ W (hall p) hpW, TopCat.Presheaf.germ_res_apply]
+    rw [_root_.GlobalTheory.CompanionTheory.Ar.RootHt.ArchC.genMap_germ W (hall _) hcz, ← _root_.GlobalTheory.CompanionTheory.Ar.RootHt.ArchC.genMap_germ W (hall p) hpW, TopCat.Presheaf.germ_res_apply]
     exact ht q
   have h1 : ∀ k, g (X.presheaf.map (homOfLE (hle ⟨k, c k⟩)).op (t ⟨k, c k⟩)) = 1 := by
     intro k

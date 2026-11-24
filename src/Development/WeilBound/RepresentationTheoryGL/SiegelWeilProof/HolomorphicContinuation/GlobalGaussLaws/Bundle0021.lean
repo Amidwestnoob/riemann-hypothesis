@@ -348,7 +348,7 @@ theorem cocycleZ : CocycleZ := by
       Matrix.mul_nonsing_inv _ hD, Matrix.one_mul]
     rfl
   · simp only [jF]
-    rw [mR_mul, n2, n3, Matrix.det_mul, Matrix.det_mul, Matrix.det_mul, mul_zpow, mul_zpow, mul_zpow]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.GaussH.mR_mul, n2, n3, Matrix.det_mul, Matrix.det_mul, Matrix.det_mul, mul_zpow, mul_zpow, mul_zpow]
     ring
 
 end PositivityTheory.Rg.Sw.Glob

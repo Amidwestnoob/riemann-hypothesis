@@ -91,7 +91,7 @@ def LponeIdem : Prop :=
 def FixIdem : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (a b : ℕ) (w : Pl E) (L : Subgroup (GLw a w × GLw b w)),
     IsOpen (L : Set (GLw a w × GLw b w)) → L ≤ (GlobalTheory.LFun.KGL w (n := a)).prod (GlobalTheory.LFun.KGL w (n := b)) →
-    ∀ φ : GLw a w × GLw b w → ℂ, IsHecke L φ → mconv φ (idem L) = φ ∧ mconv (idem L) φ = φ
+    ∀ φ : GLw a w × GLw b w → ℂ, IsHecke L φ → mconv φ (_root_.PositivityTheory.Rg.BcB.F.idem L) = φ ∧ mconv (_root_.PositivityTheory.Rg.BcB.F.idem L) φ = φ
 
 def MatchBadS : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n a : ℕ) (ha : a ≤ n) (w : Pl E), IsSplitAt w →
@@ -105,7 +105,7 @@ def MatchBadI : Prop :=
 
 def MatchUnitI : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ w : Pl E, ¬ IsSplitAt w → ∀ n a : ℕ, a ≤ n →
-    Match n a (n - a) w 1 ((KL n w : Set (UL n w)).indicator 1) (idem (K2 a (n - a) w))
+    Match n a (n - a) w 1 ((KL n w : Set (UL n w)).indicator 1) (_root_.PositivityTheory.Rg.BcB.F.idem (K2 a (n - a) w))
 
 def MatchBadSOf : Prop := M3 → LponeIdem → MatchBadS
 def MatchUnitIOf : Prop := M1 → MatchUnitI

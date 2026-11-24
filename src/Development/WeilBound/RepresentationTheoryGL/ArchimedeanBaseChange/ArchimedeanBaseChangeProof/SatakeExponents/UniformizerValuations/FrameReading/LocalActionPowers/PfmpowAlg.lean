@@ -117,7 +117,7 @@ theorem mul_s (M M' : LM κ a b) (w : Pl E) : (M.mul M').s w = mconv (M.s w) (M'
 theorem product_torus_component (M M' : LM κ a b) (w : Pl E) : (M.mul M').t w = mconv (M.t w) (M'.t w) := rfl
 
 def dg (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w : Pl E) (x y : κ w) : GLw a w × GLw b w → ℂ :=
-  if x = y then idem (V w) else fun _ => 0
+  if x = y then _root_.PositivityTheory.Rg.BcB.F.Tail.idem (V w) else fun _ => 0
 
 def only0 (L : LM κ a b) (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w₀ : Pl E) : LM κ a b :=
   ⟨fun w x y => if w = w₀ then L.m w x y else dg V w x y, L.s, L.t⟩
@@ -126,7 +126,7 @@ def rest1 (L : LM κ a b) (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w�
   ⟨fun w x y => if w = w₀ then dg V w x y else L.m w x y, L.s, L.t⟩
 
 theorem dg_mul_left (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w : Pl E) (x : κ w)
-    (f : κ w → GLw a w × GLw b w → ℂ) : ∑ z, mconv (dg V w x z) (f z) = mconv (idem (V w)) (f x) := by
+    (f : κ w → GLw a w × GLw b w → ℂ) : ∑ z, mconv (dg V w x z) (f z) = mconv (_root_.PositivityTheory.Rg.BcB.F.Tail.idem (V w)) (f x) := by
   rw [Finset.sum_eq_single x]
   · simp [dg]
   · intro z _ hz
@@ -135,7 +135,7 @@ theorem dg_mul_left (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w : Pl E)
   · simp
 
 theorem dg_mul_right (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w : Pl E) (y : κ w)
-    (f : κ w → GLw a w × GLw b w → ℂ) : ∑ z, mconv (f z) (dg V w z y) = mconv (f y) (idem (V w)) := by
+    (f : κ w → GLw a w × GLw b w → ℂ) : ∑ z, mconv (f z) (dg V w z y) = mconv (f y) (_root_.PositivityTheory.Rg.BcB.F.Tail.idem (V w)) := by
   rw [Finset.sum_eq_single y]
   · simp [dg]
   · intro z _ hz
@@ -145,15 +145,15 @@ theorem dg_mul_right (V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)) (w : Pl E
 
 theorem mconv_idem_dg {V : ∀ w : Pl E, Subgroup (GLw a w × GLw b w)} {w : Pl E}
     (hV : IsOpen (V w : Set (GLw a w × GLw b w))) (hle : V w ≤ K2 a b w) (x y : κ w) :
-    mconv (idem (V w)) (dg V w x y) = dg V w x y := by
+    mconv (_root_.PositivityTheory.Rg.BcB.F.Tail.idem (V w)) (dg V w x y) = dg V w x y := by
   unfold dg
   split_ifs
   · exact mconv_idem_left hV hle fun v hv g => idem_left hv g
   · exact mconv_zero_right _
 
 theorem stabilizerDilationWeights_dualIsotropicVector (M : LM κ a b) (W : ∀ w : Pl E, Subgroup (GLw a w × GLw b w))
-    (hW : ∀ w, IsOpen (W w : Set (GLw a w × GLw b w)) ∧ W w ≤ K2 a b w) (hs : ∀ w, M.s w = idem (W w)) :
-    ∀ k w, (pw M k).s w = idem (W w) := by
+    (hW : ∀ w, IsOpen (W w : Set (GLw a w × GLw b w)) ∧ W w ≤ K2 a b w) (hs : ∀ w, M.s w = _root_.PositivityTheory.Rg.BcB.F.Tail.idem (W w)) :
+    ∀ k w, (pw M k).s w = _root_.PositivityTheory.Rg.BcB.F.Tail.idem (W w) := by
   intro k
   induction k with
   | zero => exact hs
@@ -164,8 +164,8 @@ theorem stabilizerDilationWeights_dualIsotropicVector (M : LM κ a b) (W : ∀ w
     exact mconv_idem_left (hW w).1 (hW w).2 fun v hv g => idem_left hv g
 
 theorem power_torus_component_idempotent (M : LM κ a b) (W : ∀ w : Pl E, Subgroup (GLw a w × GLw b w))
-    (hW : ∀ w, IsOpen (W w : Set (GLw a w × GLw b w)) ∧ W w ≤ K2 a b w) (ht : ∀ w, M.t w = idem (W w)) :
-    ∀ k w, (pw M k).t w = idem (W w) := by
+    (hW : ∀ w, IsOpen (W w : Set (GLw a w × GLw b w)) ∧ W w ≤ K2 a b w) (ht : ∀ w, M.t w = _root_.PositivityTheory.Rg.BcB.F.Tail.idem (W w)) :
+    ∀ k w, (pw M k).t w = _root_.PositivityTheory.Rg.BcB.F.Tail.idem (W w) := by
   intro k
   induction k with
   | zero => exact ht

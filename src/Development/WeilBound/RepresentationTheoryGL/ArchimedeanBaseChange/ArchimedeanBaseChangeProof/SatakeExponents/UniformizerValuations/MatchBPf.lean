@@ -182,10 +182,10 @@ theorem fixIdem : FixIdem := by
     rw [Subgroup.coe_prod]
     exact (GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL w a).2.prod (GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL w b).2
   have hN : ((L.relIndex (K2 a b w) : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.2 (mb_relIndex_ne_zero _ _ hLo hK2c)
-  have hidem : ∀ y, idem L y = if y ∈ L then ((L.relIndex (K2 a b w) : ℕ) : ℂ) else 0 := fun y => by
-    simp [idem, Set.indicator_apply]
+  have hidem : ∀ y, _root_.PositivityTheory.Rg.BcB.F.idem L y = if y ∈ L then ((L.relIndex (K2 a b w) : ℕ) : ℂ) else 0 := fun y => by
+    simp [_root_.PositivityTheory.Rg.BcB.F.idem, Set.indicator_apply]
   refine ⟨funext fun m => ?_, funext fun m => ?_⟩
-  · have hu : (fun m' => φ m' * idem L (m'⁻¹ * m)) =
+  · have hu : (fun m' => φ m' * _root_.PositivityTheory.Rg.BcB.F.idem L (m'⁻¹ * m)) =
         fun m' => if m⁻¹ * m' ∈ L then ((L.relIndex (K2 a b w) : ℕ) : ℂ) * φ m else 0 := by
       funext m'
       rw [hidem]
@@ -202,7 +202,7 @@ theorem fixIdem : FixIdem := by
           rwa [_root_.mul_inv_rev, inv_inv] at this)
         rw [if_neg h1, if_neg hk, mul_zero]
     rw [mconv, hu, mb_hint_coset _ _ hLK, ← mul_assoc, inv_mul_cancel₀ hN, one_mul]
-  · have hu : (fun m' => idem L m' * φ (m'⁻¹ * m)) =
+  · have hu : (fun m' => _root_.PositivityTheory.Rg.BcB.F.idem L m' * φ (m'⁻¹ * m)) =
         fun m' => if (1 : GLw a w × GLw b w)⁻¹ * m' ∈ L then ((L.relIndex (K2 a b w) : ℕ) : ℂ) * φ m else 0 := by
       funext m'
       rw [hidem, inv_one, one_mul]
@@ -219,10 +219,10 @@ theorem matchBadSOf : MatchBadSOf := by
 theorem matchUnitIOf : MatchUnitIOf := by
   intro h1 E _ _ _ hU w hw n a ha
   have hM := h1 E hU w hw n a (n - a) (Nat.add_sub_cancel' ha)
-  have he : idem (K2 a (n - a) w) =
+  have he : _root_.PositivityTheory.Rg.BcB.F.idem (K2 a (n - a) w) =
       ((((GlobalTheory.LFun.KGL w (n := a)).prod (GlobalTheory.LFun.KGL w (n := (n - a))) : Subgroup _) : Set (GLw a w × GLw (n - a) w)).indicator 1) := by
     funext y
-    simp [idem, Set.indicator_apply, Subgroup.relIndex_self]
+    simp [_root_.PositivityTheory.Rg.BcB.F.idem, Set.indicator_apply, Subgroup.relIndex_self]
   rw [he]
   exact hM
 

@@ -201,7 +201,7 @@ theorem sec_along {ε : Fin m → Bool} {c t : ℝ} {p q : ℕ} {e : ℤ} {sL : 
     {y₁ w : GR n} {b : Matrix (Fin n) (Fin n) ℂ} (hy₁ : IsUp y₁) (hb : b.IsHermitian) (hw : mR w = JJ n * nU b)
     (P : PX m n) (σ : ℝ) : sL P (y₁ * w * f σ) = F0 p q e y₁ * (C * secN ε c t P (b + (σ : ℂ) • H)) := by
   have hfw : mR (w * f σ) = JJ n * nU (b + (σ : ℂ) • H) := by
-    rw [mR_mul, hw, hf, Matrix.mul_assoc, nU_mul_nU]
+    rw [_root_.PositivityTheory.Rg.Sw.AbsSt.DF.mR_mul, hw, hf, Matrix.mul_assoc, nU_mul_nU]
   have hbσ : (b + (σ : ℂ) • H).IsHermitian := by
     unfold IsHermitian
     rw [conjTranspose_add, conjTranspose_smul, hb.eq, hH.eq, Complex.star_def, Complex.conj_ofReal]

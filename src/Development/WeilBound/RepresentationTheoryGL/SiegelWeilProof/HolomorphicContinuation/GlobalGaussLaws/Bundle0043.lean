@@ -408,7 +408,7 @@ theorem lIkvac : LIkvac := by
 
   have hann1 : ∀ X, annS V l s θ τ X (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) 1).1 = 0 := by
     intro X
-    rw [phiS_val (hmem 1).1]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem 1).1]
     funext x
     rw [annS_tens hC.hθ hC.hfr hM l]
     simp
@@ -417,7 +417,7 @@ theorem lIkvac : LIkvac := by
   rw [hL k _ hΨ0m 1] at hann2
 
   have hΦ : (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) 1).1 ∈ fockA θ V n l s := by
-    rw [phiS_val (hmem 1).1]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem 1).1]
     exact (hmem 1).2
   have hst := fock_stable D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs _ hΦ (ι k)
     (iota_mem_K hC.hθ hC.hι k hk)

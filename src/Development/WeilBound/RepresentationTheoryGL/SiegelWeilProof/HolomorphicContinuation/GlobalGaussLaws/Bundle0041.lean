@@ -46,7 +46,7 @@ theorem lIrho : LIrho := by
     exact zero_mul _
   have hphi0 : phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) 0 = 0 := by
     apply Subtype.ext
-    rw [phiS_val (hmem 0).1, hfP0, htens0]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem 0).1, hfP0, htens0]
     rfl
   have hlin : ∀ (a : ℂ) (P Q : PX V.rank n), phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) (a • P + Q) =
       a • phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) P + phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) Q := by
@@ -66,12 +66,12 @@ theorem lIrho : LIrho := by
     intro R hR
     have h1 : (jL R).1 = 0 := by rw [hR]; rfl
     change (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) R).1 = 0 at h1
-    rw [phiS_val (hmem R).1, ← htens0, ← hfP0] at h1
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem R).1, ← htens0, ← hfP0] at h1
     exact fP_inj _ (tensor_gaussian_vacuum_injective hC.hθ hC.hfr l h1)
   have hexist : ∀ k : GR n, InK (mR k) → ∀ P, ∃ Q, L k (fP (cLoc l τ) P) = fP (cLoc l τ) Q := by
     intro k hk P
     have hΦ : (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) P).1 ∈ fockA θ V n l s := by
-      rw [phiS_val (hmem P).1]
+      rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem P).1]
       exact (hmem P).2
     have hst := fock_stable D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs _ hΦ (ι k)
       (iota_mem_K hC.hθ hC.hι k hk)
@@ -114,12 +114,12 @@ theorem lIrho : LIrho := by
     apply Subtype.ext
     show (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) (ρ0 k Q)).1 =
       (ω (ι k) (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) Q)).1
-    rw [hL k _ hΨ0m Q, phiS_val (hmem _).1, ← hρ0 k hk Q]
+    rw [hL k _ hΨ0m Q, _root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem _).1, ← hρ0 k hk Q]
   refine ⟨ρ, hρ, fun P => ?_⟩
   have hjmem : ∀ R, (jL R).1 ∈ fockA θ V n l s := by
     intro R
     show (phiS θ τ fr (cLoc l τ) (psi0 θ V n l s τ) R).1 ∈ fockA θ V n l s
-    rw [phiS_val (hmem R).1]
+    rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem R).1]
     exact (hmem R).2
   have hfd := _root_.GlobalTheory.StdUnn.KFin.fock_kfinite D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs (jL P) (hjmem P)
   set S := Submodule.span ℂ {Ψ' : schwartzA θ V.rank n | ∃ k ∈ K D n, Ψ' = ω k (jL P)} with hS
