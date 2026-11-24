@@ -422,7 +422,7 @@ private theorem exists_under {D D' : D7} (ι : D.what₂.LL →+* D'.what₂.LL)
   · have a := (h2 _).1 (val_resChar_lt D w)
     rw [map_natCast] at a
     exact prime_eq_of_lt _ (D.what₂.places.resChar_prime w) (D'.what₂.places.resChar_prime w') a (val_resChar_lt D' w')
-  · rw [val_nonneg_iff, val_nonneg_iff, h1]
+  · rw [_root_.val_nonneg_iff, _root_.val_nonneg_iff, h1]
 
 theorem UpperTheory.sidePlace_exists_of_copyAll :
     ∀ {D D' : D7} {ι : D.what₂.LL →+* D'.what₂.LL} {e : ↥D'.LL0 ≃+* ↥D.LL0}, CopyAll D D' ι e → (∀ w : D.what₂.places.Pl, ∃ i, D.ntw.l i = D.what₂.places.resChar w ∧ GlobalTheory.HeightCounting.SidePl D w i true) → ∀ w : D'.what₂.places.Pl, ∃ i, D'.ntw.l i = D'.what₂.places.resChar w ∧ GlobalTheory.HeightCounting.SidePl D' w i true := by
