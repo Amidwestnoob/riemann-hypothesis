@@ -5,6 +5,8 @@ public import Development.DiscreteGroups.GlobalIrreducibility.LConvCut
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open ValuativeRel
