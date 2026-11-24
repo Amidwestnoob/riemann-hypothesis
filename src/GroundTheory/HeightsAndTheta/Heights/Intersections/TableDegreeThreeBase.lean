@@ -197,7 +197,7 @@ theorem contract_intersection_number (hIm : ImageArithStatement) (hF : pointForm
     have hM' : IsSmoothHerm M' := IsPullHerm.isSmoothHerm hv hMM hM
     have hA' : IsSmoothHerm A' := hL' _
     have hadd := (hI K' ι').2.1 P' n (Fin.init L') A' M' hP' hL0' hA' hM'
-    have h3 := key (A.tensor M) (A'.tensor M') (isSmoothHerm_tensor hA' hM')
+    have h3 := key (A.tensor M) (A'.tensor M') (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA' hM')
       (IsPullHerm.tensor (hLL _) hMM) fun k => by
         show 0 ≤ A.a k + ((-(A.a k)).toNat : ℤ)
         omega

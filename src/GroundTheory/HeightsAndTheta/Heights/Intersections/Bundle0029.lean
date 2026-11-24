@@ -225,7 +225,7 @@ theorem InductiveIntersectionFormula.proof : InductiveIntersectionFormula.Statem
   intro K _ ι _ I hI P n L A f g hP hL hA ⟨α, β, hf, hg, hfP, hgP, hαβ⟩ hhor hmult hnorm
   obtain ⟨-, hAdd, hR⟩ := hI
   have hB : IsSmoothHerm (HermLine.sqMetric (ι := ι) β) := isSmoothHerm_sqMetric β
-  have hRf := hR P n L _ f α hP hL (isSmoothHerm_tensor hA hB) (tensor_sqMetric_a hαβ) hf hfP
+  have hRf := hR P n L _ f α hP hL (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hB) (tensor_sqMetric_a hαβ) hf hfP
   have hRg := hR P n L _ g β hP hL hB (fun k ↦ rfl) hg hgP
   have hsum := hAdd P n L A _ hP hL hA hB
   have hint : arInt P f (A.tensor (HermLine.sqMetric β)) L = arInt P g (HermLine.sqMetric β) L := by
@@ -269,7 +269,7 @@ theorem RatR.proof (hInt : PtsIntegrableStatement) : RatR.Statement := by
   intro K _ ι _ I hI P n L A f g hP hL hA ⟨α, β, hf, hg, hfP, hgP, hαβ⟩
   obtain ⟨-, hAdd, hR⟩ := hI
   have hB : IsSmoothHerm (HermLine.sqMetric (ι := ι) β) := isSmoothHerm_sqMetric β
-  have hAB := isSmoothHerm_tensor hA hB
+  have hAB := _root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hB
   have hRf := hR P n L _ f α hP hL hAB (tensor_sqMetric_a hαβ) hf hfP
   have hRg := hR P n L _ g β hP hL hB (fun k ↦ rfl) hg hgP
   have hsum := hAdd P n L A _ hP hL hA hB

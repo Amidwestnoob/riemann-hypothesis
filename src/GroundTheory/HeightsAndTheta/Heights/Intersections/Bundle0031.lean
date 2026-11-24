@@ -98,7 +98,7 @@ theorem ptsIntegral_logNormRat (hInt : PtsIntegrableStatement) {P : Ideal (MRing
     (hf : IsSectionOn P (A.tensor B) f) (hg : IsSectionOn P B g) :
     ptsIntegral P (pot L) (logNormRat A f g) =
       ptsIntegral P (pot L) (logNorm (A.tensor B) f) - ptsIntegral P (pot L) (logNorm B g) := by
-  have hAB := isSmoothHerm_tensor hA hB
+  have hAB := _root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hB
   obtain ⟨α, -, hfα, hfP⟩ := id hf
   obtain ⟨β, -, hgβ, hgP⟩ := id hg
   unfold ptsIntegral
@@ -252,7 +252,7 @@ theorem ArithmeticIntersectionIntegral.proof (hInt : PtsIntegrableStatement) (hS
     · rw [Function.extend_apply' _ _ _ h, Function.extend_apply' _ _ _ h]
       simp
   rw [ptsIntegral_logNormRat hInt hP' hL' hA' hB' hfs' hgs', ptsIntegral_logNormRat hInt hP hL hA hB hfs hgs,
-    hSec K ι K' ι' κ v P' n G J L L' _ _ f hv hP' hP hJ hL hLL' (isSmoothHerm_tensor hA hB)
+    hSec K ι K' ι' κ v P' n G J L L' _ _ f hv hP' hP hJ hL hLL' (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA hB)
       (isPullHerm_tensor hAA' hBB') hfs,
     hSec K ι K' ι' κ v P' n G J L L' _ _ g hv hP' hP hJ hL hLL' hB hBB' hgs, mul_sub]
 

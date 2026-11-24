@@ -186,7 +186,7 @@ theorem exists_logLatticeProd_real_equiv :
   refine ⟨e, fun g y ↦ ?_⟩
   apply P.injective
   simp only [e, LinearEquiv.trans_apply, LinearEquiv.apply_symm_apply]
-  rw [piScalarRight_baseChange_funPermRep, LinearEquiv.apply_symm_apply,
+  rw [_root_.GroundTheory.Global.piScalarRight_baseChange_funPermRep, LinearEquiv.apply_symm_apply,
     LinearEquiv.ofBijective_apply, LinearEquiv.ofBijective_apply, hE]
 
 theorem exists_logLatticeProd_intertwiner :

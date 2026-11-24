@@ -372,7 +372,7 @@ theorem DeLeSemiPos.proof (hPL1 : ArithmeticPoincareLelongFormula) (hSt : Stokes
           ptsIntegral P (Fin.cons (fun z => Real.log (T.h z)) (pot L)) (logNorm A s) := by
     intro ε hε
     have hB : IsSmoothHerm (regLine A' s' ht' ε) := isSmoothHerm_regLine hA' hε
-    rw [pot_cons, hAdd K ι P n L _ T A s hP hL (isSmoothHerm_tensor hA' hB) hT hA hs,
+    rw [pot_cons, hAdd K ι P n L _ T A s hP hL (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA' hB) hT hA hs,
       hAdd K ι P n L A' _ A s hP hL hA' hB hA hs, hPL1 K ι P n L A _ s hP hL hA hB rfl hs]
   have h1 : Tendsto
       (fun ε => ptsIntegral P (pot (Fin.cons ((A'.tensor (regLine A' s' ht' ε)).tensor T) L)) (logNorm A s))
@@ -427,7 +427,7 @@ theorem DeLeSemiPos.proof (hPL1 : ArithmeticPoincareLelongFormula) (hSt : Stokes
             (fun z => Real.log ((regLine A s ht δ).h z)) := by
         intro ε hε
         have hB : IsSmoothHerm (regLine A' s' ht' ε) := isSmoothHerm_regLine hA' hε
-        rw [pot_cons, ptsIntegral_add_first_log hAdd hP hL (isSmoothHerm_tensor hA' hB) hT hD rfl,
+        rw [pot_cons, ptsIntegral_add_first_log hAdd hP hL (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA' hB) hT hD rfl,
           ptsIntegral_add_first_log hAdd hP hL hA' hB hD rfl,
           hSt K ι P n L (regLine A s ht δ) (regLine A' s' ht' ε) hP hL hD hB rfl rfl]
       have ev : ∀ᶠ ε in 𝓝[>] (0 : ℝ), _ := eventually_mem_nhdsWithin.mono fun ε hε => eR ε hε
@@ -435,7 +435,7 @@ theorem DeLeSemiPos.proof (hPL1 : ArithmeticPoincareLelongFormula) (hSt : Stokes
     have hle := le_of_tendsto_of_tendsto h1 hR (by
       filter_upwards [self_mem_nhdsWithin] with ε hε
       exact hMono K ι P (n + 1) _ A (regLine A s ht δ) s hP
-        (forall_cons (isSmoothHerm_tensor (isSmoothHerm_tensor hA' (isSmoothHerm_regLine hA' hε)) hT) hL)
+        (forall_cons (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor (_root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor hA' (isSmoothHerm_regLine hA' hε)) hT) hL)
         (forall_cons (hC ε hε) hLp) hA hs hD rfl
         (fun z hz h0 => logNorm_le_log_regLine_h hδ.le hz.1 h0))
     linarith

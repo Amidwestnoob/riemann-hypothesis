@@ -160,7 +160,7 @@ theorem PFSecRed.proof
   let H : HermLine ι' := HermLine.sqMetric c
   let A : HermLine ι' := (N (Fin.last r)).tensor H
   have hHs : IsSmoothHerm H := isSmoothHerm_sqMetric c
-  have hAs : IsSmoothHerm A := isSmoothHerm_tensor (hN _) hHs
+  have hAs : IsSmoothHerm A := _root_.ReciprocityTheory.ChartRestriction.G.Geo.isSmoothHerm_tensor (hN _) hHs
   let a : K' → ℕ := fun k => ((N (Fin.last r)).a k + c k).toNat
   have hAa : ∀ k, A.a k = a k := by
     intro k
