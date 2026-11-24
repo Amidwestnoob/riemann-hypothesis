@@ -7,6 +7,7 @@ public import Mathlib.NumberTheory.Padics.AddChar
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Bundle0076
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V UpperTheory.V.Base UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 

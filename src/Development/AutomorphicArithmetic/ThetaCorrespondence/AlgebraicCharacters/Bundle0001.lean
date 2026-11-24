@@ -368,6 +368,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.AlgebraicCharacters.EmbOrbitAlt
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open UpperTheory.Lit.CharWD GlobalTheory.Published
 
 section SlopeTestRemainingChoices

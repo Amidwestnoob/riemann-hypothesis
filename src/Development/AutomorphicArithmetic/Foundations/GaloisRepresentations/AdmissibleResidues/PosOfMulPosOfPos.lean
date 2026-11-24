@@ -16,6 +16,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimura
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Bundle0034
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open UpperTheory.GalN.V
 

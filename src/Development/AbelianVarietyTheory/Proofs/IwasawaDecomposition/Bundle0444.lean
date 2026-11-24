@@ -38,6 +38,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0016
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormLeOneOfMemClC
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.Df NumberField IsDedekindDomain
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 

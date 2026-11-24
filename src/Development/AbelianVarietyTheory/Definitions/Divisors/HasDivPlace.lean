@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.I
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundle0078
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 set_option autoImplicit false

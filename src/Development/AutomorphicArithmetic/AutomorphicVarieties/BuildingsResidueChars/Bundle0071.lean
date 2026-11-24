@@ -17,6 +17,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.AutomorphicFormsDescentToSmallerLevel
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open Formalism.ConjugateSelfDual IsLocalRing UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws
 
 theorem UpperTheory.automorphic_forms_descent_to_smaller_level :

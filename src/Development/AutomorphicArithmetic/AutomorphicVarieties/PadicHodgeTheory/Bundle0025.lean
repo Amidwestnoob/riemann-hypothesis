@@ -353,6 +353,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.NormLeOneOfFrobeniusPowEigenvectorMemFilZero
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal TensorProduct Module UpperTheory.V.Loc Topology Polynomial
 
 private theorem shift_prod {R : Type} [CommMonoid R] (a : ℕ → R) (f : ℕ) :

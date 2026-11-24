@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle019
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1334
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.WeilDeligne GlobalTheory.GalOfCusp GlobalTheory.HeckeGal GlobalTheory.LocLanglands GlobalTheory.Published UpperTheory.V.W
 

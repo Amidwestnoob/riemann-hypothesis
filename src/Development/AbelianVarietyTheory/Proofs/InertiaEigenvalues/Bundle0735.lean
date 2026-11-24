@@ -286,6 +286,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsNormEqOfMemClosure
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option autoImplicit false
 
 noncomputable section
