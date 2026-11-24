@@ -427,6 +427,8 @@ theorem volN_eq_map_coords : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDe
   haveI : SigmaFinite lC := inferInstance
   haveI : SigmaFinite vb.μ := inferInstance
   haveI : SigmaFinite vU.ν := inferInstance
+  haveI : SFinite vU.ν := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : SFinite (vb.μ.prod vU.ν) := MeasureTheory.instSFiniteOfSigmaFinite
   haveI hm : SigmaFinite ((lC.prod (vb.μ.prod vU.ν)).map e) := e.sigmaFinite_map
   have hR := _root_.GlobalTheory.Unf.HaarCoord.isMulRightInvariant_map_coord D V V₀ ρ d vb vU e he lC hC hCs
   have hF := _root_.GlobalTheory.ThreeLayers.fundDomain_coords D V V₀ ρ d vb vU e he lC 𝓒 𝓤 hC hCs hCF hU𝓤
