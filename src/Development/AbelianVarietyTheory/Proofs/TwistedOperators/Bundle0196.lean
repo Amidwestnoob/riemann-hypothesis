@@ -38,7 +38,7 @@ variable {D : D7} (S T : HSp D) (b : Module.Basis (Fin S.rank) D.host.E S.V)
 noncomputable def reFi : (WO (reS S b) T → ℂ) →ₗ[ℂ] (WO S T → ℂ) := LinearMap.funLeft ℂ ℂ (reWi S T b)
 
 theorem reWi_add (x y : WO S T) : reWi S T b (x + y) = reWi S T b x + reWi S T b y := by
-  conv_lhs => rw [← reW_reWi S T b x, ← reW_reWi S T b y, ← reW_add, reWi_reW]
+  conv_lhs => rw [← reW_reWi S T b x, ← reW_reWi S T b y, ← GlobalTheory.AdSpan.ReVec.reW_add, reWi_reW]
 
 theorem reWi_nsmul (k : ℕ) (x : WO S T) : reWi S T b (k • x) = k • reWi S T b x := by
   conv_lhs => rw [← reW_reWi S T b x, ← reW_nsmul, reWi_reW]
@@ -71,7 +71,7 @@ theorem isSBHalf_comp_reW (hΛ : ∀ u, u ∈ Λ' ↔ reW S T b u ∈ Λ) (Φ : 
   obtain ⟨h1, k, hk, h2, h3⟩ := h
   refine ⟨fun t ht => (isHalf_reW_iff S T b e t).1 (h1 _ ht), k, hk, ?_, ?_⟩
   · intro u hu hh t
-    simp only [reW_add, reW_nsmul]
+    simp only [GlobalTheory.AdSpan.ReVec.reW_add, reW_nsmul]
     exact h2 _ ((hΛ u).1 hu) ((isHalf_reW_iff S T b e u).2 hh) _
   · intro t ht
     rw [hΛ, reW_nsmul]
@@ -133,7 +133,7 @@ theorem isThetaAt_reframe : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T :
         have h1 : reF S T b (fun t => Φ (t + x)) =
             fun s => (fun s' => Φ (reW S T b s')) (s + reWi S T b x) := by
           funext s
-          simp only [reF, LinearMap.funLeft_apply, reW_add, reW_reWi]
+          simp only [reF, LinearMap.funLeft_apply, GlobalTheory.AdSpan.ReVec.reW_add, reW_reWi]
         rw [h1, hTm'.trans _ (isSBHalf_comp_reW S T b e Λ Λ' hΛ Φ hΦ) _
           ((isHalf_reWi_iff S T b e x).2 hx), heisO_reFi S T b ψ hB, reW_reWi]
         rfl

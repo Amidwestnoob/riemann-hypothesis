@@ -424,8 +424,8 @@ theorem cols (G : GridData L sc) (j σ : ℕ) (hj : j + 2 * σ + 2 = D.R.m) (v :
     rw [Nat.not_odd_iff_even]; exact ⟨k - σ - 1, by omega⟩
   have hod : Odd (j + 1) := ⟨k - σ - 1, by omega⟩
   rw [besCol_eq G j σ hj i a, jacCol_eq G j σ hj i a]
-  have l1 : rowN G j = (G.rowDec j hjm).lat (G.Λ (.top j)) (rowId D j) := dif_pos hjm
-  have l2 : rowN G (j + 1) = (G.rowDec (j + 1) hjm').lat (G.Λ (.top (j + 1))) (rowId D (j + 1)) := dif_pos hjm'
+  have l1 : rowN G j = (G.rowDec j hjm).lat (G.Λ (.top j)) (GlobalTheory.RowShape.rowId D j) := dif_pos hjm
+  have l2 : rowN G (j + 1) = (G.rowDec (j + 1) hjm').lat (G.Λ (.top (j + 1))) (GlobalTheory.RowShape.rowId D (j + 1)) := dif_pos hjm'
   have hpr : (Fin.castLE (by omega : σ ≤ D.R.m - 1 - j) i).rev ≠ Fin.castLE (by omega) i := fun e => by
     have := congrArg Fin.val e
     simp only [Fin.val_rev, Fin.val_castLE] at this
@@ -441,9 +441,9 @@ theorem cols (G : GridData L sc) (j σ : ℕ) (hj : j + 2 * σ + 2 = D.R.m) (v :
       exact ⟨1, rfl, o, (one_mul _).symm⟩) v]
   rw [GlobalTheory.FinPl.latA, l2, col_mem_iff (G.rowDec (j + 1) hjm') _ hqr _ _ D.host.AA {a | a ∈ D.host.AA} (fun x hx => hx)
     (fun x hx => ⟨x, hx, 1, by simp⟩) v]
-  have e3 : D.host.AA * rowId D (j + 1) (Fin.castLE (by omega) i) =
-      FractionalIdeal.spanSingleton _ (D.host.xi0 ^ i.1)⁻¹ * (1 * rowId D j (Fin.castLE (by omega) i)) := by
-    rw [rowId, rowId, tiltSc_even hev, tiltSc_odd hod _ (by simp only [Fin.val_castLE]; omega),
+  have e3 : D.host.AA * GlobalTheory.RowShape.rowId D (j + 1) (Fin.castLE (by omega) i) =
+      FractionalIdeal.spanSingleton _ (D.host.xi0 ^ i.1)⁻¹ * (1 * GlobalTheory.RowShape.rowId D j (Fin.castLE (by omega) i)) := by
+    rw [GlobalTheory.RowShape.rowId, GlobalTheory.RowShape.rowId, tiltSc_even hev, tiltSc_odd hod _ (by simp only [Fin.val_castLE]; omega),
       FractionalIdeal.spanSingleton_one, one_mul, one_mul, stairId, stairId]
     simp only [Fin.val_castLE]
     have h1 : D.R.m - 1 - j - i.1 = (D.R.m - 1 - (j + 1) - i.1) + 1 := by omega

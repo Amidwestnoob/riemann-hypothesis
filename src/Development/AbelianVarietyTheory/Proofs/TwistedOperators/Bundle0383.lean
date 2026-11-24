@@ -122,7 +122,7 @@ theorem borel_of_periods_q : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     exact ((hloc ⟨τ, h.psi ▸ hτ⟩).2 (hbd _)).1 i hi
   · rw [hm2 τ hτ, h.p0] at hi
     have := ((hloc ⟨conjEmb τ, h.psi ▸ conjEmb_mem X hτ⟩).2 (hbd _)).2 i hi
-    rwa [conjEmb_conjEmb] at this
+    rwa [GlobalTheory.PeriodBorel.conjEmb_conjEmb] at this
 
 end GlobalTheory.PeriodBorelQ
 end

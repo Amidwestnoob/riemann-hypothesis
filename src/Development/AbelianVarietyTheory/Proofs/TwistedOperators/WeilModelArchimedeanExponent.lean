@@ -270,10 +270,10 @@ theorem th_laws (hψ : IsStdChar D ψ (-1)) {θ : InfFam D} (hθ : IsInfFam θ) 
   rw [hH, hl t]
 
 theorem eq_sum_lineAt {θ : InfFam D} (hθ : IsInfFam θ) {m n : ℕ} {x : Mx D m n} (hx : At (evI D.host.F) x) :
-    x = ∑ t, lineAt θ t (compAt θ t x) 1 := by
+    x = ∑ t, lineAt θ t (Formalism.IndefR.Datum.compAt θ t x) 1 := by
   classical
   obtain ⟨σ, hσ⟩ := GlobalTheory.RealLineAt.exists_inverse_chart hθ
-  have hL := fun t => GlobalTheory.OrientedHeis.isLineAt_lineAt hθ t (compAt θ t x)
+  have hL := fun t => GlobalTheory.OrientedHeis.isLineAt_lineAt hθ t (Formalism.IndefR.Datum.compAt θ t x)
   let a : AF D.host.F := ⟨0, 1⟩
   have h0 := hx a (map_zero (InfiniteAdeleRing.ringEquiv_mixedSpace D.host.F))
   funext i j
@@ -284,18 +284,18 @@ theorem eq_sum_lineAt {θ : InfFam D} (hθ : IsInfFam θ) {m n : ℕ} {x : Mx D 
     exact (one_mul _).symm.trans h.symm
   rw [Matrix.sum_apply]
   refine sub_eq_zero.1 (hσ.ext _ ?_ fun t' => ?_)
-  · have h2 : ∀ t, finPart D (lineAt θ t (compAt θ t x) 1 i j) = 0 := fun t => congrFun (congrFun ((hL t).2.1 1) i) j
+  · have h2 : ∀ t, finPart D (lineAt θ t (Formalism.IndefR.Datum.compAt θ t x) 1 i j) = 0 := fun t => congrFun (congrFun ((hL t).2.1 1) i) j
     set_option synthInstance.maxHeartbeats 100000 in
       rw [RingHom.map_sub, map_sum, h1, Finset.sum_eq_zero fun t _ => h2 t, sub_zero]
-  · have h2 : ∀ t, θ t' (infPart D (lineAt θ t (compAt θ t x) 1 i j)) =
-        (if t' = t then ((1 : ℝ) : ℂ) • compAt θ t x else 0) i j := fun t => congrFun (congrFun ((hL t).2.2 1 t') i) j
+  · have h2 : ∀ t, θ t' (infPart D (lineAt θ t (Formalism.IndefR.Datum.compAt θ t x) 1 i j)) =
+        (if t' = t then ((1 : ℝ) : ℂ) • Formalism.IndefR.Datum.compAt θ t x else 0) i j := fun t => congrFun (congrFun ((hL t).2.2 1 t') i) j
     set_option synthInstance.maxHeartbeats 100000 in
       rw [RingHom.map_sub, RingHom.map_sub, map_sum, map_sum, Finset.sum_congr rfl fun t _ => h2 t, ← Matrix.sum_apply,
       Finset.sum_ite_eq, if_pos (Finset.mem_univ _), Complex.ofReal_one, one_smul]
     exact sub_self _
 
 theorem eq_sum_dir {θ : InfFam D} (hθ : IsInfFam θ) {u : Matrix (Fin M.rank) (Fin X.rank) (AE D)}
-    (hu : At (evI D.host.F) u) : u = ∑ t, dir ε M X θ t (compAt θ t (toO (sgn ε M).gram u)) := by
+    (hu : At (evI D.host.F) u) : u = ∑ t, dir ε M X θ t (Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u)) := by
   have hdet : IsUnit (sgn ε M).gram.det := (Formalism.L2.Theta.gram_det_ne (sgn ε M)).isUnit
   have h : At (evI D.host.F) (toO (sgn ε M).gram u) := fun a ha => by
     rw [toO, ← Matrix.smul_mul, ← transpose_smul, hu a ha, transpose_zero, Matrix.zero_mul]
@@ -318,8 +318,8 @@ theorem compAt_cplx {θ : InfFam D} (hθ : IsInfFam θ) (A : Fr M) (B : Fr X)
     (hc : ∀ w, ∃ t, (∀ x, (τ w).1 x = conj (tauE D t x)) ∧ Xs.θ w = (if ε then 1 else -1 : ℂ) • A.cart t ∧
       Ws.θ w = (B.cart t).map conj) {u u' : Matrix (Fin M.rank) (Fin X.rank) (AE D)}
     (h : ∀ w, u'.map (piInf (τ w)) = Complex.I • (Xs.θ w * u.map (piInf (τ w)) * (Ws.θ w)ᵀ)) (t : D.what₂.Tau) :
-    compAt θ t (toO (sgn ε M).gram u') =
-      cplxO ((frSgn ε A).cart t) (B.cart t) (compAt θ t (toO (sgn ε M).gram u)) := by
+    Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u') =
+      cplxO ((frSgn ε A).cart t) (B.cart t) (Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u)) := by
   choose τf h1 h2 h3 using hc
   have he : ∀ w, (τ w).1 = (starRingEnd ℂ).comp (tauE D (τf w)) := fun w => RingHom.ext (h1 w)
   have hτf : ∀ w, ((starRingEnd ℂ).comp (tauE D (τf w))).comp (algebraMap D.host.F D.host.E) = w.embedding :=
@@ -333,12 +333,12 @@ theorem compAt_cplx {θ : InfFam D} (hθ : IsInfFam θ) (A : Fr M) (B : Fr X)
   have hp : ∀ y, piInf (τ w) y = conj (θ (τf w) (infPart D y)) := fun y => by
     rw [show τ w = ⟨_, hτf w⟩ from Subtype.ext (he w)]
     exact GlobalTheory.ConjInfExp.piInf_eq θ hθ (τf w) w (hτf w) y
-  have hcomp : ∀ v : Matrix (Fin M.rank) (Fin X.rank) (AE D), compAt θ (τf w) (toO (sgn ε M).gram v) =
+  have hcomp : ∀ v : Matrix (Fin M.rank) (Fin X.rank) (AE D), Formalism.IndefR.Datum.compAt θ (τf w) (toO (sgn ε M).gram v) =
       (v.map (piInf (τ w)))ᴴ * gramAt D (sgn ε M) (τf w) := fun v => by
     rw [toO, GlobalTheory.OrientedHeis.compAt_mul]
     congr 1
     · ext i j
-      simp only [compAt, map_apply, transpose_apply, conjTranspose_apply, hp, RCLike.star_def, Complex.conj_conj]
+      simp only [Formalism.IndefR.Datum.compAt, map_apply, transpose_apply, conjTranspose_apply, hp, RCLike.star_def, Complex.conj_conj]
     · ext i j
       exact GlobalTheory.FockCompare.comp_incA hθ (τf w) _
   obtain ⟨s1, s2, -⟩ := GlobalTheory.ChainFr.Model.isCartanInv_cart (frSgn ε A) (τf w)
@@ -497,12 +497,12 @@ theorem exists_fockMap_of (hψ : IsStdChar D ψ (-1)) {θ : InfFam D} (hθ : IsI
         ← map_smul]
   have hΦ' : ∀ P, Θ (Φ P) = ptF ψ θ (frSgn ε A) B (Θ g₀) P := fun P => LinearMap.congr_fun hΦ P
   have hsum : ∀ u, At (evI D.host.F) u → ∀ f, Dr u f =
-      ∑ t, Dr (dir ε M X θ t (compAt θ t (toO (sgn ε M).gram u))) f := fun u hu f => by
+      ∑ t, Dr (dir ε M X θ t (Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u))) f := fun u hu f => by
     rw [← hD3 _ _ _ fun t => dir_at hθ t _, ← eq_sum_dir hθ hu]
   have hG : Mo.IsGauss ψ τ g₀ := ⟨fun _ => 1, fun u u' hu hu' hrel f f' hf hf' => by
     rw [hD2 u hu _ _ hf, hD2 u' hu' _ _ hf', hsum u hu, hsum u' hu', Finset.smul_sum]
     refine Finset.sum_congr rfl fun t _ => ?_
-    rw [compAt_cplx hθ A B hc (fun w => by simpa using hrel w) t, eq_neg_of_add_eq_zero_left (hg₀ t (compAt θ t (toO (sgn ε M).gram u))), smul_neg, smul_smul,
+    rw [compAt_cplx hθ A B hc (fun w => by simpa using hrel w) t, eq_neg_of_add_eq_zero_left (hg₀ t (Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u))), smul_neg, smul_smul,
       Complex.I_mul_I, neg_one_smul, neg_neg]⟩
   have hP : ∀ u, At (evI D.host.F) u → ∀ f ∈ Mo.Pol ψ τ, Dr u f ∈ Mo.Pol ψ τ := fun u hu f hf =>
     Submodule.mem_sInf.2 fun N hN => hN.2 u hu f (Submodule.mem_sInf.1 hf N hN) _ (hD1 u hu f)
@@ -522,7 +522,7 @@ theorem exists_fockMap_of (hψ : IsStdChar D ψ (-1)) {θ : InfFam D} (hθ : IsI
   · rintro u hu _ ⟨P, rfl⟩ f₁ h1
     rw [hD2 u hu _ _ h1, hsum u hu]
     refine Submodule.sum_mem _ fun t _ => ?_
-    obtain ⟨Q, hQ⟩ := dRho_ptF (frSgn ε A) B hψ hθ hv t (compAt θ t (toO (sgn ε M).gram u)) P
+    obtain ⟨Q, hQ⟩ := dRho_ptF (frSgn ε A) B hψ hθ hv t (Formalism.IndefR.Datum.compAt θ t (toO (sgn ε M).gram u)) P
     exact ⟨Q, hi (by rw [← hd, hΦ', hΦ', hQ])⟩
   · rw [← hΦ', hΘ]
     rfl
