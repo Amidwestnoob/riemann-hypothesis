@@ -106,8 +106,8 @@ theorem GlobalTheory.LocLanglands.repRel_isCusp_nu_ofChar : ∀ (k k' : Type) [F
       (isCuspidal_comp_generalLinearGroupMap i hs.1 _ h), fun h => isCuspidal_of_equiv
       (transEquiv i.symm π' π e.symm (symm_rel i π π' e he)) (isCuspidal_comp_generalLinearGroupMap i.symm hi _ h)⟩
   · refine ⟨1, IrrRep.det (Fin 1) χ hχ, IrrRep.det (Fin 1) χ' hχ', LinearEquiv.refl ℂ ℂ, rfl, rfl, fun g (v : ℂ) => ?_⟩
-    show twist (Representation.trivial ℂ (GL (Fin 1) k) ℂ) (detChar (Fin 1) χ) g v =
-      twist (Representation.trivial ℂ (GL (Fin 1) k') ℂ) (detChar (Fin 1) χ') (GeneralLinearGroup.map i.toRingHom g) v
+    show GlobalTheory.SmGL.twist (Representation.trivial ℂ (GL (Fin 1) k) ℂ) (detChar (Fin 1) χ) g v =
+      GlobalTheory.SmGL.twist (Representation.trivial ℂ (GL (Fin 1) k') ℂ) (detChar (Fin 1) χ') (GeneralLinearGroup.map i.toRingHom g) v
     rw [twist_apply, twist_apply, detChar_apply, detChar_apply, TransportGL.det_map, hc]
     rfl
 
