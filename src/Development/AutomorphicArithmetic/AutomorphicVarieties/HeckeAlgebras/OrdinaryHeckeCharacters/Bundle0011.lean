@@ -268,7 +268,7 @@ theorem UpperTheory.V.Hi.partUR2AtV :
   have h1 := @comps l _ L Ω _ _ _ _ _ _ s n V (fun a b => Classical.propDecidable (a = b)) v x (j g) (hj g)
   rw [hj'] at h1
   have h2 : infRep (V := V) ι lam (x * j g)⁻¹ = infRep (V := V) ι lam x⁻¹ := by
-    rw [mul_inv_rev, map_mul, infRep_fin V ι lam ((finU (E := L) (n := n)).inv_mem (Subgroup.mem_inf.1 (hj g)).1), one_mul]
+    rw [mul_inv_rev, map_mul, infRep_fin V ι lam ((GlobalTheory.UnitaryBC.finU (E := L) (n := n)).inv_mem (Subgroup.mem_inf.1 (hj g)).1), one_mul]
   change _ = toForm ι e (F i) ℓ (x * j g)
   unfold toForm
   rw [h1, h2]
