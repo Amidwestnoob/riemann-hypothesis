@@ -236,7 +236,7 @@ section Clauses
 
 open Formalism.L2.SG.Full
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF))
 
 def PhiC (u u' : D.what₂.Word) : Set (RT Y u u') := {t | (_root_.Formalism.L2.SG.PackageTie2.sOf hF).Gterm t = 0 ∧ ¬ (_root_.Formalism.L2.SG.PackageTie2.sOf hF).isId t}
 
@@ -310,7 +310,7 @@ section Clauses2
 
 open Formalism.L2.SG.Full
 
-variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
+variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (_root_.Formalism.L2.SG.PackageTie2.sOf hF))
 
 
 include hI in
