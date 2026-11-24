@@ -16,7 +16,7 @@ open Formalism.MainNotions Formalism.L2.Th1.H Formalism.L2.Ker.Cd.PairingIndexBo
 
 variable {D : Car} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ}
 
-theorem sqP_of {B : Cd.Base D cc δ} (hL : B.LatAll) (hS : SqSplit B) : SqP D B.tor := by
+theorem sqP_of {B : Cd.Base D cc δ} (hL : B.LatAll) (hS : SqSplit B) : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SqP D B.tor := by
   intro N N' L L₁ L' L'' hN hN' h1 h2 h3 h4 G hG
   obtain ⟨A, A', hP⟩ := hS N N' L L₁ L' L'' hN hN' h1 h2 h3 h4
   by_cases hG0 : G = 0
@@ -45,8 +45,8 @@ theorem sqP_of {B : Cd.Base D cc δ} (hL : B.LatAll) (hS : SqSplit B) : SqP D B.
       i₃₁ := (hL.2 N N' _ _ _ _ a1 a3).2
       i₂₃ := (hL.2 N N' _ _ _ _ a2 a3).1
       i₃₂ := (hL.2 N N' _ _ _ _ a2 a3).2 }
-  have hT1 := tripleData_of (admissible_of_integral_conj_le hN hN' h1 h3) (admissible_of_integral_conj_le hN hN' h2 h3) (admissible_of_integral_conj_le hN hN' h2 h4)
-  have hT2 := tripleData_of (admissible_of_integral_conj_le hN hN' h1 h3) (admissible_of_integral_conj_le hN hN' h1 h4) (admissible_of_integral_conj_le hN hN' h2 h4)
+  have hT1 := tripleData_of (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h1 h3) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h2 h3) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h2 h4)
+  have hT2 := tripleData_of (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h1 h3) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h1 h4) (_root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h2 h4)
   obtain ⟨S₂, S₃, hS₂, hS₃, hμ⟩ :=
     mu_one_of_split hT1 (splitTri_of hP (false, false) (true, false) (true, true) hT1) hF
   obtain ⟨T₂, T₃, hT₂, hT₃, hν⟩ :=
@@ -60,7 +60,7 @@ theorem sqP_of {B : Cd.Base D cc δ} (hL : B.LatAll) (hS : SqSplit B) : SqP D B.
 
 theorem eqP_of_split (B : Cd.Base D cc δ) (hcc : TaylorLogMetric.IsCurveIdeal D cc) (hδ : TaylorLogMetric.IsDiscriminantTwelfthRootOfIdealLattice D cc δ) (hδ0 : δ ≠ 0)
     (hS : B.StdOK) (χ : TaylorLogMetric.IdE D → ℂ) (hχ : TaylorLogMetric.IsChi D χ)
-    (hSp : SqSplit B) (hTL : Tr0L D B.tor) (hTR : Tr0R D B.tor) : B.EqP χ :=
+    (hSp : SqSplit B) (hTL : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0L D B.tor) (hTR : _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Tr0R D B.tor) : B.EqP χ :=
   J.eqP_of_paths B hcc hδ hδ0 hS χ hχ (sqP_of (B.latAll hcc hδ hδ0) hSp) hTL hTR
 
 end Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.Sq

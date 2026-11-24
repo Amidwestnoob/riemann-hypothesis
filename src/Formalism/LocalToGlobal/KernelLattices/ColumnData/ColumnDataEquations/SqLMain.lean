@@ -30,10 +30,10 @@ theorem sqSplit_of (B : Cd.Base D cc δ) (hcc : TaylorLogMetric.IsCurveIdeal D c
   have hAdm : ∀ i : Bool × Bool, TaylorLogMetric.admitted D N N' (if i.1 then L₁ else L) (if i.2 then L'' else L') := by
     rintro ⟨a, b⟩
     cases a <;> cases b
-    · exact admissible_of_integral_conj_le hN hN' h1 h3
-    · exact admissible_of_integral_conj_le hN hN' h1 h4
-    · exact admissible_of_integral_conj_le hN hN' h2 h3
-    · exact admissible_of_integral_conj_le hN hN' h2 h4
+    · exact _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h1 h3
+    · exact _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h1 h4
+    · exact _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h2 h3
+    · exact _root_.Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.admissible_of_integral_conj_le hN hN' h2 h4
   have hq : ∀ i, ∀ z ∈ Sq.sqFam B.tor L L₁ L' L'' i, ∃ m : ℤ, qq D cc δ N N' z = m := fun i z hz =>
     Formalism.L2.Ker.Cd.IntegralLatticeDensity.rational_integrality_link D cc hcc δ hδ B N N' _ _ (hAdm i) z hz
   have hsc : ∀ i, IsSemiChar (HH D cc δ N N') (Sq.sqFam B.tor L L₁ L' L'' i) (TaylorLogMetric.al D (TaylorLogMetric.tor0 D cc δ)) :=
