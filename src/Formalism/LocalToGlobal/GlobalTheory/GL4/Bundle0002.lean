@@ -193,7 +193,7 @@ theorem mu_sum_functor [Nonempty J0] [Nonempty Cl] (A : HLat K) (hA : A.Good) (c
     (hφ : ∀ p c, LinearMap.det (φ p c) ^ n = ∏ τ, (g p c τ).det ^ a τ)
     (hAloc : ∀ p, localization₂ (toH p).asIdeal A.L =
       localization₂ (toH p).asIdeal (latOf (K := K) fun j : J0 × Cl => coE.symm (Pi.single j.2 (φ p j.2 (BK j.1)))))
-    (Formalism.L2.Col.G0 : Matrix J0 J0 ℝ) (N : InfinitePlace K → Cl → Matrix J0 J0 ℂ)
+    (G0 : Matrix J0 J0 ℝ) (N : InfinitePlace K → Cl → Matrix J0 J0 ℂ)
     (hN : ∀ v c, (N v c).det ^ n = ∏ τ, (((Q c τ).X v)⁻¹).det ^ a τ)
     (hGram : ∀ v (i i' : J0) (c c' : Cl),
       majAt A.b A.X v (coE.symm (Pi.single c (BK i))) (coE.symm (Pi.single c' (BK i'))) =
@@ -219,7 +219,7 @@ theorem mu_sum_functor [Nonempty J0] [Nonempty Cl] (A : HLat K) (hA : A.Good) (c
     intro v c
     rw [Matrix.det_mul, Matrix.det_mul, Matrix.det_conjTranspose, ← conj_mul_real_mul]
     have hm : (G0.map Complex.ofReal).det = (G0.det : ℂ) := by
-      rw [show G0.map Complex.ofReal = Complex.ofRealHom.mapMatrix Formalism.L2.Col.G0 from rfl, ← RingHom.map_det]
+      rw [show G0.map Complex.ofReal = Complex.ofRealHom.mapMatrix G0 from rfl, ← RingHom.map_det]
       rfl
     rw [hm, Complex.star_def]
   have hgramA : ∀ v, (gramJ A (⇑FA.e) v).det.re =
