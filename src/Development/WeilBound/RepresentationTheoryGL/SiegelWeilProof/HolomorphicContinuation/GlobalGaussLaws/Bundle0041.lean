@@ -74,7 +74,7 @@ theorem lIrho : LIrho := by
       rw [_root_.PositivityTheory.Rg.Sw.Glob.RhoH.phiS_val (hmem P).1]
       exact (hmem P).2
     have hst := fock_stable D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs _ hΦ (ι k)
-      (iota_mem_K hC.hθ hC.hι k hk)
+      (PositivityTheory.Rg.Sw.Glob.RhoH.iota_mem_K hC.hθ hC.hι k hk)
     rw [hL k _ hΨ0m P] at hst
     exact tens_slice hC.hθ hC.hfr l _ hst
   have hLlin : ∀ k : GR n, InK (mR k) → ∀ (a : ℂ) (P Q : PX V.rank n),
@@ -143,7 +143,7 @@ theorem lIrho : LIrho := by
   · intro k hk Q hQ
     show jL (ρ k Q) ∈ S
     rw [hjρ k hk Q]
-    exact hSstab _ (iota_mem_K hC.hθ hC.hι k hk) _ hQ
+    exact hSstab _ (PositivityTheory.Rg.Sw.Glob.RhoH.iota_mem_K hC.hθ hC.hι k hk) _ hQ
   · intro Q _ l'
     let e := LinearEquiv.ofInjective jL hjinj
     obtain ⟨Λ, hΛ⟩ := LinearMap.exists_extend (l' ∘ₗ e.symm.toLinearMap)
@@ -156,7 +156,7 @@ theorem lIrho : LIrho := by
     have hcont := orbit_cont D n V ψ hC.hψ χ hC.hχ hC.hη θ hC.hθ μ 𝓕 hμ ω hC.hω l hC.hl s hC.hs (jL Q) (hjmem Q) Λ
     have hιc : ContinuousOn (fun k : GR n => ι k) {k | InK (mR k)} := hC.hι.1.continuousOn
     have hmaps : Set.MapsTo (fun k : GR n => ι k) {k | InK (mR k)} (K D n : Set (G D n)) :=
-      fun k hk => iota_mem_K hC.hθ hC.hι k hk
+      fun k hk => PositivityTheory.Rg.Sw.Glob.RhoH.iota_mem_K hC.hθ hC.hι k hk
     refine (hcont.comp hιc hmaps).congr ?_
     intro k hk
     simp only [Function.comp_apply]
