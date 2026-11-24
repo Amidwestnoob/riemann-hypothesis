@@ -337,6 +337,12 @@ theorem compatFub : CompatFub := by
   obtain ⟨ψ, hψ, hψc, hψ0⟩ := exists_bump ν
   have h1 := hC (fun _ => fa) (fun _ => fb) ψ (fun _ => ⟨hfa, hfac⟩) (fun _ => ⟨hfb, hfbc⟩) hψ hψc
   change ∫ g, tensH (fun _ => fa) (fun _ => fb) ψ g ∂D.μ = _ at h1
+  haveI : SigmaCompactSpace (G a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (G b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (Hf E a b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaFinite μa := Measure.IsHaarMeasure.sigmaFinite μa
+  haveI : SigmaFinite μb := Measure.IsHaarMeasure.sigmaFinite μb
+  haveI : SigmaFinite ν := Measure.IsHaarMeasure.sigmaFinite ν
   rw [hc, integral_tensH_splitH] at h1
   have hc1 : c = 1 := by
     have hne : (∏ _v : InfinitePlace E, ∫ y, fa y ∂μa) * (∏ _v : InfinitePlace E, ∫ y, fb y ∂μb) * ∫ h, ψ h ∂ν ≠ 0 := by
@@ -355,6 +361,12 @@ theorem compatEx : CompatEx := by
   have : IsHaarMeasure (Measure.pi fun _ : InfinitePlace E => μa) := pi.isHaarMeasure _
   have : IsHaarMeasure (Measure.pi fun _ : InfinitePlace E => μb) := pi.isHaarMeasure _
   set ν₀ : Measure (Hf E a b) := Measure.haar
+  haveI : SigmaCompactSpace (G a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (G b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (Hf E a b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaFinite μa := Measure.IsHaarMeasure.sigmaFinite μa
+  haveI : SigmaFinite μb := Measure.IsHaarMeasure.sigmaFinite μb
+  haveI : SigmaFinite ν₀ := Measure.IsHaarMeasure.sigmaFinite ν₀
   obtain ⟨c, hc0, hc⟩ := exists_split (splitH a b) D.μ (Measure.pi fun _ : InfinitePlace E => μa)
     (Measure.pi fun _ : InfinitePlace E => μb) ν₀
   obtain ⟨fa, hfa, hfac, hfa0⟩ := exists_bump μa
