@@ -45,7 +45,7 @@ theorem htc_dual1_eq_one {W : R2 Ω l} {s : G ℚ Ω} (hs : s ∈ N0g W) : dual1
   obtain ⟨hc, hw⟩ := Subgroup.mem_inf.1 hs
   rw [MonoidHom.mem_ker] at hc hw
   have hd : dt W s = 1 := by simp [dt, hw]
-  simp [dual1, tw, hw, hc, hd]
+  simp [dual1, UpperTheory.V.Af.tw, hw, hc, hd]
 
 theorem htc_cocycle {W : R2 Ω l} {x : G ℚ Ω → Fin 2 → Qbar l} (hx : x ∈ Z1 (Loc.colRep W)) (s t : G ℚ Ω) :
     x (s * t) = x s + mat W s *ᵥ x t := by

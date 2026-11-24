@@ -466,7 +466,7 @@ theorem galoisRepRankTwoTateDual_exists_no_eigenvalue_one_alt : ∀ (l : ℕ) [F
   have : mat (dual1 W) φ = mat W φ := by
     unfold dual1
     generalize (cycBar ℚ Ω l * (dt W)⁻¹) = χ at hχ
-    simp [mat, tw, hχ]
+    simp [mat, UpperTheory.V.Af.tw, hχ]
   rw [this]; exact hd
 
 end GlobalTheory.Ord2
