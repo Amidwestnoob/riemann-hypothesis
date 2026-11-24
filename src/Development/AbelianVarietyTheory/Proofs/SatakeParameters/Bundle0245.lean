@@ -157,7 +157,7 @@ open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.GalCut GlobalTheory.RoadU GlobalTheory.AboveL
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 set_option maxHeartbeats 1000000 in
-theorem _root_.GlobalTheory.T.exists_open_subgroup_weilElement_characterKernel : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E] [NumberField E] [Algebra E Ω] [IsAlgClosure E Ω] (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w), ∀ (n : ℕ), ∀ (ξ : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ)) (hξ : ∀ j, IsSmoothChar (ξ j)), ∀ a : Weil h →* (w.adicCompletion E)ˣ, IsLocalArtin h a → ∀ g : Weil h, deg g ≠ 0 → ∃ V : Subgroup (Dec (F := E) A), IsOpen (V : Set (Dec (F := E) A)) ∧ commutator (Dec (F := E) A) ≤ V ∧ (⟨(g : G E Ω), Weil_le_Dec h g.2⟩ : Dec (F := E) A) ∈ V ∧ ∀ t : Ine (F := E) A, ∀ x ∈ V, (x : G E Ω) = t → ∀ j, ξ j (a (ineIncl h t)) = 1 := by
+theorem _root_.GlobalTheory.T.exists_open_subgroup_weilElement_characterKernel : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E] [NumberField E] [Algebra E Ω] [IsAlgClosure E Ω] (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w), ∀ (n : ℕ), ∀ (ξ : Fin n → ((w.adicCompletion E)ˣ →* ℂˣ)) (hξ : ∀ j, IsSmoothChar (ξ j)), ∀ a : Weil h →* (w.adicCompletion E)ˣ, IsLocalArtin h a → ∀ g : Weil h, deg g ≠ 0 → ∃ V : Subgroup (ReciprocityTheory.Gal.Dec (F := E) A), IsOpen (V : Set (ReciprocityTheory.Gal.Dec (F := E) A)) ∧ commutator (ReciprocityTheory.Gal.Dec (F := E) A) ≤ V ∧ (⟨(g : G E Ω), Weil_le_Dec h g.2⟩ : ReciprocityTheory.Gal.Dec (F := E) A) ∈ V ∧ ∀ t : Ine (F := E) A, ∀ x ∈ V, (x : G E Ω) = t → ∀ j, ξ j (a (ineIncl h t)) = 1 := by
   first | (exact @GlobalTheory.RoadU.exists_open_sub_charKer) | (exact GlobalTheory.RoadU.exists_open_sub_charKer) | (intros; apply GlobalTheory.RoadU.exists_open_sub_charKer  <;> assumption)
 end
 
@@ -365,7 +365,7 @@ variable {Ω F E : Type} [Field Ω] [Field F] [Field E] [Algebra F E] [Algebra F
 def lift (h : G F Ω) (hh : ∀ x : E, h (algebraMap E Ω x) = algebraMap E Ω x) : G E Ω :=
   { (h : Ω ≃+* Ω) with commutes' := hh }
 
-def resHom : Dec (F := E) A →* Dec (F := F) A where
+def resHom : ReciprocityTheory.Gal.Dec (F := E) A →* ReciprocityTheory.Gal.Dec (F := F) A where
   toFun g := ⟨AlgEquiv.restrictScalarsHom F (g : G E Ω), g.2⟩
   map_one' := rfl
   map_mul' _ _ := rfl
@@ -374,33 +374,33 @@ theorem resHom_injective : Function.Injective (resHom (F := F) (E := E) A) := by
   intro g g' hgg
   apply Subtype.ext
   ext z
-  have := congrArg (fun k : Dec (F := F) A => (k : G F Ω) z) hgg
+  have := congrArg (fun k : ReciprocityTheory.Gal.Dec (F := F) A => (k : G F Ω) z) hgg
   exact this
 
-theorem mem_map_iff (V : Subgroup (Dec (F := E) A)) (g : Dec (F := E) A) :
+theorem mem_map_iff (V : Subgroup (ReciprocityTheory.Gal.Dec (F := E) A)) (g : ReciprocityTheory.Gal.Dec (F := E) A) :
     resHom (F := F) A g ∈ V.map (resHom (F := F) (E := E) A) ↔ g ∈ V :=
   (Subgroup.mem_map_iff_mem (resHom_injective (E := E) A))
 
-variable (hfix : ∀ g ∈ Dec (F := F) A, ∀ x : E, g (algebraMap E Ω x) = algebraMap E Ω x)
+variable (hfix : ∀ g ∈ ReciprocityTheory.Gal.Dec (F := F) A, ∀ x : E, g (algebraMap E Ω x) = algebraMap E Ω x)
 include hfix
 
 theorem resHom_surjective : Function.Surjective (resHom (F := F) (E := E) A) := by
   intro k
   exact ⟨⟨lift (k : G F Ω) (hfix _ k.2), k.2⟩, Subtype.ext (by ext z; rfl)⟩
 
-theorem isOpen_map [FiniteDimensional F E] (V : Subgroup (Dec (F := E) A)) (hV : IsOpen (V : Set (Dec (F := E) A))) :
-    IsOpen ((V.map (resHom (F := F) (E := E) A)) : Set (Dec (F := F) A)) := by
+theorem isOpen_map [FiniteDimensional F E] (V : Subgroup (ReciprocityTheory.Gal.Dec (F := E) A)) (hV : IsOpen (V : Set (ReciprocityTheory.Gal.Dec (F := E) A))) :
+    IsOpen ((V.map (resHom (F := F) (E := E) A)) : Set (ReciprocityTheory.Gal.Dec (F := F) A)) := by
   obtain ⟨U, hU, hUV⟩ := isOpen_induced_iff.mp hV
-  have h1 : (1 : Dec (F := E) A) ∈ V := V.one_mem
+  have h1 : (1 : ReciprocityTheory.Gal.Dec (F := E) A) ∈ V := V.one_mem
   have hU1 : (1 : G E Ω) ∈ U := by
-    have : (1 : Dec (F := E) A) ∈ Subtype.val ⁻¹' U := by rw [hUV]; exact h1
+    have : (1 : ReciprocityTheory.Gal.Dec (F := E) A) ∈ Subtype.val ⁻¹' U := by rw [hUV]; exact h1
     exact this
   obtain ⟨K, hK, hKU⟩ := (krullTopology_mem_nhds_one_iff E Ω U).mp (hU.mem_nhds hU1)
   haveI := hK
   haveI : FiniteDimensional F (K.restrictScalars F) :=
     (Module.Finite.trans E K : Module.Finite F K)
   apply Subgroup.isOpen_of_mem_nhds _ (g := 1)
-  have hO : IsOpen (Subtype.val ⁻¹' ((K.restrictScalars F).fixingSubgroup : Set (G F Ω)) : Set (Dec (F := F) A)) :=
+  have hO : IsOpen (Subtype.val ⁻¹' ((K.restrictScalars F).fixingSubgroup : Set (G F Ω)) : Set (ReciprocityTheory.Gal.Dec (F := F) A)) :=
     (IntermediateField.fixingSubgroup_isOpen (K.restrictScalars F)).preimage continuous_subtype_val
   refine Filter.mem_of_superset (hO.mem_nhds ((K.restrictScalars F).fixingSubgroup.one_mem)) ?_
   intro k hk
@@ -414,8 +414,8 @@ theorem isOpen_map [FiniteDimensional F E] (V : Subgroup (Dec (F := E) A)) (hV :
   rw [hUV] at this
   exact this
 
-theorem commutator_le_map (V : Subgroup (Dec (F := E) A)) (hc : commutator (Dec (F := E) A) ≤ V) :
-    commutator (Dec (F := F) A) ≤ V.map (resHom (F := F) (E := E) A) := by
+theorem commutator_le_map (V : Subgroup (ReciprocityTheory.Gal.Dec (F := E) A)) (hc : commutator (ReciprocityTheory.Gal.Dec (F := E) A) ≤ V) :
+    commutator (ReciprocityTheory.Gal.Dec (F := F) A) ≤ V.map (resHom (F := F) (E := E) A) := by
   have hs := resHom_surjective (E := E) A hfix
   rw [commutator_def, ← Subgroup.map_top_of_surjective _ hs, ← Subgroup.map_commutator]
   exact Subgroup.map_mono (by rw [← commutator_def]; exact hc)
@@ -426,7 +426,7 @@ namespace GlobalTheory.AboveL
 
 
 open GlobalTheory.AboveL.DecRes in
-theorem exists_cm_solvDisj_dec_eq : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E] [NumberField E] [IsCMField E] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω) (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w), (∀ g ∈ Dec (F := maximalRealSubfield E) A, ∀ x : E, g (algebraMap E Ω x) = algebraMap E Ω x) → ∀ V : Subgroup (Dec (F := E) A), IsOpen (V : Set (Dec (F := E) A)) → commutator (Dec (F := E) A) ≤ V → ∀ N : Subgroup (G E Ω), IsOpen (N : Set (G E Ω)) → ∃ (M : Type) (_ : Field M) (_ : NumberField M) (_ : IsCMField M) (_ : Algebra M Ω) (_ : IsAlgClosure M Ω) (_ : Algebra E M) (_ : IsScalarTower E M Ω), SolvDisj M N ∧ ∀ g : Dec (F := E) A, (∀ x : M, (g : G E Ω) (algebraMap M Ω x) = algebraMap M Ω x) ↔ g ∈ V := by
+theorem exists_cm_solvDisj_dec_eq : ∀ (Ω : Type) [Field Ω] (E : Type) [Field E] [NumberField E] [IsCMField E] [Algebra E Ω] [IsAlgClosure E Ω] (A : ValuationSubring Ω) (w : HeightOneSpectrum (𝓞 E)) (h : IsPlaceOver A w), (∀ g ∈ ReciprocityTheory.Gal.Dec (F := maximalRealSubfield E) A, ∀ x : E, g (algebraMap E Ω x) = algebraMap E Ω x) → ∀ V : Subgroup (ReciprocityTheory.Gal.Dec (F := E) A), IsOpen (V : Set (ReciprocityTheory.Gal.Dec (F := E) A)) → commutator (ReciprocityTheory.Gal.Dec (F := E) A) ≤ V → ∀ N : Subgroup (G E Ω), IsOpen (N : Set (G E Ω)) → ∃ (M : Type) (_ : Field M) (_ : NumberField M) (_ : IsCMField M) (_ : Algebra M Ω) (_ : IsAlgClosure M Ω) (_ : Algebra E M) (_ : IsScalarTower E M Ω), SolvDisj M N ∧ ∀ g : ReciprocityTheory.Gal.Dec (F := E) A, (∀ x : M, (g : G E Ω) (algebraMap M Ω x) = algebraMap M Ω x) ↔ g ∈ V := by
   intro Ω _ E _ _ _ _ _ A w h hfix V hVo hVc N hNo
   haveI : IsAlgClosure (maximalRealSubfield E) Ω :=
     ⟨IsAlgClosure.isAlgClosed E, Algebra.IsAlgebraic.trans _ E Ω⟩

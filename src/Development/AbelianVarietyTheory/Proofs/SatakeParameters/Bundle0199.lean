@@ -337,7 +337,7 @@ namespace GlobalTheory.CrysNoMono
 theorem crystalline_decompositionGroup_no_monodromy : ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
     (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (a : ℕ) (P : LocPrime l) (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω)
     (h : IsPlaceOver A w) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-    (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw) (ρ : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)),
+    (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw) (ρ : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin a) (Qbar l)),
     IsCrysAt P Bw ρ → (GlobalTheory.Pst.wdAt P ι Bw h hj ρ).mono0 := by
   intro E Ω _ _ _ _ _ l _ ι a P w A h O _ _ _ Bw hj ρ hc
   by_cases hr : IsPstAt P Bw ρ

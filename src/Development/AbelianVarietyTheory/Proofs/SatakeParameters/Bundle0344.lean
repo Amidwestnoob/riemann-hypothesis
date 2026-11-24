@@ -141,7 +141,7 @@ theorem holds_good_crys : AutomorphicFormsFiniteGL → HeckeLAdicCharacterAbove 
     (hσ.twist κ) (isSpherical_twist_of_unr a w σ κ hκu hsph)
   have h2 := (hA E Ω l P AI hT ι art hart κ m μ (fun k _ => hκ k) hμc hμ w A hAw O Bw hj).2.2.1 hκu
   obtain ⟨T⟩ := hT
-  exact isCrysAt_of_tw T Bw (μ.comp (Dec (F := E) A).subtype) (r.comp (Dec (F := E) A).subtype) h1 h2
+  exact isCrysAt_of_tw T Bw (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) h1 h2
 
 end GlobalTheory.CrysTwistBack
 
