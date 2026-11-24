@@ -114,7 +114,7 @@ theorem star_deltaHalf (g : Levi k m) : starRingEnd ℂ (deltaHalf k m g : ℂ) 
   have e : ((modExp m a : ℂ) / 2) = (((modExp m a : ℝ) / 2 : ℝ) : ℂ) := by push_cast; ring
   show starRingEnd ℂ (((nabs k (Matrix.GeneralLinearGroup.det (g a)) : ℝ) : ℂ) ^ ((modExp m a : ℂ) / 2)) =
     ((nabs k (Matrix.GeneralLinearGroup.det (g a)) : ℝ) : ℂ) ^ ((modExp m a : ℂ) / 2)
-  rw [e, ← Complex.ofReal_cpow (nabs_pos' k _).le, Complex.conj_ofReal]
+  rw [e, ← Complex.ofReal_cpow (_root_.GlobalTheory.SmGL.nabs_pos' k _).le, Complex.conj_ofReal]
 
 variable {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
 

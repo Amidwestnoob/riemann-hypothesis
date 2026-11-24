@@ -34,7 +34,7 @@ theorem sEquiv_trans {G : Matrix (Fin r) (Fin r) E} {L : Set (Fin r → E)} {M :
   obtain ⟨γ', hγ', k', hk', hd', rfl⟩ := h'
   exact ⟨γ' * γ, by
     rw [SUVol.ratM_mul]; exact ⟨isUA_mul _ G hγ'.1 hγ.1, by rw [det_mul, hγ'.2, hγ.2, one_mul]⟩,
-    k * k', isKM_mul _ G L M hk hk', by rw [det_mul, hd, hd', one_mul], by
+    k * k', _root_.GlobalTheory.UCls.Model.isKM_mul _ G L M hk hk', by rw [det_mul, hd, hd', one_mul], by
     rw [SUVol.ratM_mul]; simp only [Matrix.mul_assoc]⟩
 
 theorem sEquiv_symm {G : Matrix (Fin r) (Fin r) E} {L : Set (Fin r → E)} {M : ℕ} {a b}
@@ -47,7 +47,7 @@ theorem sEquiv_symm {G : Matrix (Fin r) (Fin r) E} {L : Set (Fin r → E)} {M : 
   have hd : IsUnit γ.det := hd1 ▸ isUnit_one
   have hi : ratM (maximalRealSubfield E) γ⁻¹ * ratM (maximalRealSubfield E) γ = 1 := by
     rw [← SUVol.ratM_mul, nonsing_inv_mul γ hd, SUVol.ratM_one]
-  refine ⟨γ⁻¹, ⟨by rw [← inv_eq_left_inv hi]; exact isUA_inv _ G hγ.1, ?_⟩, k⁻¹, isKM_inv _ G L M hk, ?_, ?_⟩
+  refine ⟨γ⁻¹, ⟨by rw [← inv_eq_left_inv hi]; exact isUA_inv _ G hγ.1, ?_⟩, k⁻¹, _root_.GlobalTheory.UCls.Model.isKM_inv _ G L M hk, ?_, ?_⟩
   · have := congrArg det hi
     rwa [det_mul, hγ.2, mul_one, det_one] at this
   · have := congrArg det (nonsing_inv_mul k hk.1.1)

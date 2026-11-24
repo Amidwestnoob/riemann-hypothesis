@@ -136,7 +136,7 @@ abbrev SecAb (D : DegPre V) (k : ℕ) (α : D.X) : Type :=
 theorem expandsAt_zero (U : UnifPre I D A G) (e k : ℕ) :
     U.ExpandsAt e k (0 : SecG U k) (fun α => (0 : SecAb D.toPre k α)) := by
   refine expandsAt_of_val U e k _ _ ∅ fun y J hJ => ⟨fun α _ => sval_zero' (π := D.toPre.P.A.hom) hJ _, fun jL hL => ?_⟩
-  have : sv U k (0 : SecG U k) (fGl I G e) y jL = 0 := gs_zero' _ y _ (Set.mem_iInter.2 fun _ => hL)
+  have : sv U k (0 : SecG U k) (fGl I G e) y jL = 0 := _root_.GlobalTheory.FieldBaseChange.gs_zero' _ y _ (Set.mem_iInter.2 fun _ => hL)
   rw [this, mul_zero, Finset.sum_empty]
 
 omit [IsDomain V] in
@@ -172,7 +172,7 @@ theorem sval_eq_zero_of_expandsAt (U : Unif I D A G) {k : ℕ} (hk : 1 ≤ k) (�
     · exact (secScal_iff hp _ U.LG.isLB _ _ _ (algebraMap V (FractionRing V)) rfl 1).2
         (by rw [map_one, one_smul])
     · refine (secScal_iff_val D.toPre.P.isLB _ _ _ _).2 fun y J hJ => ?_
-      have e : sval ((0 : Fam D.toPre (FractionRing V) k).s α) (𝟙 _) y J = 0 := gs_zero' _ y _ (hJ.mem _ _)
+      have e : sval ((0 : Fam D.toPre (FractionRing V) k).s α) (𝟙 _) y J = 0 := _root_.GlobalTheory.FieldBaseChange.gs_zero' _ y _ (hJ.mem _ _)
       rw [e, mul_zero]
       exact sval_zero' (π := D.toPre.P.A.hom) hJ _
   have e : π σ = π 0 := ((U.expand k hk).2 0).unique (E σ h) (E 0 fun e => expandsAt_zero _ e k)

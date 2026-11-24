@@ -156,8 +156,8 @@ theorem sec_indep {L : LB X} {K : Type} [Fintype K] {φ : K → (Y ⟶ X)} (ε :
     refine congrArg (c i • ·) (fn_ext fun z hz => ?_)
     exact ((gs_pullFn H.w _ _ _ z hz).trans (gs_res (𝟙 Y' ≫ p) z hle hz _)).trans
       ((gs_res _ z hle' hz _).trans (gs_pullFn H.w _ _ _ z (hle' hz))).symm) i
-  exact ((gs_res (𝟙 Y) y hle hyU _).symm.trans ((congrArg (gs (𝟙 Y) y U) e).trans (gs_zero' _ y U hyU))).trans
-    (gs_zero' _ y _ hy).symm
+  exact ((gs_res (𝟙 Y) y hle hyU _).symm.trans ((congrArg (gs (𝟙 Y) y U) e).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ y U hyU))).trans
+    (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ y _ hy).symm
 
 end Flat
 

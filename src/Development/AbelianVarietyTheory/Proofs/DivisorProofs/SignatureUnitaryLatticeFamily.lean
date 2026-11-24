@@ -147,9 +147,9 @@ def congSU (G : Matrix (Fin r) (Fin r) E) (L : Set (Fin r → E)) (M : ℕ) :
   carrier := {k | IsKM (IsCMField.complexConj E) G L M (k : Matrix (Fin r) (Fin r) _) ∧
     (k : Matrix (Fin r) (Fin r) (RA (maximalRealSubfield E) E)).det = 1}
   one_mem' := ⟨isKM_one _ G L M, det_one⟩
-  mul_mem' {g g'} hg hg' := ⟨isKM_mul _ G L M hg.1 hg'.1, by rw [Units.val_mul, det_mul, hg.2, hg'.2, one_mul]⟩
+  mul_mem' {g g'} hg hg' := ⟨_root_.GlobalTheory.UCls.Model.isKM_mul _ G L M hg.1 hg'.1, by rw [Units.val_mul, det_mul, hg.2, hg'.2, one_mul]⟩
   inv_mem' {g} hg := by
-    refine ⟨by rw [Matrix.coe_units_inv]; exact isKM_inv _ G L M hg.1, ?_⟩
+    refine ⟨by rw [Matrix.coe_units_inv]; exact _root_.GlobalTheory.UCls.Model.isKM_inv _ G L M hg.1, ?_⟩
     have := congrArg Matrix.det g.mul_inv
     rwa [det_mul, hg.2, one_mul, det_one] at this
 

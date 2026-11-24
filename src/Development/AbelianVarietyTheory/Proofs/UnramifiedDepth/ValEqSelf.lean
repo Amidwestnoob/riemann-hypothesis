@@ -392,7 +392,7 @@ theorem valEqSelf : ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type) 
     have h0 : MvPowerSeries.constantCoeff (Y.rawSelf (p o)).hRow = 0 := (H o).axes 0 (Or.inl (by simp))
     unfold rowCopy
     rw [MvPowerSeries.subst_mul (MvPowerSeries.hasSubst_of_constantCoeff_zero fun _ => MvPowerSeries.constantCoeff_X _),
-      subst_mvExp (fun _ => MvPowerSeries.constantCoeff_X _) h0]
+      _root_.GlobalTheory.RowVal.subst_mvExp (fun _ => MvPowerSeries.constantCoeff_X _) h0]
   simp only [hrow]
   simp only [← MvPowerSeries.coe_substAlgHom (hR _), ← MvPowerSeries.coe_substAlgHom (hT _), map_prod]
   rw [Finset.prod_comm]

@@ -125,7 +125,7 @@ theorem chosenForms_restrict_basis_functionField : ∀ (D : D7) (T : Top D) (h :
     intro Z k
     unfold ReciprocityTheory.ChartRestriction.G.T0.Data.x
     rw [hw', hw']
-    exact ratio_single _ _ _ (hq Z)
+    exact _root_.GlobalTheory.BigRec.ratio_single _ _ _ (hq Z)
   obtain ⟨h0, h1, h2⟩ := basis_descends_record (recPlus h j hj) la G hB (fun Z : Comp (T.Q.Xo j) T.Q.c => Om Z)
     (fun Z => formsEvR j hG hT Z) hD e d.jc (fun Z k => evC hG Z (G.w k).1)
     (fun Z k => formsEvR_inc h j hj hG hT Z wL (G.w k)) d.x hq hx (fun Z => (hS Z).1) (fun Z => (hS Z).2.1) g0

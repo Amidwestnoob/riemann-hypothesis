@@ -430,7 +430,7 @@ theorem coef_twistPull : LL → AllU fun {R} _ _ {I} {D} {A} {G} _ _ U => ∀ (F
     ring
   · rw [sval_comb (H b) _ z hJ, CoefBasic.cst_eq, map_zero, zero_mul, Finset.sum_eq_zero, zero_mul, zero_mul]
     intro i _
-    exact (congrArg _ ((congrArg (gs _ z _) (p₄ i b hb _)).trans (gs_zero' _ z _ (hJ.mem _ _)))).trans (mul_zero _)
+    exact (congrArg _ ((congrArg (gs _ z _) (p₄ i b hb _)).trans (_root_.GlobalTheory.FieldBaseChange.gs_zero' _ z _ (hJ.mem _ _)))).trans (mul_zero _)
 
 end
 

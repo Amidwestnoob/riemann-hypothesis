@@ -229,7 +229,7 @@ theorem models_at_record_ofCore : ∀ (D : D7) (G : Type) [Group G] [Fintype G] 
     rw [(hT.kap i t).2.2, D.sp.V_rank _ hj.1 hj.2]
   refine ⟨⟨hM, fun τ => ?_, ?_⟩, fun τ => hL.familyUniformisationBasePointOrthogonal _ hj _ hg k τ.1 τ.2, ?_, hp0, hU.1, ?_, hr1, hP.1.2.1, hΨ,
     fun hq => isBasOf_onb _ _ _ hx hq hε, hn ▸ dom_wtA (κ i), hn,
-    lastPos_wtA_of_pins T.Q hP hj _ (lastPos_of_kapIs hT.kap i)⟩
+    _root_.GlobalTheory.AdTh.lastPos_wtA_of_pins T.Q hP hj _ (lastPos_of_kapIs hT.kap i)⟩
   · rw [hΨ]
     exact ⟨ReciprocityTheory.ChartRestriction.G.PullbackSections.Pf.exists_tau_of_inPsi T.Q hP.1 τ, fun ⟨ρ, h⟩ => h ▸ hP.1.2.2.2 ρ⟩
   · have hU' := (Formalism.L2.PjFree.isUnf_ofPj _).2 hU
