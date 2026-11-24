@@ -32,7 +32,7 @@ theorem twistUnit : TwistUnit := by
   let v : HeightOneSpectrum (𝓞 F) := P.under (𝓞 F)
   have hv : P.asIdeal.under (𝓞 F) = v.asIdeal := rfl
   constructor
-  · unfold unifVal
+  · unfold Formalism.L2.Ker.unifVal
     split_ifs with h
     · obtain ⟨b, hb, hb2⟩ : ∃ b ∈ P.asIdeal, b ∉ P.asIdeal ^ 2 := by
         have := Ideal.exists_mem_pow_notMem_pow_succ P.asIdeal P.ne_bot P.isPrime.ne_top 1
@@ -227,7 +227,7 @@ theorem topAtQ : GlobalTheory.ColPeriod.TopAtQ := by
           IntAt P.1 (((Pr.piT u : 𝓞 X.E) : X.E)⁻¹ * atNL X.E (R.N R.m) (R.N R.m - 1) (z (frsF sel mu p P y))) := fun y hy => by
       have h := (mem_tilH (N_m_succ R) d (conj_piT_notMem hPr u) hu P.1 _).1
         (hz P.1 (Finset.mem_singleton_self _) _ ((frsF_mem' sel mu p P hP y).2 hy))
-      rw [atNL_last, ← (liftFr_spec d.2 P).1, LinearEquiv.apply_symm_apply, inv_mul_eq_div]
+      rw [GlobalTheory.LastSteps.atNL_last, ← (liftFr_spec d.2 P).1, LinearEquiv.apply_symm_apply, inv_mul_eq_div]
       exact ⟨h.1, h.2.div_of_notMem (hu P)⟩
     have h1 : R.r ≤ R.N (m2 + 1) + cOf R (m2 + 1) := by
       unfold Ranks.r Ranks.N cOf

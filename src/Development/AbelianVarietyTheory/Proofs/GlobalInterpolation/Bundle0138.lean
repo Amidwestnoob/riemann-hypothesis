@@ -186,7 +186,7 @@ theorem main : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
       refine ⟨μ y, fun w _ z z₀ c f1 hc hc2 _ f3 f4 => Units.ext (σ.injective ?_)⟩
       rw [hy, ← hv hc hc2]
       exact value_of_congr2 h ht f1 hc2 rfl f3 f4
-    unfold unifVal
+    unfold Formalism.L2.Ker.unifVal
     rw [dite_eq_left hex, ← (hex.choose_spec (P.under (𝓞 F)) rfl y y₀ b a1 hb hb2 a2 a3 a4)]
     exact hy
   · intro hq q hqe
