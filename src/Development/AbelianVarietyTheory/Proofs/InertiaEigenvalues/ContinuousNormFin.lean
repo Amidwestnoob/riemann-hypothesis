@@ -183,7 +183,7 @@ end Norms
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal NumberField IsDedekindDomain Polynomial Formalism.L2.Host GlobalTheory.Pst GlobalTheory.GalOfCusp GlobalTheory.TripleLocal GlobalTheory.TypeLeaf
 
-theorem isCSD_of_trivOn : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (χ : HChar H.E), χ.TrivOn H.F → IsCSD H χ := by
+theorem isCSD_of_trivOn : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (χ : _root_.Formalism.L2.Host.HChar H.E), χ.TrivOn H.F → IsCSD H χ := by
   intro R H χ ht
   haveI : IsCMField H.E := H.isCMField_hostE
   have hU : ∀ k : H.Eˣ, Units.map (MonoidHomClass.toMonoidHom H.conj) k =
@@ -192,7 +192,7 @@ theorem isCSD_of_trivOn : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (�
   refine ⟨fun w w' hw k => ?_, fun k => ?_⟩
   · have hp : GlobalTheory.Mem.Chr.ConjPl (AlgEquiv.toRingEquiv (IsCMField.complexConj H.E)) w w' :=
       (GlobalTheory.Mem.Chr.conjPl_iff_mem _ w w').2 fun x y hxy => hw x y (hxy.trans (host_complexConj H _))
-    have h1 := fin_eq_one χ (fun _ t _ p => ht.1 p t) (Units.map (Neutral.B1.finiteSingle H.E w) (atFin w k))
+    have h1 := fin_eq_one χ (fun _ t _ p => ht.1 p t) (Units.map (Neutral.B1.finiteSingle H.E w) (_root_.Formalism.L2.Host.atFin w k))
     rw [conjFin_finSingle _ hp, map_mul, map_mul, finId_finSingle, finId_finSingle] at h1
     rw [hU]
     exact eq_inv_of_mul_eq_one_right h1
@@ -203,7 +203,7 @@ theorem isCSD_of_trivOn : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (�
         Units.map (GlobalTheory.CuspRep.pInf H.E).toMonoidHom (Neutral.B1.diagUnits H.E (cU (AlgEquiv.toRingEquiv (IsCMField.complexConj H.E)) k)) :=
       Units.ext (GlobalTheory.CuspRep.pInf_complexConj (k : H.E)).symm
     have hinf : ∀ q : H.Eˣ, GlobalTheory.CuspRep.chiInf χ (Units.map (GlobalTheory.CuspRep.pInf H.E).toMonoidHom (Neutral.B1.diagUnits H.E q)) = χ.inf q := fun q => by
-      rw [GlobalTheory.CuspRep.chiInf, MonoidHom.comp_apply, infId_pInf, HChar.inf, MonoidHom.comp_apply, infDiag,
+      rw [GlobalTheory.CuspRep.chiInf, MonoidHom.comp_apply, infId_pInf, HChar.inf, MonoidHom.comp_apply, _root_.Formalism.L2.Host.infDiag,
         MonoidHom.finsetProd_apply]
       rfl
     rw [e, map_mul, hinf, hinf] at h1
