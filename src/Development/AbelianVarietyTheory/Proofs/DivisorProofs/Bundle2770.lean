@@ -202,7 +202,7 @@ theorem exists_uTest_isBC : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Algebra
       exact Ideal.comap_bot_of_injective _ hinj
     have e3 : gPt p ≫ y = spMap ((OO p).subtype.comp i) ≫ spMap ev₀ ≫ spMap j ≫ M.Z.fromSpecStalk x := by
       rw [← hev, hevi]
-      simp only [gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
+      simp only [GlobalTheory.ZH.gPt, spMap, ← Category.assoc, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
     rw [e3] at hw
     rw [← e2]; exact hw
   have hU₀ab : (U₀ : Set M.Z) ⊆ abLocus FinalForm.G := _root_.GlobalTheory.ZH.abLocus_of_over₀ o' Ω S ρ M U₀ EE FinalForm hAdm.1
@@ -237,7 +237,7 @@ theorem exists_uTest_isBC : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Algebra
   have hlift : ∀ v : V, algebraMap (FractionRing V) (PadicAlgCl p) (algebraMap V (FractionRing V) v) = (i v : PadicAlgCl p) :=
     fun v => IsFractionRing.lift_algebraMap (K := FractionRing V) hinj v
   have e1 : gPt p ≫ spMap (i.comp ev₀) = spMap (algebraMap (FractionRing V) (PadicAlgCl p)) ≫ jK V ≫ spMap ev₀ := by
-    simp only [gPt, spMap, jK, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
+    simp only [GlobalTheory.ZH.gPt, spMap, jK, ← Spec.map_comp, ← CommRingCat.ofHom_comp]
     congr 2
     ext v
     exact (hlift (ev₀ v)).symm
