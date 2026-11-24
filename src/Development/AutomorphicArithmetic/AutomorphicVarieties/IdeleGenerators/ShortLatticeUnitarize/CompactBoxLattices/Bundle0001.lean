@@ -144,7 +144,7 @@ private theorem mem_Kc {F : Type} [Field F] [NumberField F] {c : Pl F → ℕ} {
 
 private theorem entry_Kc {F : Type} [Field F] [NumberField F] {c : Pl F → ℕ} {k : GF F} (hk : k ∈ Kc c) (i j : Fin 2) :
     k i j ∈ UpperTheory.V.Af.Ohat F := by
-  refine mem_Ohat.2 fun w => ?_
+  refine UpperTheory.V.Af.GlobalFixedVectors.mem_Ohat.2 fun w => ?_
   obtain ⟨g, -, hg⟩ := mem_Kc.1 hk w
   have e := congrArg (fun x : GL (Fin 2) (w.adicCompletion F) => x i j) hg
   change ((g i j : w.adicCompletionIntegers F) : w.adicCompletion F) = pLoc F w (k i j) at e
