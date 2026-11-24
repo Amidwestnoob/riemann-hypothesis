@@ -193,7 +193,7 @@ structure RowsC (D : D7) : Prop where
   goodPart : ∀ i, GoodPartRec D.nd D.naut i
 
 def LamUsed (D : D7) : Prop :=
-  ∀ μ, (μ = D.what₂.mu0 ∨ ∃ w, μ = D.what₂.muAt w) → ∀ j : Fin D.R.m, LamPos D μ (j.1 + 1)
+  ∀ μ, (μ = D.what₂.mu0 ∨ ∃ w, μ = D.what₂.muAt w) → ∀ j : Fin D.R.m, GlobalTheory.RowCopy.LamPos D μ (j.1 + 1)
 
 def GoodIdempotentFixesLocalisationForms (D : D7) : Prop :=
   ∀ (i : D.nd.Loc) (σ' : D.ntypes.Par), ∀ F ∈ D.ntypes.MtPar (D.nd.mu i) (D.nd.j i) σ',
@@ -224,11 +224,11 @@ structure Inputs (hL : GlobalTheory.Published.LocalLanglandsGL) (D : D7) : Type 
   named : Named toRowSideFamily
 
 theorem LamUsed.at {D : D7} (h : LamUsed D) {μ} (hμ : μ = D.what₂.mu0 ∨ ∃ w, μ = D.what₂.muAt w) {j : ℕ}
-    (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : LamPos D μ j := by
+    (h1 : 1 ≤ j) (h2 : j ≤ D.R.m) : GlobalTheory.RowCopy.LamPos D μ j := by
   obtain ⟨k, rfl⟩ : ∃ k, j = k + 1 := ⟨j - 1, by omega⟩
   exact h μ hμ ⟨k, by omega⟩
 
-theorem LamUsed.loc {D : D7} (h : LamUsed D) (i : D.nd.Loc) : LamPos D (D.nd.mu i) (D.nd.j i) :=
+theorem LamUsed.loc {D : D7} (h : LamUsed D) (i : D.nd.Loc) : GlobalTheory.RowCopy.LamPos D (D.nd.mu i) (D.nd.j i) :=
   h.at (Or.inr ⟨D.nd.w i, (D.nd.mu_w i).trans ((D.what₂.muAt_or _).resolve_left (D.nd.w_tw i)).symm⟩)
     (D.nd.j_range i).1 (D.nd.j_range i).2
 
