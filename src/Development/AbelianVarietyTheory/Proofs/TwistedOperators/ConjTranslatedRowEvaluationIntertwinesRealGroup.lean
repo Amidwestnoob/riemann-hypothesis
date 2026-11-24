@@ -19,6 +19,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.RowEvalHH
 
 private lemma exists_mem_fund_rep_eq_mul (I : AutInst) (fund : Set I.GA) (hcov : ∀ y : I.GA, ∃ γ ∈ I.GFset, γ * y ∈ fund)
