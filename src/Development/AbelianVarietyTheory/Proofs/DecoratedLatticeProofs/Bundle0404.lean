@@ -311,14 +311,14 @@ theorem mem_support_conv {G : Type} [Monoid G] : ∀ (n : ℕ) (f : Fin n → (G
   induction n with
   | zero =>
     intro f g hg
-    simp only [List.ofFn_zero, conv, List.foldr_nil] at hg
+    simp only [List.ofFn_zero, GlobalTheory.QPl.conv, List.foldr_nil] at hg
     have := Finsupp.support_single_subset hg
     rw [Finset.mem_singleton] at this
     exact ⟨Fin.elim0, fun i => i.elim0, by simp [this]⟩
   | succ n ih =>
     intro f g hg
     rw [List.ofFn_succ] at hg
-    simp only [conv, List.foldr_cons] at hg
+    simp only [GlobalTheory.QPl.conv, List.foldr_cons] at hg
     have h1 := Finsupp.support_sum hg
     rw [Finset.mem_biUnion] at h1
     obtain ⟨g₀, hg₀, h2⟩ := h1
