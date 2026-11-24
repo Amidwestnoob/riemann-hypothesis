@@ -26,7 +26,7 @@ variable {l : ℕ} [Fact l.Prime] (P : LocPrime l) (ι : Om l ≃+* ℂ)
   {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω]
   {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
   [IsAlgClosure E Ω] {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)}
-  (Bw : LocBridge l E Ω (Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : GlobalTheory.Pst.Induces Bw)
+  (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (h : IsPlaceOver A w) (hj : GlobalTheory.Pst.Induces Bw)
 
 theorem eq_lpOfChar (x : WD h) (hx : x.lpDim = 1) (ξ : Weil h →* ℂˣ) (hξ : WeilDeligne.IsSmooth ξ)
     (he : ∀ σ, (ξ σ : ℂ) ∈ x.eig σ) : x = WD.lpOfChar h ξ hξ := by
@@ -155,19 +155,19 @@ omit [IsAlgClosure E Ω] in
 theorem isComp_loc (χ : HChar E) : GlobalTheory.NPin.IsComp χ w (χ.loc w) :=
   ⟨smooth_loc (w := w) χ, fun _ => rfl⟩
 
-theorem mem_eig_wdAt (μ : G E Ω →* (Om l)ˣ) (hr : IsPstAt P Bw ((rk1 μ).comp (Dec (F := E) A).subtype))
+theorem mem_eig_wdAt (μ : G E Ω →* (Om l)ˣ) (hr : IsPstAt P Bw ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))
     (b : P.R.B) (hb : b ≠ 0) (c : ℚ_[l]) (hc : c ≠ 0) (hφ : P.φB b = c • b) (κ : GQ l → ℚ_[l]) (hκ0 : ∀ g, κ g ≠ 0)
     (hκ : ∀ g, κ g • P.actQ g b = b) (K' : FinExt l)
-    (hK : ∀ g : Dec (F := E) A, (Bw.e g : GQ l) ∈ GK K' → (μ g : Om l) = algebraMap _ _ (κ (Bw.e g)))
+    (hK : ∀ g : ReciprocityTheory.Gal.Dec (F := E) A, (Bw.e g : GQ l) ∈ GK K' → (μ g : Om l) = algebraMap _ _ (κ (Bw.e g)))
     (σ : Weil h) :
     ι ((μ σ : Om l) * algebraMap _ _ ((κ (weilToGK Bw h σ))⁻¹ * c ^ (-alpha l σ))) ∈
-      (wdAt P ι Bw h hj ((rk1 μ).comp (Dec (F := E) A).subtype)).eig σ := by
+      (wdAt P ι Bw h hj ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).eig σ := by
   obtain ⟨L, r', hM, hV, e⟩ := wdAt_of_isPstAt ι Bw h hj hr
   rw [e]
   have hfin := hV.finite
-  let m : Dec (F := E) A → ↥L.1 := fun g => (r' g : Matrix (Fin 1) (Fin 1) ↥L.1) 0 0
+  let m : ReciprocityTheory.Gal.Dec (F := E) A → ↥L.1 := fun g => (r' g : Matrix (Fin 1) (Fin 1) ↥L.1) 0 0
   have hm : ∀ g, (m g : Om l) = μ g := fun g => by
-    have := congrArg (fun f : ↥(Dec (F := E) A) →* GL (Fin 1) (Om l) => (f g : Matrix (Fin 1) (Fin 1) (Om l)) 0 0) hM.2
+    have := congrArg (fun f : ↥(ReciprocityTheory.Gal.Dec (F := E) A) →* GL (Fin 1) (Om l) => (f g : Matrix (Fin 1) (Fin 1) (Om l)) 0 0) hM.2
     simpa [Formalism.MainNotions.N.mapRep, rk1] using this
   have hρ : ∀ g v, Bw.repE L r' g v = m (Bw.e.symm g) • v := fun g v => by
     ext i
@@ -199,7 +199,7 @@ theorem mem_eig_wdAt (μ : G E Ω →* (Om l)ˣ) (hr : IsPstAt P Bw ((rk1 μ).co
   have key := mem_eig_of_period P ι Bw h hj (Bw.repE L r') x (by simp) hV hx0 c' hc' hx1 σ _
     (Subtype.ext (hact (weilToGK Bw h σ)))
   convert key using 2
-  have e3 : ((Bw.e.symm (weilToGK Bw h σ) : Dec (F := E) A) : G E Ω) = σ := by simp [weilToGK]
+  have e3 : ((Bw.e.symm (weilToGK Bw h σ) : ReciprocityTheory.Gal.Dec (F := E) A) : G E Ω) = σ := by simp [weilToGK]
   have e4 : ∀ z : ℚ_[l], ((algebraMap ℚ_[l] ↥L.1 z : ↥L.1) : Om l) = algebraMap _ _ z := fun _ => rfl
   rw [MulMemClass.coe_mul, MulMemClass.coe_mul, hm, e3, ← map_zpow₀, e4, e4, map_mul]
   ring
