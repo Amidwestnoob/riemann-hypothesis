@@ -216,7 +216,7 @@ theorem pinch_main : ∀ (R : Type) [CommRing R] (B M : Type) [CommRing B] [Alge
   choose g hg using fun p : Idx => EO p.1.1 p.1.2 p.2
   have hc : ∀ a b : Idx, pullback.fst (𝒰.f a) (𝒰.f b) ≫ g a = pullback.snd (𝒰.f a) (𝒰.f b) ≫ g b := by
     intro a b
-    have hP := isPullback_opens_inf (T.basicOpen a.1.1) (T.basicOpen b.1.1)
+    have hP := AlgebraicGeometry.isPullback_opens_inf (T.basicOpen a.1.1) (T.basicOpen b.1.1)
     change pullback.fst (T.basicOpen a.1.1).ι (T.basicOpen b.1.1).ι ≫ g a =
       pullback.snd (T.basicOpen a.1.1).ι (T.basicOpen b.1.1).ι ≫ g b
     rw [← cancel_epi hP.isoPullback.hom, IsPullback.isoPullback_hom_fst_assoc, IsPullback.isoPullback_hom_snd_assoc]
