@@ -29,8 +29,8 @@ open ReciprocityTheory.ChartRestriction.G.Chart
 theorem algChart_of_relativeDimension {R : Type} [CommRing R] (B : Type) [CommRing B] [Algebra R B] {n : ℕ}
     (hB : (algebraMap R B).IsStandardSmoothOfRelativeDimension n) (ε' : B →ₐ[R] R) :
     ∃ (π : ∀ m : ℕ, B →ₐ[R] JetR R (Fin n) m),
-      (∀ m, (jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
-      (∀ m, (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
+      (∀ m, (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetTruncR R (Fin n) m).comp (π (m + 1)) = π m) ∧
+      (∀ m, (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε') ∧
       ∀ (A : Type) [CommRing A] [Algebra R A] (aug : A →ₐ[R] R) (m : ℕ), (RingHom.ker aug) ^ (m + 1) = ⊥ →
         ∀ φ : B →ₐ[R] A, aug.comp φ = ε' →
           ∃! ψ : JetR R (Fin n) m →ₐ[R] A, aug.comp ψ = jetAug R (Fin n) m ∧ ψ.comp (π m) = φ := by

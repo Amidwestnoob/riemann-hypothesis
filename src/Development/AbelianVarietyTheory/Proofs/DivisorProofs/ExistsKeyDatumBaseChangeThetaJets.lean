@@ -116,7 +116,7 @@ theorem symLift_chartwise [IsCommMonObj A] (hw : w.IsGen) (hc : Chartwise w c) (
   · obtain ⟨J, hJ, g⟩ := exists_gauge hp hL₀ hc (T ⊗ A).hom hJ'
     have q := val_corr hJ hs (𝟙 _ ≫ psi hp τ hτ)
     rw [_root_.GlobalTheory.GlobalLift.val_symGen _ _ _ hJ, val_one] at q
-    refine (val_symGen θ ν _ hJ').trans (Eq.trans ?_ (val_one _).symm)
+    refine (_root_.GlobalTheory.GlobalLift.val_symGen θ ν _ hJ').trans (Eq.trans ?_ (val_one _).symm)
     have n₀ : (𝟙 _ ≫ psi hp τ hτ) ≫ (negT G T₀).left = (𝟙 _ ≫ (negT A T).left) ≫ psi hp τ hτ := by
       rw [Category.assoc, Category.assoc]
       exact congrArg _ (psi_lift hp τ hτ (psi_neg hp τ hτ)).symm

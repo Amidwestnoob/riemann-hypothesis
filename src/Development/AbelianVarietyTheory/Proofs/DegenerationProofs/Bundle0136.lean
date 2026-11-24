@@ -449,7 +449,7 @@ theorem exists_cmp : Laws → Laws2 → Ega → ∀ (R V : Type) [CommRing R] [I
   obtain rfl : U₁.P = P := hP
   obtain rfl : C₁.wL = wL := eq_of_heq hC
   obtain ⟨C₂, h₂⟩ := PreUnique.exists_cmp_id hL V I' hV D₁ D' A' A' G' U₁
-    ⟨semi, gen, gen_hom, U₁.P, wA, wA_gen, gt, gt_q, gt_t, w, w_gen, w_vals, w_compat⟩ (idIso U₁.P.L.L) (by simp)
+    ⟨semi, gen, gen_hom, U₁.P, wA, wA_gen, gt, gt_q, gt_t, w, w_gen, w_vals, w_compat⟩ (_root_.GlobalTheory.UU.idIso U₁.P.L.L) (by simp)
     (IsCPMap.id U₁.P)
   refine _root_.GlobalTheory.LN.Cmp.exists_comp_id R V I I' φ D D₁ D' A A' A' G G' U U₁ _ F C₁ C₂ C₁.wL hw fun Z r z j i k hj hi hk => ?_
   rw [h₂]

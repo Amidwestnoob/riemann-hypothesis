@@ -112,9 +112,9 @@ theorem point_eq (F : SFam g n ζ) {R : Type} [CommRing R] [IsLocalRing R] {B : 
   obtain ⟨e, he, ee⟩ := grpPullback_iso k h
   have k' : IsGrpPullback c.A F.univ.A x' (e.hom.left ≫ φ') :=
     ((isGrpPullback_of_iso e).comp h').congr (Category.id_comp _) rfl
-  refine ⟨e.hom.left ≫ φ', (e.hom ⊗ₘ e.hom).left ≫ φ₂', k', isSquare_comp (isSquare_tensor e.hom) q', ?_,
+  refine ⟨e.hom.left ≫ φ', (e.hom ⊗ₘ e.hom).left ≫ φ₂', k', _root_.GlobalTheory.ZM.SiegPull.isSquare_comp (isSquare_tensor e.hom) q', ?_,
     fun a => ?_⟩
-  · have e₂ : χ₂ = (e.hom ⊗ₘ e.hom).left ≫ φ₂ := isSquare_unique r (isSquare_comp (isSquare_tensor e.hom) q) ee.symm
+  · have e₂ : χ₂ = (e.hom ⊗ₘ e.hom).left ≫ φ₂ := isSquare_unique r (_root_.GlobalTheory.ZM.SiegPull.isSquare_comp (isSquare_tensor e.hom) q) ee.symm
     refine (cls_eq_iff c.isLB (pull_isLB F.univ.isLB _)).1 ?_
     rw [(cls_eq_iff c.isLB (pull_isLB F.univ.isLB _)).2 w, cls_pull F.univ.isLB, cls_pull F.univ.isLB, e₂, pull_comp,
       pull_comp, hc]

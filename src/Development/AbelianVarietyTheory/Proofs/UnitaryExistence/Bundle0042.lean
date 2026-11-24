@@ -228,7 +228,7 @@ theorem univChart_of_standardSmooth (G : Over (Spec (CommRingCat.of R))) [GrpObj
     · intro i
       rw [AlgHom.comp_apply, hπX, hπX, map_add (f := _), AlgHom.commutes]
       rfl
-  · have e : (jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε := by
+  · have e : (_root_.ReciprocityTheory.ChartRestriction.G.Chart.jetZeroR R (Fin n) m).comp (π m) = (Algebra.ofId R _).comp ε := by
       refine etale_ext (n := n) ε (jetAug R (Fin n) 0) (ker_jetAug_nil (Fin n) 0) _ _ ?_ ?_ ?_
       · rw [← AlgHom.comp_assoc, jetAug_comp_zero]
         exact hπaug m

@@ -65,7 +65,7 @@ theorem pol_pull {S S' : Scheme.{0}} [IsAffine S] {f : S' ⟶ S} {B : Over S} {B
 theorem lbIso_pull_comp {X Y Z : Scheme.{0}} {L : LB X} (hL : L.IsLB) (a : Y ⟶ X) (b : Z ⟶ Y) (c : Z ⟶ X)
     (e : b ≫ a = c) : LBIso (L.pull c) ((L.pull a).pull b) :=
   LBIso.chartPull (Geo.Tor.chartPullPull L c c rfl) (chartPullLinComb L a (fun _ : PUnit => b) (fun _ => 𝟙 X) (fun _ => 1) c
-    (fun _ => e.trans (Category.comp_id _).symm)) ⟨idIso L, idIso_isGen hL⟩
+    (fun _ => e.trans (Category.comp_id _).symm)) ⟨_root_.GlobalTheory.UU.idIso L, _root_.GlobalTheory.UU.idIso_isGen hL⟩
 
 theorem pol_of_ker_eq {A k κ : Type} [CommRing A] [Field k] [Field κ] (a : A →+* k) (b : A →+* κ)
     (hab : RingHom.ker a = RingHom.ker b) (B : Over (Spec (CommRingCat.of A))) [GrpObj B] (hB : IsAbelianScheme B)

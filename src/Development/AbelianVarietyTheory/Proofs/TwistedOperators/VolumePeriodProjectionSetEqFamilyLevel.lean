@@ -192,8 +192,8 @@ theorem pr_iff {A B : HSp D} {c : ℕ} {ε : D.host.E} {d : HermitianOrthogonalE
     (∃ n ∈ N, x⁻¹ * (n * em g) * x ∈ GfC B ⊓ (congLev D.sp.cm B.gram Λ ⊤).comap (Lev.finE B)) ↔
       Lev.finE A g ∈ prodLev β P ha fun w =>
         symPr (((KO (Kw w.1) (Fin (b w))).map (MulAut.conj (ρ w)).toMonoidHom).map (frameGL (hab w)).toMonoidHom) := by
-  have k1 := prodLev_inf_UA hβ' hsd P hb (fun w => KO (Kw w.1) _) fun _ => rfl
-  have k2 := prodLev_inf_UA hβ'' hsd P (n' := fun _ => B.rank) (fun _ => rfl) (fun w => KO (Kw w.1) _) fun _ => rfl
+  have k1 := _root_.GlobalTheory.FunObj.LevRowSucc.prodLev_inf_UA hβ' hsd P hb (fun w => KO (Kw w.1) _) fun _ => rfl
+  have k2 := _root_.GlobalTheory.FunObj.LevRowSucc.prodLev_inf_UA hβ'' hsd P (n' := fun _ => B.rank) (fun _ => rfl) (fun w => KO (Kw w.1) _) fun _ => rfl
   obtain ⟨Y, hY⟩ : ∃ Y : ∀ w : P, GL (Fin (a w) ⊕ Fin c) (Kw w.1), ∀ w, Y w = phi (hb w) (hab w) β' w.1 δ * frameGL (hab w) (s w) :=
     ⟨_, fun _ => rfl⟩
   have hYp : ∀ w : P, (∀ u ∈ symN (Kw w.1) (Fin (a w)) c, (Y w)⁻¹ * u * Y w ∈ symN (Kw w.1) (Fin (a w)) c) ∧

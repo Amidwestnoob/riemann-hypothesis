@@ -141,7 +141,7 @@ theorem torus_label_over : ∀ (g n : ℕ) (F : SFam g n (zetaAway n)) (W : Matr
       rw [e₂, Units.val_pow_eq_pow_val, hωv, pow_mul, map_pow, map_pow, map_pow]
       rfl
     have e₄ := ZMod.val_injective _ (hω.pow_inj (ZMod.val_lt _) (ZMod.val_lt _) e₃)
-    have e₅ := eStd_add_left X₁.S.g _ (a' - τ) τ b
+    have e₅ := _root_.GlobalTheory.ZH.TorusPerp.eStd_add_left X₁.S.g _ (a' - τ) τ b
     rw [sub_add_cancel, e₄] at e₅
     exact left_eq_add.1 (e₅.trans (add_comm _ _))
   subst haa
