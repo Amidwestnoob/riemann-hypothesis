@@ -97,6 +97,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.MapOfRep
 section
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open UpperTheory.V UpperTheory.V.Th
 
 namespace UpperTheory.V.Th.NormTraceLemmas

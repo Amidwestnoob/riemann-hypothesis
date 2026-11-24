@@ -15,6 +15,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PartsConj
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.ExistsAbsGaloisFixingSqrtNegOneCyclotomicNeOne
 section
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open Matrix IsLocalRing ReciprocityTheory.Gal UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.UnitaryThreeInertia Module
 
 open UpperTheory.V in
@@ -84,6 +85,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.GaussianFieldRangeEqKerQuarticChar
 section
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
 private theorem prim4 {L : Type} [Field L] [CharZero L] {i : L} (hi : i * i = -1) : IsPrimitiveRoot i (2 ^ 2) := by
@@ -218,6 +220,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.LevelAway
 section
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open NumberField Matrix IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.Aut UpperTheory.V.UnitaryThreeInertia
 
 private theorem la_avg {A H C : Type} [CommRing A] [IsLocalRing A] [Group H] [Group C] [Finite C] (φ : H →* C)

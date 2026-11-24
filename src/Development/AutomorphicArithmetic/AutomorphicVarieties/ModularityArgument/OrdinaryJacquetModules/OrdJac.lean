@@ -12,6 +12,7 @@ open UpperTheory.V.HV (Coef)
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open UpperTheory.V.Z UpperTheory.V.Z.Ord
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 theorem UpperTheory.V.Z.Ord.ordJac :
     GlobalTheory.Mem.LiteralAutomorphy.LitN → OrdJac := by
   intro H k _ _ _ _ n V _ _ π hπ hirr c φ _ v hv hv0 a ha

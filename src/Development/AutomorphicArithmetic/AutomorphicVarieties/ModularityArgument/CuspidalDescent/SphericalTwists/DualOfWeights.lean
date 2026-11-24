@@ -52,6 +52,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 set_option synthInstance.maxHeartbeats 200000
 open UpperTheory.GalN.V UpperTheory.V.Z.Win UpperTheory.V.Z.Desc.W UpperTheory.Zero.LLC
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem norm_one {Γ K : Type} [Group Γ] [TopologicalSpace Γ] [CompactSpace Γ] [NormedField K]
     (ψ : Γ →* Kˣ) (hψ : Continuous fun s => (ψ s : K)) (s : Γ) : ‖(ψ s : K)‖ = 1 := by
   have key : ∀ t, ‖(ψ t : K)‖ ≤ 1 := fun t => by

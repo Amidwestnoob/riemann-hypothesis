@@ -21,6 +21,7 @@ open UpperTheory.V.Z UpperTheory.V.Z.Ord
 
 set_option synthInstance.maxHeartbeats 200000
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 section SlopeTestRemainingChoices
 
 variable {Γ Γ' k : Type} [Group Γ] [Group Γ'] [Field k] {n : ℕ}

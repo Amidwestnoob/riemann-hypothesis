@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 
 open IsLocalRing Matrix NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal UpperTheory.V UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pa UpperTheory.V.HV UpperTheory.V.Th UpperTheory.V.Th.Nm GlobalTheory.GalOfCusp
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 private theorem ofRep_comap {n : ℕ} {A G H : Type} [CommRing A] [Group G] [Group H] (ρ : G →* GL (Fin n) A) (φ : H →* G) :
     (GDet.ofRep (mat ρ)).comap φ = GDet.ofRep (mat (ρ.comp φ)) := by
   refine GDet.ext fun B _ _ x => ?_

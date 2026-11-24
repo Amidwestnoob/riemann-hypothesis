@@ -14,6 +14,7 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 open UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Ws UpperTheory.V.Sd
 open scoped Matrix
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.V.Cu.IrreducibilityFourDim
 
 theorem key {K : Type} [Field K] {ι : Type} (h2 : (2 : K) ≠ 0) (On : Set ι) (A B : ι → Matrix (Fin 2) (Fin 2) K)

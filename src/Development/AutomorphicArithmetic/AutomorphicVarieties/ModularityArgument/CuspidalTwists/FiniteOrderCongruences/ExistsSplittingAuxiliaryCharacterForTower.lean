@@ -12,6 +12,7 @@ open UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZe
 open UpperTheory.V.Cu
 open scoped Matrix
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.V.Cu2
 
 def ExistsSplittingAuxiliaryCharacterForTower : Prop :=

@@ -16,6 +16,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 set_option synthInstance.maxHeartbeats 200000
 
+attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 namespace UpperTheory.V.Z.Ord
 
 section At
