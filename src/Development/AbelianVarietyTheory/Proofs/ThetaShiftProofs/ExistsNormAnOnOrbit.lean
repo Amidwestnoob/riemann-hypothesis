@@ -240,7 +240,7 @@ end Lattice
 variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l}
   {σ : c.F →+* ℂ} {r : ℕ} {U : Formalism.L2.PjFree.Unf Xo c σ r} (Uw : UnfWit U)
 
-lemma flow_coord (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) (ξ' : Fin r → E) (hξ' : herm (U.X k).Gm ξ' ξ' = 0)
+lemma flow_coord (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hU : Formalism.L2.PjFree.IsUnf U) (k : U.Comp) (ξ' : Fin r → E) (hξ' : herm (U.X k).Gm ξ' ξ' = 0)
     (x : (U.X k).dom) :
     ∃ (tau : Fin Uw.g → (U.X k).Ψ) (W : (Uw.F.Di (Uw.ik k)).La → Fin Uw.g → ℂ),
       (∀ s hs v j, Uw.Pm k ⟨(U.X k).flow ξ' s x.1, hs⟩ v j = Uw.Pm k x v j - s (tau j) * W v j) ∧
@@ -270,7 +270,7 @@ lemma flow_coord (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hU : IsUnf U) (k : U.
     rw [Uw.Pm_eq, hu, GlobalTheory.ArcFlow.perFr_smul, _root_.mul_assoc sE, map_neg, map_mul _ sE, h1]
     ring
 
-lemma shift_periods [Algebra (FractionRing ℂ) ℂ] (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) (ξ' : Fin r → E) (hiso : (U.X k).IsIso ξ')
+lemma shift_periods [Algebra (FractionRing ℂ) ℂ] (hσ : Formalism.L2.PjFree.GoodEmb c σ) (hU : Formalism.L2.PjFree.IsUnf U) (k : U.Comp) (ξ' : Fin r → E) (hiso : (U.X k).IsIso ξ')
     (x : Frame (U.X k).Ψ r) :
     letI := H.starRing
     ∀ (A : AnArc (𝓞 E)) (gam : (Uw.F.Di (Uw.ik k)).La ≃ₗ[𝓞 E] A.La) (ξ : Module.Dual ℤ A.X),
@@ -355,7 +355,7 @@ lemma shift_periods [Algebra (FractionRing ℂ) ℂ] (hσ : Formalism.L2.PjFree.
       add_zero]
     simp only [AnArc.Pw_snd]
 
-theorem exists_normAn_onOrbit : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [Algebra (FractionRing ℂ) ℂ] [IsScalarTower ℂ (FractionRing ℂ) ℂ] (σ : c.F →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (ξ' : Fin r → E) (x : Frame (U.X k).Ψ r) (n' : ℕ), Formalism.L2.PjFree.GoodEmb c σ → IsUnf U → (U.X k).IsIso ξ' → x ∈ (U.X k).dom → 0 < n' → letI := H.starRing; ∀ (A : AnArc (𝓞 E)) (gam : (Uw.F.Di (Uw.ik k)).La ≃ₗ[𝓞 E] A.La) (ξ : Module.Dual ℤ A.X), OnOrbit Uw k ξ' x A gam ξ → ξ ≠ 0 → Module.finrank (𝓞 E) A.X = 1 → PrimAn H A → (∀ y, n' • A.ct y ∈ A.abelian₂) → ∃ (A' : AnArc (𝓞 E)) (gam' : (Uw.F.Di (Uw.ik k)).La ≃ₗ[𝓞 E] A'.La) (ξ₁ : Module.Dual ℤ A'.X) (eX : A'.X ≃ₗ[𝓞 E] A.X), OnOrbit Uw k ξ' x A' gam' ξ₁ ∧ PrimAn H A' ∧ NormAn A' n' ∧ (∀ y, ξ₁ y = ξ (eX y)) ∧ (∀ y y', A'.be y y' = A.be (eX y) (eX y')) ∧ ∀ DB : Datum H, (∃ tyB eB, AbDat H A DB tyB eB) → ∃ tyB eB, AbDat H A' DB tyB eB := by
+theorem exists_normAn_onOrbit : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [Algebra (FractionRing ℂ) ℂ] [IsScalarTower ℂ (FractionRing ℂ) ℂ] (σ : c.F →+* ℂ) (r : ℕ) (U : Formalism.L2.PjFree.Unf Xo c σ r) (Uw : UnfWit U) (k : U.Comp) (ξ' : Fin r → E) (x : Frame (U.X k).Ψ r) (n' : ℕ), Formalism.L2.PjFree.GoodEmb c σ → Formalism.L2.PjFree.IsUnf U → (U.X k).IsIso ξ' → x ∈ (U.X k).dom → 0 < n' → letI := H.starRing; ∀ (A : AnArc (𝓞 E)) (gam : (Uw.F.Di (Uw.ik k)).La ≃ₗ[𝓞 E] A.La) (ξ : Module.Dual ℤ A.X), OnOrbit Uw k ξ' x A gam ξ → ξ ≠ 0 → Module.finrank (𝓞 E) A.X = 1 → PrimAn H A → (∀ y, n' • A.ct y ∈ A.abelian₂) → ∃ (A' : AnArc (𝓞 E)) (gam' : (Uw.F.Di (Uw.ik k)).La ≃ₗ[𝓞 E] A'.La) (ξ₁ : Module.Dual ℤ A'.X) (eX : A'.X ≃ₗ[𝓞 E] A.X), OnOrbit Uw k ξ' x A' gam' ξ₁ ∧ PrimAn H A' ∧ NormAn A' n' ∧ (∀ y, ξ₁ y = ξ (eX y)) ∧ (∀ y y', A'.be y y' = A.be (eX y) (eX y')) ∧ ∀ DB : Datum H, (∃ tyB eB, AbDat H A DB tyB eB) → ∃ tyB eB, AbDat H A' DB tyB eB := by
   intro E _ _ _ H Dw l Xo c _ _ σ r U Uw k ξ' x n' hσ hU hiso _ _
   letI := H.starRing
   intro A gam ξ hO hξ hrk hP hn
