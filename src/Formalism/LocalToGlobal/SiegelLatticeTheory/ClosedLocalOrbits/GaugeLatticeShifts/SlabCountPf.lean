@@ -10,6 +10,7 @@ noncomputable section
 open scoped Classical ComplexConjugate ENNReal NNReal
 open MeasureTheory
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.Pf.SlabCount
 
 open Formalism.L2.SG.FoldBound Formalism.L2.SG.PoincareSeriesSquareIntegrable NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermOp

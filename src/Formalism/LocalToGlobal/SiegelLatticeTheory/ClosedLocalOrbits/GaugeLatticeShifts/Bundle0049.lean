@@ -12,6 +12,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RCocompactPfMemSteps
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open scoped Classical

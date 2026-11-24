@@ -14,6 +14,7 @@ noncomputable section
 open scoped Classical
 open NumberField Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermOp Formalism.L2.SG.PairVal Formalism.L2.SG.Pf.StabilizerIndexVolumes
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.Pf.VolPinAsm
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

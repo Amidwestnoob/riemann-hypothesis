@@ -22,6 +22,7 @@ noncomputable section
 open scoped Classical
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.FourierDecayAlt Finset
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.OwnFacts.FD
 
 variable {D : D7}

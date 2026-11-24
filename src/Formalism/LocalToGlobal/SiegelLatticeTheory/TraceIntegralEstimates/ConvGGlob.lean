@@ -14,6 +14,7 @@ noncomputable section
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
 open scoped InnerProductSpace ENNReal
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.S.Pv.ConvG
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.L2.SG.Pf.EnergyAbs

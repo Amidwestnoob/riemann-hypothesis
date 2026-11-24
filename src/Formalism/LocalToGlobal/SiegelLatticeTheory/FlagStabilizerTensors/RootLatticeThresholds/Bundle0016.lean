@@ -11,6 +11,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadical
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierJointQuotMeas
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
