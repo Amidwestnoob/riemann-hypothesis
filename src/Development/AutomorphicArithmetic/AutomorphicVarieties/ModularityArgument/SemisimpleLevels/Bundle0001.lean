@@ -103,9 +103,9 @@ def CsdMonoOdd : Prop :=
       ∀ (P : LocPrime l) (AI : LocAinf l P), Nonempty (LocTied l P AI) →
         ∀ (w : HeightOneSpectrum (𝓞 E)) (A : ValuationSubring Ω) (h : IsPlaceOver A w)
           (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O]
-          (Bw : LocBridge l E Ω (Dec (F := E) A) O) (hj : Pst.Induces Bw),
-          IsPstAt P Bw (R.comp (Dec (F := E) A).subtype) ∧ ∀ σ, π.IsLocComp w σ → ∀ rc, IsRec h rc →
-            (wdAt P ι Bw h hj (R.comp (Dec (F := E) A).subtype)).mono0 → (rc (algNorm σ)).mono0
+          (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) O) (hj : Pst.Induces Bw),
+          IsPstAt P Bw (R.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ∧ ∀ σ, π.IsLocComp w σ → ∀ rc, IsRec h rc →
+            (wdAt P ι Bw h hj (R.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).mono0 → (rc (algNorm σ)).mono0
 
 theorem csdMonoOdd_of_full (H : GlobalTheory.Published.CaraianiLocalGlobalDual) : CsdMonoOdd := by
   intro E Ω _ _ _ _ _ _ l _ ι a ha _ π hd hc
