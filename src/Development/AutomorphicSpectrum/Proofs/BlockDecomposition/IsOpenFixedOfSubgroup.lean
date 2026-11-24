@@ -9,6 +9,8 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 open GlobalTheory.PRep GlobalTheory.BZMir GlobalTheory.BZMir.Fun Matrix Topology
 
 noncomputable section

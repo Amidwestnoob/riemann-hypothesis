@@ -11,6 +11,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle04
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.BZPhiPG GlobalTheory.CompanionTheory.MirFourier

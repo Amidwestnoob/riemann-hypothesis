@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle003
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 open GlobalTheory.PRep GlobalTheory.SmGL Matrix GlobalTheory.CellScalarTwo
 open scoped TensorProduct
 

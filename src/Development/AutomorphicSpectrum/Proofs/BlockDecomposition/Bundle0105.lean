@@ -21,6 +21,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle00
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelIndexLatticeEqHaarDet
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory Matrix
 open scoped ENNReal
 

@@ -6,6 +6,8 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+
 noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL ValuativeRel

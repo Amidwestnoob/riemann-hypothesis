@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LocallyQu
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RePosOfIsMultIP
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Mult Formalism.IndefR.Datum
 open scoped TensorProduct InnerProductSpace Pointwise
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

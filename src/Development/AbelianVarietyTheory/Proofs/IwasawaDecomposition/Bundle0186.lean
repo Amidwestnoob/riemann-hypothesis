@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Isotr
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ActEEqOfConjRelated
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th MeasureTheory IsDedekindDomain NumberField Matrix GlobalTheory.IndefiniteRowSideFullHecke.BesselData GlobalTheory.RootExch
 open scoped TensorProduct ENNReal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

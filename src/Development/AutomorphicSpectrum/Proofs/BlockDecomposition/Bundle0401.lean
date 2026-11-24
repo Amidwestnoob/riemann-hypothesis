@@ -22,6 +22,7 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentHeckeSupport
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory PositivityTheory.Rg.Tf.Loc
 open scoped ENNReal Topology
 
