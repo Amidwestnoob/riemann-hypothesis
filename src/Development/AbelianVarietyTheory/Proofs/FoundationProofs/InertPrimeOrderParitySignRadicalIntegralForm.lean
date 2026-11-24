@@ -277,7 +277,7 @@ theorem const (hc : Crv D cc δ) {A₁ : AddSubgroup (VC D N N')} (k1 : KLat D (
     (hth : th ∈ Th D (tor0 D cc δ) (stdL D N) (stdL D N')) :
     (fun z => th (u.symm z)) = (sgn D i ^ k * ((sN y₁ * sN c) ^ k * ∏ τ, ((‖embT D τ w‖ : ℂ) / embT D τ w) ^ k)) •
       Iop D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') A₁ th := by
-  have k0 : KLat D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') := klat _ (moves_one D N) (moves_one D N')
+  have k0 : KLat D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') := klat _ (GlobalTheory.VacuumScalar.moves_one D N) (GlobalTheory.VacuumScalar.moves_one D N')
   have hd0 : LinearMap.det (LinearMap.id - (u.symm : VC D N N' →ₗ[ℂ] VC D N N')) ≠ 0 := by
     rw [hd]; exact Finset.prod_ne_zero_iff.2 fun τ _ => pow_ne_zero _ ((map_ne_zero _).2 hw)
   have h2 := (GlobalTheory.ThetaCovIndex.relIndex_one_sub D cc δ hc N N' _ _ k0 k1 u hu hA hd0 hm).2
@@ -318,9 +318,9 @@ theorem col (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
       Fintype.card_fin])
   obtain ⟨y₁, c, a1, a2, a3⟩ := present hy
   obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').1 L (sd_of_moves hL)
-  have key := const hc (klat _ (moves_one D N) hL) u
+  have key := const hc (klat _ (GlobalTheory.VacuumScalar.moves_one D N) hL) u
     (fun z w => by rw [hu, hu, Hf_mulV, mulV_mulV, h2, adj_one, mul_one, mulV_one])
-    (fun x => by rw [st3 1 γA 1 γ _ _ (isRat_one D N) hr (moves_one D N) hL x, adj_one, hu]) hd0
+    (fun x => by rw [st3 1 γA 1 γ _ _ (isRat_one D N) hr (GlobalTheory.VacuumScalar.moves_one D N) hL x, adj_one, hu]) hd0
     (by rw [hsub, GlobalTheory.TwoSidedDet.det_mulV]; simp)
     (by
       obtain ⟨m, hm, hm'⟩ := st2 (1 - adj D γ)⁻¹ 1
@@ -338,7 +338,7 @@ theorem col (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
     (scal_comm γ 1) i1 i0 (ev_idx i0) a1 a2 a3 hy3 he
   have hp : pull D (tor0 D cc δ) 1 γ e0 = _ := (pull_eq D cc δ 1 γ e0).trans key
   obtain ⟨e, e1, e2, e3⟩ := exists_idem D
-  rw [vac e1 e2 e3 hc hN he W (one_eq N) (prin_eq hr hy hy1) (moves_one D N) hL, hp, chi_split e1 e3 _ hy a1 a2 a3,
+  rw [vac e1 e2 e3 hc hN he W (one_eq N) (prin_eq hr hy hy1) (GlobalTheory.VacuumScalar.moves_one D N) hL, hp, chi_split e1 e3 _ hy a1 a2 a3,
     scalar_id (phase_ne hy) (sq_phase hy hy1) ha (sN_sq _ _ _) W.ep_pm.1, hy2, idx_std, sgn_one]
   funext z
   simp only [map_one, Units.val_one, one_zpow, one_pow, mul_one, Pi.smul_apply, smul_eq_mul, zpow_natCast]
@@ -366,9 +366,9 @@ theorem row (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
   simp only [embT_conj, Complex.norm_conj] at hy2 hy3
   obtain ⟨y₁, c, a1, a2, a3⟩ := present hy
   obtain ⟨i0, i1⟩ := (GlobalTheory.ThetaLatIndex.theta_lattice_index D cc δ hc N N').2 L (sd_of_moves hL)
-  have key := const hc (klat _ hL (moves_one D N')) u
+  have key := const hc (klat _ hL (GlobalTheory.VacuumScalar.moves_one D N')) u
     (hf_unitary _ (by rw [adj_one, Matrix.one_mul]) (by rw [adj_adj, hu']))
-    (hmov γA 1 γ 1 L _ hr (isRat_one D N') hL (moves_one D N')) hdet
+    (hmov γA 1 γ 1 L _ hr (isRat_one D N') hL (GlobalTheory.VacuumScalar.moves_one D N')) hdet
     (by rw [hid, GlobalTheory.TwoSidedDet.det_mulV]; simp)
     (by
       obtain ⟨m₁, h₁, g₁⟩ := hden 1 (1 - γ)⁻¹
@@ -394,7 +394,7 @@ theorem row (hc : Crv D cc δ) (hN : Even (N * N')) {e0 : VC D N N' → ℂ}
     refine Finset.prod_congr rfl fun τ _ => ?_
     rw [← inv_pow, inv_div, phase_conj ((map_ne_zero _).2 hdet)]
   obtain ⟨e, e1, e2, e3⟩ := exists_idem D
-  rw [vac e1 e2 e3 hc hN he W (prin_eq hr hy hy1) (one_eq N') hL (moves_one D N'), hp, chi_split e1 e3 _ hy a1 a2 a3,
+  rw [vac e1 e2 e3 hc hN he W (prin_eq hr hy hy1) (one_eq N') hL (GlobalTheory.VacuumScalar.moves_one D N'), hp, chi_split e1 e3 _ hy a1 a2 a3,
     scalar_id (k := -(N' : ℤ)) (phase_ne hy) (sq_phase hy hy1) (fun τ => by rw [ha τ]; ring) (sN_sq _ _ _) W.ep_pm.2,
     hy4, idx_std, sgn_one]
   funext z
