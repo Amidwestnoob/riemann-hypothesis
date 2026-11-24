@@ -116,7 +116,7 @@ theorem auxiliaryFrames_standard : Std (GlobalTheory.AscInh.auxiliaryFrames G) :
     aJ ρ h := rfl
   }
 
-theorem exists_std_frames : All fun {_} _ _ _ {G} _ _ => ∃ F : Frames G, Std F :=
+theorem exists_std_frames : All fun {_} _ _ _ {G} _ _ => ∃ F : GlobalTheory.Asc.Frames G, Std F :=
   fun _ _ _ _ _ _ _ G _ _ _ => ⟨_, auxiliaryFrames_standard G⟩
 
 end GlobalTheory.AscFin

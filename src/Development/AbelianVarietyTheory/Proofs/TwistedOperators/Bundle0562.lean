@@ -138,7 +138,7 @@ namespace GlobalTheory.CoreRowLat
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 
-theorem std_zA_lat {F : Frames G} (hF : Std F) : (∀ y ∈ G.Λ (.grid 0 0), F.oz.iA *ᵥ y ∈ G.Λ (.core 0)) ∧
+theorem std_zA_lat {F : GlobalTheory.Asc.Frames G} (hF : Std F) : (∀ y ∈ G.Λ (.grid 0 0), F.oz.iA *ᵥ y ∈ G.Λ (.core 0)) ∧
     ∀ x ∈ G.Λ (.core 0), F.oz.qA *ᵥ x ∈ G.Λ (.grid 0 0) := by
   have hΛ : G.Λ (.core 0) = sumLat (frameMat (G.sp.P 0).sp (Yc D 0) G.sp.dec0.ι) (L.ΛY 0) G.sp.dec0.a (fun _ => 1) :=
     G.sp.lat0
@@ -159,7 +159,7 @@ theorem std_zA_lat {F : Frames G} (hF : Std F) : (∀ y ∈ G.Λ (.grid 0 0), F.
       Matrix.zero_mulVec, add_zero]
     exact hy
 
-theorem std_aJ_lat {F : Frames G} (hF : Std F) (h : 2 * 0 + 2 ≤ D.R.m) :
+theorem std_aJ_lat {F : GlobalTheory.Asc.Frames G} (hF : Std F) (h : 2 * 0 + 2 ≤ D.R.m) :
     (∀ y ∈ G.Λ (.core 1), (F.dJ 0 h).i₀ *ᵥ y ∈ G.Λ (.grid 1 0)) ∧
     (∀ x ∈ G.Λ (.grid 1 0), ∃ y ∈ G.Λ (.core 1), x = (F.dJ 0 h).i₀ *ᵥ y) ∧
     ∀ x ∈ G.Λ (.grid 1 0), (F.dJ 0 h).q0 *ᵥ x ∈ G.Λ (.core 1) := by
