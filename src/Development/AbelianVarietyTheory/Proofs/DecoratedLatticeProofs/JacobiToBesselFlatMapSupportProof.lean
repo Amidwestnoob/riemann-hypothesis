@@ -610,7 +610,7 @@ theorem supportShift : ∀ D : D7, GlobalTheory.FinPl.SupportShift D := by
     rw [map_one, mul_one, he, he₀, Module.End.one_apply] at h1
     rw [hmul, hκf, h1] at hne
     obtain ⟨hK, hz⟩ := support_parts s hA h𝔉 hsh hf ht htG γ (right_ne_zero_of_smul hne)
-    refine ⟨n, hnN, hnG, γ, hγ, B.d.levi t * κ, inK_mul hK hκ, ?_, hz⟩
+    refine ⟨n, hnN, hnG, γ, hγ, B.d.levi t * κ, GlobalTheory.FinPl.SuppShift.inK_mul hK hκ, ?_, hz⟩
     rw [mul_assoc n (B.d.levi t), ← B.d.wittHyperbolic_anisotropic_commute_levi γ t]
     simp only [mul_assoc]
 
