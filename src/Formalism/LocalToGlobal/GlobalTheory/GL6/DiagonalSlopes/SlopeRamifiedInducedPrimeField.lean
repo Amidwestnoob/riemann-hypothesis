@@ -727,7 +727,7 @@ def t2sQ (c : (D.mem u).C.cls 0) (f : (D.mem u).C.Y 0 → ℂ) : Prop :=
     IsLocBasis (D.what₂.places.resChar w)
       (dualSet (sigD D : D.host.E →+* D.host.E) (gramN D 0 (Nat.zero_le _)) (clsCrd D u 0 (Nat.zero_le _) c)) B →
     ∃ P ∈ IntSpan D w ((D.fm u).lam 0),
-      ∀ z, f z = fnOf _ (shiftOf (lamT u 0)) (atInf (embT D) (B⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1) P
+      ∀ z, f z = fnOf _ (shiftOf (lamT u 0)) (atInf (Formalism.L2.Forms.embT D) (B⁻¹ : GL (Fin (D.R.N 0)) D.host.E).1) P
         ((Tf.val 0 (Nat.zero_le _) rfl).eY z)
 
 theorem local_integral_zero (c : (D.mem u).C.cls 0) : t2sQ Tf c 0 := fun w B _ => ⟨0, zero_mem _, fun z => by simp⟩
