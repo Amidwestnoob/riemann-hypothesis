@@ -101,7 +101,7 @@ theorem cell_antidiag (d : Fin 2 → ℕ) (σ : ∀ i, Irr k (d i))
       Jacquet (piTensor fun i => (σ i).π) (relUnip k f) :=
     R.symm.trans (Submodule.quotEquivOfEqBot _ hbot).symm
   have hΨ : ∀ u, Ψ u = Submodule.Quotient.mk (R.symm u) := fun u => rfl
-  let τ := (twist ((relJac f (piTensor fun i => (σ i).π)).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
+  let τ := (_root_.GlobalTheory.SmGL.twist ((relJac f (piTensor fun i => (σ i).π)).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
         (relDeltaHalf k (fun j i => Fin (b.1 i j)))).comp (relProj k g)
   have law : ∀ (p : relParab k g) u, τ p (Ψ u) =
         Ψ ((piTensor fun j => (σ (Equiv.swap 0 1 j)).π) p u) := by

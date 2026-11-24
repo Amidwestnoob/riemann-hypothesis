@@ -222,7 +222,7 @@ theorem derChar_eq_one {n t N : ℕ} (h : ∑ a, dd n t a = N) (ψ : AddChar k C
 
 theorem isSubquotient_twist' {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     {σ : Representation ℂ G W} {ρ : Representation ℂ G V} (h : IsSubquotient σ ρ) (χ : G →* ℂˣ) :
-    IsSubquotient (twist σ χ) (twist ρ χ) := by
+    IsSubquotient (_root_.GlobalTheory.SmGL.twist σ χ) (_root_.GlobalTheory.SmGL.twist ρ χ) := by
   obtain ⟨R, f, hf⟩ := h
   refine ⟨⟨R.toSubmodule, fun g v hv => ?_⟩, ⟨f.toLinearMap, fun g => LinearMap.ext fun v => ?_⟩, hf⟩
   · rw [twist_apply]
@@ -283,9 +283,9 @@ theorem delta_mulSingle (n j : ℕ) (g : GL (Fin n) k) :
 
 theorem isSubquotient_of_quot {G X D : Type} [Group G] [AddCommGroup X] [Module ℂ X] [AddCommGroup D] [Module ℂ D]
     (T : Representation ℂ G X) (R : Representation ℂ G D) (χ : G →* ℂˣ) (L : X →ₗ[ℂ] D)
-    (hL : Function.Surjective L) (h : ∀ g x, L (T g x) = (χ g : ℂ) • R g (L x)) : IsSubquotient (twist R χ) T :=
+    (hL : Function.Surjective L) (h : ∀ g x, L (T g x) = (χ g : ℂ) • R g (L x)) : IsSubquotient (_root_.GlobalTheory.SmGL.twist R χ) T :=
   .of_surjective ⟨L, fun g => LinearMap.ext fun x => by
-    show L (T g x) = twist R χ g (L x)
+    show L (T g x) = _root_.GlobalTheory.SmGL.twist R χ g (L x)
     rw [twist_apply, h]⟩ hL
 
 abbrev iota (n t : ℕ) : GL (Fin n) k →* Levi k (fun a => Fin (dd n t a)) :=
@@ -293,7 +293,7 @@ abbrev iota (n t : ℕ) : GL (Fin n) k →* Levi k (fun a => Fin (dd n t a)) :=
 
 theorem isSubquotient_twist_deriv (ψ : AddChar k Circle) (n j : ℕ) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin (n + j + 1)) k) V) :
-    IsSubquotient (twist (GlobalTheory.BZMir.deriv k ψ j π) (detChar (Fin n) (absPow k (-(((j : ℂ) + 1) / 2)))))
+    IsSubquotient (_root_.GlobalTheory.SmGL.twist (GlobalTheory.BZMir.deriv k ψ j π) (detChar (Fin n) (absPow k (-(((j : ℂ) + 1) / 2)))))
       ((GlobalTheory.SmGL.jac (stdBlocks (dd n (j + 1)) (dd_sum n j)) π).comp (iota n (j + 1)) :
         Representation ℂ (GL (Fin n) k) _) := by
   obtain ⟨L, hL, hLe⟩ := exists_jac_deriv ψ n j π

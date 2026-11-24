@@ -117,14 +117,14 @@ theorem jac_dropPlacing_equiv (d : Fin r → ℕ) (o : Fin r' → Fin r) (ho : S
     (fun u hu => by simpa using (mem_unipRad_dropPlacing d o ho hz k f u).1 hu)
     (fun u hu => by simpa using (mem_unipRad_dropPlacing d o ho hz k f u).2 hu)
     (fun g => by simpa using leviEmb_dropPlacing d o ho hz k f g)
-  have e : twist (jacquet π (unipRad k (dropPlacing d o ho hz f))
+  have e : _root_.GlobalTheory.SmGL.twist (jacquet π (unipRad k (dropPlacing d o ho hz f))
       ((leviEmb k (dropPlacing d o ho hz f)).comp (dropHom d o)) hs')
         (deltaHalf k fun j => Fin (d j))⁻¹ =
       ((GlobalTheory.SmGL.jac (dropPlacing d o ho hz f) π).comp (dropHom d o) :
         Representation ℂ (Levi k fun j => Fin (d j)) _) := by
     refine MonoidHom.ext fun g => LinearMap.ext fun v => ?_
     rw [twist_apply, MonoidHom.comp_apply]
-    show _ = twist _ _ _ v
+    show _ = _root_.GlobalTheory.SmGL.twist _ _ _ v
     rw [twist_apply, MonoidHom.inv_apply, MonoidHom.inv_apply,
       GlobalTheory.CompanionTheory.FineProd.ProdDrop.deltaHalf_drop d o ho hz g]
     rfl

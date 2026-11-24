@@ -252,7 +252,7 @@ theorem reindexGL_mem_KO {m n : Type} [Fintype m] [DecidableEq m] [Fintype n] [D
   obtain ⟨h0, rfl⟩ := hh
   exact ⟨reindexGL e h0, Units.ext (Matrix.ext fun i j => rfl)⟩
 
-theorem isSpherical_twist_of_empty_block : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (t : ℕ) (W : Type) [AddCommGroup W] [Module ℂ W] (π : Representation ℂ (GL (Fin t) k) W) (c : Bool → ℕ) (f : (Σ j, Fin (c j)) ≃ Fin t) (s : ∀ j, IrrRep (GL (Fin (c j)) k)) (χ : kˣ →* ℂˣ) (z : (s true).V), IsSmooth π → π.IsIrreducible → c false = 0 → IsSubquotient (piTensor fun j => (s j).ρ) (GlobalTheory.SmGL.jac f π) → z ≠ 0 → (∀ g ∈ KO k (Fin (c true)), (s true).ρ g z = (χ (Matrix.GeneralLinearGroup.det g) : ℂ) • z) → IsSpherical (twist π (detChar (Fin t) χ⁻¹)) := by
+theorem isSpherical_twist_of_empty_block : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (t : ℕ) (W : Type) [AddCommGroup W] [Module ℂ W] (π : Representation ℂ (GL (Fin t) k) W) (c : Bool → ℕ) (f : (Σ j, Fin (c j)) ≃ Fin t) (s : ∀ j, IrrRep (GL (Fin (c j)) k)) (χ : kˣ →* ℂˣ) (z : (s true).V), IsSmooth π → π.IsIrreducible → c false = 0 → IsSubquotient (piTensor fun j => (s j).ρ) (GlobalTheory.SmGL.jac f π) → z ≠ 0 → (∀ g ∈ KO k (Fin (c true)), (s true).ρ g z = (χ (Matrix.GeneralLinearGroup.det g) : ℂ) • z) → IsSpherical (_root_.GlobalTheory.SmGL.twist π (detChar (Fin t) χ⁻¹)) := by
   intro k _ _ _ _ t W _ _ π c f s χ z _ hπ hc hsub hz0 hz
   haveI := nontrivial_of_irreducible (s false).irr
   obtain ⟨w0, hw0⟩ := exists_ne (0 : (s false).V)
@@ -312,11 +312,11 @@ theorem isSpherical_twist_of_empty_block : ∀ (k : Type) [Field k] [ValuativeRe
     rw [jac_liftT_mk f hc, ← Submodule.Quotient.mk_smul, Submodule.Quotient.eq, twKer_eq_bot f hc,
       Submodule.mem_bot, sub_eq_zero] at h2
     exact h2
-  show fixed (twist π (detChar (Fin t) χ⁻¹)) (KO k (Fin t)) ≠ ⊥
+  show fixed (_root_.GlobalTheory.SmGL.twist π (detChar (Fin t) χ⁻¹)) (KO k (Fin t)) ≠ ⊥
   intro hbot
-  have hmem : v ∈ fixed (twist π (detChar (Fin t) χ⁻¹)) (KO k (Fin t)) := by
+  have hmem : v ∈ fixed (_root_.GlobalTheory.SmGL.twist π (detChar (Fin t) χ⁻¹)) (KO k (Fin t)) := by
     intro h
-    show twist π (detChar (Fin t) χ⁻¹) (h : GL (Fin t) k) v = (((1 : _ →* ℂˣ) h : ℂˣ) : ℂ) • v
+    show _root_.GlobalTheory.SmGL.twist π (detChar (Fin t) χ⁻¹) (h : GL (Fin t) k) v = (((1 : _ →* ℂˣ) h : ℂˣ) : ℂ) • v
     rw [twist_apply, key h h.2, smul_smul]
     simp
   rw [hbot] at hmem

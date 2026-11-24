@@ -24,7 +24,7 @@ theorem allIn_mul {W : Subring K} {σ : Type} {F G : MvPowerSeries σ K} (hF : A
 
 theorem expMv_eq_subst [CharZero K] {σ : Type} {F : MvPowerSeries σ K}
     (hF : MvPowerSeries.constantCoeff F = 0) :
-    expMv F = PowerSeries.subst F (PowerSeries.exp K) := by
+    _root_.PI.FglPhSplit.expMv F = PowerSeries.subst F (PowerSeries.exp K) := by
   classical
   ext α
   have hs : PowerSeries.HasSubst F := PowerSeries.HasSubst.of_constantCoeff_zero hF

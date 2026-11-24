@@ -123,9 +123,9 @@ theorem parInd_reindex : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalS
     (continuous_reindexGL ψ) (continuous_reindexGL ψ.symm)
     (reindexGL_symm_reindexGL ψ.symm) (reindexGL_symm_reindexGL ψ) (fun q => ?_) (fun p => ?_)
   · obtain ⟨p, hp, hl⟩ := exists_parab_reindexGL (e' := e) ψ.symm (fun x => rfl) q
-    exact ⟨p, hp, congrArg (twist ρ (deltaHalf k m)) hl⟩
+    exact ⟨p, hp, congrArg (_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)) hl⟩
   · obtain ⟨q, hq, hl⟩ := exists_parab_reindexGL (e' := e.trans ψ) ψ (fun x => by simp) p
-    exact ⟨q, hq, congrArg (twist ρ (deltaHalf k m)) hl⟩
+    exact ⟨q, hq, congrArg (_root_.GlobalTheory.SmGL.twist ρ (deltaHalf k m)) hl⟩
 
 end GlobalTheory.SmGL.Relabel
 end

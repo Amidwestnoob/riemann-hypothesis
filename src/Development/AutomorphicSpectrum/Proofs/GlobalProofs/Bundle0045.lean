@@ -92,7 +92,7 @@ theorem cell_diag {α : Type} [Fintype α] [LinearOrder α] {m : α → Type} [�
     rfl
   let Ψ : W ≃ₗ[ℂ] Jacquet ρ (relUnip k f) := (Submodule.quotEquivOfEqBot _ hbot).symm
   have hΨ : ∀ u, Ψ u = Submodule.Quotient.mk u := fun u => rfl
-  let τ := (twist ((relJac f ρ).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
+  let τ := (_root_.GlobalTheory.SmGL.twist ((relJac f ρ).comp (swapBlocks k (fun i j => Fin (b.1 i j))))
         (relDeltaHalf k (fun j i => Fin (b.1 i j)))).comp (relProj k g)
   have law : ∀ (p : relParab k g) u, τ p (Ψ u) = Ψ (ρ p u) := by
     intro p u

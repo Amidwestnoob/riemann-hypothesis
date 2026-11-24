@@ -53,7 +53,7 @@ theorem jhMult_relInd_of_subsingleton {α β : Type} [Fintype α] [Fintype β] [
     [AddCommGroup V] [Module ℂ V] [Subsingleton V] (ρ : Representation ℂ (∀ i, Levi k (c i)) V)
     {Y : Type} [AddCommGroup Y] [Module ℂ Y] {τ : Representation ℂ (Levi k m) Y}
     (hτ : τ.IsIrreducible) : jhMult τ (relInd f ρ) = 0 := by
-  haveI : Subsingleton (smoothPart (ind (relParab k f) ((twist ρ (relDeltaHalf k c)).comp (relProj k f)))) :=
+  haveI : Subsingleton (smoothPart (ind (relParab k f) ((_root_.GlobalTheory.SmGL.twist ρ (relDeltaHalf k c)).comp (relProj k f)))) :=
     ⟨fun a b => Subtype.ext (Subtype.ext (funext fun _ => Subsingleton.elim _ _))⟩
   exact jhMult_of_subsingleton hτ _
 

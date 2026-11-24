@@ -58,7 +58,7 @@ theorem equiv_of_ker {G V D Q : Type} [Group G] [AddCommGroup V] [Module ℂ V] 
     [AddCommGroup Q] [Module ℂ Q] (ρ : Representation ℂ G D) (σ : Representation ℂ G Q) (χ : G →* ℂˣ)
     (q : V →ₗ[ℂ] D) (r : V →ₗ[ℂ] Q) (hqs : Function.Surjective q) (hrs : Function.Surjective r)
     (hk : LinearMap.ker r = LinearMap.ker q) (A : G → V → V) (hq : ∀ g v, q (A g v) = ρ g (q v))
-    (hr : ∀ g v, σ g (r v) = (((χ g)⁻¹ : ℂˣ) : ℂ) • r (A g v)) : Nonempty (ρ.Equiv (twist σ χ)) := by
+    (hr : ∀ g v, σ g (r v) = (((χ g)⁻¹ : ℂˣ) : ℂ) • r (A g v)) : Nonempty (ρ.Equiv (_root_.GlobalTheory.SmGL.twist σ χ)) := by
   let E := (q.quotKerEquivOfSurjective hqs).symm.trans
     ((Submodule.quotEquivOfEq _ _ hk.symm).trans (r.quotKerEquivOfSurjective hrs))
   have hE : ∀ v, E (q v) = r v := by
@@ -79,7 +79,7 @@ set_option maxHeartbeats 1000000 in
 theorem deriv_equiv (ψ : AddChar k Circle) (n j : ℕ) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin (n + j + 1)) k) V) (hd : ∑ a, (![n, j + 1] a) = n + j + 1) :
     Nonempty ((GlobalTheory.BZMir.deriv k ψ j π).Equiv
-      (twist (whit2 ψ ![n, j + 1] (GlobalTheory.SmGL.jac (stdBlocks ![n, j + 1] hd) π)) (detChar (Fin n) (absPow k (((j : ℂ) + 1) / 2))))) := by
+      (_root_.GlobalTheory.SmGL.twist (whit2 ψ ![n, j + 1] (GlobalTheory.SmGL.jac (stdBlocks ![n, j + 1] hd) π)) (detChar (Fin n) (absPow k (((j : ℂ) + 1) / 2))))) := by
   obtain ⟨q, hqs, hqk, hqg⟩ := _root_.GlobalTheory.CompanionTheory.DerivQuot.exists_deriv_quot k ψ n j V π hd
   have hcm := _root_.GlobalTheory.CompanionTheory.BZNuPair.DerComap.whitKer_jac_comap_eq_twKer_derUnip k ψ n j V π hd
   refine equiv_of_ker _ _ _ q ((whitKer ψ ![n, j + 1] (GlobalTheory.SmGL.jac (stdBlocks ![n, j + 1] hd) π)).mkQ ∘ₗ
@@ -155,9 +155,9 @@ theorem jm_contra (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (N : ℕ
 
 theorem isSubquotient_twist {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     {σ : Representation ℂ G W} {ρ : Representation ℂ G V} (h : IsSubquotient σ ρ) (χ : G →* ℂˣ) :
-    IsSubquotient (twist σ χ) (twist ρ χ) := by
+    IsSubquotient (_root_.GlobalTheory.SmGL.twist σ χ) (_root_.GlobalTheory.SmGL.twist ρ χ) := by
   obtain ⟨T, f, hf⟩ := h
-  let T' : Subrepresentation (twist ρ χ) := ⟨T.toSubmodule, fun g v hv => by
+  let T' : Subrepresentation (_root_.GlobalTheory.SmGL.twist ρ χ) := ⟨T.toSubmodule, fun g v hv => by
     rw [twist_apply]
     exact T.toSubmodule.smul_mem _ (T.apply_mem_toSubmodule g hv)⟩
   refine ⟨T', .mk f.toLinearMap fun g => ?_, hf⟩
@@ -172,10 +172,10 @@ theorem isSubquotient_twist {G V W : Type} [Group G] [AddCommGroup V] [Module �
   rfl
 
 theorem isSubquotient_untwist {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
-    {σ : Representation ℂ G W} {ρ : Representation ℂ G V} {χ χ' : G →* ℂˣ} (h : IsSubquotient σ (twist ρ χ))
-    (hm : χ' * χ = 1) : IsSubquotient (twist σ χ') ρ := by
+    {σ : Representation ℂ G W} {ρ : Representation ℂ G V} {χ χ' : G →* ℂˣ} (h : IsSubquotient σ (_root_.GlobalTheory.SmGL.twist ρ χ))
+    (hm : χ' * χ = 1) : IsSubquotient (_root_.GlobalTheory.SmGL.twist σ χ') ρ := by
   have h2 := isSubquotient_twist h χ'
-  have e : twist (twist ρ χ) χ' = ρ := by
+  have e : _root_.GlobalTheory.SmGL.twist (_root_.GlobalTheory.SmGL.twist ρ χ) χ' = ρ := by
     ext g v
     have : ((χ' g : ℂˣ) : ℂ) * ((χ g : ℂˣ) : ℂ) = 1 := by
       have := congrArg (fun f : G →* ℂˣ => ((f g : ℂˣ) : ℂ)) hm
@@ -221,7 +221,7 @@ theorem deriv_jm (ψ : AddChar k Circle) (hc : Continuous ψ) (n j : ℕ) {V : T
   have hmul : χ' * χ = 1 := by
     ext g
     simp [χ, χ', detChar, absPow_neg]
-  have h1 : IsSubquotient S.ρ (twist (whit2 ψ ![n, j + 1] (GlobalTheory.SmGL.jac (stdBlocks ![n, j + 1] hd) π)) χ) :=
+  have h1 : IsSubquotient S.ρ (_root_.GlobalTheory.SmGL.twist (whit2 ψ ![n, j + 1] (GlobalTheory.SmGL.jac (stdBlocks ![n, j + 1] hd) π)) χ) :=
     hS.trans (IsSubquotient.of_injective E.toIntertwiningMap E.injective)
   have h2 := isSubquotient_untwist h1 hmul
   obtain ⟨s, hsub, ⟨e0⟩⟩ := _root_.GlobalTheory.CompanionTheory.BZNuPair.exists_constituent_of_whit2 k ψ hc ![n, j + 1] _ _ hJs hJf (irrTwist S χ' hχ') h2

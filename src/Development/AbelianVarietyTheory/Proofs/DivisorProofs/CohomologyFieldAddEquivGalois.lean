@@ -147,7 +147,7 @@ theorem cechPt_congr (k : ℕ) {U : Scheme.{0}} {x x' : U ⟶ X} {y y' : Fin (k 
 
 theorem cechPt_map (k : ℕ) {U V : Scheme.{0}} (g : V ⟶ U) (x : U ⟶ X) (y : Fin (k + 1) → (U ⟶ Y))
     (h : ∀ i, y i ≫ f = x) :
-    ((cech f).obj (op ⦋k⦌)).map g.op (cechPt f k x y h) =
+    ((_root_.GlobalTheory.EtC.cech f).obj (op ⦋k⦌)).map g.op (cechPt f k x y h) =
       cechPt f k (g ≫ x) (fun i => g ≫ y i) (fun i => by rw [Category.assoc, h i]) := by
   have key : yoneda.map g ≫ WidePullback.lift (arrows := fun _ : Fin (k + 1) => yoneda.map f) (yoneda.map x)
       (fun i => yoneda.map (y i)) (fun i => by rw [← yoneda.map_comp, h i]) =
@@ -171,13 +171,13 @@ theorem cechPt_map (k : ℕ) {U V : Scheme.{0}} (g : V ⟶ U) (x : U ⟶ X) (y :
 
 theorem cechPt_δ (m : ℕ) (i : Fin (m + 2)) {U : Scheme.{0}} (x : U ⟶ X) (y : Fin (m + 2) → (U ⟶ Y))
     (h : ∀ j, y j ≫ f = x) :
-    ((cech f).δ i).app (op U) (cechPt f (m + 1) x y h) =
+    ((_root_.GlobalTheory.EtC.cech f).δ i).app (op U) (cechPt f (m + 1) x y h) =
       cechPt f m x (fun j => y (i.succAbove j)) (fun j => h _) := by
   have key : WidePullback.lift (arrows := fun _ : Fin (m + 2) => yoneda.map f) (yoneda.map x)
-      (fun j => yoneda.map (y j)) (fun j => by rw [← yoneda.map_comp, h j]) ≫ (cech f).δ i =
+      (fun j => yoneda.map (y j)) (fun j => by rw [← yoneda.map_comp, h j]) ≫ (_root_.GlobalTheory.EtC.cech f).δ i =
       WidePullback.lift (arrows := fun _ : Fin (m + 1) => yoneda.map f) (yoneda.map x)
       (fun j => yoneda.map (y (i.succAbove j))) (fun j => by rw [← yoneda.map_comp, h _]) := by
-    dsimp only [SimplicialObject.δ, cech, Arrow.cechNerve]
+    dsimp only [SimplicialObject.δ, _root_.GlobalTheory.EtC.cech, Arrow.cechNerve]
     apply WidePullback.hom_ext
     · intro j
       erw [Category.assoc, WidePullback.lift_π, WidePullback.lift_π, WidePullback.lift_π]
@@ -193,12 +193,12 @@ variable (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω]
 
 abbrev fK : Spec (CommRingCat.of Ω) ⟶ Spec (CommRingCat.of K) := Spec.map (CommRingCat.ofHom (algebraMap K Ω))
 
-def galPt (k : ℕ) (σ : Fin (k + 1) → (Ω ≃ₐ[K] Ω)) : Sx (cech (fK K Ω)) k (Spec (CommRingCat.of Ω)) :=
+def galPt (k : ℕ) (σ : Fin (k + 1) → (Ω ≃ₐ[K] Ω)) : Sx (_root_.GlobalTheory.EtC.cech (fK K Ω)) k (Spec (CommRingCat.of Ω)) :=
   cechPt (fK K Ω) k (fK K Ω) (fun i => Spec.map (CommRingCat.ofHom ((σ i : Ω ≃ₐ[K] Ω) : Ω →+* Ω)))
     (fun i => by rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]; congr 2; exact RingHom.ext fun x => (σ i).commutes x)
 
 theorem galPt_mul (k : ℕ) (τ : Ω ≃ₐ[K] Ω) (σ : Fin (k + 1) → (Ω ≃ₐ[K] Ω)) :
-    ((cech (fK K Ω)).obj (op ⦋k⦌)).map (Spec.map (CommRingCat.ofHom (τ : Ω →+* Ω))).op (galPt K Ω k σ) =
+    ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋k⦌)).map (Spec.map (CommRingCat.ofHom (τ : Ω →+* Ω))).op (galPt K Ω k σ) =
       galPt K Ω k (fun i => τ * σ i) := by
   rw [galPt, cechPt_map]
   apply cechPt_congr
@@ -208,7 +208,7 @@ theorem galPt_mul (k : ℕ) (τ : Ω ≃ₐ[K] Ω) (σ : Fin (k + 1) → (Ω ≃
     rfl
 
 theorem galPt_face (m : ℕ) (i : Fin (m + 2)) (σ : Fin (m + 2) → (Ω ≃ₐ[K] Ω)) :
-    ((cech (fK K Ω)).δ i).app (op (Spec (CommRingCat.of Ω))) (galPt K Ω (m + 1) σ) =
+    ((_root_.GlobalTheory.EtC.cech (fK K Ω)).δ i).app (op (Spec (CommRingCat.of Ω))) (galPt K Ω (m + 1) σ) =
       galPt K Ω m (σ ∘ i.succAbove) := by
   rw [galPt, cechPt_δ]
   rfl
@@ -216,24 +216,24 @@ theorem galPt_face (m : ℕ) (i : Fin (m + 2)) (σ : Fin (m + 2) → (Ω ≃ₐ[
 variable (R : Type) [CommRing R] (F : Shv R) (M : Type) [AddCommGroup M]
   (e : M ≃+ Sec F (Spec (CommRingCat.of Ω)))
 
-def galE (m : ℕ) : (cochC R (cech (fK K Ω)) F).obj ⦋m⦌ →+ ((Fin (m + 1) → (Ω ≃ₐ[K] Ω)) → M) where
-  toFun s σ := e.symm (val (show (free R).obj ((cech (fK K Ω)).obj (op ⦋m⦌)) ⟶ F from s) _ (galPt K Ω m σ))
+def galE (m : ℕ) : (cochC R (_root_.GlobalTheory.EtC.cech (fK K Ω)) F).obj ⦋m⦌ →+ ((Fin (m + 1) → (Ω ≃ₐ[K] Ω)) → M) where
+  toFun s σ := e.symm (val (show (free R).obj ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) ⟶ F from s) _ (galPt K Ω m σ))
   map_zero' := by
     funext σ
-    have h := ((GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.2.2 0 0 0 _ (galPt K Ω m σ)).2
+    have h := ((GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.2.2 0 0 0 _ (galPt K Ω m σ)).2
     rw [zero_smul, zero_smul] at h
     simp only [Pi.zero_apply]
     rw [← map_zero e.symm]
     exact congrArg e.symm h
   map_add' a b := by
     funext σ
-    have h := ((GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.2.2 a b 0 _ (galPt K Ω m σ)).1
+    have h := ((GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.2.2 a b 0 _ (galPt K Ω m σ)).1
     simp only [Pi.add_apply]
     rw [← map_add e.symm]
     exact congrArg e.symm h
 
-theorem galE_apply (m : ℕ) (s : (cochC R (cech (fK K Ω)) F).obj ⦋m⦌) (σ : Fin (m + 1) → (Ω ≃ₐ[K] Ω)) :
-    galE K Ω R F M e m s σ = e.symm (val (show (free R).obj ((cech (fK K Ω)).obj (op ⦋m⦌)) ⟶ F from s) _ (galPt K Ω m σ)) := rfl
+theorem galE_apply (m : ℕ) (s : (cochC R (_root_.GlobalTheory.EtC.cech (fK K Ω)) F).obj ⦋m⦌) (σ : Fin (m + 1) → (Ω ≃ₐ[K] Ω)) :
+    galE K Ω R F M e m s σ = e.symm (val (show (free R).obj ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) ⟶ F from s) _ (galPt K Ω m σ)) := rfl
 
 end Gal
 
@@ -260,7 +260,7 @@ theorem cohomology_field_addEquiv_galois : ∀ (R : Type) [CommRing R] (F : Shv 
       · exact ((GlobalTheory.T.galoisDescent_freeSheaf_cechLevel_sepClosure R F hF K Ω m).2.1 c).comp e.symm
       · intro τ σ
         rw [galE_apply, galE_apply, hρ, ← galPt_mul,
-          (GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.1]
+          (GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.1]
     · rintro ⟨hlc, heq⟩
       obtain ⟨s, hs⟩ := (GlobalTheory.T.galoisDescent_freeSheaf_cechLevel_sepClosure R F hF K Ω m).2.2 (fun σ => e (φ σ)) (hlc.comp e) (by
         intro τ σ
@@ -268,16 +268,16 @@ theorem cohomology_field_addEquiv_galois : ∀ (R : Type) [CommRing R] (F : Shv 
       refine ⟨s, ?_⟩
       funext σ
       exact (congrArg e.symm (hs σ)).trans (e.symm_apply_apply _)
-  have hface : ∀ m (i : Fin (m + 2)) (c : (cochC R (cech (fK K Ω)) F).obj ⦋m⦌) (σ : Fin (m + 2) → (Ω ≃ₐ[K] Ω)),
-      galE K Ω R F M e (m + 1) ((cochC R (cech (fK K Ω)) F).δ i c) σ = galE K Ω R F M e m c (σ ∘ i.succAbove) := by
+  have hface : ∀ m (i : Fin (m + 2)) (c : (cochC R (_root_.GlobalTheory.EtC.cech (fK K Ω)) F).obj ⦋m⦌) (σ : Fin (m + 2) → (Ω ≃ₐ[K] Ω)),
+      galE K Ω R F M e (m + 1) ((cochC R (_root_.GlobalTheory.EtC.cech (fK K Ω)) F).δ i c) σ = galE K Ω R F M e m c (σ ∘ i.succAbove) := by
     intro m i c σ
-    have h4 := (GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.1 _ ((cech (fK K Ω)).δ i) c
+    have h4 := (GlobalTheory.T.freeEtaleModuleSheaf_hom_equiv_natural_sections R ((_root_.GlobalTheory.EtC.cech (fK K Ω)).obj (op ⦋m⦌)) F).2.2.2.1 _ ((_root_.GlobalTheory.EtC.cech (fK K Ω)).δ i) c
       (Spec (CommRingCat.of Ω)) (galPt K Ω (m + 1) σ)
     rw [galE_apply, galE_apply, ← galPt_face, ← h4]
     rfl
-  obtain ⟨b⟩ := bridge R F (cech (fK K Ω)) (fun k m hm y => GlobalTheory.T.cohomology_cech_level_eq_zero_of_pos R F hF K Ω k m hm y) n
-  obtain ⟨c⟩ := GlobalTheory.T.homogeneousCochains_homology_addEquiv_alt R (Ω ≃ₐ[K] Ω) M (cochC R (cech (fK K Ω)) F) (galE K Ω R F M e) hinj himg hface n
-  exact ⟨(AddEquiv.ofBijective (pull R (cechAug (fK K Ω)) F n) (GlobalTheory.T.etaleCechAugmentation_sepClosure_isEquivalence R F hF K Ω n)).trans (b.trans c)⟩
+  obtain ⟨b⟩ := bridge R F (_root_.GlobalTheory.EtC.cech (fK K Ω)) (fun k m hm y => GlobalTheory.T.cohomology_cech_level_eq_zero_of_pos R F hF K Ω k m hm y) n
+  obtain ⟨c⟩ := GlobalTheory.T.homogeneousCochains_homology_addEquiv_alt R (Ω ≃ₐ[K] Ω) M (cochC R (_root_.GlobalTheory.EtC.cech (fK K Ω)) F) (galE K Ω R F M e) hinj himg hface n
+  exact ⟨(AddEquiv.ofBijective (pull R (_root_.GlobalTheory.EtC.cechAug (fK K Ω)) F n) (GlobalTheory.T.etaleCechAugmentation_sepClosure_isEquivalence R F hF K Ω n)).trans (b.trans c)⟩
 
 end GlobalTheory.EtC.GalFld
 

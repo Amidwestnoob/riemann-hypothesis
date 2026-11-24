@@ -289,11 +289,11 @@ theorem prod_factorial_add_single {n : ℕ} (α : Fin n →₀ ℕ) (a : Fin n) 
   simp [Nat.factorial_succ]
   ring
 
-theorem taylor_deriv_eq_pderiv : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B) (ds : Fin n → Derivation ℤ A A), (∀ a b f, ds a (ds b f) = ds b (ds a f)) → ∀ a f, taylor ev (fun i => ⇑(ds i)) (ds a f) = MvPowerSeries.pderiv (R := B) a (taylor ev (fun i => ⇑(ds i)) f) := by
+theorem taylor_deriv_eq_pderiv : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B) (ds : Fin n → Derivation ℤ A A), (∀ a b f, ds a (ds b f) = ds b (ds a f)) → ∀ a f, _root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i)) (ds a f) = MvPowerSeries.pderiv (R := B) a (_root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i)) f) := by
   intro A B _ _ _ n ev ds h a f
   ext α
   rw [MvPowerSeries.coeff_pderiv]
-  simp only [MvPowerSeries.coeff_apply, taylor]
+  simp only [MvPowerSeries.coeff_apply, _root_.GlobalTheory.FormalOrigin.taylor]
   rw [prod_factorial_add_single, ← iterOp_apply_eq_add_single (fun i => ⇑(ds i)) h]
   have e : ((α a : B) + 1) = algebraMap ℚ B ((α a : ℚ) + 1) := by simp
   have hp : ((α a : ℚ) + 1) ≠ 0 := by positivity
@@ -337,7 +337,7 @@ theorem foldr_iterate_of_kills {A ι : Type} [Zero A] (ds : ι → A → A) (α 
         exact Function.iterate_fixed (h0 j) _
 
 theorem taylor_const :
-    ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B) (ds : Fin n → Derivation ℤ A A) (c : A), (∀ i, ds i c = 0) → taylor ev (fun i => ⇑(ds i)) c = MvPowerSeries.C (ev c) := by
+    ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra ℚ B] (n : ℕ) (ev : A →+* B) (ds : Fin n → Derivation ℤ A A) (c : A), (∀ i, ds i c = 0) → _root_.GlobalTheory.FormalOrigin.taylor ev (fun i => ⇑(ds i)) c = MvPowerSeries.C (ev c) := by
   intro A B _ _ _ n ev ds c hc
   ext α
   rw [MvPowerSeries.coeff_C]

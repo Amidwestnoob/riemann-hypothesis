@@ -23,10 +23,10 @@ def diag {Y X : Scheme.{0}} (f : Y ⟶ X) : sch.obj Y ⟶ cech f where
     · dsimp [sch, cech, Arrow.cechNerve]
       erw [Category.id_comp, Category.assoc, WidePullback.lift_base, WidePullback.lift_base, WidePullback.lift_base]
 
-theorem diag_aug {Y X : Scheme.{0}} (f : Y ⟶ X) : diag f ≫ cechAug f = sch.map f := by
+theorem diag_aug {Y X : Scheme.{0}} (f : Y ⟶ X) : diag f ≫ _root_.GlobalTheory.EtC.cechAug f = sch.map f := by
   ext n : 1
   rw [NatTrans.comp_app]
-  dsimp [diag, cechAug, sch, Arrow.augmentedCechNerve]
+  dsimp [diag, _root_.GlobalTheory.EtC.cechAug, sch, Arrow.augmentedCechNerve]
   erw [WidePullback.lift_base]
 
 theorem diag_zero {Y X : Scheme.{0}} (f : Y ⟶ X) :
@@ -49,10 +49,10 @@ theorem cech_cocycle_of_pull_eq_zero :
     ∀ (R : Type) [CommRing R] (F : Shv R) (Y X : Scheme.{0}) (f : Y ⟶ X) (x : H R (sch.obj X) F 1),
       pull R (sch.map f) F 1 x = 0 →
         ∃ s : (free R).obj ((cech f).obj (op ⦋1⦌)) ⟶ F,
-          cobd (R := R) (E := cech f) (n := 1) s = 0 ∧ IsCls (R := R) s (pull R (cechAug f) F 1 x) := by
+          cobd (R := R) (E := cech f) (n := 1) s = 0 ∧ IsCls (R := R) s (pull R (_root_.GlobalTheory.EtC.cechAug f) F 1 x) := by
   intro R _ F Y X f x hx
   obtain ⟨-, hneg, hmono, ⟨w0, hex⟩, -, -⟩ := _root_.GlobalTheory.EtC.res_basic R F
-  obtain ⟨z, hz⟩ := (pull R (cechAug f) F 1 x).mk_surjective
+  obtain ⟨z, hz⟩ := (pull R (_root_.GlobalTheory.EtC.cechAug f) F 1 x).mk_surjective
   have h0 : pull R (diag f) F 1 (CohomologyClass.mk z) = 0 := by
     rw [hz, ← pull_comp, diag_aug, hx]
   have h0' : CohomologyClass.mk (zcomp (Cocycle.ofHom ((chains R).map (diag f))) z (zero_add 1)) = 0 := h0
@@ -88,7 +88,7 @@ theorem cech_cocycle_of_pull_eq_zero :
   let b : Cocycle ((chains R).obj (cech f)) (res R F) 1 := Cocycle.mk (δ 0 1 c) 2 (by norm_num) (δ_δ 0 1 2 c)
   have hb : CohomologyClass.mk b = 0 := (CohomologyClass.mk_eq_zero_iff b).2 ⟨0, zero_add 1, c, rfl⟩
   let ζ := z - b
-  have hζ : CohomologyClass.mk ζ = pull R (cechAug f) F 1 x := by
+  have hζ : CohomologyClass.mk ζ = pull R (_root_.GlobalTheory.EtC.cechAug f) F 1 x := by
     rw [CohomologyClass.mk_sub, hb, sub_zero, hz]
   have hζv : ∀ p q hpq, ζ.1.v p q hpq = z.1.v p q hpq - (δ 0 1 c).v p q hpq := fun p q hpq => by
     simp only [ζ, b, Cocycle.coe_sub, Cochain.sub_v]
