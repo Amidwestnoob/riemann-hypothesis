@@ -23,6 +23,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.LastRed
 
 variable {D : D7}

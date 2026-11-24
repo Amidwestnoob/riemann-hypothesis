@@ -32,6 +32,7 @@ open scoped TensorProduct ENNReal
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace GlobalTheory.EvalAbs
 
 variable {D : D7} {ψ : AddChar (AF D.host.F) ℂ}
