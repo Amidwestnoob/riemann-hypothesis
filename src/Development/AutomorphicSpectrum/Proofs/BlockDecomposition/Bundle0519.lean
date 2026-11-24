@@ -300,6 +300,10 @@ theorem prodDom : RatProper → ProdDom := by
   haveI := isMulRightInvariant_GA E b μ₂
   haveI : SigmaFinite μ₁ := sigmaFinite_of_locallyFinite
   haveI : SigmaFinite μ₂ := sigmaFinite_of_locallyFinite
+  haveI : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (GA E b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SFinite μ₁ := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨μ, hh, hf, hi⟩ := exists_measure_of_eq μ₁ μ₂ (ratH E a b) (F₁ ×ˢ F₂)
     (isFundamentalDomain_range_prodMap μ₁ μ₂ (ratGL E a) (ratGL E b) F₁ F₂ h₁ h₂) (borelH E a b)
     Prod.borelSpace.measurable_eq
