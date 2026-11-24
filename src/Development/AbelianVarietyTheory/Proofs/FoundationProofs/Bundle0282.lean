@@ -23,6 +23,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.JetIntegrality.B
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemLpTwoOfCoshDecayUnitaryPQCover
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open Formalism.BasicNotions.TH GlobalTheory.FockAlg GlobalTheory.IndefiniteRowSideFullHecke.MatrixMinorProducts MeasureTheory
 open Formalism.MainNotions.SchurIrreducible (IrrU IrrGK IsHCMod pOf)
 open GlobalTheory.IndefiniteRowSideFullHecke.CartanCoshPower Matrix

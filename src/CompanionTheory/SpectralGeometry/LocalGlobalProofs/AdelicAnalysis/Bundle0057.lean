@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OneVectorCcOf
 
 -- bundled from CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteVolumeInductionCompactSum
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.CountGen
