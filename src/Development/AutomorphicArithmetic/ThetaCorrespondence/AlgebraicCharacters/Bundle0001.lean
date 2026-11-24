@@ -158,6 +158,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.AlgebraicCharacters.ChCoef
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.WeilDeligne
 open GlobalTheory.Pst GlobalTheory.TripleGal Module TensorProduct Polynomial Formalism.MainNotions.N
 open UpperTheory.Lit.CharWD GlobalTheory.Published
