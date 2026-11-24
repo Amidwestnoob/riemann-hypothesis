@@ -251,7 +251,7 @@ private theorem ev_val (x : E) (hx : x ≠ 0) : ∀ᶠ w : P E in cofinite, w.va
 
 variable (F E) in
 private theorem ev_unram : ∀ᶠ w : P E in cofinite, w.asIdeal.ramificationIdx (𝓞 F) = 1 := by
-  have h1 : differentIdeal (𝓞 F) (𝓞 E) ≠ ⊥ := differentIdeal_ne_bot
+  have h1 := _root_.differentIdeal_ne_bot (A := 𝓞 F) (B := 𝓞 E)
   have h3 := Ideal.finite_factors h1
   filter_upwards [h3.compl_mem_cofinite] with w hw
   haveI : Algebra.IsUnramifiedAt (𝓞 F) w.asIdeal := not_dvd_differentIdeal_iff.1 hw
