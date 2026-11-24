@@ -290,10 +290,10 @@ theorem GlobalTheory.BlockSplitProd.main : GlobalTheory.Published.BernsteinZelev
     have := Finset.sum_add_sum_compl S d
     omega
   have hlink : ∀ a b, a ∉ S → b ∈ S → ∀ (h : d a = d b) (α : ℂˣ),
-      ¬ Nonempty ((h ▸ σ a : Irr k (d b)).π.Equiv (twist (σ b).π (detChar (Fin (d b)) (unrChar k α)))) := by
+      ¬ Nonempty ((h ▸ σ a : Irr k (d b)).π.Equiv (GlobalTheory.SmGL.twist (σ b).π (detChar (Fin (d b)) (unrChar k α)))) := by
     intro a b ha hb h α ⟨φ⟩
     obtain ⟨hb1, β, ⟨ψ⟩⟩ := (Finset.mem_filter.1 hb).2
-    have e1 : twist (detRep (Fin (d b)) (χ * unrChar k β)) (detChar (Fin (d b)) (unrChar k α)) =
+    have e1 : GlobalTheory.SmGL.twist (detRep (Fin (d b)) (χ * unrChar k β)) (detChar (Fin (d b)) (unrChar k α)) =
         detRep (Fin (d b)) (χ * unrChar k (β * α)) := by
       rw [twist_detRep, unrChar_mul, mul_assoc]
     have ψ' := LocGL.twistEquiv ψ (detChar (Fin (d b)) (unrChar k α))
