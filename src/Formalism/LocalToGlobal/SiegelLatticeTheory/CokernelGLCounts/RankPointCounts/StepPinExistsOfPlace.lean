@@ -15,6 +15,7 @@ noncomputable section
 open MeasureTheory Topology NumberField Formalism.BasicNotions Formalism.MainNotions.S
 open scoped ENNReal
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.NGPin
 
 section Gen

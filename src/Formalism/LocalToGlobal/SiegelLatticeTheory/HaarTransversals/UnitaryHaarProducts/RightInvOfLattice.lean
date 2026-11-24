@@ -18,6 +18,7 @@ open MeasureTheory Measure NumberField Topology Formalism.BasicNotions Formalism
 open scoped ENNReal Pointwise
 open Matrix
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.Pf.Sinf
 
 open Formalism.L2.SG Formalism.L2.SG.PoincareInHH Formalism.L2.SG.Pf

@@ -12,6 +12,7 @@ noncomputable section
 
 open Matrix Formalism.L2.SG.HidaSetting
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace Formalism.L2.SG.Pf.IdBlocks2.Conj
 
 variable {n r : ℕ} (ε : Fin n → Bool)

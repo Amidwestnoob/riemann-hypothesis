@@ -26,6 +26,7 @@ noncomputable section
 
 open scoped Classical InnerProductSpace ComplexConjugate
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
   Formalism.L2.SG.TermOp Formalism.L2.SG.PackageTie2
 
 set_option linter.dupNamespace false
