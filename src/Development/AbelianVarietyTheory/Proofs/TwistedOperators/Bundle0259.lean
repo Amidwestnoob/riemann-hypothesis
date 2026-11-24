@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle022
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContDiffRightConvolutionAlongOneParameterProduct
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory Set Filter Metric
 open scoped Topology ContDiff ComplexConjugate
