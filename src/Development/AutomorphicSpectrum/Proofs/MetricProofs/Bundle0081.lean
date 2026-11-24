@@ -138,8 +138,8 @@ theorem sum_mapDomain_block (hv : ∀ p, (v p).1 = κ p.1) [DecidableEq K'] (m :
       · simp [Finsupp.single_apply, h]
     rw [Finsupp.mapDomain_single, hL, hR, hv]
 
-theorem isMultiHomog_rename_block (hb : IsBlockMap κ v) {f : MRing ι} {b : K → ℕ} (hf : IsMultiHomog f b) :
-    IsMultiHomog (rename v f) (Function.extend κ b 0) := by
+theorem isMultiHomog_rename_block (hb : IsBlockMap κ v) {f : MRing ι} {b : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f b) :
+    _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (rename v f) (Function.extend κ b 0) := by
   classical
   intro m hm k'
   rw [support_rename_of_injective hb.2.1, Finset.mem_image] at hm

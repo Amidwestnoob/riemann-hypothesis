@@ -352,7 +352,7 @@ theorem exists_chart (y : (Σ k, J k) → Ω) (h : CoordTie ℤ ξ (seg y)) :
   exact ⟨c, fun k ↦ (Finset.prod_ne_zero_iff.mp hchart.1) k (Finset.mem_univ k)⟩
 
 theorem ratioField_eq_top [CharZero Ω] (y : (Σ k, J k) → Ω) (h : CoordTie ℤ ξ (seg y)) (c : ∀ k, J k)
-    (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) : ratioField y c = ⊤ := by
+    (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) : _root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c = ⊤ := by
   have hne : seg y c ≠ 0 := Finset.prod_ne_zero_iff.mpr fun k _ ↦ hc k
   rw [eq_top_iff]
   intro a _
@@ -360,7 +360,7 @@ theorem ratioField_eq_top [CharZero Ω] (y : (Σ k, J k) → Ω) (h : CoordTie �
   exact div_mem (adjoin_le_ratioField y c hg) (adjoin_le_ratioField y c hu)
 
 theorem trdeg_eq_of_ringKrullDim [∀ k, Fintype (J k)] [CharZero Ω] (y : (Σ k, J k) → Ω) (c : ∀ k, J k)
-    (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) (htop : ratioField y c = ⊤) (d : ℕ)
+    (hc : ∀ k, y ⟨k, c k⟩ ≠ 0) (htop : _root_.GroundTheory.Heights₂.Heights.CoordinateConeArithVar.ratioField y c = ⊤) (d : ℕ)
     (hdim : ringKrullDim (MRing J ⧸ mCoordIdeal y) = ((d + 1 + Fintype.card K : ℕ) : WithBot ℕ∞)) :
     Algebra.trdeg ℤ Ω = d := by
   have hb : blockFnField y = ⊤ := by rw [← Cmp.ratioField_eq_blockFnField y c hc, htop]

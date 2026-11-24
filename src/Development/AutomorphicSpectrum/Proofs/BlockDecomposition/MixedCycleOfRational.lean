@@ -184,7 +184,7 @@ variable {D : Type} [CommRing D] (ε : Pol n →+* D)
 def cone : Pol n →+* MvPolynomial (Fin (m + 1)) D :=
   eval₂Hom (Int.castRingHom _) fun p => C (ε (MvPolynomial.X p)) * MvPolynomial.X p.1
 
-theorem cone_of_isMultiHomog {F : Pol n} {d : Fin (m + 1) → ℕ} (hF : IsMultiHomog F d) :
+theorem cone_of_isMultiHomog {F : Pol n} {d : Fin (m + 1) → ℕ} (hF : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog F d) :
     cone ε F = C (ε F) * ∏ k, MvPolynomial.X k ^ d k := by
   classical
   conv_lhs => rw [F.as_sum]
@@ -204,7 +204,7 @@ theorem cone_of_isMultiHomog {F : Pol n} {d : Fin (m + 1) → ℕ} (hF : IsMulti
   ring
 
 theorem exists_isMultiHomog_eq (c : ∀ k, Bk n k) (hc : ∀ k, ε (MvPolynomial.X ⟨k, c k⟩) = 1) (t : Pol n) :
-    ∃ (d : Fin (m + 1) → ℕ) (t' : Pol n), IsMultiHomog t' d ∧ ε t' = ε t := by
+    ∃ (d : Fin (m + 1) → ℕ) (t' : Pol n), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog t' d ∧ ε t' = ε t := by
   have hm : ∀ d : Fin (m + 1) → ℕ, ε (chartMonomial c d) = 1 := fun d => by
     simp [chartMonomial, map_prod, hc]
   induction t using MvPolynomial.induction_on with
@@ -231,14 +231,14 @@ theorem exists_isMultiHomog_eq (c : ∀ k, Bk n k) (hc : ∀ k, ε (MvPolynomial
     exact h.mul (isWeightedHomogeneous_X _ _ _)
 
 theorem cone_eq_zero_iff {P : Ideal (Pol n)} (hh : IsMultiHomogIdeal P)
-    (hP : ∀ (s : Pol n) (a : Fin (m + 1) → ℕ), IsMultiHomog s a → (s ∈ P ↔ ε s = 0)) (F : Pol n) :
+    (hP : ∀ (s : Pol n) (a : Fin (m + 1) → ℕ), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a → (s ∈ P ↔ ε s = 0)) (F : Pol n) :
     cone ε F = 0 ↔ F ∈ P := by
   classical
   have hfin := weightedHomogeneousComponent_finsupp (w := coordDeg n) F
   set S := hfin.toFinset
   have hsum : F = ∑ e ∈ S, weightedHomogeneousComponent (coordDeg n) e F := by
     conv_lhs => rw [← sum_weightedHomogeneousComponent (w := coordDeg n) F, finsum_eq_sum _ hfin]
-  have hcomp : ∀ e, IsMultiHomog (weightedHomogeneousComponent (coordDeg n) e F) e := fun e =>
+  have hcomp : ∀ e, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (weightedHomogeneousComponent (coordDeg n) e F) e := fun e =>
     (geoMultiHomog_iff _ _).2 (weightedHomogeneousComponent_isWeightedHomogeneous _ _)
   have hcone : cone ε F = ∑ e ∈ S, C (ε (weightedHomogeneousComponent (coordDeg n) e F)) *
       ∏ k, MvPolynomial.X k ^ e k := by
@@ -269,7 +269,7 @@ abbrev qOf {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) : Ideal Γ(X, i ⁻¹ᵁ mch
   ((isAffineOpen_preimage c).primeIdealOf ⟨z, hz⟩).asIdeal
 
 theorem mem_ptIdeal_iff_mem_qOf {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ}
-    (hs : IsMultiHomog s a) : s ∈ ptIdeal (i z) ↔ phi i c s ∈ qOf c hz :=
+    (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a) : s ∈ ptIdeal (i z) ↔ phi i c s ∈ qOf c hz :=
   (mem_ptIdeal_iff_evaluation_phi c hz hs).trans
     (ReciprocityTheory.AnForm.R.evaluation_eq_zero_iff_mem_primeIdealOf _ z hz _)
 
@@ -288,7 +288,7 @@ theorem map_ptIdeal_eq {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) : (ptIdeal (i z)
     exact Ideal.mem_map_of_mem _ ((mem_ptIdeal_iff_mem_qOf c hz ht).2 hy)
 
 theorem mem_genericPoint_iff (hc : genericPoint X ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ}
-    (hs : IsMultiHomog s a) : s ∈ ptIdeal (i (genericPoint X)) ↔ phi i c s = 0 :=
+    (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a) : s ∈ ptIdeal (i (genericPoint X)) ↔ phi i c s = 0 :=
   (mem_ptIdeal_iff_evaluation_phi c hc hs).trans
     (map_eq_zero_iff _ (UnderIdeal.evaluation_genericPoint_injective _ hc))
 
@@ -297,7 +297,7 @@ theorem localQuotLength_congr {O : Type} [CommRing O] {q q' : Ideal O} [q.IsPrim
   subst e
   rfl
 
-theorem multAt_eq {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ} (hs : IsMultiHomog s a) :
+theorem multAt_eq {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ} (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a) :
     multAt (ptIdeal (i (genericPoint X)) ⊔ Ideal.span {s}) (ptIdeal (i z)) =
       localQuotLength (qOf c hz) (phi i c s) := by
   have hη : genericPoint X ∈ i ⁻¹ᵁ mchart c := gen_mem hz
@@ -323,7 +323,7 @@ theorem multAt_eq {z : X} (hz : z ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin 
 variable [IsLocallyNoetherian X]
 
 theorem ord_fnAt {z : X} (h1 : Order.coheight z = 1) (hz : z ∈ i ⁻¹ᵁ mchart c)
-    (hc : genericPoint X ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ} (hs : IsMultiHomog s a)
+    (hc : genericPoint X ∈ i ⁻¹ᵁ mchart c) {s : Pol n} {a : Fin (m + 1) → ℕ} (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a)
     (hsP : s ∉ ptIdeal (i (genericPoint X))) :
     Scheme.ord (fnAt i c hc s) z = multAt (ptIdeal (i (genericPoint X)) ⊔ Ideal.span {s}) (ptIdeal (i z)) := by
   rw [multAt_eq c hz hs]

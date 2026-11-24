@@ -53,7 +53,7 @@ theorem isOpen_forall_ne {A : Type} [Finite A] {T : Set (Fin n → ℂ)} (hT : I
   exact hT.inter (isOpen_iInter_of_finite fun a =>
     (hf a).continuousOn.isOpen_inter_preimage hT isOpen_compl_singleton)
 
-theorem form_notMem_iff (z : (Σ k, J k) → ℂ) {g : MRing J} {d : K → ℕ} (hg : IsMultiHomog g d) :
+theorem form_notMem_iff (z : (Σ k, J k) → ℂ) {g : MRing J} {d : K → ℕ} (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d) :
     g ∉ mCoordIdeal z ↔ eval z (map (Int.castRingHom ℂ) g) ≠ 0 := by
   rw [Ne, form_mem_mCoordIdeal_iff z hg, aeval_def, algebraMap_int_eq, eval₂_eq_eval_map]
 
@@ -68,7 +68,7 @@ theorem exists_normalised {A : Type} [Finite A] (x : (Σ k, J k) → Ω) (c : �
       ∀ w ∈ V, bl w ∈ mcPts (mCoordIdeal x) ∧ (∀ k, bl w ⟨k, c k⟩ = 1) ∧ SameOrbit (G w) (bl w) ∧
         ∀ a, RegAt x (mCoordIdeal (bl w)) (s a) := by
   choose d g h hg hh hnot heq using hreg
-  have hX : ∀ (k : K) (i : J k), IsMultiHomog (X ⟨k, i⟩ : MRing J) (fun k' => if k' = k then 1 else 0) := fun k i =>
+  have hX : ∀ (k : K) (i : J k), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (X ⟨k, i⟩ : MRing J) (fun k' => if k' = k then 1 else 0) := fun k i =>
     GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_X_single ⟨k, i⟩
   have hx : ∀ a, aeval x (h a) ≠ 0 := fun a e0 => by
     have h1 := (hmem w₀ hw₀).2 _ (mem_mCoordIdeal_of_aeval_eq_zero x (hh a) e0)

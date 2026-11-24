@@ -60,7 +60,7 @@ theorem sum_mapDomain_block {κ : K → K'} {v : (Σ k, ι k) → Σ k, ι' k} (
     rw [Finsupp.mapDomain_single, hL, hR, hv]
 
 theorem isMultiHomog_rename_block {κ : K → K'} {v : (Σ k, ι k) → Σ k, ι' k} (hb : IsBlockMap κ v) {f : MRing ι}
-    {b : K → ℕ} (hf : IsMultiHomog f b) : IsMultiHomog (rename v f) (Function.extend κ b 0) := by
+    {b : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f b) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (rename v f) (Function.extend κ b 0) := by
   intro m hm k'
   rw [support_rename_of_injective hb.2.1, Finset.mem_image] at hm
   obtain ⟨m₀, hm₀, rfl⟩ := hm

@@ -51,13 +51,13 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.algebraic_square_intersection_
     rw [Fin.append_right_eq_snoc, Q.image 0] at hP
     rw [hP]
     congr 1
-    obtain ⟨V, hV⟩ := Targets.Relabel.exists_map_eq e hq (fibreIdeal (Q.κ 0) G)
+    obtain ⟨V, hV⟩ := Targets.Relabel.exists_map_eq e hq (_root_.ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal (Q.κ 0) G)
     have hVd : IsProjVarF V 1 := by
       rw [← Targets.Relabel.isProjVarF_map_iff e hq, ← hV]
       exact hIn.2.2.2.1.2.2 K ι Q.KW Q.ιW (Q.κ 0) (Q.v 0) Q.PW (d + 2) 1 G (Q.block 0) Q.arithW
         (by rw [Q.image 0]; exact Q.arithY)
     have hVs : ∃ S : Set (MRingOver G.Φ fun _ : Unit => Q.ιW (Q.κ 1 k₀)),
-        (∀ f ∈ S, IsMultiHomog f fun _ => 1) ∧ V = Ideal.span S := by
+        (∀ f ∈ S, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f fun _ => 1) ∧ V = Ideal.span S := by
       obtain ⟨T, hT, hTs⟩ := Q.fibre_line G
       refine ⟨(Targets.Relabel.ringEquiv G.Φ e hq).symm '' T, ?_, ?_⟩
       · rintro f ⟨g, hg, rfl⟩
@@ -68,7 +68,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.algebraic_square_intersection_
       funext j u
       fin_cases j
       rfl
-    show ((I₀ (Ideal.comap (Targets.Relabel.ringEquiv G.Φ e hq) (fibreIdeal (Q.κ 0) G)) 1
+    show ((I₀ (Ideal.comap (Targets.Relabel.ringEquiv G.Φ e hq) (_root_.ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal (Q.κ 0) G)) 1
       fun j => fibreDeg (Q.κ 0) N.a ∘ e : ℤ) : ℝ) = _
     rw [hV, Targets.Relabel.comap_map, key, hL1]
   · intro L L' hL hLL'

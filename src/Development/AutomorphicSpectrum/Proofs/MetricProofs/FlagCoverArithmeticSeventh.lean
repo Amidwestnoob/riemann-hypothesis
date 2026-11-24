@@ -144,16 +144,16 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ k, Fintype (ι' k)]
 
 theorem isMultiHomog_finset_prod {α : Type} (s : Finset α) (f : α → MRing ι) (a : α → K → ℕ)
-    (h : ∀ i ∈ s, IsMultiHomog (f i) (a i)) : IsMultiHomog (∏ i ∈ s, f i) (∑ i ∈ s, a i) := by
+    (h : ∀ i ∈ s, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (f i) (a i)) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (∏ i ∈ s, f i) (∑ i ∈ s, a i) := by
   induction s using Finset.induction_on with
-  | empty => simpa using (GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_one : IsMultiHomog (1 : MRing ι) 0)
+  | empty => simpa using (GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_one : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (1 : MRing ι) 0)
   | insert b s hb ih =>
     rw [Finset.prod_insert hb, Finset.sum_insert hb]
     exact GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul (h b (Finset.mem_insert_self _ _))
       (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
 theorem isMultiHomog_rename_block {κ : K → K'} {v : (Σ k, ι k) → (Σ k, ι' k)} (hv : IsBlockMap κ v) {f : MRing ι}
-    {a : K → ℕ} (hf : IsMultiHomog f a) : IsMultiHomog (rename v f : MRing ι') (Function.extend κ a 0) := by
+    {a : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a) : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (rename v f : MRing ι') (Function.extend κ a 0) := by
   intro m hm k'
   rw [support_rename_of_injective hv.2.1] at hm
   obtain ⟨m0, hm0, rfl⟩ := Finset.mem_image.mp hm
@@ -201,7 +201,7 @@ theorem ev_rename (z : (Σ k, ι' k) → ℂ) (v : (Σ k, ι k) → (Σ k, ι' k
     ev (rename v s : MRing ι') z = ev s (z ∘ v) := by
   rw [ev, map_rename, eval_rename]
 
-theorem ev_ne_zero_of_orbit {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) {w w' : (Σ k, ι k) → ℂ}
+theorem ev_ne_zero_of_orbit {f : MRing ι} {a : K → ℕ} (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f a) {w w' : (Σ k, ι k) → ℂ}
     (ho : SameOrbit w w') (h : ev f w ≠ 0) : ev f w' ≠ 0 := by
   obtain ⟨c, -, rfl⟩ := ho
   intro h0
@@ -210,16 +210,16 @@ theorem ev_ne_zero_of_orbit {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f 
 
 def fr (g h : MRing ι) (w : (Σ k, ι k) → ℂ) : ℂ := ev g w / ev h w
 
-theorem fr_orbit {g h : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d) (hh : IsMultiHomog h d)
+theorem fr_orbit {g h : MRing ι} {d : K → ℕ} (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d) (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d)
     {w w' : (Σ k, ι k) → ℂ} (ho : SameOrbit w w') : fr g h w = fr g h w' := by
   obtain ⟨c, hc, rfl⟩ := ho
   have hu : (∏ k, c k ^ d k) ≠ 0 := Finset.prod_ne_zero_iff.2 fun k _ => pow_ne_zero _ (hc k)
   rw [fr, fr, ev, ev, eval_smul_homog g d hg, eval_smul_homog h d hh, mul_div_mul_left _ _ hu]
 
 theorem exists_rep {Ω : Type} [Field Ω] [CharZero Ω] (y : (Σ k, ι k) → Ω) {c : Ω} (hc : c ∈ blockFnField y) :
-    ∃ (d : K → ℕ) (g h : MRing ι), IsMultiHomog g d ∧ IsMultiHomog h d ∧ aeval y h ≠ 0 ∧
+    ∃ (d : K → ℕ) (g h : MRing ι), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d ∧ _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d ∧ aeval y h ≠ 0 ∧
       aeval y g = c * aeval y h := by
-  have zero_rep : ∃ (d : K → ℕ) (g h : MRing ι), IsMultiHomog g d ∧ IsMultiHomog h d ∧ aeval y h ≠ 0 ∧
+  have zero_rep : ∃ (d : K → ℕ) (g h : MRing ι), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d ∧ _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d ∧ aeval y h ≠ 0 ∧
       aeval y g = (0 : Ω) * aeval y h :=
     ⟨0, 0, 1, GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_zero 0, GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_one, by simp, by simp⟩
   unfold blockFnField at hc
@@ -338,7 +338,7 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {κ : K → K'} {v : (Σ k, ι k) → (Σ k, ι' k)}
 
 def IsRep (y : (Σ k, ι k) → Ω) (P : Polynomial Ω) (n : ℕ) (d : ℕ → K → ℕ) (g h : ℕ → MRing ι) : Prop :=
-  P.natDegree < n ∧ ∀ e, IsMultiHomog (g e) (d e) ∧ IsMultiHomog (h e) (d e) ∧ aeval y (h e) ≠ 0 ∧
+  P.natDegree < n ∧ ∀ e, _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (g e) (d e) ∧ _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (h e) (d e) ∧ aeval y (h e) ≠ 0 ∧
     aeval y (g e) = P.coeff e * aeval y (h e)
 
 theorem exists_isRep [CharZero Ω] (y : (Σ k, ι k) → Ω) {P : Polynomial Ω} (hP : ∀ e, P.coeff e ∈ blockFnField y) :
@@ -350,7 +350,7 @@ def valPoly (n : ℕ) (g h : ℕ → MRing ι) (w : (Σ k, ι k) → ℂ) : Poly
   ∑ e ∈ Finset.range n, Polynomial.C (fr (g e) (h e) w) * Polynomial.X ^ e
 
 theorem isValueAt_of_rep (hv : IsBlockMap κ v) (x' : (Σ k, ι' k) → Ω) {d : K → ℕ} {g h : MRing ι} {c : Ω}
-    (hg : IsMultiHomog g d) (hh : IsMultiHomog h d) (hy : aeval (x' ∘ v) h ≠ 0)
+    (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g d) (hh : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog h d) (hy : aeval (x' ∘ v) h ≠ 0)
     (he : aeval (x' ∘ v) g = c * aeval (x' ∘ v) h) {z : (Σ k, ι' k) → ℂ} (hz : ev h (z ∘ v) ≠ 0) :
     IsValueAt x' c z (fr g h (z ∘ v)) := by
   refine ⟨Function.extend κ d 0, rename v g, rename v h, isMultiHomog_rename_block hv hg,
@@ -385,7 +385,7 @@ theorem analyticAt_ev (f : MRing ι) (w : (Σ k, ι k) → ℂ) [Fintype (Σ k, 
 theorem exists_good_form [CharZero Ω] (hv : IsBlockMap κ v) (x' : (Σ k, ι' k) → Ω)
     (hle : blockFnField (x' ∘ v) ≤ blockFnField x')
     (hpos : 0 < (blockFnField (x' ∘ v)).relfinrank (blockFnField x')) {t : Ω} (ht : t ∈ blockFnField x') :
-    ∃ (E : MRing ι) (a : K → ℕ), IsMultiHomog E a ∧ aeval (x' ∘ v) E ≠ 0 ∧
+    ∃ (E : MRing ι) (a : K → ℕ), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog E a ∧ aeval (x' ∘ v) E ≠ 0 ∧
       ∀ b' ∈ mcPts (mCoordIdeal x'), ∀ wb, SameOrbit wb (b' ∘ v) → ev E wb ≠ 0 → ∀ τ₀, IsValueAt x' t b' τ₀ →
         ∃ (U : Set ((Σ k, ι k) → ℂ)) (ε : ℝ) (r : ((Σ k, ι k) → ℂ) → ℂ), IsOpen U ∧ wb ∈ U ∧ 0 < ε ∧
           AnalyticOnNhd ℂ r U ∧ ∀ b'' ∈ mcPts (mCoordIdeal x'), ∀ w' ∈ U, SameOrbit w' (b'' ∘ v) →
@@ -454,7 +454,7 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 theorem exists_form_local_inverse [CharZero Ω] (hv : IsBlockMap κ v) (x' : (Σ k, ι' k) → Ω)
     (hle : blockFnField (x' ∘ v) ≤ blockFnField x')
     (hpos : 0 < (blockFnField (x' ∘ v)).relfinrank (blockFnField x')) :
-    ∃ (D : MRing ι) (a : K → ℕ), IsMultiHomog D a ∧ aeval (x' ∘ v) D ≠ 0 ∧
+    ∃ (D : MRing ι) (a : K → ℕ), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog D a ∧ aeval (x' ∘ v) D ≠ 0 ∧
       ∀ b' ∈ mcPts (mCoordIdeal x'), ∀ wb, SameOrbit wb (b' ∘ v) → ev D wb ≠ 0 →
         ∃ (V : Set ((Σ k, ι k) → ℂ)) (V' : Set ((Σ k, ι' k) → ℂ)) (s : ((Σ k, ι k) → ℂ) → (Σ k, ι' k) → ℂ),
           IsOpen V ∧ wb ∈ V ∧ IsOpen V' ∧ b' ∈ V' ∧ AnalyticOnNhd ℂ s V ∧
@@ -511,7 +511,7 @@ theorem aeval_eq_zero_of_mem {x : (Σ k, ι k) → Ω} {f : MRing ι} (hf : f �
 
 end General
 
-theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Φ : Type) [Field Φ] (y : (Σ k, ι k) → Φ) (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N j : ℕ) (M : FlagModel y Ψ N j) (K' : Type) [Fintype K'] (ι' : K' → Type) [∀ k, Fintype (ι' k)] (Φ' : Type) [Field Φ'] (y' : (Σ k, ι' k) → Φ') (M' : FlagModel y' Ψ N j) (Cv : FlagCover M' M) (d : ℕ), IsArithVar (mCoordIdeal y) (d + 2) → IsArithVar (mCoordIdeal y') (d + 2) → ∃ (D : MRing (baseIdx ι M.blk)) (a : NonPluckerBlocks M.blk → ℕ), IsMultiHomog D a ∧ D ∉ mCoordIdeal M.x ∧ ∀ b' ∈ mcPts (mCoordIdeal M'.x), ∀ wb, SameOrbit wb (b' ∘ Cv.v) → eval wb (map (Int.castRingHom ℂ) D) ≠ 0 → ∃ (V : Set ((Σ k, baseIdx ι M.blk k) → ℂ)) (V' : Set ((Σ k, baseIdx ι' M'.blk k) → ℂ)) (s : ((Σ k, baseIdx ι M.blk k) → ℂ) → (Σ k, baseIdx ι' M'.blk k) → ℂ), IsOpen V ∧ wb ∈ V ∧ IsOpen V' ∧ b' ∈ V' ∧ AnalyticOnNhd ℂ s V ∧ ∀ b'' ∈ V' ∩ mcPts (mCoordIdeal M'.x), ∀ w' ∈ V, SameOrbit w' (b'' ∘ Cv.v) → SameOrbit (s w') b'' := by
+theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Φ : Type) [Field Φ] (y : (Σ k, ι k) → Φ) (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N j : ℕ) (M : FlagModel y Ψ N j) (K' : Type) [Fintype K'] (ι' : K' → Type) [∀ k, Fintype (ι' k)] (Φ' : Type) [Field Φ'] (y' : (Σ k, ι' k) → Φ') (M' : FlagModel y' Ψ N j) (Cv : FlagCover M' M) (d : ℕ), IsArithVar (mCoordIdeal y) (d + 2) → IsArithVar (mCoordIdeal y') (d + 2) → ∃ (D : MRing (baseIdx ι M.blk)) (a : NonPluckerBlocks M.blk → ℕ), _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog D a ∧ D ∉ mCoordIdeal M.x ∧ ∀ b' ∈ mcPts (mCoordIdeal M'.x), ∀ wb, SameOrbit wb (b' ∘ Cv.v) → eval wb (map (Int.castRingHom ℂ) D) ≠ 0 → ∃ (V : Set ((Σ k, baseIdx ι M.blk k) → ℂ)) (V' : Set ((Σ k, baseIdx ι' M'.blk k) → ℂ)) (s : ((Σ k, baseIdx ι M.blk k) → ℂ) → (Σ k, baseIdx ι' M'.blk k) → ℂ), IsOpen V ∧ wb ∈ V ∧ IsOpen V' ∧ b' ∈ V' ∧ AnalyticOnNhd ℂ s V ∧ ∀ b'' ∈ V' ∩ mcPts (mCoordIdeal M'.x), ∀ w' ∈ V, SameOrbit w' (b'' ∘ Cv.v) → SameOrbit (s w') b'' := by
   intro K _ ι _ Φ _ y Ψ _ _ N j M K' _ ι' _ Φ' _ y' M' Cv d _ _
   have hle : blockFnField (M'.x ∘ Cv.v) ≤ blockFnField M'.x :=
     IntermediateField.adjoin_le_iff.2 (by

@@ -52,7 +52,7 @@ theorem finsum_eq_sum (P : Ideal (MRing ι)) (s : MRing ι) (F : Ideal (MRing ι
 theorem sub_eq_cycR {I : Ideal (MRing ι) → (n : ℕ) → (Fin n → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι) → ℝ} (hI : IsIntersectionFamily I)
     {P : Ideal (MRing ι)} {D : ℕ} {L : Fin D → _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} {A B : _root_.ReciprocityTheory.ChartRestriction.G.Geo.HermLine ι} (hP : IsArithVar P (D + 1))
     (hL : ∀ j, IsSmoothHerm (L j)) (hA : IsSmoothHerm A) (hB : IsSmoothHerm B) {f g : MRing ι} {df dg : K → ℕ}
-    (hf : IsMultiHomog f df) (hg : IsMultiHomog g dg) (hfP : f ∉ P) (hgP : g ∉ P)
+    (hf : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog f df) (hg : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog g dg) (hfP : f ∉ P) (hgP : g ∉ P)
     (hd : ∀ k, (df k : ℤ) - dg k = A.a k - B.a k)
     (hn : ∀ z ∈ mcPts P,
       ‖eval z (map (Int.castRingHom ℂ) f)‖ * B.h z = ‖eval z (map (Int.castRingHom ℂ) g)‖ * A.h z) :

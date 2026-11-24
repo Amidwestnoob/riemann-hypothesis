@@ -125,7 +125,7 @@ theorem exists_positive_period_line {E : Type} [Field E] (i₀ : MvPolynomial K 
     {cf : Φ} {e : K → ℤ} {c : ∀ k, ι k} (Fr : PenFrame y k₀ B cf e y c)
     (G : GenFibre (v₀ k₀) (mCoordIdeal (penCo y k₀ (fun m => y ⟨k₀, m⟩) B RatFunc.X))) :
     ∃ T : Set (MRingOver G.Φ (fibreIdx (iW ι k₀) (some : K → Option K))),
-      (∀ f ∈ T, IsMultiHomog f fun _ => 1) ∧ fibreIdeal (some : K → Option K) G = Ideal.span T := by
+      (∀ f ∈ T, IsMultiHomog f fun _ => 1) ∧ _root_.ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal (some : K → Option K) G = Ideal.span T := by
   let a : MRing ι →+* G.Φ := (aeval G.x : MRing ι →ₐ[ℤ] G.Φ).toRingHom
   have hka : RingHom.ker a = mCoordIdeal y := G.ker_x.trans (image_pen _ _ _ _ _)
   obtain ⟨ψ, hψ⟩ := exists_lift_gen a (i₀.comp (mConeMap y).toRingHom)
@@ -225,7 +225,7 @@ theorem exists_positive_period_line {E : Type} [Field E] (i₀ : MvPolynomial K 
 theorem line_pen {cf : Φ} {e : K → ℤ} {c : ∀ k, ι k} (Fr : PenFrame y k₀ B cf e y c)
     (G : GenFibre (v₀ k₀) (mCoordIdeal (penCo y k₀ (fun m => y ⟨k₀, m⟩) B RatFunc.X))) :
     ∃ T : Set (MRingOver G.Φ (fibreIdx (iW ι k₀) (some : K → Option K))),
-      (∀ f ∈ T, IsMultiHomog f fun _ => 1) ∧ fibreIdeal (some : K → Option K) G = Ideal.span T :=
+      (∀ f ∈ T, IsMultiHomog f fun _ => 1) ∧ _root_.ReciprocityTheory.ChartRestriction.G.AI.I4.fibreIdeal (some : K → Option K) G = Ideal.span T :=
   exists_positive_period_line (algebraMap _ (FractionRing (MvPolynomial K Φ))) (IsFractionRing.injective _ _) Fr G
 
 end PositivityTheory.Xgp.W

@@ -339,7 +339,7 @@ theorem isNull_union {e : ℕ} {X : Type} [TopologicalSpace X] {A : FinHolAtlas 
   exact measure_union_null (h j) (h' j)
 
 theorem isNull_zeros {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P J : Ideal (MRing ι)} {D : ℕ}
-    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {s : MRing ι} {a : K → ℕ} (hs : IsMultiHomog s a)
+    (R : AnLogRes P J D) (hP : IsArithVar P (D + 1)) {s : MRing ι} {a : K → ℕ} (hs : _root_.ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog s a)
     (hsP : s ∉ P) : IsNull R.A {x | eval (R.lift x x) (map (Int.castRingHom ℂ) s) = 0} := by
   obtain ⟨Ψ, hΨ⟩ := goodProjExists K ι P D hP
   exact fun j => GlobalTheory.CompanionTheory.Ar.Cmp.OneSlot.zeros_null R Ψ hP hΨ hs hsP j
