@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Quot
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 noncomputable section
 
 namespace GlobalTheory.Grow

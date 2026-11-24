@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.LineBundleGl
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.KerInfIntegrableOfMemRspan
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory

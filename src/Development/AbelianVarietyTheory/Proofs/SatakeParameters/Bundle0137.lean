@@ -209,6 +209,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnitarisableOfSquareIntegrable
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL
 
 open MeasureTheory ComplexConjugate

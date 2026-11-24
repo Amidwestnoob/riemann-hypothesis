@@ -6,6 +6,8 @@ public import Formalism.HermitianLattices.Bundle0003
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open MeasureTheory NumberField Matrix Finset
 
 noncomputable section

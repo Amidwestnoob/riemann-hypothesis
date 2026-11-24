@@ -10,6 +10,8 @@ public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralCon
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
+
 open MvPolynomial NumberField IsDedekindDomain MeasureTheory
 open Formalism.GradedWeylDivisibility (dualWeyl rowAct initMinor lpMinor hw shapeDeg colW initW nuNext ssIdx)
 open scoped Matrix ComplexConjugate InnerProductSpace

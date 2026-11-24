@@ -77,6 +77,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
 open MeasureTheory GlobalTheory.SplitWeil GlobalTheory.SmGL GlobalTheory.SatakeBound Formalism.UG

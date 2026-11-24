@@ -365,6 +365,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.IsRapidInf
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix
