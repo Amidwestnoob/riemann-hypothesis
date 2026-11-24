@@ -58,11 +58,11 @@ theorem exists_chart [IsLocalRing S] (w w' : FrPt Xo c S) (hw : w'.x = w.x) :
       (X : ∀ τ : E →+* ℂ, Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) A.R) (s : (A.R)ˣ) (u : FrPt Xo c A.R)
       (a a' : A.R →ₐ[c.F] S), OpenChart j y₀ ∧ UnivFrame y₀ π X s u ∧ FrMap a u w ∧ FrMap a' u w' := by
   have hS : Out.SecBaseChangeSt := GlobalTheory.lawsFieldsSeparately.2.1
-  obtain ⟨xF, h1, h2⟩ := ChartCover.exists_lift w
+  obtain ⟨xF, h1, h2⟩ := GlobalTheory.FrameEval.ChartCover.exists_lift w
   obtain ⟨p, j, y₀, hj, hp⟩ := _root_.GlobalTheory.Frames.exists_openChart_testRing hS E H Dw l Xo c (xF (IsLocalRing.closedPoint S))
   obtain ⟨A, π, X, s, u, hu⟩ := _root_.GlobalTheory.Frames.exists_univFrame_testRing hS E H Dw l Xo c p y₀
   have key : ∀ z : FrPt Xo c S, z.x = w.x → ∃ a : A.R →ₐ[c.F] S, FrMap a u z := fun z hz => by
-    obtain ⟨g, hg, hT⟩ := ChartCover.near hS hj hu z xF (h1.trans hz.symm) h2 _ hp
+    obtain ⟨g, hg, hT⟩ := GlobalTheory.FrameEval.ChartCover.near hS hj hu z xF (h1.trans hz.symm) h2 _ hp
     obtain ⟨z', a, h, ha⟩ := hT S (AlgHom.id _ _) (IsLocalRing.notMem_maximalIdeal.1 hg)
     exact ⟨a, frMap_unique h (frMap_id z) ▸ ha⟩
   obtain ⟨a, ha⟩ := key w rfl
@@ -80,7 +80,7 @@ theorem evR_eq {f : Rul Xo c}
   have hT : FromTest (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) w := ⟨p, φ, u, h⟩
   unfold evR evalAt
   rw [dite_eq_left hT]
-  exact evalWD_fr (frChartF_of (chartCoverF_of_secBaseChange GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c)) f hf S
+  exact evalWD_fr (frChartF_of (GlobalTheory.FrameEval.chartCoverF_of_secBaseChange GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c)) f hf S
     _ _ _ _ _ _ w hT.choose_spec.choose_spec.choose_spec h
 
 theorem evR_frMap [IsLocalRing S] {f : Rul Xo c}
@@ -95,7 +95,7 @@ theorem evR_frBor [IsLocalRing S] {e : Ix Dw → ℤ} {f : Rul Xo c} (hf : f ∈
     evR Xo c f y' = ((∏ i, t i ^ e i : Sˣ) : S) * evR Xo c f y := by
   obtain ⟨p, A, j, y₀, π, X, s, u, a, a', hj, hu, ha, ha'⟩ := exists_chart y y' h.1
   obtain ⟨B, uB, uB', tB, q, q', hq, hq', hB, hU⟩ :=
-    univFrame_borelPairs GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c p A j y₀ π X s u hj hu
+    GlobalTheory.FrameEval.univFrame_borelPairs GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c p A j y₀ π X s u hj hu
   obtain ⟨b, e1, e2, e3⟩ := hU S a a' y y' t ha ha' h
   have k : FrMap b uB y := frMap_of_comp hq ha fun x => DFunLike.congr_fun e1 x
   have k' : FrMap b uB' y' := frMap_of_comp hq' ha' fun x => DFunLike.congr_fun e2 x
