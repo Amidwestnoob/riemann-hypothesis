@@ -28,6 +28,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle06
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinTopology
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open scoped NNReal Matrix TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont
 open PositivityTheory.RgEis ResidueKilled.Tr PositivityTheory.Rg.SwEis

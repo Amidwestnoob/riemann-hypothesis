@@ -122,6 +122,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Jtop
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open PositivityTheory.RgEis PositivityTheory.RgEis.So
 open NumberField Matrix
 open scoped NumberField.AdeleRing
