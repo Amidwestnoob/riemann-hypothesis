@@ -106,7 +106,9 @@ theorem exists_hecke_level {F : Type} [Field F] [NumberField F] [Algebra F L] {c
     rfl
   · unfold Formalism.L2.Host.HChar.resInf
     rw [MonoidHom.finsetProd_apply]
-    refine Finset.prod_eq_one fun w' _ => hfix (infIdele L w' (atInf w' (upF F k))) ?_
+    refine Finset.prod_eq_one fun w' _ => hfix
+      (ReciprocityTheory.Neutral.Bridge.HCFR.infIdele L w'
+        (Formalism.L2.Host.atInf w' (Formalism.L2.Host.upF F k))) ?_
     rw [conj_inf h hC, conj_upF]
   · refine (GlobalTheory.InfTypeLocal.infType_iff_local L I φ h.bij χ.1 χ.2.1 _).2 fun i k => ?_
     rw [hχ _ (by rw [conj_inf h hC]; exact div_mem (inf_mem _ _) (inf_mem _ _)), conj_inf h hC, ← map_div, ← map_div,
